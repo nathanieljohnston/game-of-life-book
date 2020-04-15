@@ -1,0 +1,957 @@
+\chapter{Solutions to Selected Exercises}\label{chp:solutions}
+\setlength{\columnsep}{4.2em}
+\footnotesize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   SECTION: CHAPTER 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hypertarget{solutions_early_life}{}\label{solutions_early_life}
+\section*{Chapter 1: Early Life}
+\renewcommand{\chapterfolder}{early_life/}
+
+\begin{multicols}{2}
+	\begin{itemize}[leftmargin=0em]
+		\item[\bf\color{ocre}\sffamily\ref{exer:natural_switch_engine}.] \begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+			\item A twin bees shuttle
+			
+			\item A period~$14$ oscillator (called the \emph{tumbler}\index{tumbler}).
+			
+			\item A block-laying switch engine.
+			
+			\item A glider-producing switch engine. \\
+		\end{enumerate}
+		
+		
+		\item[\bf\color{ocre}\sffamily\ref{exer:random_symmetric}.] \begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+			\item A period~$12$ spaceship that has two lightweight spaceships at the front. This object is called the \emph{Schick engine}\index{Schick engine}, and we will investigate it in Section~\ref{sec:schick_engine}.
+			
+			\item A period~$10$ spaceship (called the \emph{copperhead}\index{copperhead}).
+			
+			\item A period~$51$ oscillator (found in 2009 by Nicolay Beluchenko).
+			
+			\item A period~$37$ oscillator (found in 2009 by Nicolay Beluchenko). \\
+		\end{enumerate}
+	
+	
+		\item[\bf\color{ocre}\sffamily\ref{exer:beehive_pair}.] \begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+			\item They destroy each other.
+			
+			\item One possibility is displayed here: \\[-0.6em]
+			
+			\patternimglink{0.1}{1_beehive_shuttle} \\
+		\end{enumerate}
+		
+		
+		\item[\bf\color{ocre}\sffamily\ref{exer:queen_bee_eater_1}.] \begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+			\item The eater~1 destroys the pre-beehive, leaving only the eater~1 behind.
+			
+			\item The pre-beehive evolves into a beehive after $1$~generation. Nothing happens to the eater~1 (it is a still life).
+			
+			\item The queen bee leaves a pre-beehive behind in the generation right before the beehive itself appears (i.e., $14$ generations after the first phase displayed in Figure~\ref{fig:queen_bee}).
+			
+			\item One possibility is displayed in Figure~\ref{fig:buckaroo}. \\
+		\end{enumerate} 
+	
+	
+		\item[\bf\color{ocre}\sffamily\ref{exer:find_unstable}.] \begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+			\item Generation $41$.
+			
+			\item Generation $42$.
+			
+			\item Generation $240$.
+			
+			\item Generation $774$.
+			
+			\item Generation $97$. \\
+		\end{enumerate}
+	
+	
+		\item[\bf\color{ocre}\sffamily\ref{exer:familiar_fours}]
+			\begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+				\item \raisebox{-\height+\ht\strutbox}{\patternimglink{0.1}{solution_fleet}}
+				
+				\item \raisebox{-\height+\ht\strutbox}{\patternimglink{0.1}{solution_bakery}} \\
+			\end{enumerate}
+		
+		
+		\item[\bf\color{ocre}\sffamily\ref{exer:goe_theorem}.] \begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+			\item $\displaystyle n =  \left\lceil \frac{2}{6-\sqrt{\log_2(2^{36}-1)}} \right\rceil = 1143185077171.$
+		
+			\item The new inequality to check is $(2^{36}-4)^{n^2} < 2^{(6n-2)^2}$, which is true whenever \begin{align*}n \geq \left\lceil \frac{2}{6-\sqrt{\log_2(2^{36}-4)}}\right\rceil = 285796269287.\end{align*}
+			
+			\item The new inequality to check is $(2^{25}-1)^{n^2} < 2^{(5n-2)^2}$, which is true whenever \begin{align*}n \geq \left\lceil \frac{2}{5-\sqrt{\log_2(2^{25}-1)}}\right\rceil = 465163192.\end{align*}
+			
+			\item The problem is that neighboring tiles might interact with each other in different ways even though individually they evolve the same. In particular, if the tile directly to the left of the two tiles displayed in this question has live cells on its rightmost edge, then that tile can interact in different ways with the block and the pre-block. We thus need \emph{two} rows of ``buffer'' dead cells around each cell that differs between the tiles.
+		\end{enumerate}
+	
+
+		\item[\bf\color{ocre}\sffamily\ref{exer:ark}.] \begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+		\item The blinker causes a second backward-firing switch engine to form, so now there are two separate glider streams being fired back at the initial debris.
+		
+		\item A forward-moving glider hits the switch engines at the front, transforming them into block-laying ones rather than ones that shoot gliders backward. \\
+		\end{enumerate}
+	\end{itemize}
+\end{multicols}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   SECTION: CHAPTER 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hypertarget{solutions_still_lifes}{}\label{solutions_still_lifes}
+\section*{Chapter 2: Still Lifes}
+\renewcommand{\chapterfolder}{still_lifes/}
+
+\begin{multicols}{2}
+\begin{itemize}[leftmargin=0em]
+	\item[\bf\color{ocre}\sffamily\ref{exer:classify_still_lifes}]
+		\begin{enumerate}[leftmargin=1.5em,label=(\alph*),series=solu_strict_pseudo]
+			\item Strict still life.
+			
+			\item Strict still life.
+			
+			\item Pseudo still life.
+			
+			\item Pseudo still life.
+			
+			\item Neither.
+			
+			\item Strict still life. \\
+		\end{enumerate}
+
+
+	\item[\bf\color{ocre}\sffamily\ref{exer:pseudo_few_colors}]
+		\begin{enumerate}[leftmargin=1.5em,label=(\alph*),series=solu_pseudo]
+			\item \raisebox{-\height+0.5em}{\patternimg{0.1}{solution_pseudo_1}}
+			
+			\item \raisebox{-\height+0.5em}{\patternimg{0.1}{solution_pseudo_4}}
+			
+			\item \raisebox{-\height+0.5em}{\patternimg{0.1}{solution_pseudo_2}}
+			
+			\item \raisebox{-\height+0.5em}{\patternimg{0.1}{solution_pseudo_5}}
+			
+			\item \raisebox{-\height+0.5em}{\patternimg{0.1}{solution_pseudo_3}}
+			
+			\item \raisebox{-\height+0.5em}{\patternimg{0.1}{solution_pseudo_6}} \\
+		\end{enumerate}
+
+
+	\item[\bf\color{ocre}\sffamily\ref{exer:still_life_add_dead}]
+		\begin{enumerate}[leftmargin=1.5em,label=(\alph*),series=solu_path]
+			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_path_1}}
+			
+			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_path_3}}
+			
+			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_path_2}} \\
+		\end{enumerate}
+	
+	
+	\item[\bf\color{ocre}\sffamily\ref{exer:still_life_add_coil}]
+		\begin{enumerate}[leftmargin=1.5em,label=(\alph*),series=solu_induction_coil]
+			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_induction_coil_1}}
+			
+			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_induction_coil_3}}
+			
+			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_induction_coil_2}} \\
+		\end{enumerate}
+	
+	
+	\item[\bf\color{ocre}\sffamily\ref{exer:eater_weld}]
+		\begin{enumerate}[leftmargin=1.5em,label=(\alph*),series=solu_eater_weld]
+			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_weld_1}}
+			
+			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_weld_2}}
+			
+			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_weld_5}}
+			
+			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_weld_3}}
+			
+			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_weld_4}}
+			
+			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_weld_6}} \\
+		\end{enumerate}
+	
+	
+	\item[\bf\color{ocre}\sffamily\ref{exer:fast_glider_eater}]
+		\begin{enumerate}[leftmargin=1.5em,label=(\alph*),resume=solu_fast_glider_eater]
+			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_fast_glider_eater}}
+			
+			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_fast_glider_eater_b}} \\
+		\end{enumerate}
+	
+	
+	\item[\bf\color{ocre}\sffamily\ref{exer:incomplete_glider_eater}] One possibility is as follows: \\[-0.6em]
+	
+	\patternimglink{0.1}{solution_incomplete_glider_eater} \\
+	
+	
+	\item[\bf\color{ocre}\sffamily\ref{exer:still_lifes_6_neigh}] If a dead cell has $7$ or $8$ live neighbors, then at most one of its neighbors is dead, so it is possible to find (up to rotation) a $5$-cell ``u''-shaped region of neighbors that are all alive. The middle-bottom cell in this ``u''-shaped region has at least $4$ live neighbors and thus cannot actually be part of a still life, which is a contradiction.
+	
+	The ship is an example of a still life for which a dead cell (the central dead cell) has $6$ live neighbors. \\
+	
+	
+	\item[\bf\color{ocre}\sffamily\ref{exer:sl_density_611}.] \begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+		\item $6$
+		
+		\item $5$
+		
+		\item If $L$ is the number of live cells in an $n \times n$ square, we find that $11L \leq 6n^2 + 12n$, so $L \leq (6/11)n^2 + (12/11)n$ and hence the asymptotic density of a still life cannot exceed $6/11$. \\
+	\end{enumerate}
+\end{itemize}
+\end{multicols}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   SECTION: CHAPTER 3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hypertarget{solutions_oscillators}{}\label{solutions_oscillators}
+\section*{Chapter 3: Oscillators}
+\renewcommand{\chapterfolder}{oscillators/}
+
+\begin{multicols}{2}
+\begin{itemize}[leftmargin=0em]
+	\item[\bf\color{ocre}\sffamily\ref{exer:billiard_tables}] These oscillators are (a) \emph{scrubber}\index{scrubber}, found no later than 1971, (b) \emph{airforce}\index{airforce}, found by David Buckingham in 1972, and (c) \emph{pinwheel}\index{pinwheel}, found by Simon Norton in 1970: \\[-0.6em]
+		\begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_billiard_table_3x3}}
+			
+			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_billiard_table_skew}}
+			
+			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_billiard_table_4x4}}
+		\end{enumerate}
+	
+	
+	\item[\bf\color{ocre}\sffamily\ref{exer:t_sparkers}] In these solutions, we use \bgbox{orangeback}{orange cells} to denote accessible sparks and \bgbox{greenback}{green cells} to denote cells that oscillate at the full period in our new compound oscillators.
+	\begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+		\item We could either combine the T-nosed p$4$ with a period~$3$ sparker or the T-nosed p$6$ with a period~$4$ sparker. Here is a T-nosed p$6$ with a p$4$ heavyweight emulator: \\[-0.6em]
+		
+		\embedlink{solution_t_sparkers_12}{\patternimg{0.1}{solution_t_sparkers_12a}} \\[-0.8em]
+		
+		\patternlink{solution_t_sparkers_12}{\patternimg{0.1}{solution_t_sparkers_12b}}
+		
+		\item We combine a T-nosed~p$4$ with a p$5$ heavyweight volcano (a fumarole does not quite work since its spark is a bit too close to the body of the oscillator): \\[-0.6em]
+		
+		\embedlink{solution_t_sparkers_20}{\patternimg{0.1}{solution_t_sparkers_20a}} \\[-0.8em]
+		
+		\patternlink{solution_t_sparkers_20}{\patternimg{0.1}{solution_t_sparkers_20b}} \\
+		
+		\item We combine a T-nosed~p$6$ with a p$8$ figure eight: \\[-0.6em]
+		
+		\embedlink{solution_t_sparkers_24}{\patternimg{0.1}{solution_t_sparkers_24a}} \\[-0.8em]
+		
+		\patternlink{solution_t_sparkers_24}{\patternimg{0.1}{solution_t_sparkers_24b}} \\
+	\end{enumerate}
+
+
+	\item[\bf\color{ocre}\sffamily\ref{exer:pi_hassle}] One possibility is the following oscillator, called the \emph{pi portraitor}\index{pi portraitor}, which was found by Robert Wainwright in 1984 or 1985. It uses four heavyweight emulators\index{heavyweight emulator} that have been welded together to provide the domino sparks. \\[-0.6em]
+	
+	\patternimglink{0.1}{pi_portraitor} \\
+	
+	
+	\item[\bf\color{ocre}\sffamily\ref{exer:p32_pi_hassler_eaters}] \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_p32_pi_hassler_eaters}} \\
+
+
+	\item[\bf\color{ocre}\sffamily\ref{exer:high_period_sparkers}] In these solutions, we use \bgbox{orangeback}{orange cells} to denote accessible sparks and \bgbox{greenback}{green cells} to denote cells that oscillate at the full period in our new compound oscillators.
+	\begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+		\item We can combine this period~$13$ oscillator with a period~$3$ caterer\index{caterer} to create an oscillator with period $\mathrm{lcm}(3,13) = 39$: \\[-0.6em]
+		
+		\embedlink{solution_high_period_sparker_13}{\patternimg{0.1}{solution_high_period_sparker_13a} \quad \patternimg{0.1}{solution_high_period_sparker_13b}} \\
+
+		\item We can combine this period~$31$ oscillator with a period~$4$ middleweight emulator\index{middleweight emulator} to create an oscillator with period $\mathrm{lcm}(4,31) = 124$:  \\[-0.6em]
+		
+		\embedlink{solution_high_period_sparker_31}{\patternimg{0.098}{solution_high_period_sparker_31a} \quad \patternimg{0.098}{solution_high_period_sparker_31b}} \\
+
+		\item We can combine this period~$32$ oscillator with a period~$6$ unix\index{unix} to create an oscillator with period $\mathrm{lcm}(6,32) = 96$: \\[-0.6em]
+		
+		\embedlink{solution_high_period_sparker_32}{\patternimg{0.092}{solution_high_period_sparker_32a} \quad \patternimg{0.092}{solution_high_period_sparker_32b}}
+	\end{enumerate}
+	
+	
+	\item[\bf\color{ocre}\sffamily\ref{exer:six_snark_relay}] One possibility is the following period~$680$ oscillator. Note that by adding extra gliders to this track, we can trivially create oscillators with many other periods as well. \\[-0.6em]
+	
+	\patternimglinkwidth{2.4in}{solution_six_snark_relay} \\
+	
+
+	\item[\bf\color{ocre}\sffamily\ref{exer:snark_weld}]
+	\begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+		\item \raisebox{-\height+0.5em}{\patternimglink{0.095}{solution_fused_snarks}}
+		
+		\item \raisebox{-\height+0.5em}{\patternimglink{0.095}{solution_four_fused_snarks}} \\
+	\end{enumerate}
+	
+	
+	\item[\bf\color{ocre}\sffamily\ref{exer:snark_creates_honeyfarm}] A pre-honeyfarm\index{pre-honeyfarm}. \\
+	
+	
+	\item[\bf\color{ocre}\sffamily\ref{exer:almost_snark}] Unfortunately, the block that the glider hits is moved up by $1$ cell, so any subsequent gliders will not trigger the same reaction. \\
+	
+	
+	\item[\bf\color{ocre}\sffamily\ref{exer:traffic_jam}] One possibility is the following oscillator, which was found by Noam Elkies in 1994. It is currently the smallest known period~$50$ oscillator. \\[-0.6em]
+	
+	\patternimglink{0.1}{p50_traffic_jam} \\
+
+
+	\item[\bf\color{ocre}\sffamily\ref{exer:traffic_jam_reflect}] The traffic jam creates dot and duoplet sparks.\index{duoplet} One way of using the period~$50$ oscillator from the solutions to Exercise~\ref{exer:traffic_jam} to reflect gliders is displayed below: \\[-0.6em]
+	
+	\patternimglink{0.1}{solution_traffic_jam_reflect} \\
+	
+	
+	\item[\bf\color{ocre}\sffamily\ref{exer:p4_oscillator}] Suppose that there is a single cell (which we will call X) that oscillates with period~$4$. Thus cell X must either be alive in $3$ of its phases or dead in $3$ of its phases. Suppose without loss of generality that cell X has the same state (alive or dead) in generations $0$, $1$, $2$, and the opposite state in generation $3$.
+	
+	Since all other cells oscillate with period~$2$, all of X's neighbors have the same state in generations~$0$ and~$2$. Since X itself also has the same state in generations~$0$ and~$2$, it must also have the same state in generations~$1$ and~$3$, which is a contradiction that shows it cannot oscillate at period~$4$. \\
+	
+	
+	\item[\bf\color{ocre}\sffamily\ref{exer:period_3_volatile}] One possibility is as follows: \\[-0.6em]
+	
+	\patternimglinkwidth{2.4in}{solution_period_3_volatile} \\
+	
+	
+	\item[\bf\color{ocre}\sffamily\ref{exer:phoenix_bb}] One phoenix that works is the following one that dies completely in $2$ generations: \\[-0.6em]
+	
+	\embedlink{solution_phoenix_bb}{\vcenteredhbox{\patternimg{0.1}{solution_phoenix_bb_0}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.1}{solution_phoenix_bb_1}}} \\
+\end{itemize}
+\end{multicols}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   SECTION: CHAPTER 4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hypertarget{solutions_spaceships}{}\label{solutions_spaceships}
+\section*{Chapter 4: Spaceships and Moving Objects}
+\renewcommand{\chapterfolder}{spaceships/}
+
+\begin{multicols}{2}
+\begin{itemize}[leftmargin=0em]
+	\item[\bf\color{ocre}\sffamily\ref{exer:glider_color}]
+		\begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+			\item Opposite.
+			
+			\item Same.
+			
+			\item Same. \\
+		\end{enumerate}
+		
+	
+	\item[\bf\color{ocre}\sffamily\ref{exer:reflector_color}]
+		\begin{enumerate}[leftmargin=1.5em,label=(\alph*),series=solu_reflector_color]
+			\item Color-preserving.
+			
+			\item Color-preserving.
+			
+			\item Color-preserving.
+			
+			\item Color-preserving.
+			
+			\item Color-changing. \\
+		\end{enumerate}
+		
+	
+	\item[\bf\color{ocre}\sffamily\ref{exer:swan_tubstretcher}]
+		\begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_swan_tubstretcher}}
+			
+			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_swan_duplicate}} \\
+		\end{enumerate}
+		
+
+	\item[\bf\color{ocre}\sffamily\ref{exer:owss_flotilla}]
+		\begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_owss4}}
+			
+			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_owss10}}
+			
+			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_owss6}} \\
+		\end{enumerate}
+		
+
+	\item[\bf\color{ocre}\sffamily\ref{exer:large_owss_flotilla}] \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_large_owss_flotilla}} \\
+
+
+	\item[\bf\color{ocre}\sffamily\ref{exer:switch_engine_reaction}] One possibility is the $7$-engine Cordership displayed here, which was originally found by Dean Hickerson in 1993: \\[-0.6em]
+	
+	\raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_switch_engine_reaction}} \\
+
+
+	\item[\bf\color{ocre}\sffamily\ref{exer:switch_engine_back}]
+	\begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+		\item In this reaction, the switch engines are $1$~cell diagonally father back relative to the blocks than in the original reaction.
+		
+		\item This reaction emits a banana spark, which can be used to reflect a glider as follows: \\[-0.6em]
+		
+		\patternimglink{0.1}{solution_switch_engine_back}
+		
+		\item We can just replace the back of the $7$-engine Cordership from Exercise~\ref{exer:switch_engine_reaction} (or we could have replaced the back to the $10$-engine Cordership): \\[-0.6em]
+		
+		\patternimglink{0.1}{solution_switch_engine_back_cordership} \\
+	\end{enumerate}
+	
+	
+	\item[\bf\color{ocre}\sffamily\ref{exer:3_engine_cordership}]
+		\begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+			\item It becomes two non-interacting block-laying switch engines.\index{block-laying switch engine}
+			
+			\item One method that works is to notice that this Cordership leaves behind a banana spark\index{banana spark}, which can be used to rotate the glider as follows: \\[-0.6em]
+			
+			\patternimglink{0.1}{solution_3_engine_cordership} \\
+		\end{enumerate}
+		
+		
+	\item[\bf\color{ocre}\sffamily\ref{exer:corderrake}]
+		\begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+			\item $5$ switch engines.
+			
+			\item One method that works is to use the Cordership reaction from Exercise~\ref{exer:switch_engine_back}(c) to reflect the gliders from this Corderrake backwards: \\[-0.6em]
+			
+			\patternimglinkwidth{2.4in}{solution_backward_corderrake}
+			
+			\item One method that works is to use the glider-to-LWSS reaction displayed in Figure~\ref{fig:cordership_reflections} to turn each glider from this Corderrake into an LWSS: \\[-0.6em]
+			
+			\patternimglinkwidth{2.4in}{solution_lwss_corderrake}
+		\end{enumerate}
+		
+		
+	\item[\bf\color{ocre}\sffamily\ref{exer:six_cell_schick}]
+		\begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_six_cell_schick}} \\
+			
+			\item The T-tetromino. \\
+		\end{enumerate}
+		
+		
+	\item[\bf\color{ocre}\sffamily\ref{exer:back_to_forward_space_rake}] \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_back_to_forward_space_rake}} \\
+	
+	
+	\item[\bf\color{ocre}\sffamily\ref{exer:diagonal_signal}]
+	\begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+		\item $3$, $18$, and $2$, respectively. \\
+		
+		\item $3$, $8$, and $51$, respectively. \\
+	\end{enumerate}
+	
+	
+	\item[\bf\color{ocre}\sffamily\ref{exer:c5_diagonal_reflect}] This spaceship gives off a duoplet spark at its back end, which can reflect a glider as in Figure~\ref{fig:spark_glider_reflect}: \\[-0.6em]
+	
+	\raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_c5_diagonal_reflect}} \\
+	
+	
+	\item[\bf\color{ocre}\sffamily\ref{exer:2_engine_cordership}]
+	\begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+		\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_2_engine_cordership}} \\
+		
+		\item The reflection used in part~(a) preserves the mod-$4$ timing of the reflected glider, whereas the other two reflections do not. Thus the reflected glider is not in the correct phase after being reflected, so it cannot bounce more than twice (once off of each Cordership). \\
+	\end{enumerate}
+	\end{itemize}
+\end{multicols}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   SECTION: CHAPTER 5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hypertarget{solutions_glider_synthesis}{}\label{solutions_glider_synthesis}
+\section*{Chapter 5: Glider Synthesis}
+\renewcommand{\chapterfolder}{glider_synthesis/}
+
+\begin{multicols}{2}
+\begin{itemize}[leftmargin=0em]
+	\item[\bf\color{ocre}\sffamily\ref{exer:single_glider_cleanup}]
+	\begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+		\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_block_destroy}} \\
+		
+		\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_beehive_destroy}} \\
+		
+		\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_blinker_destroy}} \\
+		
+		\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_ship_destroy}} \\
+		
+		\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_lwss_destroy}} \\
+	\end{enumerate}
+	
+	
+	\item[\bf\color{ocre}\sffamily\ref{exer:glider_block_collisions}] The six possible ways that a glider can collide with a block are displayed below. From left-to-right, these collisions produce nothing, nothing, nothing, a pi-heptomino, a (pre-)honeyfarm, and a shifted block. We saw the block-shifting and honeyfarm-producing collisions in this chapter, and the collision used by the Snark\index{Snark} is also the honeyfarm-producing type. We will see a use of the pi-producing collision in Figure~\ref{fig:syringe}.
+	\begin{center}
+		\patternimglink{0.1}{solution_block_glider}
+	\end{center}
+	
+	
+	\item[\bf\color{ocre}\sffamily\ref{exer:twit_synthesis}] \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_twit_eater}} \\
+	
+
+	\item[\bf\color{ocre}\sffamily\ref{exer:glider_synth_two_directions}]
+	\begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+		\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_switch_engine_two_directions}} \\
+		
+		\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_clock_two_directions}} \\
+		
+		\item \raisebox{-\height+0.5em}{\patternimglinkwidth{2.4in}{solution_cordership_two_directions}} \\
+	\end{enumerate}
+
+
+	\item[\bf\color{ocre}\sffamily\ref{exer:2_engine_cordership_synthesis}]
+		\begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+		\item The following 9-glider synthesis was found by Luka Okanishi almost immediately after the 2-engine Cordership's discovery:\\[0.1cm]
+		
+		\noindent\patternimglink{0.1}{solution_2_engine_cordership_synthesis} \\
+		
+		\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_2_engine_cordership_synthesis_2dir}} \\
+	\end{enumerate}
+
+
+	\item[\bf\color{ocre}\sffamily\ref{exer:glider_synth_tee}]
+	\begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+		\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_switch_engine_opposite_directions}} \\
+		
+		\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_clock_opposite_directions}} \\
+		
+		\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_twin_bees_opposite_directions}} \\
+	\end{enumerate}
+
+
+	\item[\bf\color{ocre}\sffamily\ref{exer:make_space_rake_synth}]
+	\begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+		\item \raisebox{-\height+0.5em}{\patternimglinkwidth{2.4in}{solution_space_rake_synth}} \\
+		
+		\item \raisebox{-\height+0.5em}{\patternimglinkwidth{2.4in}{solution_p60_space_rake_synth}} \\
+	\end{enumerate}
+
+	
+	\item[\bf\color{ocre}\sffamily\ref{exer:space_rake_synth}] \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_back_space_rake_synth}} \\
+	
+	
+	\item[\bf\color{ocre}\sffamily\ref{exer:large_still_life_synth}]
+	\begin{enumerate}[leftmargin=1.5em,label=(\alph*),series=solu_one_time]
+		\item If we remove four gliders from the top-left and two gliders from the bottom-left, we arrive at the following crab synthesis:
+		\begin{center}
+			\patternimglink{0.1}{crab_synth}
+		\end{center}
+
+		\item One way is to fire two gliders at the front of the crab (tubstretcher) as follows. By moving these gliders farther away, the resulting still life can be as large as we like. For example, the following configuration synthesizes a 209-cell still life.
+		\begin{center}
+			\patternimglink{0.1}{solution_large_still_life_synth} \\
+		\end{center}
+	\end{enumerate}
+	
+	
+	\item[\bf\color{ocre}\sffamily\ref{exer:boat_one_time_turner}]
+	\begin{enumerate}[leftmargin=1.5em,label=(\alph*),series=solu_one_time]
+		\item \raisebox{-\height+0.5em}{\embedlink{solution_boat_one_time}{\vcenteredhbox{\patternimg{0.1}{solution_boat_one_time_0}} \vcenteredhbox{\genarrow{22}} \vcenteredhbox{\patternimg{0.1}{solution_boat_one_time_22}}}}
+			
+		\item \raisebox{-\height+0.5em}{\embedlink{solution_eater1_one_time}{\vcenteredhbox{\patternimg{0.1}{solution_eater1_one_time_0}} \vcenteredhbox{\genarrow{11}} \vcenteredhbox{\patternimg{0.1}{solution_eater1_one_time_11}}}} \\
+
+		\item 90$\degree$: \\[-0.8em]
+		
+		\raisebox{0.01em}{\embedlink{solution_longboat_one_time}{\vcenteredhbox{\patternimg{0.095}{solution_longboat90_one_time_0}} \vcenteredhbox{\genarrow{28}} \vcenteredhbox{\patternimg{0.095}{solution_longboat90_one_time_28}}}} \\
+		
+		180$\degree$: \\[-0.8em]
+		
+		\raisebox{0.001em}{\embedlink{solution_longboat_one_time}{\vcenteredhbox{\patternimg{0.095}{solution_longboat180_one_time_0}} \vcenteredhbox{\genarrow{30}} \vcenteredhbox{\patternimg{0.095}{solution_longboat180_one_time_30}}}} \\[0.2em]
+		
+		\item \raisebox{-\height+0.5em}{\embedlink{solution_one_time_blinker}{\vcenteredhbox{\patternimg{0.1}{solution_one_time_blinker_0}} \vcenteredhbox{\genarrow{26}} \vcenteredhbox{\patternimg{0.1}{solution_one_time_blinker_26}}}} \\
+	\end{enumerate}
+	
+
+	\item[\bf\color{ocre}\sffamily\ref{exer:turner_tracks}]
+	\begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+		\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_one_time_square}} \\[0.2em]
+		
+		\item Because the input gliders to the two different turning reactions have different colors. If a single glider hits the same turner four times, it will always end up having the same color that it started with, and thus cannot have the opposite color required to initiate the second turning reaction.
+		
+		\item \raisebox{-\height+0.5em}{\patternimglink{0.097}{solution_two_time_square}} \\
+	\end{enumerate}
+	
+	
+	\item[\bf\color{ocre}\sffamily\ref{exer:one_time_track}]
+	\begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+		\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_one_time_blinker_track}} \\
+		
+		\item One method that makes use of p$60$ space rakes is as follows:\\[-0.6em]
+		
+		\raisebox{-\height+0.5em}{\patternimglinkwidth{2.4in}{solution_one_time_boat_track}} \\
+	\end{enumerate}
+
+
+	\item[\bf\color{ocre}\sffamily\ref{exer:clock_inserter_block}] Our goal is to find a way of firing a glider at a block in such a way that both the glider and the block are destroyed, but a domino spark is produced in the process, thus triggering the clock inserter. One method that works is:\\[-0.6em]
+	
+	\raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_clock_inserter_block}} \\
+	
+	
+	\item[\bf\color{ocre}\sffamily\ref{exer:clock_inserter_use}]
+	\begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+		\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_clock_inserter_use_b}} \\
+		
+		\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_clock_inserter_use_c}} \\
+		
+		\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_clock_inserter_use_d}} \\
+	\end{enumerate}
+	
+
+	\item[\bf\color{ocre}\sffamily\ref{exer:other_inserters}]
+	\begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+		\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_tee_15_ticks}} \\
+		
+		\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_eater1_15_ticks}} \\
+		
+		\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_clock_14_ticks}} \\
+	\end{enumerate}
+	
+	
+	\item[\bf\color{ocre}\sffamily\ref{exer:slow_salvo_clock_slope}]
+	\begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+		\item The only part of the proof that changes is the bottom row of Table~\ref{tab:clock_inserter_ranks_b}, which becomes (in order, from left to right): $$3n-10, 23, 20, 17, 14, 11, 1, 38, 43, 48, 53, 5n-2.$$ Since all of these ranks are positive, the proof still works. \\
+		
+		\item $5/3$ \\
+		
+		\item The rank of the colliding glider in lane~7 is exactly $0$, so we can no longer break ties randomly when inserting gliders into the salvo, and instead we must be careful to break ties by first inserting gliders that are farther to the right along the lines of constant rank before inserting gliders that are to the left. \\
+		
+		\item The minimal value of $w$ is $7/9$, since this choice gives a rank of $0$ in lane $-7$. This time, we must break rank ties by first inserting gliders that are farther to the \emph{left} along lines of constant rank. \\
+		
+		\item In general, the lines of constant rank have slope $\frac{2w+1}{2w-1}$, so the largest possible slope is $23/5$ (when $w = 7/9$), and the smallest possible slope is $17/11$ (when $w = 7/3$). \\
+	\end{enumerate}
+\end{itemize}
+\end{multicols}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   SECTION: CHAPTER 6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hypertarget{solutions_periodic_circuitry}{}\label{solutions_periodic_circuitry}
+\section*{Chapter 6: Periodic Circuitry}
+\renewcommand{\chapterfolder}{periodic_circuitry/}
+
+\begin{multicols}{2}
+	\begin{itemize}[leftmargin=0em]
+		\item[\bf\color{ocre}\sffamily\ref{exer:bumper_high_period}]
+		\begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{p16_bumper}} \\
+			
+			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{p22_bumper}} \\
+			
+			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{p15_bumper}} \\
+			
+			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{p5_bumper}} \\
+			
+			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{p4_bumper_fountain}} \\
+		\end{enumerate}
+		
+		
+		\item[\bf\color{ocre}\sffamily\ref{exer:p29_pipsquirter}] The p$29$ shuttle emits a domino (pipsquirter) spark at the bottom, so one method that works is as follows:
+		
+		\begin{center}
+			\patternimglink{0.1}{p29_pip_reflector}
+		\end{center}
+		
+		
+		\item[\bf\color{ocre}\sffamily\ref{exer:minimum_period_snark_loop}]
+		\begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+			\item The period of the resulting glider loop is $232$, which we could have determined simply by noting that the original loop had period $216$ and this one has the Snarks each $1$~cell farther from each other diagonally, so the new period must be $216+4+4+4+4 = 232$.
+			
+			\noindent\begin{center}
+				\patternimglink{0.1}{solution_minimum_period_snark_loop_a}
+			\end{center}
+		
+			\item The original loop had period $232$ and bumpers are $5$ generations slower than Snarks, so the new loop has period $232+5+5+5+5 = 252$:
+			
+			\noindent\begin{center}
+				\patternimglink{0.1}{solution_minimum_period_snark_loop_b}
+			\end{center}
+		
+			\item Here we replace the bottom p$4$ bumper by a p$6$ bumper:
+			
+			\noindent\begin{center}
+				\patternimglink{0.1}{solution_minimum_period_snark_loop_c}
+			\end{center}
+		
+			\item The loop stops working because its period, $252$, is not a multiple of $5$.
+			
+			\item We shorten the track along two parallel sides by $4$ cells to decrease the loop's period to $252 - 4 \times 8 = 220$, which is a multiple of $5$. Replacing the bottom p$4$ bumper with a p$5$ bumper then gives the following glider loop:
+			
+			\noindent\begin{center}
+				\patternimglink{0.1}{solution_minimum_period_snark_loop_e}
+			\end{center}
+		\end{enumerate}
+	
+
+		\item[\bf\color{ocre}\sffamily\ref{exer:prng_gun}] \begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+			\item $4$ more gliders fit in the loop, since we added $2 \times 4 \times 15 = 120$ extra generations of travel time around the loop and the gliders are spaces $30$ generations apart from each other.
+		
+			\item Its period is $30 \times 402,653,181 = 12,079,595,430$.
+		
+			\item Its period is $30 \times 1,057 = 31,710$.
+		\end{enumerate}
+	\end{itemize}
+\end{multicols}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   SECTION: CHAPTER 7
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hypertarget{solutions_stable_circuitry}{}\label{solutions_stable_circuitry}
+\section*{Chapter 7: Stationary Circuitry}
+\renewcommand{\chapterfolder}{stationary_circuitry/}
+
+\begin{multicols}{2}
+	\begin{itemize}[leftmargin=0em]
+		\item[\bf\color{ocre}\sffamily\ref{exer:name_conduit}] \begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+			\item F209, repeat time $60$.
+			
+			\item R199, repeat time $67$.
+			
+			\item Fx153, repeat time $60$.
+			
+			\item L200, repeat time $59$.\\
+		\end{enumerate}
+	
+
+		\item[\bf\color{ocre}\sffamily\ref{exer:two_transparent_lanes}] \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_two_transparent_lanes}} \\
+		
+		
+		\item[\bf\color{ocre}\sffamily\ref{exer:H_to_G_transparent_better}] It has more transparent lanes (up to $6$ lanes instead of just $2$ if we replace the southwest eater~1 with an eater~5 like we did in Exercise~\ref{exer:two_transparent_lanes}).\\
+			
+	
+		\item[\bf\color{ocre}\sffamily\ref{exer:syringe_creates_pi}] A pi-heptomino.\index{pi-heptomino} \\
+		
+		
+		\item[\bf\color{ocre}\sffamily\ref{exer:syringe_compact}] \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_syringe_compact}} \\
+		
+		
+		\item[\bf\color{ocre}\sffamily\ref{exer:convert_more_gliders}] For all three of these glider multipliers, we just insert more copies of the Fx77 conduit in the middle of the glider tripler that we saw in Figure~\ref{fig:glider_tripler}:
+		\begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{glider_to_4}} \\
+			
+			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{glider_to_5}} \\
+			
+			\item \raisebox{-\height+0.5em}{\patternimglink{0.082}{glider_to_10}} \\
+		\end{enumerate}
+	
+		\item[\bf\color{ocre}\sffamily\ref{exer:simkin_glider_gun}] \raisebox{-\height+0.5em}{\patternimglink{0.1}{simkin_glider_gun}} \\
+	
+
+		\item[\bf\color{ocre}\sffamily\ref{exer:HFx58B_modify}] \begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+			\item The top-left eater~1 in BR146H overlaps with the bottom-right eater~1 in the original HFx58B.
+			
+			\item This conduit is named HL262B:
+			\begin{center}
+				\patternimglink{0.09}{HL262B}
+			\end{center}
+		\end{enumerate}
+	
+	
+		\item[\bf\color{ocre}\sffamily\ref{exer:herschel_variants}] The variant of HFx58B from Exercise~\ref{exer:HFx58B_modify} is needed to connect to the following conduit, and the final (rightmost) variant of BFx59H needed to dodge the obstacle.
+		\begin{center}
+			\patternimglink{0.09}{solution_herschel_variants}
+		\end{center}
+	
+	
+		\item[\bf\color{ocre}\sffamily\ref{exer:l156_break_apart}] The Herschel is converted into an R-pentomino (well, generation~$4$ of its evolution anyway), then a B-heptomino (well, a B-heptaplet), and then back into a Herschel. The conduits that do the conversions are called HLx69R, RF28B, and BFx59H.
+	\end{itemize}
+\end{multicols}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   SECTION: CHAPTER 8
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hypertarget{solutions_glider_guns}{}\label{solutions_glider_guns}
+\section*{Chapter 8: Guns and Glider Streams}
+\renewcommand{\chapterfolder}{glider_guns/}
+
+\begin{multicols}{2}
+	\begin{itemize}[leftmargin=0em]
+		\item[\bf\color{ocre}\sffamily\ref{exer:p28_double}] \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_p28_double}}\\
+		
+		
+		\item[\bf\color{ocre}\sffamily\ref{exer:p322_gun}] Since $322/7 = 46$, we use two p$46$ twin bees guns:
+		\begin{center}
+			\patternimglink{0.083}{solution_p322_gun}\\
+		\end{center}
+		
+		
+		\item[\bf\color{ocre}\sffamily\ref{exer:p80_gun_rich_p16}] One possibility is to use two copies of Rich's p16 as below. Alternatively, the copy of Rich's p16 at the right can be replaced by a blocker.
+		\begin{center}
+			\patternimglink{0.075}{p80_glider_gun_a}\\
+		\end{center}
+		
+		
+		\item[\bf\color{ocre}\sffamily\ref{exer:p4_glider_filter}] The filter itself would have to have period~$4$ (or $2$) in order to be able to filter out any of these glider streams. But on the other hand, a glider only moves by $1$~cell every $4$~generations, so the spark from the filter would have to affect every single glider that passes by it if it affects any of them.\\
+		
+		
+		\item[\bf\color{ocre}\sffamily\ref{exer:p80_adjustable_manipulate}] \begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_p97_gun}} \\
+			
+			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_p78_gun}} \\
+			
+			\item It does not work because syringe overclocking does not work at period $76$ or $77$---the re-created block hasn't quite settled yet, and a glider following at that distance doesn't make a clean pi~heptomino.
+			
+			\item Here is a p$74$ gun:
+			\begin{center}
+				\patternimglink{0.1}{solution_p74_gun}\\
+			\end{center}
+			
+			\item A p$73$ following glider hits the re-forming block in a way that doesn't form the correct pi~heptomino (similar to part~(c)). Also, the two halves of the gun cannot be moved close enough together (the rows of eaters get in each other's way).\\
+		\end{enumerate}
+	
+	
+		\item[\bf\color{ocre}\sffamily\ref{exer:p50_glider_stabilize}] \begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+		\item \raisebox{-\height+0.5em}{\patternimglink{0.09}{solution_p50_snarks}} \\
+		
+		\item Period~5 bumpers are the only ones that work:
+		\begin{center}
+			\patternimglink{0.09}{solution_p50_bumpers} \\
+		\end{center}
+	\end{enumerate}
+	\end{itemize}
+\end{multicols}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   SECTION: INF GROWTH (TO REMOVE)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hypertarget{solutions_infinite_growth}{}\label{solutions_infinite_growth}
+\section*{Chapter 9: Infinite Growth}
+\renewcommand{\chapterfolder}{infinite_growth/}
+
+\begin{multicols}{2}
+	\begin{itemize}[leftmargin=0em]
+		\item[\bf\color{ocre}\sffamily\ref{exer:caber_tosser_rewind}] This does not work because the phase of the Cordership in the caber tosser is not actually such that the glider was reflected a few generations ago (rather, it is offset $48$ generations from the phase in which it can reflect a glider). The reason for this is that the previous trip that the glider took from the guns to the Cordership (if it actually took place) would have taken $240$~generations, which is not divisible by $96$ (the period of the Cordership). However, the \emph{next} trip from the guns to the Cordership takes $480$~generations, which \emph{is} divisible by $96$, so the reaction works from this point on.
+	\end{itemize}
+\end{multicols}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   SECTION: UNIVERSAL COMPUTATION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hypertarget{solutions_universal_computation}{}\label{solutions_universal_computation}
+\section*{Chapter 9: Universal Computation}
+\renewcommand{\chapterfolder}{universal_computation/}
+
+\begin{multicols}{2}
+	\begin{itemize}[leftmargin=0em]
+		\item[\bf\color{ocre}\sffamily\ref{exer:universal_computation_derive_pi_series}] \begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+			\item Just recall that the Taylor series for $\arctan(x)$ centered at $x = 0$ is
+			\[
+				\arctan(x) = x - \frac{x^3}{3} + \frac{x^5}{5} - \frac{x^7}{7} + \cdots.
+			\]
+			This series converges when $x = 1$ (by the alternating series test from calculus), and $\arctan(1) = \pi/4$ (by looking at a triangle with angles $\pi/4$, $\pi/4$, and $\pi/2$), so
+			\[
+				\frac{\pi}{4} = \arctan(1) = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \cdots.
+			\]
+			Multiplying both sides of this equation by $4$ gives us the desired series.
+			
+			\item If we split up the terms in the series from part~(a) as suggested by the hint, we get
+			\begin{align*}
+				\pi & = (2 + 2) - \left(\frac{2}{3} + \frac{2}{3}\right) + \left(\frac{2}{5} + \frac{2}{5}\right) - \cdots \\
+				& = 2 + \left(2 - \frac{2}{3}\right) - \left(\frac{2}{3} - \frac{2}{5}\right) + \left(\frac{2}{5} - \frac{2}{7}\right) - \cdots \\
+				& = 2 + \left(\frac{4}{1\cdot 3} - \frac{4}{3\cdot 5} + \frac{4}{5\cdot 7} - \cdots\right),
+			\end{align*}
+			as desired. Note that regrouping the parentheses like we did does not change the value of the series, despite it only being conditionally convergent, since we did not change the \emph{order} of the terms.
+			
+			\item Using summation notation now, the series from part~(b) can be written in the form
+			\begin{align*}
+				\pi & = 2 + \sum_{k=0}^\infty \frac{4(-1)^k}{(2k+1)(2k+3)} \\
+				& = 2 + \sum_{k=0}^\infty (-1)^k\left(\frac{2}{(2k+1)(2k+3)}\right. \\
+				& \qquad \qquad \qquad \ {} + \left.\frac{2}{(2k+1)(2k+3)}\right) \\
+				& = 2 + \frac{2}{3} + \sum_{k=0}^\infty (-1)^k\left(\frac{2}{(2k+1)(2k+3)}\right. \\
+				& \qquad \qquad \qquad \qquad {} - \left.\frac{2}{(2k+3)(2k+5)}\right) \\
+				& = 2 + \frac{2}{3} + \sum_{k=0}^\infty (-1)^k\frac{8}{(2k+1)(2k+3)(2k+5)},
+			\end{align*}
+			as desired.
+			
+			\item Every time we use this method of splitting the terms of the series into two copies of half of those terms, we extract one more term from the parentheses. The next few transformations of the series are as follows:
+			\begin{align*}
+				\pi & = 2 + \frac{2}{3} + \sum_{k=0}^\infty \frac{8(-1)^k}{(2k+1)(2k+3)(2k+5)} \\
+				& = 2 + \frac{2}{3} + \frac{4}{15} \\
+				& \quad + \sum_{k=0}^\infty \frac{24(-1)^k}{(2k+1)(2k+3)(2k+5)(2k+7)} \\
+				& = 2 + \frac{2}{3} + \frac{4}{15} + \frac{12}{105} \\
+				& \quad + \sum_{k=0}^\infty \frac{96(-1)^k}{(2k+1)(2k+3)(2k+5)(2k+7)(2k+9)}.
+			\end{align*}
+			In general, after we perform this procedure $m$ times, we get the series
+			\begin{align*}
+				\pi & = 2\sum_{k=0}^{m-1} \frac{k!}{1\cdot 3 \cdots (2k+1)} \\
+				& \quad + \sum_{k=0}^\infty \frac{4m!(-1)^k}{(2k+1)(2k+3)\cdots(2k+2m+1)}.
+			\end{align*}
+			The infinite sum above is an alternating series with decreasing terms, so it is no larger than its first term: $4m!/(1\cdot 3 \cdots (2m+1))$, which tends to $0$ as $m\rightarrow\infty$. It follows that
+			\begin{align*}
+				\pi & = 2\lim_{m\rightarrow\infty} \sum_{k=0}^{m-1} \frac{k!}{1\cdot 3 \cdots (2k+1)} \\
+				& \quad + \lim_{m\rightarrow\infty}\sum_{k=0}^\infty \frac{4m!(-1)^k}{(2k+1)(2k+3)\cdots(2k+2m+1)} \\
+				& = 2\sum_{k=0}^\infty \frac{k!}{1\cdot 3 \cdots (2k+1)} + 0,
+			\end{align*}
+			as desired.
+			
+			\item This comes immediately from the fact that, for every integer $k \geq 1$, the $k$-th term in the series from part~(d) is $k/(2k+1)$ times the previous term. A bit more explicitly,
+			\begin{align*}
+				\frac{\pi}{2} & = 1 + \frac{1!}{3} + \frac{2!}{3\cdot 5} + \frac{3!}{3\cdot 5 \cdot 7} + \frac{4!}{3 \cdot 5 \cdot 7 \cdot 9} + \cdots \\
+				& = 1 + \frac{1}{3}\left(1 + \frac{2}{5} + \frac{2\cdot 3}{5 \cdot 7} + \frac{2\cdot 3\cdot 4}{5 \cdot 7 \cdot 9} + \cdots\right) \\
+				& = 1 + \frac{1}{3}\left(1 + \frac{2}{5}\left(1 + \frac{3}{7} + \frac{3\cdot 4}{7 \cdot 9} + \cdots\right)\right) \\
+				& = 1 + \frac{1}{3}\left(1 + \frac{2}{5}\left(1 + \frac{3}{7}\left(1 + \frac{4}{9} + \cdots\right)\right)\right).
+			\end{align*}
+			Multiplying through by $2$ then (finally!) gives exactly the desired series~\eqref{eq:pi_series}.\\
+		\end{enumerate}
+	
+		\item[\bf\color{ocre}\sffamily\ref{exer:universal_computation_e_calc}] We change the first 12 lines of that APGsembly to the following:
+		\begin{center}
+			\noindent\begin{minipage}{\linewidth}
+				\noindent\verb|INITIAL;  ZZ;  INIT1;    READ T0|
+				\verb|INIT1;    *;   INIT2;    SET T0, READ T2|
+				\verb|INIT2;    *;   INIT3;    NOP, SET T2, INC R6|
+				\verb|INIT3;    ZZ;  INIT4;    NOP, INC R0, INC R6|
+				\verb|INIT4;    ZZ;  INIT5;    NOP, INC R6, INC R6|
+				\verb|INIT5;    ZZ;  ITSTART;  NOP, INC R6, INC R6|
+				\verb|ITSTART;  ZZ;  ITSTRTB;  NOP, INC R5, INC R5|
+				\verb|ITSTRTB;  ZZ;  ITTEST;   NOP, INC R5, INC R5|
+				\verb|ITTEST;   ZZ;  IT1;      TDEC R5|
+				\verb|IT1;      Z;   IT5;      TDEC R3|
+				\verb|IT1;      NZ;  MULA1;    NOP, INC R1|
+			\end{minipage}
+		\end{center}
+	\end{itemize}
+\end{multicols}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   SECTION: SELF-SUPPORTING SPACESHIPS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hypertarget{solutions_self_support_spaceships}{}\label{solutions_self_support_spaceships}
+\section*{Chapter 10: Self-Supporting Spaceships}
+\renewcommand{\chapterfolder}{self_support_spaceships/}
+
+\begin{multicols}{2}
+	\begin{itemize}[leftmargin=0em]
+		\item[\bf\color{ocre}\sffamily\ref{exer:self_support_spaceships_ex1}] Stuff.
+	\end{itemize}
+\end{multicols}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   SECTION: UNIVERSAL CONSTRUCTION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hypertarget{solutions_universal_construction}{}\label{solutions_universal_construction}
+\section*{Chapter 11: Universal Construction}
+\renewcommand{\chapterfolder}{universal_construction/}
+
+\begin{multicols}{2}
+	\begin{itemize}[leftmargin=0em]
+		\item[\bf\color{ocre}\sffamily\ref{exer:universal_construction_ex1}] Stuff.
+	\end{itemize}
+\end{multicols}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   SECTION: 0E0P
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hypertarget{solutions_0e0p}{}\label{solutions_0e0p}
+\section*{Chapter 12: The 0E0P Metacell}
+\renewcommand{\chapterfolder}{0e0p/}
+
+\begin{multicols}{2}
+	\begin{itemize}[leftmargin=0em]
+		\item[\bf\color{ocre}\sffamily\ref{exer:0e0p_ex1}] Stuff.
+	\end{itemize}
+\end{multicols}
+
+\normalsize

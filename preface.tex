@@ -1,0 +1,76 @@
+\chapterimage{cover/preface.jpg} % Preface heading image
+\renewcommand{\chapterfolder}{preface/}
+\chapter{Preface}
+
+
+\section*{The Goal}\addcontentsline{toc}{section}{The Goal}
+
+This book provides an introduction to Conway's Game of Life, the interesting mathematics behind it, and the methods used to construct many of its most interesting patterns. This book generally tries to avoid presenting patterns in isolation or as historical notes, but rather tries to guide the reader through the thought processes that went into creating them in the first place.
+
+While we will largely follow the history of the Game of Life as we go through the book, we emphasize that this is \emph{not} the primary goal of the book, but rather it is a by-product of the fact that most recently-discovered patterns build upon patterns and techniques that were developed earlier. Instead, the goal of this book is to demystify the Game of Life by breaking down the complex patterns that have been developed in it into bite-size chunks that can be understood individually.
+
+
+\section*{Intended Audience}\addcontentsline{toc}{section}{Intended Audience}
+
+While this book does not have any formal mathematical or computer science prerequisites, it is written at a level aimed at students of at least a first-year undergraduate university level. Some high-school-level topics like logarithms, the ``floor'' function $f(x) = \lfloor x \rfloor$ for rounding numbers down, the binary representation of a positive integer, and summation notation like $\Sigma_{k=1}^n k^2$ for adding numbers, are used frequently and without much explanation. A basic understanding of how mathematical proofs and computer programming work is also expected. That is, we expect a certain level of mathematical and computer science maturity from the reader, but no specialized knowledge of either topic.
+
+More specifically, we prove some simple theorems about the Game of Life in Chapters~1 through~5. These proofs do not use any specialized proof techniques or expect the reader to have any specific university-level mathematical knowledge, but rather just expect the reader to be able to follow a logical argument. Similarly, we introduce a programming language for building computer programs out of Life circuits in Chapter~\ref{chp:universal_computation}, so that material will be easier to master if the reader has had prior exposure to computer programming.
+
+Somewhat more advanced mathematical topics that we make use of are summarized in Appendix~\ref{app:math}, though they are typically introduced very gently in the main text as well, and we only require a very surface-level understanding of them. We make use of the greatest common divisor, the least common multiple, and B\'ezout's identity when discussing oscillator periods in Chapter~\ref{chp:oscillators}, so we introduce these tools in Appendix~\ref{sec:gcd}. Infinite series make brief appearances at the end of Chapter~\ref{chp:periodic_circuitry} and in Section~\ref{sec:pi_calc}, though the reader is not expected to really have any familiarity with them or understand convergence issues. Finally, big-O notation is used to discuss the growth rate of patterns in Sections~\ref{sec:irreg_guns} and~\ref{sec:Osqrtlogt}, so we introduce this concept in Appendix~\ref{sec:bigO}.
+
+
+\section*{How to Use}\addcontentsline{toc}{section}{How to Use}
+
+Conway's Game of Life is an extremely visual game, so this book makes very liberal use of figures throughout, particularly when new patterns or techniques for creating patterns are introduced. However, the Game of Life is best observed in motion, which makes static images in a textbook less than ideal as learning tools. In order to help present the motion of patterns a bit better, we do five things:\medskip
+
+\begin{itemize}
+	\item Figures are presented with alive cells in black and dead cells in white, but furthermore we use a gradient from blue to orange to denote cells that were alive in past generations of the pattern. Bright blue cells were just alive, whereas cells that are orange were alive in the more distant past (roughly $75$~generations or more---see Figure~\ref{fig:preface_lwss}).\bigskip
+
+	\noindent\begin{minipage}{\linewidth}
+		\centering\patternimglink{0.125}{lwss}
+		\captionof{figure}{An object moving to the right with a gradient behind it indicating how long ago it was in each location. White cells were never alive, black cells are currently alive, blue cells were alive recently, and orange cells were alive long ago (roughly $75$~generations or more).}\label{fig:preface_lwss}\bigskip
+	\end{minipage}
+	
+	\item If we really wish to emphasize what a pattern looks like in different generations, all generations of interest will be displayed, along with arrows that specify how many generations have passed. For example, if we want to clarify exactly what the pattern in Figure~\ref{fig:preface_lwss} does as it moves from left to right, we might display it as in Figure~\ref{fig:preface_lwss_2}.\bigskip
+	
+	\noindent\begin{minipage}{\linewidth}
+		\centering\patternlink{lwss}{\vcenteredhbox{\patternimg{0.125}{lwss_1}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.125}{lwss_2}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.125}{lwss_3}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.125}{lwss_4}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.125}{lwss_5}}}
+		\captionof{figure}{The same object as in Figure~\ref{fig:preface_lwss}, but displayed in a more explicit fashion. This image shows how the pattern changes every time 1 generation elapses.}\label{fig:preface_lwss_2}\bigskip
+	\end{minipage}
+
+	\item We use colors to highlight various pieces of patterns, and we maintain a consistent coloring scheme throughout the book. Light pastel colors like aqua, magenta, light green, yellow, and light orange are used to highlight \emph{around} objects---cells in these colors are dead, but highlight a region in the Life plane consisting of cells that all serve some common purpose or logically make up one ``object'' (see Figure~\ref{fig:preface_p15_gun}). On the other hand, darker colors like dark green, dark orange, and dark red are used to highlight certain live cells. Dark green is typically used to highlight the input to some reaction, dark orange is typically used for the output of the reaction, and dark red is used otherwise (see Figure~\ref{fig:preface_fx77_p5_eat}).\bigskip
+	
+	\noindent\begin{minipage}{\linewidth}
+		\centering
+		\begin{minipage}[b]{0.56\textwidth}
+			\centering
+			\patternimg{0.115}{p15_gun}
+			\captionof{figure}{A glider gun made up of several different component reactions that are highlighted in different colors. In particular, gliders are created by a gun highlighted in \bgbox{magentaback}{magenta}, lightweight spaceships are created by guns highlighted in \bgbox{aquaback}{aqua} and \bgbox{yellowback2}{yellow}, and those lightweight spaceships are merged into the original glider stream by oscillators highlighted in \bgbox{orangeback2}{light orange}.}\label{fig:preface_p15_gun}
+		\end{minipage}\hfill
+		\begin{minipage}[b]{0.4\textwidth}
+			\centering
+			\patternimg{0.111}{fx77_p5_eat}
+			\captionof{figure}{A \bgbox{greenback}{dark green} ``Herschel'' comes in from the left and creates the \bgbox{orangeback}{dark orange} Herschel on the right. Cells highlighted in blue are constantly changing due to being part of an oscillator, whereas cells that are light orange are usually dead, except when the Herschel passes through.}\label{fig:preface_fx77_p5_eat}
+		\end{minipage}\bigskip
+	\end{minipage}
+	
+	\item In the electronic version of this book, almost every figure is actually a clickable link that will open a text file containing RLE or Macrocell code for the displayed pattern (go ahead, click on any of the figures above, or even one of the five images on the cover page). This code can be copy and pasted into Life simulation software like Golly (\httpurl{golly.sourceforge.net}) so that it can be explored and manipulated.\footnote{For an explanation of how RLE or Macrocell code works, see \httpsurl{conwaylife.com/wiki/Run_Length_Encoded} or \httpsurl{conwaylife.com/wiki/Macrocell}.} Note that clicking on figures may not work in certain PDF viewers (such as the viewers built into web browsers), so we recommend using Adobe Acrobat Reader (\httpurl{get.adobe.com/reader}) to read this book digitally.\smallskip
+	
+	\item RLE, LifeHistory, or Macrocell codes for all of the patterns displayed in the book are also available at the book's website (\httpsurl{conwaylife.com/book}). Furthermore, the patterns can be viewed and manipulated right on that website as well via any modern web browser, without downloading any additional software.\medskip
+\end{itemize}
+
+
+\subsection*{Exercises}
+
+We strongly encourage the reader to work through this book's many exercises that can be found at the end of each chapter. For this reason, it is extremely important to either download Life software or use the book's website to view and edit patterns while making your way through the book---Life is meant to be played, not just watched, and many of the exercises simply cannot be solved without the assistance of Life simulation software.
+
+Roughly half of the exercises are marked with an asterisk ($\ast$), which means that they have a solution provided in Appendix~\ref{chp:solutions}.
+
+
+\section*{Acknowledgments}\addcontentsline{toc}{section}{Acknowledgments}
+
+The authors are indebted to dozens of people who opened the world of Conway's Game of Life to them. Rather than acknowledging the people who discovered the reactions and patterns that we discuss here, they are credited in footnotes and figures throughout the book.
+
+We extend thanks to Nicolay Beluchenko, Steven Eker, Mark Niemiec, and Michael Simkin for helpful conversations about content of the book. Thanks to Andrew Trevorrow and Tomas Rokicki for creating the open-source cross-platform CA editor and simulator Golly (\httpurl{golly.sourceforge.net}), without which many of the patterns discussed in this book would not have been discovered. Thanks to Chris Rowett for creating LifeViewer (\httpurl{lazyslug.no-ip.biz/lifeview}), which is used on this book's website (\httpsurl{conwaylife.com/book}) to display patterns and make them interactive. Thanks to Velimir Gayevskiy and Mathias Legrand for the \emph{Legrand Orange Book} LaTeX template from \httpurl{LaTeXTemplates.com}.
+
+Finally, the authors would like to thank their wives Kathryn and Melanie for tolerating them during their years of mental absence glued to this book, and their parents for encouraging them to care about both learning and teaching. Many thanks also to Mount Allison University for giving the first author the academic freedom to pursue a project like this one.

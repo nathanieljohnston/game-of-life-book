@@ -1,0 +1,829 @@
+%% WATERMARKING COMMANDS. REMOVE FOR FINAL PUBLISHED VERSION OF BOOK
+\usepackage{draftwatermark}
+\SetWatermarkText{Early draft (\today). \qquad Not for public dissemination. \qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad ${}$}
+\SetWatermarkColor[gray]{0.75}
+\SetWatermarkFontSize{0.5cm}
+\SetWatermarkAngle{90}
+\SetWatermarkHorCenter{19.6cm}
+%% END WATERMARKING
+
+\usepackage[top=28mm,left=28mm,bottom=22mm,right=28mm,headsep=10pt,a4paper]{geometry}
+
+% BEGIN adjust footnote font family
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\@footnotetext}{\footnotesize}{\footnotesize\sffamily}{}{}
+\makeatother
+% END adjust footnote font family
+
+%\usepackage[top=3cm,bottom=3cm,left=3cm,right=3cm,headsep=10pt,a4paper]{geometry} % Page margins
+
+\newcommand{\bookURL}[1]{http://www.conwaylife.com/book/#1}
+
+\usepackage{graphicx} % Required for including pictures
+
+\graphicspath{{images/}} % Specifies the directory where pictures are stored
+
+\usepackage{tikz} % Required for drawing custom shapes
+\usepackage{stackengine}
+\usetikzlibrary{arrows}
+\usetikzlibrary{shapes.misc}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{calc,fpu}
+
+
+\def\mfilbreak{\par\vfil\penalty-20\vfilneg}
+\raggedbottom % Needed to avoid ugly vertical stretching on pages. The book template I'm using flushes the page bottoms by default.
+
+
+% DEFINES A GLIDER SHAPE FOR USE IN TIKZ
+\def\glider#1#2#3{
+\begin{scope}[shift={#1}, rotate=#2, scale=#3]
+	\fill[black](0,0) -- (1,0) -- (1,1) -- (0,1) -- cycle;
+	\fill[black](8/7+0,0) -- (8/7+1,0) -- (8/7+1,1) -- (8/7+0,1) -- cycle;
+	\fill[black](16/7+0,0) -- (16/7+1,0) -- (16/7+1,1) -- (16/7+0,1) -- cycle;
+	\fill[black](16/7+0,8/7+0) -- (16/7+1,8/7+0) -- (16/7+1,8/7+1) -- (16/7+0,8/7+1) -- cycle;
+	\fill[black](8/7+0,16/7+0) -- (8/7+1,16/7+0) -- (8/7+1,16/7+1) -- (8/7+0,16/7+1) -- cycle;
+\end{scope}}
+\def\lwss#1#2#3{
+\begin{scope}[shift={#1}, rotate=#2, scale=#3]
+	\fill[black](0,0) -- (1,0) -- (1,1) -- (0,1) -- cycle;
+	\fill[black](8/7+0,0) -- (8/7+1,0) -- (8/7+1,1) -- (8/7+0,1) -- cycle;
+	\fill[black](16/7+0,0) -- (16/7+1,0) -- (16/7+1,1) -- (16/7+0,1) -- cycle;
+	\fill[black](24/7+0,0) -- (24/7+1,0) -- (24/7+1,1) -- (24/7+0,1) -- cycle;
+	\fill[black](32/7+0,8/7+0) -- (32/7+1,8/7+0) -- (32/7+1,8/7+1) -- (32/7+0,8/7+1) -- cycle;
+	\fill[black](0,8/7+0) -- (1,8/7+0) -- (1,8/7+1) -- (0,8/7+1) -- cycle;
+	\fill[black](0,16/7+0) -- (1,16/7+0) -- (1,16/7+1) -- (0,16/7+1) -- cycle;
+	\fill[black](8/7+0,24/7+0) -- (8/7+1,24/7+0) -- (8/7+1,24/7+1) -- (8/7+0,24/7+1) -- cycle;
+	\fill[black](32/7+0,24/7+0) -- (32/7+1,24/7+0) -- (32/7+1,24/7+1) -- (32/7+0,24/7+1) -- cycle;
+\end{scope}}
+\def\mwss#1#2#3{
+\begin{scope}[shift={#1}, rotate=#2, scale=#3]
+	\fill[black](0,0) -- (1,0) -- (1,1) -- (0,1) -- cycle;
+	\fill[black](8/7+0,0) -- (8/7+1,0) -- (8/7+1,1) -- (8/7+0,1) -- cycle;
+	\fill[black](16/7+0,0) -- (16/7+1,0) -- (16/7+1,1) -- (16/7+0,1) -- cycle;
+	\fill[black](24/7+0,0) -- (24/7+1,0) -- (24/7+1,1) -- (24/7+0,1) -- cycle;
+	\fill[black](32/7+0,0) -- (32/7+1,0) -- (32/7+1,1) -- (32/7+0,1) -- cycle;
+	\fill[black](40/7+0,8/7+0) -- (40/7+1,8/7+0) -- (40/7+1,8/7+1) -- (40/7+0,8/7+1) -- cycle;
+	\fill[black](0,8/7+0) -- (1,8/7+0) -- (1,8/7+1) -- (0,8/7+1) -- cycle;
+	\fill[black](0,16/7+0) -- (1,16/7+0) -- (1,16/7+1) -- (0,16/7+1) -- cycle;
+	\fill[black](8/7+0,24/7+0) -- (8/7+1,24/7+0) -- (8/7+1,24/7+1) -- (8/7+0,24/7+1) -- cycle;
+	\fill[black](24/7+0,32/7+0) -- (24/7+1,32/7+0) -- (24/7+1,32/7+1) -- (24/7+0,32/7+1) -- cycle;
+	\fill[black](40/7+0,24/7+0) -- (40/7+1,24/7+0) -- (40/7+1,24/7+1) -- (40/7+0,24/7+1) -- cycle;
+\end{scope}}
+
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{gensymb} % gives the degree symbol
+
+\usepackage{enumitem} % Customize lists
+\setlist{nolistsep} % Reduce spacing between bullet points and numbered lists
+\usepackage[outline]{contour}
+
+\usepackage{booktabs} % Required for nicer horizontal rules in tables
+\usepackage{clock} % Required for generation clock icon
+\ClockFrametrue\ClockStyle=3 % Format the clock icons
+
+%% The next commands allow for vertical centering of images next to each other in figures.
+\newcommand*{\vcenteredhbox}[1]{\begingroup
+\setbox0=\hbox{#1}\parbox{\wd0}{\box0}\endgroup}
+\newcommand*{\vcenteredhboxfx}[1]{\begingroup\parbox{0.08\textwidth}{\centering#1}\endgroup}
+
+\usepackage{epigraph}
+\setlength{\epigraphwidth}{0.6\textwidth}
+
+\usepackage[font={sf,footnotesize},labelfont=bf]{caption}
+\usepackage{subcaption} % allows subfigures within figures
+\captionsetup[subfigure]{labelformat=simple,subrefformat=simple,labelsep=space,font={sf,footnotesize}} % Configure subfigure captions in non-float environments
+\renewcommand\thesubfigure{(\alph{subfigure})}
+\usepackage{wrapfig} % for floating images on the right or left side of the page.
+\usepackage{multirow} % Used for some subfigure environments when one image is huge
+\usepackage{multicol} % Used for enumerate in exercises with multiple images to put them side by side
+\usepackage[bottom]{footmisc} % Forces footnotes to the bottom of the page
+%\usepackage{algorithm} % for pseudocode in later chapters of book
+\usepackage{algorithmicx} % for pseudocode in later chapters of book
+\usepackage{float}
+\floatstyle{ruled}
+\newfloat{pseudocode}{!htb}{lop}
+\floatname{pseudocode}{Pseudocode}
+\newfloat{apgsembly}{!htb}{lop}
+\floatname{apgsembly}{APGsembly}
+
+\usepackage{xcolor} % Required for specifying colors by name
+\usepackage{colortbl}
+\interfootnotelinepenalty=10000 % prevent long footnotes from being split across two pages
+
+%----------------------------------------------------------------------------------------
+%	FONTS
+%----------------------------------------------------------------------------------------
+
+\definecolor{ocre}{RGB}{0,96,128} % Define the blue color used for highlighting throughout the book
+\definecolor{linkcol}{RGB}{0,48,64}
+\definecolor{gridgray}{RGB}{192,192,192}
+\definecolor{medgray}{RGB}{128,128,128}
+\definecolor{redback}{RGB}{255,168,168}
+\definecolor{redback2}{RGB}{128,0,0}
+\definecolor{greenback}{RGB}{168,255,168}
+\definecolor{greenpastel}{RGB}{210,255,210}
+\definecolor{greenback2}{RGB}{0,192,0}
+\definecolor{darkgreenback}{RGB}{0,96,0}
+\definecolor{yellowback}{RGB}{255,255,168}
+\definecolor{darkyellowback}{RGB}{96,96,0}
+\definecolor{orangeback}{RGB}{255,192,128}
+\definecolor{orangeback2}{RGB}{255,220,192}
+\definecolor{yellowback2}{RGB}{255,255,192}
+\definecolor{darkorangeback}{RGB}{128,54,0}
+\definecolor{aquaback}{RGB}{192,255,255}
+\definecolor{darkaquaback}{RGB}{0,96,96}
+\definecolor{blueback}{RGB}{168,168,255}
+\definecolor{magentaback}{RGB}{255,210,255}
+\definecolor{darkmagentaback}{RGB}{96,0,96}
+\newcommand{\cmark}{\checkmark} % checkmark
+\newcommand{\xmark}{\ding{55}} % matching X
+
+\newcommand{\chapterfolder}{cover/}
+
+\usepackage{avant} % Use the Avantgarde font for headings
+%\usepackage{times} % Use the Times font for headings
+\usepackage{mathptmx} % Use the Adobe Times Roman as the default text font together with math symbols from the Sym­bol, Chancery and Com­puter Modern fonts
+
+\usepackage{microtype} % Slightly tweak font spacing for aesthetics
+\usepackage[utf8]{inputenc} % Required for including letters with accents
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY AND INDEX
+%----------------------------------------------------------------------------------------
+
+\usepackage{calc} % For simpler calculation - used for spacing the index letter headings correctly
+\usepackage{imakeidx}
+\makeindex[columns=2, title=Index, options= -s StyleInd.ist]
+
+%----------------------------------------------------------------------------------------
+%	MAIN TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+\usepackage{titletoc} % Required for manipulating the table of contents
+
+\contentsmargin{0cm} % Removes the default margin
+
+% Part text styling
+\titlecontents{part}[0cm]
+{\addvspace{20pt}\centering\large\bfseries}
+{}
+{}
+{}
+
+% Chapter text styling
+\titlecontents{chapter}[1.25cm] % Indentation
+{\addvspace{12pt}\large\sffamily\bfseries} % Spacing and font options for chapters
+{\color{ocre!60}\contentslabel[\Large\thecontentslabel]{1.25cm}\color{ocre}} % Chapter number
+{\color{ocre}}  
+{\color{ocre!60}\normalsize\;\titlerule*[.5pc]{.}\;\thecontentspage} % Page number
+
+% Section text styling
+\titlecontents{section}[1.25cm] % Indentation
+{\addvspace{3pt}\sffamily\mdseries} % Spacing and font options for sections
+{\contentslabel[\thecontentslabel]{1.25cm}} % Section number
+{}
+{\hfill\color{black}\thecontentspage} % Page number
+[]
+
+% Subsection text styling
+\titlecontents{subsection}[1.25cm] % Indentation
+{\addvspace{1pt}\sffamily\small} % Spacing and font options for subsections
+{\contentslabel[\thecontentslabel]{1.25cm}} % Subsection number
+{}
+{\ \titlerule*[.5pc]{.}\;\thecontentspage} % Page number
+[]
+
+% List of figures
+\titlecontents{figure}[0em]
+{\addvspace{-5pt}\sffamily}
+{\thecontentslabel\hspace*{1em}}
+{}
+{\ \titlerule*[.5pc]{.}\;\thecontentspage}
+[]
+
+% List of tables
+\titlecontents{table}[0em]
+{\addvspace{-5pt}\sffamily}
+{\thecontentslabel\hspace*{1em}}
+{}
+{\ \titlerule*[.5pc]{.}\;\thecontentspage}
+[]
+
+%----------------------------------------------------------------------------------------
+%	MINI TABLE OF CONTENTS IN PART HEADS
+%----------------------------------------------------------------------------------------
+
+% Chapter text styling
+\titlecontents{lchapter}[0em] % Indenting
+{\addvspace{15pt}\large\sffamily\bfseries} % Spacing and font options for chapters
+{\color{ocre}\contentslabel[\Large\thecontentslabel]{1.25cm}\color{ocre}} % Chapter number
+{}  
+{\color{ocre}\normalsize\sffamily\bfseries\;\titlerule*[.5pc]{.}\;\thecontentspage} % Page number
+
+% Section text styling
+\titlecontents{lsection}[0em] % Indenting
+{\sffamily\small} % Spacing and font options for sections
+{\contentslabel[\thecontentslabel]{1.25cm}} % Section number
+{}
+{}
+
+% Subsection text styling
+\titlecontents{lsubsection}[.5em] % Indentation
+{\normalfont\footnotesize\sffamily} % Font settings
+{}
+{}
+{}
+
+%----------------------------------------------------------------------------------------
+%	PAGE HEADERS
+%----------------------------------------------------------------------------------------
+
+\usepackage{fancyhdr} % Required for header and footer configuration
+
+\pagestyle{fancy}
+% \renewcommand{\chaptermark}[1]{\markboth{\sffamily\normalsize\bfseries\chaptername\ \thechapter.\ #1}{}} % Chapter text font settings
+\renewcommand{\sectionmark}[1]{\markright{\sffamily\normalsize\thesection\hspace{5pt}#1}{}} % Section text font settings
+\fancyhf{} \fancyhead[LE,RO]{\sffamily\normalsize\thepage} % Font setting for the page number in the header
+\fancyhead[LO]{\rightmark} % Print the nearest section name on the left side of odd pages
+\fancyhead[RE]{\leftmark} % Print the current chapter name on the right side of even pages
+\renewcommand{\headrulewidth}{0.5pt} % Width of the rule under the header
+\addtolength{\headheight}{2.5pt} % Increase the spacing around the header slightly
+\renewcommand{\footrulewidth}{0pt} % Removes the rule in the footer
+\fancypagestyle{plain}{\fancyhead{}\renewcommand{\headrulewidth}{0pt}} % Style for when a plain pagestyle is specified
+
+% Removes the header from odd empty pages at the end of chapters
+\makeatletter
+\renewcommand{\cleardoublepage}{
+\clearpage\ifodd\c@page\else
+\hbox{}
+\vspace*{\fill}
+\thispagestyle{empty}
+\newpage
+\fi}
+
+%----------------------------------------------------------------------------------------
+%	THEOREM STYLES
+%----------------------------------------------------------------------------------------
+
+\usepackage{amsmath,amsfonts,amssymb,amsthm} % For math equations, theorems, symbols, etc
+
+\newcommand{\intoo}[2]{\mathopen{]}#1\,;#2\mathclose{[}}
+\newcommand{\ud}{\mathop{\mathrm{{}d}}\mathopen{}}
+\newcommand{\intff}[2]{\mathopen{[}#1\,;#2\mathclose{]}}
+\newtheorem{notation}{Notation}[chapter]
+
+% Boxed/framed environments
+\newtheoremstyle{ocrenumbox}% % Theorem style name
+{0pt}% Space above
+{0pt}% Space below
+{\normalfont}% % Body font
+{}% Indent amount
+{\small\bf\sffamily\color{ocre}}% % Theorem head font
+{\;}% Punctuation after theorem head
+{0.25em}% Space after theorem head
+{\small\sffamily\color{ocre}\thmname{#1}\nobreakspace\thmnumber{\@ifnotempty{#1}{}\@upn{#2}}% Theorem text (e.g. Theorem 2.1)
+\thmnote{\nobreakspace\the\thm@notefont\sffamily\bfseries\color{black}---\nobreakspace#3.}} % Optional theorem note
+\renewcommand{\qedsymbol}{$\blacksquare$}% Optional qed square
+
+\newtheoremstyle{blacknumex}% Theorem style name
+{5pt}% Space above
+{5pt}% Space below
+{\normalfont}% Body font
+{} % Indent amount
+{\small\bf\sffamily}% Theorem head font
+{\;}% Punctuation after theorem head
+{0.25em}% Space after theorem head
+{\small\sffamily{\tiny\ensuremath{\blacksquare}}\nobreakspace\thmname{#1}\nobreakspace\thmnumber{\@ifnotempty{#1}{}\@upn{#2}}% Theorem text (e.g. Theorem 2.1)
+\thmnote{\nobreakspace\the\thm@notefont\sffamily\bfseries---\nobreakspace#3.}}% Optional theorem note
+
+\newtheoremstyle{blacknumbox} % Theorem style name
+{0pt}% Space above
+{0pt}% Space below
+{\normalfont}% Body font
+{}% Indent amount
+{\small\bf\sffamily}% Theorem head font
+{\;}% Punctuation after theorem head
+{0.25em}% Space after theorem head
+{\small\sffamily\thmname{#1}\nobreakspace\thmnumber{\@ifnotempty{#1}{}\@upn{#2}}% Theorem text (e.g. Theorem 2.1)
+\thmnote{\nobreakspace\the\thm@notefont\sffamily\bfseries---\nobreakspace#3.}}% Optional theorem note
+
+% Non-boxed/non-framed environments
+\newtheoremstyle{exercisenum}%
+{5pt}% Space above
+{5pt}% Space below
+{\normalfont}% % Body font
+{}% Indent amount
+{\footnotesize\bf\sffamily\color{ocre}}% % Theorem head font
+{\;}% Punctuation after theorem head
+{0.25em}% Space after theorem head
+{\footnotesize\sffamily\color{ocre}\thmname{#1}\nobreakspace\thmnumber{\@ifnotempty{#1}{}\@upn{#2}}% Theorem text (e.g. Theorem 2.1)
+	\thmnote{\nobreakspace\the\thm@notefont\sffamily\bfseries\color{black}---\nobreakspace#3.}} % Optional theorem note
+
+% Non-boxed/non-framed environments
+\newtheoremstyle{ocrenum}% % Theorem style name
+{5pt}% Space above
+{5pt}% Space below
+{\normalfont}% % Body font
+{}% Indent amount
+{\small\bf\sffamily\color{ocre}}% % Theorem head font
+{\;}% Punctuation after theorem head
+{0.25em}% Space after theorem head
+{\small\sffamily\color{ocre}\thmname{#1}\nobreakspace\thmnumber{\@ifnotempty{#1}{}\@upn{#2}}% Theorem text (e.g. Theorem 2.1)
+\thmnote{\nobreakspace\the\thm@notefont\sffamily\bfseries\color{black}---\nobreakspace#3.}} % Optional theorem note
+\renewcommand{\qedsymbol}{$\blacksquare$}% Optional qed square
+\makeatother
+
+% Defines the theorem text style for each type of theorem to one of the three styles above
+\newcounter{dummy} 
+\numberwithin{dummy}{chapter}
+\theoremstyle{ocrenumbox}
+\newtheorem{theoremeT}[dummy]{Theorem}
+\newtheorem{corollaryT}[dummy]{Corollary}
+\newtheorem{propositionT}[dummy]{Proposition}
+\newtheorem{exerciseT}{Exercise}[chapter]
+\theoremstyle{blacknumex}
+\newtheorem{exampleT}{Example}[chapter]
+\theoremstyle{blacknumbox}
+\newtheorem{vocabulary}{Vocabulary}[chapter]
+\newtheorem{definitionT}{Definition}[section]
+\theoremstyle{ocrenum}
+\newcommand{\rawtilde}{\raise.17ex\hbox{$\scriptstyle\mathtt{\sim}$}}
+
+
+\theoremstyle{exercisenum}
+\newcounter{dummyb} 
+\numberwithin{dummyb}{chapter}
+\newtheorem{problem}[dummyb]{\\[-0.7em]\hspace*{-0.3em}}
+
+% STARS beside some problems 
+\newtheorem{problemstar}[dummyb]{\\[-0.7em]\raisebox{0.02cm}{\bf\color{ocre}$\ast$}\hspace*{-0.3em}}
+\newcommand\itemstar{\stepcounter{enumi}\item[\raisebox{0.01cm}{\bf\color{ocre}$\ast$}\theenumi]}
+
+
+% This lets us vertically center contents of table cells and use \\ in table cells.
+% From http://tex.stackexchange.com/questions/2441/how-to-add-a-forced-line-break-inside-a-table-cell
+\newcommand{\specialcell}[2][c]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+\newcommand{\specialcelll}[2][l]{\begin{tabular}[#1]{@{}l@{}}#2\end{tabular}}
+
+% Evolution arrows for figures.
+\usepackage{intcalc}
+\newcommand{\genarrow}[1]{\color{black}{$\xrightarrow{\text{\clock{\intcalcDiv{#1}{60}}{\intcalcMod{#1}{60}} #1}}$}}
+
+\newcommand{\fixarrowa}[1]{\color{black}{$\xrightarrow{\text{\makebox[0pt][l]{\clock{\intcalcDiv{#1}{60}}{\intcalcMod{#1}{60}} #1}\phantom{\clock{0}{3} 3}}}$}}
+\newcommand{\fixarrowb}[1]{\color{black}{$\xrightarrow{\text{\makebox[0pt][l]{\clock{\intcalcDiv{#1}{60}}{\intcalcMod{#1}{60}} #1}\phantom{\clock{0}{33} 33}}}$}}
+\newcommand{\fixarrowc}[1]{\color{black}{$\xrightarrow{\text{\makebox[0pt][l]{\clock{\intcalcDiv{#1}{60}}{\intcalcMod{#1}{60}} #1}\phantom{\clock{0}{33} 333}}}$}}
+
+\newcommand{\phantomarrowa}{$\xrightarrow{\text{\phantom{\clock{0}{3} 3}}}$}
+\newcommand{\phantomarrowb}{$\xrightarrow{\text{\phantom{\clock{0}{33} 33}}}$}
+\newcommand{\phantomarrowc}{$\xrightarrow{\text{\phantom{\clock{0}{33} 333}}}$}
+\newcommand{\phantomarrowz}{$\xrightarrow{\text{\phantom{\clock{0}{3}}}}$}
+
+\newcommand{\gliderarrow}[1]{\color{black}{$\xrightarrow{\text{\includegraphics[width=0.35cm]{glider.png} #1}}$}}
+
+% Commands for making letter grids in proofs
+\newcommand{\letternode}[3]{\node[anchor=center] at (#1,#2){\fontsize{18}{18}\sffamily\bfseries\contour{black}{\textcolor{ocre!40}{#3}}};}
+\newcommand{\colorletternode}[4]{\node[anchor=center] at (#2,#3){\fontsize{18}{18}\sffamily\bfseries\contour{black}{\textcolor{#1!40}{#4}}};}
+\newcommand{\sizecolorletternode}[5]{\node[anchor=center] at (#2,#3){\fontsize{#5}{#5}\sffamily\bfseries\contour{black}{\textcolor{#1!40}{#4}}};} 
+\newcommand{\gridbox}[2]{\setlength{\fboxsep}{0mm}
+	\setlength{\fboxrule}{#1}\fcolorbox{gridgray}{gridgray}{#2}}
+
+% This fixes some vertical alignment issues in some tables
+\usepackage[math]{cellspace}
+\cellspacetoplimit 3pt
+\cellspacebottomlimit 1pt
+
+% Don't want URLs to display https:// or http://
+\newcommand\httpsurl[1]{\href{https://#1}{\nolinkurl{#1}}}
+\newcommand\httpurl[1]{\href{http://#1}{\nolinkurl{#1}}}
+
+%----------------------------------------------------------------------------------------
+%	DEFINITION OF COLORED BOXES
+%----------------------------------------------------------------------------------------
+
+\RequirePackage[framemethod=default]{mdframed} % Required for creating the theorem, definition, exercise and corollary boxes
+
+% Theorem box
+\newmdenv[skipabove=7pt,
+skipbelow=7pt,
+backgroundcolor=black!5,
+linecolor=ocre,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=5pt,
+leftmargin=0cm,
+rightmargin=0cm,
+innerbottommargin=5pt]{tBox}
+
+% Exercise box	  
+\newmdenv[skipabove=7pt,
+skipbelow=7pt,
+rightline=false,
+leftline=true,
+topline=false,
+bottomline=false,
+backgroundcolor=ocre!10,
+linecolor=ocre,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=5pt,
+innerbottommargin=5pt,
+leftmargin=0cm,
+rightmargin=0cm,
+linewidth=4pt]{eBox}	
+
+% Definition box
+\newmdenv[skipabove=7pt,
+skipbelow=7pt,
+rightline=false,
+leftline=true,
+topline=false,
+bottomline=false,
+linecolor=ocre,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=0pt,
+leftmargin=0cm,
+rightmargin=0cm,
+linewidth=4pt,
+innerbottommargin=0pt]{dBox}	
+
+% Corollary box
+\newmdenv[skipabove=7pt,
+skipbelow=7pt,
+rightline=false,
+leftline=true,
+topline=false,
+bottomline=false,
+linecolor=ocre,
+backgroundcolor=black!5,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=5pt,
+leftmargin=0cm,
+rightmargin=0cm,
+linewidth=4pt,
+innerbottommargin=5pt]{cBox}
+
+% Creates an environment for each type of theorem and assigns it a theorem text style from the "Theorem Styles" section above and a colored box from above
+\newenvironment{theorem}{\begin{cBox}\begin{theoremeT}}{\end{theoremeT}\end{cBox}}
+\newenvironment{exercise}{\begin{eBox}\begin{exerciseT}}{\hfill{\color{ocre}\tiny\ensuremath{\blacksquare}}\end{exerciseT}\end{eBox}}				  
+\newenvironment{definition}{\begin{dBox}\begin{definitionT}}{\end{definitionT}\end{dBox}}	
+\newenvironment{example}{\begin{exampleT}}{\hfill{\tiny\ensuremath{\blacksquare}}\end{exampleT}}		
+\newenvironment{corollary}{\begin{cBox}\begin{corollaryT}}{\end{corollaryT}\end{cBox}}			
+\newenvironment{proposition}{\begin{cBox}\begin{propositionT}}{\end{propositionT}\end{cBox}}	
+
+%----------------------------------------------------------------------------------------
+%	REMARK ENVIRONMENT
+%----------------------------------------------------------------------------------------
+
+\newenvironment{remark}{\par\vspace{10pt}\small % Vertical white space above the remark and smaller font size
+\begin{list}{}{
+\leftmargin=35pt % Indentation on the left
+\rightmargin=25pt}\item\ignorespaces % Indentation on the right
+\makebox[-2.5pt]{\begin{tikzpicture}[overlay]
+\node[draw=ocre!60,line width=1pt,circle,fill=ocre!25,font=\sffamily\bfseries,inner sep=2pt,outer sep=0pt] at (-15pt,0pt){\textcolor{ocre}{R}};\end{tikzpicture}} % Orange R in a circle
+\advance\baselineskip -1pt}{\end{list}\vskip5pt} % Tighter line spacing and white space after remark
+
+%----------------------------------------------------------------------------------------
+%	FACT ENVIRONMENT
+%----------------------------------------------------------------------------------------
+
+\newenvironment{fact}{\par\vspace{10pt} % Vertical white space above the fact
+	\begin{list}{}{
+			\leftmargin=35pt % Indentation on the left
+			\rightmargin=25pt}\item\ignorespaces % Indentation on the right
+		\makebox[-2.5pt]{\begin{tikzpicture}[overlay]
+			\node[draw=ocre!60,line width=1pt,circle,fill=ocre!25,font=\sffamily\bfseries,inner sep=2pt,outer sep=0pt] at (-15pt,0pt){\textcolor{ocre}{!}};\end{tikzpicture}} % Orange R in a circle
+		\advance\baselineskip -1pt}{\end{list}\vskip5pt} % Tighter line spacing and white space after remark
+
+%----------------------------------------------------------------------------------------
+%	QUESTION ENVIRONMENT
+%----------------------------------------------------------------------------------------
+
+\newenvironment{question}{\par\vspace{10pt} % Vertical white space above the question
+	\begin{list}{}{
+			\leftmargin=35pt % Indentation on the left
+			\rightmargin=25pt}\item\ignorespaces % Indentation on the right
+		\makebox[-2.5pt]{\begin{tikzpicture}[overlay]
+			\node[draw=ocre!60,line width=1pt,circle,fill=ocre!25,font=\sffamily\bfseries,inner sep=2pt,outer sep=0pt] at (-15pt,0pt){\textcolor{ocre}{?}};\end{tikzpicture}} % Orange R in a circle
+		\advance\baselineskip -1pt}{\end{list}\vskip5pt} % Tighter line spacing and white space after question
+
+%----------------------------------------------------------------------------------------
+%	SECTION NUMBERING IN THE MARGIN
+%----------------------------------------------------------------------------------------
+
+\makeatletter
+\renewcommand{\@seccntformat}[1]{\llap{\textcolor{ocre}{\csname the#1\endcsname}\hspace{1em}}}                    
+\renewcommand{\section}{\@startsection{section}{1}{\z@}
+{-4ex \@plus -1ex \@minus -.4ex}
+{1ex \@plus.2ex }
+{\normalfont\large\sffamily\bfseries}}
+\renewcommand{\subsection}{\@startsection {subsection}{2}{\z@}
+{-3ex \@plus -0.1ex \@minus -.4ex}
+{0.5ex \@plus.2ex }
+{\normalfont\sffamily\bfseries}}
+\renewcommand{\subsubsection}{\@startsection {subsubsection}{3}{\z@}
+{-2ex \@plus -0.1ex \@minus -.2ex}
+{.2ex \@plus.2ex }
+{\normalfont\small\sffamily\bfseries}}                        
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}
+{-2ex \@plus-.2ex \@minus .2ex}
+{.1ex}
+{\normalfont\small\sffamily\bfseries}}
+
+%----------------------------------------------------------------------------------------
+%	PART HEADINGS
+%----------------------------------------------------------------------------------------
+
+% numbered part in the table of contents
+\newcommand{\@mypartnumtocformat}[2]{%
+\setlength\fboxsep{0pt}%
+\noindent\colorbox{ocre!20}{\strut\parbox[c][.7cm]{\ecart}{\color{ocre!70}\Large\sffamily\bfseries\centering#1}}\hskip\esp\colorbox{ocre!40}{\strut\parbox[c][.7cm]{\linewidth-\ecart-\esp}{\Large\sffamily\centering#2}}}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% unnumbered part in the table of contents
+\newcommand{\@myparttocformat}[1]{%
+\setlength\fboxsep{0pt}%
+\noindent\colorbox{ocre!40}{\strut\parbox[c][.7cm]{\linewidth}{\Large\sffamily\centering#1}}}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newlength\esp
+\setlength\esp{4pt}
+\newlength\ecart
+\setlength\ecart{1.2cm-\esp}
+\newcommand{\thepartimage}{}%
+\newcommand{\partimage}[1]{\renewcommand{\thepartimage}{#1}}%
+\def\@part[#1]#2{%
+\ifnum \c@secnumdepth >-2\relax%
+\refstepcounter{part}%
+\addcontentsline{toc}{part}{\texorpdfstring{\protect\@mypartnumtocformat{\thepart}{#1}}{\partname~\thepart\ ---\ #1}}
+\else%
+\addcontentsline{toc}{part}{\texorpdfstring{\protect\@myparttocformat{#1}}{#1}}%
+\fi%
+\startcontents%
+\markboth{}{}%
+{\thispagestyle{empty}%
+\begin{tikzpicture}[remember picture,overlay]%
+\node at (current page.north west){\begin{tikzpicture}[remember picture,overlay]%	
+\fill[ocre!20](0cm,0cm) rectangle (\paperwidth,-\paperheight);
+\node[anchor=north] at (4cm,-3.25cm){\color{ocre!40}\fontsize{220}{100}\sffamily\bfseries\@Roman\c@part}; 
+\node[anchor=south east] at (\paperwidth-1cm,-\paperheight+1cm){\parbox[t][][t]{8.5cm}{
+\printcontents{l}{0}{\setcounter{tocdepth}{1}}%
+}};
+\node[anchor=north east] at (\paperwidth-1.5cm,-3.25cm){\parbox[t][][t]{15cm}{\strut\raggedleft\color{white}\fontsize{30}{30}\sffamily\bfseries #2}};
+\end{tikzpicture}};
+\end{tikzpicture}}%
+\@endpart}
+\def\@spart#1{%
+\startcontents%
+\phantomsection
+{\thispagestyle{empty}%
+\begin{tikzpicture}[remember picture,overlay]%
+\node at (current page.north west){\begin{tikzpicture}[remember picture,overlay]%	
+\fill[ocre!20](0cm,0cm) rectangle (\paperwidth,-\paperheight);
+\node[anchor=north] at (4cm,-3.25cm){\color{ocre!40}\fontsize{220}{100}\sffamily\bfseries $\star{}{}$}; 
+\node[anchor=south east] at (\paperwidth-1cm,-\paperheight+1cm){\parbox[t][][t]{8.5cm}{
+		\printcontents{l}{0}{\setcounter{tocdepth}{1}}}};%
+\node[anchor=north east] at (\paperwidth-1.5cm,-3.25cm){\parbox[t][][t]{15cm}{\strut\raggedleft\color{white}\fontsize{30}{30}\sffamily\bfseries #1}};
+\end{tikzpicture}};
+\end{tikzpicture}}
+\addcontentsline{toc}{part}{\texorpdfstring{%
+\setlength\fboxsep{0pt}%
+\noindent\hfill\protect\colorbox{ocre!40}{\strut\protect\parbox[c][.7cm]{\linewidth-\ecart-\esp}{\Large\sffamily\protect\centering #1\quad\mbox{}}}}{#1}}%
+\@endpart}
+\def\@endpart{\vfil\newpage
+\if@twoside
+\if@openright
+\null
+\thispagestyle{empty}%
+\newpage
+\fi
+\fi
+\if@tempswa
+\twocolumn
+\fi}
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER HEADINGS
+%----------------------------------------------------------------------------------------
+
+% A switch to conditionally include a picture, implemented by  Christian Hupfer
+\newif\ifusechapterimage
+\usechapterimagetrue
+\newcommand{\thechapterimage}{}%
+\newcommand{\chapterimage}[1]{\ifusechapterimage\renewcommand{\thechapterimage}{#1}\fi}%
+\def\@makechapterhead#1{%
+{\parindent \z@ \raggedright \normalfont
+\ifnum \c@secnumdepth >\m@ne
+\if@mainmatter
+\begin{tikzpicture}[remember picture,overlay]
+\node at (current page.north west)
+{\begin{tikzpicture}[remember picture,overlay]
+\node[anchor=north west,inner sep=0pt] at (0,0) {\ifusechapterimage\includegraphics[width=\paperwidth]{\thechapterimage}\fi};
+
+% White faded box
+\draw[anchor=west] (\Gm@lmargin,-9cm) node [line width=2pt,draw=black,fill=white,fill opacity=0.75,inner sep=15pt]{\strut\makebox[22cm]{}};
+
+% Grid at right
+% Columns of squares
+\foreach \x in {0,1,...,7}
+{
+	\filldraw[anchor=west,line width=1pt,draw=medgray,fill=white] (\Gm@lmargin+17.825cm-\x*0.375cm,-8.25cm-0.375cm) rectangle (\Gm@lmargin+18.2cm-\x*0.375cm,-8.25cm);
+	\filldraw[anchor=west,line width=1pt,draw=medgray,fill=white] (\Gm@lmargin+17.825cm-\x*0.375cm,-8.25cm-0.375cm) rectangle (\Gm@lmargin+18.2cm-\x*0.375cm,-8.25cm-2*0.375cm);
+	\filldraw[anchor=west,line width=1pt,draw=medgray,fill=white] (\Gm@lmargin+17.825cm-\x*0.375cm,-8.25cm-3*0.375cm) rectangle (\Gm@lmargin+18.2cm-\x*0.375cm,-8.25cm-2*0.375cm);
+	\filldraw[anchor=west,line width=1pt,draw=medgray,fill=white] (\Gm@lmargin+17.825cm-\x*0.375cm,-8.25cm-3*0.375cm) rectangle (\Gm@lmargin+18.2cm-\x*0.375cm,-8.25cm-4*0.375cm);
+}
+% Scattered extra cells
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=white] (\Gm@lmargin+17.825cm-8*0.375cm,-8.25cm-0.375cm) rectangle (\Gm@lmargin+18.2cm-8*0.375cm,-8.25cm);
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=black] (\Gm@lmargin+17.825cm-8*0.375cm,-8.25cm-0.375cm) rectangle (\Gm@lmargin+18.2cm-8*0.375cm,-8.25cm-2*0.375cm);
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=white] (\Gm@lmargin+17.825cm-8*0.375cm,-8.25cm-3*0.375cm) rectangle (\Gm@lmargin+18.2cm-8*0.375cm,-8.25cm-4*0.375cm);
+
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=white] (\Gm@lmargin+17.825cm-9*0.375cm,-8.25cm-0.375cm) rectangle (\Gm@lmargin+18.2cm-9*0.375cm,-8.25cm-2*0.375cm);
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=black] (\Gm@lmargin+17.825cm-9*0.375cm,-8.25cm-3*0.375cm) rectangle (\Gm@lmargin+18.2cm-9*0.375cm,-8.25cm-4*0.375cm);
+
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=white] (\Gm@lmargin+17.825cm-10*0.375cm,-8.25cm-0.375cm) rectangle (\Gm@lmargin+18.2cm-10*0.375cm,-8.25cm-2*0.375cm);
+
+% Extra black cells
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=black] (\Gm@lmargin+17.825cm-6*0.375cm,-8.25cm-0.375cm) rectangle (\Gm@lmargin+18.2cm-6*0.375cm,-8.25cm);
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=black] (\Gm@lmargin+17.825cm-3*0.375cm,-8.25cm-0.375cm) rectangle (\Gm@lmargin+18.2cm-3*0.375cm,-8.25cm);
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=black] (\Gm@lmargin+17.825cm-5*0.375cm,-8.25cm-0.375cm) rectangle (\Gm@lmargin+18.2cm-5*0.375cm,-8.25cm-2*0.375cm);
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=black] (\Gm@lmargin+17.825cm-4*0.375cm,-8.25cm-0.375cm) rectangle (\Gm@lmargin+18.2cm-4*0.375cm,-8.25cm-2*0.375cm);
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=black] (\Gm@lmargin+17.825cm,-8.25cm-3*0.375cm) rectangle (\Gm@lmargin+18.2cm,-8.25cm-2*0.375cm);
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=black] (\Gm@lmargin+17.825cm-0.375cm,-8.25cm-3*0.375cm) rectangle (\Gm@lmargin+18.2cm-0.375cm,-8.25cm-4*0.375cm);
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=black] (\Gm@lmargin+17.825cm-2*0.375cm,-8.25cm-3*0.375cm) rectangle (\Gm@lmargin+18.2cm-2*0.375cm,-8.25cm-4*0.375cm);
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=black] (\Gm@lmargin+17.825cm-6*0.375cm,-8.25cm-3*0.375cm) rectangle (\Gm@lmargin+18.2cm-6*0.375cm,-8.25cm-4*0.375cm);
+
+% Re-draw black outline on box
+\draw[anchor=west] (\Gm@lmargin,-9cm) node [line width=2pt,draw=black,inner sep=15pt]{\strut\makebox[22cm]{}};
+
+\draw[anchor=west] (\Gm@lmargin+.4cm,-9.1cm) node {\huge\sffamily\bfseries\color{black}\thechapter. #1\strut};
+\draw[anchor=west,line width=2pt,black] (0,-\paperwidth/2) -- (\paperwidth,-\paperwidth/2);
+\end{tikzpicture}};
+\end{tikzpicture}
+\else
+\begin{tikzpicture}[remember picture,overlay]
+\node at (current page.north west)
+{\begin{tikzpicture}[remember picture,overlay]
+\node[anchor=north west,inner sep=0pt] at (0,0) {\ifusechapterimage\includegraphics[width=\paperwidth]{\thechapterimage}\fi};
+
+% White faded box
+\draw[anchor=west] (\Gm@lmargin,-9cm) node [line width=2pt,draw=black,fill=white,fill opacity=0.75,inner sep=15pt]{\strut\makebox[22cm]{}};
+
+% Grid at right
+% Columns of squares
+\foreach \x in {0,1,...,7}
+{
+	\filldraw[anchor=west,line width=1pt,draw=medgray,fill=white] (\Gm@lmargin+17.825cm-\x*0.375cm,-8.25cm-0.375cm) rectangle (\Gm@lmargin+18.2cm-\x*0.375cm,-8.25cm);
+	\filldraw[anchor=west,line width=1pt,draw=medgray,fill=white] (\Gm@lmargin+17.825cm-\x*0.375cm,-8.25cm-0.375cm) rectangle (\Gm@lmargin+18.2cm-\x*0.375cm,-8.25cm-2*0.375cm);
+	\filldraw[anchor=west,line width=1pt,draw=medgray,fill=white] (\Gm@lmargin+17.825cm-\x*0.375cm,-8.25cm-3*0.375cm) rectangle (\Gm@lmargin+18.2cm-\x*0.375cm,-8.25cm-2*0.375cm);
+	\filldraw[anchor=west,line width=1pt,draw=medgray,fill=white] (\Gm@lmargin+17.825cm-\x*0.375cm,-8.25cm-3*0.375cm) rectangle (\Gm@lmargin+18.2cm-\x*0.375cm,-8.25cm-4*0.375cm);
+}
+% Scattered extra cells
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=white] (\Gm@lmargin+17.825cm-8*0.375cm,-8.25cm-0.375cm) rectangle (\Gm@lmargin+18.2cm-8*0.375cm,-8.25cm);
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=black] (\Gm@lmargin+17.825cm-8*0.375cm,-8.25cm-0.375cm) rectangle (\Gm@lmargin+18.2cm-8*0.375cm,-8.25cm-2*0.375cm);
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=white] (\Gm@lmargin+17.825cm-8*0.375cm,-8.25cm-3*0.375cm) rectangle (\Gm@lmargin+18.2cm-8*0.375cm,-8.25cm-4*0.375cm);
+
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=white] (\Gm@lmargin+17.825cm-9*0.375cm,-8.25cm-0.375cm) rectangle (\Gm@lmargin+18.2cm-9*0.375cm,-8.25cm-2*0.375cm);
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=black] (\Gm@lmargin+17.825cm-9*0.375cm,-8.25cm-3*0.375cm) rectangle (\Gm@lmargin+18.2cm-9*0.375cm,-8.25cm-4*0.375cm);
+
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=white] (\Gm@lmargin+17.825cm-10*0.375cm,-8.25cm-0.375cm) rectangle (\Gm@lmargin+18.2cm-10*0.375cm,-8.25cm-2*0.375cm);
+
+% Extra black cells
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=black] (\Gm@lmargin+17.825cm-6*0.375cm,-8.25cm-0.375cm) rectangle (\Gm@lmargin+18.2cm-6*0.375cm,-8.25cm);
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=black] (\Gm@lmargin+17.825cm-3*0.375cm,-8.25cm-0.375cm) rectangle (\Gm@lmargin+18.2cm-3*0.375cm,-8.25cm);
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=black] (\Gm@lmargin+17.825cm-5*0.375cm,-8.25cm-0.375cm) rectangle (\Gm@lmargin+18.2cm-5*0.375cm,-8.25cm-2*0.375cm);
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=black] (\Gm@lmargin+17.825cm-4*0.375cm,-8.25cm-0.375cm) rectangle (\Gm@lmargin+18.2cm-4*0.375cm,-8.25cm-2*0.375cm);
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=black] (\Gm@lmargin+17.825cm,-8.25cm-3*0.375cm) rectangle (\Gm@lmargin+18.2cm,-8.25cm-2*0.375cm);
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=black] (\Gm@lmargin+17.825cm-0.375cm,-8.25cm-3*0.375cm) rectangle (\Gm@lmargin+18.2cm-0.375cm,-8.25cm-4*0.375cm);
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=black] (\Gm@lmargin+17.825cm-2*0.375cm,-8.25cm-3*0.375cm) rectangle (\Gm@lmargin+18.2cm-2*0.375cm,-8.25cm-4*0.375cm);
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=black] (\Gm@lmargin+17.825cm-6*0.375cm,-8.25cm-3*0.375cm) rectangle (\Gm@lmargin+18.2cm-6*0.375cm,-8.25cm-4*0.375cm);
+
+% Re-draw black outline on box
+\draw[anchor=west] (\Gm@lmargin,-9cm) node [line width=2pt,draw=black,inner sep=15pt]{\strut\makebox[22cm]{}};
+
+\draw[anchor=west] (\Gm@lmargin+.4cm,-9.1cm) node {\huge\sffamily\bfseries\color{black}#1\strut};
+\draw[anchor=west,line width=2pt,black] (0,-\paperwidth/2) -- (\paperwidth,-\paperwidth/2);
+\end{tikzpicture}};
+\end{tikzpicture}
+\fi\fi\par\vspace*{270\p@}}}
+
+%-------------------------------------------
+
+\def\@makeschapterhead#1{%
+\begin{tikzpicture}[remember picture,overlay]
+\node at (current page.north west)
+{\begin{tikzpicture}[remember picture,overlay]
+\node[anchor=north west,inner sep=0pt] at (0,0) {\ifusechapterimage\includegraphics[width=\paperwidth]{\thechapterimage}\fi};
+
+% White faded box
+\draw[anchor=west] (\Gm@lmargin,-9cm) node [line width=2pt,draw=black,fill=white,fill opacity=0.75,inner sep=15pt]{\strut\makebox[22cm]{}};
+
+% Grid at right
+% Columns of squares
+\foreach \x in {0,1,...,7}
+{
+	\filldraw[anchor=west,line width=1pt,draw=medgray,fill=white] (\Gm@lmargin+17.825cm-\x*0.375cm,-8.25cm-0.375cm) rectangle (\Gm@lmargin+18.2cm-\x*0.375cm,-8.25cm);
+	\filldraw[anchor=west,line width=1pt,draw=medgray,fill=white] (\Gm@lmargin+17.825cm-\x*0.375cm,-8.25cm-0.375cm) rectangle (\Gm@lmargin+18.2cm-\x*0.375cm,-8.25cm-2*0.375cm);
+	\filldraw[anchor=west,line width=1pt,draw=medgray,fill=white] (\Gm@lmargin+17.825cm-\x*0.375cm,-8.25cm-3*0.375cm) rectangle (\Gm@lmargin+18.2cm-\x*0.375cm,-8.25cm-2*0.375cm);
+	\filldraw[anchor=west,line width=1pt,draw=medgray,fill=white] (\Gm@lmargin+17.825cm-\x*0.375cm,-8.25cm-3*0.375cm) rectangle (\Gm@lmargin+18.2cm-\x*0.375cm,-8.25cm-4*0.375cm);
+}
+% Scattered extra cells
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=white] (\Gm@lmargin+17.825cm-8*0.375cm,-8.25cm-0.375cm) rectangle (\Gm@lmargin+18.2cm-8*0.375cm,-8.25cm);
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=black] (\Gm@lmargin+17.825cm-8*0.375cm,-8.25cm-0.375cm) rectangle (\Gm@lmargin+18.2cm-8*0.375cm,-8.25cm-2*0.375cm);
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=white] (\Gm@lmargin+17.825cm-8*0.375cm,-8.25cm-3*0.375cm) rectangle (\Gm@lmargin+18.2cm-8*0.375cm,-8.25cm-4*0.375cm);
+
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=white] (\Gm@lmargin+17.825cm-9*0.375cm,-8.25cm-0.375cm) rectangle (\Gm@lmargin+18.2cm-9*0.375cm,-8.25cm-2*0.375cm);
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=black] (\Gm@lmargin+17.825cm-9*0.375cm,-8.25cm-3*0.375cm) rectangle (\Gm@lmargin+18.2cm-9*0.375cm,-8.25cm-4*0.375cm);
+
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=white] (\Gm@lmargin+17.825cm-10*0.375cm,-8.25cm-0.375cm) rectangle (\Gm@lmargin+18.2cm-10*0.375cm,-8.25cm-2*0.375cm);
+
+% Extra black cells
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=black] (\Gm@lmargin+17.825cm-6*0.375cm,-8.25cm-0.375cm) rectangle (\Gm@lmargin+18.2cm-6*0.375cm,-8.25cm);
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=black] (\Gm@lmargin+17.825cm-3*0.375cm,-8.25cm-0.375cm) rectangle (\Gm@lmargin+18.2cm-3*0.375cm,-8.25cm);
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=black] (\Gm@lmargin+17.825cm-5*0.375cm,-8.25cm-0.375cm) rectangle (\Gm@lmargin+18.2cm-5*0.375cm,-8.25cm-2*0.375cm);
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=black] (\Gm@lmargin+17.825cm-4*0.375cm,-8.25cm-0.375cm) rectangle (\Gm@lmargin+18.2cm-4*0.375cm,-8.25cm-2*0.375cm);
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=black] (\Gm@lmargin+17.825cm,-8.25cm-3*0.375cm) rectangle (\Gm@lmargin+18.2cm,-8.25cm-2*0.375cm);
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=black] (\Gm@lmargin+17.825cm-0.375cm,-8.25cm-3*0.375cm) rectangle (\Gm@lmargin+18.2cm-0.375cm,-8.25cm-4*0.375cm);
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=black] (\Gm@lmargin+17.825cm-2*0.375cm,-8.25cm-3*0.375cm) rectangle (\Gm@lmargin+18.2cm-2*0.375cm,-8.25cm-4*0.375cm);
+\filldraw[anchor=west,line width=1pt,draw=medgray,fill=black] (\Gm@lmargin+17.825cm-6*0.375cm,-8.25cm-3*0.375cm) rectangle (\Gm@lmargin+18.2cm-6*0.375cm,-8.25cm-4*0.375cm);
+
+% Re-draw black outline on box
+\draw[anchor=west] (\Gm@lmargin,-9cm) node [line width=2pt,draw=black,inner sep=15pt]{\strut\makebox[22cm]{}};
+
+\draw[anchor=west] (\Gm@lmargin+.4cm,-9.1cm) node {\huge\sffamily\bfseries\color{black}#1\strut};
+\draw[anchor=west,line width=2pt,black] (0,-\paperwidth/2) -- (\paperwidth,-\paperwidth/2);
+\end{tikzpicture}};
+\end{tikzpicture}
+\par\vspace*{270\p@}}
+\makeatother
+
+%----------------------------------------------------------------------------------------
+%	HYPERLINKS IN THE DOCUMENTS
+%----------------------------------------------------------------------------------------
+
+\usepackage{bookmark,embedfile}
+\hypersetup{hidelinks,filebordercolor=red,menubordercolor=red,linkbordercolor=red,backref=true,pagebackref=true,hyperindex=true,colorlinks=true,breaklinks=true,urlcolor=ocre,bookmarks=true,citecolor=redback2,linkcolor=linkcol,bookmarksopen=false,pdftitle={Title},pdfauthor={Author}}
+\usepackage{bookmark}
+\bookmarksetup{
+open,
+numbered,
+addtohook={%
+\ifnum\bookmarkget{level}=0 % chapter
+\bookmarksetup{bold}%
+\fi
+\ifnum\bookmarkget{level}=-1 % part
+\bookmarksetup{color=ocre,bold}%
+\fi
+}
+}
+
+% How do I make an attached non-pdf file display like a link?
+% (http://tex.stackexchange.com/q/230581)
+\makeatletter
+\newcommand*{\embeddedfilelink}[2]{%
+	\begingroup
+	\leavevmode
+	\pdfstartlink
+	attr{%
+		\Hy@setpdfborder
+		\ifx\@pdfhighlight\@empty
+		\else
+		/H\@pdfhighlight
+		\fi
+		/C[\@filebordercolor]%
+	}%
+	user{%
+		/Subtype/Link%
+		/A<<%
+		/Type/Action%
+		/S/JavaScript%
+		/JS(this.exportDataObject({cName: "#1", nLaunch: 2}))%
+		>>%
+	}%
+	\relax
+	\Hy@colorlink\@urlcolor#2%
+	\close@pdflink
+	\endgroup
+}
+\makeatother
+
+
+\makeatletter
+\@addtoreset{pseudocode}{chapter}% pseudocode counter resets every chapter
+\@addtoreset{apgsembly}{chapter}% apgsembly counter resets every chapter
+\makeatother
+\renewcommand{\thepseudocode}{\thechapter.\arabic{pseudocode}}% pseudocode # is <chapter>.<pseudocode>
+\renewcommand{\theapgsembly}{\thechapter.\arabic{apgsembly}}% apgsembly # is <chapter>.<apgsembly>
+
+
+\newcommand*{\patternlink}[2]{\embeddedfilelink{patterns/\chapterfolder #1.txt}{#2}}
+\newcommand*{\embedlink}[2]{\embedfile{patterns/\chapterfolder #1.txt}\patternlink{#1}{#2}}
+\newcommand*{\patternimg}[2]{\includegraphics[scale=#1]{\chapterfolder #2.png}}
+\newcommand*{\patternimglink}[2]{\embedlink{#2}{\patternimg{#1}{#2}}}
+
+\newcommand*{\patternimgwidth}[2]{\includegraphics[width=#1]{\chapterfolder #2.png}}
+\newcommand*{\patternimglinkwidth}[2]{\embedlink{#2}{\patternimgwidth{#1}{#2}}}
+
+
+\newcommand*{\bgbox}[2]{\mbox{\protect\vphantom{#2}\hspace{-0.2em}\smash{\colorbox{#1}{\protect\raisebox{0pt}[5pt][0pt]{#2}}}\hspace{-0.25em}}}

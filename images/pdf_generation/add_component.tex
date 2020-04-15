@@ -1,0 +1,38 @@
+\documentclass[10pt]{standalone}
+\input{macros}
+
+\begin{document}
+	\begin{tikzpicture}%
+		\node[inner sep=0pt,anchor=south west] (sbr) at (0,0) {\includegraphics[width=6cm]{../universal_computation/add_component.png}};
+			
+		% A1 IN
+		\newcommand\bzx{2.64}
+		\newcommand\bzy{0.42}
+		\draw[gray] (\bzx-0.15,\bzy-0.15) node[rotate=-45] {\tiny \texttt{A1}};
+		\draw[color=gray,-stealth] (\bzx+0.15,\bzy-0.3) -- (\bzx-0.35,\bzy+0.2);
+		
+		% B1 IN
+		\newcommand\boinx{5.65}
+		\newcommand\boiny{2.15}
+		\draw[gray] (\boinx-0.15,\boiny-0.15) node[rotate=-45] {\tiny \texttt{B1}};
+		\draw[color=gray,-stealth] (\boinx+0.15,\boiny-0.3) -- (\boinx-0.35,\boiny+0.2);
+		
+		% B0 IN
+		\newcommand\aoinx{5.9}
+		\newcommand\aoiny{2.82}
+		\draw[gray] (\aoinx-0.15,\aoiny-0.15) node[rotate=-45] {\tiny \texttt{B0}};
+		\draw[color=gray,-stealth] (\aoinx,\aoiny-0.15) -- (\aoinx-0.26,\aoiny+0.11);
+		
+		% Z OUT
+		\newcommand\zoutx{5.15}
+		\newcommand\zouty{4.8}
+		\draw[gray] (\zoutx,\zouty) node[rotate=45] {\tiny \texttt{Z}};
+		\draw[color=gray,-stealth] (\zoutx-0.15,\zouty-0.3) -- (\zoutx+0.35,\zouty+0.2);
+		
+		% NZ OUT
+		\newcommand\nzoutx{5.44}
+		\newcommand\nzouty{4.51}
+		\draw[gray] (\nzoutx+0.15,\nzouty-0.15) node[rotate=45] {\tiny \texttt{NZ}};
+		\draw[color=gray,-stealth] (\nzoutx-0.15,\nzouty-0.3) -- (\nzoutx+0.35,\nzouty+0.2);
+	\end{tikzpicture}
+\end{document}

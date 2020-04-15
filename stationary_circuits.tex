@@ -1,0 +1,1340 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   CHAPTER: STATIONARY CIRCUITRY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\chapterfolder}{stationary_circuitry/}
+\chapterimage{cover/stationary_circuitry}
+
+\chapter{Stable Circuitry}\label{chp:stationary_circuitry}
+
+
+\vspace*{-0.4in}
+\epigraph{The greatest use of a life is to spend it on something that will outlast it.}{William James}
+\vspace*{0.4in}
+
+
+\noindent In the previous chapter, we illustrated how we could manipulate gliders (and sometimes other moving objects like lightweight spaceships) via periodic components like oscillators. We now investigate how to similarly perform these tasks via stable objects (i.e., still lifes), which has the advantage of not restricting the period of the glider streams that can make use of the circuitry. We actually already know of some very important stable circuits, such as the Snark (a stable glider reflector) from Figure~\ref{fig:snark}, but typically they are more difficult to construct due to the fact that stable objects can not provide any sparks for gliders to make use of.
+
+For this reason, stable circuitry typically focuses not just on manipulating gliders, but also on manipulating other (easier to manipulate) objects like Herschels, just as we did in Section~\ref{sec:herschel_track}. We will even spend quite a bit of time converting moving objects of one type into another type (e.g., a glider into a Herschel or vice-versa). We start by giving Herschel tracks a more thorough treatment.
+
+
+\section{Herschel Conduits}\label{sec:conduits}\index{conduit}
+
+There are numerous Herschel conduits other than the R64 and Fx77 conduits that we saw back in Figure~\ref{fig:herschel_conduits}. Although those two conduits suffice to create oscillators and guns of any sufficiently large period, certain periods are quite unwieldy. For example, the smallest period~$67$ oscillator or gun that can be created using just these two conduits requires $4$~R64 conduits and $28$~Fx77 conduits to make a track of length
+\[
+	{\color{gray}\underbrace{\color{black}4 \times 64}_\text{R64 time}} \ + \ {\color{gray}\underbrace{\color{black}28\times 77}_\text{Fx77 time}} = 2,412 = 36 \times 67 \text{ generations,}
+\]
+(which we place $36$ equally-spaced Herschels on). However, if we extend our collection of conduits a little bit, then we can construct a Herschel-based period~$67$ gun that uses just $8$ Herschels on an $8 \times 67 = 536$-generation track made up of $4$ conduits, as in Figure~\ref{fig:p67_with_conduits}.\footnote{We saw one of these extra conduits, L112, way back in Exercise~\ref{exer:herschel_track_L112}.}
+
+\begin{figure}[!htb]
+	\centering
+	\begin{tabular}{@{}cc@{}}
+		\begin{subfigure}{.37\textwidth}
+			\centering
+			\patternimglink{0.092}{l112}
+			\caption{the \emph{L112}\index{L112} conduit}
+			\label{fig:l112_conduit}
+		\end{subfigure} &
+		\multirow{2}{*}{\renewcommand{\thesubfigure}{(c)}\begin{subfigure}{.59\textwidth}
+			\centering\vspace*{-1.8cm}
+			\patternimglink{0.183}{p67_gun}
+			\caption{a p$67$ glider gun}
+			\label{fig:p67_gun}
+		\end{subfigure}} \\[1.3cm]
+		\renewcommand{\thesubfigure}{(b)}\begin{subfigure}{.37\textwidth}
+			\centering\vspace*{0.2cm}
+			\patternimglink{0.078}{l156}
+			\caption{the \emph{L156}\index{L156} conduit}
+			\label{fig:l156_conduit}
+		\end{subfigure}
+	\end{tabular}
+	\caption{A period~$67$ glider gun can be constructed from just four conduits. The track in (c) uses two copies of the L112 conduit from~(a) (highlighted in \bgbox{yellowback2}{yellow}) and two copies of the L156 conduit from~(b) (highlighted in \bgbox{aquaback}{aqua}). Both of these conduits rotate an input Herschel (displayed in \bgbox{greenback}{green}) counter-clockwise by 90~degrees into the output position (displayed in \bgbox{orangeback}{orange}), with L112 taking 112~generations to do so and L156 taking 156~generations. Eaters displayed in \bgbox{redback}{red} are used to delete escaping gliders, but are not required for the conduits to function.}
+	\label{fig:p67_with_conduits}
+\end{figure}
+
+The added flexibility of these additional conduits not only lets us greatly reduce the size of Herschel tracks, but also makes it much easier to position them in certain situations (if we want a Herschel to output a glider at a specific location or with a certain timing, for example). For this reason, it is useful to have a large list of Herschel conduits available to choose from. For ease of reference, conduits are named according to the orientation of the output Herschel relative to that of the input Herschel,\footnote{Be somewhat careful here---the naming does not care about the \emph{position} of the output Herschel relative to the input Herschel, only the change in its orientation.} together with the number of generations that it takes for the output Herschel to appear. For example, the R64 conduit is named that way because it turns the input Herschel to the \textbf{r}ight in \textbf{64} generations. More generally, the prefix used when naming conduits is one of:
+\begin{align*}
+	\text{\bf R:} & \ \text{right (clockwise) turn} & \text{\bf F:} & \ \text{forward (no turn)} \\
+	\text{\bf L:} & \ \text{left (counter-clockwise) turn} & \text{\bf B:} & \ \text{backward (180-degree turn)}
+\end{align*}
+
+Thus the L112 and L156 conduits are named for the fact that they rotate a Herschel left (counter-clockwise) in 112 and 156 generations, respectively. As one final piece of naming terminology, we insert an ``x'' between two parts of the conduit's name if it mirrors the Herschel (as in the Fx77 conduit from Figure~\ref{fig:Fx77}),\footnote{To make the ``x means mirror'' notation unambiguous, we need to specify the direction in which the mirroring is done, so we (arbitrarily) choose to mirror along the single side of the Herschel that is perpendicular to its other two sides (if you prefer, you can simply refer to Figure~\ref{fig:herschel_orientations} to see how the mirroring is done).} so a conduit can have one of $8$ possible prefixes (i.e., R, Rx, L, Lx, F, Fx, B, or Bx) corresponding to the $8$ possible orientations of the output Herschel that they produce, as indicated in Figure~\ref{fig:herschel_orientations}.
+
+\begin{figure}[!ht]
+	\centering\begin{tikzpicture}[scale=0.8, every node/.style={transform shape}]%
+		\node[inner sep=0pt,anchor=south west] at (0,0) {\patternimglink{0.12}{herschel_orientations}};
+		
+		\colorletternode{gray}{1.9}{1.42}{F}
+		\colorletternode{gray}{3.49}{1.42}{Fx}
+		\colorletternode{gray}{4.81}{1.34}{R}
+		\colorletternode{gray}{6.59}{1.34}{Rx}
+		\colorletternode{gray}{8.05}{1.42}{B}
+		\colorletternode{gray}{9.63}{1.42}{Bx}
+		\colorletternode{gray}{10.84}{1.34}{L}
+		\colorletternode{gray}{12.66}{1.34}{Lx}
+	\end{tikzpicture}
+	\caption{Herschels can be oriented in one of $8$ ways, which we label here relative to the (arbitrarily-chosen) canonical input orientation displayed on the left in \bgbox{greenback}{green}.}\label{fig:herschel_orientations}
+\end{figure}
+
+With this naming scheme out of the way, we now catalog some of the smallest, quickest, and most useful Herschel conduits that are known in Table~\ref{tab:herschel_conduits}. Keep in mind that this list is nowhere near complete---there are well over 100 known Herschel conduits made up of small still lifes.\footnote{For a reasonably complete collection of known small Herschel conduits, see \httpsurl{conwaylife.com/forums/viewtopic.php?f=2\&t=2347}} All of these conduits release at least one glider and thus can be used to construct guns, but of particular note is L156, which releases a glider from its corner in a somewhat different orientation than most of the others (we made use of this glider back in the period~$67$ gun from Figure~\ref{fig:p67_with_conduits}). It is also worth noting where the R64, Fx77, L112, and L156 conduits that we have already seen fit into this table.
+
+\begin{table}[!htp]
+	\begin{center}
+		\begin{tabular}{Sc Sc Sc Sc Sc Sc}
+			\toprule
+			& \multicolumn{2}{c}{Rotating conduits} & & \multicolumn{2}{c}{Rotating and reflecting conduits} \\\midrule
+			\begin{minipage}[b]{0.02\textwidth}\centering F: \\ ${}$ \\ ${}$ \\ ${}$\end{minipage} & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.1}{f116} \\ F116\index{F116} (138)\end{minipage} & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.1}{f117} \\ F117\index{F117} (63)\end{minipage} & \specialcell{ } & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.12}{fx77} \\ Fx77\index{Fx77} (57)\end{minipage} & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.09}{fx119} \\ Fx119\index{Fx119} (231)\end{minipage} \\
+			
+			\rowcolor{gray!20} \begin{minipage}[b]{0.02\textwidth}\centering R: \\ ${}$ \\ ${}$ \\ ${}$\end{minipage} & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.12}{r64} \\ R64\index{R64} (61)\end{minipage} & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.12}{r126} \\ R126\index{R126} (125)\end{minipage} & \specialcell{ } & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.08}{rx140} \\ Rx140\index{Rx140} (260)\end{minipage} & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.08}{rx164} \\ Rx164\index{Rx164} (65)\end{minipage} \\
+			
+			\begin{minipage}[b]{0.02\textwidth}\centering B: \\ ${}$ \\ ${}$ \\ ${}$\end{minipage} & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.12}{b60} \\ B60\index{B60} (43)\end{minipage} & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.08}{b245} \\ B245\index{B245} (278)\end{minipage} & \specialcell{ } & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.09}{bx106} \\ Bx106\index{Bx106} (134)\end{minipage} & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.08}{bx202} \\ Bx202\index{Bx202} (65)\end{minipage} \\
+			
+			\rowcolor{gray!20} \begin{minipage}[b]{0.02\textwidth}\centering L: \\ ${}$ \\ ${}$ \\ ${}$\end{minipage} & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.09}{l112_table} \\ L112\index{L112} (58)\end{minipage} & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.08}{l156_table} \\ L156\index{L156} (62)\end{minipage} & \specialcell{ } & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.12}{lx86} \\ Lx86\index{Lx86} (134)\end{minipage} & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.08}{lx163} \\ Lx163\index{Lx163} (60)\end{minipage} \\\bottomrule
+		\end{tabular}
+		\caption{A collection of small and fast Herschel conduits that can produce a Herschel in any orientation. The number in parentheses beside each conduit's name is its repeat time. Input Herschels are displayed in \bgbox{greenback}{green} and output Herschels are displayed in \bgbox{orangeback}{orange}. Eaters displayed in \bgbox{redback}{red} just destroy stray gliders (potentially reducing the conduit's repeat time) but are not required for the conduit to work.}\label{tab:herschel_conduits}
+	\end{center}
+\end{table}
+
+
+\subsection*{Conduit Variants and Tight Squeezes}
+
+Since the name of a conduit depends only on the orientation and timing of its output Herschel relative to the input one, there can be many different Herschel conduits with the same name. This feature is by design, as we typically do not care about what exactly happens in the intermediate steps of the conversion that a conduit implements. For this reason, we say that two conduits are \emph{variants}\index{variant} of each other if they both take the same input and produce the same output in the same spacetime location---no matter what happens along the way.
+
+Conduit variants are sometimes useful for getting around tight spacing issues. For example, when connecting conduits together, the standard version of those conduits often won't fit---catalysts in the two conduits overlap each other and can't be welded---but an alternate variant will fit. To illustrate this phenomenon, consider the variants of the Fx77\index{Fx77} conduit displayed in Figure~\ref{fig:fx77_variants}.
+
+\begin{figure}[!htb]
+	\centering
+	\begin{subfigure}{.18\textwidth}
+		\centering
+		\patternimglink{0.1}{fx77a}
+		\caption{\emph{Fx77a}}
+		\label{fig:fx77_a}
+	\end{subfigure}\quad%
+	\begin{subfigure}{.18\textwidth}
+		\centering
+		\patternimglink{0.1}{fx77b}
+		\caption{\emph{Fx77b}}
+		\label{fig:fx77_b}
+	\end{subfigure}\quad%
+	\begin{subfigure}{.18\textwidth}
+		\centering
+		\patternimglink{0.1}{fx77c}
+		\caption{\emph{Fx77c}}
+		\label{fig:fx77_c}
+	\end{subfigure}\quad%
+	\begin{subfigure}{.18\textwidth}
+		\centering
+		\patternimglink{0.1}{fx77d}
+		\caption{\emph{Fx77d}}
+		\label{fig:fx77_d}
+	\end{subfigure}\quad%
+	\begin{subfigure}{.18\textwidth}
+		\centering
+		\patternimglink{0.1}{fx77e}
+		\caption{\emph{Fx77e}}
+		\label{fig:fx77_e}
+	\end{subfigure}
+	\caption{Five variants of the Fx77 Herschel conduit, along with eaters or welds (displayed in \bgbox{redback}{red}) that are capable of destroying the first block left behind by the output Herschel. The ``a'' variant is the one that we have used up until now (e.g., in Section~\ref{sec:herschel_track} and Table~\ref{tab:herschel_conduits}).}\label{fig:fx77_variants}
+\end{figure}
+
+To understand why it is useful to have so many variants of Fx77, notice that many Herschel conduits have an eater~1 in one of two standard positions directly above their input Herschel (if that input Herschel is in its canonical input orientation)\footnote{This block-eating eater~1 can be seen several times in Table~\ref{tab:herschel_conduits}: it is directly above the green input Herschel in each of F117, Fx77, R126, Rx164, B245, Bx106, Bx202, L112, L156, Lx86, and Lx163.}---this eater~1 is used to erase a block that is left behind early in the Herschel's evolution. The complicated-looking welded eaters in the ``c'', ``d'', and ``e'' variants of Fx77 are just the best known ways to save a row or two while still allowing for that eater to appear in one of those two standard eater positions in the following Herschel conduit.
+
+For example, to save some space at the bottom of the Fx77 conduit when it is followed by an L112 conduit, we could use the ``c'' variant of Fx77, since its welded eater has the same orientation as the block-destroying eater in L112. However, to save some space at the bottom of the Fx77 conduit when it is followed by an L156 conduit (whose block-destroying eater has the opposite orientation as L112), we would instead have to use the ``d'' variant of Fx77, since its welded eater also has the opposite orientation (see Figure~\ref{fig:fx77_variants_with_l}). We note that the ``e'' variant of Fx77 can also be used in the same situations as the ``c'' variant, but not the ``d'' variant.
+
+\begin{figure}[!htb]
+	\centering
+	\begin{subfigure}{.48\textwidth}
+		\centering
+		\patternimglink{0.105}{fx77c_l112}
+		\caption{Fx77c (left) with L112 (right) attached to it output.}
+		\label{fig:fx77c_l112}
+	\end{subfigure}\quad%
+	\begin{subfigure}{.48\textwidth}
+		\centering
+		\patternimglink{0.09}{fx77d_l156}
+		\caption{Fx77d (left) with L156 (right) attached to it output.}
+		\label{fig:fx77d_l156}
+	\end{subfigure}
+	\caption{We can attach (a) L112 to the output of Fx77c and (b) L156 to the output for Fx77d, but not L112 to Fx77d or L156 to Fx77c.}\label{fig:fx77_variants_with_l}
+\end{figure}
+
+
+\section{Gliders to Herschels and Back}\label{sec:glider_to_herschel}
+
+In order to be able to make better use of Herschel tracks and glider reflectors, it will be useful for us to be able to convert Herschels into gliders and vice-versa. Converting a Herschel into a glider is straightforward since it emits a natural glider after $21$~generations anyway, so we just need to destroy the rest of the Herschel after that time. For this reason, dozens of Herschel-to-glider converters are known, though we are primarily interested in ones that produce gliders traveling in directions or on lanes \emph{other} than that of the first natural glider.\footnote{We of course could use Snarks to reflect the natural glider into any direction of our choosing, but this is somewhat large and cumbersome compared to the conduits that produce these other-directional gliders directly.} Dozens of these types of conduits are also known, some of which even produce multiple gliders traveling in different directions and thus can be used to duplicate a signal (once combined with a glider-to-Herschel conduit that we will see shortly). In particular, the collection of simple conduits displayed in Figure~\ref{fig:herschel_to_glider} can be used to convert a Herschel into gliders traveling in any of the four desired output directions.\footnote{There are also some simple conduits that turn a Herschel into four gliders, all traveling in different directions---see Exercise~\ref{exer:H_to_4G}.}
+
+\begin{figure}[!htb]
+	\centering
+	\begin{subfigure}{.3\textwidth}
+		\centering\vspace*{0.4cm}
+		\patternimglink{0.105}{H_to_G}
+		\caption{A conduit that converts a Herschel to a glider traveling antiparallel to the first natural glider.}
+		\label{fig:H_to_G}
+	\end{subfigure}\quad% 
+	\begin{subfigure}{.31\textwidth}
+		\centering\patternimglink{0.09}{H_to_2G}
+		\caption{A conduit that converts a Herschel into two perpendicular gliders.}
+		\label{fig:H_to_2G}
+	\end{subfigure}\quad% 
+	\begin{subfigure}{.31\textwidth}
+		\centering\patternimglink{0.09}{H_to_3G}
+		\caption{A conduit that converts a Herschel into three gliders traveling in different directions.}
+		\label{fig:H_to_3G}
+	\end{subfigure}
+	\caption{A small collection of converters that transform a Herschel (displayed in \bgbox{greenback}{green}) into one or more gliders (displayed in \bgbox{orangeback}{orange}). Any unwanted gliders from the last two converters can simply be destroyed by an eater (as we did in (a) via the eater displayed in \bgbox{redback}{red}).}\label{fig:herschel_to_glider}
+\end{figure}
+
+Just like glider guns become easier to use when the glider that they produce is near their edge (we encountered one of these \emph{edge shooters} in Figure~\ref{fig:tanners_p46_edge}), so too do Herschel-to-glider converters. This makes the conduits in Figures~\ref{fig:H_to_2G} and~\ref{fig:H_to_3G} especially useful---the glider that they release to the northwest occupies a diagonal lane so close to the edge of the conduit that it can be used to produce tight glider spacings (assuming we are able to generate the input Herschels, which
+\begin{wrapfigure}{r}{0.47\textwidth}
+	\centering
+	\embedlink{transparent_lane}{\vcenteredhbox{\patternimg{0.09}{transparent_lane_0}} \vcenteredhbox{\genarrow{60}} \vcenteredhbox{\patternimg{0.09}{transparent_lane_60}}}
+	\caption{A conduit with a transparent lane inserting a glider into a period~$60$ stream.}\label{fig:transparent_lane}
+\end{wrapfigure}
+we will see how to do shortly). Despite not being an edge-shooter, the conduit from Figure~\ref{fig:H_to_G} is useful for a similar reason. In particular, the output glider lane and one other nearby lane are \emph{transparent}\index{transparent}---gliders on that lane can pass safely through the circuit without interacting with it. Thus this conduit can be used to insert gliders into a stream just like an edge-shooter, as in Figure~\ref{fig:transparent_lane}.\footnote{A slight variant of this converter that is better in some situations is presented in Exercise~\ref{exer:H_to_G_transparent_better}.}
+
+Before we present any more Herschel-to-glider conduits, it will be useful for us to have a way to name them, just like we do with Herschel conduits. Just like the name of Herschel conduits contain information about the orientation and timing of the output Herschel compared to the input Herschel, we want the name of a Herschel-to-glider conduit to tell us the direction, position, and timing of the output glider relative to the input Herschel.
+
+With this in mind, these conduits are given names of the form \verb|<direction><lane>T<timing>|, where \verb|<direction>| is one of \verb|NW|, \verb|NE|, \verb|SW|, or \verb|SE|, indicating the direction (northwest, northeast, southwest, or southeast) of the output glider relative to the canonical input phase of the Herschel that we have been using since Figure~\ref{fig:herschel_orientations}. The \verb|<lane>| quantity is the lane number of the output glider, and similarly \verb|<timing>| is its timing, also relative to the input Herschel.\footnote{Refer back to Section~\ref{sec:glider_lanes} if you need a refresher on glider lanes and timing.} For example, the conduit in Figure~\ref{fig:H_to_G} is called HNE5T-4 (to be clear, the dash in this name is a minus sign, not a separator---the timing of the output glider is $-4$) and the ones in Figures~\ref{fig:H_to_2G} and~\ref{fig:H_to_3G} are both called NW31T120.\footnote{The first and second natural gliders (i.e., the southwest and northwest gliders in Figure~\ref{fig:H_to_3G}) are not included in the name of a Herschel-to-glider conduit unless they are its only output.} Exactly how the timing and lane of a glider is computed relative to a Herschel is not particularly important for our purposes---it's just nice to know where these names come from.
+
+With all of this taken care of, some other Herschel-to-glider edge shooters are displayed in Figure~\ref{fig:herschel_to_glider_edge}.\footnote{A more-or-less complete collection of Herschel-to-glider converters is available for download at \httpsurl{conwaylife.com/forums/viewtopic.php?f=2\&t=1682}}
+
+\begin{figure}[!htb]
+	\centering
+	\begin{subfigure}{.22\textwidth}
+		\centering
+		\patternimglink{0.1}{herschel_to_glider_edge_3}
+		\caption{Fx119 inserter\index{Fx119 inserter} (156)}
+		\label{fig:herschel_to_glider_edge_3}
+	\end{subfigure}\quad%
+	\begin{subfigure}{.22\textwidth}
+		\centering\vspace*{0.35cm}
+		\patternimglink{0.12}{herschel_to_glider_edge_4}
+		\caption{NE30T3 (67)}
+		\label{fig:herschel_to_glider_edge_4}
+	\end{subfigure}\quad%
+	\begin{subfigure}{.22\textwidth}
+		\centering\vspace*{0.66cm}
+		\patternimglink{0.12}{herschel_to_glider_edge_1} % TODO: This is not elementary, converts to B in between. Mention later.
+		\caption{SE39T32 (126)}
+		\label{fig:herschel_to_glider_edge_1}
+	\end{subfigure}\quad%
+	\begin{subfigure}{.22\textwidth}
+		\centering
+		\patternimglink{0.1}{herschel_to_glider_edge_2}
+		\caption{SE39T59 (155)}
+		\label{fig:herschel_to_glider_edge_2}
+	\end{subfigure}
+	\caption{Some edge-shooting Herschel-to-glider converters. The number in parentheses is the repeat time of the conduit. Note that (a) is the Fx119 Herschel conduit from Table~\ref{tab:herschel_conduits} with one more eater and all four of these edge shooters can fire additional gliders by erasing the eaters in \bgbox{redback}{red}. Also, (b) is not strictly speaking an edge-shooter, but the only part of it southeast of the escaping glider is a single eater than can easily be placed as far out of the way as we like, so it can still be used to inject gliders close to other passing gliders.}\label{fig:herschel_to_glider_edge}
+\end{figure}
+
+\section{Glider-to-Herschel converters}\label{sec:g_to_h}
+Despite the simplicity of converting a Herschel into a glider, the reverse conversion of a glider into a Herschel is much trickier to implement. For many years the best known G-to-H (glider-to-Herschel) converter was a Herschel-based staged recovery mechanism constructed by Paul Callahan in 1998. A glider striking a beehive can be catalyzed to create a replacement beehive in the same location.  However, an extra "junk" beehive also appears that must be removed.  The required cleanup glider can be created by appending Fx77 + L112 + Fx77 conduits to the base converter, making a \emph{Callahan G-to-H}.  Because of the slow creation of the cleanup glider, the repeat time is a rather high 575 ticks.
+
+% FIGURE HERE -- not sure what form is most useful:
+% LifeHistory shows the stages, Herschel connection points, and optional glider outputs --
+% #N Callahan G-to-H
+% #O Paul Callahan, November 1998
+% x = 97, y = 106, rule = LifeHistory
+% 32.4B$33.4B$34.4B$35.4B$36.4B$37.4B$38.4B$39.4B$40.4B$41.4B$42.4B$43.
+% 4B$44.4B$45.4B$46.4B26.A$47.4B23.3A$48.4B21.A$38.A10.4B20.2A$36.3A11.
+% 4B17.4B$20.A14.A15.4B15.3B$20.3A12.2A15.4B14.4B$23.A7.2B.3B3.7B.B4.4B
+% 12.5B$22.2A6.5B5.13B.4B11.6B$22.5B2.36B2.8B$24.37BD14B$23.2A34B3D13B$
+% 23.2A17B2A15BDBD4B.7B$24.B.16B2A15BD15B12.4B4.D$26.23B3.2B2.19B11.5B
+% 3.D.D$27.9B2.10B11.17B8.7B3.D.D$28.8B3.6B16.15B.2B2.10B4.D$29.7B4.3B
+% 19.22BD6B$26.11B3.B21.8B.13BDBD4B$25.12B2.2A19.8B3.2B2A9B3D4B$25.12B
+% 2.A20.2A3.B5.2B2A11BD4B$25.11B5.A19.A10.18B$25.B3D4B.4B2.2A16.3A12.B.
+% 3B.4B$25.2BD4B4.2A20.A19.4B$25.2B3D2B4.A40.4B$25.6B6.3A36.4B$24.7B8.A
+% 35.4B$23.8B43.4B$22.8B43.4B$21.9B42.4B$20.4B.6B40.4B$19.4B.7B39.4B$
+% 18.4B2.6B15.2A22.4B$17.4B3.8B4.B8.A22.4B$16.4B5.B2A6B.4B3.BA.A21.4B$
+% 15.4B5.2B2A13B.B2A21.4B$14.4B7.18B22.4B$13.4B9.17B21.4B$12.4B13.13B
+% 21.4B$11.4B13.12B22.4B$10.4B14.10B23.4B$9.4B14.11B22.4B$8.4B15.7B.2B
+% 22.4B$7.4B15.11B21.4B$6.4B17.11B19.4B$5.4B18.11B18.4B$4.4B19.11B17.4B
+% $3.4B18.2AB2.4B3DB16.4B$2.4B18.A.AB3.4BD2B15.4B$.4B19.A6.2B3D2B14.4B$
+% 4B19.2A7.6B13.4B$3B29.7B11.4B$2B30.8B9.4B$B32.8B7.4B$33.9B5.4B$32.6B.
+% 4B3.4B$32.7B.4B.4B$33.6B2.7B$33.6B3.5B$33.2B2AB4.5B$32.3B2A2B2.7B$32.
+% 7B.4B.4B$33.5B.4B3.4B$33.9B5.4B$33.8B7.4B$33.7B9.4B$24.2A7.6B11.4B$
+% 25.A7.7B5.2A4.4B$25.A.AB3.7B6.A6.4B$26.2AB.11B.BA.A7.4B$28.10BA2B.B2A
+% 9.4B$27.10BABA3B12.4B$28.9BABA3B13.4B$26.2AB.8BA2B16.4B$25.A.AB2.8B
+% 19.4B$25.A4.4B2.3B20.4B$24.2A3.4B3.5B19.4B$28.4B6.B2A20.4B$27.2A2B8.A
+% 22.4B$26.ABAB10.3A20.4B$27.BA13.A21.4B$65.4B$66.4B$67.4B$68.4B$69.4B$
+% 70.4B$71.4B$72.4B$73.4B$74.4B$75.4B!
+%
+%... or the plain RLE is 
+% #N Callahan G-to-H
+% #O Paul Callahan, November 1998
+% x = 67, y = 81, rule = B3/S23
+% 56bo$54b3o$53bo$18bo34b2o$16b3o$o14bo$3o12b2o$3bo$2b2o3$3b2o$3b2o17b2o
+% $22b2o4$64bo$64bo$19b2o32b2o9b3o$19bo20b2o11b2o11bo$21bo19bo$20b2o16b
+% 3o$16b2o20bo$16bo$17b3o$19bo6$25b2o$25bo$6b2o15bobo$6b2o15b2o12$5b2o$
+% 4bobo$4bo$3b2o9$15b2o$15b2o6$4b2o$5bo19b2o$5bobo17bo$6b2o15bobo$18bo4b
+% 2o$17bobo$17bobo$6b2o10bo$5bobo$5bo$4b2o$19b2o$7b2o10bo$6bobo11b3o$8bo
+% 13bo!
+%
+% ... leaving out all the ghost Herschels except the one in the final output position.
+% If we want to keep those in the clickable pattern, it would look like
+%
+% x = 67, y = 81, rule = B3/S23
+% 56bo$54b3o$53bo$18bo34b2o$16b3o$o14bo$3o12b2o$3bo$2b2o2$41bo$3b2o34b3o
+% $3b2o17b2o15bo$22b2o15bo4$64bo$64bo$19b2o32b2o9b3o$19bo20b2o11b2o11bo$
+% 21bo19bo$6b2o12b2o16b3o$7bo8b2o20bo$7b3o6bo$17b3o$19bo6$25b2o$25bo$6b
+% 2o15bobo$6b2o15b2o12$5b2o8b2o$4bobo8bo$4bo8b3o$3b2o9$15b2o$15b2o6$4b2o
+% $5bo19b2o$5bobo17bo$6b2o15bobo$18bo4b2o$17bobo$17bobo$6b2o10bo$5bobo$
+% 5bo$4b2o$19b2o$7b2o10bo$6bobo11b3o$8bo13bo!
+
+Stephen Silver immediately found a variant of the Callahan G-to-H that became the smallest known 90-degree \emph{stable reflector} for well over a decade.  The \emph{Silver reflector} took advantage of the fact that a standard NW31 converter produces an output glider on the same lane as an Fx77 conduit, but much sooner, giving a Silver reflector a repeat time of 497 ticks.
+
+% FIGURE HERE
+% #N Silver reflector
+% #O Stephen Silver, November 1998
+% x = 66, y = 91, rule = B3/S23
+% 54b2o$54b2o2$22bo$20b3o$4bo14bo$4b3o12b2o$7bo$6b2o3$7b2o$7b2o17b2o$26b
+% 2o2$64b2o$64b2o3$23b2o$23bo19b2o$25bo16bobo$24b2o16bo$20b2o19b2o$20bo
+% $21b3o$23bo6$29b2o$29bo$10b2o15bobo$10b2o15b2o12$9b2o$8bobo$8bo$7b2o9$
+% 19b2o$19b2o6$8b2o$9bo19b2o$9bobo17bo$10b2o15bobo$22bo4b2o$21bobo$21bo
+% bo$10b2o10bo$9bobo$9bo$8b2o$23b2o$23bo$24b3o$26bo8$b2o$obo$2bo!
+%
+% Version that produces output gliders in all four directions
+% x = 66, y = 92, rule = B3/S23
+% 50bo$50b3o$53bo$52b2o$22bo$20b3o$4bo14bo$4b3o12b2o$7bo$6b2o3$7b2o$7b2o
+% 17b2o$26b2o2$64b2o$64b2o3$23b2o$23bo19b2o$25bo16bobo$24b2o16bo$20b2o
+% 19b2o$20bo$21b3o$23bo6$29b2o$29bo$10b2o15bobo$10b2o15b2o12$9b2o$8bobo$
+% 8bo$7b2o9$19b2o$19b2o6$8b2o$9bo19b2o$9bobo17bo$10b2o15bobo$22bo4b2o$
+% 21bobo$21bobo$10b2o10bo$9bobo$9bo$8b2o$23b2o$23bo$24b3o$26bo8$b2o$obo$
+% 2bo!
+
+Silver reflectors are fairly large and slow by modern standards.  Oddly enough, though, they're still top-of-the-line technology for certain applications.
+
+\begin{itemize}
+	\item It costs just about the same number of gliders to construct them as to construct any other known reflector.\smallskip
+	\item The construction recipe is very simple because Silver reflectors and Callahan G-to-Hs are Spartan.\smallskip
+	\item Silver reflectors have two separate transparent output lanes, so they can be used as merge circuits.\smallskip
+	\item Silver reflectors can be trivially adjusted to produce output gliders in any or all of the four diagonal directions, so they're also fairly efficient signal splitters.\smallskip
+	\item The various output gliders can be blocked or released to produce either color-changing or color-preserving 90-degree reflections.\medskip
+\end{itemize}
+
+Many searches have been run for improved glider-to-Herschel converters in the years since 1998, but so far only one small and fast stable converter has been found, called called the \emph{syringe}\index{syringe}.\footnote{The syringe's name comes from the idea that it ``injects'' a glider into a Herschel track. It was found in March 2015 by Tanner Jacobi, using the same ``Bellman'' program that was used to find the Snark.} Two slightly different versions of it are displayed in Figure~\ref{fig:syringe}.\footnote{A third, slightly more compact, version of the syringe is presented in Exercise~\ref{exer:syringe_compact}.}
+
+\begin{figure}[!htb]
+	\centering
+	\begin{subfigure}{.3\textwidth}
+		\centering\patternimglink{0.1}{syringe}
+		\caption{The ``standard'' version of the syringe, and which has repeat time $78$ and takes $84$ generations to convert the glider into a Herschel.}\label{fig:syringe_main}
+	\end{subfigure} \ \ \ \ % 
+	\begin{subfigure}{.66\textwidth}
+		\centering\patternimglink{0.1}{syringe_modified}
+		\caption{A larger version that has a repeat time of $115$ generations and takes $250$~generations to convert the glider into a Herschel.}
+		\label{fig:syringe_modified}
+	\end{subfigure}
+	\caption{The \emph{syringe} is a conduit that converts a glider into a Herschel. The smaller version~(a) is very fast, but makes use of an unusual large welded still life. The larger version~(b) has the disadvantage of being slower and bulkier, but the advantage of only using ``standard'' components, which makes it easier to synthesize.}\label{fig:syringe}
+\end{figure}
+
+To give an example of just how useful the syringe is, we note that it can easily be combined with the Herschel-to-glider converter from Figure~\ref{fig:H_to_G} to create what is currently the smallest and fastest known color-changing stable reflector in Figure~\ref{fig:color_change_stable} (recall that the Snark is color-preserving).\footnote{Simon Ekström compiled a large collection of stable glider reflectors based on glider-to-Herschel-to-glider conduits, which is available at \httpsurl{conwaylife.com/forums/viewtopic.php?f=2\&t=1643\&start=50\#p21708}} Explicitly, this reflector uses a syringe to convert the input glider into a Herschel, which is then converted back to a glider (with opposite color and rotated $90$ degrees from the input glider). However, since its repeat time is $78$~generations (though it also works at a gap of $74$ or $75$~generations, but \emph{not} $76$ or $77$ generations, in a phenomenon called \emph{overclocking}\index{overclocking}), the smaller and faster bouncer reflectors from Section~\ref{sec:bumper_bouncer} are still more useful in many situations.
+
+\begin{figure}[!htb]
+	\centering\patternimglink{0.1}{color_change_stable}
+	\caption{A reasonably small and fast color-changing stable reflector with a repeat time of $78$~generations, based on the syringe. The input glider (shown in \bgbox{greenback}{green}) comes in from the bottom-left, is converted into a Herschel (shown in the middle in \bgbox{redback}{red} in $84$ generations, and then is converted into the output glider (shown in \bgbox{orangeback}{orange}) after $53$ more generations.}\label{fig:color_change_stable}
+\end{figure}
+
+In general, Herschel-to-glider converters and other conduits can be appended to a syringe to create compact circuits with each of the Silver reflector's good qualities (constructibility, merge capability, signal-splitting ability, two colors of glider output) as well as many other possible logic-circuit functions.  However, duplicating \emph{all} of those qualities in a single converter requires adding so much circuitry that the result may be larger than a Silver reflector!
+
+We will see examples of uses of Silver reflectors and syringes in Chapter~\ref{chp:universal_computation}.
+
+
+\section{Synthesizing Objects via Conduits}\label{sec:other_converters}
+
+To demonstrate some even more extreme examples of how useful the syringe is, we now describe how we can use it to construct conduits that convert a glider into (almost) any other pattern. As a starting point, let's show how to convert a glider into \emph{two} gliders. It should not be surprising that such a conversion is possible now, as we can use the syringe to convert a glider into a Herschel, and a Herschel can be made to emit as many gliders as we like by pushing it along a track and not destroying the gliders that it naturally emits. Perhaps the simplest way to make this construction explicit is to use a syringe followed by the Herschel-to-$3$~gliders converter from Figure~\ref{fig:H_to_3G}. If we want to increase the number of output gliders, we can just insert some Herschel tracks between these two end pieces. For example, every copy of the Fx77 conduit that we insert increases the number of output gliders by $1$ (see Figure~\ref{fig:glider_multipliers} and Exercise~\ref{exer:convert_more_gliders}).
+
+\begin{figure}[!htb]
+	\centering
+	\begin{subfigure}{.38\textwidth}
+		\centering
+		\patternimglink{0.092}{glider_duplicator}
+		\caption{A glider duplicator that uses a syringe and the Herschel-to-$3$~gliders converter from Figure~\ref{fig:H_to_3G}.}\label{fig:glider_duplicator}
+	\end{subfigure} \ \ \ \ % 
+	\begin{subfigure}{.58\textwidth}
+		\centering
+		\patternimglink{0.092}{glider_tripler}
+		\caption{A glider tripler that uses a syringe, the Fx77 conduit, and the Herschel-to-$3$~gliders converter.}
+		\label{fig:glider_tripler}
+	\end{subfigure}
+	\caption{Some conduits that use the syringe to duplicate (or just generally multiply) a glider. By extending the length of the track by inserting more copies of the Fx77 conduit, we can increase the number of emitted gliders.}\label{fig:glider_multipliers}
+\end{figure}
+
+Now that we know how to construct conduits that convert one glider into any number of gliders, we can use glider synthesis to create conduits that convert a single glider into any pattern that we know how to synthesize---all we have to do is first convert the glider into the number of gliders required for the synthesis, and then use Snarks (or other stable reflectors) to reposition and rephase those gliders so as to actually perform the synthesis. However, we run into the exact same problem that we ran into when using one-time turners to perform slow salvo synthesis in Section~\ref{sec:slow_salvo}: even though it is straightforward to reflect gliders into the correct \emph{positions}, having them all show up at the right \emph{time} is rather tricky. Fortunately, we can solve this problem in the same way that we did back then---we create a family of conduits that can either preserve or change the color of a glider, and can also give us any mod-$8$ timing of the output glider of our choosing. One such collection of conduits can be constructed by using a syringe to turn the input glider into a Herschel, followed by a Herschel-to-glider conduit to transform it back, possibly with one or more Herschel conduits placed in between to change the relative timing of the input and output gliders. One such collection of conduits is presented in Table~\ref{tab:conduit_phase_changers}.
+
+% NJ: Who put this collection together? Was it you, Dave, or should we credit someone?
+
+\begin{table}[!ht]\vspace*{0.05in}
+	\begin{center}		
+		\begin{tabular}{Sc Sc Sc Sc Sc Sc Sc}
+			\toprule
+			& \multicolumn{4}{c}{Delay} \\  \cmidrule{2-5}
+			& $0$ & $1$ & $2$ & $3$ \\ \midrule
+			\begin{minipage}[b]{0.15\textwidth}\centering Color-\\ Preserving \\ (CP) \\ ${}$ \\ ${}$\end{minipage} & \begin{minipage}[b]{0.18\textwidth}\centering Snark \\ ${}$ \\ ${}$ \\ ${}$\end{minipage} & \begin{minipage}[b]{0.15\textwidth}\centering\patternimglink{0.1}{phase_changer_1_0}\end{minipage} & \begin{minipage}[b]{0.18\textwidth}\centering\patternimglink{0.09}{phase_changer_2_0}\end{minipage} & \begin{minipage}[b]{0.15\textwidth}\centering\patternimglink{0.114}{phase_changer_3_0}\end{minipage} \\
+			\begin{minipage}[b]{0.15\textwidth}\centering Color-\\ Changing \\ (CC) \\ ${}$ \\ ${}$ \\ ${}$\end{minipage} & \begin{minipage}[b]{0.18\textwidth}\centering\patternimglink{0.09}{phase_changer_0_1}\end{minipage} & \begin{minipage}[b]{0.15\textwidth}\centering\patternimglink{0.114}{phase_changer_1_1}\end{minipage} & \begin{minipage}[b]{0.18\textwidth}\centering\patternimglink{0.09}{phase_changer_2_1}\end{minipage} & \begin{minipage}[b]{0.15\textwidth}\centering Figure~\ref{fig:color_change_stable}:\\[0.075cm] \patternimglink{0.098}{phase_changer_3_1}\end{minipage} \\\cmidrule{2-5}
+			& $4$ & $5$ & $6$ & $7$ \\\cmidrule{2-5}
+			\begin{minipage}[b]{0.15\textwidth}\centering Color-\\ Preserving \\ (CP) \\ ${}$ \\ ${}$\end{minipage} & \begin{minipage}[b]{0.18\textwidth}\centering\patternimglink{0.095}{phase_changer_4_0}\end{minipage} & \begin{minipage}[b]{0.15\textwidth}\centering\patternimglink{0.1}{phase_changer_5_0}\end{minipage} & \begin{minipage}[b]{0.18\textwidth}\centering\patternimglink{0.107}{phase_changer_6_0}\end{minipage} & \begin{minipage}[b]{0.15\textwidth}\centering\patternimglink{0.1}{phase_changer_7_0}\end{minipage} \\
+			\begin{minipage}[b]{0.15\textwidth}\centering Color-\\ Changing \\ (CC) \\ ${}$ \\ ${}$ \\ ${}$\end{minipage} & \begin{minipage}[b]{0.18\textwidth}\centering\patternimglink{0.09}{phase_changer_4_1}\end{minipage} & \begin{minipage}[b]{0.15\textwidth}\centering\patternimglink{0.115}{phase_changer_5_1}\end{minipage} & \begin{minipage}[b]{0.18\textwidth}\centering\patternimglink{0.1}{phase_changer_6_1}\end{minipage} & \begin{minipage}[b]{0.15\textwidth}\centering\patternimglink{0.109}{phase_changer_7_1}\end{minipage} \\\bottomrule
+		\end{tabular}
+		\caption{A collection of glider rephasers that, together with the Snark, can be used to put gliders into any timing and color relative to each other that is desired (compare with Table~\ref{tab:180_degree_one_time_turners}, which did the same thing via one-time-turners instead of stable circuits). In all cases, the input glider is highlighted in \bgbox{greenback}{green} and comes in from the top-left, while the location of the output glider is highlighted in \bgbox{orangeback}{orange}. To get the output gliders travelling in the desired direction or to adjust their timing by a multiple of $8$~generations, just use additional Snarks (e.g., build a trombone slide as in Figure~\ref{fig:trombone_slide}).}\label{tab:conduit_phase_changers}
+	\end{center}
+\end{table}
+
+Now that we can use stable conduits to reposition gliders however we like (via the Snark and the color-changing reflector of Figure~\ref{fig:color_change_stable}) \emph{and} adjust the timing of gliders however we like (via the collection of reflectors in Table~\ref{tab:conduit_phase_changers}), we can construct stable circuits that take in a single input glider and generate any object that we know how to construct via glider synthesis. To illustrate this procedure, we now construct a stable circuit that transforms a glider into a lightweight spaceship via the first $3$-glider synthesis displayed in Table~\ref{tab:3_glider_synth}:\medskip
+
+\begin{itemize}
+	\item[1)] First, it will be easier to adjust the timing of gliders later if they are all traveling in the same direction, so we add Snarks at what will become the end of the circuit to reflect the three incoming gliders into the positions required for synthesis. This arrangement is located at the southeast corner of Figure~\ref{fig:glider_to_lwss_incomplete}, with all three input gliders coming from the northwest.\smallskip
+	
+	\item[2)] Next, we start working on what will become the start of the circuit---we use the glider tripler from Figure~\ref{fig:glider_tripler} to turn the input glider into three gliders. This glider tripler is located at the north end of Figure~\ref{fig:glider_to_lwss_incomplete}.\smallskip
+	
+	\item[3)] We then add reflectors to the output of the glider tripler so as to put the three gliders into the correct lanes to meet up with the component that we constructed in step~(1) above. Note that we use the color-changing reflector from Figure~\ref{fig:color_change_stable} for the northeast glider since its color after exiting the tripler did not match that of the lane we needed to put it in. At this point, we have constructed the pattern displayed in Figure~\ref{fig:glider_to_lwss_incomplete}---we have put the three gliders into the correct positions, but we still need to fix their timing.\smallskip
+	
+	\begin{figure}[!htb]
+		\centering
+		\begin{subfigure}{.43\textwidth}
+			\centering
+			\patternimglink{0.134}{glider_to_lwss_incomplete}
+			\caption{An incomplete glider-to-LWSS circuit that puts three gliders into the correct positions to synthesize an LWSS, but with incorrect timings.}\label{fig:glider_to_lwss_incomplete}
+		\end{subfigure} \ \ \ \ % 
+		\begin{subfigure}{.53\textwidth}
+			\centering
+			\patternimglink{0.13}{glider_to_lwss_big}
+			\caption{A completed glider-to-LWSS circuit that uses the rephasers from Table~\ref{tab:conduit_phase_changers} and trombone slides to correct the glider timings.}
+			\label{fig:glider_to_lwss_big}
+		\end{subfigure}
+		\caption{A stable glider-to-LWSS conduit that works by using a glider tripler (highlighted in \bgbox{aquaback}{aqua}) to turn one glider into three, which are then repositioned and rephased so as to synthesize a lightweight spaceship. Snarks (highlighted in \bgbox{yellowback2}{yellow}) are color-preserving and are treated as ``free'' reflectors that do not alter the mod-$8$ timing of gliders. One color-changing reflector (highlighted in \bgbox{magentaback}{magenta}) is used on the northeast glider's path (the one shown in (b) delays the glider's mod-$8$ timing by $3$ more generations than the one shown in (a)), and in (b) we use a reflector that delays the middle glider's mod-$8$ timing by $4$ generations (highlighted in \bgbox{greenpastel}{green}).}\label{fig:glider_to_lwss_both}
+	\end{figure}
+	
+	\item[4)] To fix the mod-$8$ timing of the gliders, we choose one of the three gliders to have the ``right'' timing, and we synchronize the other gliders with it. It typically works best (e.g., results in less ``fiddling'' and a smaller circuit) if we choose the glider that gets to its intended position \emph{last} to be this reference glider, and in this case that is the southwestern glider. From left to right, we then want to delay the gliders by $0$, $252$, and $163$ generations, respectively, which (mod $8$) equal $0$, $4$, and $3$, respectively. We thus insert a delay-$4$ CP reflector (from Table~\ref{tab:conduit_phase_changers}) into the path of the middle glider, and we change the delay-$3$ CC reflector in the northeast path into the delay-$6$ CC reflector.\smallskip
+	
+	\item[5)] Now that all gliders have the correct mod-$8$ timing, we just need to adjust their timings by multiples of $8$~generations. This can be done simply by moving any $180$-degree reflection that a glider goes through closer or farther away, as in Figure~\ref{fig:trombone_slide} (if there is no $180$-degree reflection in a glider's path, we can simply insert two of them). After making these final timing adjustments, we have the completed glider-to-LWSS circuit displayed in Figure~\ref{fig:glider_to_lwss_big}.\footnote{Somewhat smaller stable glider-to-LWSS converters are known---see Exercise~\ref{exer:smaller_G_to_LWSS}.}\medskip
+\end{itemize}
+
+\begin{figure}[!htb]
+	\centering
+	\begin{subfigure}{.48\textwidth}
+		\centering
+		\patternimglink{0.09}{trombone_slide_276}
+		\caption{A path that takes $276$~generations.}\label{fig:trombone_slide_276}
+	\end{subfigure} \ \ \ \ % 
+	\begin{subfigure}{.48\textwidth}
+		\centering
+		\patternimglink{0.09}{trombone_slide_284}
+		\caption{A path that takes $284$~generations.}
+		\label{fig:trombone_slide_284}
+	\end{subfigure}
+	\caption{A \emph{trombone slide}\index{trombone slide} is a $180$-degree reflector can be freely moved closer or farther away along a glider's path, delaying the glider by $8$ generations for each cell that it is moved away. The only difference between (a) and (b) is that we moved the north and east Snarks (highlighted in \bgbox{yellowback2}{yellow}) northeast by 1 cell in (b), thus delaying the glider by $8$ generations. Note that placing the four Snarks along the glider's path in (a) in the first place delayed it by $144$~generations---this delay can be made up for (if necessary) by similarly delaying all other gliders that we are working with.}\label{fig:trombone_slide}
+\end{figure}
+
+These ideas can be extended straightforwardly to let us construct circuits that convert a glider into any other object that we know how to synthesize, though the details become quite a bit more fiddly as the number of gliders increases. To illustrate how far we can push these methods, we now construct a stable circuit that converts a glider into the 2-engine Cordership that was introduced in Exercise~\ref{exer:2_engine_cordership}.
+
+As our starting point, we need a glider synthesis of the 2-engine Cordership to make use of, and for simplicity we use the 2-direction synthesis from Exercise~\ref{exer:2_engine_cordership_synthesis}(b). To space these gliders out a bit more and make them even easier to synchronize, we use Herschel edge-shooters to put the gliders in their correct places and reflect the input gliders so as to all come from the same direction (much like we did in the southeast corner of Figure~\ref{fig:glider_to_lwss_incomplete} when constructing the glider-to-LWSS circuit). This bottom portion of our circuit is displayed in Figure~\ref{fig:g_to_2engine_V}.
+
+\begin{figure}[!htb]
+	\centering
+	\patternimglink{0.1}{g_to_2engine_V}
+	\caption{An arrangement of Herschel edge shooters (highlighted in \bgbox{aquaback}{aqua}) that places 10 gliders coming from the northwest (displayed in \bgbox{greenback}{green}) into the correct positions (displayed in \bgbox{orangeback}{orange}) $738$ generations later to synthesize to synthesize a $2$-engine Cordership.}\label{fig:g_to_2engine_V}
+\end{figure}
+
+Next, we need to turn one glider into $10$ gliders and synchronize them with the positions indicated in Figure~\ref{fig:g_to_2engine_V}. While it is possible to do this ``directly'', it is easier to instead just synchronize just 2 or 3 gliders at a time. For example, if we build a mechanism that splits one glider into the 3 leftmost synchronized gliders, then we will just need to synchronize 8 gliders instead of 10 (the 7 leftover gliders that we have not yet dealt with plus the 1 extra glider needed to produce the 3 leftmost gliders). One such mechanism, as well as mechanisms that synchronize the next $3$ gliders, the next $2$ gliders, and the final $2$ gliders, are presented in Figure~\ref{fig:2engine_synchronize}. Once we place all $4$ of these mechanisms, we just have to synchronize $4$ gliders instead of $10$---one for each of the mechanisms.
+
+\begin{figure}[!htb]
+	\centering
+	\patternimglink{0.081}{2engine_synchronize_1} \ \ \patternimglink{0.081}{2engine_synchronize_2} \ \ \patternimglink{0.081}{2engine_synchronize_3} \ \ \patternimglink{0.081}{2engine_synchronize_4}
+	\caption{Four circuits that, from left to right, synchronize the $3$ leftmost input gliders in Figure~\ref{fig:g_to_2engine_V}, the next three gliders, the next two gliders, and the final two gliders, respectively. All four of these circuits can be constructed using the same methods that we used to build the glider-to-LWSS circuit in Figure~\ref{fig:glider_to_lwss_both}. Glider duplicators are highlighted in \bgbox{aquaback}{aqua}, Snarks are highlighted in \bgbox{yellowback2}{yellow}, and reflectors that change a glider's color and/or mod-$8$ timing are highlighted in \bgbox{magentaback}{magenta}.}\label{fig:2engine_synchronize}
+\end{figure}
+
+We can then just iterate this procedure, building up the circuit in layers of gliders that synchronize $2$ gliders at a time, thus halving the number of gliders that need to be synchronized at each layer. The first layer reduced the number of gliders that we need to synchronize from $10$ to $4$, the next layer reduces it from $4$ to $2$, and the final layer reduces it from $2$ to $1$ (and thus completes the circuit). A completed circuit that turns a glider into a $2$-engine Cordership in this way is displayed in Figure~\ref{fig:glider_to_2engine_cordership}.
+
+\begin{figure}[!htb]
+	\centering
+	\patternimglink{0.099}{glider_to_2engine_cordership}
+	\caption{A stable circuit that converts a single glider (displayed in \bgbox{greenback}{green} at the northwest) into a $2$-engine Cordership (which is synthesized by the $10$ gliders displayed in \bgbox{orangeback}{orange} at the southeast). Those $10$ gliders are synchronized, $2$ or $3$ gliders at a time, by the various mechanisms highlighted in \bgbox{greenpastel}{green} and \bgbox{magentaback}{magenta} (the four southernmost of which were displayed in Figure~\ref{fig:2engine_synchronize}) and fed into the arrangement of Herschel edge shooters (highlighted in \bgbox{aquaback}{aqua}) that we originally saw in Figure~\ref{fig:g_to_2engine_V}.}\label{fig:glider_to_2engine_cordership}
+\end{figure}
+
+It is worth pointing out that there are other stable circuitry toolkits besides the one from Table~\ref{tab:conduit_phase_changers} for adjusting the relative timings and positions of gliders. For example, instead of always using the duplicators from Figure~\ref{fig:glider_multipliers} and then adjusting the timing of gliders via numerous different reflectors (as we have done so far), we could instead make use of numerous different glider duplicators to \emph{directly} put two gliders into any desired relative positioning (i.e., same or different color) and mod-$8$ timing of our choosing and then only use Snarks for all reflections. We present one such toolkit in Appendix~??.
+
+% NJ: Maybe we could put Dave's new toolbox in the appendix, and display his reduced glider-to-(2engineC) as a demonstration of how it can reduce the size of these types of circuits?
+
+
+\section{Period Multipliers and Small High-Period Guns}\label{sec:large_glider_guns}
+
+Herschel tracks\index{Herschel!track} can be used to construct guns of any period at least $62$, via the techniques introduced in Section~\ref{sec:herschel_track} and revisited in Section~\ref{sec:conduits} (in fact, Herschel tracks give rise to guns somewhat more naturally than they give rise to oscillators---we just remove one or more of the eaters in a Herschel track oscillator to turn it into a gun).\footnote{Even though we could construct Herschel track oscillators of period~$61$, a period~$61$ Herschel track \emph{gun} is not so simple since the escaping gliders collide with subsequent Herschels if we remove an eater.} For example, a period~$93$ gun that works by using $16$ Herschels on the track that we originally constructed in Figure~\ref{fig:herschel_track_248}, and deleting one of the eater~2s, is displayed in Figure~\ref{fig:p93_gun}.\footnote{Unfortunately, this particular track cannot be used to make a period~$62$ gun, even though placing $24$ Herschels on the track makes a period $1488/24 = 62$ oscillator. See Exercise~\ref{exer:p62_gun_problem} for an explanation of the problem and a method of fixing it.}
+
+\begin{figure}[!ht]
+	\centering
+	\patternimglink{0.1}{p93_gun}
+	\caption{A period~$93$ glider gun consisting of the R64 and Fx77 conduits introduced in Section~\ref{sec:herschel_track}. This gun has $16$ Herschels on the track instead of $6$ as in the original track from Figure~\ref{fig:herschel_track_248}, making its period $1488/16 = 93$ instead of $1488/6 = 248$. We also deleted one of the eater~2s at the southeast corner to allow a single stream of gliders to escape, thus making it a gun instead of an oscillator.}\label{fig:p93_gun}
+\end{figure}
+
+However, now that we are familiar with the syringe\index{syringe}, there is a much smaller and simpler way to create glider guns of any period at least~$80$.\footnote{Actually, this same method works for periods $74$, $75$, $78$, and $79$ too---see Exercise~\ref{exer:p80_adjustable_manipulate}.} The pattern displayed in Figure~\ref{fig:p80_adjustable_gun} is made up of two identical halves that take in a glider, convert it to a Herschel (via a syringe) and then convert it back into another glider that is fed into the other half.\footnote{This adjustable glider gun was constructed by Matthias Merzenich in September 2015.} The $8$ input gliders serve to start the gun, and as-displayed it will have period~$80$. To increase the period of this gun by $n$, simply (a) move the top half of the gun (i.e., the top $33$ rows of the pattern) northeast by $n$ cells, and (b) adjust the $8$ input gliders so as to be separated by $80+n$ generations.
+
+\begin{figure}[!ht]
+	\centering
+	\embedlink{p80_adjustable_gun}{\vcenteredhbox{\patternimg{0.102}{p80_adjustable_gun}} \vcenteredhbox{\genarrow{665}} \vcenteredhbox{\patternimg{0.102}{p80_adjustable_gun_665}}}
+	\caption{A period~$80$ adjustable glider gun. Eight gliders come in from the southwest (highlighted in \bgbox{aquaback}{aqua}) to start the gun. Those gliders are fed into a syringe (highlighted in \bgbox{yellowback2}{yellow}) and then proceed clockwise through an F117 conduit (highlighted in \bgbox{orangeback2}{orange}) and the herschel-to-glider converter from Figure~\ref{fig:H_to_2G} (highlighted in \bgbox{greenpastel}{green}). Then the glider enters the bottom half of the gun, which is identical except that it is missing one eater and thus emits a stream of gliders to the southeast (highlighted in \bgbox{magentaback}{magenta}). To increase the period of this gun by $n$~generations, simply move the top half of the gun northeast by $n$~cells and separate the eight input gliders by $n$~more generations.}\label{fig:p80_adjustable_gun}
+\end{figure}
+
+While these guns are reasonably simple and straightforward to construct, they suffer the drawback that they increase in size quite quickly as their period does. In particular, a period~$p$ gun of this type has bounding box of size $(p+18) \times (p-14)$, and it seems natural to ask how much smaller we can make them. We can obtain a rough lower bound on the size of a period-$p$ gun by noting that an $m \times m$ bounding box contains $m^2$ cells, each of which can be in one of two states, so there are $2^{m^2}$ distinct patterns that fit within such a box. Thus no gun or oscillator in an $m \times m$ box can have period larger than $p = 2^{m^2}$ (since after that many generations, it must return to a phase that was already seen earlier). By flipping this around and solving for $m$, we see that there cannot exist a period~$p$ gun inside a box of size less than $\sqrt{\log_2(p)} \times \sqrt{\log_2(p)}$.
+
+It turns out that this lower bound is ``essentially'' tight---there exists a constant $C$ such that it is possible to construct period~$p$ guns inside a box of size $\big(C\sqrt{\log_2(p)}\big) \times \big(C\sqrt{\log_2(p)}\big)$ for all large $p$.\footnote{If you are familiar with big-O notation, this can be rephrased as saying that we can construct period~$p$ glider guns with bounding box of length and width $O\big(\sqrt{\log(p)}\big)$. We will introduce big-O notation and explore related concepts in Chapter~\ref{chp:infinite_growth}.} The key objects used in the construction of such guns (and many of the other interesting stable constructions we will make from now on) are \emph{period multipliers}\index{period multiplier}---conduits that only produce an output signal for every two or more (identical) input signals that are received, and thus multiply the period of the input stream. The two simplest such conduits are the \emph{semi-Snarks}\index{semi-Snark} displayed in Figure~\ref{fig:semi_snarks}, which reflect every second input glider and thus can be used to double the period of a glider stream.\footnote{The color-changing semi-Snark was the first known ``small and simple'' stable glider period-multiplier, and it was found by Sergey Petrov in July 2013. Its color-preserving variant was found by Tanner Jacobi in October 2017.}
+
+\begin{figure}[!htb]
+	\centering
+	\begin{subfigure}{\textwidth}
+		\centering
+		\embedlink{cp_semi_snark}{\vcenteredhbox{\patternimg{0.075}{cp_semi_snark_0}} \vcenteredhbox{\genarrow{48}} \vcenteredhbox{\patternimg{0.075}{cp_semi_snark_48}} \vcenteredhbox{\genarrow{48}} \vcenteredhbox{\patternimg{0.075}{cp_semi_snark_96}}}
+		\caption{the color-preserving (CP) semi-Snark, which has a repeat time of $48$ generations}
+		\label{fig:cp_semi_snark}
+	\end{subfigure} \\[0.25cm]
+	\begin{subfigure}{\textwidth}
+		\centering
+		\embedlink{cp_semi_snark}{\vcenteredhbox{\patternimg{0.075}{cc_semi_snark_0}} \vcenteredhbox{\genarrow{51}} \vcenteredhbox{\patternimg{0.075}{cc_semi_snark_51}} \vcenteredhbox{\genarrow{51}} \vcenteredhbox{\patternimg{0.075}{cc_semi_snark_102}}}
+		\caption{the color-changing (CC) semi-Snark, which has a repeat time of $51$ generations}
+		\label{fig:cc_semi_snark}
+	\end{subfigure}
+	\caption{The semi-Snarks are stable conduits that produce one reflected glider for every two input gliders. The color-preserving version (a) is the same as a Snark (compare it with Figure~\ref{fig:snark}), but with the top eater replaced by a custom conduit that, when hit by a glider, creates a tub that destroys the next glider. In the color-changing variant (b), the first glider is reflected and moves the central block, and the second glider simply moves the block back using the reaction that we saw back in Figure~\ref{fig:block_move_1_glider}.}
+	\label{fig:semi_snarks}
+\end{figure}
+
+For example, placing one of these semi-Snarks along the output lane of the $536$-generation Herschel track from Figure~\ref{fig:p67_gun} produces a period~$(2 \times 536)=1\, 072$ gun. Placing a second semi-Snark in the path of the output gliders then doubles its period again, resulting in the period~$(4 \times 536)=2\, 144$ gun in Figure~\ref{fig:p2144_gun}. We can of course place many more semi-Snarks along the output path of the gun, resulting in very compact guns with exponentially-large period. For example, Figure~\ref{fig:p_2_100_gun} shows a gun that consists of a p$256$ gun with $92$ semi-Snarks arranged in a spiral pattern along its output path. Each semi-Snark doubles the gun's period, resulting in a ridiculously large overall period of $256 \times 2^{92} = 2^8 \times 2^{92} = 2^{100} = 1\,267\,650\,600\,228\,229\,401\,496\,703\,205\,376$, despite fitting inside a bounding box of size just $240 \times 260$.
+
+\begin{figure}[!htb]
+	\centering
+	\begin{subfigure}{0.39\textwidth}
+		\centering\vspace*{2.2cm}
+		\patternimglink{0.112}{p2144_gun}
+		\caption{a period~$4 \times 536 = 2\, 144$ gun}
+		\label{fig:p2144_gun}
+	\end{subfigure} \ \ \ \ %
+	\begin{subfigure}{0.57\textwidth}
+		\centering
+		\patternimglink{0.11}{p_2_100_gun}
+		\caption{a period~$2^{100}$ gun}
+		\label{fig:p_2_100_gun}
+	\end{subfigure}
+	\caption{Two guns that use semi-Snarks to increase their periods. The gun in (a) uses two semi-Snarks (highlighted in \bgbox{aquaback}{aqua}) to multiply the period of a p$536$ gun (highlighted in \bgbox{yellowback2}{yellow}) by $4$. In the glider gun in (b), the central gun (which consists of four copies of the R64 conduit and is called the \emph{machine gun}\index{machine gun}) has period $256$ and funnels gliders into a spiral of $92$ semi-Snarks, resulting in a gun of period $256 \times 2^{92} = 2^8 \times 2^{92} = 2^{100}$.}
+	\label{fig:semi_snark_compact_guns}
+\end{figure}
+
+By simply extending this spiral pattern even farther, we can construct guns of period $p = 2^n$ inside a box of size roughly $\big(30\sqrt{\log_2{p}}\big) \times \big(30\sqrt{\log_2{p}}\big) = (30\sqrt{n}) \times (30\sqrt{n})$.\footnote{We do not particularly care about the factor of $30$ here---constants like this do not matter much compared to the square root and logarithmic factors when $n$ is large.} We still have some work to do though if we want to be able to construct compact high-period guns like these ones for \emph{any} large period, rather than just periods that contain a large power of $2$ in their prime decomposition. For example, this method cannot help us construct a small gun with period equal to a prime number like $3\, 413\, 277\, 319$.
+
+In order to get one step closer to this goal, we now show how we can use semi-Snarks to multiply the period of a glider stream by \emph{any} positive integer, not just powers of $2$.\footnote{There are also small \emph{tremi-}, \emph{quadri-}, and \emph{quiti-Snarks} that multiply the period of a glider stream by $3$, $4$, and $5$, respectively---see Exercises~\ref{exer:tremi_snark}, \ref{exer:quadri_snark}, and \ref{exer:quinti_snark}.} The key observation that lets us do this is that if we line up an arrangement of semi-Snarks, then firing a glider at those semi-Snarks counts down in binary (if we interpret a semi-Snark that blocks a glider as a ``1'' and a semi-Snark that lets a glider pass as a ``0''). In particular, this means that if we place semi-Snarks in an on-off pattern corresponding to a number's binary representation, then the circuit encodes how many gliders are destroyed before the first glider is able to pass through it, as in Figure~\ref{fig:block_18_gliders}.
+
+\begin{figure}[!htb]
+	\centering
+	\patternimglink{0.1}{block_18_gliders}
+	\caption{If we interpret a semi-Snark that blocks a glider (highlighted in \bgbox{magentaback}{magenta}) as a ``1'' and a semi-Snark that lets a glider pass (highlighted in \bgbox{aquaback}{aqua}) as a ``0'', then this arrangement of semi-Snarks corresponds to the binary representation $10010$ of the number $18$. The input glider toggles the least significant bit and causes the semi-Snarks to count down in binary, so this arrangement blocks the first $18$ input gliders but lets the $19$th glider pass.}
+	\label{fig:block_18_gliders}
+\end{figure}
+
+However, this method of blocking a specific number of gliders only works the first time, since after the first glider that makes its way all the way through the circuit, all of the semi-Snarks will be set to ``1'', rather than to their original bits. For example, after the $19$th glider passes in Figure~\ref{fig:block_18_gliders}, the semi-Snarks will encode the bitstring $11111$ and thus will block the next $31$ (not $18$) gliders. To fix this problem, we can use the output glider to toggle whichever semi-Snarks we want to be set back to ``0'' before the next input glider hits the circuit.\footnote{Actually, for our purposes it's even okay if we even toggle those semi-Snarks \emph{after} the next input glider hits the circuit, as long as the reactions do not interfere with each other.} One method of implementing this toggle is presented in Figure~\ref{fig:block_18_gliders_repeatable}.
+
+\begin{figure}[!htb]
+	\centering
+	\patternimglink{0.078}{block_18_gliders_repeatable}
+	\caption{A stable circuit that blocks $18$ out of every $19$ input gliders (displayed in \bgbox{greenback}{green} at the southeast). As in Figure~\ref{fig:block_18_gliders}, the arrangement of semi-Snarks corresponds to the binary representation $10010$ of the number $18$, and the components at the top half of the circuit use the output glider to reset the semi-Snarks to their original configuration. In particular, the \bgbox{aquaback}{aqua} circuits at the top inject another glider into the bottom half of the circuit that toggles a semi-Snark back into the ``0'' position, whereas the \bgbox{magentaback}{magenta} circuits at the top do not (and thus leave the semi-Snark in the ``1'' position).}
+	\label{fig:block_18_gliders_repeatable}
+\end{figure}
+
+We thus now know how to multiply the period of any (sufficiently high-period) glider gun by any amount of our choosing---just build a circuit like the one in Figure~\ref{fig:block_18_gliders_repeatable} and place it along the output path of the gun (just like we placed semi-Snarks along the output path of a gun to multiply its period by $2$ in Figure~\ref{fig:semi_snark_compact_guns}). While this lets us create small guns of many new periods, it does not get us \emph{all} periods (for example, no small prime-period gun can be created in this way).
+
+We can get around this problem by constructing a mechanism that \emph{adds} a small number of generations to the period of a gun. One way to do this is to notice that the adjustable glider gun from Figure~\ref{fig:p80_adjustable_gun} can be turned on and off. That figure already demonstrates how to turn it on---just feed in one or more gliders from the southwest. To turn it off, simply fire a glider at either the east or west side so as to destroy the glider(s) that turned it on.
+
+To then add a given number of generations to the period of this gun, we can use its output to turn the gun off for that many generations before turning it back on (with that precise timing of when the gun is turned back on being handled by trombone slides and the glider rephasers that we saw in Table~\ref{tab:conduit_phase_changers}). For example, if we start with a period~$616$ version of the adjustable gun from Figure~\ref{fig:p80_adjustable_gun} (really we are starting with the period~$77$ version of that gun, but we place only one glider along its track instead of $8$, so that its period is $77 \times 8 = 616$), then we can add $1 087$~generations to its period (for a total period of $616+1\, 087 = 1\, 703$) by attaching the mechanism displayed in Figure~\ref{fig:p1703_gun} to it. By adjusting the spacing and components in the trombone slide of this mechanism, any number of generations at least $1\, 087$ can be added to the period of the gun.
+
+% Anything else we can add beside this figure? It looks a bit sparse right now, would be nice to have another one beside it.
+\begin{figure}[!htb]
+	\centering
+	\patternimglink{0.1}{p1703_gun}
+	\caption{A period~$616+1\, 087 = 1\, 703$ gun that works by feeding the output of a period~$616$ gun (highlighted in \bgbox{yellowback2}{yellow}) into a glider tripler (highlighted in \bgbox{aquaback}{aqua}). One of the outputs of this tripler escapes to the southwest as the output of the gun, one goes southeast (highlighted in \bgbox{magentaback}{magenta}) to destroy the Herschel/glider in the p$616$ gun, thus turning it off, and one goes northeast (highlighted in \bgbox{greenpastel}{green}) to turn it back on $471$~generations later. By making the trombone slide at the northeast larger and possibly changing the reflectors that it uses, we can delay the glider that restarts the p$616$ gun by any number of generations larger than $471$ as well.}
+	\label{fig:p1703_gun}
+\end{figure}
+
+By combining all of these techniques, we can now construct small\footnote{Just like earlier, by ``small'' we mean that we can construct guns of period~$p$ with bounding box whose length and widths are both $O(\sqrt{\log(p)})$.} guns of \emph{any} (sufficiently large) period. For example, to construct a small gun with large prime period $3\, 413\, 277\, 319$, we first compute $\lfloor (3\, 413\, 277\, 319 - 1\, 087) / 616 \rfloor = 5\, 541\, 032$, so we want to multiply the p$616$ gun's period by this amount. Since $5\, 541\, 032$ has binary representation $10101001000110010101000$, we arrange semi-Snarks (via the method of Figure~\ref{fig:block_18_gliders_repeatable}) according to this bitstring, except we wrap them in a spiral (like we did in Figure~\ref{fig:semi_snark_compact_guns}(b)) instead of placing them in a straight line so as to save some space. Finally, since $(3\, 413\, 277\, 319 - 1\, 087) \equiv 520$ (mod $616$), we use the mechanism from Figure~\ref{fig:p1703_gun} with an additional $520$-generation delay to add $1\, 087+520 = 1\, 607$~generations to its period. Then the completed gun has period $(616 \times 5\, 541\, 032) + 1\, 607 = 3\, 413\, 277\, 319$, as desired, and is displayed in Figure~\ref{fig:p3413277319_gun}.\footnote{Most of the components that went into the construction of this gun were assembled by Chris Cain in December 2017, as was a script that automatically compiles these guns for any period at least $1\, 703$. This script can be found at \httpsurl{conwaylife.com/forums/viewtopic.php?p=54265\#p54265}.}
+
+\begin{figure}[!htb]
+	\centering
+	\patternimglink{0.144}{p3413277319_gun}
+	\caption{A period~$3\, 413\, 277\, 319$ gun that uses two separate mechanisms to modify the period of a p$616$ gun (highlighted in \bgbox{yellowback2}{yellow}). First, its period is multiplied by $5\, 541\, 032$ using the method of Figure~\ref{fig:block_18_gliders_repeatable}, which has binary representation $10101001000110010101000$ that is encoded by the semi-Snarks that are arranged in a spiral pattern (with the most significant $1$ being the color-preserving semi-Snark highlighted in \bgbox{magentaback}{magenta} at the center of the spiral). Next, its period is increased by $1\, 607$ via the mechanism of Figure~\ref{fig:p1703_gun} that toggles the p$616$ gun off for a brief period of time and then back on, resulting in a total period of $(616 \times 5\, 541\, 032) + 1\, 607 = 3\, 413\, 277\, 319$.}
+	\label{fig:p3413277319_gun}
+\end{figure}
+
+
+\section{Converters for Other Objects}\label{sec:misc_converters}
+
+To finish off this section, we note that it is sometimes also convenient to be able to work with objects other than Herschels and gliders. Herschel tracks are the most well-developed and well-used tracks, mainly because the Herschel is so much more ``mobile'' than other small chaotic objects, but there's no fundamental reason why we couldn't create a track that (for example) converts a glider into a Herschel, which is converted into an R-pentomino, which is then converted into a pi-heptomino, and finally back into a glider. For ease of reference, we give these various frequently-converted objects single-letter abbreviations as indicated in Figure~\ref{fig:convert_object_codes}.
+
+\begin{figure}[!ht]
+	\centering\begin{tikzpicture}[scale=0.8, every node/.style={transform shape}]%
+		\node[inner sep=0pt,anchor=south west] at (0,0) {\patternimg{0.12}{convert_object_codes}};
+		
+		\colorletternode{gray}{0.25}{1.46}{G}
+		\colorletternode{gray}{1.51}{1.54}{L}
+		\colorletternode{gray}{3.49}{1.62}{M}
+		\colorletternode{gray}{5.45}{1.54}{H}
+		\colorletternode{gray}{6.85}{1.54}{B}
+		\colorletternode{gray}{8.29}{1.46}{R}
+		\colorletternode{gray}{9.7}{1.46}{P}
+	\end{tikzpicture}
+	\caption{For brevity, when manipulating small common objects as signals, we typically use the single-letter abbreviations G (glider), L (lightweight spaceship), M (middleweight spaceship), H (Herschel), B (B-heptomino), R (R-pentomino), and P (pi-heptomino). It is sometimes useful (for example, when naming conduits that convert between these types of objects) to be able to refer to a canonical phase and orientation of these objects, and those are what are displayed here.}\label{fig:convert_object_codes}
+\end{figure}
+% Also queen bee (Q), century or bookend (C), dove (D), and wing (W), but these are less common.
+
+Conduits that convert these objects into each other are typically referred to via abbreviations of the form ``X-to-Y'', where X and Y are the abbreviations described by Figure~\ref{fig:convert_object_codes}. For example, a conduit that converts a Herschel into a pi-heptomino would be referred to as an H-to-P conduit. More specifically, we name converters in a manner similar to the naming scheme for Herschel conduits from Section~\ref{sec:conduits}, but with the single-letter abbreviations of the input and output objects pre- and post-pended. That is, we give these converters names of the form
+\begin{center}
+	\verb|<input code><orientation><timing><output code>|,
+\end{center}
+\noindent where \verb|<input code>| and \verb|<output code>| are the single-letter abbreviations of the input and output objects of the converter, \verb|<orientation>| is the orientation prefix (i.e., R, Rx, L, Lx, F, Fx, B, or Bx) that describes how the output of the converter is rotated and/or reflected relative to the canonical phase displayed in Figure~\ref{fig:convert_object_codes}, and \verb|<timing>| is the number of generations that it takes for the input object to be converted into the (canonical phase of the) output object.\footnote{An unfortunate collision in this naming convention is that ``B'' means both ``180-degree rotation'' and ``B-heptomino'' (and similar collisions happen with ``L'' and ``R''). This is somewhat undesirable, but we can tell what the ``B'' stands for by its position in the name (e.g., it is a B-heptomino in BLx19R, but it is a 180-degree rotation in RB57P).}
+
+For example, the conduit displayed in Figure~\ref{fig:first_converter_conduits}(a) takes $19$~generations to convert a B-heptomino into an R-pentomino. Since the output R-pentomino is reflected top-to-bottom from its canonical phase shown in Figure~\ref{fig:convert_object_codes} and then rotated to the left (i.e., counter-clockwise), it gets \verb|<orientation>| prefix ``Lx'' (compare with Figure~\ref{fig:herschel_orientations}, where we introduced these \verb|<orientation>| prefixes for Herschels). This conduit is thus named BLx19R.\index{BLx19R} Similarly, the conduit displayed in Figure~\ref{fig:first_converter_conduits}(b) takes $28$~generations to convert an R-pentomino into a B-heptomino,\index{B-heptaplet}\footnote{Actually, this conduit does not produce the B-heptomino itself, but rather the \emph{B-heptaplet} that evolves in the same way.} and the output heptomino is in its canonical orientation (i.e., it has \verb|<orientation>| prefix ``F'') and is thus named RF28B.\index{RF28B}\footnote{The RF28B conduit appears in some of the Herschel conduits that we saw back in Table~\ref{tab:herschel_conduits}: BX202, L156, and Rx164 (see Exercise~\ref{exer:l156_break_apart}).}
+
+\begin{figure}[!htb]
+	\centering
+	\begin{tabular}{cc}
+		\begin{subfigure}{.47\textwidth}
+			\centering\embedlink{BLx19R}{\vcenteredhbox{\patternimg{0.1}{BLx19R_0}} \vcenteredhbox{\genarrow{19}} \vcenteredhbox{\patternimg{0.1}{BLx19R_19}}}
+			\caption{\emph{BLx19R}: A conduit that converts a B-heptomino to an R-pentomino in $19$~generations.}\label{fig:BLx19R}
+		\end{subfigure} &
+		\begin{subfigure}{.47\textwidth}\vspace*{0.19cm}
+			\centering\embedlink{RF28B}{\vcenteredhbox{\patternimg{0.1}{RF28B_0}} \vcenteredhbox{\genarrow{28}} \vcenteredhbox{\patternimg{0.1}{RF28B_28}}}
+			\caption{\emph{RF28B}: A conduit that converts an R-pentomino to a B-heptomino in $28$~generations.}\label{fig:RF28B}
+		\end{subfigure}
+	\end{tabular}
+	\caption{Some conduits that convert B-heptominoes into R-pentominoes and back. The cells highlighted in \bgbox{redback}{red} in~(b) die off in another $6$~generations.}
+	\label{fig:first_converter_conduits}
+\end{figure}
+
+When the converter in question just sends a Herschel to a Herschel, we typically omit the ``H'' \verb|<input code>| and \verb|<output code>| from its name and thus recover the naming scheme that we developed for Herschel tracks back in Section~\ref{sec:herschel_track}. When the object that is being converted has additional symmetry so that it does not make sense to say whether it is being turned left or right, people sometimes use \verb|<orientation>| code ``T'' (for \textbf{t}urn) instead of ``R'' or ``L''. For example, the conduit displayed in Figure~\ref{fig:PT8P} takes $8$~generations to turn a pi-heptomino either right (clockwise) or left (counter-clockwise), depending on its orientation, so it is sometimes called PT8P (rather than PR8P or PL8P\index{PL8P}). However, we typically just pick whatever orientation of the conduit we need and refer to the name that makes sense given that orientation.
+
+\begin{figure}[!htb]
+	\centering
+	\begin{tabular}{cc}
+		\begin{subfigure}{.47\textwidth}
+			\centering\embedlink{P_to_P}{\vcenteredhbox{\patternimg{0.1}{PL8P_0}} \vcenteredhbox{\genarrow{8}} \vcenteredhbox{\patternimg{0.1}{PL8P_8}}}
+			\caption{\emph{PL8P}: Turning a pi-heptomino left.}\label{fig:PL8P}
+		\end{subfigure} &
+		\begin{subfigure}{.47\textwidth}
+			\centering\patternlink{P_to_P}{\vcenteredhbox{\patternimg{0.1}{PR8P_0}} \vcenteredhbox{\genarrow{8}} \vcenteredhbox{\patternimg{0.1}{PR8P_8}}}
+			\caption{\emph{PR8P}: Turning a pi-heptomino right.}\label{fig:PR8P}
+		\end{subfigure}
+	\end{tabular}
+	\caption{\emph{PT8P}: A conduit that takes $8$~generations to turn a pi-heptomino by $90$~degrees.}
+	\label{fig:PT8P}
+\end{figure}
+
+It is worth pointing out that we have seen this conduit before---it was used in Figure~\ref{fig:p32_pi_hassler} to create the p$32$ ``gourmet''\index{gourmet} oscillator.\footnote{In fact, the same conduit and pi-heptomino rotation appears in Tanner's~p$46$.} In a sense, that oscillator (and a few other hasslers that we have seen) function in the same way as Herschel track oscillators---we will see another example of how we can build hasslers out of these types of conduits in Exercise~\ref{exer:RFx36R_osc}.
+
+When the input or output of a conduit is a spaceship like a glider, the naming convention used is a bit more intricate and involves codes of the form \verb|<direction><lane>T<timing>|, just like in Section~\ref{sec:glider_to_herschel}. Just as was the case back then, we do not dwell on the details of how the \verb|<lane>| or \verb|<timing>| are computed, but instead just note that the basic movement of the conduit can be gleaned by reading its name. For example, a conduit named LSE11T-8 transforms a lightweight spaceship into a glider traveling southeast in lane~$11$ (i.e., roughly~$11$ cells to the right of where the LWSS hits the conduit) and timing~$-8$ (i.e., delayed by $8$~generations from the destruction of the LWSS), whereas a conduit named MSW-1T1 transforms a middleweight spaceship into a glider traveling southwest in lane~$-1$ and timing~$1$ (i.e., the glider starts its journey almost exactly when and where the MWSS hits the conduit). These converters are displayed in Figure~\ref{fig:XWSS_to_G}.
+
+\begin{figure}[!htb]
+	\centering
+	\begin{tabular}{@{}cc@{}}
+		\begin{subfigure}{.48\textwidth}
+			\centering\embedlink{L_to_G}{\vcenteredhbox{\patternimg{0.1}{L_to_G_0}} \vcenteredhbox{\genarrow{69}} \vcenteredhbox{\patternimg{0.1}{L_to_G_69}}}
+			\caption{\emph{LSE11T-8}\index{LSE11T-8}: Turns an LWSS into a glider.}\label{fig:L_to_G}
+		\end{subfigure} &
+		\begin{subfigure}{.48\textwidth}\vspace*{0.07cm}
+			\centering\embedlink{M_to_G}{\vcenteredhbox{\patternimg{0.1}{M_to_G_0}} \vcenteredhbox{\genarrow{12}} \vcenteredhbox{\patternimg{0.1}{M_to_G_12}}}
+			\caption{\emph{MSW-1T1}\index{MSW-1T1}: Turns an MWSS into a glider.}\label{fig:M_to_G}
+		\end{subfigure}
+	\end{tabular}
+	\caption{Some conduits that turn spaceships into gliders. The (a) LWSS-to-G can also act as an MWSS-to-G (see Exercise~\ref{exer:mwss_to_g}) and was found by Ivan Fomichev in October 2015, and the (b) MWSS-to-G was found by Matthias Merzenich in July 2013.}
+	\label{fig:XWSS_to_G}
+\end{figure}
+
+A selection of conduits that convert between these basics types of signals is presented in Table~\ref{tab:converters}. We emphasize that this collection of converters is not even close to complete, but rather just consists of some particularly small, fast, and/or important representative examples.\footnote{A much larger and more complete catalog of conduits and converters is available online at \httpsurl{conwaylife.com/forums/viewtopic.php?f=2\&t=1849\&p=23375}} We also clarify that a cell being empty in Table~\ref{tab:converters} does not mean that we know of \emph{no} converters of the indicated type, but rather that we do not know of any simple, fast, and small converter of that type. By combining the various small converters using the techniques we have already seen, we can convert essentially any type of object to any other type of object, as long as we are comfortable using large converters that make use of several intermediate conversions. For example, to convert a glider into a pi-heptomino, we could perform the following sequence of conversions (see Exercise~\ref{exer:composite_converters}):
+
+\begin{center}
+	glider $\xrightarrow{{}_{} \ \text{syringe} \ {}_{}}$ Herschel $\xrightarrow{{}_{} \ \text{HF95P} \ {}_{}}$ pi-heptomino.
+\end{center}
+
+\begin{table}[!htb]
+	\begin{center}
+		\begin{tabular}{Sc Sc Sc Sc Sc Sc}
+			\toprule
+			from $\backslash$ to & glider (G) & Herschel (H) & B-hept. (B)  & R-pent. (R) & pi-hept. (P) \\ \midrule
+			\specialcell{\patternimg{0.1}{glider_cropped} \\ G} & \specialcell{Snark, \\ Figure~\ref{fig:color_change_stable}} & syringe & \specialcell{--} & \specialcell{--} & \specialcell{--} \\
+			
+			\rowcolor{gray!20} \specialcell{\patternimg{0.1}{herschel_cropped} \\ H} & \specialcell{Figure~\ref{fig:herschel_to_glider}} & \specialcell{Section~\ref{sec:conduits}} & \specialcell{\patternimglink{0.14}{HFx58B} \\ HFx58B\index{HFx58B}} & \specialcell{\patternimglink{0.14}{HLx69R} \\ HLx69R\index{HLx69R}} & \specialcell{\patternimglink{0.13}{HF95P} \\ HF95P\index{HF95P}} \\
+			
+			\specialcell{\patternimg{0.1}{b_cropped} \\ B} & \specialcell{\patternimglink{0.15}{BSE22T31} \\ BSE22T31\index{BSE22T31}} & \specialcell{\patternimglink{0.14}{BFx59H} \\ BFx59H\index{BFx59H}} & \specialcell{\patternimglink{0.14}{BRx46B} \\ BRx46B\index{BRx46B}} & \specialcell{\patternlink{BLx19R}{\patternimg{0.14}{BLx19R}} \\ BLx19R\index{BLx19R}} & \specialcell{\patternimglink{0.14}{BF22P} \\ BF22P\index{BF22P}} \\
+			
+			\rowcolor{gray!20} \specialcell{\patternimg{0.1}{r_pentomino_cropped} \\ R} & \specialcell{\patternimglink{0.14}{RNW3T46} \\ RNW3T46\index{RNW3T46}} & \specialcell{\patternimglink{0.14}{RR56H} \\ RR56H\index{RR56H}} & \specialcell{\patternlink{RF28B}{\patternimg{0.14}{RF28Bb}} \\ RF28B\index{RF28B}} & \specialcell{\patternimglink{0.14}{RFx36R} \\ RFx36R\index{RFx36R}} & \specialcell{\patternimglink{0.14}{RF29P} \\ RF29P\index{RF29P}} \\
+			
+			\specialcell{\patternimg{0.1}{pi_cropped} \\ P} & \specialcell{\patternimglink{0.15}{P_to_G} \\ PNW6T138\index{PNW6T138}} & \specialcell{\patternimglink{0.14}{P_to_H} \\ PF81H\index{PF81H}} & \specialcell{\patternimglink{0.14}{PT9B} \\ PR9B\index{PR9B}} & \specialcell{\patternimglink{0.13}{P_to_R} \\ PR127R} & \specialcell{\patternlink{P_to_P}{\patternimg{0.14}{P_to_P}} \\ PL8P\index{PL8P}} \\\bottomrule
+		\end{tabular}
+		\caption{Some conduits that convert objects into other types of objects. Most of these conduits are quite old and well-known.}\label{tab:converters}
+	\end{center}
+\end{table}
+% No repeat time listed for these since for a lot of them it doesn't really make sense (depends heavily on what is done with the output signal). Some here anyway: PF81H (151), HLx69R (66), LSE11T-8 (58), MSW-1T1 (36)
+% TODO: Note that name of conduit does not depend on what happens within it, so some conduits that look different have same names
+
+
+
+\section{Factories}\label{sec:factories}\index{factory}
+
+Somewhat surprisingly, it is not only useful to convert moving objects like Herschels or gliders into other moving objects, but also into stationary objects like still lifes and oscillators. A conduit that implements such a conversion is called a \emph{factory}, as is any other pattern that repeatedly creates a still life or oscillator.
+
+In most cases, a factory will self-destruct if we do not make use of the still life or oscillator that it creates before it tries to make another one. For example, the queen bee can be thought of as a beehive factory (refer back to Figure~\ref{fig:queen_bee}), which self-destructs unless we regularly destroy the beehives that it leaves behind (thus creating a queen bee shuttle).\footnote{For an almost-oscillator that similarly acts as a block factory, see Exercise~\ref{exer:p144_gun_from_achim}.} We can similarly construct factories for other small still lifes and oscillators by aiming two or more glider guns at each other so that the glider collisions synthesize the desired object. Once again though, we must regularly make use of and destroy that synthesized object or else it will interfere with subsequent syntheses and cause the factory to self-destruct.
+
+As an example that is slightly more relevant to our current interests, consider the conduits displayed in Figure~\ref{fig:glider_beehive_stopper} that convert a glider into a beehive.\footnote{The glider stopper in Figure~\ref{fig:glider_stopper} is bigger than the beehive stopper in Figure~\ref{fig:beehive_stopper}, but has the advantage of also producing $2$ extra glider outputs when making its beehive.} The reason that these conduits are useful is that they act as logic circuits that test whether or not a a signal (i.e., a glider) has come in from the northwest. Indeed, when such a signal comes in, a beehive is created, which blocks the next signal (i.e., glider) that comes in from the northeast.
+
+\begin{figure}[!htb]
+	\centering
+	\begin{tabular}{@{}cc@{}}
+		\begin{subfigure}{.53\textwidth}
+			\centering\patternimglink{0.104578313253}{glider_stopper}
+			\caption{\emph{Glider stopper}\index{glider stopper}}\label{fig:glider_stopper}
+		\end{subfigure} &
+		\begin{subfigure}{.43\textwidth}
+			\centering\patternimglink{0.12}{beehive_stopper}
+			\caption{\emph{Beehive stopper}\index{beehive stopper}}\label{fig:beehive_stopper}
+		\end{subfigure}
+	\end{tabular}
+	\caption{Some factories that use a glider (displayed in \bgbox{greenback}{green}) to create a beehive (displayed in \bgbox{orangeback}{orange}). If the beehive is present, it destroys (and is destroyed by) a single glider coming from the northeast on the lane highlighted in \bgbox{yellowback2}{yellow}. Otherwise, that glider passes through the factory unharmed. Found by (a) Paul Callahan in 1996 and (b) Tanner Jacobi in 2015.}
+	\label{fig:glider_beehive_stopper}
+\end{figure}
+
+Since the still life or oscillator that is created by a factory does not move, it is especially important that it is created near the factory's edge, thus making it accessible to other nearby circuitry. For this reason, the edgy Herschel-to-beehive conduit displayed in Figure~\ref{fig:H_to_beehive} is particularly useful, as is the Herschel-to-loaf conduit displayed in Figure~\ref{fig:H_to_loaf}.
+% TODO: Talk about gen -3
+
+\begin{figure}[!htb]
+	\centering
+	\begin{tabular}{@{}cc@{}}
+		\begin{subfigure}{.38\textwidth}
+			\centering\patternimglink{0.1}{H_to_beehive}
+			\caption{Herschel-to-beehive}\label{fig:H_to_beehive}
+		\end{subfigure} &
+		\begin{subfigure}{.58\textwidth}
+			\centering\patternimglink{0.09768115942}{H_to_loaf}
+			\caption{Herschel-to-loaf}\label{fig:H_to_loaf}
+		\end{subfigure}
+	\end{tabular}
+	\caption{Some edgy conduits that can convert a Herschel (displayed in \bgbox{greenback}{green}) into a small still life (displayed in \bgbox{orangeback}{orange}). The (b) loaf factory was found by Adam~P.~Goucher in 2009.}
+	\label{fig:H_to_beehive_loaf}
+\end{figure}
+
+Since a boat can be used as a one-time turner\index{one-time turner} (refer back to Section~\ref{sec:slow_salvo_turners} and Exercise~\ref{exer:boat_one_time_turner}), factories that create boats can be used to reflect gliders by 90 degrees. For example, the Herschel-to-boat factories of Figure~\ref{fig:H_to_boat} can be used to reflect gliders heading northwest so that they instead go northeast. The Herschel-to-boat factory of Figure~\ref{fig:demultiplexer} is called the \emph{demultiplexer}\index{demultiplexer},\footnote{Found by Brice Due in August 2006.} and it can similarly reflect a glider heading southwest (despite being much less edgy than the other two boat factories). However, it also has the useful property that if the boat is \emph{not} present then that glider simply passes through the factory unharmed (whereas such the glider would destroy either of the factories in Figure~\ref{fig:H_to_boat} if the boat were not present).
+
+\begin{figure}[!htb]
+	\centering
+	\begin{tabular}{@{}cc@{}}
+		\begin{subfigure}{.52\textwidth}
+			\centering
+			\patternimglink{0.08583629893}{H_to_boat_2} \quad \ \ \ \patternimglink{0.07514018691}{H_to_boat_3}
+			\caption{Herschel-to-boat}\label{fig:H_to_boat}
+		\end{subfigure} & \begin{subfigure}{.44\textwidth}
+			\centering
+			\patternimglink{0.11115207373}{demultiplexer}
+			\caption{Demultiplexer}\label{fig:demultiplexer}
+		\end{subfigure}
+	\end{tabular}
+	 \qquad \qquad 
+	\caption{Some edgy Herschel-to-boat factories that can be used to reflect gliders. In (b), the input glider follows one of the two paths highlighted in \bgbox{yellowback2}{yellow}: it is reflected if the boat is present, and it passes straight through the factory otherwise.}
+	\label{fig:H_to_boat_and_demult}
+\end{figure}
+
+For this reason, the demultiplexer can act as a storage device for a single bit of memory---we can think of the absence or presence of the boat as a ``0'' or a ``1'', respectively. A Herschel going into this factory then corresponds to storing the bit ``$1$'' in its memory, and a glider going into this factory has the effect of reading the contents of its memory (and resetting it to ``$0$'').
+
+The other most common type of still life factory is one that creates a block, and several of them are displayed in Figure~\ref{fig:H_to_block}. We note that Herschels create a block on their own (called the \emph{first natural block}\index{first natural block}\footnote{In analogy with the first natural glider that they make in generation~$21$.}) in generation~$37$. For this reason, some Herschel-to-block factories (like the two central ones in Figure~\ref{fig:H_to_block}) are particularly simple and work just by cleaning up the input Herschel's debris after it makes that block. The leftmost factory in Figure~\ref{fig:H_to_block} is somewhat larger and more complicated than the other block factories, but is particularly useful for how far away it produces its block, as well as the fact that it can act as a period tripler (see Exercise~\ref{exer:block_factory_is_tripler}).
+
+\begin{figure}[!htb]
+	\centering
+	\patternimglink{0.083402489626}{H_to_block} \quad \ \ \ \patternimglink{0.1}{H_to_block_2} \quad \ \ \ \patternimglink{0.118934911243}{H_to_block_3} \quad \ \ \ \patternimglink{0.118934911243}{H_to_block_4}
+	\caption{Some Herschel-to-block factories.}
+	\label{fig:H_to_block}
+\end{figure}
+
+
+\subsection{Highway Robbers}\label{sec:highway_robber}\index{highway robber}
+
+While we have seen numerous glider reflectors so far---the Snark, the Silver reflector, bumpers, bouncers, and Herschel-track-based reflectors from earlier in this chapter---they all accept their input glider somewhat near their center. It is thus difficult to use these mechanisms to reflect a stream of gliders that is just a few lanes away from another stream. As an application of still life factories, we now construct a stable glider reflector that overcomes this problem and reflects gliders from a particular lane without being affected whatsoever by gliders on any further away lanes (even directly adjacent ones). A pattern with this property is called a \emph{highway robber}.\footnote{The name refers to the fact that highway robbers ``steal'' gliders from their lane.}
+
+While there is no known ``quick'' or ``direct'' stable pattern that carries out this task (like the Snark or the syringe for their tasks), we have seen all of the tools needed to construct a somewhat large and slow one. The key observation that we need is that many still lifes are destroyed, producing some chaotic debris or a perpendicular glider, if they are hit at their edge by a passing glider. In order to construct a highway robber, we will funnel that debris or glider through a conduit back into a factory that replaces the destroyed still life (and also sends off one or more signals along the way).
+
+Of the still lifes that we know how to create via factories, the loaf is best-suited to this task since a glider hitting its edge almost immediately produces a perpendicular glider, along with some extra debris.\footnote{If hit on its edge by a glider, a (1) block quickly moves as in Figure~\ref{fig:glider_block_move}, a (2) beehive (depending on its orientation) quickly dies or evolves into lumps of muck,\index{lumps of muck} and a (3) boat (depending on its orientation) quickly dies, produces a block, produces a honeyfarm, or makes debris that is difficult to clean up since it is on the opposite side of the glider.} We can simply place a nearby eater~1 so as to clean up that debris, as displayed in Figure~\ref{fig:glider_loaf_collision}, so that the loaf extracts the glider from its lane.
+
+\begin{figure}[!htb]
+	\centering
+	\embedlink{glider_loaf_collision}{\vcenteredhbox{\patternimg{0.1}{glider_loaf_collision_0}} \vcenteredhbox{\genarrow{59}} \vcenteredhbox{\patternimg{0.1}{glider_loaf_collision_59}}}
+	\caption{When a glider just barely hits a loaf, a perpendicular glider and some debris are created. An eater~1 can be used to absorb the extra debris. Gliders on any further away lanes simply pass by the loaf unharmed.}
+	\label{fig:glider_loaf_collision}
+\end{figure}
+
+All that we have to do to create a highway robber out of this reaction is use the newly-created perpendicular glider to recreate the loaf. Doing so is just a matter of feeding the glider into a syringe to turn it into a Herschel, and then feeding that Herschel into the Herschel-to-loaf factory of Figure~\ref{fig:H_to_loaf}. The resulting highway robber is displayed in Figure~\ref{fig:highway_robber}. While it is somewhat large and slow (see Exercise~\ref{exer:highway_robber_repeat}), it is essentially the fastest one known (some slightly faster highway robbers have been built, but at the expense of being much larger).
+
+\begin{figure}[!htb]
+	\centering
+	\patternimglink{0.1}{highway_robber}
+	\caption{A highway robber that was constructed by Chris Cain in March 2015. It uses the glider-loaf collision of Figure~\ref{fig:glider_loaf_collision} to create a perpendicular glider that is fed into a Snark (highlighted in \bgbox{yellowback2}{yellow}) and then a syringe (highlighted in \bgbox{aquaback}{aqua}), an L112 conduit (highlighted in \bgbox{greenpastel}{green}), and finally a Herschel-to-loaf factory (highlighted in \bgbox{magentaback}{magenta}) so as to recreate the loaf.}
+	\label{fig:highway_robber}
+\end{figure}
+
+% Note about perfect glider robber via 14-tick separation not being explicitly constructed yet?
+% Boat bit is kind of a glider-to-boat factory: {fig:boat_bit}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Notes and Historical Remarks}
+\label{sec:stable_circuits_notes}
+\addcontentsline{toc}{section}{\nameref{sec:stable_circuits_notes}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+While stable circuitry for carrying out the tasks described in this chapter has existed for a couple decades at this point, it became significantly smaller and easier to work with in the mid-2010s. For example, the discovery of the Snark\index{Snark} in 2013 allows us to easily reposition gliders without having to make use of large engineered reflectors like the Silver reflector from Figure~\ref{fig:silver_reflector}.
+
+The discovery of the syringe in 2015 similarly shrank most stable circuits considerably. It has always been easy to convert a Herschel into a glider, but the standard way to accomplish the reverse task in previous years was to use a \emph{Herschel transceiver}\index{Herschel!transceiver}---a device that sends and receives a \emph{pair} of gliders traveling the same direction, but potentially on different lanes.\index{tandem}\footnote{Such gliders are said to be in \emph{tandem}.} The first such device to be discovered\footnote{This Herschel transceiver was found by Paul Callahan---the receiver in October 1996 and the transmitter in May 1997.} is displayed in Figure~\ref{fig:herschel_transceiver}.
+
+\begin{figure}[!htb]
+	\centering
+	\patternimglink{0.1}{herschel_transceiver}
+	\caption{A Herschel transceiver that is made up of two components that can be separated by an arbitrary amount---a conduit that converts a Herschel into two gliders at the top-left, and a conduit that converts those two gliders back into a Herschel (via a B-heptomino) at the bottom-right. This device appeared in lots of pre-2015 circuitry, but was made almost completely obsolete by the discovery of the syringe.}
+	\label{fig:herschel_transceiver}
+\end{figure}
+
+The receiving half of this Herschel transceiver (which is called a \emph{Herschel receiver}\index{Herschel!receiver}) just uses the first input glider to erase its beehive, so the relative timing of the input gliders does not really matter. Furthermore, there are several other ways that a glider can collide with a beehive so that they destroy each other, so the second glider can be $6$, $5$, $2$, or $-2$ lanes to the right of the first glider without affecting the receiver's functionality. Several more transmitting halves (i.e., \emph{Herschel transmitters}\index{Herschel!transmitter}) for this receiver were found in the next year or two,\footnote{By Paul Callahan and by Dieter Leithner} but they were relatively awkward, needing sparks from oscillators or other extra cleanup, so they were seldom or never used in larger patterns. One other H-to-G6 conduit (i.e., Herschel transmitter that converts a Herschel into a pair of tandem gliders offset from each other by $6$~lanes) that \emph{is} still useful is presented in Exercise~\ref{exer:h_to_g6}.
+
+The original Herschel transceiver was featured quite often in pre-2015 circuitry, because it provided a relatively inexpensive way of ``transmitting'' a Herschel signal from one place to another in the form of gliders. It was easy to get a Herschel to generate a \emph{single} glider, but to then get a Herschel back out of that single glider required a large composite circuit, the fastest of which had a repeat time of 497 generations. By contrast, a Herschel transceiver can send the same signal via two gliders with a repeat time of just 117 generations, and its receiver is much smaller as well.
+
+With the appearance of the syringe in 2015 (repeat time 78, or 74 with overclocking), it became cheaper and faster to send a single glider and then convert it back to a Herschel with a syringe whenever necessary. As a result, tandem gliders pretty much became obsolete, with a few odd exceptions. When we happen to have two gliders anyway, or when two tandem gliders naturally produce some other reaction of interest, it is still sometimes easier to catch them with a Herschel receiver---especially when their lanes are only $2$ cells apart. One such reaction that we will make use of later is the one displayed in Figure~\ref{fig:block_pusher} that uses $3$ gliders to push a block and send $2$ tandem gliders back.
+
+\begin{figure}[!htb]
+	\centering\embedlink{block_pusher}{\vcenteredhbox{\patternimg{0.1}{block_pusher_0}} \vcenteredhbox{\genarrow{110}} \vcenteredhbox{\patternimg{0.1}{block_pusher_110}}}
+	\caption{A reaction in which $3$ gliders push a block southeast by $10$~cells and send $2$ tandem gliders back, separated by just $2$ lanes and thus suitable for input into a Herschel receiver. The debris highlighted in \bgbox{redback}{red} dies off in $25$ more generations.}\label{fig:block_pusher}
+\end{figure}
+
+Another Herschel transceiver that is sometimes useful is the one displayed in Figure~\ref{fig:herschel_transceiver_4} that works via gliders that are separated by $4$ lanes instead of $2$, $5$, or $6$.\footnote{This transceiver was found by Sergei Petrov in December 2011.} This transceiver has two advantages over the one that we saw earlier: it produces a quick 90-degree glider output in addition to its Herschel output, and it is \emph{ambidextrous}\index{ambidextrous} (i.e., it can be configured to accept the gliders from the transmitter in either order). For this reason, this transceiver is still a fairly efficient way to quickly split a single signal into multiple signals, using only Spartan catalysts.
+
+\begin{figure}[!htb]
+	\centering
+	\patternimglink{0.09}{herschel_transceiver_4}
+	\caption{A Herschel transceiver that works via tandem glider pairs that are separated by $4$ lanes. The receiver that it uses is ambidextrous---it can be configured to work regardless of which of the two input gliders arrives first, as demonstrated here by the middle and right receivers here taking different configurations of input gliders.}
+	\label{fig:herschel_transceiver_4}
+\end{figure}
+
+Alternatively, prior to the discovery of the syringe, there were some stable conduits known for converting some spaceships \emph{other} than gliders into Herschels. For example, the conduit displayed in Figure~\ref{fig:coe_to_herschel} converts a Coe ship\index{Coe ship} into a Herschel.\footnote{This conduit was found by Stephen Silver in September 1997.} However, the reverse transformation of a Herschel into the original spaceship was much less straightforward, and would be performed by converting the Herschel into multiple gliders that we use to synthesize the original spaceship (a Coe ship in this case) via a glider synthesis like the one that we saw in Figure~\ref{fig:coe_ship_synth}.
+
+\begin{figure}[!htb]
+	\centering\embedlink{coe_to_herschel}{\vcenteredhbox{\patternimg{0.1}{coe_to_herschel_0}} \vcenteredhbox{\genarrow{124}} \vcenteredhbox{\patternimg{0.1}{coe_to_herschel_124}}}
+	\caption{A stable conduit that converts a Coe ship into a Herschel.}\label{fig:coe_to_herschel}
+\end{figure}
+
+
+
+% TODO: Introduce term "Spartan". This term is used in History section, so if no place makes sense earlier, at least properly introduce it there (i.e., rewrite a bit)
+% "Transparent" reaction: one in which some intermediate pattern (e.g., block) is destroyed but then reconstructed, with pattern like Herschel travelling through it
+% G-to-LWSS/MWSS: http://conwaylife.com/forums/viewtopic.php?f=2&t=1651&start=50#p18616
+% herschel duplicator: http://conwaylife.com/forums/viewtopic.php?f=2&t=1599&p=29968#p29968
+
+
+%% EXERCISE IDEAS
+% - Create a stable conduit that converts a glider into... 2 gliders? A LWSS? An MWSS? Etc.
+% - Use two copies of B60 to make a p120 gun (and make lots of guns with different periods via other circuits...)
+% Make gun with period (for example) 15*2^50 inside small bounding box
+% Make gun with period (large prime) inside small (but not all small as period exercise) bounding box
+% Show the H-to-MWSS here and ask users to erase the leftover beehive to make a TRUE H-to-MWSS: http://conwaylife.com/forums/viewtopic.php?f=2&t=1599&p=23909#p23888
+% Give converter, ask reader to give name of it
+% Exercise: Break down Silver reflector into pieces. 2G to H plus Fx77 plus L112 plus H to 2G
+% EXERCISE: Introduce, link to, Karel Suhajda's search program Hersrch. Do something with it.
+% Exercise: https://www.conwaylife.com/wiki/Keeper (?)
+% Exercise: glider-to-block converter
+% Exercise: Construct a pseudo-heisenburp http://b3s23life.blogspot.com/2007/01/stable-pseudo-heisenburp-and-other-p1.html
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Exercises \hfill \normalfont\textsf{\small solutions on \hyperlink{solutions_stable_circuitry}{page \pageref{solutions_stable_circuitry}}}}
+\label{sec:periodic_exercises}
+\addcontentsline{toc}{section}{Exercises}
+\vspace*{-0.4cm}\hrulefill\vspace*{-0.3cm}\footnotesize\begin{multicols}{2}\vspace*{-0.4cm}\raggedcolumns\interlinepenalty=10000
+\setlength{\parskip}{0pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Part (d) of this exercise is L200, which is referenced in the text. Do not re-order or re-label!
+\begin{problem}\label{exer:name_conduit}
+	Give the name (using the naming scheme of Table~\ref{tab:herschel_conduits}) for each of the following Herschel conduits, as well as their repeat time.\vspace*{-0.25cm}
+		
+	\begin{multicols}{2}
+		\begin{enumerate}
+			\item[\bf\color{ocre}(a)] \raisebox{-\height+0.5em}{\patternimglink{0.1}{exercise_name_conduit_1}}
+				
+			\item[\bf\color{ocre}(c)] \raisebox{-\height+0.5em}{\patternimglink{0.11}{exercise_name_conduit_3}}
+				
+			\item[\bf\color{ocre}(b)] \raisebox{-\height+0.5em}{\patternimglink{0.1}{exercise_name_conduit_2}}
+				
+			\item[\bf\color{ocre}(d)] \raisebox{-\height+0.5em}{\patternimglink{0.1}{exercise_name_conduit_4}}
+		\end{enumerate}
+	\end{multicols}
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:eat_herschel}
+	Construct a stable pattern that eats a Herschel.
+	
+	\noindent [Hint: If you cannot find a ``direct'' way to do this, convert a Herschel into something that you already know how to eat.]
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:two_transparent_lanes}
+	Modify the conduit from Figure~\ref{fig:transparent_lane} so that it has two side-by-side transparent lanes instead of just one.
+	
+	\noindent [Hint: There are other ways to eat a glider.]
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:H_to_G_transparent_better}
+	A conduit that is very similar to the HNE5T-4 conduit from Figure~\ref{fig:transparent_lane} is presented below. Explain why this conduit might be more useful than HNE5T-4 in some situations.
+
+	\begin{center}
+		\patternimglink{0.1}{H_to_G_transparent_better}
+	\end{center}
+\end{problem}
+
+
+\mfilbreak
+	
+	
+\begin{problem}\label{exer:syringe_creates_pi}
+	The syringe\index{syringe} works by converting the input glider into another object that we have seen before, and then converting that object into a B-heptomino, which creates a glider (which is eaten) and the output Herschel. What is the name of the intermediate object?
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:syringe_compact}
+	A slightly more compact version of the syringe can be constructed by modifying its large unnamed still life. Complete the partial syringe on the left below by filling in the light gray cells appropriately (make sure that the resulting pattern can eat the glider that the output Herschel emits).
+	
+	\noindent [Hint: Make use of the modification of eater~5\index{eater 5} that is displayed below on the right.]\vspace*{-0.4cm}
+	
+	\begin{center}
+		\belowbaseline[0pt]{\patternimglink{0.1}{exercise_syringe_compact}}~\quad~\belowbaseline[0pt]{\patternimglink{0.1}{eater_5_modification}}
+	\end{center}
+\end{problem}
+	
+	
+\mfilbreak
+	
+
+\begin{problem}\label{exer:syringe_glider_synth}
+	Construct a glider synthesis of the large version of the syringe displayed in Figure~\ref{fig:syringe_modified}.
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:convert_more_gliders}
+	Make a stable conduit that converts one glider into exactly...\smallskip
+		
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item $4$ gliders.
+			
+		\item $5$ gliders.
+			
+		\item $10$ gliders.
+	\end{enumerate}
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:glider_to_lwss_weird_sl}
+	One of the still lifes near the eastern edge of the glider-to-LWSS circuit in Figure~\ref{fig:glider_to_lwss_big} is displayed in red. Why is it singled out like this---what makes it different from the other still lifes in that circuit?
+\end{problem}
+
+
+\mfilbreak
+
+% To add: what is the repeat time of the G-to-(2-engine Cordership)... 556, but a painfully advanced exercise could be how to reduce the repeat time to 458 (probably giving the alternate three-sided recipe from http://conwaylife.com/forums/viewtopic.php?p=63282#p63282 -- or possibly just the recipe for the switch engine with the alternate kickback). Also, make a gun out of it? Trivial, but not done elsewhere yet.
+
+% NJ: Still working on this exercise.
+\begin{problem}\label{exer:convert_stable_g_to_spaceships}
+	Use the glider syntheses provided below (or any other glider syntheses of your choosing) to construct a stable circuit that converts a glider into the following objects.\smallskip
+	
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item A middleweight spaceship.
+		
+		\item A heavyweight spaceship.
+		
+		\item A Schick engine. % provide synthesis
+		% Coe ship, loafer, space rake, ecologist, etc.
+	\end{enumerate}
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{fig:g_to_2engine_why_10_gliders}
+	The $2$-direction glider synthesis of the $2$-engine Cordership from Exercise~\ref{exer:2_engine_cordership_synthesis}(b) consists of 11~gliders, but when we used it to start our construction of the glider-to-($2$-engine Cordership) circuit in Figure~\ref{fig:g_to_2engine_V}, we only needed $10$ input gliders. Explain this discrepancy---what happened to the $11$th glider?
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:stable_thin_out_gliders}
+	In Figure~\ref{fig:block_18_gliders_repeatable}, we saw a stable circuit that destroys all except for $1$ out of every $19$ input gliders. Construct a similar circuit that destroys all except for $1$ out of every...\smallskip
+	
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item $32$ gliders.
+		
+		\item $6$ gliders.
+		
+		\item $47$ gliders.
+	\end{enumerate}
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:tremi_snark}
+	The following pattern is called a \emph{tremi-Snark},\index{tremi-Snark}\footnote{Found by Tanner Jacobi in September 2017.} since it only produces a single output glider for every three input gliders that it receives.
+	
+	\begin{center}
+		\patternimglink{0.1}{tremi_snark}
+	\end{center}
+	
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item What is the repeat time of the tremi-Snark?% 43
+		
+		\item Is it color-changing or color-preserving?% CP
+		
+		\item Use tremi-Snarks to make a glider gun with period~$3^{50}$.
+	\end{enumerate}
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:quadri_snark}
+	The following pattern is called a \emph{quadri-Snark},\index{quadri-Snark}\footnote{Found by Tanner Jacobi in October 2017.} since it only produces a single output glider for every four input gliders that it receives.
+	
+	\begin{center}
+		\patternimglink{0.1}{quadri_snark}
+	\end{center}
+	
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item What is its repeat time?% 48
+		
+		\item The quadri-Snark is color-preserving. Construct a similar stable circuit for reflecting one out of every four input gliders, but is color-changing.% CP semi-Snark + CC semi-Snark + Snark
+		
+		\item Use quadri-Snarks to make a glider gun with period~$2^{100}$ that fits in a smaller bounding box than the one from Figure~\ref{fig:p_2_100_gun}.
+	\end{enumerate}
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:quinti_snark}
+	The following pattern is called a \emph{quinti-Snark},\index{quinti-Snark}\footnote{Found by Tanner Jacobi in October 2018. Some other periodic quinti-Snarks are also known, but this is the most useful one for the reason explained in part~(c) of this exercise.} since it only produces a single output glider for every five input gliders that it receives.
+	
+	\begin{center}
+		\patternimglink{0.1}{quinti_snark}
+	\end{center}
+	
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item Is it color-changing or color-preserving?% CC
+		
+		\item What is its repeat time?
+		
+		\item The quinti-Snark is not stable---it contains a p$5$ heavyweight volcano as one of its pieces. Explain why, in spite of this, it can be used with any glider stream of period at least its repeat time (not just glider streams whose period is a multiple of $5$).
+	\end{enumerate}
+\end{problem}
+
+	
+\mfilbreak
+
+
+\begin{problem}\label{exer:p1703_gun_why_semisnark}
+	The semi-Snark in the mechanism from Figure~\ref{fig:p1703_gun} serves to increase the period of that gun by $616$~generations. Explain why it is there---why can we not remove it and rearrange the other components so as to create a gun with period $616+471 = 1\, 087$?
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:p1703_gun}
+	We claimed that the method of Figure~\ref{fig:p1703_gun} can be used to add $1\, 087$ or more generations to the period of the $p616$ adjustable glider gun. Explain why the cut-off is $1\, 087$ generations.
+	
+	\noindent [Hint: Try to add $1\, 086$ generations to the period of the p$616$ gun---what goes wrong?]
+\end{problem}
+% Collision in trombone slide due to changing reflector. TODO: make sure this reflector is one of the ones from earlier Table so that this question is actually answerable
+
+
+\mfilbreak
+	
+	
+\begin{problem}\label{exer:mwss_to_g}
+	Show how the LWSS-to-glider converter from Table~\ref{tab:converters} can also function as an MWSS-to-glider converter.
+\end{problem}
+% Just put MWSS in the exact same spot (front ends aligned)
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:simkin_glider_gun}
+	Use two copies of the B60 Herschel conduit to make a glider gun (the resulting gun is called the \emph{Simkin glider gun}\index{Simkin glider gun}).\footnote{It is named for discoverer, Michael Simkin, who found it in April 2015.} What is its period, and how could you determine that period based only on the name of this conduit?
+\end{problem}
+% p120 simkin glider gun
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:RFx36R_osc}
+	Use two copies of the RFx36R conduit to make an oscillator. What is its period, and how could you determine that period based only on the name of this conduit?
+\end{problem}
+% 72
+
+
+\mfilbreak
+
+
+% Solution: Converts to a pi first, then pi to 2G. HF95P
+\begin{problem}\label{exer:H_to_4G}
+	The conduit displayed below converts a Herschel into 4 gliders, all traveling in different directions. Break this conduit up into elementary conduits (i.e., conduits that convert named objects into each other and cannot be broken down any further).
+	
+	\begin{center}
+		\patternimglink{0.1}{exercise_H_to_4G}
+	\end{center}
+	
+	\noindent [Hint: We saw one of these conduits in Table~\ref{tab:converters}---which one?]
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:HFx58B_modify}
+	The conduit below on the left is called BR146H\index{BR146H} and the one on the right is a variant of the HFx58B\index{HFx58B} conduit from Table~\ref{tab:converters}.
+	
+	\begin{center}
+		\patternimglink{0.1}{BR146H} \qquad \patternimglink{0.1}{HFx58Bb}
+	\end{center}
+
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item Explain why the original HFx58B conduit cannot be used as an input to BR146H.
+	
+		\item Attach the variant of HFx58B to both the input and output ends of BR146H. What is the name of this composite conduit?
+	\end{enumerate}
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:herschel_variants}
+	Here are some variants of the BFx59H conduit from Table~\ref{tab:converters}:
+	\begin{center}
+		\patternimglink{0.093}{BFx59H_variants}
+	\end{center}
+	Use the conduits HFx58B, BLx19R, RF28B, and BFx59H (including their variants, if necessary---see Exercise~\ref{exer:HFx58B_modify} for a HFx58B variant) to move the Herschel highlighted below in green to the position marked in orange $58+19+28+59=164$ generations later, while avoiding the blocks.	
+	\begin{center}
+		\patternimglink{0.1}{exercise_herschel_variants}
+	\end{center}
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:l156_break_apart}\index{L156}
+	The L156 conduit from Figure~\ref{fig:p67_with_conduits}(b) is made up of $3$ conduits that convert the input Herschel into other well-known named objects before converting it back into a Herschel. What are the intermediate objects that the Herschel is converted into, and what are the names of those $3$ conduits?
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:composite_converters}
+	String together conduits that we have seen so as to create a stable conduit that converts...\smallskip
+	
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item a glider into a pi-heptomino,
+		
+		\item a glider into an R-pentomino,
+		
+		\item a lightweight spaceship into a Herschel, and
+		
+		\item a middleweight spaceship into a B-heptomino.
+	\end{enumerate}
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:h_to_g6}
+	An H-to-G6 conduit other than the one at the top-left corner of Figure~\ref{fig:herschel_transceiver} is presented below.\footnote{This conduit was found by Matthias Merzenich in December 2011.}
+	
+	\begin{center}
+		\patternimglink{0.1}{h_to_G6}
+	\end{center}
+
+	\noindent Use two copies of this conduit, together with two copies of the Herschel receiver from the bottom-right corner of Figure~\ref{fig:herschel_transceiver}, to create a glider gun. Place $6$ signals (i.e., Herschels and/or tandem glider pairs) on the track and separate the components so that the gun has period~$127$.
+	% SOLUTION:
+	%x = 99, y = 69, rule = B3/S23
+%		33b2o$33b2o3$31b2o$31b2o$18b2o65bo$19bo64bobo$19bobo7b2o53bobo$20b2o6b
+%		o3bo35bo13b3ob2o$16b2o11b2obo35b3o10bo$16b2o9b3o2b2o37bo10b3ob2o9b2o$
+%		27b3o40b2o12bob2o9bo$27bob5o3b2o56bobo$34bo2b2o56b2o$29bob5o25b3o$35bo
+%		24b5o$30b2o2b3o22b5obo25bo$29bo5bo21b2o2b3ob2o22b2ob2o$29bobob2o22b2ob
+%		o2b3o23b2o$22b2o5bobobo22b2o6bo26b3o$21bo2bo8bo23bo2bo36bo$22b2o34b3o
+%		35b2o$14bo34bo$14b2o32bobo$13bobo32b2o$57b2o$57bo19b2o$58bo17bobo$57b
+%		2o17bo$22b2o51b2o$12b2o8b2o$13b2o81b2o$12bo83b2o2$b2o83bo$b2o81b2o$75b
+%		2o8b2o$22b2o51b2o$22bo17b2o$20bobo17bo$20b2o19bo$40b2o$49b2o32bobo$48b
+%		obo32b2o$49bo34bo$b2o35b3o34b2o$bo36bo2bo23bo8bo2bo$5b3o26bo6b2o22bobo
+%		bo5b2o$8b2o23b3o2bob2o22b2obobo$5b2ob2o22b2ob3o2b2o21bo5bo$7bo25bob5o
+%		22b3o2b2o$34b5o24bo$35b3o25b5obo$2b2o56b2o2bo$bobo56b2o3b5obo$bo9b2obo
+%		54b3o$2o9b2ob3o48b2o2b3o9b2o$17bo48bob2o11b2o$11b2ob3o49bo3bo6b2o$12bo
+%		bo53b2o7bobo$12bobo64bo$13bo65b2o$66b2o$66b2o2$39bo$40bo23b2o$38b3o23b
+%		2o!
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:p62_gun_problem}
+	Recall that the period~$93$ glider gun in Figure~\ref{fig:p93_gun} has $16$ Herschels on a track that each take $16 \times 93 = 1488$ generations to traverse it.\smallskip
+	
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item Adjust the number of Herschels on the track so as to create a period~$124$ glider gun.
+		
+		\item Explain why this does not become a period~$62$ glider gun if we place $1488/62 = 24$ Herschels on the track. % without the eater 2, the FNG collides with the next Herschel
+		
+		\item Create a true-period~$62$ glider gun by making a Herschel loop that uses the L156 circuit for the corners instead of R64 conduits (still use Fx77 conduits for the sides).
+	\end{enumerate}
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:p80_adjustable_manipulate}
+	Recall the period~$80$ adjustable true period glider gun from Figure~\ref{fig:p80_adjustable_gun}.\smallskip
+	
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item Adjust the gun to have period $97$.
+		
+		\item Adjust the gun to have period $78$.
+		
+		\item Try to adjust the gun to have period $76$ or $77$ and explain why it does not work.
+		
+		\item Adjust the gun to have period $74$ or $75$.
+		
+		\item Try to adjust the gun to have period $73$. Explain the two independent reasons why it does not work.
+	\end{enumerate}
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:p144_gun_from_achim}
+	The sparky oscillators below are called \emph{Wainwright's p72}\index{Wainwright's p72} (or sometimes \emph{two blockers hassling R-pentomino}\index{two blockers hassling R-pentomino|see {Wainwright's p72}}) and \emph{Achim's p144}\index{Achim's p144}.\footnote{Found by Robert Wainwright in 1990 and Achim Flammenkamp in 1994, respectively.}
+	\begin{center}
+		\patternimglink{0.095}{wainwright_p72} \quad \patternimglink{0.095}{achims_p144}
+	\end{center}
+	
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item Removing the block from one of the corners of Achim's p$144$ turns it into a block factory. Place Wainwright's p$72$ near the block that the factory produces so that its sparks delete that block and create a glider (and thus a p$144$ glider gun).\footnote{First constructed by Bill Gosper in July 1994.}
+		
+		\item Construct a slightly smaller p$144$ glider gun by using Rich's p$16$ instead of two blockers hassling R-pentomino.\footnote{First constructed by Chris Cain in 2016.}
+	\end{enumerate}
+\end{problem}
+% (a) SOLUTION:
+%#N New gun 2
+%#O Bill Gosper
+%#C A true period 144 glider gun that consists of a block factory whose output is converted into gliders by a period 72 oscillator.
+%#C www.conwaylife.com/wiki/index.php?title=New_gun_2
+%x = 51, y = 24, rule = B3/S23
+%23b2o24b2o$23b2o24b2o$41b2o8b$40bo2bo7b$41b2o8b2$36b3o12b$36bobo12b$9b
+%2o25b3o12b$9b2o25b2o13b$8bo2bo23b3o13b$8bo2bob2o20bobo13b$8bo4b2o20b3o
+%13b$10b2ob2o36b$31b2o18b$21b2o7bo2bo17b$21b2o8b2o18b$49b2o$49b2o2$4b2o
+%18bo26b$2o4b4o10b2o2b2ob3o21b$2o2b2ob3o10b2o4b4o21b$4bo19b2o!
+% (b) SOLUTION:
+%#N p144gun.rle
+%#O Chris Cain, 2016
+%#C http://conwaylife.com/wiki/Period-144_glider_gun
+%#C http://www.conwaylife.com/patterns/p144gun.rle
+%x = 35, y = 33, rule = B3/S23
+%$26b2o$25bo2bo$24bo2bo$24bo6bo$23bo2bo3bobo$24b3o3b2o2$24b3o3b2o$23bo
+%2bo3bobo$24bo6bo$24bo2bo$25bo2bo$26b2o$b2o$b2o$7bo$5b2o$6b2o$7bo$10b2o
+%$10bo$10bo2bo$11b2o4b2o$16bo2bo$19bo$18b2o$22bo$22b2o10bo$23b2o7bobo$
+%22bo10b2o$b2o24b2o$b2o24b2o!
+
+% Exercise: Alternate transmitter for G4 tranceiver. What is its advantage? Produces Herschel output as well. Make something neat with it? Guns with the flexible G4 transceiver of various periods?
+
+% Exercise involving stream crosser (important! Used/referenced in next chapter.):
+%x = 15, y = 17, rule = B3/S23
+%2$4bo$5b2o$4b2o3$11b2o$11b2o3$4b2o$5b2o$4bo!
+
+% L200 conduit with low repeat time (59). Use in exercise. Needed and referenced in chapter 8. Maybe "make a small p61 oscillator with this". Also "break down into conduits that convert to other objects" (H->B->R->B->H).
+% Adjust this in light of this conduit appearing in 1(d).
+%x = 46, y = 34, rule = B3/S23
+%34b2o$34b2o2$25b2obo$25bob2o$43b2o$43bo$41bobo$41b2o$29b2o$29bo$4b2o
+%24bo$5bo13b2o6b3o$5bobo11b2o6bo16bo$6b2o35bobo$44bo6$6bo$6bobo$6b3o31b
+%2o$8bo25b2o4bobo$34b2o5b2o2$38b2o$7b2o30bo$3bo3b2o6b2o3b2o14b3o$2bobo
+%11bo3bo15bo$bobo9b3o5b3o$bo11bo9bo$2o!
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:block_factory_is_tripler}
+	This exercise concerns the leftmost Herschel-to-block factory from Figure~\ref{fig:H_to_block}.\smallskip
+	
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item What happens if you send a second Herschel into this conduit without cleaning up the block that the first Herschel made?
+		
+		\item What happens if you then send a third Herschel into this conduit?
+		
+		\item Use a syringe and this conduit to turn a Gosper glider gun into a period~$90$ gun.
+	\end{enumerate}
+\end{problem}
+% SOLUTION: (a) it moves the block and produces a glider, (b) it destroys the extra block, returning it to its original state, so it's really a period tripler.
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:block_factory_block_gliders}
+	The block that is created by the center-left Herschel-to-block factory from Figure~\ref{fig:H_to_block} can be used to cleanly destroy (and be destroyed by) a glider coming from the northwest or from the southeast.
+	
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item How many adjacent lanes can a glider coming from the northwest be placed on so as to cleanly destroy the block?
+		
+		\item How many adjacent lanes can a glider coming from the southeast be placed on so as to cleanly destroy the block? Why is this answer different from that of part~(a)?
+	\end{enumerate}
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:highway_robber_repeat}
+	Calculate the repeat time of the highway robber from Figure~\ref{fig:highway_robber}.
+\end{problem}
+% SOLUTION: 951
+
+
+%% EXERCISE END COMMANDS
+\end{multicols}
+\normalsize\vspace*{0.01cm}
+%% DONE EXERCISE END COMMANDS

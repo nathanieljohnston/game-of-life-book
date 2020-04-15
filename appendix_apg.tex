@@ -1,0 +1,358 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   APPENDIX: APGSembly
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\chapterfolder}{universal_computation/}
+\chapter{Extra APGsembly Code}\label{chp:appendix_apg}
+
+In Section~\ref{sec:pi_calc}, we developed an algorithm and pseudocode for computing the decimal digits of $\pi = 3.14159\ldots$. We now present the full APGsembly code that implements that algorithm and pseudocode, and was used to compile the $\pi$~calculator that we saw in Figure~\ref{fig:pi_calc}. In particular, APGsembly~\ref{alg:apgsembly_pi1} and~\ref{alg:apgsembly_pi2} implements that pseudocode via sliding block (unary) registers \texttt{U0}, \texttt{U1}, $\ldots$, \texttt{U9} and binary registers \texttt{B0}, \texttt{B1}, \texttt{B2}, \texttt{B3} that store the following quantities (the $A_n$ and $B_n$ matrices and quantities $q_n$ and $r_n$ are as defined in Section~\ref{sec:pi_calc}):\medskip
+
+\begin{itemize}
+	\item[\texttt{U0}:] top-left corner of $A_n$ matrix
+	
+	\item[\texttt{U1}:] top-right and bottom-right corners of $A_n$ matrix
+	
+	\item[\texttt{U2}:] the current digit being computed
+	
+	\item[\texttt{U3}:] the index of the current digit being computed (\texttt{U3}${} = 0$ for ``3'', \texttt{U3}${} = 1$ for ``1'', \texttt{U3}${} = 2$ for ``4'', and so on)
+	
+	\item[\texttt{U4}:] the number of times that the iteration has run (\texttt{U3} increases by $1$ every time \texttt{U4} increases by $4$), typically denoted here by $n$
+	
+	\item[\texttt{U5}:] counter that forces the program to iterate 4 times before printing a digit
+
+	\item[\texttt{U6}:] number of bits of memory allocated for the binary registers (\texttt{U6}${} = 6$ to start, and add $n$ more bits after we run the iteration for the $n$-th time)
+	
+	\item[\texttt{U7}--\texttt{U9}:] temporary registers used to help perform arithmetic operations and miscellaneous loops\medskip
+	
+	\item[\texttt{B0}:] top-left corner of $B_n$ matrix
+	
+	\item[\texttt{B1}:] top-right corner of $B_n$ matrix ($= q_n$)
+	
+	\item[\texttt{B2}:] bottom-right corner of $B_n$ matrix ($= r_n$)
+	
+	\item[\texttt{B3}:] temporary register used to help perform arithmetic operations\medskip
+\end{itemize}
+
+Recall that lines listed with a substate (input value) \texttt{*} just do the same listed actions and jump operation regardless of whether they receive a \texttt{Z} or \texttt{NZ} input value.
+
+\begin{apgsembly}
+	\centering
+	\begin{minipage}[t]{.49\textwidth}
+		\begin{algorithmic}\tiny
+			\State \verb|#COMPONENTS NOP,DIGITPRINTER_SE,B0-3,U0-9,ADD,SUB,MUL|
+			\State \verb|#REGISTERS {"U1":1, "U6":6, "B0":2, "B2":1}|
+			\State \verb|# State    Input    Next state    Actions|
+			\State \verb|# ---------------------------------------|
+			\State \verb|INITIAL;   ZZ;      ITER1;        NOP|
+			\State \verb||
+			\State \verb|# Iterate 4 times per digit.|
+			\State \verb|ITER1;     ZZ;      ITER2;        INC U5, NOP|
+			\State \verb|ITER2;     ZZ;      ITER3;        INC U5, NOP|
+			\State \verb|ITER3;     ZZ;      ITER4;        INC U5, NOP|
+			\State \verb|ITER4;     ZZ;      ITER5;        INC U5, NOP|
+			\State \verb|ITER5;     ZZ;      ITER6;        TDEC U5|
+			\State \verb||
+			\State \verb|# Each iteration, set U0 = U0 + 1, U1 = U1 + 2.|
+			\State \verb|ITER6;     Z;       ITER11;       TDEC U3|
+			\State \verb|ITER6;     NZ;      ITER7;        INC U0, INC U1, NOP|
+			\State \verb|ITER7;     ZZ;      MULA1;        INC U1, NOP|
+			\State \verb||
+			\State \verb|## The MULA states set B3 = B1, B1 = U1 * B1.|
+			\State \verb|# Copy B1 into B3, without erasing B1.|
+			\State \verb|MULA1;     ZZ;      MULA2;        TDEC U6|
+			\State \verb|MULA2;     Z;       MULA3;        TDEC U9|
+			\State \verb|MULA2;     NZ;      MULA2;        TDEC U6, INC U9|
+			\State \verb|MULA3;     Z;       MULA4;        TDEC U7|
+			\State \verb|MULA3;     NZ;      MULA3;        TDEC U9, INC U6, INC U7|
+			\State \verb|MULA4;     Z;       MULA7;        TDEC B1|
+			\State \verb|MULA4;     NZ;      MULA5;        READ B1|
+			\State \verb|MULA5;     Z;       MULA6;        READ B3|
+			\State \verb|MULA5;     NZ;      MULA6;        SET B1, SET B3, NOP|
+			\State \verb|MULA6;     *;       MULA4;        INC B1, INC B3, TDEC U7|
+			\State \verb|MULA7;     Z;       MULA8;        TDEC B3|
+			\State \verb|MULA7;     NZ;      MULA7;        TDEC B1|
+			\State \verb|MULA8;     Z;       MULA9;        TDEC U1|
+			\State \verb|MULA8;     NZ;      MULA8;        TDEC B3|
+			\State \verb||
+			\State \verb|# Copy U1 to temporary register U8.|
+			\State \verb|MULA9;     Z;       MULA10;       TDEC U7|
+			\State \verb|MULA9;     NZ;      MULA9;        TDEC U1, INC U7|
+			\State \verb|MULA10;    Z;       MULA11;       TDEC U8|
+			\State \verb|MULA10;    NZ;      MULA10;       TDEC U7, INC U1, INC U8|
+			\State \verb||
+			\State \verb|# Set B1 = U1 * B3 and U8 = 0.|
+			\State \verb|MULA11;    *;       MULA12;       TDEC U8|
+			\State \verb|MULA12;    Z;       MULB1;        TDEC U6|
+			\State \verb|MULA12;    NZ;      MULA13;       TDEC U6|
+			\State \verb|MULA13;    Z;       MULA14;       TDEC U9|
+			\State \verb|MULA13;    NZ;      MULA13;       TDEC U6, INC U9|
+			\State \verb|MULA14;    Z;       MULA15;       TDEC U7|
+			\State \verb|MULA14;    NZ;      MULA14;       TDEC U9, INC U6, INC U7|
+			\State \verb|MULA15;    Z;       MULA19;       TDEC B3|
+			\State \verb|MULA15;    NZ;      MULA16;       READ B3|
+			\State \verb|MULA16;    Z;       MULA17;       READ B1|
+			\State \verb|MULA16;    NZ;      MULA17;       READ B1, SET B3, ADD A1|
+			\State \verb|MULA17;    Z;       MULA18;       ADD B0|
+			\State \verb|MULA17;    NZ;      MULA18;       ADD B1|
+			\State \verb|MULA18;    Z;       MULA15;       TDEC U7, INC B1, INC B3|
+			\State \verb|MULA18;    NZ;      MULA18;       SET B1, NOP|
+			\State \verb|MULA19;    Z;       MULA20;       TDEC B1|
+			\State \verb|MULA19;    NZ;      MULA19;       TDEC B3|
+			\State \verb|MULA20;    Z;       MULA12;       TDEC U8|
+			\State \verb|MULA20;    NZ;      MULA20;       TDEC B1|
+			\State \verb||
+			\State \verb|## The MULB states set B3 = B0, B0 = U0 * B0.|
+			\State \verb|# Copy B0 into B3, without erasing B0.|
+			\State \verb|MULB1;     Z;       MULB2;        TDEC U9|
+			\State \verb|MULB1;     NZ;      MULB1;        TDEC U6, INC U9|
+			\State \verb|MULB2;     Z;       MULB3;        TDEC U7|
+			\State \verb|MULB2;     NZ;      MULB2;        TDEC U9, INC U6, INC U7|
+			\State \verb|MULB3;     Z;       MULB6;        TDEC B0|
+			\State \verb|MULB3;     NZ;      MULB4;        READ B3|
+			\State \verb|MULB4;     *;       MULB5;        READ B0|
+			\State \verb|MULB5;     Z;       MULB3;        INC B0, INC B3, TDEC U7|
+			\State \verb|MULB5;     NZ;      MULB5;        SET B0, SET B3, NOP|
+			\State \verb|MULB6;     Z;       MULB7;        TDEC B3|
+			\State \verb|MULB6;     NZ;      MULB6;        TDEC B0|
+			\State \verb|MULB7;     Z;       MULB8;        TDEC U0|
+			\State \verb|MULB7;     NZ;      MULB7;        TDEC B3|
+			\State \verb||
+			\State \verb|# Copy U0 to temporary register U8.|
+			\State \verb|MULB8;     Z;       MULB9;        TDEC U7|
+			\State \verb|MULB8;     NZ;      MULB8;        TDEC U0, INC U7|
+			\State \verb|MULB9;     Z;       MULB10;       TDEC U8|
+			\State \verb|MULB9;     NZ;      MULB9;        TDEC U7, INC U0, INC U8|
+		\end{algorithmic}
+	\end{minipage}\hfill{\color{gray}\vline}\hfill
+	\begin{minipage}[t]{.49\textwidth}
+		\begin{algorithmic}\tiny
+			\State \verb|# Set B0 = U0 * B3 and U8 = 0.|
+			\State \verb|MULB10;    *;       MULB11;       TDEC U8|
+			\State \verb|MULB11;    Z;       MULC1;        TDEC U1|
+			\State \verb|MULB11;    NZ;      MULB12;       TDEC U6|
+			\State \verb|MULB12;    Z;       MULB13;       TDEC U9|
+			\State \verb|MULB12;    NZ;      MULB12;       TDEC U6, INC U9|
+			\State \verb|MULB13;    Z;       MULB14;       TDEC U7|
+			\State \verb|MULB13;    NZ;      MULB13;       TDEC U9, INC U6, INC U7|
+			\State \verb|MULB14;    Z;       MULB18;       TDEC B3|
+			\State \verb|MULB14;    NZ;      MULB15;       READ B3|
+			\State \verb|MULB15;    Z;       MULB16;       READ B0|
+			\State \verb|MULB15;    NZ;      MULB16;       READ B0, SET B3, ADD A1|
+			\State \verb|MULB16;    Z;       MULB17;       ADD B0|
+			\State \verb|MULB16;    NZ;      MULB17;       ADD B1|
+			\State \verb|MULB17;    Z;       MULB14;       TDEC U7, INC B0, INC B3|
+			\State \verb|MULB17;    NZ;      MULB17;       SET B0, NOP|
+			\State \verb|MULB18;    Z;       MULB19;       TDEC B0|
+			\State \verb|MULB18;    NZ;      MULB18;       TDEC B3|
+			\State \verb|MULB19;    Z;       MULB11;       TDEC U8|
+			\State \verb|MULB19;    NZ;      MULB19;       TDEC B0|
+			\State \verb||
+			\State \verb|## The MULC states set B1 = B1 + (U1 * B0).|
+			\State \verb|# Copy U1 to temporary register U8.|
+			\State \verb|MULC1;     Z;       MULC2;        TDEC U7|
+			\State \verb|MULC1;     NZ;      MULC1;        TDEC U1, INC U7|
+			\State \verb|MULC2;     Z;       MULC3;        TDEC U8|
+			\State \verb|MULC2;     NZ;      MULC2;        TDEC U7, INC U1, INC U8|
+			\State \verb||
+			\State \verb|# Set B1 = B1 + (U1 * B3) and U8 = 0.|
+			\State \verb|MULC3;     Z;       MULD1;        TDEC U6|
+			\State \verb|MULC3;     NZ;      MULC4;        TDEC U6|
+			\State \verb|MULC4;     Z;       MULC5;        TDEC U9|
+			\State \verb|MULC4;     NZ;      MULC4;        TDEC U6, INC U9|
+			\State \verb|MULC5;     Z;       MULC6;        TDEC U7|
+			\State \verb|MULC5;     NZ;      MULC5;        TDEC U9, INC U6, INC U7|
+			\State \verb|MULC6;     Z;       MULC10;       TDEC B3|
+			\State \verb|MULC6;     NZ;      MULC7;        READ B3|
+			\State \verb|MULC7;     Z;       MULC8;        READ B1|
+			\State \verb|MULC7;     NZ;      MULC8;        READ B1, SET B3, ADD A1|
+			\State \verb|MULC8;     Z;       MULC9;        ADD B0|
+			\State \verb|MULC8;     NZ;      MULC9;        ADD B1|
+			\State \verb|MULC9;     Z;       MULC6;        TDEC U7, INC B1, INC B3|
+			\State \verb|MULC9;     NZ;      MULC9;        SET B1, NOP|
+			\State \verb|MULC10;    Z;       MULC11;       TDEC B1|
+			\State \verb|MULC10;    NZ;      MULC10;       TDEC B3|
+			\State \verb|MULC11;    Z;       MULC3;        TDEC U8|
+			\State \verb|MULC11;    NZ;      MULC11;       TDEC B1|
+			\State \verb||
+			\State \verb|## The MULD states set B2 = U1 * B2.|
+			\State \verb|# Copy B2 into B3, without erasing B2.|
+			\State \verb|MULD1;     Z;       MULD2;        TDEC U9|
+			\State \verb|MULD1;     NZ;      MULD1;        TDEC U6, INC U9|
+			\State \verb|MULD2;     Z;       MULD3;        TDEC U7|
+			\State \verb|MULD2;     NZ;      MULD2;        TDEC U9, INC U6, INC U7|
+			\State \verb|MULD3;     Z;       MULD6;        TDEC B2|
+			\State \verb|MULD3;     NZ;      MULD4;        READ B3|
+			\State \verb|MULD4;     *;       MULD5;        READ B2|
+			\State \verb|MULD5;     Z;       MULD3;        INC B2, INC B3, TDEC U7|
+			\State \verb|MULD5;     NZ;      MULD5;        SET B2, SET B3, NOP|
+			\State \verb|MULD6;     Z;       MULD7;        TDEC B3|
+			\State \verb|MULD6;     NZ;      MULD6;        TDEC B2|
+			\State \verb|MULD7;     Z;       MULD8;        TDEC U1|
+			\State \verb|MULD7;     NZ;      MULD7;        TDEC B3|
+			\State \verb||
+			\State \verb|# Copy U1 to temporary register U8.|
+			\State \verb|MULD8;     Z;       MULD9;        TDEC U7|
+			\State \verb|MULD8;     NZ;      MULD8;        TDEC U1, INC U7|
+			\State \verb|MULD9;     Z;       MULD10;       TDEC U8|
+			\State \verb|MULD9;     NZ;      MULD9;        TDEC U7, INC U1, INC U8|
+			\State \verb||
+			\State \verb|# Set B2 = U1 * B3 and U8 = 0.|
+			\State \verb|MULD10;    *;       MULD11;       TDEC U8|
+			\State \verb|MULD11;    Z;       ITER8;        INC U4, NOP|
+			\State \verb|MULD11;    NZ;      MULD12;       TDEC U6|
+			\State \verb|MULD12;    Z;       MULD13;       TDEC U9|
+			\State \verb|MULD12;    NZ;      MULD12;       TDEC U6, INC U9|
+			\State \verb|MULD13;    Z;       MULD14;       TDEC U7|
+			\State \verb|MULD13;    NZ;      MULD13;       TDEC U9, INC U6, INC U7|
+			\State \verb|MULD14;    Z;       MULD18;       TDEC B3|
+			\State \verb|MULD14;    NZ;      MULD15;       READ B3|
+			\State \verb|MULD15;    Z;       MULD16;       READ B2|
+			\State \verb|MULD15;    NZ;      MULD16;       READ B2, SET B3, ADD A1|
+			\State \verb|MULD16;    Z;       MULD17;       ADD B0|
+			\State \verb|MULD16;    NZ;      MULD17;       ADD B1|
+			\State \verb|MULD17;    Z;       MULD14;       INC B2, INC B3, TDEC U7|
+			\State \verb|MULD17;    NZ;      MULD17;       SET B2, NOP|
+			\State \verb|MULD18;    Z;       MULD19;       TDEC B2|
+			\State \verb|MULD18;    NZ;      MULD18;       TDEC B3|
+			\State \verb|MULD19;    Z;       MULD11;       TDEC U8|
+			\State \verb|MULD19;    NZ;      MULD19;       TDEC B2|
+		\end{algorithmic}
+	\end{minipage}
+	\caption{Page 1 of APGsembly code for a $\pi$ calculator that implements Pseudocode~\ref{alg:pseudocode_pi_calc}.}\label{alg:apgsembly_pi1}
+\end{apgsembly}
+
+\begin{apgsembly}
+	\centering
+	\begin{minipage}[t]{.49\textwidth}
+		\begin{algorithmic}\tiny
+			\State \verb|# Increase the amount of memory that we are allocating to the|
+			\State \verb|# binary registers, by adding U4 to U6.|
+			\State \verb|ITER8;     ZZ;      ITER9;        TDEC U4|
+			\State \verb|ITER9;     Z;       ITER10;       TDEC U7|
+			\State \verb|ITER9;     NZ;      ITER9;        TDEC U4, INC U7|
+			\State \verb|ITER10;    Z;       ITER6;        TDEC U5|
+			\State \verb|ITER10;    NZ;      ITER10;       TDEC U7, INC U4, INC U6|
+			\State \verb||
+			\State \verb|## Extract the units digit from (10^U3) * B1 / B2, as that is|
+			\State \verb|## the digit of pi that we want to print.|
+			\State \verb|# Copy U3 to temporary register U8.|
+			\State \verb|ITER11;    Z;       ITER12;       TDEC U7|
+			\State \verb|ITER11;    NZ;      ITER11;       TDEC U3, INC U7|
+			\State \verb|ITER12;    Z;       ITER13;       TDEC U6|
+			\State \verb|ITER12;    NZ;      ITER12;       TDEC U7, INC U3, INC U8|
+			\State \verb||
+			\State \verb|# Copy B1 into B3, without erasing B1.|
+			\State \verb|ITER13;    Z;       ITER14;       TDEC U7|
+			\State \verb|ITER13;    NZ;      ITER13;       TDEC U6, INC U7|
+			\State \verb|ITER14;    Z;       ITER15;       TDEC U9|
+			\State \verb|ITER14;    NZ;      ITER14;       TDEC U7, INC U6, INC U9|
+			\State \verb|ITER15;    Z;       ITER18;       TDEC B3|
+			\State \verb|ITER15;    NZ;      ITER16;       READ B3|
+			\State \verb|ITER16;    *;       ITER17;       READ B1|
+			\State \verb|ITER17;    Z;       ITER15;       INC B1, INC B3, TDEC U9|
+			\State \verb|ITER17;    NZ;      ITER17;       SET B1, SET B3, NOP|
+			\State \verb|ITER18;    Z;       ITER19;       TDEC B1|
+			\State \verb|ITER18;    NZ;      ITER18;       TDEC B3|
+			\State \verb|ITER19;    Z;       CMP1;         TDEC U6|
+			\State \verb|ITER19;    NZ;      ITER19;       TDEC B1|
+			\State \verb||
+			\State \verb|# Now compare B2 with B3 to see which is bigger. This|
+			\State \verb|# determines which of the two upcoming code blocks to go to.|
+			\State \verb|CMP1;      Z;       CMP2;         TDEC U7|
+			\State \verb|CMP1;      NZ;      CMP1;         TDEC U6, INC U7|
+			\State \verb|CMP2;      Z;       CMP3;         TDEC U9|
+			\State \verb|CMP2;      NZ;      CMP2;         TDEC U7, INC U6, INC U9|
+			\State \verb|CMP3;      Z;       CMP4;         READ B3|
+			\State \verb|CMP3;      NZ;      CMP3;         TDEC U9, INC B2, INC B3|
+			\State \verb|CMP4;      Z;       CMP5;         READ B2|
+			\State \verb|CMP4;      NZ;      CMP8;         READ B2, SET B3|
+			\State \verb|CMP5;      Z;       CMP6;         TDEC B2|
+			\State \verb|CMP5;      NZ;      CMP9;         TDEC B3, SET B2|
+			\State \verb|CMP6;      *;       CMP7;         TDEC B3|
+			\State \verb|CMP7;      Z;       CMP12;        TDEC B2|
+			\State \verb|CMP7;      NZ;      CMP4;         READ B3|
+			\State \verb|CMP8;      Z;       CMP11;        TDEC B3|
+			\State \verb|CMP8;      NZ;      CMP6;         TDEC B2, SET B2|
+			\State \verb|CMP9;      Z;       CMP10;        TDEC B2|
+			\State \verb|CMP9;      NZ;      CMP9;         TDEC B3|
+			\State \verb|CMP10;     Z;       DIG1;         TDEC U8|
+			\State \verb|CMP10;     NZ;      CMP10;        TDEC B2|
+			\State \verb|CMP11;     Z;       CMP12;        TDEC B2|
+			\State \verb|CMP11;     NZ;      CMP11;        TDEC B3|
+			\State \verb|CMP12;     Z;       SUB1;         TDEC U6|
+			\State \verb|CMP12;     NZ;      CMP12;        TDEC B2|
+			\State \verb||
+			\State \verb|# If B2 <= B3 then subtract B2 from B3.|
+			\State \verb|# That is, start or carry on with the integer division B3 / B2.|
+			\State \verb|SUB1;      Z;       SUB2;         TDEC U7|
+			\State \verb|SUB1;      NZ;      SUB1;         TDEC U6, INC U7|
+			\State \verb|SUB2;      Z;       SUB3;         TDEC U9|
+			\State \verb|SUB2;      NZ;      SUB2;         TDEC U7, INC U6, INC U9|
+			\State \verb|SUB3;      Z;       SUB7;         TDEC B3|
+			\State \verb|SUB3;      NZ;      SUB4;         READ B3|
+			\State \verb|SUB4;      Z;       SUB5;         READ B2|
+			\State \verb|SUB4;      NZ;      SUB5;         READ B2, SUB A1|
+			\State \verb|SUB5;      Z;       SUB6;         SUB B0|
+			\State \verb|SUB5;      NZ;      SUB6;         SUB B1, SET B2|
+			\State \verb|SUB6;      Z;       SUB3;         INC B2, INC B3, TDEC U9|
+			\State \verb|SUB6;      NZ;      SUB6;         SET B3, NOP|
+			\State \verb|SUB7;      Z;       SUB8;         TDEC B2|
+			\State \verb|SUB7;      NZ;      SUB7;         TDEC B3|
+			\State \verb|SUB8;      Z;       CMP1;         TDEC U6, INC U2|
+			\State \verb|SUB8;      NZ;      SUB8;         TDEC B2|
+			\State \verb||
+			\State \verb|# If B2 > B3 we cannot subtract anymore.|
+			\State \verb|# Multiply B3 by 10 and reset U2, or jump ahead and print|
+			\State \verb|# the digit that we have now computed.|
+			\State \verb|DIG1;      Z;       OUT0;         TDEC U2|
+			\State \verb|DIG1;      NZ;      DIG2;         TDEC U2|
+			\State \verb|DIG2;      Z;       DIG3;         TDEC U6|
+			\State \verb|DIG2;      NZ;      DIG2;         TDEC U2|
+			\State \verb|DIG3;      Z;       DIG4;         TDEC U7|
+			\State \verb|DIG3;      NZ;      DIG3;         TDEC U6, INC U7|
+			\State \verb|DIG4;      Z;       DIG5;         TDEC U9|
+			\State \verb|DIG4;      NZ;      DIG4;         TDEC U7, INC U6, INC U9|
+			\State \verb|DIG5;      Z;       DIG8;         TDEC B3|
+			\State \verb|DIG5;      NZ;      DIG6;         READ B3|
+			\State \verb|DIG6;      Z;       DIG7;         MUL 0|
+			\State \verb|DIG6;      NZ;      DIG7;         MUL 1|
+			\State \verb|DIG7;      Z;       DIG5;         INC B3, TDEC U9|
+			\State \verb|DIG7;      NZ;      DIG7;         SET B3, NOP|
+			\State \verb|DIG8;      Z;       CMP1;         TDEC U6|
+			\State \verb|DIG8;      NZ;      DIG8;         TDEC B3|
+		\end{algorithmic}
+	\end{minipage}\hfill{\color{gray}\vline}\hfill
+	\begin{minipage}[t]{.49\textwidth}
+		\begin{algorithmic}\tiny
+			\State \verb|# Print the current digit, which is stored in U2.|
+			\State \verb|OUT0;      Z;       OUTD1;        NOP, OUTPUT 0|
+			\State \verb|OUT0;      NZ;      OUT1;         TDEC U2|
+			\State \verb|OUT1;      Z;       OUTD1;        NOP, OUTPUT 1|
+			\State \verb|OUT1;      NZ;      OUT2;         TDEC U2|
+			\State \verb|OUT2;      Z;       OUTD1;        NOP, OUTPUT 2|
+			\State \verb|OUT2;      NZ;      OUT3;         TDEC U2|
+			\State \verb|OUT3;      Z;       OUTD1;        NOP, OUTPUT 3|
+			\State \verb|OUT3;      NZ;      OUT4;         TDEC U2|
+			\State \verb|OUT4;      Z;       OUTD1;        NOP, OUTPUT 4|
+			\State \verb|OUT4;      NZ;      OUT5;         TDEC U2|
+			\State \verb|OUT5;      Z;       OUTD1;        NOP, OUTPUT 5|
+			\State \verb|OUT5;      NZ;      OUT6;         TDEC U2|
+			\State \verb|OUT6;      Z;       OUTD1;        NOP, OUTPUT 6|
+			\State \verb|OUT6;      NZ;      OUT7;         TDEC U2|
+			\State \verb|OUT7;      Z;       OUTD1;        NOP, OUTPUT 7|
+			\State \verb|OUT7;      NZ;      OUT8;         TDEC U2|
+			\State \verb|OUT8;      Z;       OUTD1;        NOP, OUTPUT 8|
+			\State \verb|OUT8;      NZ;      OUTD1;        NOP, OUTPUT 9|
+			\State \verb||
+			\State \verb|# Check whether or not we just printed the very first digit (3).|
+			\State \verb|# If so, print a decimal point. Either way, increase U3, which|
+			\State \verb|# counts which decimal place we are currently at, and loop back|
+			\State \verb|# to start the next digit calculation.|
+			\State \verb|OUTD1;     ZZ;      OUTD2;        TDEC U3|
+			\State \verb|OUTD2;     Z;       ITER1;        INC U3, NOP, OUTPUT .|
+			\State \verb|OUTD2;     NZ;      OUTD3;        INC U3, NOP|
+			\State \verb|OUTD3;     ZZ;      ITER1;        INC U3, NOP|
+		\end{algorithmic}
+	\end{minipage}
+	\caption{Page 2 of APGsembly code for a $\pi$ calculator that implements Pseudocode~\ref{alg:pseudocode_pi_calc}.}\label{alg:apgsembly_pi2}
+\end{apgsembly}

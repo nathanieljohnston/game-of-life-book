@@ -1,0 +1,43 @@
+\chapter{Mathematical Miscellany}\label{app:math}
+
+In this appendix, we present some of the miscellaneous bits of mathematical knowledge that we needed to discuss certain concepts or to prove certain theorems. While none of these topics are particularly deep, they are often taught at scattered places throughout one's math education (or not taught at all), so we summarize them here for ease of reference.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   SECTION: MODULAR ARITHMETIC
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Modular Arithmetic}\label{sec:modular_arithmetic}
+
+To be filled in later. Maybe not actually needed?
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   SECTION: GREATEST COMMON DIVISOR
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Greatest Common Divisor and Least Common Multiple}\label{sec:gcd}
+
+The \emph{greatest common divisor} (or \emph{GCD} for short) of two non-zero integers $a$ and $b$ is the largest positive integer that evenly divides both $a$ and $b$. We often denote the GCD of $a$ and $b$ by $\mathrm{gcd}(a,b)$. For example, $\mathrm{gcd}(6,15) = 3$. Our primary interest in the GCD comes from the fact that it tells us exactly which equations of the form $ax + by = c$ (where $a,b,c$ are given integers, and $x,y$ are variables we are trying to solve for) have integer solutions.\footnote{An equation of this form is called a \emph{linear Diophantine equation}.} In particular, the following theorem answers this question:
+
+\begin{theorem}[B\'ezout's identity]\label{thm:linear_diophantine}
+	Let $a, b,$ and $c$ be non-zero integers. Then the equation $ax + by = c$ has a solution where both $x$ and $y$ are integers if and only if $c$ is a multiple of $\mathrm{gcd}(a,b)$. Furthermore, if $a$ and $b$ have opposite signs then $x$ and $y$ can be chosen to both be positive.
+\end{theorem}
+
+\begin{proof}
+	To prove the ``only if'' direction of the theorem, we note that $\mathrm{gcd}(a,b)$ evenly divides each of $a$ and $b$, so for all integers $x,y$ it evenly divides $ax + by$ as well, so $c$ must be a multiple of $\mathrm{gcd}(a,b)$.
+	
+	To prove the ``if'' direction of the theorem, we suppose that $c$ is a multiple of $\mathrm{gcd}(a,b)$, and we will show that there exist integers $x,y$ such that $ax+by = c$. To this end, let $x^\prime$ and $y^\prime$ be integers that make $ax^\prime + by^\prime$ as small (but positive) as possible. For convenience, define $s := ax^\prime + by^\prime$. When dividing $a$ by $s$, the remainder $r$ is also of the form $r = ax + by$ since it is obtained by subtracting a multiple of $s = ax^\prime + by^\prime$ from $a$. Since the $0 \leq r < s$, and $s$ is the smallest positive number of this form, the only possibility is that $r = 0$. In other words, $s$ evenly divides $a$ (and a similar argument shows that $s$ evenly divides $b$).
+	
+	It follows that $c/s$ is an integer (since $c$ is a multiple of $\mathrm{gcd}(a,b)$, which is a multiple of $s$), so $x = x^\prime(c/s)$, $y = y^\prime(c/s)$ is a pair of integers satisfying $ax + by = (ax^\prime + by^\prime)(c/s) = s(c/s) = c$, as desired.
+	
+	To prove the final claim that $x$ and $y$ can be chosen to be positive when $a$ and $b$ have opposite signs, note that if $x$ and $y$ are integers such that $ax + by = c$ then for any integer $k$ it is also the case that $a(x + k(b/\mathrm{gcd}(a,b))) + b(y - k(a/\mathrm{gcd}(a,b))) = c$. By taking $k$ large enough and positive (if $a < 0$ and $b > 0$) or large enough and negative (if $a > 0$ and $b < 0$), this gives us a positive solution to the equation.
+\end{proof}
+
+The \emph{least common multiple} (or \emph{LCM} for short) of two positive integers $a$ and $b$ is the smallest integer that is a multiple of both $a$ and $b$. We often denote the LCM of $a$ and $b$ by $\mathrm{lcm}(a,b)$. For example, $\mathrm{lcm}(6,15) = 30$. It is straightforward to verify that $\mathrm{lcm}(a,b) = ab/\mathrm{gcd}(a,b)$ for all $a,b$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   SECTION: BIG-O NOTATION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Big-O Notation}\label{sec:bigO}
+
+Stuff.

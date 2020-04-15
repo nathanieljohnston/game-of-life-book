@@ -1,0 +1,1732 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   CHAPTER: SPACESHIPS AND MOVING OBJECTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\chapterfolder}{spaceships/}
+\chapterimage{cover/spaceships}
+\chapter{Spaceships and Moving Objects}\label{chp:spaceships}
+
+
+\vspace*{-0.4in}
+\epigraph{Life is like riding a bicycle; to keep your balance, you must keep moving.}{Albert Einstein}
+\vspace*{0.4in}
+
+
+\noindent We now shift our focus from stationary objects, like still lifes and oscillators, to moving objects, like spaceships\index{spaceship} and puffers. Recall that a spaceship is a pattern that returns to its initial phase after $2$ or more generations, but at a different location from where it started. Just as was the case for oscillators, the \emph{period}\index{period} of a spaceship is the smallest number of generations needed for it to return to its initial phase.
+
+We can also talk about the \emph{speed}\index{speed} of moving objects: the number of cells that they move on average per generation. Since no object in the Life plane could possibly move at a speed of greater than $1$ cell (in the Moore neighborhood sense) per generation, this speed is typically referred to as the \emph{speed of light}\index{speed of light} and is denoted by $c$, while other speeds are represented as fractions of $c$. For example, since the glider moves diagonally by $1$ cell every $4$ generations, on average it moves $1/4$ cell per generation, so it has a speed of $c/4$. Similarly, the light/middle/heavyweight spaceships move $2$ cells every $4$ generations, and thus have a speed of $2c/4 = c/2$ (see Figure~\ref{fig:basic_spaceships}).
+
+\begin{figure}[!htb]
+	\centering
+	\patternimglink{0.1}{basic_spaceships}
+	\caption{The four basic spaceships in Conway's Game of Life. From left to right, these are the glider (which moves diagonally at a speed of $c/4$) and the light/middle/heavyweight spaceships (which each move orthogonally\protect\footnotemark \ at a speed of $c/2$).}\label{fig:basic_spaceships}
+\end{figure}
+
+\footnotetext{The term \emph{orthogonal} means straight left--right or up--down, as opposed to diagonal.}Although some of the first objects that we ever encountered in Life were spaceships, constructing new ones is actually quite a difficult problem, and a far smaller variety of spaceships is known than of still lifes or oscillators. In fact, finding new spaceships is so difficult that the four ``basic'' types of spaceships, together with some of their tagalongs (which we will introduce shortly), were the only known spaceships for the first 19 years of Life's history.\footnote{Dean Hickerson found the first known truly new spaceships via computer search in 1989.} Due to the difficulty of constructing new spaceships, instead of focusing on methods of construction, much of this chapter will focus on investigating what we can \emph{do} with the spaceships that we already have.
+
+
+
+\section{The Glider}\label{sec:glider}
+
+The glider is the single most useful spaceship that exists,\footnote{And arguably the single most useful \emph{pattern} that exists.} since its small size and frequent appearance from random soups make it easy to generate and manipulate. We have already seen numerous methods of generating gliders: the Gosper glider gun\index{Gosper glider gun} of Section~\ref{sec:queen_bee}, the twin bees gun\index{twin bees gun} of Section~\ref{sec:twin_bees}, and the glider-producing switch engine of Section~\ref{sec:switch_engine}. We will not present any additional methods of constructing gliders here, but we will see some as we progress through the book, including some moving sources of gliders in Section~\ref{sec:rakes}, and glider guns of any period of our choosing in Chapter~\ref{chp:guns}.
+
+We have also seen that we can delete gliders (Section~\ref{sec:eaters}) and that we can reflect gliders (Section~\ref{sec:glider_loops}). When we start manipulating gliders via these types of patterns, it will be important for us to be able to talk about the relative timings and positions of different gliders, so we now introduce some terminology that lets use do so.
+
+
+\subsection{Color of a Glider}\label{sec:glider_color}\index{glider!color}
+
+When reflecting a glider\index{reflector}, it is important to be aware of the glider's \emph{color},\footnote{The term \emph{parity} is sometimes used instead of color.} which is a property of a glider that stays constant as it moves, but can change when it hits a reflector. Specifically, imagine that the Life grid is colored with two colors like a checkerboard, with adjacent cells (in the von Neumann neighborhood sense) always having different colors. The color of a glider is the color of its leading cell when it is in the phase that can be rotated to look like the glider in Figure~\ref{fig:glider_color_1}.
+
+It is worth emphasizing two potential points of confusion regarding glider color:\medskip
+
+\begin{itemize}
+	\item The color of a glider's leading cell in its phases \emph{other} than the one from Figure~\ref{fig:glider_color_1} is irrelevant. For example, all of the gliders in Figure~\ref{fig:glider_color} have the same color as each other, since after evolving them into the correct phase, their leading cell is on a white cell of the checkerboard pattern.\smallskip
+	
+	\item We typically consider the color of a glider as a relative property, not an absolute one. That is, we talk about two gliders having the same or different color, but it is not often useful to talk about a single glider having a certain color.\medskip
+\end{itemize}
+
+\begin{figure}[!htb]
+	\centering
+	\begin{minipage}[b]{.3\textwidth}
+		\centering\vcenteredhbox{	\centering\vcenteredhbox{\begin{tikzpicture}[scale=1.5, every node/.style={transform shape}]%
+				\node[inner sep=0pt,anchor=south west] at (0,0) {\patternimg{0.1}{glider_color_1}};
+				\draw[white,line width=3pt,opacity=0.6](0.61,0.275) circle (0.165);
+				\draw[redback2,line width=1.25pt](0.61,0.275) circle (0.165);
+				\end{tikzpicture}}}
+		\caption{This glider's color is white since its leading cell (circled in \bgbox{redback}{red}) is located at one of the white cells on the checkerboard pattern.}\label{fig:glider_color_1}
+	\end{minipage} \hfill %
+	\begin{minipage}[b]{.66\textwidth}
+		\centering
+		\patternimglink{0.1}{glider_color}
+		\caption{A collection of $16$ gliders that all have the same color as each other. If any of these gliders were moved to the left, right, up, or down by $1$ cell then their color would change.}\label{fig:glider_color}
+	\end{minipage}
+\end{figure}
+
+To illustrate why a glider's color is important, consider the task of reflecting a glider as in Figure~\ref{fig:reflect_glider_change}. We might first try to use the Snark\index{Snark} to perform the reflection, but we quickly find that no matter how we place the Snark in the path of the input glider, the output glider never quite ends up where we want it. The reason for this is that the desired input and output gliders have opposite colors, but the Snark always produces an output glider that has the same color as its input. For this reason, the Snark is called a \emph{color-preserving}\index{color-preserving} reflector, and we instead need a \emph{color-changing}\index{color-changing} reflector to get the output glider to travel through the desired location. One color-changing glider reflector that we have already seen is the twin bees shuttle (recall from Figure~\ref{fig:twin_bees_shuttle_spark} how it can be used as a reflector), which can reflect the glider in the desired manner as in Figure~\ref{fig:reflect_glider_change_bees}.
+
+\begin{figure}[!htb]
+	\centering
+	\begin{minipage}[b]{.41\textwidth}
+		\centering
+		\patternimglink{0.12}{reflect_glider_change}
+		\caption{A path along which we would like to reflect a glider. Notice that the reflected glider has the opposite color of the original glider.}\label{fig:reflect_glider_change}
+	\end{minipage} \hfill %
+	\begin{minipage}[b]{.55\textwidth}
+		\centering
+		\patternimglink{0.09}{reflect_glider_change_bees}
+		\caption{Twin bees shuttle is a color-changing reflector that can be used to reflect the glider in the desired way.}\label{fig:reflect_glider_change_bees}
+	\end{minipage}
+\end{figure}
+
+Keeping track of a glider's color also helps us keep track of which types of glider loops are and are not possible. For example, it is not possible to construct a glider loop that uses 3~Snarks and a single twin bees shuttle, since the twin bees shuttle will change the glider's color, but it won't be changed back before hitting the twin bees shuttle again, and thus can't possibly return back to where it started. In general, every glider loop must make use of an even number of color-changing reflectors.
+
+
+\subsection{Glider Lanes and Timing}\label{sec:glider_lanes}
+
+Sometimes it is useful to compare not just the color of two gliders, but also the exact amount by which their positions differ. More specifically, we would like to be able to discuss how far gliders are in front of other gliders (even if they are somewhat offset to the side of each other), and we would also like a way of discussing how far to the side of each other they are. We can only really make these comparisons if the gliders are traveling in the same direction, so all gliders that we consider throughout this section are (arbitrarily) chosen to travel from the top-left to the bottom-right.
+
+First, we partition the Life plane into diagonal lines of cells with slope $-1$, which we call \emph{lanes}\index{glider!lane}. We choose one of these lanes to be ``lane $0$'' and then number the lanes so that they increase from left to right. Then we say that the lane of a glider is the lane occupied by the glider's leading cell when it is in the phase displayed in Figure~\ref{fig:glider_lanes}, much like we defined the color of a glider in terms of the location of this phase's leading cell.\footnote{In fact, a glider's color can just be thought of as its lane modulo $2$.} For brevity, we sometimes refer to a single lane separation as a \emph{half diagonal}\index{half diagonal}\index{hd|see {half diagonal}} (or \emph{hd} for short) and a two-lane separation as a \emph{full diagonal}\index{full diagonal}\index{fd|see {full diagonal}} (or \emph{fd} for short). For example, if two gliders are separated by $4$ lanes then we might say that their spacing is ``4hd'' or ``2fd''.
+
+\begin{figure}[!htb]
+	\centering
+	\gridbox{0.75pt}{\begin{tikzpicture}[scale=0.55, every node/.style={transform shape}]%
+		\node[inner sep=0pt,anchor=south west] (glider_loop) at (0.5,0.5) {\patternimgwidth{9cm}{glider_slope_chart}};
+		
+		\letternode{1}{1}{$\cdot$}
+		
+		\letternode{1}{2}{$\cdot$}
+		\letternode{2}{1}{$\cdot$}
+		
+		\letternode{1}{3}{-5}
+		\letternode{2}{2}{-5}
+		\letternode{3}{1}{-5}
+		
+		\letternode{1}{4}{-4}
+		\letternode{2}{3}{-4}
+		\letternode{3}{2}{-4}
+		\letternode{4}{1}{-4}
+		
+		\letternode{1}{5}{-3}
+		\letternode{2}{4}{-3}
+		\letternode{3}{3}{-3}
+		\letternode{4}{2}{-3}
+		\letternode{5}{1}{-3}
+		
+		\letternode{1}{6}{-2}
+		\letternode{2}{5}{-2}
+		\letternode{3}{4}{-2}
+		%\letternode{4}{3}{-2}
+		\letternode{5}{2}{-2}
+		\letternode{6}{1}{-2}
+		
+		\letternode{1}{7}{-1}
+		\letternode{2}{6}{-1}
+		\letternode{3}{5}{-1}
+		\letternode{4}{4}{-1}
+		%\letternode{5}{3}{-1}
+		\letternode{6}{2}{-1}
+		\letternode{7}{1}{-1}
+		
+		\letternode{2}{7}{0}
+		\letternode{3}{6}{0}
+		\letternode{4}{5}{0}
+		\letternode{5}{4}{0}
+		%\letternode{6}{3}{0}
+		\letternode{7}{2}{0}
+		\letternode{8}{1}{0}
+		
+		\letternode{3}{7}{1}
+		\letternode{4}{6}{1}
+		%\letternode{5}{5}{1}
+		%\letternode{6}{4}{1}
+		\letternode{7}{3}{1}
+		\letternode{8}{2}{1}
+		\letternode{9}{1}{1}
+		
+		\letternode{4}{7}{2}
+		\letternode{5}{6}{2}
+		\letternode{6}{5}{2}
+		\letternode{7}{4}{2}
+		\letternode{8}{3}{2}
+		\letternode{9}{2}{2}
+		
+		\letternode{5}{7}{3}
+		\letternode{6}{6}{3}
+		\letternode{7}{5}{3}
+		\letternode{8}{4}{3}
+		\letternode{9}{3}{3}
+		
+		\letternode{6}{7}{4}
+		\letternode{7}{6}{4}
+		\letternode{8}{5}{4}
+		\letternode{9}{4}{4}
+		
+		\letternode{7}{7}{5}
+		\letternode{8}{6}{5}
+		\letternode{9}{5}{5}
+		
+		\letternode{8}{7}{$\cdot$}
+		\letternode{9}{6}{$\cdot$}
+		
+		\letternode{9}{7}{$\cdot$}
+		\end{tikzpicture}}
+	\caption{A glider that is in lane~$0$, which is highlighted in light grey. The numbers on the grid indicate the lane number of each cell in the plane, and the lane of every glider in the plane is determined by the location of its leading cell when it is in the phase displayed here.}\label{fig:glider_lanes}
+\end{figure}
+
+Comparing the \emph{timing}\index{glider!timing} of gliders is straightforward if they are in the same lane: we choose some glider in that lane to have timing $0$ when it is in the phase depicted in Figure~\ref{fig:glider_lanes}, and we say that the timing of any other glider in that lane is the number of generations needed to move the glider with timing~$0$ to its position. To extend this definition so that we can compare the timing of gliders in different lanes, we then say that gliders of the same color have the same timing as each other if they are on the same diagonal line of slope~$1$,\footnote{That is, the same diagonal that goes from bottom-left to top-right.} and we say that a glider of the opposite color has timing $2$ generations higher than a glider that is one cell to its left. These timing rules are illustrated in Figure~\ref{fig:glider_timings}.
+
+\begin{figure}[!htb]
+	\centering
+	\gridbox{0.75pt}{\begin{tikzpicture}[scale=0.55, every node/.style={transform shape}]%
+		\node[inner sep=0pt,anchor=south west] (glider_loop) at (0.5,0.5) {\patternimgwidth{8cm}{glider_slope_chart_b}};
+		
+		\letternode{1}{6}{$\cdot$}
+		\letternode{2}{6}{$\cdot$}
+		\letternode{1}{5}{$\cdot$}
+		
+		\letternode{3}{6}{-8}
+		\letternode{2}{5}{-8}
+		\letternode{1}{4}{-8}
+		
+		\letternode{5}{6}{-4}
+		\letternode{4}{6}{-6}
+		\letternode{4}{5}{-4}
+		%\letternode{3}{5}{-6}
+		\letternode{3}{4}{-4}
+		\letternode{2}{4}{-6}
+		%\letternode{2}{3}{-4}
+		\letternode{1}{3}{-6}
+		\letternode{1}{2}{-4}
+		
+		\letternode{7}{6}{0}
+		\letternode{6}{6}{-2}
+		\letternode{6}{5}{0}
+		\letternode{5}{5}{-2}
+		\letternode{5}{4}{0}
+		%\letternode{4}{4}{-2}
+		%\letternode{4}{3}{0}
+		%\letternode{3}{3}{-2}
+		\letternode{3}{2}{0}
+		\letternode{2}{2}{-2}
+		\letternode{2}{1}{0}
+		\letternode{1}{1}{-2}
+		
+		\letternode{8}{6}{2}
+		\letternode{8}{5}{4}
+		\letternode{7}{5}{2}
+		\letternode{7}{4}{4}
+		\letternode{6}{4}{2}
+		\letternode{6}{3}{4}
+		\letternode{5}{3}{2}
+		\letternode{5}{2}{4}
+		\letternode{4}{2}{2}
+		\letternode{4}{1}{4}
+		\letternode{3}{1}{2}
+		
+		\letternode{8}{4}{6}
+		\letternode{8}{3}{8}
+		\letternode{7}{3}{6}
+		\letternode{7}{2}{8}
+		\letternode{6}{2}{6}
+		\letternode{6}{1}{8}
+		\letternode{5}{1}{6}
+		
+		\letternode{8}{2}{$\cdot$}
+		\letternode{8}{1}{$\cdot$}
+		\letternode{7}{1}{$\cdot$}
+		
+		\end{tikzpicture}}
+	\caption{A glider that has timing~$0$, with the diagonal line of light grey cells indicating the other locations of leading cells that are considered to have timing~$0$. The numbers on the grid indicate the timing of a glider when its leading cell is in that location.}\label{fig:glider_timings}
+\end{figure}
+
+Just as with glider color, we are typically not interested in the absolute lane number or absolute timing of a single glider, but rather we talk about the number of lanes between two gliders and the number of generations by which their timing differs.
+
+
+\subsection{Tagalongs}\label{sec:glider_tagalongs}
+
+Some spaceships, especially ones that emit accessible sparks, are capable of carrying other objects along with them as they move. Such objects are called \emph{tagalongs}\index{tagalong}, and we now look at some examples of objects that can tag along with the glider. Although the glider does not really have any sparks, its rearmost cell is nonetheless far enough away from the body of the glider that it can carry some tagalongs with it, as demonstrated in Figure~\ref{fig:glider_tagalongs}. Notice that these tagalongs do not actually touch the glider in any of these examples---rather, the back end of the glider only serves to overpopulate the front end of the tagalong.
+
+\begin{figure}[!htb]
+	\centering
+	\begin{tabular}{@{}cccc@{}}
+		\begin{subfigure}{.29\textwidth}
+			\centering
+			\patternimglink{0.116551724138}{b29}
+			\caption{\emph{B29}\index{B29}}
+			\label{fig:b29}
+		\end{subfigure} &
+		\begin{subfigure}{.22\textwidth}
+			\centering
+			\patternimglink{0.1}{canada_goose}
+			\caption{\emph{Canada goose}\index{Canada goose}}
+			\label{fig:canada_goose}
+		\end{subfigure} &
+		\begin{subfigure}{.21\textwidth}
+			\centering
+			\patternimglink{0.1}{crab}
+			\caption{\emph{Crab}\index{crab}}
+			\label{fig:crab}
+		\end{subfigure} &
+		\begin{subfigure}{.2\textwidth}
+			\centering
+			\patternimglink{0.093370165745}{orion_2}
+			\caption{\emph{Orion 2}\index{Orion 2}}
+			\label{fig:orion_2}
+		\end{subfigure}
+	\end{tabular}
+	\caption{Some tagalongs (highlighted in \bgbox{greenback}{green}) that can trail behind a glider. They were found by (a)~Hartmut Holzwart in 2004, and Jason Summers in (c) 2000, and (b,d) 1999.\protect\footnotemark}
+	\label{fig:glider_tagalongs}
+\end{figure}
+
+\footnotetext{The name ``Orion 2'' is a reference to a similar, but larger, spaceship called \emph{Orion}\index{Orion} that was found by Hartmut Holzwart in 1993.}One useful feature of tagalongs is that they often themselves emit sparks as well, so we can sometimes chain them together or use them to produce reactions that are impossible with the original spaceship itself. For example, the B29 tagalong emits both a dot spark and a domino spark (displayed at the top center in Figure~\ref{fig:b29}), which other tagalongs can latch onto, as in Figure~\ref{fig:b29_tagalong}. Furthermore, \emph{this} new tagalong also emits a dot spark, which allows it to pull additional tagalongs, and in this way we develop a sort of grammar for $c/4$ diagonal spaceships: there are dozens of different $c/4$ diagonal tagalongs known, and we can construct a wide variety of $c/4$ diagonal spaceships by attaching these tagalongs to each other in different ways.
+
+Similarly, the crab emits a dot spark (seen at its back left in Figure~\ref{fig:crab}) that can be used to turn a tub\index{tub} into a barge\index{barge}, and then a long barge\index{long barge}, and then a long long barge, and so on, as illustrated in Figure~\ref{fig:tubstretcher}. A pattern with this property is called a \emph{tubstretcher}\index{tubstretcher}, or more generally a \emph{wickstretcher}\index{wickstretcher} if we do not care about which particular object is stretched.
+
+\begin{figure}[!htb]
+	\centering
+	\begin{minipage}[b]{.37\textwidth}
+		\centering
+		\patternimglink{0.082614107883}{b29_tagalong}
+		\caption{The B29 can pull a tagalong (highlighted in \bgbox{orangeback}{orange}) that was found by Nicolay Beluchenko in 2005.}\label{fig:b29_tagalong}
+	\end{minipage} \hfill %
+	\begin{minipage}[b]{.59\textwidth}
+		\centering
+		\embedlink{tubstretcher}{\vcenteredhbox{\patternimg{0.11}{tubstretcher_0}} \vcenteredhbox{\genarrow{4}} \vcenteredhbox{\patternimg{0.11}{tubstretcher_4}}}
+		\caption{A pattern based on the crab called a \emph{tubstretcher} that lengthens a tub (highlighted in \bgbox{orangeback}{orange}) by $2$ cells every $4$ generations.}\label{fig:tubstretcher}
+	\end{minipage}
+\end{figure}
+
+While we have seen infinitely-growing patterns before (such as the Gosper glider gun\index{Gosper glider gun} in Section~\ref{sec:queen_bee} and some switch engine\index{switch engine} puffers in Section~\ref{sec:switch_engine}), it is worth observing that all infinitely-growing patterns that we saw previously worked by creating many disconnected small objects, whereas this one is quite different in that it creates a single arbitrarily-large object.
+
+
+
+\section{The Light, Middle, and Heavyweight Spaceships}\label{sec:lwss_mwss_hwss}
+
+Although the glider is the easiest spaceship to create and manipulate, the light, middle, and heavyweight spaceships are often better at manipulating other objects. The reason that they can interact with so many other patterns in such a wide variety of ways is that they emit such accessible sparks so frequently. Every second generation, the LWSS emits a dot spark and a thumb spark\index{dot spark}\index{thumb spark}, the MWSS emits two dot sparks and a thumb spark, and the HWSS emits a dot spark, a domino spark\index{domino spark}, and a thumb spark (see Figure~\ref{fig:lwss_mwss_hwssb}).
+
+\begin{figure}[!htb]
+	\centering \patternimglink{0.1}{lwss_mwss_hwss}
+	\caption{The light, middle, and heavyweight spaceship each give off several sparks (depicted in \bgbox{orangeback}{orange}) that are extremely useful.}\label{fig:lwss_mwss_hwssb}
+\end{figure}
+
+One useful feature of these sparks is their ability to destroy other nearby objects, as demonstrated in Figure~\ref{fig:orthogonal_destroy}. The most common use of these reactions is to adjust the debris left behind by puffers. For example, suppose that we had a $c/2$ orthogonal puffer that left behind a combination of blocks, blinkers, and gliders as it moved. By carefully positioning some middleweight spaceships behind this puffer, we could eliminate the unwanted debris (typically the blocks and blinkers), leaving only the desired output (typically the gliders).
+
+\begin{figure}[!htb]
+	\centering \patternimglink{0.1}{orthogonal_destroy}
+	\caption{Light, middle, and heavyweight spaceships about to destroy some common small objects.}\label{fig:orthogonal_destroy}
+\end{figure}
+
+On the other hand, it is also often useful to have other objects destroy these spaceships. We already saw how an eater~1\index{eater 1} can destroy an LWSS or MWSS in Figure~\ref{fig:eater_1_multi}, and an eater~2\index{eater 2} can destroy an LWSS or MWSS as in Exercise~\ref{exer:eater_2_lwss_mwss}. Destroying an HWSS is slightly trickier, but three eaters that work are presented in Figure~\ref{fig:hwss_eat}. The first of these eaters has the downside of being rather large, whereas the second eater has a very high recovery time; the pond and block are completely destroyed by the HWSS, leaving behind a beehive and a glider which then collide, miraculously reconstructing the block and pond exactly in their original positions.\footnote{This reaction in which a glider turns a beehive into a pond and block is called a \emph{honeybit}.}\index{honeybit} The third eater is small and has a fast recovery time, but at the expense of having period~$2$ and thus only being able to destroy streams of heavyweight spaceships with even period.\footnote{The large stable HWSS eater was found by Dean Hickerson in 1999 (with a slight size improvement by Karel Suhajda in 2003), and the eater comprised of a pond and a block was found by Brice Due in 2007. The killer toads have been known since the very early days of Life.}
+
+\begin{figure}[!htb]
+	\centering \patternimglink{0.08}{hwss_eat1} \qquad \patternimglink{0.123308270677}{hwss_eat2} \qquad \patternimglink{0.123308270677}{killer_toads}
+	\caption{Three methods of eating a heavyweight spaceship. The arrangement of two toads\index{toad} on the right is called \emph{killer toads}\index{killer toads}, and it can also eat many other objects, such as an MWSS in the same position.}\label{fig:hwss_eat}
+\end{figure}
+% There is an LWSS eater made up of 2 blocks (ss-eaters.rle in Golly)
+
+
+\subsection{Flotillas and Tagalongs}\label{sec:flotillas}\index{tagalong}
+
+Just like we could attach various tagalongs to the back of a glider, we can also use tagalongs to extend the light, middle, and heavyweight spaceships. Some of these tagalongs are presented in Figure~\ref{fig:lwss_tagalongs}. The \emph{hivenudger} of Figure~\ref{fig:hivenudger} (whose name comes from the fact that it pushes a pre-beehive\index{pre-beehive}) is somewhat versatile in that any of the lightweight spaceships at its corners can be replaced by a middleweight or heavyweight spaceship (see Exercise~\ref{exer:hivenudger_modify}).
+
+\begin{figure}[!htb]
+	\centering
+	\begin{tabular}{@{}cccc@{}}
+		\begin{subfigure}{.21\textwidth}
+			\centering
+			\patternimglink{0.112455621302}{sidecar}
+			\caption{\emph{Sidecar}\index{sidecar}}
+			\label{fig:sidecar}
+		\end{subfigure} &
+		\begin{subfigure}{.22\textwidth}
+			\centering
+			\patternimglink{0.105}{hwss_x66}
+			\caption{HWSS tagalong}
+			\label{fig:hwss_x66}
+		\end{subfigure} &
+		\begin{subfigure}{.24\textwidth}
+			\centering
+			\patternimglink{0.09847150259}{pushalong}
+			\caption{MWSS tagalong}
+			\label{fig:pushalong}
+		\end{subfigure} &
+		\begin{subfigure}{.25\textwidth}
+			\centering
+			\patternimglink{0.092707317073}{hivenudger}
+			\caption{\emph{Hivenudger}\index{hivenudger}}
+			\label{fig:hivenudger}
+		\end{subfigure}
+	\end{tabular}
+	\caption{Some small tagalongs (highlighted in \bgbox{greenback}{green}) for light, middle, and heavyweight spaceships. These tagalongs were found in 1992 by (a,b,d) Hartmut Holzwart and (c) David Bell.}
+	\label{fig:lwss_tagalongs}
+\end{figure}
+
+The MWSS tagalong in Figure~\ref{fig:pushalong} is somewhat special for the fact that it attaches to the front end of a spaceship, rather than its side or rear. Tagalongs with this property are sometimes called \emph{pushalongs}\index{pushalong}, and they are quite a bit rarer than other types of tagalongs, since it is not common for spaceships to have accessible sparks near their front that can support another object (for example, no pushalongs for the glider are known). There are two other particularly useful tagalongs for the light, middle, and heavyweight spaceships, called the \emph{Schick engine} and \emph{Coe ship}. We will introduce and thoroughly investigate these tagalongs in Section~\ref{sec:rakes}.
+
+Just like we distinguished between strict still lifes and pseudo still lifes in Section~\ref{sec:pseudo_strict_still_lifes}, we similarly distinguish between spaceships\footnote{The term ``strict spaceship'' is not used in practice, and if the term ``spaceship'' is used unqualified then it is typically assumed that it cannot be broken down into smaller spaceships.} and \emph{pseudo spaceships}\index{pseudo!spaceship}, which are flotillas in which none of the component spaceships actually change their evolution at all, but at least one dead cell has more than $3$ live neighbours in the flotilla but has fewer than $3$ live neighbors when only one of the component spaceships is present. Some pseudo spaceships involving lightweight and heavyweight spaceships are displayed in Figure~\ref{fig:lwss_hwss_pseudo}.
+
+\begin{figure}[!htb]
+	\centering
+	\patternimglink{0.1}{lwss_hwss_pseudo}
+	\caption{There are three ways of placing a LWSS, MWSS, and/or HWSS next to each other so as to create a pseudo spaceship. In all three of these cases, the component spaceships evolve in the exact same way as they would individually, yet in some of their phases the flotilla overpopulates some cells (highlighted in \bgbox{redback}{red}) that the spaceships individually do not.}\label{fig:lwss_hwss_pseudo}
+\end{figure}
+
+It is also possible for the sparks of two light, middle, and heavyweight spaceships to interact with each other as they move, similar to how we used the sparks of two oscillators to interact with each other in Section~\ref{sec:composite_periods}. Objects created from multiple smaller interacting spaceships like this are called \emph{flotillas}\index{flotilla}, and some examples involving a lightweight spaceship and a middleweight spaceship are presented in Figure~\ref{fig:lwss_mwss_flotillae}.
+
+Although there are numerous\footnote{To be explicit, the number of flotillas involving two LWSS/MWSS/HWSS are: 1 LWSS on LWSS (pseudo), 3 LWSS on MWSS, 8 LWSS on HWSS ($1$ is pseudo), 5 MWSS on MWSS, 15 MWSS on HWSS, and 10 HWSS on HWSS ($1$ is pseudo).} ways of creating flotillas, they are a bit less satisfying than what we got when we combined oscillator sparks in Section~\ref{sec:composite_periods}. The main reason these flotillas do not really get us too much that is genuinely ``new'' is that each of the light, middle, and heavyweight spaceships have the same period and speed, so every flotilla constructed from them will also have the same period and speed.
+
+\begin{figure}[!htb]
+	\centering
+	\begin{minipage}{.28\textwidth}
+		\centering
+		\embedlink{lwss_mwss_flotillae}{\vcenteredhbox{\patternimg{0.1}{lwss_mwss_flotillae_1_0}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.1}{lwss_mwss_flotillae_1_1}}}
+	\end{minipage} \hfill %
+	\begin{minipage}{.37\textwidth}
+		\centering
+		\patternlink{lwss_mwss_flotillae}{\vcenteredhbox{\patternimg{0.093370165745}{lwss_mwss_flotillae_2_0}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.093370165745}{lwss_mwss_flotillae_2_1}}}
+	\end{minipage} \hfill %
+	\begin{minipage}{.28\textwidth}
+		\centering
+		\patternlink{lwss_mwss_flotillae}{\vcenteredhbox{\patternimg{0.1}{lwss_mwss_flotillae_3_0}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.1}{lwss_mwss_flotillae_3_1}}}
+	\end{minipage}
+	\caption{There are three ways of placing a LWSS and an MWSS next to each other in order to create a flotilla. The \bgbox{orangeback}{orange} sparks interact in such a way as to give birth to the \bgbox{greenback}{green} cells that would not be born in either ship individually.}\label{fig:lwss_mwss_flotillae}
+\end{figure}
+
+One way to construct flotillas that are a bit less trivial is to consider what might happen if we were to construct a spaceship that followed the same pattern as the light, middle, and heavyweight spaceships, but is even longer than the heavyweight spaceship, such as the one displayed in Figure~\ref{fig:overweight_spaceship}. This object is called an \emph{overweight spaceship}\index{overweight spaceship} (or \emph{OWSS}\index{OWSS|see {overweight spaceship}} for short), but its name is deceiving---it is not actually a spaceship at all. The reason for this is that the $3$-cell ``spark'' that it emits is not actually a spark, as it survives to subsequent generations and leads to the OWSS's destruction.
+
+\begin{figure}[!htb]
+	\centering
+	\begin{minipage}[b]{.41\textwidth}
+		\centering
+		\patternimglink{0.1}{overweight_spaceship}
+		\caption{An \emph{overweight spaceship}, which is not actually a spaceship since the three \bgbox{orangeback}{orange} cells do not form a spark (i.e., they do not die) and they thus interfere with its evolution.}\label{fig:overweight_spaceship}
+	\end{minipage} \hfill %
+	\begin{minipage}[b]{.55\textwidth}
+		\centering
+		\patternimglink{0.11}{owss_flotilla}
+		\caption{A flotilla that uses two lightweight spaceships to suppress the $3$-cell ``spark'' of the OWSS, thus creating a new spaceship.}\label{fig:owss_flotilla}
+	\end{minipage}
+\end{figure}
+
+However, we can use sparks from light, middle, and heavyweight spaceships to prevent those three cells from being born in the first place, thus creating flotillas involving overweight spaceships, as in Figure~\ref{fig:owss_flotilla}. That is, we can use two light, middle, and/or heavyweight spaceships to turn an overweight spaceship into an object that is \emph{actually} a spaceship. An overweight spaceship can thus be thought of as a tagalong for the light, middle, and heavyweight spaceships, and in fact is one of the most versatile tagalongs that exists. Overweight spaceships of any length can be stabilized by using an appropriate arrangement of smaller spaceships along their sides. It is even possible to stabilize a large overweight spaceship by a smaller overweight spaceship, which is then stabilized by a true spaceship, as long as the outermost layer of this flotilla consists of true light, middle, and/or heavyweight spaceships (see Exercises~\ref{exer:owss_flotilla} and~\ref{exer:large_owss_flotilla}).
+
+
+
+\section{Corderships}\label{sec:corderships}
+
+Up to this point, we have not seen any spaceships that travel at a speed other than that of the ``standard'' spaceships---$c/4$ diagonally (e.g., the glider, crab, or orion~2) or $c/2$ orthogonally (e.g., the LWSS, MWSS, HWSS, sidecar, or hivenudger). Our first foray into the realm of other speeds is via the switch engine,\index{switch engine} which is the chaotic object that we introduced in Section~\ref{sec:switch_engine} that travels at a speed of $c/12$ diagonally.
+
+We already saw several methods for using switch engines to stabilize each other so as to create puffers\index{puffer} that left behind predictable debris (recall that a puffer created in this way was called an ark\index{ark}). However, using switch engines to stabilize each other and erase their debris entirely (thus creating a spaceship) is much more difficult.\footnote{The first ark was found in 1971, whereas the first spaceship based on switch engines was not found until 1991.} Spaceships constructed in this way are called \emph{Corderships},\index{Cordership}\footnote{Named after Charles Corderman, who discovered the switch engine and most of the simple puffers based on it in 1971.} and the main ingredient in the construction of most of them is the reaction between two switch engines displayed in Figure~\ref{fig:switch_engine_48}.
+
+\begin{figure}[!htb]
+	\centering\embedlink{switch_engines_48}{\vcenteredhbox{\patternimg{0.08}{switch_engine_48_0}} \vcenteredhbox{\genarrow{48}} \vcenteredhbox{\patternimg{0.08}{switch_engine_48_48}} \vcenteredhbox{\genarrow{48}} \vcenteredhbox{\patternimg{0.08}{switch_engine_48_96}}}
+	\caption{Two switch engines (highlighted in \bgbox{aquaback}{aqua}) that \emph{almost} stabilize each other. After 48~generations, they reappear but father apart and with a couple of inconsequential 5-cell sparks. After the next 48~generations they return to their original relative positions, but along with some troublesome debris that leads to their destruction.}\label{fig:switch_engine_48}
+\end{figure}
+
+In this reaction, the debris from two switch engines causes overcrowding that destroys both sets of debris, while leaving both switch engines intact. However, this only works for the first 48~generations of the switch engines' evolution (where the switch engines start close to each other and move father apart). For the next 48~generations (where the switch engines start far apart and move closer together), the pieces of debris from the switch engines are too far apart from each other to interact, and thus survive to cause problems later on.
+
+One potential way to fix this problem (i.e., to suppress the debris that forms between generations~$48$ and $96$) would be to place even more switch engines next to each other, so that each switch engine alternates between which of its neighbors it uses to suppress its debris every $48$ generations, as in Figure~\ref{fig:switch_engine_infinite}. The problem with this technique is that the object it creates must be infinitely long to actually be stable, which we don't want---we are only interested in spaceships of finite size.
+
+\begin{figure}[!htb]
+	\centering\embedlink{switch_engine_infinite}{\vcenteredhbox{\patternimg{0.083}{switch_engine_infinite_0}} \vcenteredhbox{\genarrow{48}} \vcenteredhbox{\patternimg{0.083}{switch_engine_infinite_48}} \vcenteredhbox{\genarrow{48}} \vcenteredhbox{\patternimg{0.083}{switch_engine_infinite_96}}}
+	\caption{An infinitely-long wave of switch engines (highlighted in \bgbox{aquaback}{aqua}) forever bounce off of each other and suppress each other's debris, creating an object that moves at a speed of $c/12$ diagonally.}\label{fig:switch_engine_infinite}
+\end{figure}
+
+One method of stabilizing the edges of this pattern is to observe that the debris created by the switch engines on the far edges of this arrangement (i.e., the debris that causes problems and eventually leads to the destruction of the switch engines) temporarily creates a block, as shown in Figure~\ref{fig:switch_engine_blocks}. If we could destroy the remaining debris sometime between when the block is created and when the debris destroys the pattern, we would then have a very orderly puffer that creates a single-file trail of blocks on both of its ends.
+
+\begin{figure}[!htb]
+	\centering\embedlink{switch_engines_blocks}{\vcenteredhbox{\patternimg{0.1}{switch_engine_blocks_0}} \vcenteredhbox{\genarrow{96}} \vcenteredhbox{\patternimg{0.1}{switch_engine_blocks_96}}}
+	\caption{The debris left behind by each outermost switch engine temporarily creates a block (highlighted in \bgbox{yellowback2}{yellow}). This block is subsequently destroyed by the debris at the rear.}\label{fig:switch_engine_blocks}
+\end{figure}
+
+While a clean puffer like this isn't what we were originally looking for, it would get us almost all the way to a spaceship, since it turns out that this exact same spacing of blocks can be used to destroy the debris left behind by these edge switch engines (see Figure~\ref{fig:switch_engine_blocks_destroy}). By putting these two facts together, we now have a scheme for how we could construct a Cordership:\smallskip
+
+\begin{enumerate}
+	\item[1)] The front of the Cordership will be made up of a row of switch engines leaving behind two trails of blocks,\smallskip
+	
+	\item[2)] In the middle of the Cordership will be some switch engines destroying the left over debris of the front switch engines, and\smallskip
+	
+	\item[3)] At the back of the Cordership will be another row of switch engines, which destroys and is stabilized by the two trails of blocks.\smallskip
+\end{enumerate}
+
+\begin{figure}[!htb]
+	\centering\embedlink{switch_engines_blocks_destroy}{\vcenteredhbox{\patternimg{0.09}{switch_engine_blocks_destroy_0}} \vcenteredhbox{\genarrow{96}} \vcenteredhbox{\patternimg{0.09}{switch_engine_blocks_destroy_96}}}
+	\caption{A trail of blocks (highlighted in \bgbox{yellowback2}{yellow}) can destroy and be destroyed by the debris left behind by a switch engine.}\label{fig:switch_engine_blocks_destroy}
+\end{figure}
+
+There are many different ways to put these steps together, with perhaps the simplest being the completed Cordership displayed in Figure~\ref{fig:10_engine_cordership}. This ship uses $4$~switch engines in the front row to create the trails of blocks, $2$ switch engines in the middle to clean up some debris, and $4$ switch engines in the back to follow and destroy the trails of blocks.\footnote{It might seem desirable to just use $2$ switch engines at the front and back, as in Figures~\ref{fig:switch_engine_blocks} and~\ref{fig:switch_engine_blocks_destroy}, but then there would not be enough room to place a switch engine in the middle to tame the debris of the front switch engines. However, it is possible to use just $3$~switch engines in the front and back (see Exercise~\ref{exer:switch_engine_reaction}).} This ship is called the \emph{$10$-engine Cordership}, based on the fact that it uses $10$ switch engines.\footnote{The first ever Cordership, which used $13$ switch engines, was constructed by Dean Hickerson in April 1991. He also built the smaller $10$-engine Cordership seen here by no later than April 1992.}
+
+There are countless different ways to put together Corderships, but most of the large (and somewhat out of date) Corderships have the same basic structure: some switch engines at the front leave behind some debris that is cleaned up by, and stabilizes, some switch engines at the back. Another reaction that can be used at the front of a Cordership is investigated in Exercise~\ref{exer:switch_engine_reaction}, and another reaction that can be used at its rear is presented in Exercise~\ref{exer:switch_engine_back}. While the reactions that we have seen all lead to somewhat large Corderships, some particularly clever Corderships are known that use as few as $2$~switch engines (see Exercise~\ref{exer:2_engine_cordership}).\footnote{Paul Tooke ran computer searches in 2004 that tested hundreds of thousands of ways of colliding $2$~switch engines, and none were found that produce a spaceship. It wasn't until December 2017 that Aidan~F. Pierce found a working 2-engine Cordership.}
+
+\begin{figure}[!htb]
+	\centering\patternimglink{0.085}{10_engine_cordership}
+	\caption{A \emph{$10$-engine Cordership}, which is a $c/12$ diagonal spaceship with period~$96$. In the orientation depicted here, it travels to the the top-right, with the $4$~switch engines at the front (highlighted in \bgbox{aquaback}{aqua}) laying tracks of blocks (highlighted in \bgbox{yellowback2}{yellow}). The $2$~central switch engines (which are out of phase from the other switch engines and thus look unusual) destroy the leftover debris from the front switch engines, and the $4$~rear switch engines destroy and are stabilized by the trail of blocks.}\label{fig:10_engine_cordership}
+\end{figure}
+
+One of the most useful features of Corderships is the collection of pulsating sparks that are produced by the rear row of switch engines, which can interact with other objects as the ship moves. For example, Figure~\ref{fig:cordership_reflections} presents $2$ ways in which the $10$-engine Cordership can reflect a glider $90$ degrees, a way of using it to reflect a glider $180$ degrees, and a method of turning a glider into an LWSS. Furthermore, by just changing the back end of the Cordership slightly, we can get a completely new set of sparks to work with, which allow for an even wider set of reactions (see Exercise~\ref{exer:switch_engine_back}).
+
+\begin{figure}[!htb]
+	\centering\embedlink{cordership_reflections}{\vcenteredhbox{\patternimg{0.1}{cordership_reflections_0}} \vcenteredhbox{\genarrow{96}} \vcenteredhbox{\patternimg{0.1}{cordership_reflections_96}}}
+	\caption{The pulsating sparks at the back of the $10$-engine Cordership from Figure~\ref{fig:10_engine_cordership} can be used to reflect a glider by $90$~degrees (highlighted in \bgbox{aquaback}{aqua} and \bgbox{magentaback}{magenta}), reflect a glider by $180$ degrees (highlighted in \bgbox{yellowback2}{yellow}), and turn a glider into an LWSS (highlighted in \bgbox{greenpastel}{green}).}\label{fig:cordership_reflections}
+\end{figure}
+
+
+\section{Puffers and Rakes}\label{sec:rakes}
+
+Recall from Section~\ref{sec:queen_bee} that we can use the Gosper glider gun to create an endless stream of gliders starting from a fixed location. While this is certainly a useful feature, there are times when we want something that acts like a gun (i.e., something that creates an endless stream of gliders) but is itself moving as well. In other words, we want to construct a \emph{rake}\index{rake}---a spaceship that creates additional spaceships as it travels. We break down the creation of such an object into two steps:\smallskip
+
+\begin{enumerate}
+	\item[1)] First, we construct a spaceship that leaves debris behind itself as it moves---we recall from Section~\ref{sec:switch_engine} that objects with this property are called \emph{puffers}\index{puffer}. The only puffers that we have seen so far are based on the switch engine, but it should seem believable that $c/2$ orthogonal puffers exist too, since the light, middle, and (especially) heavyweight spaceships have such strong sparks that they should be able to interact in such a way as to leave debris behind that does not destroy the spaceships themselves.\smallskip
+	
+	\item[2)] Second, we use additional light, middle, or heavyweight spaceships to transform the debris from step~(1) into a glider. Again, the reason we expect this to work is that we have a lot of freedom with how we can make one of these spaceships interact with other objects, due to the variety of sparks that they emit.
+\end{enumerate}
+
+
+\subsection{The Space Rake}\label{sec:space_rake}
+
+To make step~(1) above explicit, we take inspiration from how we constructed switch engine-based puffers in Section~\ref{sec:switch_engine}: we place additional objects near some chaotic object that is \emph{almost} stable so as to tame its debris enough that it doesn't self-destruct. This time, we use a B-heptomino\index{heptomino!B}\index{B-heptomino} instead of a switch engine, since we recall from Figure~\ref{fig:b_heptomino_10} that it creates some debris and moves forward by $5$ cells in $10$~generations.\footnote{It is not too surpising that the B-heptomino can be made to move at a speed of $c/2$ orthogonally when suitably stabilized---after all, in 2 out of their 4 phases, the front 3 columns in the light/middle/heavyweight spaceships themselves are exactly a B-heptomino.} Since the B-heptomino moves orthogonally at a speed of $c/2$, it seems reasonable to try to stabilize it by light/middle/heavyweight spaceships.
+
+One way of taming the B-heptomino's debris is to use a lightweight spaceship on either side of it---the single-cell spark on its back end is just strong enough to overpopulate the interfering portion of the debris behind the B-heptomino, thus stabilizing it as in Figure~\ref{fig:puffer_2}.\footnote{This puffer was found by Bill Gosper sometime in the early 1970's. It does not have a standard name, but is sometimes referred to simply as ``puffer 2'', since it was the second puffer to be found.} The debris left behind this puffer is extremely chaotic, taking a whopping 5,532 generations to stabilize. However, after that point it becomes periodic with period~140, and we can indeed see that it never interferes with the puffer itself.
+
+\begin{figure}[!htb]
+	\centering\embedlink{puffer_2}{\vcenteredhbox{\patternimg{0.11}{puffer_2_0}} \vcenteredhbox{\genarrow{1000}} \vcenteredhbox{\patternimgwidth{0.811\textwidth}{puffer_2_1000}}}
+	\caption{A puffer composed of a B-heptomino that has been stabilized by two lightweight spaceships. The debris in the image on the right is extremely chaotic, taking more than 5,000 generations to settle down, but never interferes with the B-heptomino or the lightweight spaceships.}\label{fig:puffer_2}
+\end{figure}
+
+Now that we have a puffer to work with, we turn to task~(2) outlined earlier: we use the sparks from light, middle, and heavyweight spaceships to tame the puffer debris and turn it into something useful like a glider. Even just by placing these spaceships near the debris by hand in a few different locations and phases, it does not take long to find interesting combinations. For example, if we place an extra lightweight spaceship as in Figure~\ref{fig:ecologist}, the debris hits its spark in such a way as to die off completely, thus resulting in a period~20 spaceship called the \emph{ecologist}.\index{ecologist}
+
+\begin{figure}[!htb]
+	\centering\embedlink{ecologist}{\vcenteredhbox{\patternimg{0.0978}{ecologist_0}} \vcenteredhbox{\genarrow{20}} \vcenteredhbox{\patternimg{0.0978}{ecologist_20}} \vcenteredhbox{\genarrow{20}} \vcenteredhbox{\patternimg{0.0978}{ecologist_40}}}
+	\caption{If we add an extra lightweight spaceship (displayed in \bgbox{greenback}{green}) to the puffer, its debris is suppressed, resulting in a spaceship called the \emph{ecologist}. Even though the debris (displayed in \bgbox{redback}{red}) dies off completely, it becomes somewhat large before doing so.}\label{fig:ecologist}
+\end{figure}
+
+The dying debris that trails behind the ecologist actually becomes somewhat large, and it moves off to the side of the ecologist opposite the lightweight spaceship. In other words, the ecologist has an extremely large and accessible spark that trails behind it, and we can hit this spark with even more spaceships in order to change it into something more useful. This time, we finally hit the jackpot: if we hit the debris with a lightweight spaceship in just the right spot, it is transformed into a glider that travels toward the northeast. Furthermore, if we move that lightweight spaceship slightly, the debris is instead transformed into a glider that travels toward the southwest. We have thus succeeded in creating \emph{two} rakes: one in which the gliders travel forward along with the rake itself (see Figure~\ref{fig:space_rake}), and one in which the gliders travel backward away from the rake (see Figure~\ref{fig:back_space_rake}). These are called the \emph{forward} and \emph{backward space rake}, respectively.\index{space rake}
+
+\begin{figure}[!htb]
+	\centering\embedlink{space_rake}{\vcenteredhbox{\patternimg{0.0945}{space_rake_0}} \vcenteredhbox{\genarrow{80}} \vcenteredhbox{\patternimg{0.0945}{space_rake_80}}}
+	\caption{The (forward) \emph{space rake} creates a forward-moving glider every 20~generations. It is constructed by adding yet another lightweight spaceship (displayed in \bgbox{greenback}{green}) to the ecologist in such a way as to transform its large spark into a glider.}\label{fig:space_rake}
+\end{figure}
+
+% Only put these figures back-to-back since they get split by a pagebreak. Combine into one two-part figure if this changes.
+\begin{figure}[!htb]
+	\centering\embedlink{back_space_rake}{\vcenteredhbox{\patternimg{0.0925}{back_space_rake_0}} \vcenteredhbox{\genarrow{80}} \vcenteredhbox{\patternimg{0.0925}{back_space_rake_80}}}
+	\caption{The \emph{backward space rake} creates a backward-moving glider every 20~generations, using a slightly differently-positioned lightweight spaceship (displayed in \bgbox{greenback}{green}) than the forward space rake.}\label{fig:back_space_rake}
+\end{figure}
+
+
+\subsection{The Schick Engine}\label{sec:schick_engine}
+
+While space rakes are extremely useful due to the fact that we can use them to fire gliders in any direction that we like as they travel, one of their drawbacks is that they actually fire \emph{too many} gliders to be useful in some circumstances. Specifically, they fire one glider every 20~generations, so they have a horizontal distance of 10~cells between them. However, many of the objects that we will want to construct with rakes are more than 10 cells wide, so it will be useful for us to have a way of thinning out these gliders. Our method for doing this is the \emph{Schick engine}:\index{Schick engine} another spaceship that, just like the ecologist\index{ecologist}, consists of some dying junk trailing behind some lightweight spaceships (see Figure~\ref{fig:schick_engine}).\footnote{The Schick engine was found by Paul Schick in 1972, and it can be re-discovered just by experimenting with placing different small objects behind two lightweight spaceships (see Exercise~\ref{exer:six_cell_schick}).}
+
+\begin{figure}[!htb]
+	\centering\patternimglink{0.1}{schick_engine}
+	\caption{The \emph{Schick engine} is a period~12 spaceship that consists of a pulsating tagalong (displayed in \bgbox{greenback}{green}) trailing behind two lightweight spaceships.}\label{fig:schick_engine}
+\end{figure}
+
+There are two key features that make the Schick engine useful for us:\smallskip
+
+\begin{enumerate}
+	\item[1)] It has period~12 instead of period~20, so its debris could potentially be used to interact with only \emph{some} of the gliders emitted by the space rake rather than all of them.\smallskip
+	
+	\item[2)] Its trailing spark ``pulsates''---it sticks out quite far in some generations, but then retracts back during other generations. It thus seems believable that we could line things up so that some gliders coming from the space rake hit the Schick engine's spark, while others pass by it completely unharmed.\smallskip
+\end{enumerate}
+
+Indeed, it only takes a little bit of experimentation to find almost exactly what we want: if we line the forward space rake and the Schick engine up as in Figure~\ref{fig:space_rake_60}, one third of the gliders are cleanly destroyed, one third of the gliders are left untouched, and one third of the gliders are turned into blocks. In order to destroy those blocks (thus completely eliminating two out of every three gliders from the space rake), we can simply use a middleweight spaceship, as in the block-destroying reaction from Figure~\ref{fig:orthogonal_destroy}. Putting this all together gives us the forward rake in Figure~\ref{fig:space_rake_60} that emits one glider every 60 generations (and since its speed is $c/2$, the horizontal distance between gliders is 30~cells).
+
+A very similar game can be played with the backward space rake: if we place a Schick engine as in Figure~\ref{fig:back_space_rake_60}, then one third of the gliders from the backward space rake are destroyed, one third are left untouched, and one third explode into a chaotic mess. If we add an additional lightweight spaceship, that chaotic mess can also be destroyed, resulting in a backward rake that emits one glider every 60 generations (and hence 30 horizontal cells).
+
+\begin{figure}[!htb]
+	\centering
+	\begin{tabular}{@{}cc@{}}
+		\begin{subfigure}{.37\textwidth}
+			\centering
+			\patternimglink{0.08}{space_rake_60}
+			\caption{A forward p$60$ rake.}
+			\label{fig:space_rake_60}
+		\end{subfigure} & 
+		\begin{subfigure}{.59\textwidth}
+			\centering
+			\patternimglink{0.0838905775}{back_space_rake_60}
+			\caption{A backward p$60$ rake.}
+			\label{fig:back_space_rake_60}
+		\end{subfigure}
+	\end{tabular}
+	\caption{Rakes that emit one glider every 60~generations, based on the (a) forward and (b) backward space rakes (outlined in \bgbox{aquaback}{aqua}) that emit one glider every 20~generations. A Schick engine (outlined in \bgbox{yellowback2}{yellow}) is positioned so that it destroys 1/3 of the gliders that pass by, leaves 1/3 of the gliders untouched, and turns the remaining 1/3 of the gliders into other objects (either (a) a block or (b) a chaotic mess) that is cleaned up by the spaceship outlined in \bgbox{magentaback}{magenta}.}
+	\label{fig:p60_space_rakes}
+\end{figure}
+
+
+\subsection{The Coe Ship}\label{sec:coe_ship}
+
+We can build another family of $c/2$ puffers and rakes by using an object called the \emph{Coe ship}\index{Coe ship},\footnote{Named after Tim Coe, who found it in 1995.} which is the $c/2$ spaceship displayed in Figure~\ref{fig:coe_ship}. Just like the Schick engine, it has a large trailing spark that pulsates throughout its period, making it very useful for interacting with other moving objects. The advantage of having this additional spaceship at our disposal is that it has period~$16$ (versus the space rake's period of~$20$ and the Schick engine's period of~$12$), and can thus interact with the rakes we have already created in non-trivial ways.
+
+\begin{figure}[!htb]
+	\centering\patternimglink{0.1}{coe_ship}
+	\caption{The \emph{Coe ship} is a $c/2$ orthogonal period~16 spaceship that consists of some pulsating debris trailing behind a lightweight spaceship and a deformed heavyweight spaceship.}\label{fig:coe_ship}
+\end{figure}
+
+Most notably, we can add some light, middle, and heavyweight spaceships behind the Coe ship in order to cause its spark to spawn an endless wave of gliders, just like we did when we created the space rake from the ecologist. In particular, by placing two heavyweight spaceships as in Figure~\ref{fig:coe_ship_back_rake}, we can create a period~$16$ backward rake. To turn this backward rake into a forward rake, we can place two additional heavyweight spaceships in such a way that they reflect the backward-moving glider so that it becomes a forward-moving glider, as in Figure~\ref{fig:coe_ship_forward_rake}.\footnote{This configuration of two heavyweight spaceships works to turn any $c/2$ backward rake with period at least $16$ into a forward rake. For example, this gives us another way to turn the period~20 and period~60 backward space rakes into forward space rakes (see Exercise~\ref{exer:back_to_forward_space_rake}).}
+
+\begin{figure}[!htb]
+	\centering
+	\begin{tabular}{@{}cc@{}}
+		\begin{subfigure}{.53\textwidth}
+			\centering
+			\embedlink{coe_ship_back_rake}{\patternimg{0.084}{coe_ship_back_rake_64}}
+			\caption{A backward p$16$ rake.}
+			\label{fig:coe_ship_back_rake}
+		\end{subfigure} & 
+		\begin{subfigure}{.43\textwidth}
+			\centering
+			\embedlink{coe_ship_forward_rake}{\patternimg{0.090975778546}{coe_ship_forward_rake_64}}
+			\caption{A forward p$16$ rake.}
+			\label{fig:coe_ship_forward_rake}
+		\end{subfigure}
+	\end{tabular}
+	\caption{Period~$16$ (a) backward and (b) forward rakes constructed by using heavyweight spaceships (displayed in \bgbox{greenback}{green}) to interact with the spark behind a Coe ship.}
+	\label{fig:coe_ship_rakes}
+\end{figure}
+
+Now that we have rakes of multiple different periods ($16$, $20$, and $60$), we can strategically combine their glider waves in order to create rakes of even more periods. For example, if we place a backward space rake next to a backward Coe rake so that their glider streams cross each other as in Figure~\ref{fig:coe_space_rake}, then every $\mathrm{lcm}(16,20) = 80$ generations $9$ gliders are produced ($4$ from the space rake and $5$ from the Coe rake). Of these $9$ gliders, $4$ collide with each other and die completely, $2$ collide and create a single forward-moving glider, and $3$ simply avoid all of the other gliders and thus continue travelling backward (for a total of $4$ surviving gliders produced every $80$ generations).
+
+We can then erase some (or all) of these glider waves by using a lightweight spaceship as in Figure~\ref{fig:orthogonal_destroy}, thus creating forward or backward rakes of period~80. One particular placement of three lightweight spaceships that erase all of the output gliders is shown in Figure~\ref{fig:coe_space_rake_stabilized}---a period~80 forward rake can be created by removing the top-right of the green lightweight spaceships, and a period~80 backward rake can be created by removing the top-left of the green lightweight spaceships. 
+
+We can also repeat this exact same procedure with a period~60 space rake rather than the period~20 version, and thus create forward and backward rakes with period $\mathrm{lcm}(16,60) = 240$ (see Exercise~\ref{exer:p240_rake}), but this is the highest period rake that can be constructed using these techniques. A method for creating even higher-period rakes (and in fact rakes with arbitrarily-high period) is presented in Section~\ref{sec:period_catalog}.
+
+\begin{figure}[!htb]
+	\centering
+	\begin{tabular}{@{}cc@{}}
+		\begin{subfigure}{.52\textwidth}
+			\centering
+			\embedlink{coe_space_rake}{\patternimg{0.084}{coe_space_rake_100}}
+			\caption{A forward and backward p$80$ rake.}
+			\label{fig:coe_space_rake}
+		\end{subfigure} & 
+		\begin{subfigure}{.44\textwidth}
+			\centering
+			\embedlink{coe_space_rake_stabilized}{\patternimg{0.084}{coe_space_rake_stabilized_100}}
+			\caption{A stabilization of the rake.}
+			\label{fig:coe_space_rake_stabilized}
+		\end{subfigure}
+	\end{tabular}
+	\caption{When a backward space rake and a backward Coe rake are carefully placed next to each other, their streams cross in such a way that they produce (a) $3$ backward gliders and $1$ forward glider every $80$ generations. The (b) lightweight spaceships displayed in \bgbox{greenback}{green} destroy those $4$ output gliders. Removing the top-right green LWSS results in a period~80 forward rake, whereas it removing the top-left green LWSS results in a period~80 backward rake.}
+	\label{fig:coe_space_rakes}
+\end{figure}
+
+
+\section{Speed Limits}\label{sec:speed_limits}
+
+We now consider the problem of determining which speeds spaceships can attain. We have seen numerous examples of diagonal spaceships that move at $c/4$ (with the glider being the prototypical example) and also several orthogonal spaceship that move at $c/2$ (such as the LWSS, MWSS, and HWSS). We have also seen a few slower spaceships, such as the diagonal $c/12$ Corderships. However, we have not seen any spaceships that are faster than the ``basic'' spaceships that we are already familiar with. The following theorem shows that there is a reason for this: no faster spaceships exist.\footnote{This theorem was originally proved by Conway himself, very shortly after introducing the Game of Life.}
+
+\begin{theorem}\label{thm:speed_limits}
+	The maximum diagonal and orthogonal speeds that a finite object (e.g., a spaceship, puffer, or rake) can travel through empty space are $c/4$ and $c/2$, respectively.
+\end{theorem}
+
+\begin{proof}
+	We begin by proving the $c/4$ speed limit for diagonal spaceships. Consider the grid of cells given in Figure~\ref{fig:chap3_speed_limit_c4}. If the spaceship is contained within the region of light grey cells in generation~0, then suppose (in order to establish a contradiction) that cell X~is alive in generation~2.
+
+	If cell X is alive in generation~2, then cells A, B, and C must be alive in generation~1. It follows that cells A and C must have 3 live neighbors in generation~1, so each of K, L, M, N, and B must be alive in generation~0. However, this implies that cell B must have at least four live neighbors in generation~0, so there is no way for it to survive to generation~1, which gives the desired contradiction.
+	
+	\begin{figure}[!htb]
+		\centering
+		\begin{minipage}{.47\textwidth}
+			\centering\gridbox{0.75pt}{\begin{tikzpicture}[scale=0.6, every node/.style={transform shape}]%
+				\node[inner sep=0pt,anchor=south west] (glider_loop) at (0.5,0.5) {\patternimgwidth{5cm}{speed_limit_c4}};
+				%\draw[black!20,line width=2pt] (0,0) rectangle (5,-5);
+				
+				\letternode{2}{4}{K}
+				\letternode{2}{3}{L}
+				\letternode{3}{4}{A}
+				\letternode{3}{3}{B}
+				\letternode{3}{2}{M}
+				\letternode{4}{4}{X}
+				\letternode{4}{3}{C}
+				\letternode{4}{2}{N}
+				\end{tikzpicture}}
+			
+			\caption{A diagram that illustrates Life's diagonal $c/4$ speed limit. If a pattern is contained within the light grey cells in generation~0, it must be on and below the diagonal line of dark grey cells in generation~2.}\label{fig:chap3_speed_limit_c4}
+		\end{minipage} \quad %
+		\begin{minipage}{.48\textwidth}
+			\centering\patternimgwidth{4.25cm}{speed_limit_c2}
+			\caption{A diagram that illustrates Life's orthogonal $c/2$ speed limit. If a pattern is contained within the light grey cells in generation~0, it must be on and below the diagonal lines of dark grey cells in generation~2.}\label{fig:chap3_speed_limit_c2}
+		\end{minipage}
+	\end{figure}
+
+	We have shown that cell X can not be alive in generation~2. In other words, if the spaceship is contained within the region of light grey cells in generation~0, then it will be on and below the diagonal line of dark grey cells in generation~2. By using this argument again, we see that the spaceship must be one and below the diagonal line containing cell~X in generation~4. It follows that no spaceship (or puffer, or rake...) can travel faster than $c/4$ diagonally.
+	
+	To see that the $c/2$ speed limit holds for orthogonal ships, just use two diagonal lines as in Figure~\ref{fig:chap3_speed_limit_c2}. If a spaceship is contained within the region of light grey cells in generation~0, then we already showed that it must be on and below the diagonal lines defined by the dark grey cells in generation~2. It follows that it can not travel faster than $c/2$ orthogonally.
+\end{proof}
+
+Since there is an upper bound on how fast spaceships can travel, it perhaps seems natural to ask whether or not there is also a lower bound---a slowest speed at which spaceships can travel. This question is a bit beyond us at this point, but in Chapter~\ref{chp:universal_construction} we will see that such a lower bound does not exist. That is, we can construct spaceships that move as slowly as we like.
+
+
+% http://www.gabrielnivasch.org/fun/life/lightspeed-signals
+% http://conwaylife.com/forums/viewtopic.php?f=2&t=1845
+% Signal injectors/sources: http://radicaleye.com/DRH/sig.inj.html
+\subsection{Wires and Signals}\label{sec:wires_signals}
+
+It is important to note that Theorem~\ref{thm:speed_limits} only applies to objects travelling through a \emph{vacuum}---a sea of dead cells.\index{vacuum} If a portion of the Life plane is filled with a repeating non-empty pattern, such as the zebra stripes\index{zebra stripes} from Figure~\ref{fig:zebra_stripes}, then an object may be able to travel through it at up to lightspeed (i.e., a speed of $c$).\footnote{No object, whether in a vacuum or not, cannot possibly have a speed greater than $c$, since in one generation it can only affect its $8$ neighbors.} An object that moves through a non-empty pattern like this is called a \emph{signal}\index{signal},\footnote{Objects that move through a vacuum (such as gliders) are also sometimes called signals, since they can be thought of as carrying information between two locations.} and the pattern that it is able to move through is called a \emph{wire}\index{wire}. Some simple examples of lightspeed signals that can travel through a zebra stripes wire are presented in Figure~\ref{fig:lightspeed_signals}.
+
+\begin{figure}[!htb]
+	\centering\patternimglinkwidth{\textwidth}{lightspeed_signals}
+	\caption{A collection of lightspeed signals that travel through zebra strips. Each of the signals displayed here (i.e., the deformations in the middle of the stripes) travel to the right by $1$ cell per generation. These signals were found (in no particular order) by Alan Hensel in 1995, Noam Elkies in 1997, Gabriel Nivasch in 1999, and in some cases, unknown Lifers in the early 1970's.}\label{fig:lightspeed_signals}
+\end{figure}
+
+With these signals in mind, all of which travel at the speed of light, it seems natural to wonder what other signal speeds are possible. Our first result of this section shows that we will have to branch out somewhat to find slower signals, since every signal that travels through zebra stripes parallel to the strips must do so at lightspeed.\footnote{This theorem was originally proved by Dean Hickerson in 1993.}
+
+\begin{theorem}\label{thm:speed_limit_zebra_fast}
+	Every finite signal that moves parallel through a zebra stripes wire travels at a speed of $c$.
+\end{theorem}
+
+\begin{proof}
+	Since the signal is finite, it has some leading edge (which we assume is moving to the right). To the right of this leading edge the stripes are regular and unbroken, but to the left of it there is at least one irregularity. Now suppose for a contradiction that there exists a signal that travels through the stripes at a speed slower than $c$. Then there must exist some generation (which we will call generation~0) with the property that the leading edge in generation~1 is one cell farther to the right than in generation~0, but then does not change in generation~2, as illustrated in Figure~\ref{fig:speed_limit_zebra_fast}.
+	
+	\begin{figure}[!htb]
+		\centering
+		\vcenteredhbox{\gridbox{0.75pt}{\begin{tikzpicture}[scale=0.6, every node/.style={transform shape}]%
+				\node[inner sep=0pt,anchor=south west] (glider_loop) at (0.5,0.5) {\patternimgwidth{5cm}{speed_limit_zebra_fast}};
+				\end{tikzpicture}}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\gridbox{0.75pt}{\begin{tikzpicture}[scale=0.6, every node/.style={transform shape}]%
+				\node[inner sep=0pt,anchor=south west] (glider_loop) at (0.5,0.5) {\patternimgwidth{5cm}{speed_limit_zebra_fastb}};
+				\letternode{3}{6}{X}
+				\letternode{3}{5}{Y}
+				\letternode{3}{4}{X}
+				\letternode{3}{3}{Y}
+				\letternode{3}{2}{X}
+				\letternode{3}{1}{Y}
+				\end{tikzpicture}}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\gridbox{0.75pt}{\begin{tikzpicture}[scale=0.6, every node/.style={transform shape}]%
+				\node[inner sep=0pt,anchor=south west] (glider_loop) at (0.5,0.5) {\patternimgwidth{5cm}{speed_limit_zebra_fastb}};
+				\letternode{4}{2}{Z}
+				\letternode{4}{4}{Z}
+				\letternode{4}{6}{Z}
+				\end{tikzpicture}}}
+		\caption{A diagram illustrating the fact that every signal that moves parallel through zebra stripes travels at a speed of $c$. If the signal is contained within the region of light grey cells and its leading edge ever moves to the right (denoted by the Xs and Ys in the middle generation), then it must continue moving by $1$ cell every generation.}\label{fig:speed_limit_zebra_fast}
+	\end{figure}
+	
+	First note that all of the cells marked~Y must be dead in generation~1, since they have at least $4$~live neighbors in generation~0. But then each of the cells marked~X must be alive in generation~1 or else the cells marked~Z would be dead in generation~2 due to only having one live neighbor. We have thus shown that the leading edge of the signal in fact did not advance to the right at all between generations~0 and~1, which is the desired contradiction that completes the proof.
+\end{proof}
+
+In order to make use of signals and turn them into useful composite patterns, we need an object that can create the signal (called a \emph{source})\index{source} and an object that can destroy the signal (called a \emph{sink}).\index{sink} It will also be useful to have an object that can reflect the signal around a track (called a \emph{signal elbow}\index{signal!elbow}), so that we have some flexibility in positioning it where we want it.\footnote{Just like signals are analogous to spaceships, there is also an analogy between sources and glider guns, sinks and eaters, and signal elbows and reflectors.} Sources and sinks for various signals have been known for quite some time, and some examples for lightspeed signals are presented in Figure~\ref{fig:signal_sink_source}. When sources and sinks are combined, like in Figure~\ref{fig:signal_oscillator}, the resulting pattern is a billiard table\index{billiard table} oscillator with period equal to that of the signal source.
+
+\begin{figure}[!htb]
+	\centering
+	\begin{subfigure}{.43\textwidth}
+		\centering\patternimglink{0.113842975207}{signal_sink}
+		\caption{A sink (at the far right end of the zebra stripes) that cleanly destroys two different lightspeed signals.}\label{fig:signal_sink}
+	\end{subfigure} \ \ \ \ % 
+	\begin{subfigure}{.53\textwidth}
+		\centering\patternimglink{0.095}{signal_oscillator}
+		\caption{A period~5 source and sink for a lightspeed signal (which moves to the right) combine to form a period~5 oscillator. Found by Dean Hickerson in 1995.}\label{fig:signal_oscillator}
+	\end{subfigure}
+	\caption{Some sources and sinks for lightspeed signals travelling through a zebra stripes wire.}\label{fig:signal_sink_source}
+\end{figure}
+
+On the other hand, no reasonably small signal elbows (for any signal) are known to date, despite a considerable amount of effort on the part of Life enthusiasts.\footnote{Very large signal elbows are known that work by converting signals into things like Herschels, which are moved around tracks and then re-converted into signals, but they are all very slow and have a very large repeat time.} The discovery of a quick-recovering elbow would be a huge discovery, since we could use it to move a signal around in a loop---much like we used reflectors to move a glider around a loop in Section~\ref{sec:glider_loops}---creating oscillators with any sufficiently large period. Furthermore, since signals can move so much faster than gliders, it might be possible to construct signal loops of period~$19$, thus putting the omniperiodicity\index{omniperiodic} problem of Section~\ref{sec:omniperiodic} to rest.
+
+Although signals that travel parallel to the stripes in zebra stripes are the most common type, there are also signals that travel in the perpendicular direction, such as those displayed in Figure~\ref{fig:zebra_signal_perpendicular}. However, these signals are somewhat less useful than their parallel counterparts, since (a)~all known perpendicular signals are rather large compared to the known parallel signals, and (b)~they cannot travel at lightspeed, as shown by the following theorem.\footnote{This theorem was originally proved by Hartmut Holzwart in 2006.}
+
+\begin{figure}[!htb]
+	\centering\patternimglinkwidth{0.68\textwidth}{zebra_signal_perpendicular}
+	\caption{Some signals that travel perpendicularly through zebra stripes at a speed of $2c/3$ (to the right). Both of these signals were found by Hartmut Holzwart in 2006.}\label{fig:zebra_signal_perpendicular}
+\end{figure}
+
+\begin{theorem}\label{thm:speed_limit_zebra}
+	The maximum speed at which a finite signal can travel perpendicularly through zebra stripes is $2c/3$.
+\end{theorem}
+
+\begin{proof}
+	The proof of this theorem is similar in style to those of Theorems~\ref{thm:speed_limits} and~\ref{thm:speed_limit_zebra_fast}. Consider the grid of cells given in Figure~\ref{fig:speed_limit_zebra}. If the signal is contained within the region of light grey cells in generation~0, then we first show that cells marked with an~X will still be alive and cells marked with a~Y will still be dead in generation~1.
+	
+	\begin{figure}[!htb]
+		\centering
+		\begin{minipage}{.44\textwidth}
+			\centering\gridbox{0.75pt}{\begin{tikzpicture}[scale=0.55, every node/.style={transform shape}]%
+				\node[inner sep=0pt,anchor=south west] (glider_loop) at (0.5,0.5) {\patternimgwidth{9cm}{speed_limit_zebra}};
+				%\draw[black!20,line width=2pt] (0,0) rectangle (5,-5);
+				
+				\letternode{6}{4}{X}
+				\letternode{7}{3}{Y}
+				\letternode{3}{6}{X}
+				\letternode{4}{5}{Y}
+				\letternode{9}{2}{X}
+				\end{tikzpicture}}
+		\end{minipage} \quad %
+		\begin{minipage}{.52\textwidth}
+			\centering\patternimgwidth{6.6cm}{speed_limit_zebra_b}
+		\end{minipage}
+		\caption{A diagram illustrating the $2c/3$ speed limit for a finite signal travelling perpendicularly through zebra stripes. If a signal is contained within the light grey cells in generation~$0$, then cells~X and~Y (left) cannot change state in generation~$1$, so it must be on and to the left of the dark grey cells (right) in generation~$3$.}\label{fig:speed_limit_zebra}
+	\end{figure}
+	
+	To see that the cells marked with an~X must still be alive generation~1, simply observe that they have either $2$ or $3$ live neighbors in generation~0: the cells to their immediate left and right, and possibly the light grey cell to their bottom-left. To see that the cells marked with a~Y must still be dead in generation~1, we note that regardless of the state of the light grey cells, they have at least $4$~live neighbors (the $3$ cells above them and the cell to their bottom-right).
+	
+	By using this fact~$3$ times, we see that any object that is contained within the light grey region in Figure~\ref{fig:speed_limit_zebra} in generation~0 will be located on and to the left of the dark grey cells in generation~3. Since the region containing the dark grey cells is just the original light grey region shifted up by $2$~cells, it follows that the signal cannot travel more than $2$~cells perpendicular to the stripes every $3$~generations. In other words, its speed is no greater than $2c/3$.
+\end{proof}
+
+While we have an upper bound on the possible speed of signal travelling perpendicular to stripes in a zebra stripes wire, there is still no known lower bound on their speed. No such signal that travels at a speed slower than $2c/3$ is known, but no proof that signals must travel this fast is known either. In particular, whether or not there exist perpendicular $c/2$ signals has been an open question since $2006$.\footnote{The existence of such a signal probably would not be particularly useful, as we usually prefer faster signals to slower ones, but it would nonetheless be nice to have an answer one way or the other since we already know about lower speed limits in a vacuum and for signals travelling parallel through stripes.}
+
+All of the signals that we have seen so far travel orthogonally, but there are also diagonal signals that move through wires that are a bit more complicated than stripes. Some examples of diagonal signals travelling through diagonal wires at various speed (specifically $2c/3$, $5c/9$, and $c/2$) are presented in Figure~\ref{fig:diagonal_signals}, along with sinks that absorb the $2c/3$ and $5c/9$ signals. It is worth noting that to date the $2c/3$ diagonal signal is the fastest one known---there are currently no known diagonal signals that travel through a stable (p$1$) wire at the speed of light.
+
+\begin{figure}[!htb]
+	\centering
+	\begin{subfigure}{.31\textwidth}
+		\centering\patternimglink{0.14}{diagonal_2c3_signal}
+		\caption{A $2c/3$ signal.}\label{fig:diagonal_2c3_signal}
+	\end{subfigure} \ \ \ \ % 
+	\begin{subfigure}{.31\textwidth}
+		\centering\patternimglink{0.14}{diagonal_5c9_signal}
+		\caption{A $5c/9$ signal.}\label{fig:diagonal_5c9_signal}
+	\end{subfigure} \ \ \ \ % 
+	\begin{subfigure}{.31\textwidth}
+		\centering\patternimglink{0.14}{diagonal_c2_signal}
+		\caption{A $c/2$ signal.}\label{fig:diagonal_c2_signal}
+	\end{subfigure}
+	\caption{Some diagonal signals (travelling to the bottom-right) that were found by (a,b)~Dean Hickerson in 1997 and (c)~Hartmut Holzwart in 2003. The signals themselves are sometimes difficult to distinguish from the surrounding wire, so they are highlighted in \bgbox{orangeback}{orange}. Note that both halves of the $c/2$ signal are indeed needed, since the wire is offset by $1$~cell between the two half signals.}\label{fig:diagonal_signals}
+\end{figure}
+
+These diagonal signals are quite exciting for the fact that we ``almost'' know how to turn them around a corner (and recall that if we could do this, we could likely construct oscillators for all of the currently-unknown periods). For example, Figure~\ref{fig:diagonal_2c3_almost_elbow} demonstrates a corner that is able to reflect the $2c/3$ diagonal signal by $90$~degrees, but has the unfortunate side-effect of duplicating the signal as it is reflected. Since we do not know how to reflect the duplicated signal, we cannot use this corner more than once and cannot create a closed loop with it.
+
+\begin{figure}[!htb]
+	\centering\embedlink{diagonal_2c3_almost_elbow}{\vcenteredhbox{\patternimg{0.14}{diagonal_2c3_almost_elbow}} \vcenteredhbox{\genarrow{60}} \vcenteredhbox{\patternimg{0.14}{diagonal_2c3_almost_elbow_60}}}
+	\caption{A corner that is able to reflect the $2c/3$ diagonal signal (highlighted in \bgbox{orangeback}{orange}) by $90$-degrees, but which also creates a second copy of that signal in the process and thus cannot be used twice.}\label{fig:diagonal_2c3_almost_elbow}
+\end{figure}
+
+
+\subsection{Fuses and Wicks}\label{sec:fuses}\index{fuse}\index{wick}
+
+While signals pass through wires in such a way as to leave the wires undamaged, it is also possible for objects to pass through wires and destroy the wire in the process. When this happens, the wire is instead called a \emph{wick}\index{wick}, and the objects that ``burns'' through the wick is called a \emph{fuse}\index{fuse}. Wicks and fuses are significantly easier to find than signals, since we can often just place random debris near a regular repeating pattern to make it burn. For example, the fuse displayed in Figure~\ref{fig:blinker_fuse} can be rediscovered by hand in less than a minute just by placing random configurations of alive cells near the row of blinkers.
+
+Fuses that leave nothing behind as they burn are said to burn \emph{cleanly} and are typically much more useful than their dirty counterparts. Two particularly frequently-used clean fuses, which both travel orthogonally at a speed of $2c/3$, are presented in Figure~\ref{fig:useful_fuses}. Another one that travels slightly faster at $4c/5$ is presented in Exercise~\ref{exer:4c5_fuse}.
+
+It is perhaps worth noting that the bi-block fuse from Figure~\ref{fig:bi_block_fuse} uses the same configuration of a block and beehive as in Figure~\ref{fig:beehive_block}, where the block destroys the beehive. However, the presence of the second block in the bi-block changes the reaction so that \emph{both} the beehive and first block are destroyed, while the second block is transformed into another beehive, thus letting the process repeat.
+
+\begin{figure}[!htb]
+	\centering
+	\begin{subfigure}{.48\textwidth}
+		\centering\patternimglink{0.1}{blinker_fuse}
+		\caption{A \emph{blinker fuse}.\index{blinker fuse}}\label{fig:blinker_fuse}
+	\end{subfigure} \ \ \ \ % 
+	\begin{subfigure}{.48\textwidth}
+		\centering\patternimglink{0.1}{bi_block_fuse}
+		\caption{A \emph{bi-block fuse}.\index{bi-block fuse}}\label{fig:bi_block_fuse}
+	\end{subfigure}
+	\caption{Two $2c/3$ orthogonal fuses with (a)~period $18$ and (b)~period $12$.}\label{fig:useful_fuses}
+\end{figure}
+
+
+% http://conwaylife.com/wiki/Teleportation
+\subsection{Teleportation}\label{sec:teleportation}
+
+Much like we can use still lifes and oscillators in order to speed up information transmission beyond the spaceship speed limits of Theorem~\ref{thm:speed_limits}, we can also use chaotic reactions and spaceship collisions. For example, the collision of $3$~gliders displayed in Figure~\ref{fig:fast_forward_force_field} (called the \emph{fast forward force field}\footnote{Found by Dietrich Leithner in 1994. The ``forward'' in the name of the fast forward force field officially refers to the science fiction writer Robert L. Forward. However, ``fast Forward force field'' looks a bit too strange for the authors' tastes, so we opt not to capitalize it.}\index{fast forward force field}) has the remarkable property that if the lightweight spaceship is not present, the gliders simply destroy each other and leave nothing behind, but if the gliders are present, then the lightweight spaceship re-appears $6$ generations later, $11$~cells in front of its original position.
+
+\begin{figure}[!htb]
+	\centering\embedlink{fast_forward_force_field}{\vcenteredhbox{\patternimg{0.12}{fast_forward_force_field}} \vcenteredhbox{\genarrow{6}} \vcenteredhbox{\patternimg{0.12}{fast_forward_force_field_6}}}
+	\caption{The \emph{fast forward force field}: if the lightweight spaceship (displayed in \bgbox{greenback}{green}) is not present, the $3$~gliders destroy each other and leave nothing behind, but in the configuration displayed here they ``teleport'' the LWSS to the right by $11$~cells in just $6$~generations. The leftover debris on the right simply dies off in a few more generations.}\label{fig:fast_forward_force_field}
+\end{figure}
+
+Not only does this glider collision help move an LWSS at faster than the $c/2$ speed limit, but it seems to move it even faster than the speed of light! Since we know that no information can propagate through the Life plane at a speed exceeding $c$, it is worth investigating this reaction in a bit more detail. To this end, a generation-by-generation breakdown of how this reaction works when the LWSS is and is not present is provided in Figure~\ref{fig:ffff_analysis}.
+
+\begin{figure}[!htb]
+	\centering\vcenteredhbox{\patternimg{0.105}{ffff_a_0}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.105}{ffff_a_1}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.105}{ffff_a_2}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.105}{ffff_a_3}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.105}{ffff_a_4}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.105}{ffff_a_5}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.105}{ffff_a_6}} \\[1.5em]
+	
+	\vcenteredhbox{\patternimg{0.105}{ffff_b_0}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.105}{ffff_b_1}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.105}{ffff_b_2}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.105}{ffff_b_3}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.105}{ffff_b_4}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.105}{ffff_b_5}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.105}{ffff_b_6}}
+	\caption{The fast forward force field with an incoming LWSS (top row) and without an incoming LWSS (bottom row). The lowest row of cells affected by the LWSS is displayed with a light gray background, and this leading row never progresses more than $1$~cell per generation, showing that this reaction does not violate the lightspeed speed limit. The $3$-cell spark at the bottom-right subsequently destroys the LWSS, whereas the larger spark at the top-right dies without touching the LWSS.}\label{fig:ffff_analysis}
+\end{figure}
+
+This breakdown reveals that the LWSS itself is not actually transmitted through the glider collision, but rather the glider collision produces an LWSS as its output regardless, and the presence of an input LWSS just determines whether or not a spark forms that subsequently destroys the output LWSS. We thus conclude that even though this reaction does speed up the LWSS past a speed of $c/2$, it does not actually speed it up past a speed of $c$. Indeed, the reaction is not actually done after $6$ generations, since at that point we could still not use the output LWSS as a signal, since it is present at that generation regardless of whether or not the input LWSS was present. Instead, we would have to wait another $18$~or so generations for the front of the LWSS in the bottom row of Figure~\ref{fig:ffff_analysis} to be destroyed, by which time it would have travelled a total of $20$~cells in $24$~generations, for a total speed of $20c/24 = 5c/6$.
+
+% Unfortunately I really can't find a good way to place this any later. Ideally, it would be after the next paragraph but then figures get REALLY bunched up later.
+\begin{figure}[!htb]
+	\centering\embedlink{diagonal_lightspeed}{\vcenteredhbox{\gridbox{0.75pt}{\begin{tikzpicture}[scale=1, every node/.style={transform shape}]%
+				\node[inner sep=0pt,anchor=south west] (glider_loop) at (0.5,0.5) {\patternimg{0.083}{diagonal_lightspeed}};
+				\draw[white,line width=3pt,opacity=0.5](1.335,1.27) circle (0.165);
+				\draw[redback2,line width=1pt](1.335,1.27) circle (0.165);
+				\end{tikzpicture}}} \vcenteredhbox{\genarrow{193}} \vcenteredhbox{\gridbox{0.75pt}{\begin{tikzpicture}[scale=1, every node/.style={transform shape}]%
+				\node[inner sep=0pt,anchor=south west] (glider_loop) at (0.5,0.5) {\patternimg{0.083}{diagonal_lightspeed_193}};
+				\draw[white,line width=3pt,opacity=0.5](4.81,4.66) circle (0.165);
+				\draw[redback2,line width=1pt](4.81,4.66) circle (0.165);
+				\end{tikzpicture}}}}
+	\caption{A diagonal collision of gliders, found by Jason Summers in 1999, that is able to teleport a glider from the bottom-left (circled in \bgbox{redback}{red}) to the top-right at the speed of light. If the input glider is not present, the reaction just destroys itself, leaving nothing behind. The gliders and lightweight spaceships outlined in \bgbox{aquaback}{aqua} are just there to clean up some leftover debris.}\label{fig:diagonal_lightspeed}
+\end{figure}
+
+Another reaction that has a very similar flavor is the long glider collision displayed in Figure~\ref{fig:diagonal_lightspeed}. This reaction teleports a single glider a distance of about $150$ cells to the top-right over the course of $193$ generations---much faster than the usual $c/4$ diagonal spaceship speed limit. In fact, the input glider travels through the diagonal glider collision at a speed of exactly $c$, but it takes a few generations for the reaction to get going at the start and for it to calm down at the end.
+
+Although this reaction fills in a big gap that has been missing from our collection of Life circuitry---recall that up until now we had no way of transmitting information diagonally at the speed of light---actually making use of it is somewhat tricky, since it is difficult to generate waves of gliders that are so closely-spaced. We will discuss some methods for overcoming this obstacle in Chapters~\ref{chp:periodic_circuitry} and~\ref{chp:stationary_circuitry}. However, even with the currently best-known methods, a pattern that is able to generate this configuration of gliders and thus make use of this diagonal lightspeed reaction would be extremely large.
+
+
+
+\section{Speed and Period Status}\label{sec:speed_period_status}
+
+So far we have only seen spaceships with a very select few different speeds---specifically $c/2$ orthogonal, $c/4$ diagonal, and $c/12$ diagonal. Similarly, we have only seen a dozen or so different spaceship periods, all of which are multiples of $4$. We now briefly catalog what spaceship speeds are known and how to construct spaceships with a wider variety of periods.
+
+% Again, I can't find a way to place this after it's actually introduced in text :/
+\begin{figure}[!htb]
+	\centering
+	\begin{tabular}{@{}ccc@{}}
+		\begin{subfigure}{.28\textwidth}
+			\centering
+			\patternimglink{0.1208386427}{c3_orthogonal}
+			\caption{no-name $c/3$}
+			\label{fig:c3_orthogonal}
+		\end{subfigure} &
+		\begin{subfigure}{.32\textwidth}
+			\centering
+			\patternimglink{0.08488664987}{spider}
+			\caption{\emph{Spider}\index{spider} ($c/5$)}
+			\label{fig:spider}
+		\end{subfigure} &
+		\multirow{4}{*}{\begin{subfigure}{.36\textwidth}
+				\centering\vspace*{-0.315in}
+				\patternimglink{0.075}{spaghetti_monster}
+				\caption{\emph{Spaghetti monster}\index{spaghetti monster} ($3c/7$)}
+				\label{fig:spaghetti_monster}
+			\end{subfigure}} \\[0.5in]
+			\begin{subfigure}{.28\textwidth}
+				\centering
+				\patternimglink{0.10253770046}{2c5_orthogonal}
+				\caption{no-name $2c/5$}
+				\label{fig:2c5_orthogonal}
+			\end{subfigure} &
+			\begin{subfigure}{.32\textwidth}
+				\centering
+				\patternimglink{0.1}{c6_orthogonal}
+				\caption{no-name $c/6$}
+				\label{fig:c6_orthogonal}
+			\end{subfigure} \\[0.65in]
+			\begin{subfigure}{.28\textwidth}
+				\centering
+				\patternimglink{0.12799533643}{loafer}
+				\caption{\emph{Loafer}\index{loafer} ($c/7$)}
+				\label{fig:loafer}
+			\end{subfigure} &
+			\begin{subfigure}{.32\textwidth}
+				\centering
+				\patternimglink{0.10842917035}{weekender}
+				\caption{\emph{Weekender}\index{weekender} ($2c/7$)}
+				\label{fig:weekender}
+			\end{subfigure} \\[0.65in]
+			\begin{subfigure}{.28\textwidth}
+				\centering
+				\patternimglink{0.096438575319}{copperhead}
+				\caption{\emph{Copperhead}\index{copperhead} ($c/10$)}
+				\label{fig:copperhead}
+			\end{subfigure} & 
+			\begin{subfigure}{.32\textwidth}
+				\centering
+				\patternimglink{0.1032862848}{c4_orthogonal}
+				\caption{no-name $c/4$}
+				\label{fig:c4_orthogonal}
+			\end{subfigure}
+	\end{tabular}
+	\caption{A collection of small orthogonal spaceships of various speeds, all oriented so that they travel up. These spaceships were found by (a)~Dean Hickerson in 1989, (b)~David Bell in 1997, (c)~Tim Coe in 2016, (d)~Paul Tooke in 2000, (e)~Hartmut Holzwart in 2009, Josh Ball (f)~in 2013 and (i)~in 2012, (g)~David Eppstein in 2000, and (h)~ConwayLife.com forum user ``zdr'' in 2016.}
+	\label{fig:speed_catalog}
+\end{figure}
+
+
+\subsection{Spaceship Speeds}\label{sec:speed_catalog}
+
+Figure~\ref{fig:speed_catalog} provides a collection of the smallest known orthogonal spaceships (in terms of number of alive cells) of several different speeds that we have not yet seen.\footnote{We do not dwell on the exact methods used to find these spaceships, as they were all found via computer search rather than methods that can be mimicked by hand.} In fact, these $9$ spaceships (plus the $c/2$ spaceships that we are already familiar with) represent the only $10$~speeds for which \emph{elementary} orthogonal spaceships have been constructed. By an elementary spaceship,\index{elementary spaceship} we simply mean one that acts ``as a whole'' rather than by piecing together many smaller reactions.\footnote{This definition is admittedly vague, and essentially impossible to make precise.} For example, Corderships are not elementary since they are constructed by making use of multiple reactions based on switch engines.
+
+The Life community has had slightly less luck finding elementary diagonal spaceships of different speeds, primarily due to the diagonal speed limit being slower than the orthogonal speed limit. Indeed, slow spaceships typically need to have a higher period than fast spaceships (e.g., a spaceship with speed $c/n$ must have period at least $n$), and the search space for high-period objects is much larger than it is for low-period objects,\footnote{This is the same reason that computer searches have been so effective at finding oscillators with period below $19$, but not above.} so the effectiveness of computer searches drops off quickly.
+
+Nonetheless, $3$ new diagonal spaceships, each travelling at a speed that we have not yet seen, are displayed in Figure~\ref{fig:diagonal_speed_catalog}. Together with the $c/4$ and $c/12$ spaceships that we are already familiar with, these spaceships represent the only $5$ diagonal speeds that have been attained by elementary spaceships.
+
+\begin{figure}[!htb]
+	\centering
+	\begin{tabular}{@{}ccc@{}}
+		\begin{subfigure}{.315\textwidth}
+			\centering
+			\patternimglink{0.13}{c5_diagonal}
+			\caption{no-name $c/5$}
+			\label{fig:c5_diagonal}
+		\end{subfigure} &
+		\begin{subfigure}{.315\textwidth}
+			\centering
+			\patternimglink{0.08567213114}{c6_diagonal}
+			\caption{no-name $c/6$}
+			\label{fig:c6_diagonal}
+		\end{subfigure} &
+		\begin{subfigure}{.315\textwidth}
+			\centering
+			\patternimglink{0.11214592274}{lobster}
+			\caption{\emph{Lobster}\index{lobster} ($c/7$)}
+			\label{fig:lobster}
+		\end{subfigure}			
+	\end{tabular}
+	\caption{The smallest known diagonal spaceships of some unusual speeds, all oriented so that they travel toward the top-right. These spaceships were found by (a)~Matthias Merzenich in 2010 and (c)~in 2011, and by (b)~Josh Ball in 2011.}
+	\label{fig:diagonal_speed_catalog}
+\end{figure}
+
+Even though all of the spaceships that we have seen so far travel either orthogonally or diagonally, other directions of travel (i.e., diagonally at slopes other than $\pm 1$) are indeed possible. We call a spaceship that travels in one of these non-standard directions an \emph{oblique spaceship},\index{oblique spaceship} and we say that its speed is $(x,y)c/n$ if it travels a distance of $x$ cells horizontally and $y$ cells vertically over the course of $n$~generations. Since oblique spaceships all have speed no greater than $(2,1)c/6$ and period equal to at least~$6$ (see Exercise~\ref{exer:general_speed_limit}), they are quite difficult to find via computer search. However, one elementary oblique spaceship is indeed known, and is displayed in Figure~\ref{fig:sir_robin}.\footnote{Ships like this one, which travel $2$ cells horizontally for every $1$ cell that they travel vertically, are called \emph{knightships}, in reference to the knight from chess that moves in the same way.\index{knightship} This particular knightship is called \emph{Sir Robin}, after a knight from Monty Python.}
+
+\begin{figure}[!htb]
+	\centering
+	\patternimglink{0.1}{sir_robin}
+	\caption{\emph{Sir Robin}\index{Sir Robin} is an oblique spaceship with speed $(2,1)c/6$. It was found by Adam~P. Goucher in March 2018, based on a partial spaceship that was found by Tomas Rokicki.}
+	\label{fig:sir_robin}
+\end{figure}
+
+Although only a handful of speeds have been realized by elementary spaceships, there is a very large world of \emph{engineered}\index{engineered spaceship} spaceships that we have not yet looked at---spaceships (typically with thousands or millions of live cells) that work by using simple reactions over and over again in order to carefully move themselves forward. These spaceships are typically not constructed by hand, but rather with the help of custom-designed computer programs that place the individual component reactions together in such a way as to stabilize each other.
+
+While we are not yet in a position to discuss the specifics of how these engineered spaceships are pieced together, we will return to this problem in Chapters~\ref{chp:self_support_spaceships} and~\ref{chp:universal_construction}. For now, we simply list in Table~\ref{tab:spaceship_speeds} a summary of what spaceship speeds are attainable by which methods.
+
+% TODO: We can tweak the lower rows of this table if we like, specifically mentioning spaceships that we'll see in the later chapters. NJ wants to keep the 3 "all speeds <" rows, but I'm not fussy on which other engineered spaceship rows we include.
+\begin{table}[!htb]
+	\begin{center}		
+		\begin{tabular}{r c l}
+			\toprule
+			Speed & Direction & Examples \\ \midrule
+			$c/2$ & orthogonal & LWSS, MWSS, HWSS \\
+			\rowcolor{gray!20} $c/3$ & orthogonal & Figure~\ref{fig:c3_orthogonal} \\
+			$c/4$ & orthogonal & Figure~\ref{fig:c4_orthogonal} \\
+			\rowcolor{gray!20} $c/5$ & orthogonal & spider \\
+			$2c/5$ & orthogonal & Figure~\ref{fig:2c5_orthogonal} \\
+			\rowcolor{gray!20}$c/6$ & orthogonal & Figure~\ref{fig:c6_orthogonal} \\
+			$c/7$ & orthogonal & loafer \\
+			\rowcolor{gray!20} $2c/7$ & orthogonal & weekender \\
+			$3c/7$ & orthogonal & spaghetti monster \\
+			\rowcolor{gray!20} $c/10$ & orthogonal & copperhead \\
+			$17c/45$ & orthogonal & ``caterpillar''\index{caterpillar} engineered spaceship \\
+			\rowcolor{gray!20} $31c/240$ & orthogonal & ``centipede''\index{centipede} engineered spaceship \\
+			all speeds $< c/4$ & orthogonal & ``caterloopillar''\index{caterloopillar} engineered spaceships \\
+			\rowcolor{gray!20} $c/4$ & diagonal & glider \\
+			$c/5$ & diagonal & Figure~\ref{fig:c5_diagonal} \\
+			\rowcolor{gray!20} $c/6$ & diagonal & Figure~\ref{fig:c6_diagonal} \\
+			$c/7$ & diagonal & lobster \\
+			\rowcolor{gray!20} $c/12$ & diagonal & Corderships\index{Cordership} \\
+			all speeds $< 17c/792$ & diagonal & ``Demonoid'' engineered spaceships\protect\footnotemark \\
+			\rowcolor{gray!20} $(2,1)c/6$ & slope $2$ & Sir Robin \\
+			$(6,3)c/2621440$ & slope $2$ & ``half-baked knightship''\index{half-baked knightship} \\
+			\rowcolor{gray!20} all speeds $< (1,1)c/580$ & all slopes & ``Gemini''\index{Gemini} engineered spaceships\protect\footnotemark \\\bottomrule
+		\end{tabular}
+		\caption{A summary of the different spaceship speeds that are known to be attainable. Many of these speeds are only attained by engineered spaceships, which we will not discuss in detail until Chapters~\ref{chp:self_support_spaceships} and~\ref{chp:universal_construction}. When this table says things like ``all speeds'' or ``all slopes'', it should be understood that it means all \emph{rational} speeds or slopes, as it is not possible for a spaceship to have irrational speed or slope.}\label{tab:spaceship_speeds}
+	\end{center}
+\end{table}
+\addtocounter{footnote}{-2} % the number of footnotes in previous table (also the number of \footnotetexts coming up)
+\stepcounter{footnote}\footnotetext{All speeds slower than $17c/792$ are known to be attainable using a ``Demonoid'' construction, which we will discuss in Section~\ref{sec:demonoid}. However, this construction has not been explicitly carried out, as the size of the resulting spaceship becomes monstrous as the speed approaches the $17c/792$ limit. The fastest spaceship explicitly built using this method has speed $65c/438852$.}
+\stepcounter{footnote}\footnotetext{While essentially any direction and sufficiently slow speed can be attained by a Gemini-like spaceship, most speeds that have been explicitly constructed in this way are in the ballpark of $c/6500$.}
+
+It is worth noting that methods for constructing engineered spaceships demonstrate the existence of spaceships that travel arbitrarily slowly, so there cannot possibly be a variant of Theorem~\ref{thm:speed_limits} that provides a lower bound on the speed of spaceships. In fact, at least in the orthogonal direction we know how to construct about half of all possible speeds, since the caterloopillar construction can produce spaceships of any rational speed below $c/4$, leaving only the interval of speeds between $c/4$ and $c/2$ unsolved. Since we already know explicit examples of $c/3$, $2c/5$, $2c/7$, and $3c/7$ orthogonal spaceships, we are left with $3c/8$ as the simplest (i.e., smallest potential period) orthogonal speed for which no spaceship is known. Similarly, the simplest unknown diagonal speed is $c/8$, for which there could potentially exist a period~$8$ spaceship, whereas all other unknown speeds would necessarily have at least period~$9$.
+
+
+\subsection{Spaceship Periods}\label{sec:period_catalog}
+
+Although the primary goal when constructing spaceships is to develop new speeds or directions that have not been realized before, we could also ask how to construct spaceships with a wide variety of periods. When the period of a spaceship is important to us, we are careful not to reduce the fraction that represents its speed. For example, a spaceship with period~$14$ could travel at $c/2$ with a period~$14$ spark, and if we were intent on specifying its period, we might say that it travels at $7c/14$. Alternatively, there could be a $c/7$ spaceship with a p$14$ spark---we do not know of one, but we would call it a $2c/14$ spaceship. If we wish to emphasize that the light, middle, and heavyweight spaceships have period~$4$ then we would say that they travel at $2c/4$ instead of at $c/2$.
+
+Since a spaceship's period is so closely tied to its speed, and we do not yet know how to construct spaceships of all rational speeds below $c/2$, it should not be surprising that we also do not yet know how to construct spaceships of all periods. However, there is still a lot that we can say about spaceship periods. For example, we have already seen spaceships with period~$4$ (e.g., the four basic spaceships) and with period~$3$ (e.g., the one in Figure~\ref{fig:c3_orthogonal}). There are also spaceships with period~$2$, such as the one displayed in Figure~\ref{fig:p2_spaceship}, and this period is minimal (if a spaceship had period~$1$ then it would have to move at lightspeed, which we know is impossible by Theorem~\ref{thm:speed_limits}).
+
+\begin{figure}[!htb]
+	\centering
+	\begin{tabular}{@{}ccc@{}}
+		\begin{subfigure}{.18\textwidth}
+			\centering
+			\patternimglink{0.091}{p2_spaceship}
+			\caption{p$2$ spaceship}
+			\label{fig:p2_spaceship}
+		\end{subfigure} &
+		\begin{subfigure}{.78\textwidth}
+			\centering
+			\embedlink{p8_puffer}{\vcenteredhbox{\patternimg{0.091}{p8_puffer}} \vcenteredhbox{\genarrow{560}} \vcenteredhbox{\patternimg{0.091}{p8_puffer_560}}}
+			\caption{p$8$ puffer}
+			\label{fig:p8_puffer}
+		\end{subfigure}	
+	\end{tabular}
+	\caption{(a) A small period~$2$ spaceship that was found by Dean Hickerson in 1989, and (b) a puffer that can be obtained from this spaceship by changing the shape of one of its rear sparks (displayed in \bgbox{greenback}{green}).}
+	\label{fig:p2_spaceship_puffer}
+\end{figure}
+
+The exciting thing about this period~$2$ spaceship is that we can actually use it to construct spaceships with arbitrarily large periods. To see how this works, first notice that we can change one of its rear sparks so as to produce a puffer, as in Figure~\ref{fig:p8_puffer}. With this puffer in hand, we play a similar game to the one that we played in Section~\ref{sec:space_rake}---we add a nearby heavyweight spaceship so as to transform this puffer's debris into a glider, thus creating the period~$8$ rake\index{rake} depicted in Figure~\ref{fig:p8_rake}. This rake has much lower period than any of the other rakes we have seen so far, and its usefulness lies in the fact that two of them can be combined in such a way that their glider streams collide, creating exactly the bi-block wick that we saw in Figure~\ref{fig:bi_block_fuse}.\index{bi-block}\footnote{We will discuss which glider collisions produce which objects thoroughly in Chapter~\ref{chp:glider_synthesis}.}
+
+\begin{figure}[!htb]
+	\centering
+	\begin{tabular}{@{}cc@{}}
+		\begin{subfigure}{.48\textwidth}
+			\centering
+			\patternimglink{0.12}{p8_rake}
+			\caption{p$8$ rake}
+			\label{fig:p8_rake}
+		\end{subfigure} &
+		\begin{subfigure}{.48\textwidth}
+			\centering
+			\patternimglink{0.12209606986}{p8_bi_blocks}
+			\caption{p$8$ bi-block puffer}
+			\label{fig:p8_bi_blocks}
+		\end{subfigure}	
+	\end{tabular}
+	\caption{(a) A small period~$8$ rake constructed by using a heavyweight spaceship (displayed in \bgbox{greenback}{green}) to tame the debris left behind by the puffer from Figure~\ref{fig:p8_puffer}, and (b)~a way of arranging two of these rakes so as to leave a trail of bi-blocks behind them.}
+	\label{fig:p8_rake_wick}
+\end{figure}
+
+If we were able to start the beehive fuse that burns through this wick, eventually the fuse would catch up with the glider collision (since it burns at $2c/3$, which is faster than the rake's speed of $c/2$), stop burning, and the wick would start being re-constructed again. We would thus have a spaceship that gradually swaps back and forth between being quite small (when its wick is entirely burned up) to being quite large (just before its wick starts burning again), and we could make its period as large as we like just by increasing the distance separating the bi-block puffer from the fuse-igniting reaction.
+
+The pattern displayed in Figure~\ref{fig:adjustable_rake} does even better; it not only repeatedly re-ignites the bi-block fuse, but it releases a single glider every time as well, so it not only lets us create spaceships with arbitrarily large periods, but even rakes with arbitrarily large periods. Specifically, every additional bi-block between the front and back halves of the rake increases its period by $32$.\footnote{Each extra bi-block adds a horizontal width of $4$~cells to the wick, so the $c/2$ front end takes an extra $8$ generations to lay it down. Since the difference in speed between the front and back ends of this rake is $2c/3 - c/2 = c/6$, the fuse then burns for an extra $4 \times 6 = 24$ generations, for a total of $8 + 24 = 32$ generations added to the rake's period.} To turn this rake into a spaceship, an additional LWSS can be added to delete the rake's output glider, via the reaction that we saw back in Figure~\ref{fig:orthogonal_destroy}.\footnote{A slightly smaller method of turning this rake into a spaceship is described in Exercise~\ref{exer:adjustable_spaceship}.}
+
+Another method of constructing adjustable-period spaceships,\footnote{Developed by David Bell in 1992, with help from Dean Hickerson.} based on the blinker fuse of Figure~\ref{fig:blinker_fuse}, is presented in Exercise~\ref{exer:blinker_ship}. This technique has the advantage that it can be used to construct spaceships of all sufficiently large periods that are multiples of $4$ (instead of just every $32$nd period), but the disadvantage that adjusting its period is slightly more complicated.
+
+\begin{figure}[!htb]
+	\centering
+	\patternimglink{0.125}{adjustable_rake}
+	\caption{An \emph{adjustable rake}\index{adjustable rake}, which can be made to have any period of the form $264 + 32n$, where $n \geq 0$ is an integer, by increasing the length of the bi-block wick in the middle. In the form displayed here, it has period $392$. The HWSS highlighted in \bgbox{aquaback}{aqua} destroys the gliders in the stream directly below it, creating a far-away banana spark in the process. This spark, together with the spark from the LWSS highlighted in \bgbox{greenpastel}{green} ignites the bi-block fuse, but also leaves behind some debris. The three ships outlined in \bgbox{magentaback}{magenta} transform that debris into the output glider outlined in \bgbox{yellowback2}{yellow}.}
+	\label{fig:adjustable_rake}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Notes and Historical Remarks}
+\label{sec:spaceships_notes}
+\addcontentsline{toc}{section}{\nameref{sec:spaceships_notes}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+While the glider, lightweight spaceship, middleweight spaceship, and heavyweight spaceship were all found by hand in 1970, very little was known about spaceships for the first two decades of Life. All early spaceship discoveries were simple modifications of those $4$ standard spaceships, such as flotillas\index{flotilla} and tagalongs like the Schick engine.\index{Schick engine} The first \emph{truly} new spaceships to be found were several period~$2$ spaceships by Dean Hickerson in July 1989, including the one that we saw in Figure~\ref{fig:p2_spaceship}.\footnote{It is not known exactly which period~$2$ spaceship was found first---they were all found very close together by the same computer searches.}
+
+Hickerson's search program continued to find new types of spaceships throughout the year, including the first $c/3$ spaceship (in Figure~\ref{fig:c3_orthogonal}) in August, the first $c/4$ orthogonal spaceship in December, and the first diagonal spaceship other than the glider in December (see Figure~\ref{fig:big_glider}). It also found the first $2c/5$ spaceship in 1991, and his same algorithm continues to be used to this day to find new spaceships and oscillators.\footnote{His algorithm is now implemented in programs called lifesrc and JavaLifeSearch. See \httpsurl{conwaylife.com/wiki/Lifesrc} for documentation and download locations.}
+
+\begin{figure}[!htb]
+	\centering
+	\patternimglink{0.1}{big_glider}
+	\caption{The \emph{big glider}\index{big glider}: a $c/4$ period $4$ diagonal spaceship, and the first diagonal spaceship other than the glider to be discovered. Found by Dean Hickerson in December 1989.}
+	\label{fig:big_glider}
+\end{figure}
+
+Some other Life enthusiasts continued using search programs to find new spaceships throughout the 1990s, with some of the most notable discoveries being:\smallskip
+
+\begin{itemize}
+	\item the first $c/5$ orthogonal spaceship, found by Tim Coe in 1996;\smallskip
+	
+	\item the first $2c/7$ orthogonal spaceship, the weekender,\index{weekender} found by David Eppstein in 2000 \cite{Epp02};\smallskip
+	
+	\item the first $c/6$ orthogonal spaceship, found by Paul Tooke in 2000;\smallskip
+	
+	\item the first $c/7$ orthogonal spaceship, the loafer,\index{loafer} found by Josh Ball in 2013; and\smallskip
+	
+	\item the first $c/10$ orthogonal spaceship, the copperhead,\index{copperhead} found by ConwayLife.com forum user ``zdr'' in 2016.\smallskip
+\end{itemize}
+
+The small size of the loafer and copperhead demonstrate just how limited our search techniques for spaceships really are. The copperhead especially was a shocking discovery, as it had gone unnoticed for over 45 years of Life, but it could have been found in one hour using the publicly-available search program ``gfind'' that David Eppstein wrote to find the weekender. Even more shockingly, it was then found in random ash generated by apgsearch\index{apgsearch} less than a month after its initial discovery (see Exercise~\ref{exer:random_symmetric}(b)).\footnote{However, this is perhaps slightly misleading. The copperhead was found from evolving a random symmetric soup, and it's likely that there would not have been as much of a push to search symmetric soups if the copperhead had not come along in the first place.}
+
+Diagonal spaceships are somewhat more difficult to search for than orthogonal spaceships due to their lower speed limit and thus higher periods (see Exercise~\ref{exer:general_speed_limit}), with search techniques not producing the first new diagonal speeds of $c/5$, $c/6$, and $c/7$ until 2000 (by Jason Summers), 2005 (by Nicolay Beluchenko), and 2011 (by Matthias Merzenich), respectively.
+
+Oblique spaceships are even more difficult to find, with the first one (Sir Robin) not being found until 2018 (by Adam P. Goucher and Tomas Rokicki), despite considerable effort having been put into finding one over the preceding 20 years. Indeed, there was a remarkably close call in March 2004, when Eugene Langvagen found the small pattern displayed in Figure~\ref{fig:almost_knightship}. This pattern is roughly $1/4$ of the size of Sir Robin and is \emph{almost} an elementary knightship---after $6$ generations it has moved by $2$ cells horizontally and $1$ cell vertically, except with the state of just $2$ of its cells incorrect.
+
+\begin{figure}[!htb]
+	\centering
+	\embedlink{almost_knightship}{\vcenteredhbox{\patternimg{0.1}{almost_knightship_0}} \vcenteredhbox{\genarrow{6}} \vcenteredhbox{\patternimg{0.1}{almost_knightship_6}}}
+	\caption{An ``almost knightship'' that travels to the right by $2$ cells and up by $1$ cell over the course of $6$ generations, except with one extra cell born (shown in \bgbox{greenback}{green}) and one extra cell dead (shown in \bgbox{redback}{red}).}\label{fig:almost_knightship}
+\end{figure}
+
+No other spaceship speeds or directions have been found via computer search, but a lot of success has been had by stitching together multiple copies of simple reactions in clever ways. The first spaceship that was found in this way was the 13-engine Cordership, which was found in 1991 by Dean Hickerson, who also found most of the other early Corderships. The next spaceship to be found via construction was the caterpillar\index{caterpillar}, which is a $17c/45$ orthogonal spaceship based on the reaction displayed in Figure~\ref{fig:17c45_reaction}.
+
+Even though this reaction by itself is unstable, it can be chained together with itself and other reactions to create a true spaceship. However, the details of how these reactions fit together are considerably more complicated than they were for Corderships, and had to be carried out by a computer program written by Gabriel Nivasch (with help by David Bell and Jason Summers) in 2004. The completed caterpillar spaceship has over $11$~million live cells, and remains the largest interesting Life pattern (by live cell count) to date.
+
+\begin{figure}[!htb]
+	\centering
+	\embedlink{17c45_reaction}{\vcenteredhbox{\patternimg{0.1}{17c45_reaction}} \vcenteredhbox{\genarrow{45}} \vcenteredhbox{\patternimg{0.1}{17c45_reaction_b}}}
+	\caption{A reaction in which a pi-heptomino\index{pi-heptomino} collides with a blinker in such away as to move forward by $17$ cells in $45$ generations while moving the blinker backward by $6$ cells. The cells displayed in \bgbox{redback}{red} on the right die off completely in another $24$ generations.}\label{fig:17c45_reaction}
+\end{figure}
+
+The next engineered spaceship to be constructed was \emph{Gemini}\index{Gemini}, which was created by Andrew J. Wade in 2010. The original form of this spaceship had speed $(5120,1024)c/33699586$ and was the first known oblique spaceship. Furthermore, its construction can be altered in a rather systematic way to create spaceships of any direction and arbitrarily-slow speeds.\footnote{The existence of oblique spaceships and arbitrarily-slow spaceships was already known in 1982 \cite{BCG82}, but Gemini was the first explicit construction. Despite having over 800,000 live cells, it was orders of magnitude smaller and faster than such a spaceship was expected to be.} Several other types of massive engineered spaceships have been constructed since the Gemini, and we will investigate them in depth in Chapters~\ref{chp:self_support_spaceships} and~\ref{chp:universal_construction}.
+
+Interest in wires has dwindled in recent years, simply because signals on wires are more difficult to manipulate than signals (gliders in particular) in a vacuum. Indeed, if we want to send a signal from one location in the Life plane to another, it is typically simpler to just point a glider in the right direction rather than requiring that a particular wire stretches all the way between those two locations. Furthermore, we have a lot of machinery for repositioning and re-timing gliders, but hardly any such machinery for signals (we do not know of a single ``efficient'' signal elbow, for example). Dean Hickerson wrote a computer program to search for such a signal elbow, with the intention of then creating a fast signal loop that solved the omniperiodicity problem. While that computer search was unsuccessful, it did lead to many of the known billiard table oscillators.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Exercises \hfill \normalfont\textsf{\small solutions to starred exercises on \hyperlink{solutions_spaceships}{page \pageref{solutions_spaceships}}}}
+\label{sec:spaceships_exercises}
+\addcontentsline{toc}{section}{Exercises}
+\vspace*{-0.4cm}\hrulefill\vspace*{-0.3cm}\footnotesize\begin{multicols}{2}\vspace*{-0.4cm}\raggedcolumns\interlinepenalty=10000
+\setlength{\parskip}{0pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problemstar}\label{exer:glider_color}
+	Determine whether the given pair of gliders have the same or the opposite color as each other.\vspace*{-0.25cm}
+	
+	\begin{multicols}{2}
+		\begin{enumerate}
+			\item[\bf\color{ocre}(a)] \raisebox{-\height+0.5em}{\patternimglink{0.1}{exercise_color_1}}
+			
+			\item[\bf\color{ocre}(c)] \raisebox{-\height+0.5em}{\patternimglink{0.1}{exercise_color_2}}
+			
+			\item[\bf\color{ocre}(b)] \raisebox{-\height+0.5em}{\patternimglink{0.1}{exercise_color_3}}
+		\end{enumerate}
+	\end{multicols}
+\end{problemstar}
+
+
+\mfilbreak
+
+
+\begin{problemstar}\label{exer:reflector_color}
+	Determine whether the specified glider reflector is color-preserving or color-changing.\smallskip
+	
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item Buckaroo (see Figure~\ref{fig:buckaroo}).\index{buckaroo}
+		
+		\item Relay (see Figure~\ref{fig:relay}).\index{relay}
+		
+		\item Boojum reflector (see Exercise~\ref{exer:new_reflectors}(a)).\index{boojum reflector}
+		
+		\item Rectifier (see Exercise~\ref{exer:new_reflectors}(b)).\index{rectifier}
+		
+		\item Bouncer\index{bouncer} reflectors (see Figure~\ref{fig:bouncer_reflector}).
+	\end{enumerate}
+\end{problemstar}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:tubstretcher_modify}
+	Recall the tubstretcher\index{tubstretcher} that we introduced in Figure~\ref{fig:tubstretcher}.\smallskip
+	
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item Modify the tubstretcher so that it stretches a boat instead of a tub.
+		
+		\item Modify the tubstretcher so that it stretches two tubs instead of just one.
+		
+		\item The pattern that you constructed in part~(b) grows by $4$ cells every $4$ generations. Place another period~$4$ object (either a spaceship or an oscillator) on the Life plane so that the total number of live cells on the plane grows by exactly $1$ every generation. % A LWSS works. Pattern is called "one per generation" on LifeWiki
+	\end{enumerate}
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problemstar}\label{exer:swan_tubstretcher}
+	The following $c/4$ diagonal spaceship is called a \emph{swan},\footnote{Found by Tim Coe in 1996.} and it emits a very accessible spark.
+	
+	\begin{center}
+		\patternimglink{0.1}{swan}
+	\end{center}
+
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item Use this spark to create a tubstretcher.
+		
+		\item Find a way of colliding a glider with this spark so that two gliders are produced---one traveling southeast and one traveling southwest.
+	\end{enumerate}
+\end{problemstar}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:c4_diagonal_tagalong}
+	The $c/4$ diagonal tagalong displayed below can be attached to almost any $c/4$ diagonal spaceship that emits a spark. Attach it to three different spaceships.
+	
+	\begin{center}
+		\patternlink{c4_tagalong0}{\vcenteredhbox{\patternimg{0.1}{c4_tagalong0_0}} \vcenteredhbox{\genarrow{4}} \vcenteredhbox{\patternimg{0.1}{c4_tagalong0_4}}}
+	\end{center}
+\end{problem}
+% crab, orion 2, big glider, B29
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:c4_diagonal_glider_emulator}
+	The $c/4$ diagonal tagalong displayed below is rather difficult to use since most spaceships that emit sparks in the desired positions collide with each other.
+	
+	\begin{center}
+		\patternlink{c4_tagalong0}{\vcenteredhbox{\patternimg{0.1}{c4_tagalong1_0}} \vcenteredhbox{\genarrow{2}} \vcenteredhbox{\patternimg{0.1}{c4_tagalong1_2}} \vcenteredhbox{\genarrow{2}} \vcenteredhbox{\patternimg{0.1}{c4_tagalong1_4}}}
+	\end{center}
+
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item Find a way to place this tagalong between two spaceships.
+		
+		\item This tagalong is called the \emph{glider emulator}\index{glider emulator}, since it leaves behind a spark that behaves very similarly trailing cell of a glider. Use this spark to attach a copy of the Canada goose\index{Canada goose} tagalong to the spaceship that you constructed in part~(a).
+	\end{enumerate}
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:x66}
+	Show how two copies of the tagalong in Figure~\ref{fig:hwss_x66} can stabilize each other, resulting in a $c/2$ orthogonal spaceship that does not contain a LWSS, MWSS, or HWSS.
+\end{problem}
+% This spaceship called x66
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:mwss_flotilla}
+	There are $5$ different flotillas that consist of exactly two middleweight spaceships. Find them all.
+\end{problem}
+% Niemiec's site or catagolue
+
+
+\mfilbreak
+
+
+\begin{problemstar}\label{exer:owss_flotilla}
+	Use exactly two heavyweight spaceships to stabilize each of the following overweight spaceships, turning them into flotillas.\setlength{\columnsep}{-15pt}\vspace*{-0.25cm}
+	
+	\begin{multicols}{2}
+		\begin{enumerate}
+			\item[\bf\color{ocre}(a)] \raisebox{-\height+0.5em}{\patternimglink{0.1}{owss4}}
+			
+			\item[\bf\color{ocre}(c)] \raisebox{-\height+0.5em}{\patternimglink{0.1}{owss6}}
+			
+			\item[\bf\color{ocre}(b)] \raisebox{-\height+0.5em}{\patternimglink{0.1}{owss10}}
+		\end{enumerate}
+	\end{multicols}
+\end{problemstar}
+
+
+\mfilbreak
+
+
+\begin{problemstar}\label{exer:large_owss_flotilla}
+	Use (potentially many) light, middle, heavy, and/or overweight spaceships to create a flotilla that includes the following overweight spaceship:
+	
+	\begin{center}
+		\patternimglink{0.1}{large_owss_flotilla}
+	\end{center}
+\end{problemstar}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:rephaser}
+	The following collision of two gliders with a block is called a \emph{rephaser},\index{rephaser} since it alters the phase and path of the gliders. It is useful since it pushes each glider over by $3$~lanes, so it can be used to separate closely-spaced glider streams that Snarks are not small enough to separate.
+	
+	\begin{center}
+		\patternlink{rephaser}{\vcenteredhbox{\patternimg{0.1}{rephaser_0}} \vcenteredhbox{\genarrow{15}} \vcenteredhbox{\patternimg{0.1}{rephaser_15}}}
+	\end{center}
+	
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item If two glider streams are travelling in the same direction but on different lanes, how many lanes must they be offset from one another by in order for us to be able to use a Snark to separate them (i.e., reflect one of the gliders without interfering with the other)?
+		
+		\item Use the rephaser, together with some Snarks, to separate two glider streams that are just $16$ lanes apart (which should be less than your answer to part~(a)).
+		% SOLUTION: See p58 gun.
+		
+		\item Use \emph{two} rephasers, together with some Snarks, to separate two glider streams that are just $10$ lanes apart.
+		% SOLUTION: See p58 gun.
+	\end{enumerate}
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:hivenudger_modify}
+	Recall the hivenudger\index{hivenudger} that was introduced in Figure~\ref{fig:hivenudger}.\smallskip
+	
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item Create a hivenudger that uses a lightweight spaceship, a middleweight spaceship, and $2$ heavyweight spaceships.
+		
+		\item Create a hivenudger that uses a Coe ship as one of its rear corners.
+		
+		\item How many different hivenudgers can be constructed by using light, middle, and heavyweight spaceships at its four corners? [Hint: The answer is not $3^4 = 81$. Try either listing all possibilities or looking up a mathematical result called Burnside's lemma, which can be used to compute the answer.] % 45. Burnside's lemma gives (1/2) * (81 + 9) = 45.
+	\end{enumerate}
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:no_orthogonal_color}
+	Similar to how we introduced the color of a glider, we could talk about the color of any diagonal spaceship, and it would be important to be familiar with that spaceship's color if we were to reflect it around a track. However, color is only \emph{sometimes} a useful property when reflecting orthogonal spaceships.\smallskip
+	
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item Explain why it is \emph{not} necessary to consider the color of a loafer\index{loafer} that we reflect around a track.
+		
+		\item Explain why it \emph{is} useful to consider the color of a light, middle, or heavyweight spaceship that we reflect around a track. Why are we more restricted when reflecting these spaceships than when reflecting loafers?
+	\end{enumerate}
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:puffer_2}
+	Create a new puffer by replacing one of the lightweight spaceships in Figure~\ref{fig:puffer_2} with a middleweight spaceship.
+\end{problem}
+% SOLUTION:
+% x = 19, y = 7, rule = B3/S23
+% 15b3o$3o12bo2bo$o2bo4b3o4bo$o6bo2bo4bo$o3bo2b2obo5bobo$o$bobo!
+
+
+\mfilbreak
+
+
+\begin{problemstar}\label{exer:switch_engine_reaction}
+	A reaction is displayed below in which two switch engines (highlighted in \bgbox{aquaback}{aqua}) bounce off of each other and a third switch engine (highlighted in \bgbox{greenpastel}{green}) cleans up some debris. Use this reaction to create a Cordership. [Hint: A 7-engine Cordership is possible using this reaction.]
+	
+	\begin{center}
+		\patternimglink{0.08}{exercise_switch_engine_reaction}
+	\end{center}
+\end{problemstar}
+
+
+\mfilbreak
+
+
+\begin{problemstar}\label{exer:switch_engine_back}
+	A reaction is displayed below in which two switch engines (highlighted in \bgbox{aquaback}{aqua}) bounce off of each other and destroy some trails of blocks (highlighted in \bgbox{yellowback2}{yellow}).
+	
+	\begin{center}
+		\patternimglink{0.08}{exercise_switch_engine_back}
+	\end{center}
+
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item How does this reaction differ from the reaction displayed in Figure~\ref{fig:switch_engine_blocks_destroy}?
+		
+		\item Show how this reaction can be used to reflect a glider by $90$ degrees.
+		
+		\noindent [Hint: What sparks does this reaction emit?]
+		
+		\item Use this reaction to create a Cordership. Use the reaction from part~(b) to show how this Cordership can reflect a glider.
+	\end{enumerate}
+\end{problemstar}
+
+
+\mfilbreak
+
+
+% https://www.conwaylife.com/wiki/4-engine_Cordership
+\begin{problem}\label{exer:4_engine_cordership}
+	Here is an arrangement of two switch engines that evolves into a puffer for a single diagonal row of blocks:
+	
+	\begin{center}
+		\patternimglink{0.08}{two_switch_engine_block_puffer}
+	\end{center}
+
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item Find a position for a second copy of this puffer diagonally behind the first one, such that the blocks from the first puffer suppress the creation of blocks in the second puffer, resulting in an adjustable-length 4-engine Cordership.\footnote{First constructed by Michael Simkin in November 2014.}
+		
+		\item Replace the second puffer with a diagonal mirror-image of itself, and also delay it by some number of ticks so that the two halves of the Cordership are no longer in phase with each other. Make sure that the resulting pattern is still a working 4-engine Cordership.
+	\end{enumerate}
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problemstar}\label{exer:3_engine_cordership}
+	A Cordership that makes use of just $3$~switch engines is displayed below.
+	
+	\begin{center}
+		\patternimglink{0.1}{3_engine_cordership}
+	\end{center}
+
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item What happens to this spaceship if you remove the central switch engine?
+		% It becomes two non-interacting block-laying switch engines.
+		
+		\item Find a way of using the sparks at the back end of this Cordership to reflect a glider by $90$~degrees. % (same as part (b) of {exer:switch_engine_back})
+	\end{enumerate}
+\end{problemstar}
+
+
+\mfilbreak
+
+
+\begin{problemstar}\label{exer:2_engine_cordership}
+	A Cordership that makes use of just $2$ switch engines\footnote{Found by Aidan F. Pierce in December 2017.} is displayed below, along with several incoming gliders that it can reflect in different ways.
+	
+	\begin{center}
+		\patternimglink{0.1}{2_engine_cordership}
+	\end{center}
+	
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item Use the 180-degree reflection highlighted in \bgbox{aquaback}{aqua} to bounce a glider back and forth between two receding Corderships.
+		
+		\item Explain why the other 180-degree reflections (highlighted in \bgbox{greenpastel}{green} and \bgbox{magentaback}{magenta}) cannot be used to make similar glider-bouncing shuttles.
+	\end{enumerate}
+\end{problemstar}
+
+
+\mfilbreak
+
+
+\begin{problemstar}\label{exer:corderrake}\index{Corderrake}
+	A \emph{Corderrake} is displayed below, which is a $c/12$ rake based on switch engines that shoots gliders sideways as it moves.\footnote{Both the Corderrake and the 3-engine Cordership were found by Paul Tooke in 2004.} % both found with gencols
+	
+	\begin{center}
+		\patternimglink{0.094}{corderrake}
+	\end{center}
+
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item How many switch engines does this Corderrake use?
+		
+		\item Use this rake, together with other Corderships that we have seen in this chapter, to construct a diagonal rake that shoots gliders behind it (rather than to its side).\footnote{Objects like this that shoot gliders parallel to their direction of motion are sometimes not considered rakes, since the gliders end up travelling single-file, rather than ``raking out'' a portion of the Life plane.}
+		
+		\item Use this rake, together with other Corderships that we have seen in this chapter, to construct a diagonal rake that shoots lightweight spaceships.
+	\end{enumerate}
+\end{problemstar}
+
+
+\mfilbreak
+
+
+\begin{problemstar}\label{exer:six_cell_schick}
+	Recall the Schick engine that was introduced in Section~\ref{sec:schick_engine}.\smallskip
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item Find a six-cell object that, when placed behind two lightweight spaceships, evolves into a Schick engine. [Hint: Just truncate the spark in one of the Schick engine's phases.]
+		
+		\item The six-cell object from part~(a) follows the same evolutionary sequence as a commonly-occurring unstable object that we have already seen. What object is it?
+	\end{enumerate}
+\end{problemstar}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:schick_mwss_hwss}
+	Find versions of the Schick engine that, instead of using two lightweight spaceships, use...\smallskip
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item two middleweight spaceships,
+		
+		\item two heavyweight spaceships, and
+		
+		\item one lightweight spaceship and one heavyweight spaceship.
+	\end{enumerate}
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problemstar}\label{exer:back_to_forward_space_rake}
+	Use the configuration of two heavyweight spaceships displayed in green in Figure~\ref{fig:coe_ship_forward_rake} to reflect the gliders from a backward space rake (either the period~20 or period~60 version), creating a forward rake.
+\end{problemstar}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:p240_rake}
+	Create a period~240 forward rake and a period~240 backward rake by replacing the period~20 space rake with the period~60 variant in Figures~\ref{fig:coe_space_rake} and~\ref{fig:coe_space_rake_stabilized}.
+\end{problem}
+% SOLUTION: backward:
+% x = 114, y = 60, rule = B3/S23
+% 36b2o$32b4ob2o$32b6o$33b4o$43b2o$39b2o5bo$38b3o6bo$bo2bo32b2o8bo$5bo
+% 20bo9bo3b8o$bo3bo18b2o11b6o$2b4o19b2o11bo2$14bo30b2o$12b2o21b2o6b2ob2o
+% $13b2o18bo4bo4b4o$39bo4b2o$33bo5bo$34b6o4$o2bo13b3o$4bo12bo$o3bo13bo
+% 51bo2bo$b4o69bo$70bo3bo$71b4o3$85b2o$70bo12b2ob2o$70bo8bo3b4o$74b2o2bo
+% bo3b2o$65b2o6bo2b2o3bo$74b2o2bobo3b2o$70bo8bo3b4o$62b3o5bo12b2ob2o$62b
+% o22b2o$63bo2$93b2o$77b3o11b2ob2o$77bo13b4o16b2o$78bo13b2o15b2ob2o$109b
+% 4o$110b2o$91bo$90b3o3b2o$89b5ob3o9b3o$93b3o9bo3b2o$93b3o9bobo2b2o$94bo
+% 9bo5bo$93bo11bo2b2o$105bo$107bo$100bo2bo$104bo6b2o$100bo3bo4b2ob2o$
+% 101b4o4b4o$110b2o!
+
+\mfilbreak
+
+% Exercise with p100 rake from Golly/puffers/p100-herschel-blah
+
+\begin{problem}\label{exer:space_rake_make_things}
+	It is possible to collide two gliders in such a way as to create a block, as displayed below.
+	
+	\begin{center}
+		\embedlink{2_glider_block}{\vcenteredhbox{\patternimg{0.1}{2_glider_block_1}} \vcenteredhbox{\genarrow{4}} \vcenteredhbox{\patternimg{0.1}{2_glider_block_4}}}
+	\end{center}
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item Use this glider collision and two forward space rakes to create a pattern that leaves a trail of blocks behind it, spaced 10~cells apart from each other.
+		% SOLUTION:
+		% x = 46, y = 50, rule = B3/S23
+		% 23b4o$22bo3bo12bo2bo$26bo16bo$22bo2bo13bo3bo$40b4o2$16bo$17bo18bobo$
+		% 15b3o12b3ob2o3bo$27b2o4b4obob2o$25b2o5b5o4bo$11bo13b2o4bo5bo3bo$12bo
+		% 12b5o8b3o$10b3o14b2o9bo2$32b2o5bo2bo$6bo24b4o8bo$7bo23b2ob2o3bo3bo$5b
+		% 3o25b2o5b4o3$bo$2bo$3o2$3b2o$2bobo$4bo2$34b2o5bo2bo$8b2o23b4o8bo$7bobo
+		% 23b2ob2o3bo3bo$9bo25b2o5b4o2$31bo$13b2o15b2o$12bobo14bob2o7b2o$14bo14b
+		% obo7bo2b2o$29b2o3bo3b3o2bo$31bob3o2bo4bo$18b2o18b5o$17bobo19b2o$19bo$
+		% 41bo2bo$45bo$41bo3bo$25b4o13b4o$24bo3bo$28bo$24bo2bo!
+		
+		\item Use two copies of the backward rake from Figure~\ref{fig:back_space_rake_60} to create a pattern that leaves a trail of blocks behind it, spaced 30~cells apart from each other.
+		
+		\item Try altering the two-glider collision slightly to see what other types of objects you can make with two gliders. Use two rakes to create a pattern that leaves behind a trail of some object other than a block, such as a blinker or a pond.
+		
+		[Hint: If you have trouble finding a two-glider collision that works for you, jump ahead to Table~\ref{tab:2_glider_synth}.]
+	\end{enumerate}
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:general_speed_limit}
+	Suppose that a spaceship travels $x$ cells horizontally and $y$ cells vertically throughout its period.\smallskip
+	
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item Show that its speed cannot exceed $(x,y)c/(2x+2y)$.
+		
+		\item Show that its period must be at least $2x+2y$.
+		
+		\item Show that if a spaceship has period~3 then it must be orthogonal and have speed~$c/3$.
+		
+		\item What are the possible directions and speeds of period~4 spaceships? Give examples to show that all of the possibilities you list are attainable.
+		% c/4 diagonal, c/2 orth, c/4 orth. Make sure text has example of c/4 orth somewhere.
+	\end{enumerate}
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:infinite_spaceship}
+	Give an example of an infinitely-large pattern that moves through the (otherwise empty) Life plane at a speed of $c$. Why does this pattern's existence not contradict Theorem~\ref{thm:speed_limits}?
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:4c5_fuse}
+	Consider the beehive wick displayed below.
+	\begin{center}
+		\patternimglink{0.1}{beehive_wire}
+	\end{center}
+
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item Place a live cell near one end of this beehive wick so as to make a $4c/5$ fuse.
+%		SOLUTION:
+%		x = 37, y = 4, rule = B3/S23
+%		o2bo3bo3bo3bo3bo3bo3bo3bo3bo$2bobobobobobobobobobobobobobobobobobo$2bo
+%		bobobobobobobobobobobobobobobobobo$3bo3bo3bo3bo3bo3bo3bo3bo3bo!
+		
+		\item Find a $4c/5$ fuse that \emph{cleanly} burns through this wick.\footnote{This fuse was originally found by Dean Hickerson in June 1993.} [Hint: Try placing some \emph{symmetric} debris near the end of the wick.]
+%		SOLUTION:
+%		x = 95, y = 8, rule = B3/S23
+%		2o$2o2bo$3b3o3bo3bo3bo3bo3bo3bo3bo3bo3bo3bo3bo3bo3bo3bo3bo3bo3bo3bo3bo
+%		3bo3bo3bo$6bobobobobobobobobobobobobobobobobobobobobobobobobobobobobob
+%		obobobobobobobobobobobobobobobo$6bobobobobobobobobobobobobobobobobobob
+%		obobobobobobobobobobobobobobobobobobobobobobobobobobo$3b3o3bo3bo3bo3bo
+%		3bo3bo3bo3bo3bo3bo3bo3bo3bo3bo3bo3bo3bo3bo3bo3bo3bo3bo$2o2bo$2o!
+	\end{enumerate}
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:beehive_puffer}
+	Use the beehive puffer below and the $4c/5$ fuse from Exercise~\ref{exer:4c5_fuse}(b) to create an adjustable-period spaceship.
+	
+	\begin{center}
+		\patternimglink{0.12}{beehive_puffer}
+	\end{center}
+
+	\noindent [Hint: Use the same general method that we used to construct the adjustable-period rake in Figure~\ref{fig:adjustable_rake}: use gliders and/or sparks to start the fuse burning and then use standard spaceships to clean up debris.]
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problemstar}\label{exer:diagonal_signal}
+	Consider the three signals displayed in Figure~\ref{fig:diagonal_signals}.\smallskip
+	
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item Find the period of each of these signals.
+		
+		\item Find the minimum number of generations that must separate two copies of these signals on the same wire.
+	\end{enumerate}
+\end{problemstar}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:slanted_wick}
+	Modify the wick in Figure~\ref{fig:bi_block_fuse} so that it has slope $1/2$ and is burned through cleanly by the same beehive reaction.
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problemstar}\label{exer:c5_diagonal_reflect}
+	Show how the $c/5$~diagonal spaceship in Figure~\ref{fig:c5_diagonal} can be used to reflect a glider by~$90$ degrees.
+\end{problemstar}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:low_period_rake}
+	In Figure~\ref{fig:p8_rake} we showed a period~$8$ rake. What is the smallest period that a rake could conceivably have (i.e., without gliders colliding)?
+\end{problem}
+% SOLUTION: 7
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:adjustable_spaceship}
+	Recall the adjustable rake\index{adjustable rake} displayed in Figure~\ref{fig:adjustable_rake}.\smallskip
+	
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item Turn this rake into a spaceship by adding a single lightweight spaceship.
+		
+		\item Turn this rake into a spaceship by removing the three spaceships highlighted in magenta and adding two middleweight spaceships. [Hint: What debris is left over if you remove the three spaceships highlighted in magenta?]
+	\end{enumerate}
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:high_period_wick}
+	Create a rake with period equal to exactly $1000$.
+\end{problem}
+% SOLUTION: Can use the adjustable period rake with 23 more bi-blocks and minimal (19 more than displayed in the Figure)
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:blinker_ship}
+	The spaceship displayed below has period~1136.\footnote{This spaceship was found independently by David Bell and Dean Hickerson in 1992.}
+	
+	\begin{center}
+		\patternimglink{0.094}{adjustable_spaceship}
+	\end{center}
+	
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item Watch this spaceship evolve and describe how it works. For example, which part of the pattern lays the blinker wick? What effect do the heavyweight spaceships at the back have?
+		
+		\item Show how the rear lightweight and heavyweight spaceships can be moved so as to increase this spaceship's period. Use this method to explicitly construct a spaceship with period greater than 1500.
+	\end{enumerate}
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:schick_engine_blinker_puffer}
+	The blinker puffer below works by using two heavyweight spaceships to hassle the spark behind a Schick engine.\index{Schick engine}
+	
+	\begin{center}
+		\patternimglink{0.1}{schick_engine_blinker_puffer}
+	\end{center}
+	
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item Place a heavyweight spaceship near the blinker fuse so as to delete it via one of the reactions from Figure~\ref{fig:orthogonal_destroy}.
+		
+		\item Explain why the reaction from that same figure in which an MWSS destroys a blinker cannot be used to delete the blinker fuse.
+		
+		\item Aim a period~$60$ space rake at the blinker fuse so as to create puffers for various objects. You should be able to create puffers that make a single (i) ship, (ii) loaf, or (iii) blinker every $60$ generations.
+	\end{enumerate}
+\end{problem}
+
+% random fact: no low-period diagonal rake. lowest period is 85: http://conwaylife.com/forums/viewtopic.php?f=2&t=1141&start=575
+
+% Signal-Circuitry signal-turn.rle turners and other almost-turner -- why don't they work exercise?
+
+% Turn blinker puffer into high-period spaceship using 3 turning reactions (maybe already done? What did I mean by this?)
+
+% glider emulator behind two big gliders
+% This tagalong between two dot sparker c/4 ships:
+% x = 9, y = 9, rule = B3/S23
+% 6bo$4bo$3b3o$2b2o2bo$b2o$2o$obo$bo!
+
+% give some pairs of gliders and ask for the number of lanes by which they differ or their timing
+
+% Introduce the blinker puffer that is highlighted in magenta in Figure~\ref{fig:breeder_ggg_eater_1_stabilize}. Use it to make a long spaceship, a ship puffer via the blinker-to-ship synthesis, etc.
+
+
+
+%% EXERCISE END COMMANDS
+\end{multicols}
+\normalsize\vspace*{0.01cm}
+%% DONE EXERCISE END COMMANDS

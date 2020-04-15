@@ -1,0 +1,26 @@
+\documentclass[10pt]{standalone}
+\input{macros}
+
+\begin{document}
+	\begin{tikzpicture}%
+		\node[inner sep=0pt,anchor=south west] (sbr) at (0,0) {\includegraphics[width=6cm]{../universal_computation/stable_universal_regulator.png}};
+		
+		% Input glider
+		\newcommand\zx{0.45}
+		\newcommand\zy{1.75}
+		\draw[gray] (\zx-0.05,\zy+0.05) node[rotate=-45] {\tiny \texttt{IN}};
+		\draw[color=gray,stealth-] (\zx+0.1,\zy-0.25) -- (\zx-0.35,\zy+0.2);
+		
+		% Output glider
+		\newcommand\ox{5.77}
+		\newcommand\oy{5.59}
+		\draw[gray] (\ox-0.07,\oy+0.05) node[rotate=-45] {\tiny \texttt{OUT}};
+		\draw[color=gray,stealth-] (\ox+0.1,\oy-0.25) -- (\ox-0.35,\oy+0.2);
+		
+		% Input gun
+		\newcommand\gx{2.65}
+		\newcommand\gy{7.6}
+		\draw[gray] (\gx+0.01,\gy-0.07) node[rotate=45] {\smash{\tiny \texttt{GUN}}};
+		\draw[color=gray,-stealth] (\gx+0.1,\gy+0.25) -- (\gx-0.35,\gy-0.2);
+	\end{tikzpicture}
+\end{document}

@@ -1,0 +1,232 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CONWAY'S GAME OF LIFE BOOK
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt]{book}
+
+\input{structure}
+
+
+% TODO: Motivate universal regular in chapter 6 better. Maybe something like slow salvo coming into periodic circuits, don't need to adjust method of generating slow salvo
+% TODO: Add math appendix for big-O and big-Theta notation, then touch up Section 8.8.1 and 8.8.2
+% TODO: chapter 2 EXERCISE: Given (3-pseudo or 4-pseudo or 2-pseudo), determine fewest number of partitions into stable sub-pieces. Can use results from recent searches.
+
+% NJ TODO: See scorbie's email. smaller p6 HW emulator leads to smaller p24 gun
+% TODO: If honeybit is mentioned in a later chapter of the book anywhere, forward ref it from chapter 4.
+% TODO: Chapter 3 make moving Herschels red? Not sure.
+% TODO: Chatper 4, update the spaceship speed table once we have finalized the spaceships that we see in Chapters 10 and 11.
+% TODO: If we go through the caterpillar, add a forward ref in the Notes/History section of Chapter 4
+% TODO: Mention in the preface who this book is for. Uses some basic calc and lin alt and number theory, but no expectations really of the reader
+% TODO: In chapter 9, mention that we can't use the same command (e.g., INC R0, INC R0) twice in the same clock tick
+
+
+% Maybe relevant quote:
+% Figuring out how to achieve a particular behaviour makes a pleasant puzzle; actually building the thing is mostly tedious.
+% - Dean Hickerson
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% LIST OF REAL NAMES OF FORUM USERS
+%%
+%% AbhpzTa: Luka Okanishi
+%% BlinkerSpawn: ?? (ask)
+%% calcyman: Adam P. Goucher
+%% chris_c: Chris Cain
+%% codeholic: Ivan Fomichev
+%% Entity Valkyrie: ?? (ask)
+%% Extrementhusiast: Martin Grant
+%% glider_rider: Nico Brown
+%% kazyan: Tanner Jacobi
+%% moebius: Tim Coe
+%% mtve: ?? (remain anonymous)
+%% Scorbie: Dongook Lee
+%% simeks: Simon Ekström
+%% simsim314: Michael Simkin
+%% Sokwe: Matthias Merzenich
+%% thunk: ?? (ask)
+%% wildmyron: Arie Paap
+%% zdr: ?? (remain anonymous)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\frontmatter
+
+\begingroup
+\thispagestyle{empty}
+
+\vspace*{0.3in}
+\centering\textbf{\textsf{{\fontsize{38}{45}\selectfont Conway's Game of Life}}} \\[0.3in]
+\textbf{\textsf{{\fontsize{24}{40}\selectfont Mathematics and Construction}}} \\[1.2in]
+
+\begin{tikzpicture}[remember picture,overlay]
+\draw[black!20,line width=8pt,rounded corners=1.6pt] (-1.6,0) rectangle (1.6,-3.2); % top center
+\node[inner sep=0pt] (glider_loop) at (0,-1.6) {\embedlink{p43_glider_loop}{\includegraphics[width=3.2cm]{cover/glider_loop.png}}};
+\draw[black,ultra thick,rounded corners=1.6pt] (-1.6,0) rectangle (1.6,-3.2);
+
+\draw[black!20,line width=8pt,rounded corners=1.6pt] (1.76,-3.36) rectangle (4.96,-6.56); % middle right
+\node[inner sep=0pt] (pi_calc) at (3.36,-4.96) {\embedlink{pi_calc}{\includegraphics[width=3.2cm]{cover/pi_calc.png}}};
+\draw[black,ultra thick,rounded corners=1.6pt] (1.76,-3.36) rectangle (4.96,-6.56); % middle right
+
+\draw[black!20,line width=8pt,rounded corners=1.6pt] (1.76,-6.72) rectangle (4.96,-9.92); % bottom right
+\node[inner sep=0pt] (gosper) at (3.36,-8.32) {\embedlink{gosper_glider_gun}{\includegraphics[width=3.2cm]{cover/gosper.png}}};
+\draw[black,ultra thick,rounded corners=1.6pt] (1.76,-6.72) rectangle (4.96,-9.92); % bottom right
+
+\draw[black!20,line width=8pt,rounded corners=1.6pt] (-1.6,-6.72) rectangle (1.6,-9.92); % bottom center
+\node[inner sep=0pt] (herschel) at (0,-8.32) {\embedlink{herschel_track}{\includegraphics[width=3.2cm]{cover/herschel.png}}};
+\draw[black,ultra thick,rounded corners=1.6pt] (-1.6,-6.72) rectangle (1.6,-9.92); % bottom center
+
+\draw[black!20,line width=8pt,rounded corners=1.6pt] (-4.96,-6.72) rectangle (-1.76,-9.92); % bottom left
+\node[inner sep=0pt] (copperhead) at (-3.36,-8.32) {\embedlink{copperhead}{\includegraphics[width=3.2cm]{cover/copperhead.png}}};
+\draw[black,ultra thick,rounded corners=1.6pt] (-4.96,-6.72) rectangle (-1.76,-9.92); % bottom left
+\end{tikzpicture}
+
+\vspace*{5.55in}\textbf{\textsf{{\fontsize{16}{40}\selectfont Nathaniel Johnston} $\quad$ and $\quad$ {\fontsize{16}{40}\selectfont Dave Greene}}}
+\vfill
+\endgroup
+
+%----------------------------------------------------------------------------------------
+%	COPYRIGHT PAGE
+%----------------------------------------------------------------------------------------
+
+\newpage
+~\vfill
+\thispagestyle{empty}
+
+\noindent Copyright \copyright\ {\the\year} Nathaniel Johnston and Dave Greene\\ % Copyright notice
+
+% \noindent \textsc{Published by Publisher}\\ % 
+
+\noindent \textsc{conwaylife.com}\\ % URL
+
+
+
+\clearpage
+
+% DEDICATION
+\vspace*{1.5in}
+\begin{center}
+	\textbf{\large To John Horton Conway}\\For giving us 50 years of Life.
+\end{center}
+
+
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+%\usechapterimagefalse % If you don't want to include a chapter image, use this to toggle images off - it can be enabled later with \usechapterimagetrue
+
+\chapterimage{cover/toc.jpg} % Table of contents heading image
+
+\setcounter{tocdepth}{1}
+\pagestyle{empty} % No headers
+
+\tableofcontents % Print the table of contents itself
+
+\cleardoublepage % Forces the first chapter to start on an odd page so it's on the right
+
+\pagestyle{fancy} % Print headers again
+
+
+% The Preface section needs a custom title-line header so it doesn't start with "Chapter 0."
+\renewcommand{\chaptermark}[1]{\markboth{\sffamily\normalsize\bfseries Preface}{}} % Chapter text font settings
+
+
+\include{preface}
+
+
+\mainmatter
+
+
+% Restore the standard chapter title-line header
+\renewcommand{\chaptermark}[1]{\markboth{\sffamily\normalsize\bfseries\chaptername\ \thechapter.\ #1}{}} % Chapter text font settings
+
+
+%----------------------------------------------------------------------------------------
+%	PART 1: CLASSICAL TOPICS
+%----------------------------------------------------------------------------------------
+
+\part{Classical Topics}
+
+
+\include{early_life}
+
+\include{still_lifes}
+
+\include{oscillators}
+
+\include{spaceships}
+
+
+
+%----------------------------------------------------------------------------------------
+%	PART 2: CIRCUITRY AND LOGIC
+%----------------------------------------------------------------------------------------
+
+\part{Circuitry and Logic}
+
+%\include{glider_synthesis}
+
+%\include{periodic_circuits}
+
+%\include{stationary_circuits}
+
+%\include{glider_guns}
+
+
+
+%----------------------------------------------------------------------------------------
+%	PART 3: CONSTRUCTIONS
+%----------------------------------------------------------------------------------------
+
+\part{Constructions}
+
+%\include{universal_computation}
+
+%\include{self_support_spaceship}
+
+%\include{universal_construction}
+
+%\include{0e0p}
+
+
+
+\part*{Appendices and Supplements}
+
+\appendix
+\renewcommand\chaptername{Appendix}
+
+
+\include{appendix_math}
+\include{appendix_salvo}
+\include{appendix_apg}
+\include{appendix_solutions}
+
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+\addcontentsline{toc}{chapter}{\textcolor{ocre}{Bibliography}}
+\bibliographystyle{alpha}
+\bibliography{bibliography}
+
+
+%----------------------------------------------------------------------------------------
+%	INDEX
+%----------------------------------------------------------------------------------------
+
+\cleardoublepage
+\phantomsection
+\setlength{\columnsep}{0.75cm}
+\addcontentsline{toc}{chapter}{\textcolor{ocre}{Index}}
+\printindex
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
