@@ -805,6 +805,9 @@ We have thus seen all of the pieces that we need to finally construct our $\pi$-
 \end{figure}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   SECTION: COMPUTING OTHER CONSTANTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Computing Other Constants}\label{sec:pi_calc_other}
 
 This same algorithm that we used in our $\pi$ calculator can also be used to compute many other mathematical constants of interest. In particular, we can use that same method to construct patterns that print the digits of any number that can be represented by a series of the following form, where $a$, $b$, $p$, $q$, $r$, and $s$ are non-negative integers:\footnote{If $k = 0$ then the term $\frac{(p+q)(2p+q)\cdots(kp+q)}{(r+s)(2r+s)\cdots(kr+s)}$ is an ``empty product'', which equals $1$.}
@@ -863,6 +866,8 @@ To move the sliding blocks of the read head one step farther away from the print
 
 The 2D printer is extremely large, so we do not display it here. However, we will see it in each of the upcoming Figures~\ref{fig:koch_computer} and~\ref{fig:osqrtlogt}.
 
+% Need to mention that B2D requires a slower clock (2^24?), when using Osqrtlogt. this is also why it needs such a big space between logic unit and thing it prints
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -872,7 +877,13 @@ The 2D printer is extremely large, so we do not display it here. However, we wil
 
 To illustrate the flexibility of this 2D printer, we now demonstrate how it can be used to print a fractal. Slightly more accurately, we use it to print better and better approximations of a fractal, which of course is the best we could hope for---our printing capabilities are limited by the fact that we are working on the Life plane and thus must make our images out of pixels.
 
-The way that we will construct the fractal is to imagine walking along some path in the plane, printing a pixel after every step that we take. We always step a distance of $1$ in one of the eight orthogonal or diagonal directions (in the Moore neighborhood \index{Moore neighborhood} sense, so increasing both the $x$- and $y$-coordinates by $1$, for example, is a valid move). The path that we walk along is determined as follows:\smallskip
+The way that we construct the fractal is to imagine walking along some path in the plane, printing a pixel after every step that we take. We always step a distance of $1$ in one of the eight orthogonal or diagonal directions (in the Moore neighborhood \index{Moore neighborhood} sense, so increasing both the $x$- and $y$-coordinates by $1$, for example, is a valid move). The path that we walk along is illustrated in Figure~\ref{fig:koch_algorithm}, and is determined as follows:\smallskip
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=\textwidth]{universal_computation/koch_algorithm.pdf}
+	\caption{The (leftmost portion of the) image that results from starting at the bottom-left corner (circled in \bgbox{redback}{red}) and printing pixels according to a path-following procedure based on counting in base~$4$ (in the variable $s$). These bulbous shapes are better and better approximations of one half of an 8-pointed version of the Koch snowflake fractal.}\label{fig:koch_algorithm}
+\end{figure}
 
 \begin{itemize}
 	\item[1)] Start at the coordinate $(x,y) = (0,0)$, facing right (toward the coordinate $(1,0)$).\smallskip
@@ -889,14 +900,11 @@ The way that we will construct the fractal is to imagine walking along some path
 	\item[4)] Return to Step~(2).\smallskip
 \end{itemize}
 
-The procedure outlined above results in the image displayed in Figure~\ref{fig:koch_algorithm}.
+The above procedure results in a path that, on average, moves straight to the right. After all, every time we increase the total number of steps $s$ by one, exactly one digit rolls over to either \texttt{1}, \texttt{2}, or \texttt{3}. Two of those three possibilities result in our orientation rotating $45$ degrees counter-clockwise, and the other one of those three possibilities results in our orientation rotating $90$ degrees counter-clockwise, for a total average of no rotation at all.
 
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[width=\textwidth]{universal_computation/koch_algorithm.pdf}
-	\caption{The leftmost portion of the image that results from starting at the bottom-left corner (circled in \bgbox{redback}{red}) and printing pixels according to a path-following procedure based on counting in base~$4$. These bulbous shapes are better and better approximations of one half of an 8-pointed version of the Koch snowflake fractal.}\label{fig:koch_algorithm}
-\end{figure}
+The fractal-like behavior of this path comes from the repetitive nature of digit strings that are encountered when counting. Indeed, if we ever encounter a particular (base 4) string of digits in $s$ when counting, we will encounter that exact same string of digits infinitely many times later on too, as additional leading digits are added to $s$. Indeed, this fractal is one half of an $8$-pointed version of a well-known fractal called the \emph{Koch snowflake} (which is usually $6$-pointed).
 
+APGsembly code that implements this algorithm is displayed in APGsembly~\ref{alg:apgsembly_koch}. Although it is somewhat long, it is reasonably straightforward and makes use of $5$ sliding block (unary) registers and one binary register to keep track of the following quantities:\medskip
 
 \begin{apgsembly}
 	\centering
@@ -986,14 +994,31 @@ The procedure outlined above results in the image displayed in Figure~\ref{fig:k
 			\State \verb|RESET4;   NZ;     RESET4;      TDEC U0|
 		\end{algorithmic}
 	\end{minipage}
-	\caption{APGsembly code the Koch snowflake printer.}\label{alg:apgsembly_koch}
+	\caption{APGsembly code for the $8$-pointed Koch snowflake printer.}\label{alg:apgsembly_koch}
 \end{apgsembly}
 
-% Make sure to credit Simkin. This is one of the few things from this chapter that is not Adam's
+\begin{itemize}
+	\item[\texttt{U0}:] stores the $x$-direction to move (\texttt{0} = none, \texttt{1} = right, \texttt{2} = left)
+	
+	\item[\texttt{U1}:] stores the $y$-direction to move (\texttt{0} = none, \texttt{1} = up, \texttt{2} = down)
+	
+	\item[\texttt{U2}:] a value that determines which of the 8 possible directions to move in at the next step (\texttt{0} = right, \texttt{1} = up-right, \texttt{2} = up, ..., \texttt{7} = down-right)---\texttt{U0} and \texttt{U1} are computed based on this
+	
+	\item[\texttt{U3}:] a temporary helper register
+	
+	\item[\texttt{U4}:] the amount to add to \texttt{U2} after we encounter an extra ``\texttt{2}'' when counting in base~$4$ (stays constant at \texttt{6}, corresponding to a clockwise turn by $90$ degrees)
+	
+	\item[\texttt{U5}:] how much to mod \texttt{U2} by after adding to it (stays constant at \texttt{8})\medskip
+	
+	\item[\texttt{B0}:] keeps track of the number of steps that we have taken in base~$4$ ($= s$)\medskip
+\end{itemize}
+
+The Life pattern\footnote{Originally constructed by Michael Simkin in 2019.} that results from compiling this APGsembly is displayed in Figure~??. Since the 2D printer component prints on a diagonal grid, the image that is printed by this pattern is rotated counter-clockwise by $45$ degrees from the one in Figure~\ref{fig:koch_algorithm}.
+
+% FIGURE
+% Can compile this one with the far-away sliding block really close. Make sure to do this, and have an exercise asking why this cannot be done for Osqrtlogt
 
 % Mention that B2D can print other letters/symbols if desired
-
-% Need to mention that B2D requires a slower clock (2^24?), and this is also why it needs such a big space between logic unit and thing it prints
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
