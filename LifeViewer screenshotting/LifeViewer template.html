@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-gb" xml:lang="en-gb"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css"><meta http-equiv="content-language" content="en-gb"><meta http-equiv="imagetoolbar" content="no"><meta name="resource-type" content="document"><meta name="distribution" content="global"><meta name="copyright" content="2000, 2002, 2005, 2007 phpBB Group"><meta name="keywords" content=""><meta name="description" content=""><title>ConwayLife.com • Edit post</title><script type="text/javascript">
+// <![CDATA[
+	var jump_page = 'Enter the page number you wish to go to:';
+	var on_page = '';
+	var per_page = '';
+	var base_url = '';
+	var style_cookie = 'phpBBstyle';
+	var style_cookie_settings = '; path=/; domain=.conwaylife.com';
+	var onload_functions = new Array();
+	var onunload_functions = new Array();
+
+			if (0)
+		{
+			var url = './ucp.php?i=pm&amp;mode=popup';
+			window.open(url.replace(/&amp;/g, '&'), '_phpbbprivmsg', 'height=225,resizable=yes,scrollbars=yes, width=400');
+		}
+
+	/**
+	* Find a member
+	*/
+	function find_username(url)
+	{
+		popup(url, 760, 570, '_usersearch');
+		return false;
+	}
+
+	/**
+	* New function for handling multiple calls to window.onload and window.unload by pentapenguin
+	*/
+	window.onload = function()
+	{
+		for (var i = 0; i < onload_functions.length; i++)
+		{
+			eval(onload_functions[i]);
+		}
+	}
+
+	window.onunload = function()
+	{
+		for (var i = 0; i < onunload_functions.length; i++)
+		{
+			eval(onunload_functions[i]);
+		}
+	}
+
+// ]]>
+
+Zoom 12 is default for most "small" patterns
+Zoom 8 for medium or images in tables
+
+</script><script type="text/javascript" src="./LV_files/styleswitcher.js"></script><style type="text/css"></style><script type="text/javascript" src="./LV_files/forum_fn.js"></script><script type="text/javascript" src="lv-plugin.js"></script><link rel="stylesheet" type="text/css" href="./LV_files/style.css"><link href="./LV_files/print.css" rel="stylesheet" type="text/css" media="print" title="printonly" disabled=""><link href="./LV_files/style.php" rel="stylesheet" type="text/css" media="screen, projection"><link href="./LV_files/normal.css" rel="stylesheet" type="text/css" title="A" disabled=""><link href="./LV_files/medium.css" rel="alternate stylesheet" type="text/css" title="A+" disabled=""><link href="./LV_files/large.css" rel="alternate stylesheet" type="text/css" title="A++" disabled=""></head><body id="phpbb" class="section-posting ltr"><div class="rle"><div class="codebox"><div><code style="height: 37px;">
+
+#C [[ ZOOM 12 GRID GRIDMAJOR 0 COLOR GRID 192 192 192 COLOR DEADRAMP 255 220 192 COLOR ALIVE 0 0 0 COLOR DEAD 192 220 255 COLOR BACKGROUND 255 255 255 ]]
+#C An arrangement of two switch engines that evolves into a puffer
+#C for a single diagonal row of blocks.
+x = 41, y = 35, rule = B3/S23
+bo$bbo$ooo!
+
+</code></div></div><canvas width="1000" height="1000" style="margin-left:1px;" tabindex="1"></canvas></div></body></html>
