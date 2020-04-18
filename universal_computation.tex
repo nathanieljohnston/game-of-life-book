@@ -358,8 +358,8 @@ The four actions available to this binary register are a bit more abstract than 
 
 Unlike a simple sliding block register, where there's no way to damage the mechanism by sending action signals to it, there are indeed ways to program a binary register that will cause it to explode catastrophically. In particular, if you send a \texttt{SET} action while there's already a \texttt{1} stored at the current read head location, it will cause irrecoverable damage. There's no built-in safety mechanism to prevent this, but this problem can easily be avoided by always sending a \texttt{READ} signal just before any \texttt{SET} signal.
 
-We use \texttt{Bn} to denote the \texttt{n}-th binary register, (where we start counting at \texttt{n = 0}) just like we use \texttt{Un} to denote the \texttt{n}-th sliding block register. To illustrate how to make use of these actions to perform bitwise operations, APGsembly~\ref{apg:store_139} shows how to store the value $139 = 10001011_2$ in a binary register \texttt{B0}.\footnote{Another way of storing the value $139$ in a binary register would be to put \texttt{\#REGISTERS \{"B0":[0,'11010001']\}} in the APGsembly code's header. However, this only works if you want to set \texttt{B0} to $139$ at the start of the computation instead and not partway through it.}
-% NJ question for Dave: Is the #REGISTERS syntax for the B0 register in the above footnote correct?
+We use \texttt{Bn} to denote the \texttt{n}-th binary register, (where we start counting at \texttt{n = 0}) just like we use \texttt{Un} to denote the \texttt{n}-th sliding block register. To illustrate how to make use of these actions to perform bitwise operations, APGsembly~\ref{apg:store_139} shows how to store the value $139 = 10001011_2$ in a binary register \texttt{B0}.\footnote{The subscript ``$2$'' indicates that we are writing the number in binary.} Another way of storing the value $139$ in a binary register would be to change the appropriate line of the APGsembly header to \texttt{\#REGISTERS \{"B0":[0,'11010001']\}}. However, the header-based method only works if you want to set \texttt{B0} to $139$ at the start of the computation and not partway through it.
+% NJ question for Dave: Is the #REGISTERS syntax for the B0 register above correct?
 
 \begin{apgsembly}
 	\begin{algorithmic}\small
@@ -384,7 +384,7 @@ We use \texttt{Bn} to denote the \texttt{n}-th binary register, (where we start 
 		\State \verb|LSB2;      Z;       LSB2;         HALT_OUT|
 		\State \verb|LSB2;      NZ;      LSB2;         TDEC B0|
 	\end{algorithmic}
-	\caption{APGsembly code for storing the value $139$ in the binary register \texttt{B0}, and then returning its read head to the least significant bit.}\label{alg:store_139}
+	\caption{APGsembly code for storing the value $139$ in the binary register \texttt{B0}, and then returning its read head to the least significant bit.}\label{apg:store_139}
 \end{apgsembly}
 
 This APGsembly also contains one new action that we have not yet seen: \texttt{NOP}.\index{NOP} This is an old standard programming abbreviation, short for ``No OPeration''; it tells the computer not to change anything right now, but emit a \texttt{Z} return value anyway. It is typically used in conjunction with other actions that don't have a return value (\texttt{SET B0} and \texttt{INC B0} in this case), since exactly one action in every state's list of actions must return a value of either \texttt{Z} or \texttt{NZ}.\footnote{It may be tempting to merge multiple lines of APGsembly~\ref{alg:store_139} together so as to get rid of the \texttt{NOP} actions. For example, we might want to have an action list for a particular state that says something like \texttt{INC B0, INC B0, SET B0, NOP}. However, there are two problems with this: (1) we cannot call the same action twice in a single line of APGsembly (clock tick), and (2) it is not a good idea to perform two actions on the same register (\texttt{B0}) in the same clock tick. Indeed, it is not clear which one will be performed first (or even worse, they might interfere with each other and cause the register to self-destruct).}
@@ -465,16 +465,16 @@ More specifically, if we use \texttt{z} to denote the bit that is currently stor
 
 However, this procedure only works if we know where the most significant bit is, so that we know when we can stop performing this bitwise addition. The binary registers themselves provide no such functionality---even if we find a million ``\texttt{0}'' bits in a row, there could always be a more significant ``\texttt{1}'' bit waiting to be found further on. For this reason, when performing bitwise arithmetic operations like addition and subtraction, we need to make use of a helper sliding block register that tells us (an upper bound of) how many bits the binary registers are making use of. The contents of this sliding block register needs to be updated as our computation proceeds to make sure that it always allocates enough bits of memory to the binary registers.
 
-The way that the bit addition \texttt{x + y} is executed via APGsembly is that the pair of commands \texttt{ADD~Ax} and then \texttt{ADD~By} must be called (where we replace \texttt{x} and \texttt{y} by their actual binary values, as in \texttt{ADD B1}, for example). The \texttt{ADD Ax} command does not return an output (it just adds the input bit to the internal memory), but the \texttt{ADD By} command does (so it should always be used second). Furthermore, the \texttt{ADD A0} command is not actually implemented, since it does nothing---it does not return a value and also does not alter the internal memory.\footnote{This contrasts with the command \texttt{ADD B0}, which also does not alter the internal memory, but \emph{does} return a value. In particular, \texttt{ADD B0} returns the contents of the internal memory and then resets that memory to \texttt{0}.}
+The way that the bit addition \texttt{x + y} is executed via APGsembly is that the pair of commands \texttt{ADD~Ax} and then \texttt{ADD~By} must be called (where we replace \texttt{x} and \texttt{y} by their actual binary values, as in \texttt{ADD B1}, for example).\footnote{Be careful: this means that \texttt{B0} and \texttt{B1} can be both components (as in \texttt{INC B0} or \texttt{READ B1}) and actions (as in \texttt{ADD B0}).} The \texttt{ADD Ax} command does not return an output (it just adds the input bit to the internal memory), but the \texttt{ADD By} command does (so it should always be used second). Furthermore, the \texttt{ADD A0} command is not actually implemented, since it does nothing---it does not return a value and also does not alter the internal memory.\footnote{This contrasts with the command \texttt{ADD B0}, which also does not alter the internal memory, but \emph{does} return a value. In particular, \texttt{ADD B0} returns the contents of the internal memory and then resets that memory to \texttt{0}.}
 
 For example, to add binary registers containing the numbers $104 = 1101000_2$ and $57 = 111001_2$, we could perform the following sequence of actions in APGsembly (where we perform the ``\texttt{A}'' action in the top row and then the ``\texttt{B}'' action directly below it before moving left-to-right):
 \begin{center}
 	\begin{tabular}{llllllll}
 		\leavevmode\hphantom{\texttt{ADD A0}} \ & \hphantom{\texttt{ADD A0}} \ & \hphantom{\texttt{ADD A0}} \ & \texttt{ADD A1} \ & \hphantom{\texttt{ADD A0}} \ & \texttt{ADD A1} \ & \texttt{ADD A1} \ & \hphantom{\texttt{ADD A0}} \\
-		\texttt{ADD B1}, \ & \texttt{ADD B0}, \ & \texttt{ADD B0}, \ & \texttt{ADD B1}, \ & \texttt{ADD B1}, \ & \texttt{ADD B1}, \ & \texttt{ADD B0}, \ & \texttt{ADD B0}.\footnotemark
-	\end{tabular}\footnotetext{Notice that these \texttt{ADD} actions are performed ``backwards'': they start from the least significant bits of the numbers that we are adding. Also, we need to append an extra \texttt{ADD B0} command at the very end to account for the fact that the sum may have one more bit than the summands.}
+		\texttt{ADD B1}, \ & \texttt{ADD B0}, \ & \texttt{ADD B0}, \ & \texttt{ADD B1}, \ & \texttt{ADD B1}, \ & \texttt{ADD B1}, \ & \texttt{ADD B0}, \ & \texttt{ADD B0}.
+	\end{tabular}
 \end{center}
-These actions would return the outputs
+Notice that these \texttt{ADD} actions are performed ``backwards'': they start from the least significant bits of the numbers that we are adding. Also, we need to append an extra \texttt{ADD B0} command at the very end to account for the fact that the sum may have one more bit than the summands.\footnote{It is also a good idea to call \texttt{ADD B0} after adding two registers, since this clears the internal memory of the \texttt{ADD} component.} These actions would return the outputs
 \begin{center}
 	\begin{tabular}{llllllll}
 		\leavevmode\hphantom{\texttt{CD}}\texttt{NZ},\hphantom{\texttt{CD}} \ & \hphantom{\texttt{AB}}\texttt{Z},\hphantom{\texttt{CDE}} \ & \hphantom{\texttt{AB}}\texttt{Z},\hphantom{\texttt{CDE}} \ & \hphantom{\texttt{AB}}\texttt{Z},\hphantom{\texttt{CDE}} \ & \hphantom{\texttt{AB}}\texttt{Z},\hphantom{\texttt{CDE}} \ & \hphantom{\texttt{AB}}\texttt{NZ},\hphantom{\texttt{CD}} \ & \hphantom{\texttt{AB}}\texttt{Z},\hphantom{\texttt{CDE}} \ & \hphantom{\texttt{AB}}\texttt{NZ}\hphantom{\texttt{CD}}
@@ -549,17 +549,11 @@ corresponding to the fact that $104 + 57 = 161 = 10100001_2$. Complete APGsembly
 	\caption{APGsembly code for adding (left) or subtracting (right) the binary register \texttt{B1} to/from \texttt{B0}. In both cases, the new value is stored in \texttt{B0} while the value of \texttt{B1} is unaffected. The number of bits allocated to the binary registers is stored in \texttt{U0}, and the registers \texttt{U1} and \texttt{U2} are only used temporarily (they start at, and are returned to, a value of \texttt{0}).}\label{alg:apgsembly_binary_add_sub}
 \end{apgsembly}
 
-% TODO: note that we have to be careful: "ADD B0" uses ADD component with input B0 but "INC B0" uses B0 component with input INC
+Since the \texttt{ADD} component is somewhat technical and basically only has a single use, not much is lost if we do not actually understand its inner workings and just accept APGsembly~\ref{alg:apgsembly_binary_add_sub} as a black box that adds up two binary registers. Similarly, we do not go into any great depth in explaining the inner working of the \texttt{SUB} component. Instead, we just note that it does for subtraction exactly what the \texttt{ADD} component does for addition---it keeps track of the borrow bit (which is analogous to the carry bit for addition) and thus lets us subtract binary registers from each other one bit at a time. The resulting APGsembly code for subtracting one binary register from another one is also provided in APGsembly~\ref{alg:apgsembly_binary_add_sub}. Note that this code for subtracting \texttt{B1} from \texttt{B0} assumes that \texttt{B1 <= B0}; if you are unsure of which binary register is the smaller one then you should first compare them (see Exercise~\ref{exer:universal_computation_apgsembly_binary_compare}).
 
-% TODO: Exercise -- why/how do ADD/SUB differ? How do they store a memory bit?
+Now that we know how to add and subtract binary components, we can also multiply and divide them via the same tricks that we used for sliding block registers in Section~\ref{sec:multiply_two_registers} and Exercise~\ref{exer:division_by_subtraction}. That is, we simply add or subtract repeatedly (see Exercise~\ref{exer:universal_computation_apgsembly_multiply_binary}). However, doing so can be quite time-consuming when the registers store large values, so we now introduce one additional \index{MUL component} custom binary register arithmetic component---one that helps us multiply a binary register by $10$.\footnote{The reason for us making $10$ easier to multiply by (as opposed to any other fixed integer) is that multiplication by $10$ is a common operation when working with decimal numbers. In particular, we will make use of this multiplication-by-$10$ component to help us extract digits in the upcoming $\pi$~calculator in Section~\ref{sec:pi_calc}.}
 
-%But each use of ADD or SUB is made up of two calls to it. So there's another sense more in line with individual lines of APGsembly, that says that ADD and SUB temporarily store two separate bits of information. Between the A{n} call (if any) and the B{n} call, ADD and SUB are tracking the carry bit and the A input value separately. Those values couldn't be combined and stored in a single one-bit memory cell, because an internal A0+{0 carry bit} results in a different internal state from A1+ {1 carry bit}, even though they both have a zero output. Between A{n} and B{n} the component can be in one of three possible states.
-
-Since the \texttt{ADD} component is somewhat technical and basically only has a single use, not much is lost if we do not actually understand its inner workings and just accept APGsembly~\ref{alg:apgsembly_binary_add_sub} as a black box that adds up two binary registers. Similarly, we do not go into any great depth in explaining the inner working of the \texttt{SUB} component. Instead, we just note that it does for subtraction exactly what the \texttt{ADD} component does for addition---it keeps track of the borrow bit (which is analogous to the carry bit for addition) and thus lets us subtract binary registers from each other one bit at a time. The resulting APGsembly code for subtracting one binary register from another one is also provided in APGsembly~\ref{alg:apgsembly_binary_add_sub}.\footnote{This APGsembly code for subtracting a binary register \texttt{B1} from \texttt{B0} assumes that \texttt{B1 <= B0}. If you are unsure of which binary register is the smaller one, you should first compare them (see Exercise~\ref{exer:universal_computation_apgsembly_binary_compare}).}
-
-Now that we know how to add and subtract binary components, we can also multiply and divide them via the same tricks that we used for sliding block registers in Section~\ref{sec:multiply_two_registers} and Exercise~\ref{exer:division_by_subtraction}. That is, we simply add or subtract repeatedly. However, doing so can be quite time-consuming when the registers store large values, so we now introduce one additional \index{MUL component} custom binary register arithmetic component---one that helps us multiply a binary register by $10$.\footnote{The reason for us making $10$ easier to multiply by (as opposed to any other fixed integer) is that multiplication by $10$ is a common operation when working with decimal numbers. In particular, we will make use of this multiplication-by-$10$ component to help us extract digits in the upcoming $\pi$~calculator in Section~\ref{sec:pi_calc}.}
-
-This final new component is called \texttt{MUL}, which stores \emph{four} carry bits so that we can multiply a binary register by $10$ one bit at a time, just like the \texttt{ADD} and \texttt{SUB} components made use of a single memory bit to let us add and subtract binary registers one bit at a time.\footnote{Note here about internal memory of these components.} The \texttt{MUL} component is displayed in Figure~\ref{fig:mul_component}, though it is not very enlightening to look at.\footnote{Even moreso than the binary register and \texttt{ADD} and \texttt{SUB} components, the \texttt{MUL} component could be made significantly smaller via modern machinery like Snarks and syringes.}
+This final new component is called \texttt{MUL}, which stores \emph{four} carry bits so that we can multiply a binary register by $10$ one bit at a time, just like the \texttt{ADD} and \texttt{SUB} components made use of a single memory bit to let us add and subtract binary registers one bit at a time.\footnote{The internal memory of these \texttt{ADD}, \texttt{SUB}, and \texttt{MUL} components is actually slightly more complicated than we have indicated. For example, the \texttt{ADD} component has \emph{two} bits of internal memory since between the \texttt{Ax} call (if any) and the \texttt{By} call, it tracks the carry bit and the \texttt{A} input value separately. Those values cannot be combined and stored in a single one-bit memory cell, because an internal \texttt{A0+(0 carry bit)} results in a different internal state than \texttt{A1+(1 carry bit)}, even though they both have a \texttt{Z} output.} The \texttt{MUL} component is displayed in Figure~\ref{fig:mul_component}, though it is not very enlightening to look at.\footnote{Even moreso than the binary register and \texttt{ADD} and \texttt{SUB} components, the \texttt{MUL} component could be made significantly smaller via modern machinery like Snarks and syringes.}
 
 \begin{figure}[!htb]
 	\centering
@@ -569,15 +563,13 @@ This final new component is called \texttt{MUL}, which stores \emph{four} carry 
 
 This component is called in APGsembly via the commands \texttt{MUL 0} and \texttt{MUL 1}, where the number after the name of the component refers to the current bit of the binary register that we are multiplying by $10$. For example, to multiply the number $26 = 11010_2$ by $10$, we could perform the following sequence of actions in APGsembly:
 \begin{center}
-	\texttt{MUL 0}, \ \ \texttt{MUL 1}, \ \ \texttt{MUL 0}, \ \ \texttt{MUL 1}, \ \ \texttt{MUL 1}, \ \ \texttt{MUL 0}, \ \ \texttt{MUL 0}, \ \ \texttt{MUL 0}, \ \ \texttt{MUL 0}.\footnote{These \texttt{MUL} actions also start from the least significant bit of the number that we are multiplying by $10$, just like the \texttt{ADD} and \texttt{SUB} actions. Also, we need to append enough \texttt{MUL 0} commands in order to retrieve the extra bits that the output will have. Four extra \texttt{MUL 0} commands always suffices.}
+	\texttt{MUL 0}, \ \ \texttt{MUL 1}, \ \ \texttt{MUL 0}, \ \ \texttt{MUL 1}, \ \ \texttt{MUL 1}, \ \ \texttt{MUL 0}, \ \ \texttt{MUL 0}, \ \ \texttt{MUL 0}, \ \ \texttt{MUL 0}.
 \end{center}
-These actions would return the outputs
+These \texttt{MUL} actions also start from the least significant bit of the number that we are multiplying by $10$, just like the \texttt{ADD} and \texttt{SUB} actions. Also, we need to append enough \texttt{MUL 0} commands in order to retrieve the extra bits that the output will have. Four extra \texttt{MUL 0} commands always suffices, and these actions would return the outputs
 \begin{center}
 	\leavevmode\hphantom{\texttt{ABCD}}\texttt{Z}, \ \ \hphantom{\texttt{ABCD}}\texttt{Z}, \ \ \hphantom{\texttt{ABC}}\texttt{NZ}, \ \ \hphantom{\texttt{ABCD}}\texttt{Z}, \ \ \hphantom{\texttt{ABCD}}\texttt{Z}, \ \ \hphantom{\texttt{ABCD}}\texttt{Z}, \ \ \hphantom{\texttt{ABCD}}\texttt{Z}, \ \ \hphantom{\texttt{ABCD}}\texttt{Z}, \ \ \hphantom{\texttt{ABC}}\texttt{NZ},\hphantom{\texttt{ABCD}}
 \end{center}
 corresponding to the fact that $26 \times 10 = 260 = 100000100_2$.
-
-% TODO: Mention earlier than we use subscript 2 to denote binary (and be more consistent about this)
 
 We can thus now multiply a binary register by $10$ just as quickly and easily as we could add and subtract the values of binary registers. Complete APGsembly code for carrying out this multiplication is provided in APGsembly~\ref{alg:apgsembly_mul_ten}.
 
@@ -610,18 +602,20 @@ We can thus now multiply a binary register by $10$ just as quickly and easily as
 	\caption{APGsembly code for multiplying the binary register \texttt{B0} by \texttt{10}. The number of bits allocated to \texttt{B0} is stored in \texttt{U0}, and the registers \texttt{U1} and \texttt{U2} are only used temporarily (they start at, and are returned to, a value of \texttt{0}). Compare with APGsembly~\ref{alg:apgsembly_binary_add_sub} for addition and subtraction.}\label{alg:apgsembly_mul_ten}
 \end{apgsembly}
 
-% Emphasize idea that we should just use unary registers for small values. Only binary for large values.
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%   SECTION: DECIMAL PRINTER
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{A Decimal Printer}\label{sec:decimal_printer}
 
+% NJ: We need an explanation of how the decimal printer works here. I'll leave this to Dave.
+
 While APGsembly requires us to explicitly specify which digit we want to print (e.g., we cannot print the contents of a sliding block register \texttt{U0} via the command \texttt{OUTPUT U0}), we can get around this limitation by repeatedly \texttt{TDEC}ing that register to determine its value, and then printing out that value. This idea is made explicit by APGsembly~\ref{alg:apgsembly_print_sbr}. Note that this APGsembly requires that \texttt{U0} is storing a value between $0$ and $9$, inclusive, but it could be modified straightforwardly to handle any fixed upper bound just by adding additional \texttt{TDEC} statements. It is even possible to print the contents of a sliding block register regardless of how many decimal digits it has, but this is much more complicated---see Exercise~\ref{exer:universal_computation_print_register}.
  
 \begin{apgsembly}
 	\begin{algorithmic}\small
+		\State \verb|#COMPONENTS U0,OUTPUT,HALT_OUT|
+		\State \verb|#REGISTERS {"U0":7}|
 		\State \verb|# State    Input    Next state    Actions|
 		\State \verb|# ---------------------------------------|
 		\State \verb|INITIAL;   ZZ;      OUT0;         TDEC U0|
@@ -644,7 +638,7 @@ While APGsembly requires us to explicitly specify which digit we want to print (
 		\State \verb|OUT8;      Z;       OUT8;         OUTPUT 8, HALT_OUT|
 		\State \verb|OUT8;      NZ;      OUT8;         OUTPUT 9, HALT_OUT|
 	\end{algorithmic}
-	\caption{APGsembly code for printing the contents of the sliding block register \texttt{U0} (and setting \texttt{U0 = 0} at the same time).}\label{alg:apgsembly_print_sbr}
+	\caption{APGsembly code for printing the contents of the sliding block register \texttt{U0} (which is pre-loaded with a value of \texttt{7} here) and setting \texttt{U0 = 0} at the same time.}\label{alg:apgsembly_print_sbr}
 \end{apgsembly}
 
 
@@ -655,28 +649,26 @@ While APGsembly requires us to explicitly specify which digit we want to print (
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{A Pi Calculator}\label{sec:pi_calc}\index{$\pi$ calculator}
 
-We now put all of the pieces that we have developed in this chapter together to create one of the most remarkable patterns that has ever been constructed in Life: one that computes and prints the decimal digits of the mathematical constant $\pi = 3.14159\ldots$.\footnote{The original $\pi$ calculator was constructed by Adam P. Goucher in February 2010. The one we construct here uses all of the same ideas and algorithms, but with some slightly newer technology to reduce its size.}
+We now put all of the pieces that we have developed so far in this chapter together to create one of the most remarkable patterns that has ever been constructed in Life: one that computes and prints the decimal digits of the mathematical constant $\pi = 3.14159\ldots$.
 
 Before we can start writing APGsembly code for our calculator, we have to choose which algorithm we will use to compute $\pi$. There are hundreds of known algorithms for this purpose, but because of how APGsembly works, we would like one that has the following two features:\smallskip
 
 \begin{itemize}
-	\item It makes use entirely of integer arithmetic, rather than floating-point arithmetic (i.e., arithmetic involving numbers that have non-zero digits after the decimal point).\footnote{We can turn floating-point arithmetic into integer arithmetic by multiplying all numbers involved by large powers of $10$, but we then have to be very careful to deal with numerical accuracy concerns, and the integers we would have to use would be monstrously large. It will be better to use an algorithm that is \emph{designed} to only use integer arithmetic.} This is important because the computational mechanisms that we have developed only work with non-negative integers.\smallskip
+	\item It makes use entirely of integer arithmetic, rather than floating-point arithmetic (i.e., arithmetic involving numbers that have no non-zero digits after the decimal point).\footnote{We can turn floating-point arithmetic into integer arithmetic by multiplying all numbers involved by large powers of $10$, but we then have to be very careful to deal with numerical accuracy concerns, and the integers we would have to use would be monstrously large. It will be better to use an algorithm that is \emph{designed} to only use integer arithmetic.} This is important because the computational mechanisms that we have developed only work with non-negative integers.\smallskip
 	
 	\item It is ``streaming'': after producing a particular digit of $\pi$, it can carry on to produce its next digit without having to start over from scratch. This is important because we want our calculator to just keep on printing out digits of $\pi$ forever, without us having to specify how many digits we want ahead of time.\smallskip
-	%	
-	%	\item It is \emph{fast}. Our Life computer adds a lot of computational overhead to the algorithm that it implements, so if we want to actually see our calculator print out a decent number of digits of $\pi$, we should choose an algorithm that works very quickly. As part of this, we would like the integers used in our computation to be reasonably small, since our addition and multiplication operations take longer to compute on larger inputs.\smallskip
 \end{itemize}
 
-We now describe one algorithm for computing the digits of $\pi$ (originally developed in \cite{Gib06}) that satisfies all of the criteria outlined above. This algorithm is based on the following series representation for $\pi$ (see Exercise~\ref{exer:universal_computation_derive_pi_series} for an explanation of where this series comes from):
+We now describe one algorithm for computing the digits of $\pi$ (originally developed in \cite{Gib06}) that satisfies the criteria outlined above. This algorithm is based on the following series representation for $\pi$ (see Exercise~\ref{exer:universal_computation_derive_pi_series} for an explanation of where this series comes from):
 \begin{align}\label{eq:pi_series}
-\pi = 2\left(1 + \frac{1}{3}\left( 1 + \frac{2}{5}\left( 1 + \frac{3}{7}\left( \cdots \left( 1 + \frac{k}{2k+1}\Big( \cdots \Big) \right)\right)\right)\right)\right).
+	\pi = 2\left(1 + \frac{1}{3}\left( 1 + \frac{2}{5}\left( 1 + \frac{3}{7}\left( \cdots \left( 1 + \frac{k}{2k+1}\Big( \cdots \Big) \right)\right)\right)\right)\right).
 \end{align}
 Indeed, if you truncate the above series after a finite number of additions, you get better and better approximations of $\pi$. For example,
 \begin{equation}\label{eq:pi_approx}
-\begin{alignedat}{2}
-2 & = 2.0000, \qquad \quad {} & 2\left(1 + \frac{1}{3}\right) & \approx 2.6667, \\
-2\left(1 + \frac{1}{3}\left(1 + \frac{2}{5}\right)\right) & \approx 2.9333, \qquad \quad {} & 2\left(1 + \frac{1}{3}\left(1 + \frac{2}{5}\left(1 + \frac{3}{7}\right)\right)\right) & \approx 3.0476,
-\end{alignedat}
+	\begin{alignedat}{2}
+		2 & = 2.0000, \qquad \quad {} & 2\left(1 + \frac{1}{3}\right) & \approx 2.6667, \\
+		2\left(1 + \frac{1}{3}\left(1 + \frac{2}{5}\right)\right) & \approx 2.9333, \qquad \quad {} & 2\left(1 + \frac{1}{3}\left(1 + \frac{2}{5}\left(1 + \frac{3}{7}\right)\right)\right) & \approx 3.0476,
+	\end{alignedat}
 \end{equation}
 and so on, with these terms getting closer and closer to $\pi \approx 3.14159\ldots$.
 
@@ -684,70 +676,68 @@ As-written, using these approximations to compute digits of $\pi$ satisfies neit
 
 To this end, define the following $2 \times 2$ matrix that depends on a positive integer $k$:
 \begin{align}\label{eq:Ak_matrices}
-A_0 = \begin{bmatrix}
-2 & 0 \\ 0 & 1
-\end{bmatrix} \quad \text{and} \quad A_k = \begin{bmatrix}
-k & 2k+1 \\ 0 & 2k+1
-\end{bmatrix} \quad \text{for all} \quad k \geq 1.
+	A_0 = \begin{bmatrix}
+		2 & 0 \\ 0 & 1
+	\end{bmatrix} \quad \text{and} \quad A_k = \begin{bmatrix}
+		k & 2k+1 \\ 0 & 2k+1
+	\end{bmatrix} \quad \text{for all} \quad k \geq 1.
 \end{align}
 For example,
 \[
-A_1 = \begin{bmatrix}
-1 & 6 \\ 0 & 3
-\end{bmatrix}, \ A_2 = \begin{bmatrix}
-2 & 10 \\ 0 & 5
-\end{bmatrix}, \ A_3 = \begin{bmatrix}
-3 & 14 \\ 0 & 7
-\end{bmatrix}, \quad \text{and} \quad A_4 = \begin{bmatrix}
-4 & 18 \\ 0 & 9
-\end{bmatrix},
+	A_1 = \begin{bmatrix}
+		1 & 6 \\ 0 & 3
+	\end{bmatrix}, \ \ A_2 = \begin{bmatrix}
+		2 & 10 \\ 0 & 5
+	\end{bmatrix}, \ \ A_3 = \begin{bmatrix}
+		3 & 14 \\ 0 & 7
+	\end{bmatrix}, \quad \text{and} \quad A_4 = \begin{bmatrix}
+		4 & 18 \\ 0 & 9
+	\end{bmatrix},
 \]
 and so on. In particular, the entries of each $A_k$ are all non-negative integers.
 
-% TODO: explain a bit where these matrices come from
-
 Next, for each integer $n \geq 1$ define $B_n$ to be the product of the first $n+1$ of the $A_k$s: $B_n = A_0A_1A_2\cdots A_n$.\footnote{Here we are using matrix multiplication, which works via the formula $\begin{bmatrix}a & b \\ 0 & c\end{bmatrix} = \begin{bmatrix}d & e \\ 0 & f\end{bmatrix} = \begin{bmatrix}ad & ae+bf \\ 0 & cf\end{bmatrix}$.} For example,
 \begin{align*}
-B_1 = A_0A_1 & = \begin{bmatrix}
-2 & 6 \\
-0 & 3
-\end{bmatrix}, & B_2 = A_0A_1A_2 & = \begin{bmatrix}
-4 & 40 \\
-0 & 15
-\end{bmatrix}, \\
-B_3 = A_0A_1A_2A_3 & = \begin{bmatrix}
-12 & 308 \\
-0 & 105
-\end{bmatrix}, & \text{and} \qquad\quad B_4 = A_0A_1A_2A_3A_4 & = \begin{bmatrix}
-48 & 2880 \\
-0 & 945
-\end{bmatrix}.
+	B_1 = A_0A_1 & = \begin{bmatrix}
+		2 & 6 \\
+		0 & 3
+	\end{bmatrix}, & B_2 = A_0A_1A_2 & = \begin{bmatrix}
+		4 & 40 \\
+		0 & 15
+	\end{bmatrix}, \\
+	B_3 = A_0A_1A_2A_3 & = \begin{bmatrix}
+		12 & 308 \\
+		0 & 105
+	\end{bmatrix}, & \text{and} \qquad\quad B_4 = A_0A_1A_2A_3A_4 & = \begin{bmatrix}
+		48 & 2880 \\
+		0 & 945
+	\end{bmatrix}.
 \end{align*}
 Again, each $B_n$ is an integer matrix with a $0$ in its bottom-left corner. Importantly, each $B_n$ can be easily obtained from the previous one, since $B_n = B_{n-1}A_n$ for all $n \geq 2$.
 
-If we let $q_n$ and $r_n$ denote the top-right and bottom-right entries of $B_n$, respectively, then $q_n / r_n$ is exactly the $n$-th $\pi$ approximation from Equation~\eqref{eq:pi_approx}. For example,
+If we let $q_n$ and $r_n$ denote the top-right and bottom-right entries of $B_n$, respectively, then $q_n / r_n$ is exactly the $n$-th approximation of $\pi$ from Equation~\eqref{eq:pi_approx}. For example,
 \begin{align*}
-\frac{q_1}{r_1} = \frac{6}{3} & \approx 2.0000, & \frac{q_2}{r_2} = \frac{40}{15} & \approx 2.6667, \\
-\frac{q_3}{r_3} = \frac{308}{105} & \approx 2.9333, &  \text{and} \qquad\qquad\quad \frac{q_4}{r_4} = \frac{2880}{945} & \approx 3.0476.
+	\frac{q_1}{r_1} = \frac{6}{3} & = 2.0000, & \frac{q_2}{r_2} = \frac{40}{15} & \approx 2.6667, \\
+	\frac{q_3}{r_3} = \frac{308}{105} & \approx 2.9333, &  \text{and} \qquad\qquad\quad \frac{q_4}{r_4} = \frac{2880}{945} & \approx 3.0476.
 \end{align*}
-This gives us a way of computing better and better approximations of $\pi$ using just integer arithmetic (we only introduce decimals at the very final step, which is inevitable since $\pi$ is not an integer), and which is streaming (since each $B_n$ can be computed straightforwardly from $B_{n-1}$).
+This gives us a way of computing better and better approximations of $\pi$ using just integer arithmetic until the very last step (where we divide $q_n$ by $r_n$), and which is streaming (since each $B_n$ can be computed straightforwardly from $B_{n-1}$).
 
-Since each term in the series~\eqref{eq:pi_series} is approximately $1/2$ as large as the term that came before it, the distance between $\pi$ and our approximation $q_n/r_n$ decreases by roughly a factor of $2$ every time we increase $n$. We thus need to iterate the above algorithm an average of $\log_2(10) \approx 3.3219$ times for each decimal place of accuracy that we would like. For simplicity, we simply round this quantity up to $4$ and thus note that if we want $n$ decimals places of $\pi$, it suffices to use the approximation based on $B_{4n}$.\footnote{There is actually an extraordinarily small chance that this algorithm computes an incorrect digit of $\pi$ at some point. The argument we just gave guarantees that we extract its $n$-digit from an approximation that is within about $2^{-4n}$ of the true value of $\pi$. Since $2^{-4n} = 16^{-n} < 10^{-n}$, the $n$-digit of this approximation matches the $n$-th digit of $\pi$ as long as $\pi$ does not have an exceptionally long string of consecutive $0$s in its decimal expansion significantly before we would expect to see one (since that could cause a long string of $9$s in one approximation that turns into a string of $0$s in the next approximation and $\pi$ itself). However, over 31,000,000,000,000 decimal places of $\pi$ are known, and our algorithm computes them all correctly.} For example,
+Since each term in the series~\eqref{eq:pi_series} is approximately $1/2$ as large as the term that came before it, the distance between $\pi$ and our approximation $q_n/r_n$ decreases by roughly a factor of $2$ every time we increase $n$ by $1$. We thus need to iterate the above procedure an average of $\log_2(10) \approx 3.3219$ times for each decimal place of accuracy that we would like. For simplicity, we simply round this quantity up to $4$ and thus note that if we want $n$ decimals places of $\pi$, it suffices to use the approximation based on $B_{4n}$.\footnote{There is actually an extraordinarily small chance that this algorithm computes an incorrect digit of $\pi$ at some point. The argument we just gave guarantees that we extract its $n$-digit from an approximation that is within about $2^{-4n}$ of the true value of $\pi$. Since $2^{-4n} = 16^{-n} < 10^{-n}$, the $n$-digit of this approximation matches the $n$-th digit of $\pi$ as long as $\pi$ does not have an exceptionally long string of consecutive $0$s in its decimal expansion significantly before we would expect to see one (since that could cause a long string of $9$s in one approximation that turns into a string of $0$s in the next approximation and $\pi$ itself). However, over 31,000,000,000,000 decimal places of $\pi$ are known, and this algorithm computes them all correctly.} For example,
 \begin{align*}
-B_4 & = \begin{bmatrix}
-48 & 2880 \\
-0 & 945
-\end{bmatrix}, & \frac{q_4}{r_4} = \frac{2880}{945} & \approx \mathbf{3}.0476, \\
-B_8 & = \begin{bmatrix}
-80640 & 108103680 \\
-0 & 34459425
-\end{bmatrix}, & \frac{q_8}{r_8} = \frac{108103680}{34459425} & \approx \mathbf{3.1}371, \\
-B_{12} & = \begin{bmatrix}
-958003200 & 24835120128000 \\
-0 & 7905853580625
-\end{bmatrix}, & \frac{q_{12}}{r_{12}} = \frac{24835120128000}{7905853580625} & \approx \mathbf{3.14}14,
+	B_4 & = \begin{bmatrix}
+		48 & 2880 \\
+		0 & 945
+	\end{bmatrix}, & \frac{q_4}{r_4} = \frac{2880}{945} & \approx \mathbf{3}.0476, \\
+	B_8 & = \begin{bmatrix}
+		80640 & 108103680 \\
+		0 & 34459425
+	\end{bmatrix}, & \frac{q_8}{r_8} = \frac{108103680}{34459425} & \approx \mathbf{3.1}371, \\
+	B_{12} & = \begin{bmatrix}
+		958003200 & 24835120128000 \\
+		0 & 7905853580625
+	\end{bmatrix}, & \frac{q_{12}}{r_{12}} = \frac{24835120128000}{7905853580625} & \approx \mathbf{3.14}14,
 \end{align*}
-and so on.
+are approximations of $\pi$ that are accurate to at least $1$, $2$, and $3$ decimal places.
 
 We can now put all of this together into the reasonably APGsembly-friendly Pseudocode~\ref{alg:pseudocode_pi_calc} for computing and printing the decimal digits of $\pi$. In this pseudocode, the registers \texttt{U0}, \texttt{U1}, \texttt{U2}, \texttt{U3}, \texttt{B0}, \texttt{B1}, and \texttt{B2} store the following quantities:\smallskip
 
@@ -758,7 +748,7 @@ We can now put all of this together into the reasonably APGsembly-friendly Pseud
 	
 	\item[\texttt{U2}:] the current digit being computed
 	
-	\item[\texttt{U3}:] the index of the current digit being computed (\texttt{U3}${} = 0$ for ``3'', \texttt{U3}${} = 1$ for ``1'', \texttt{U3}${} = 2$ for ``4'', and so on)\smallskip
+	\item[\texttt{U3}:] the index of the current digit (\texttt{U3}${} = 0$ for ``3'', \texttt{U3}${} = 1$ for ``1'', \texttt{U3}${} = 2$ for ``4'', and so on)\smallskip
 	
 	\item[\texttt{B0}:] top-left corner of $B_n$ matrix
 	
@@ -766,8 +756,6 @@ We can now put all of this together into the reasonably APGsembly-friendly Pseud
 	
 	\item[\texttt{B2}:] bottom-right corner of $B_n$ matrix ($= r_n$)\smallskip
 \end{itemize}
-
-The reason that we use the ``\texttt{T}'' labels for the entries of $B_n$ and ``\texttt{R}'' labels for other quantities is that the entries of $B_n$ grow quite large as $n$ increases, so they should be stored in binary registers. On the other hand, all other quantities used in this algorithm are quite small, so they can simply be stored in sliding block (unary) registers.
 
 \begin{pseudocode}
 	\begin{algorithmic}[1]\small
@@ -799,21 +787,23 @@ The reason that we use the ``\texttt{T}'' labels for the entries of $B_n$ and ``
 	\caption{Pseudocode for computing and printing the decimal digits of $\pi$. If any variable is used before it is set, it is assumed to start at a value of $0$.}\label{alg:pseudocode_pi_calc}
 \end{pseudocode}
 
-% NJ TODO: Be more specific about the last line in this paragraph: where did we see how to add/multiply binary registers?
-We have seen how to implement most of the pieces of Pseudocode~\ref{alg:pseudocode_pi_calc} in APGsembly already. Adding fixed values to sliding block (unary) registers is as straightforward as using their \texttt{INC} command the corresponding number of times. Looping over a code section $4$ times can be done by setting a register's value to $4$ and then using a \texttt{TDEC} command to decide whether to restart the loop or exit it. Finally, adding binary registers together and multiplying them by unary registers can be done via the code that we saw in Section~\ref{sec:binary_register}.
+The reason that we use the ``\texttt{B}'' labels for the entries of $B_n$ and ``\texttt{U}'' labels for other quantities is that the entries of $B_n$ grow quite large as $n$ increases, so they should be stored in binary registers. On the other hand, all other quantities used in this algorithm are comparatively small, so they can simply be stored in sliding block (unary) registers.
+
+We have seen how to implement most of the pieces of Pseudocode~\ref{alg:pseudocode_pi_calc} in APGsembly already. Adding fixed values to sliding block (unary) registers is as straightforward as using their \texttt{INC} command the corresponding number of times. Looping over a code section $4$ times can be done by setting a register's value to $4$ and then using a \texttt{TDEC} command to decide whether to restart the loop or exit it. Finally, adding binary registers together and multiplying them by unary registers can be done via the code that we saw in APGsembly~\ref{alg:apgsembly_binary_add_sub} and Exercise~\ref{exer:universal_computation_apgsembly_multiply_binary}, respectively.
 
 However, one piece of Pseudocode~\ref{alg:pseudocode_pi_calc} that is tricky to implement is the digit extraction at line~15. In order to carry out this step using just integer arithmetic, we do the following variant of integer division:\smallskip
 
 \begin{enumerate}
-	\item[1)] Subtract \texttt{B2} from \texttt{B1} until we cannot do so anymore. The number of subtractions that we performed is the $k$-th digit of \texttt{B1 / B2} after its decimal point, where $k$ is the number of times that we have already performed step~(1) ($k = 0$ the first time we perform this step). If this is the digit that we are currently interested in, we can stop. Otherwise, we proceed to step~(2) below.\smallskip
+	\item[1)] Subtract \texttt{B2} from \texttt{B1} until we cannot do so anymore. The number of subtractions that we performed is the $s$-th digit of \texttt{B1 / B2} after its decimal point, where $s$ is the number of times that we have already performed step~(1) ($s = 0$ the first time we perform this step). If this is the digit that we are currently interested in, we can stop. Otherwise, we proceed to step~(2) below.\smallskip
 	
 	\item[2)] Multiply \texttt{B1} by $10$ and then return to step~(1) above.\smallskip
 \end{enumerate}
 
-In order to implement step~(1) above in APGsembly, we need to know how to subtract the value of one binary register from another, and how to compare the values of two binary registers (so that we know whether or not we can do the subtraction in the first place). Fortunately, we saw how to do the former of these tasks in APGsembly~??, and the latter task is somewhat simpler and left to Exercise~\ref{exer:universal_computation_apgsembly_binary_compare}. Similarly, we saw how to do the multiplication by $10$ that step~(2) requires us to do back in APGsembly~??.
+In order to implement step~(1) above in APGsembly, we need to know how to subtract the value of one binary register from another, and how to compare the values of two binary registers (so that we know whether or not we can do the subtraction in the first place). Fortunately, we saw how to do the former of these tasks in APGsembly~\ref{alg:apgsembly_binary_add_sub}, and the latter task is somewhat simpler and left to Exercise~\ref{exer:universal_computation_apgsembly_binary_compare}. Similarly, we saw how to do the multiplication by $10$ that step~(2) requires us to do back in APGsembly~\ref{alg:apgsembly_mul_ten}.
 
 We have thus seen all of the pieces that we need to finally construct our $\pi$-calculating Life pattern. The APGsembly code that implements Pseudocode~\ref{alg:pseudocode_pi_calc} is quite long, so we leave it to Appendix~\ref{chp:appendix_apg}. The resulting calculator that is compiled from that APGsembly code is presented in Figure~\ref{fig:pi_calc}.
 
+% NJ TODO: Replace this image with smaller version of the calculator once Dave has completed the new compilation script. Then highlight/annotate the figure.
 \begin{figure}[!htbp]
 	\centering\begin{tikzpicture}%
 	\node[inner sep=0pt,anchor=south west] (pi_calc_main) at (0,0) {\patternimglink{0.096}{pi_calc}};
@@ -830,24 +820,24 @@ We have thus seen all of the pieces that we need to finally construct our $\pi$-
 
 This same algorithm that we used in our $\pi$ calculator can also be used to compute many other mathematical constants of interest. In particular, we can use that same method to construct patterns that print the digits of any number that can be represented by a series of the following form, where $a$, $b$, $p$, $q$, $r$, and $s$ are non-negative integers:\footnote{If $k = 0$ then the term $\frac{(p+q)(2p+q)\cdots(kp+q)}{(r+s)(2r+s)\cdots(kr+s)}$ is an ``empty product'', which equals $1$.}
 \begin{align}\begin{split}\label{eq:generalized_pi_series}
-& \frac{a}{b}\sum_{k=0}^\infty \frac{(p+q)(2p+q)\cdots(kp+q)}{(r+s)(2r+s)\cdots(kr+s)} \\
-& \qquad\qquad = \frac{a}{b}\left(1 + \frac{p+q}{r+s}\left( 1 + \frac{2p+q}{2r+s}\left( 1 + \frac{3p+q}{3r+s}\left( \cdots \left( 1 + \frac{kp+q}{kr+s}\Big( \cdots \Big) \right)\right)\right)\right)\right).
+	& \frac{a}{b}\sum_{k=0}^\infty \frac{(p+q)(2p+q)\cdots(kp+q)}{(r+s)(2r+s)\cdots(kr+s)} \\
+	& \qquad\qquad = \frac{a}{b}\left(1 + \frac{p+q}{r+s}\left( 1 + \frac{2p+q}{2r+s}\left( 1 + \frac{3p+q}{3r+s}\left( \cdots \left( 1 + \frac{kp+q}{kr+s}\Big( \cdots \Big) \right)\right)\right)\right)\right).
 \end{split}\end{align}
 For example, the $\pi$ series~\eqref{eq:pi_series} arises in the case when $a = 2$, $b = 1$, $p = 1$, $q = 0$, $r = 2$, and $s = 1$.
 
 All that changes in the algorithm and APGsembly code for computing a constant of this more general form, rather than $\pi$ itself, is that the $A_k$ matrices from Equation~\eqref{eq:Ak_matrices} should instead be defined by
 \[
-A_0 = \begin{bmatrix}
-a & 0 \\ 0 & b
-\end{bmatrix} \quad \text{and} \quad A_k = \begin{bmatrix}
-kp+q & kr+s \\ 0 & kr+s
-\end{bmatrix} \quad \text{for all} \quad k \geq 1.
+	A_0 = \begin{bmatrix}
+		a & 0 \\ 0 & b
+	\end{bmatrix} \quad \text{and} \quad A_k = \begin{bmatrix}
+		kp+q & kr+s \\ 0 & kr+s
+	\end{bmatrix} \quad \text{for all} \quad k \geq 1.
 \]
 The computation of the $B_n$ matrices from the $A_k$s, as well as the remainder of the algorithm and pseudocode, stays the exact same.
 
 To illustrate how to make this change to construct a calculator for a number other than $\pi$, consider the mathematical constant $e = 2.71828\ldots$, which makes frequent appearances in calculus and statistics. It has the well-known series representation
 \begin{align}\label{eq:e_series}
-e = \sum_{k=0}^\infty \frac{1}{k!} = 1 + \left(1 + \frac{1}{2}\left(1 + \frac{1}{3}\left(1 + \frac{1}{4}\Big( \cdots \Big)\right)\right)\right),
+	e = \sum_{k=0}^\infty \frac{1}{k!} = 1 + \left(1 + \frac{1}{2}\left(1 + \frac{1}{3}\left(1 + \frac{1}{4}\Big( \cdots \Big)\right)\right)\right),
 \end{align}
 corresponding to the values $a = 1$, $b = 1$, $p = 0$, $q = 1$, $r = 1$, and $s = 0$ in the general series~\eqref{eq:generalized_pi_series}. We can thus make the following two extremely minor changes to Pseudocode~\ref{alg:pseudocode_pi_calc} for computing $\pi$ to turn it into an algorithm for computing $e$:\smallskip
 
@@ -865,7 +855,7 @@ More generally, to turn Pseudocode~\ref{alg:pseudocode_pi_calc} into pseudocode 
 	\item Replace line~8 with ``\texttt{set U0 = U0 + p, U1 = U1 + r}''.\smallskip
 \end{itemize}
 
-Indeed, modifying the APGsembly code for the $\pi$ calculator from Appendix~\ref{chp:appendix_apg} is similarly straightforward. It can be turned into APGsembly for an $e$ calculator by just making minor tweaks to its first $12$ (non-comment) lines of code (see Exercise~\ref{exer:universal_computation_e_calc}). Other constants like $\sqrt{2}$ can similarly be computed by making analogous minimal changes (see Exercise~\ref{exer:universal_computation_sqrt2_calc}).
+Indeed, modifying the APGsembly code for the $\pi$ calculator from Appendix~\ref{chp:appendix_apg} is similarly straightforward. It can be turned into APGsembly for an $e$ calculator by just change $3$ lines of code: the \texttt{\#REGISTERS} line, \texttt{ITER6;NZ} line, and \texttt{ITER7;ZZ} line (see Exercise~\ref{exer:universal_computation_e_calc}). Other constants like $\sqrt{2}$ can similarly be computed by making analogous minimal changes (see Exercise~\ref{exer:universal_computation_sqrt2_calc}).
 
 
 
@@ -874,20 +864,81 @@ Indeed, modifying the APGsembly code for the $\pi$ calculator from Appendix~\ref
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{A 2D Printer}\label{sec:2dprinter}
 
-While the decimal printer is quite flexible in that we can re-tool it to print any finite set of digits of our choosing, it is still limited by the fact that it can only print linearly. The final component that we introduce, which we denote by \texttt{B2D}, solves this problem by being able to print an arbitrary pattern in an infinite 2D quadrant of the Life plane. Alternatively, this component can be thought of as a 2D generalization of the binary register from Section~\ref{sec:binary_register}: while that component kept track of an infinite 1D list of bits, this one keeps track of an infinite 2D array of bits.\footnote{This interpretation explains the abbreviation \texttt{B2D} for this component; it stands for ``binary 2-dimensional''.}
+While the decimal printer is quite flexible in that we can re-tool it to print any finite set of digits of our choosing, it is still limited by the fact that it can only print them linearly. The final component that we introduce, which we denote by \texttt{B2D}, solves this problem by being able to print an arbitrary pattern in an infinite 2D quadrant of the Life plane. Alternatively, this component can be thought of as a 2D generalization of the binary register from Section~\ref{sec:binary_register}: while that component kept track of an infinite 1D list of bits, this one keeps track of an infinite 2D array of bits.\footnote{This interpretation explains the abbreviation \texttt{B2D} for this component; it stands for ``binary 2-dimensional''.}
 
 The way that this 2D printer works is almost the exact same as the binary register, but with two perpendicular sliding blocks to read and write the desired bits instead of just one. In particular, those sliding blocks are used to fire gliders at each other so as to synthesize or destroy boats that are laid out in a diagonal grid with a separation of $16$ full diagonals. These boats can either be interpreted as bits in some sort of computation (with a boat representing a \texttt{1} and an empty space representing a \texttt{0}), or they can be thought of as pixels in an image that can be viewed by zooming far out in Life simulation software.
 
-In order to actually print those pixels (i.e., boats), the 2D printer can be called via APGsembly actions that are very similar to those of the binary register, but with the minor extra complexity that we can increment and decrement the location of the 2D printer's read head \index{read head} in two different perpendicular directions. We say that the ``$x$'' direction of this grid is the diagonal running from southwest to northeast, and the ``$y$'' direction is the one running from southeast to northwest (so that the coordinate system for this printer is just the usual Cartesian coordinate system, but rotated counter-clockwise by $45$~degrees). Only points with non-negative $x$ and $y$ coordinates are accessible to the printer, so it can print on the top-central quadrant of the Life plane.
+In order to actually print those pixels (i.e., boats), the 2D printer can be called via APGsembly actions that are almost identical to those of the binary register, but with the minor extra complexity that we can increment and decrement the location of the 2D printer's read head \index{read head} in two different perpendicular directions. We say that the ``$x$'' direction of this grid is the diagonal running from southwest to northeast, and the ``$y$'' direction is the one running from southeast to northwest (so that the coordinate system for this printer is just the usual Cartesian coordinate system, but rotated counter-clockwise by $45$~degrees). Only points with non-negative $x$ and $y$ coordinates are accessible to the printer, so it can print on the top-central quadrant of the Life plane.
 
-To move the sliding blocks of the read head one step farther away from the printer itself (i.e., northeast or northwest), we can use \texttt{INC B2DX} and \texttt{INC B2DY} actions. Similarly, \texttt{TDEC B2DX} and \texttt{TDEC B2DY} actions move the pointer block to the previous location in the $x$ or $y$ direction, respectively, or keeps it in the same place if it's already at the zero position.\footnote{As with the binary register's \texttt{TDEC} action, these ones return either a \texttt{Z} or \texttt{NZ} depending on whether or not the read head was already at the \texttt{0} location.} Finally, a \texttt{SET} action places a boat (i.e., a pixel) at the current pointer location.\footnote{Also just like the binary register's \texttt{SET} action, this mechanism will self-destruct if a pixel is \texttt{SET} when a boat is already present at the current pointer location.}
+The APGsembly actions themselves are listed below, and since these are the last components and actions that we will make use of in this computational toolkit, this is a natural time to summarize them all. This summary is provided in Table~\ref{tab:universal_computation_components}.\smallskip
 
-% TODO summarize here: INC never has a return value, TDEC for all 3 components checks return value and THEN decs
+\begin{itemize}
+	\item \texttt{INC B2DX} and \texttt{INC B2DY}, which move the pointer blocks of the read head one step farther away from the printer itself (northeast or northwest, respectively).\smallskip
+	
+	\item \texttt{TDEC B2DX} and \texttt{TDEC B2DY}, which move the pointer blocks to the previous location in the $x$ or $y$ direction (i.e., southwest or southeast), respectively, or keep them in the same place if they're already at the zero position. These actions also return either \texttt{Z} or \texttt{NZ}, dpending on whether or not the $x$ or $y$ read head was already at the \texttt{0} location.\smallskip
+	
+	\item \texttt{READ B2D}, which sets the value of the bit at the current read head location to ``\texttt{0}''. This action returns either \texttt{Z} or \texttt{NZ}, depending on the original value of this bit.\smallskip
+	
+	\item \texttt{SET B2D}, which places a ``\texttt{1}'' bit at the current read head location.\footnote{Just like the binary register's \texttt{SET} action, this mechanism will self-destruct if a pixel is \texttt{SET} when a boat is already present at the current pointer location.}\smallskip
+\end{itemize}
 
-The 2D printer is extremely large, so we do not display it here. However, we will see it in each of the upcoming Figures~\ref{fig:koch_computer} and~\ref{fig:osqrtlogt}.
+\begin{table}[!htb]
+	\begin{center}
+		\begin{tabular}{lll}
+			\toprule
+			Component & Actions & Return value and notes \\\midrule
+			\texttt{Un}: sliding block register & \texttt{INC Un} & increases the value of the register by \texttt{1}, no return value \\
+			\hphantom{\texttt{Un}:} stores a non-negative & \cellcolor{gray!20}\texttt{TDEC Un} & \cellcolor{gray!20}returns \texttt{Z} if \texttt{Un = 0} and \texttt{NZ} otherwise, and \emph{then} \\
+			\hphantom{\texttt{Un}:} integer in unary & \cellcolor{gray!20} & \cellcolor{gray!20}decreases the value of the register by \texttt{1} if \texttt{NZ} \\\midrule
+			
+			\texttt{Bn}: binary register & \texttt{INC Bn} & increases the position of the read head,\\
+			\hphantom{\texttt{Bn}:} stores a non-negative & & no return value \\
+			\hphantom{\texttt{Bn}:} integer in binary & \cellcolor{gray!20}\texttt{TDEC Bn} & \cellcolor{gray!20}returns \texttt{Z} if read head is at least significant bit and \\
+			\hphantom{\texttt{Bn}:} & \cellcolor{gray!20} & \cellcolor{gray!20}\texttt{NZ} otherwise, and \emph{then} decreases position by \texttt{1} if \texttt{NZ} \\
+			\hphantom{\texttt{Bn}:} & \texttt{READ Bn} & returns the bit (\texttt{Z = 0} or \texttt{NZ = 1}) at the read head, \\
+			\hphantom{\texttt{Bn}:} & & and then sets it equal to \texttt{0} \\
+			\hphantom{\texttt{Bn}:} & \cellcolor{gray!20}\texttt{SET Bn} & \cellcolor{gray!20}set the bit at the read head to \texttt{1}, no return value, \\
+			\hphantom{\texttt{Bn}:} & \cellcolor{gray!20} & \cellcolor{gray!20}breaks if that bit already equals \texttt{1} \\\midrule
+			
+			\texttt{B2D}: 2D binary register & \texttt{INC B2DX} & increases the X position of the read head, \\
+			\hphantom{\texttt{B2D}:} stores a 2D & & no return value \\
+			\hphantom{\texttt{B2D}:} array of bits & \cellcolor{gray!20}\texttt{INC B2DY} & \cellcolor{gray!20}increases the Y position of the read head, \\
+			\hphantom{\texttt{B2D}:} & \cellcolor{gray!20} & \cellcolor{gray!20}no return value \\
+			\hphantom{\texttt{B2D}:} & \texttt{TDEC B2DX} & returns \texttt{Z} if X read head is at least significant bit and \\
+			\hphantom{\texttt{B2D}:} & & \texttt{NZ} otherwise, and \emph{then} decreases X position by \texttt{1} if \texttt{NZ} \\
+			\hphantom{\texttt{B2D}:} & \cellcolor{gray!20}\texttt{TDEC B2DY} & \cellcolor{gray!20}returns \texttt{Z} if Y read head is at least significant bit and \\
+			\hphantom{\texttt{B2D}:} & \cellcolor{gray!20} & \cellcolor{gray!20}\texttt{NZ} otherwise, and \emph{then} decreases Y position by \texttt{1} if \texttt{NZ} \\
+			
+			\hphantom{\texttt{B2D}:} & \texttt{READ B2D} & returns the bit (\texttt{Z = 0} or \texttt{NZ = 1}) at the read head, \\
+			\hphantom{\texttt{B2D}:} & & and then sets it equal to \texttt{0} \\
+			\hphantom{\texttt{B2D}:} & \cellcolor{gray!20}\texttt{SET B2D} & \cellcolor{gray!20}set the bit at the read head to \texttt{1}, no return value, \\
+			\hphantom{\texttt{B2D}:} & \cellcolor{gray!20} & \cellcolor{gray!20}breaks if that bit already equals \texttt{1} \\\midrule
+			
+			\texttt{ADD}: binary adder & \texttt{ADD A1} & helps us add one binary register to another one, \\
+			& \texttt{ADD B0} & as in APGsembly~\ref{alg:apgsembly_binary_add_sub} \\
+			& \texttt{ADD B1} & \\\midrule
+			
+			\texttt{SUB}: binary subtractor & \texttt{SUB A1} & helps us subtract one binary register from another one, \\
+			& \texttt{SUB B0} & as in APGsembly~\ref{alg:apgsembly_binary_add_sub} \\
+			& \texttt{SUB B1} & \\\midrule
+			
+			\texttt{MUL}: binary multiplier & \texttt{MUL 0} & helps us quickly multiply a binary register by \texttt{10}, \\
+			& \texttt{MUL 1} & as in APGsembly~\ref{alg:apgsembly_mul_ten} \\\midrule
+			\texttt{OUTPUT}: digit printer & \texttt{OUTPUT x} & prints \texttt{x} in a font made up of blocks, no return value,\\
+			& & \texttt{x} must be one of \texttt{0}, \texttt{1}, \texttt{2}, \texttt{3}, \texttt{4}, \texttt{5}, \texttt{6}, \texttt{7}, \texttt{8}, \texttt{9}, or \texttt{.}\\\midrule
+			
+			\texttt{NOP}: no operation & \texttt{NOP} & returns \texttt{Z} and does nothing else\\\midrule
+			
+			\texttt{HALT\_OUT} & \texttt{HALT\_OUT} & halts the entire computation and emits a glider\\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+	\caption{A summary of the standard components that APGsembly can make use of and the actions that they can perform.}\label{tab:universal_computation_components}
+\end{table}
 
-% Need to mention that B2D requires a slower clock (2^24?). this is also why it needs such a big space between logic unit and thing it prints
+The 2D printer is extremely large, so we do not display it here. However, we will see it in each of the upcoming Figures~\ref{fig:koch_computer} and~\ref{fig:osqrtlogt}. It is worth noting that this component is so slow and large that we actually have to use a slightly slower clock gun whenever it is present---one with period at least $2^{22}$ (instead of period $2^{20}$, like we have used until now). 
 
+%NJ TODO: I haven't looked into why we need a slower clock for this component yet. Explain why here.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1128,71 +1179,12 @@ The pattern that results from compiling this APGsembly code is displayed in Figu
 
 % Exercise todo: identify the 6 inputs to the 2d printer from left-to-right.
 
-We have now seen all of the components and actions that we will make use of in this computing toolkit, so this is a natural time to summarize them all. This summary is provided in Table~\ref{tab:universal_computation_components}.
-
-\begin{table}[!htb]
-	\begin{center}
-		\begin{tabular}{lll}
-			\toprule
-			Component & Actions & Return value and notes \\\midrule
-			\texttt{Un}: sliding block register & \texttt{INC Un} & increases the value of the register by \texttt{1}, no return value \\
-			\hphantom{\texttt{Un}:} stores a non-negative & \cellcolor{gray!20}\texttt{TDEC Un} & \cellcolor{gray!20}returns \texttt{Z} if \texttt{Un = 0} and \texttt{NZ} otherwise, and \emph{then} \\
-			\hphantom{\texttt{Un}:} integer in unary & \cellcolor{gray!20} & \cellcolor{gray!20}decreases the value of the register by \texttt{1} if \texttt{NZ} \\\midrule
-			
-			\texttt{Bn}: binary register & \texttt{INC Bn} & increases the position of the read head,\\
-			\hphantom{\texttt{Bn}:} stores a non-negative & & no return value \\
-			\hphantom{\texttt{Bn}:} integer in binary & \cellcolor{gray!20}\texttt{TDEC Bn} & \cellcolor{gray!20}returns \texttt{Z} if read head is at least significant bit and \\
-			\hphantom{\texttt{Bn}:} & \cellcolor{gray!20} & \cellcolor{gray!20}\texttt{NZ} otherwise, and \emph{then} decreases position by \texttt{1} if \texttt{NZ} \\
-			\hphantom{\texttt{Bn}:} & \texttt{READ Bn} & returns the bit (\texttt{Z = 0} or \texttt{NZ = 1}) at the read head, \\
-			\hphantom{\texttt{Bn}:} & & and then sets it equal to \texttt{0} \\
-			\hphantom{\texttt{Bn}:} & \cellcolor{gray!20}\texttt{SET Bn} & \cellcolor{gray!20}set the bit at the read head to \texttt{1}, no return value, \\
-			\hphantom{\texttt{Bn}:} & \cellcolor{gray!20} & \cellcolor{gray!20}breaks if that bit already equals \texttt{1} \\\midrule
-			
-			\texttt{B2D}: 2D binary register & \texttt{INC B2DX} & increases the X position of the read head, \\
-			\hphantom{\texttt{B2D}:} stores a 2D & & no return value \\
-			\hphantom{\texttt{B2D}:} array of bits & \cellcolor{gray!20}\texttt{INC B2DY} & \cellcolor{gray!20}increases the Y position of the read head, \\
-			\hphantom{\texttt{B2D}:} & \cellcolor{gray!20} & \cellcolor{gray!20}no return value \\
-			\hphantom{\texttt{B2D}:} & \texttt{TDEC B2DX} & returns \texttt{Z} if X read head is at least significant bit and \\
-			\hphantom{\texttt{B2D}:} & & \texttt{NZ} otherwise, and \emph{then} decreases X position by \texttt{1} if \texttt{NZ} \\
-			\hphantom{\texttt{B2D}:} & \cellcolor{gray!20}\texttt{TDEC B2DY} & \cellcolor{gray!20}returns \texttt{Z} if Y read head is at least significant bit and \\
-			\hphantom{\texttt{B2D}:} & \cellcolor{gray!20} & \cellcolor{gray!20}\texttt{NZ} otherwise, and \emph{then} decreases Y position by \texttt{1} if \texttt{NZ} \\
-			
-			\hphantom{\texttt{B2D}:} & \texttt{READ B2D} & returns the bit (\texttt{Z = 0} or \texttt{NZ = 1}) at the read head, \\
-			\hphantom{\texttt{B2D}:} & & and then sets it equal to \texttt{0} \\
-			\hphantom{\texttt{B2D}:} & \cellcolor{gray!20}\texttt{SET B2D} & \cellcolor{gray!20}set the bit at the read head to \texttt{1}, no return value, \\
-			\hphantom{\texttt{B2D}:} & \cellcolor{gray!20} & \cellcolor{gray!20}breaks if that bit already equals \texttt{1} \\\midrule
-			
-			\texttt{ADD}: binary adder & \texttt{ADD A1} & helps us add one binary register to another one, \\
-			& \texttt{ADD B0} & as in APGsembly~\ref{alg:apgsembly_binary_add_sub} \\
-			& \texttt{ADD B1} & \\\midrule
-			
-			\texttt{SUB}: binary subtractor & \texttt{SUB A1} & helps us subtract one binary register from another one, \\
-			& \texttt{SUB B0} & as in APGsembly~\ref{alg:apgsembly_binary_add_sub} \\
-			& \texttt{SUB B1} & \\\midrule
-			
-			\texttt{MUL}: binary multiplier & \texttt{MUL 0} & helps us quickly multiply a binary register by \texttt{10}, \\
-			& \texttt{MUL 1} & as in APGsembly~\ref{alg:apgsembly_mul_ten} \\\midrule
-			\texttt{OUTPUT}: digit printer & \texttt{OUTPUT x} & prints \texttt{x} in a font made up of blocks, no return value,\\
-			& & \texttt{x} must be one of \texttt{0}, \texttt{1}, \texttt{2}, \texttt{3}, \texttt{4}, \texttt{5}, \texttt{6}, \texttt{7}, \texttt{8}, \texttt{9}, or \texttt{.}\\\midrule
-			
-			\texttt{NOP}: no operation & \texttt{NOP} & returns \texttt{Z} and does nothing else\\\midrule
-			
-			\texttt{HALT\_OUT} & \texttt{HALT\_OUT} & halts the entire computation and emits a glider\\
-			\bottomrule
-		\end{tabular}
-	\end{center}
-	\caption{A summary of the standard components that APGsembly can make use of and the actions that they can perform.}\label{tab:universal_computation_components}
-\end{table}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Notes and Historical Remarks}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% NJ TODO: Cite Adam's chapter "Universal Computation and Construction in GoL Cellular Automata" in Adamatzky's book
-% NJ TODO MUCH EARLIER: Link to download location for APG compiler etc.
-
-Conway's and Gosper's groups showed in the early 1970s that it was theoretically possible to assemble a Life pattern to complete any computational task that a Turing machine could accomplish \cite{BCG82}. But it wasn't until almost three decades later that Life technology advanced far enough to allow for universal-computer patterns that were small enough to be simulated on a desktop computer:  Paul Rendell's Turing machines in 2000--2011, Paul Chapman's Minsky Register Machines in 2002, Adam~P.~Goucher's Spartan universal computer-constructor in 2009, and Nicolas Loizeau's 8-bit programmable computer in 2016.
+Conway's and Gosper's groups showed in the early 1970s that it was theoretically possible to assemble a Life pattern to complete any computational task that a Turing machine could accomplish \cite{BCG82}. But it wasn't until almost three decades later that Life technology advanced far enough to allow for universal-computer patterns that were small enough to be simulated on a desktop computer: Paul Rendell's Turing machines in 2000--2011, Paul Chapman's Minsky Register Machines in 2002, Adam~P.~Goucher's Spartan universal computer-constructor in 2009 \cite{Gou10} (which was the basis for almost all of the components that we investigated in this chapter), and Nicolas Loizeau's 8-bit programmable computer in 2016.
 
 Each of these computational devices used different Life mechanisms to implement logic gates, memory, program storage, and so on.
 
@@ -1200,12 +1192,15 @@ Each of these computational devices used different Life mechanisms to implement 
 
 % Mention phi calculator that came before pi calculator, to put it into context. NJ question: Do we know exactly what algorithm the phi calc used? I probably don't care, but I think it was simpler than the pi alg.
 
+% The original $\pi$ calculator was constructed by Adam P. Goucher in February 2010. The one we construct here uses all of the same ideas and algorithms, but with some slightly newer technology to reduce its size.
 
 
-% EXERCISE TODO: Copy binary register into another one?
+
 % TODO:  Exercise: 1) In APGsembly 1.1, if the INITIAL state were removed, what line of code would the program have to start on to make its behavior the same as before?  (Answer: it would work to start execution on the ID3 NZ line.) 2) Why can't we remove the INITIAL state and produce re-ordered APGsembly code that performs the same algorithm with one less state?  (Answer: to start the program we have to run a command to produce an initial return value.  We could reorder the states to make ID3 the initial state, but then we'd also have to start the program with an initial ``NZ'' return value.  We could certainly set up the Life pattern to work that way, but it's traditional to not assume a specific return value until we run an INITIAL instruction to generate it.)
 
-% NJ TODO: Modify statements like "first 12 lines of pi APGsembly" in light of now using the #REGISTERS code
+% TODO?: Exercise -- Why/how do ADD/SUB differ? How do they store a memory bit?
+% TODO?: Exercise -- Copy binary register into another one?
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Exercises \hfill \normalfont\textsf{\small solutions to starred exercises on \hyperlink{solutions_universal_computation}{page \pageref{solutions_universal_computation}}}}
 \label{sec:solutions_universal_computation}
@@ -1261,7 +1256,33 @@ Each of these computational devices used different Life mechanisms to implement 
 
 
 \begin{problem}\label{exer:universal_computation_apgsembly_set_binary_value}
-	Write APGsembly code that stores the value $241$ in the binary register \texttt{B0} (using \texttt{INC} and \texttt{SET} actions as in APGsembly~\ref{alg:store_139}, not via the \texttt{\#REGISTERS} header).
+	Write APGsembly code that stores the value $241$ in a binary register \texttt{B0} (using \texttt{INC} and \texttt{SET} actions as in APGsembly~\ref{alg:store_139}, not via the \texttt{\#REGISTERS} header).
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:universal_computation_apgsembly_multiply_binary}
+	Suppose that \texttt{U0} and \texttt{B0} are a sliding block and binary register, respectively, storing some values. Write APGsembly code that computes \texttt{U0 * B0} and stores it in \texttt{B0}.
+\end{problem}
+
+
+\mfilbreak
+
+\begin{problem}\label{exer:universal_computation_apgsembly_exponentiate}
+	In this exercise, suppose that \texttt{U0} is a sliding block register whose value has already been set.\smallskip
+	
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item Write APGsembly code that stores the value $2^{\texttt{U0}}$ in the binary register \texttt{B0}.
+		% Solution: Just do it bitwise. Easy.
+		
+		\item Write APGsembly code that stores the value $10^{\texttt{U0}}$ in the binary register \texttt{B0}.
+		% Solution: Use MUL 10 code U0 times. Easy-ish.
+		
+		\item Write APGsembly code that stores the value $3^{\texttt{U0}}$ in the binary register \texttt{B0}.
+		% Solution: Repeat the multiplication code from Exercise~\ref{exer:universal_computation_apgsembly_multiply_binary}. A bit harder.
+	\end{enumerate}
 \end{problem}
 
 
@@ -1325,7 +1346,7 @@ Each of these computational devices used different Life mechanisms to implement 
 
 
 \begin{problemstar}\label{exer:universal_computation_e_calc}
-	Modify the first 12 lines of the APGsembly code from Appendix~\ref{chp:appendix_apg} to turn the $\pi$ calculator into an $e$ calculator.
+	Modify just $3$ lines of the APGsembly code from Appendix~\ref{chp:appendix_apg} to turn the $\pi$ calculator into an $e$ calculator.
 	
 	\noindent [Hint: We described the changes that need to be made in Section~\ref{sec:pi_calc_other}.]
 \end{problemstar}
@@ -1344,7 +1365,7 @@ Each of these computational devices used different Life mechanisms to implement 
 		\item The above series representation of $\sqrt{2}$ can be put in the general form~\eqref{eq:generalized_pi_series}. What are the values of $a$, $b$, $p$, $q$, $r$, and $s$?
 		% SOLUTION: a = 1, b = 2, p = 2, q = 1, r = 4, s = 0
 		
-		\item Change the first $12$ lines of the APGsembly for the $\pi$ calculator (from Appendix~\ref{chp:appendix_apg}) to account for these different values of $a$, $b$, $p$, $q$, $r$, and $s$.
+		\item Change just a few lines of the APGsembly for the $\pi$ calculator (from Appendix~\ref{chp:appendix_apg}) to account for these different values of $a$, $b$, $p$, $q$, $r$, and $s$.
 		
 		\item If you compile the APGsembly code that you made in part~(b), the resulting pattern will not compute the digits of $\sqrt{2}$ correctly. Why not? What additional change must you make to the introductory lines of that APGsembly code to make it function properly?
 		% SOLUTION: The entries of the B matrix grow more quickly for sqrt(2) than for pi or e, so we need to allocate more bits of memory to the binary registers. If we intialize U6 = 10 (instead of U6 = 6) then the computation works.
@@ -1366,10 +1387,10 @@ Each of these computational devices used different Life mechanisms to implement 
 		
 		\item In the $e$ calculator, the binary registers \texttt{B1} and \texttt{B2} do not require as many bits of memory as in the $\pi$ calculator (i.e., \texttt{U6} does not need to be as large). Why? Roughly how many bits of memory are needed after $n$ iterations?
 		
-		\item The \index{HashLife} clock delay of the $e$ calculator can be decreased from $2^{20}$ generations to $2^{18}$ generations without introducing any errors. Create a period $2^{18}$ universal regulator that can replace the $e$ calculator's period $2^{20}$ universal regulator.\footnote{Even though decreasing the clock delay decreases the number of Life generations needed to perform a calculation, it generally does not decrease the real-world time that it takes Life software like Golly to evolve the pattern to the point of having performed that calculation. The reason for this is that the HashLife algorithm used by Golly is able to extremely quickly skip over ``wasted'' generations where the clock is just waiting, since so little of the Life plane changes during those generations.}
-		% SOLUTION: Just replace 2 of the quadri-Snarks by CP semi-Snarks
+		\item The \index{HashLife} clock speed of the $e$ calculator can be decreased from $2^{20}$ generations to $2^{18}$ generations without introducing any errors. Create a period $2^{18}$ universal regulator that can replace the $e$ calculator's period $2^{20}$ universal regulator.\footnote{Even though decreasing the clock speed decreases the number of Life generations needed to perform a calculation, it typically does not decrease the real-world time that it takes Life software like Golly to evolve the pattern to the point of having performed that calculation. The reason for this is that the HashLife algorithm used by Golly is able to extremely quickly skip over ``wasted'' generations where the clock is just waiting, since so little of the Life plane changes during those generations.}
+		% SOLUTION: Just replace 2 of the quadri-Snarks by CP semi-Snarks, or remove a quadri-Snark.
 		
-		\item Use the simplifications and speed-ups suggested by parts~(a--d) to rewrite the APGsembly code for the $e$ calculator so that the resulting compiled pattern prints \texttt{2.718} before generation $2\times 10^{10}$ (instead of around generation $10^{12}$, like the $e$ calculator from Exercise~\ref{exer:universal_computation_e_calc}).
+		\item Use the simplifications and speed-ups suggested by parts~(a--d) to compile an $e$ calculator that prints \texttt{2.718} before generation $2\times 10^{10}$ (instead of around generation $10^{12}$, like the $e$ calculator from Exercise~\ref{exer:universal_computation_e_calc}).
 	\end{enumerate}
 \end{problem}
 

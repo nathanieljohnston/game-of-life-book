@@ -14,13 +14,13 @@ In Section~\ref{sec:pi_calc}, we developed an algorithm and pseudocode for compu
 	
 	\item[\texttt{U2}:] the current digit being computed
 	
-	\item[\texttt{U3}:] the index of the current digit being computed (\texttt{U3}${} = 0$ for ``3'', \texttt{U3}${} = 1$ for ``1'', \texttt{U3}${} = 2$ for ``4'', and so on)
+	\item[\texttt{U3}:] the index of the current digit (\texttt{U3}${} = 0$ for ``3'', \texttt{U3}${} = 1$ for ``1'', \texttt{U3}${} = 2$ for ``4'', and so on)
 	
-	\item[\texttt{U4}:] the number of times that the iteration has run (\texttt{U3} increases by $1$ every time \texttt{U4} increases by $4$), typically denoted here by $n$
+	\item[\texttt{U4}:] the number of times that the iteration has run, typically denoted here by $n$
 	
 	\item[\texttt{U5}:] counter that forces the program to iterate 4 times before printing a digit
 
-	\item[\texttt{U6}:] number of bits of memory allocated for the binary registers (\texttt{U6}${} = 6$ to start, and add $n$ more bits after we run the iteration for the $n$-th time)
+	\item[\texttt{U6}:] number of bits of memory allocated to the binary registers
 	
 	\item[\texttt{U7}--\texttt{U9}:] temporary registers used to help perform arithmetic operations and miscellaneous loops\medskip
 	
@@ -267,20 +267,21 @@ Recall that lines listed with a substate (input value) \texttt{*} just do the sa
 			\State \verb|CMP4;      Z;       CMP5;         READ B2|
 			\State \verb|CMP4;      NZ;      CMP8;         READ B2, SET B3|
 			\State \verb|CMP5;      Z;       CMP6;         TDEC B2|
-			\State \verb|CMP5;      NZ;      CMP9;         TDEC B3, SET B2|
+			\State \verb|CMP5;      NZ;      CMP10;        TDEC B3, SET B2|
 			\State \verb|CMP6;      *;       CMP7;         TDEC B3|
-			\State \verb|CMP7;      Z;       CMP12;        TDEC B2|
+			\State \verb|CMP7;      Z;       CMP13;        TDEC B2|
 			\State \verb|CMP7;      NZ;      CMP4;         READ B3|
-			\State \verb|CMP8;      Z;       CMP11;        TDEC B3|
-			\State \verb|CMP8;      NZ;      CMP6;         TDEC B2, SET B2|
-			\State \verb|CMP9;      Z;       CMP10;        TDEC B2|
-			\State \verb|CMP9;      NZ;      CMP9;         TDEC B3|
-			\State \verb|CMP10;     Z;       DIG1;         TDEC U8|
-			\State \verb|CMP10;     NZ;      CMP10;        TDEC B2|
-			\State \verb|CMP11;     Z;       CMP12;        TDEC B2|
-			\State \verb|CMP11;     NZ;      CMP11;        TDEC B3|
-			\State \verb|CMP12;     Z;       SUB1;         TDEC U6|
-			\State \verb|CMP12;     NZ;      CMP12;        TDEC B2|
+			\State \verb|CMP8;      Z;       CMP12;        TDEC B3|
+			\State \verb|CMP8;      NZ;      CMP9;         SET B2, NOP|
+			\State \verb|CMP9;      ZZ;      CMP6;         TDEC B2|
+			\State \verb|CMP10;     Z;       CMP11;        TDEC B2|
+			\State \verb|CMP10;     NZ;      CMP10;        TDEC B3|
+			\State \verb|CMP11;     Z;       DIG1;         TDEC U8|
+			\State \verb|CMP11;     NZ;      CMP11;        TDEC B2|
+			\State \verb|CMP12;     Z;       CMP13;        TDEC B2|
+			\State \verb|CMP12;     NZ;      CMP12;        TDEC B3|
+			\State \verb|CMP13;     Z;       SUB1;         TDEC U6|
+			\State \verb|CMP13;     NZ;      CMP13;        TDEC B2|
 			\State \verb||
 			\State \verb|# If B2 <= B3 then subtract B2 from B3.|
 			\State \verb|# That is, start or carry on with the integer division B3 / B2.|
