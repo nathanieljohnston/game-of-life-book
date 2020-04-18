@@ -22,7 +22,6 @@ In this chapter, we dive into the details of one particularly flexible computati
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{A Computer in Life}\label{sec:computer_in_life}
 
-% What \emph{is} a computer, and what kind of computer might we want to build?
 What exactly does it mean to build a computer in the form of a Conway's Life pattern, anyway? To create a workable computational model in the form of a Life pattern, we need to construct patterns that implement a few different things:\smallskip
 
 \begin{enumerate}
@@ -104,8 +103,6 @@ When we write pseudocode like this, we use labels like \texttt{U0}, \texttt{U1},
 	\caption{Test which of the registers \texttt{U0} or \texttt{U1} contains a smaller value.}\label{alg:pseudocode_test_leq_or_ge}
 \end{pseudocode}
 
-%When a computer program like this is being executed, the computer has to keep track of where it is in the program, generally by maintaining a pointer to the line of code that will be executed next.  
-
 Our next goal is to simplify and standardize our pseudocode so as to make it simpler to implement as a Life pattern. With this in mind, a \emph{finite-state machine}\index{finite-state machine} is a model of computation in which the computer can be in one of a finite number of states at any given time, and its state can change based on inputs that it receives. We can implement a finite-state machine with $n$ possible states via a Life pattern that has a single glider traversing a set of $n$ parallel lanes connected by other circuitry.  At any given computer clock tick, the glider will be on exactly one of the ``state'' lanes. It will then run through structures that send gliders to various inputs of various register circuits, and also send a glider to the lane representing the next state in the program.
 
 In order for our pseudocode to more accurately reflect this finite-state machine that our Life program will implement, we require $2$ additional things of all pseudocode that we write from this point forward:\smallskip
@@ -180,7 +177,7 @@ The only actions that produce return values that we have introduced so far are \
 
 APGsembly code is specifically designed so that it can straightforwardly be compiled into a Life pattern.\footnote{Links to the APGsembly compiler (and an emulator that can be used to help debug APGsembly programs) can be found at \httpsurl{conwaylife.com/wiki/APGsembly}.} We now illustrate how this is done by constructing a Life computer that adds the values of two sliding block registers.
 
-Our first step toward building such a computer is to write APGsembly code that implements the desired computational task. The code in APGsembly~\ref{alg:apgsembly_add_same_register} does the job nicely---it works by repeatedly decreasing the value of one register until it reaches a value of \texttt{0}, while simultaneously increasing the value of the other register every time. The only pieces of this APGsembly that we have not yet seen are the introductory ``\texttt{\#COMPONENTS}'' and ``\texttt{\#REGISTERS}'' lines. These lines are used to tell the APGsembly compiler which registers are used in the code,\footnote{``\texttt{U0-1}'' means that the code uses registers \texttt{U0} and \texttt{U1}. The ``\texttt{-}'' indicates a range (so ``\texttt{U0-2}'' would refer to registers \texttt{U0}, \texttt{U1}, and \texttt{U2}, for example).} and what the initial values of the registers should be, respectively.\footnote{If a register is not initialized via the \texttt{\#REGISTERS} line, it starts with a value of \texttt{0}.}
+Our first step toward building such a computer is to write APGsembly code that implements the desired computational task. The code in APGsembly~\ref{alg:apgsembly_add_same_register} does the job nicely---it works by repeatedly decreasing the value of one register until it reaches a value of \texttt{0}, while simultaneously increasing the value of the other register every time. The only pieces of this APGsembly that we have not yet seen are the ``\texttt{\#COMPONENTS}'' and ``\texttt{\#REGISTERS}'' lines in the APGsembly's header. These lines are used to tell the APGsembly compiler which registers are used in the code,\footnote{``\texttt{U0-1}'' means that the code uses registers \texttt{U0} and \texttt{U1}. The ``\texttt{-}'' indicates a range (so ``\texttt{U0-2}'' would refer to registers \texttt{U0}, \texttt{U1}, and \texttt{U2}, for example).} and what the initial values of the registers should be, respectively.\footnote{If a register is not initialized via the \texttt{\#REGISTERS} line, it starts with a value of \texttt{0}.}
 
 \begin{apgsembly}
 	\begin{algorithmic}\small
@@ -334,45 +331,63 @@ Just like we can multiply two registers via repeated addition, we can divide two
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{A Binary Register}\label{sec:binary_register}
 
-One of the unfortunate features of sliding block registers is that the only actions they have available to them are addition and subtraction by \texttt{1}, so arithmetic operations involving large numbers stored in this registers take a long time to complete. For example, the addition code of APGsembly~\ref{alg:apgsembly_add_same_register} takes \texttt{U0+1} clock ticks to add the value of \texttt{U0} to \texttt{U1}, and the multiplication code of APGsembly~\ref{apg:mult_unary_reg} takes roughly \texttt{2 * U0 * U1} clock ticks to multiply \texttt{U0} by \texttt{U1}.\footnote{In fact, even the addition and subtraction by \texttt{1} operations take longer to complete the larger the value of the register is, since the sliding block takes longer to interact with when it is farther away.}
+One of the unfortunate features of sliding block registers is that the only actions they have available to them are addition and subtraction by \texttt{1}, so arithmetic operations involving large numbers stored in these registers take a long time to complete. For example, the addition code of APGsembly~\ref{alg:apgsembly_add_same_register} takes \texttt{U0+1} clock ticks to add the value of \texttt{U0} to \texttt{U1}, and the multiplication code of APGsembly~\ref{apg:mult_unary_reg} takes roughly \texttt{2 * U0 * U1} clock ticks to multiply \texttt{U0} by \texttt{U1}.\footnote{In fact, even the addition and subtraction by \texttt{1} operations take longer to complete the larger the value of the register is, since the sliding block takes longer to interact with when it is farther away.}
 
-While larger inputs leading to longer times to perform arithmetic operations is inevitable, we can save a lot of time by representing non-negative integers in a more efficient way than just as the position of a sliding block. A sliding block register can be thought of as non-negative integers in \emph{unary}\index{unary} (i.e., the base-$1$ numeral system, in which each number is represented by tally marks or a distance from a fixed point), the register that we now introduce instead encodes non-negative integers in \emph{binary}\index{binary} (i.e., the base-$2$ numeral system).\footnote{Other bases larger than $2$ would also be quicker to work with than unary, but they would be even more complicated than binary to implement.} While performing operations on such a register is somewhat more complicated, it has the advantage of being much quicker because, for example, the non-negative integer $n$ can be stored in $O(\log(n))$ space instead of $O(n)$ space.
+While larger inputs leading to longer times to perform arithmetic operations is inevitable, we can save a lot of time by representing non-negative integers in a more efficient way than just as the position of a sliding block. While a sliding block register can be thought of as storing a non-negative integer in \emph{unary}\index{unary} (i.e., the base-$1$ numeral system, in which each number is represented by tally marks or a distance from a fixed point), the register that we now introduce instead encodes non-negative integers in \emph{binary}\index{binary} (i.e., the base-$2$ numeral system).\footnote{Other bases larger than $2$ would also be quicker to work with than unary, but they would be even more complicated to implement.} Performing operations on such a register is somewhat more complicated, but it has the advantage of being much quicker because, for example, the non-negative integer $n$ can be stored in $O(\log(n))$ space instead of $O(n)$ space.
 
-We call a register that stores a non-negative integer in this way a \emph{binary register},\index{binary register} and the one that we make use of is displayed in Figure~\ref{fig:binary_register}. It uses block-moving shotguns similar to the ones in sliding block registers, except that they move a block 16 cells diagonally at a time instead of just one cell diagonally. This wider spacing leaves room for additional reactions to place objects on one side of the sliding block. Every 16 cells along the sliding block's path is a designated bit location, which can contain either an empty space or a single boat in one of two slightly different positions that correspond to bits \texttt{0} and \texttt{1}.
+We call a register that stores a non-negative integer in this way a \emph{binary register},\index{binary register} and the one that we make use of is displayed in Figure~\ref{fig:binary_register}. It uses block-moving shotguns similar to the ones in sliding block registers, except that they move a block ?? cells diagonally at a time instead of just one cell diagonally. This wider spacing leaves room for additional reactions to place objects on one side of the sliding block. Every ?? cells along the sliding block's path is a designated bit location, which can contain either an empty space or a single boat, correspond to the bits \texttt{0} and \texttt{1}, respectively.
 
-% FIGURE
+% ?? Figure~\ref{fig:binary_register} here.
+% Waiting for the B register to be completed.
 
-The five actions available to this binary register are a bit more abstract than the actions of the sliding block register, since they work on the individual bits of the register rather than the value that those bits represent. An \texttt{INC} action moves the pointer block (called the \emph{read head}\index{read head} of the register) to the next bit location, one step farther away. A \texttt{DEC} action moves the pointer block to the previous bit location (or keeps it in the same place if it's already at the zero position). A \texttt{READ} action removes the bit from the current pointer location, returning either a \texttt{Z} or \texttt{NZ} signal as output depending on the bit. A \texttt{SET} action places a ``\texttt{1}'' bit at the current pointer location.
+% ?? Paragraph or two here describing how the various pieces of this register work, roughly.
+% Say that we do not go into as much depth regarding this component, or future components, since we have used the same techniques repeatedly to construct these types of devices. They all use similar sort of logic to the SBR.
+% Waiting for the B register to be completed.
 
-Unlike a simple sliding block register where there's no way to damage the mechanism by sending action signals to it, there are definitely ways to program a binary register that will cause it to explode catastrophically. In particular, if you send a \texttt{SET} action while there's already a \texttt{1} stored at the current pointer location, it will cause irrecoverable damage. There's no built-in safety mechanism to prevent this, but these problems can easily be avoided by always sending a \texttt{READ} signal just before any \texttt{SET} signal.
+The four actions available to this binary register are a bit more abstract than the actions of the sliding block register, since they work on the individual bits of the register rather than the value that those bits represent:\smallskip
 
-%We use \texttt{Bn} to denote the \texttt{n}-th binary register, (where we start counting at \texttt{n = 0}) just like we use \texttt{Un} to denote the \texttt{n}-th sliding block register, then the two of the input lanes of this register correspond to APGsembly actions that let us reposition the register's read head:\smallskip
-%
-%\begin{itemize}
-%	\item \texttt{DEC Bn}, which decreases the position of the read head (if possible). If the read head was already at the least significant bit then it does not move and \texttt{Z} is returned. Otherwise, the read head moves and \texttt{NZ} is returned.\footnote{This action is completely analogous to the \texttt{TDEC} action for sliding block registers (and indeed, the binary register from Figure~\ref{fig:binary_register} has a sliding block register baked into it for exactly this reason). In particular, the \texttt{Z}/\texttt{NZ} return value is determined by the position of the read head \emph{before} decrementing it.}\smallskip
-%	
-%	\item \texttt{INC Bn}, which increases the position of the read head. If the bit at the new position of the read head has never been accessed (i.e., we have never \texttt{INC}ed this far before), \texttt{Z} is returned. Otherwise, \texttt{NZ} is returned.\smallskip
-%\end{itemize}
+\begin{itemize}
+	\item An \texttt{INC}\index{INC} action moves the pointer block (called the \emph{read head}\index{read head} of the register) to the next bit location, one step farther away.\smallskip
+	
+	\item A \texttt{TDEC}\index{TDEC} action moves the read head to the previous bit location (or keeps it in the same place if it's already at the zero position). This action also returns either \texttt{Z} or \texttt{NZ}, depending on whether or not the read head was already at the location of the least significant bit when this action was called.\footnote{This behavior is in complete analogy with the \texttt{TDEC} action for the sliding block register---it tests and \emph{then} it decrements (if possible). In fact, the binary register from Figure~\ref{fig:binary_register} has a sliding block register baked into it for exactly this reason.}\smallskip
+	
+	\item A \texttt{READ}\index{READ} action sets the value of the bit at the current read head location to ``\texttt{0}''. This action returns either \texttt{Z} or \texttt{NZ}, depending on the original value of that bit.\smallskip
+	
+	\item Finally, a \texttt{SET}\index{SET} action places a ``\texttt{1}'' bit at the current read head location.\smallskip
+\end{itemize}
 
-% make sure to mention that read head starts at the least significant bit and there is no bound how many bits there are
+Unlike a simple sliding block register, where there's no way to damage the mechanism by sending action signals to it, there are indeed ways to program a binary register that will cause it to explode catastrophically. In particular, if you send a \texttt{SET} action while there's already a \texttt{1} stored at the current read head location, it will cause irrecoverable damage. There's no built-in safety mechanism to prevent this, but this problem can easily be avoided by always sending a \texttt{READ} signal just before any \texttt{SET} signal.
 
-% This is a good place to talk about why we need to store number of bits in binary register, and INC operation's return value can help us keep track of this
+We use \texttt{Bn} to denote the \texttt{n}-th binary register, (where we start counting at \texttt{n = 0}) just like we use \texttt{Un} to denote the \texttt{n}-th sliding block register. To illustrate how to make use of these actions to perform bitwise operations, APGsembly~\ref{apg:store_139} shows how to store the value $139 = 10001011_2$ in a binary register \texttt{B0}.\footnote{Another way of storing the value $139$ in a binary register would be to put \texttt{\#REGISTERS \{"B0":[0,'11010001']\}} in the APGsembly code's header. However, this only works if you want to set \texttt{B0} to $139$ at the start of the computation instead and not partway through it.}
+% NJ question for Dave: Is the #REGISTERS syntax for the B0 register in the above footnote correct?
 
-% NJ TODO: example APG code for storing a particular value in memory by working one bit at a time, to illustrate T read and write operations.
-% here-ish: talk about difference between SBR being unary and T being binary
+\begin{apgsembly}
+	\begin{algorithmic}\small
+		\State \verb|#COMPONENTS B0,NOP,HALT_OUT|
+		\State \verb|#REGISTERS {}|
+		\State \verb|# State    Input    Next state    Actions|
+		\State \verb|# ---------------------------------------|
+		\State \verb|INITIAL;   ZZ;      ID1;          SET B0, NOP|
+		\State \verb|ID1;       ZZ;      ID2;          INC B0, NOP|
+		\State \verb|ID2;       ZZ;      ID3;          SET B0, NOP|
+		\State \verb|ID3;       ZZ;      ID4;          INC B0, NOP|
+		\State \verb|ID4;       ZZ;      ID5;          INC B0, NOP|
+		\State \verb|ID5;       ZZ;      ID6;          SET B0, NOP|
+		\State \verb|ID6;       ZZ;      ID7;          INC B0, NOP|
+		\State \verb|ID7;       ZZ;      ID8;          INC B0, NOP|
+		\State \verb|ID8;       ZZ;      ID9;          INC B0, NOP|
+		\State \verb|ID9;       ZZ;      ID10;         INC B0, NOP|
+		\State \verb|ID10;      ZZ;      LSB1;         SET B0, NOP|
+		\State
+		\State \verb|# Move B0's read head back to its least significant bit.|
+		\State \verb|LSB1;      ZZ;      LSB2;         TDEC B0|
+		\State \verb|LSB2;      Z;       LSB2;         HALT_OUT|
+		\State \verb|LSB2;      NZ;      LSB2;         TDEC B0|
+	\end{algorithmic}
+	\caption{APGsembly code for storing the value $139$ in the binary register \texttt{B0}, and then returning its read head to the least significant bit.}\label{alg:store_139}
+\end{apgsembly}
 
-
-%% WHENEVER WE FIRST SEE NOP (maybe right after binary ruler?):
-%If the NOP commands are added back in---e.g., ``OUTPUT "U0<=U1", NOP''---then the program will still halt, just in a slightly different way. The finite-state machine would reach the HALT state with no problem; NOP sends back a Z return value, so the HALT Z lane would be activated. The standard next step would be to send gliders to perform all the actions specified for that state/return value combination.  But that list is blank for HALT Z, so no gliders will be sent, and the pattern will stabilize at that point.
-%
-%Recent versions of APGsembly also allow two pieces of shortcut syntax which allow us to avoid the code duplication that we saw in the previous listing.\footnote{As a somewhat technical note, current APGsembly compilers include a simple preprocessing stage. The preprocessor removes blank lines and comments, and also converts any code that contains these two syntactical shortcuts to the older syntax above, before the compilation process starts.}\smallskip
-%
-%\begin{enumerate}
-%	\item[2)] \texttt{ZZ} syntax: if there is no way that a given state can ever receive an \texttt{NZ} return value---e.g., if the given state is the program's initial state, or if the only way of reaching that state is via a jump after a \texttt{NOP} instruction---then a \texttt{ZZ} means that no \texttt{NZ} branch is needed. While a \texttt{*} could also be used in this case, the \texttt{ZZ} value is useful since then the APGsembly compiler may leave out the \texttt{NZ} mechanisms entirely, resulting in a slightly smaller Life pattern.\smallskip
-%\end{enumerate}
-
-
-% TODO summarize here: INC never has a return value, TDEC for all 3 components checks return value and THEN decs
+This APGsembly also contains one new action that we have not yet seen: \texttt{NOP}.\index{NOP} This is an old standard programming abbreviation, short for ``No OPeration''; it tells the computer not to change anything right now, but emit a \texttt{Z} return value anyway. It is typically used in conjunction with other actions that don't have a return value (\texttt{SET B0} and \texttt{INC B0} in this case), since exactly one action in every state's list of actions must return a value of either \texttt{Z} or \texttt{NZ}.\footnote{It may be tempting to merge multiple lines of APGsembly~\ref{alg:store_139} together so as to get rid of the \texttt{NOP} actions. For example, we might want to have an action list for a particular state that says something like \texttt{INC B0, INC B0, SET B0, NOP}. However, there are two problems with this: (1) we cannot call the same action twice in a single line of APGsembly (clock tick), and (2) it is not a good idea to perform two actions on the same register (\texttt{B0}) in the same clock tick. Indeed, it is not clear which one will be performed first (or even worse, they might interfere with each other and cause the register to self-destruct).}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -382,7 +397,7 @@ Unlike a simple sliding block register where there's no way to damage the mechan
 
 To illustrate how to perform some basic arithmetic operations with our binary register, consider the simple problem of increasing the value of the register by \texttt{1}. Unlike the sliding block register, there is no single action that performs this operation---we can only perform actions on one bit at a time, but increasing the value of a binary register by \texttt{1} may affect several of its bits due to carries.
 
-Fortunately, since we are just increasing the value of the register by \texttt{1}, the carry bits are not difficult to take care of: we look for the least significant \texttt{0} bit and set it to \texttt{1}, and we set all bits that are less significant than it (which are currently equal to \texttt{1}) to \texttt{0}. Slightly more explicitly, we can increase the value of a binary register by \texttt{1} via the following procedure:\smallskip
+Fortunately, since we are just increasing the value of the register by \texttt{1}, the carry bits are not difficult to take care of: we look for the least significant \texttt{0} bit and set it to \texttt{1}, and we set all bits that are less significant than it (which are necessarily currently equal to \texttt{1}) to \texttt{0}. Slightly more explicitly, we can increase the value of a binary register by \texttt{1} via the following procedure:\smallskip
 
 \begin{enumerate}
 	\item[1)] Start with the read head at the least significant bit and then proceed to step (2) below.\smallskip
@@ -390,10 +405,12 @@ Fortunately, since we are just increasing the value of the register by \texttt{1
 	\item[2)] Read the value of the current bit (setting it equal to \texttt{0} in the process). If it equaled \texttt{0}, set it to \texttt{1} and then return the read head to the least significant bit. If it equaled \texttt{1}, move the read head to the next most significant bit (i.e., increase its position) and then return to step~(1).\smallskip
 \end{enumerate}
 
-This method is implemented in APGsembly~\ref{alg:apgsembly_binary_ruler}, which counts in binary by repeatedly adding \texttt{1} to the value of a binary register \texttt{B0}. This APGsembly also contains one new action that we have not yet seen: \texttt{NOP}.\index{NOP} This is an old standard programming abbreviation, short for ``No OPeration''; it tells the computer not to change anything right now, but emit a \texttt{Z} return value anyway. It is typically used in conjunction with other actions that don't have a return value (\texttt{SET B0} and \texttt{INC B0} in this case), since exactly one action in every state's list of actions must return a value of either \texttt{Z} or \texttt{NZ}.\footnote{It may be tempting to merge multiple lines of APGsembly~\ref{alg:apgsembly_binary_ruler} together so as to get rid of the \texttt{NOP} actions. For example, we might want to remove the \texttt{LSB1} state altogether and replace the \texttt{CHECK1;Z} line with the code \texttt{CHECK1; Z; LSB2; SET~B0,~TDEC~B0}. The problem with this is that it is not a good idea to perform two actions on the same register (\texttt{B0}) in the same clock tick, as it is not clear which one will be performed first (or even worse, they might interfere with each other and cause the register to self-destruct).}
+This method is implemented in APGsembly~\ref{alg:apgsembly_binary_ruler}, which counts in binary by repeatedly adding \texttt{1} to the value of a binary register \texttt{B0}.
 
 \begin{apgsembly}
 	\begin{algorithmic}\small
+		\State \verb|#COMPONENTS B0,NOP|
+		\State \verb|#REGISTERS {}|
 		\State \verb|# State    Input    Next state    Actions|
 		\State \verb|# ---------------------------------------|
 		\State \verb|INITIAL;   ZZ;      CHECK1;       READ B0|
@@ -413,13 +430,12 @@ This method is implemented in APGsembly~\ref{alg:apgsembly_binary_ruler}, which 
 	\caption{APGsembly code for a \emph{binary ruler}---a pattern that counts in binary.}\label{alg:apgsembly_binary_ruler}
 \end{apgsembly}
 
-On interesting feature of the pattern that results from compiling this APGsembly code (see Figure~\ref{fig:binary_ruler}) is that it exhibits a new type of slow growth that we have not yet seen. We explored patterns with slowly-growing \emph{population} in Section~\ref{sec:irreg_guns}, but this pattern instead has a slowly-growing \emph{bounding box}.\index{bounding box} In particular, its \emph{diameter}\index{diameter} (i.e., longest bounding box side length) in generation~$t$ is $O(\log(t))$, since this is the rate at which new most significant bits are added to the end of the binary register.
+One interesting feature of the pattern that results from compiling this APGsembly code (see Figure~\ref{fig:binary_ruler}) is that it exhibits a new type of slow growth that we have not yet seen. We explored patterns with slowly-growing \emph{population} in Section~\ref{sec:irreg_guns}, but this pattern instead has a slowly-growing \emph{bounding box}.\index{bounding box} In particular, its \emph{diameter}\index{diameter} (i.e., longest bounding box side length) in generation~$t$ is $O(\log(t))$, since this is the rate at which new most significant bits are added to the end of the binary register.
+
+% ?? Figure~\ref{fig:binary_ruler} here.
+% Waiting for the B register to be completed.
 
 This diametric growth rate is much slower than any other unbounded pattern that we have seen so far (all of which have been $O(t)$). We will return to this idea of patterns with slowly-growing bounding boxes, and push it to its ultimate limit, in Section~\ref{sec:Osqrtlogt}.
-
-% FIGURE
-
-%% NJ TODO: Is this actually O(log(t))? Might be even slower than that since operations on far-away bits take longer to complete?
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -427,16 +443,9 @@ This diametric growth rate is much slower than any other unbounded pattern that 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Addition, Subtraction, and Multiplication by 10}\label{sec:add_sub_and_mult10}\index{ADD component}\index{SUB component}
 
-While addition and subtraction of values that are stored in unary (sliding block) registers is reasonably straightforward (refer back to Section~\ref{sec:compiled_add_two_registers}), these operations are more complicated for binary registers. Even just adding \texttt{1} to the value of a binary register makes use of four lines of code (the first four lines from APGsembly~\ref{alg:apgsembly_binary_ruler}). The reason for the increase in complexity in this case is that when we add or subtract two binary numbers, we have to keep track of digits that are carried from one bit to the next, possibly many times in a row.
+While addition and subtraction of values that are stored in sliding block (unary) registers is reasonably straightforward (refer back to Section~\ref{sec:compiled_add_two_registers}), these operations are more complicated for binary registers. Even just adding \texttt{1} to the value of a binary register and then resetting its read head makes use of seven lines of code (refer back to APGsembly~\ref{alg:apgsembly_binary_ruler}). The reason for the increase in complexity in this case is that when we add or subtract two binary numbers, we have to keep track of bits that are carried from one bit to the next, possibly many times in a row.
 
-In order to make these operations easier to perform, we introduce additional components that are custom-made for storing these carry digits. For example, the \texttt{ADD} and \texttt{SUB} components displayed in Figures~\ref{fig:add_component} and~\ref{fig:sub_component}, respectively, perform bitwise operations to assist in the addition and subtraction of binary registers. The \texttt{ADD} component performs the addition of two bits, outputting the least significant bit of the addition and storing the carry bit in its own internal memory, and the \texttt{SUB} component similarly performs the subtraction of two bits while keeping track of the borrow bit.
-
-% TODO in this section somewhere: idea that we need to store number of bits allocated to binary register when doing arithmetic on it, since we work LSB to MSB and have no way of otherwise knowing when we have reached the MSB
-
-% Footnote never need more than one ADD/SUB/MUL, unlike other registers
-% Footnote that like binary registers, these could be made smaller nowadays with modern tech if desired.
-
-% TODO: Exercise -- why/how do these differ? How do they store a memory bit?
+In order to make arithmetic operations easier to perform, we introduce additional components that are custom-made for storing these carry bits. For example, the \texttt{ADD} and \texttt{SUB} components displayed in Figures~\ref{fig:add_component} and~\ref{fig:sub_component}, respectively, perform bitwise operations to assist in the addition and subtraction of binary registers.\footnote{These components were designed in 2009 or so, before the discovery of the Snark or the syringe. If desired, they could be rebuilt much smaller nowadays with modern Life technology.} The \texttt{ADD} component performs the addition of two bits, outputting the least significant bit of the addition and storing the carry bit in its own internal memory, and the \texttt{SUB} component similarly performs the subtraction of two bits while keeping track of the borrow bit.\footnote{Unlike the sliding block and binary registers, we only ever need one \texttt{ADD} or \texttt{SUB} component. In fact, every component that we see from this point on is limited to just a single one per Life pattern---the two types of registers are the only ones we can use multiple copies of.}
 
 \begin{figure}[!htb]
 	\centering
@@ -454,7 +463,9 @@ In order to make these operations easier to perform, we introduce additional com
 
 More specifically, if we use \texttt{z} to denote the bit that is currently stored in the internal memory of the \texttt{ADD} component, then feeding two bits \texttt{x} and \texttt{y} into it returns a value of \texttt{(x + y + z) mod 2} and updates its memory to the value \texttt{(x + y + z)/2} (where we mean integer division here, so that this memory value is either \texttt{0} and \texttt{1}). This \texttt{ADD} component can then be used to add up the values stored in binary registers by repeatedly calling upon it to add up the least-significant bits of those registers, then their next-least-significant bits, and so on until all bits have been added.
 
-The way that the addition \texttt{x + y} is executed via APGsembly is that the pair of commands \texttt{ADD~Ax} and then \texttt{ADD~By} must be called (where we replace \texttt{x} and \texttt{y} by their actual binary values, as in \texttt{ADD B1}, for example). The \texttt{ADD Ax} command does not return an output (it just adds the input bit to the internal memory) but the \texttt{ADD By} command does (so it should always be used second). Furthermore, the \texttt{ADD A0} command is not actually implemented, since it does nothing---it does not return a value and also does not alter the internal memory.\footnote{This contrasts with the command \texttt{ADD B0}, which also does not alter the internal memory, but \emph{does} return a value. In particular, \texttt{ADD B0} returns the contents of the internal memory and then resets that memory to \texttt{0}.}
+However, this procedure only works if we know where the most significant bit is, so that we know when we can stop performing this bitwise addition. The binary registers themselves provide no such functionality---even if we find a million ``\texttt{0}'' bits in a row, there could always be a more significant ``\texttt{1}'' bit waiting to be found further on. For this reason, when performing bitwise arithmetic operations like addition and subtraction, we need to make use of a helper sliding block register that tells us (an upper bound of) how many bits the binary registers are making use of. The contents of this sliding block register needs to be updated as our computation proceeds to make sure that it always allocates enough bits of memory to the binary registers.
+
+The way that the bit addition \texttt{x + y} is executed via APGsembly is that the pair of commands \texttt{ADD~Ax} and then \texttt{ADD~By} must be called (where we replace \texttt{x} and \texttt{y} by their actual binary values, as in \texttt{ADD B1}, for example). The \texttt{ADD Ax} command does not return an output (it just adds the input bit to the internal memory), but the \texttt{ADD By} command does (so it should always be used second). Furthermore, the \texttt{ADD A0} command is not actually implemented, since it does nothing---it does not return a value and also does not alter the internal memory.\footnote{This contrasts with the command \texttt{ADD B0}, which also does not alter the internal memory, but \emph{does} return a value. In particular, \texttt{ADD B0} returns the contents of the internal memory and then resets that memory to \texttt{0}.}
 
 For example, to add binary registers containing the numbers $104 = 1101000_2$ and $57 = 111001_2$, we could perform the following sequence of actions in APGsembly (where we perform the ``\texttt{A}'' action in the top row and then the ``\texttt{B}'' action directly below it before moving left-to-right):
 \begin{center}
@@ -471,13 +482,12 @@ These actions would return the outputs
 \end{center}
 corresponding to the fact that $104 + 57 = 161 = 10100001_2$. Complete APGsembly that implements this addition of two binary registers is provided in APGsembly~\ref{alg:apgsembly_binary_add_sub}.
 
-% TODO: Also note that appending B0 clears memory of ADD, which is important
-% NJ TODO: preload values into this APGsembly and also later MUL apgsembly
-
 \begin{apgsembly}
 	\centering
 	\begin{minipage}[t]{.49\textwidth}
 		\begin{algorithmic}\tiny
+			\State \verb|#COMPONENTS B0-1,U0-2,ADD,NOP,HALT_OUT|
+			\State \verb|#REGISTERS {"B0":[0,'0001011'], "B1":[0,'100111'], "U0":8}|
 			\State \verb|# State    Input    Next state    Actions|
 			\State \verb|# ---------------------------------------|
 			\State \verb|INITIAL;   ZZ;      ADD1;         TDEC U0|
@@ -507,6 +517,8 @@ corresponding to the fact that $104 + 57 = 161 = 10100001_2$. Complete APGsembly
 	\end{minipage}\hfill{\color{gray}\vline}\hfill
 	\begin{minipage}[t]{.49\textwidth}
 		\begin{algorithmic}\tiny
+			\State \verb|#COMPONENTS B0-1,U0-2,SUB,NOP,HALT_OUT|
+			\State \verb|#REGISTERS {"B0":[0,'0001011'], "B1":[0,'100111'], "U0":8}|
 			\State \verb|# State    Input    Next state    Actions|
 			\State \verb|# ---------------------------------------|
 			\State \verb|INITIAL;   ZZ;      SUB1;         TDEC U0|
@@ -539,11 +551,15 @@ corresponding to the fact that $104 + 57 = 161 = 10100001_2$. Complete APGsembly
 
 % TODO: note that we have to be careful: "ADD B0" uses ADD component with input B0 but "INC B0" uses B0 component with input INC
 
-Since the \texttt{ADD} component is somewhat technical and basically only has a single use, not much is lost if we do not actually understand its inner workings and just accept APGsembly~\ref{alg:apgsembly_binary_add_sub} as a black box that adds up two binary registers. Similarly, we do not go into any great depth in explaining the inner working of the \texttt{SUB} component. Instead, we just note that it does for subtraction exactly what the \texttt{ADD} component did for addition---it keeps track of the borrow bit (which is analogous to the carry bit for addition) and thus lets us subtract binary registers from each other one bit at a time. The resulting APGsembly code for subtracting one binary register from another one is also provided in APGsembly~\ref{alg:apgsembly_binary_add_sub}.\footnote{This APGsembly code for subtracting a binary register \texttt{B1} from \texttt{B0} assumes that \texttt{B1 <= B0}. If you are unsure of which binary register is the smaller one, you should first compare them (see Exercise~\ref{exer:universal_computation_apgsembly_binary_compare}).}
+% TODO: Exercise -- why/how do ADD/SUB differ? How do they store a memory bit?
 
-Now that we know how to add and subtract binary components, we can also multiply and divide them via the same tricks that we used for sliding block registers in Section~\ref{sec:multiply_two_registers} and Exercise~??. That is, we simply add or subtract repeatedly. However, doing so can be quite time-consuming when the registers store large values, so we now introduce one additional \index{MUL component} custom binary register arithmetic component---one that helps us multiply a binary register by $10$.\footnote{The reason for us making $10$ easier to multiply by (as opposed to any other fixed integer) is that multiplication by $10$ is a common operation when working with decimal numbers. In particular, we will make use of this multiplication-by-$10$ component to help us extract digits in the upcoming $\pi$~calculator in Section~\ref{sec:pi_calc}.}
+%But each use of ADD or SUB is made up of two calls to it. So there's another sense more in line with individual lines of APGsembly, that says that ADD and SUB temporarily store two separate bits of information. Between the A{n} call (if any) and the B{n} call, ADD and SUB are tracking the carry bit and the A input value separately. Those values couldn't be combined and stored in a single one-bit memory cell, because an internal A0+{0 carry bit} results in a different internal state from A1+ {1 carry bit}, even though they both have a zero output. Between A{n} and B{n} the component can be in one of three possible states.
 
-This final new component is called \texttt{MUL}, which stores \emph{four} carry bits so that we can multiply a binary register by $10$ one bit at a time, just like the \texttt{ADD} and \texttt{SUB} components made use of a single memory bit to let us add and subtract binary registers one bit at a time. The \texttt{MUL} component is displayed in Figure~\ref{fig:mul_component}, though it is not very enlightening to look at.\footnote{Even moreso than the binary register and \texttt{ADD} and \texttt{SUB} components, the \texttt{MUL} component could be made significantly smaller via modern machinery like Snarks and syringes.}
+Since the \texttt{ADD} component is somewhat technical and basically only has a single use, not much is lost if we do not actually understand its inner workings and just accept APGsembly~\ref{alg:apgsembly_binary_add_sub} as a black box that adds up two binary registers. Similarly, we do not go into any great depth in explaining the inner working of the \texttt{SUB} component. Instead, we just note that it does for subtraction exactly what the \texttt{ADD} component does for addition---it keeps track of the borrow bit (which is analogous to the carry bit for addition) and thus lets us subtract binary registers from each other one bit at a time. The resulting APGsembly code for subtracting one binary register from another one is also provided in APGsembly~\ref{alg:apgsembly_binary_add_sub}.\footnote{This APGsembly code for subtracting a binary register \texttt{B1} from \texttt{B0} assumes that \texttt{B1 <= B0}. If you are unsure of which binary register is the smaller one, you should first compare them (see Exercise~\ref{exer:universal_computation_apgsembly_binary_compare}).}
+
+Now that we know how to add and subtract binary components, we can also multiply and divide them via the same tricks that we used for sliding block registers in Section~\ref{sec:multiply_two_registers} and Exercise~\ref{exer:division_by_subtraction}. That is, we simply add or subtract repeatedly. However, doing so can be quite time-consuming when the registers store large values, so we now introduce one additional \index{MUL component} custom binary register arithmetic component---one that helps us multiply a binary register by $10$.\footnote{The reason for us making $10$ easier to multiply by (as opposed to any other fixed integer) is that multiplication by $10$ is a common operation when working with decimal numbers. In particular, we will make use of this multiplication-by-$10$ component to help us extract digits in the upcoming $\pi$~calculator in Section~\ref{sec:pi_calc}.}
+
+This final new component is called \texttt{MUL}, which stores \emph{four} carry bits so that we can multiply a binary register by $10$ one bit at a time, just like the \texttt{ADD} and \texttt{SUB} components made use of a single memory bit to let us add and subtract binary registers one bit at a time.\footnote{Note here about internal memory of these components.} The \texttt{MUL} component is displayed in Figure~\ref{fig:mul_component}, though it is not very enlightening to look at.\footnote{Even moreso than the binary register and \texttt{ADD} and \texttt{SUB} components, the \texttt{MUL} component could be made significantly smaller via modern machinery like Snarks and syringes.}
 
 \begin{figure}[!htb]
 	\centering
@@ -567,6 +583,8 @@ We can thus now multiply a binary register by $10$ just as quickly and easily as
 
 \begin{apgsembly}
 	\begin{algorithmic}\small
+		\State \verb|#COMPONENTS B0,U0-2,MUL,NOP,HALT_OUT|
+		\State \verb|#REGISTERS {"B0":[0,'01011'], "U0":9}|
 		\State \verb|# State    Input    Next state    Actions|
 		\State \verb|# ---------------------------------------|
 		\State \verb|INITIAL;   ZZ;      MUL1;         TDEC U0|
@@ -864,9 +882,11 @@ In order to actually print those pixels (i.e., boats), the 2D printer can be cal
 
 To move the sliding blocks of the read head one step farther away from the printer itself (i.e., northeast or northwest), we can use \texttt{INC B2DX} and \texttt{INC B2DY} actions. Similarly, \texttt{TDEC B2DX} and \texttt{TDEC B2DY} actions move the pointer block to the previous location in the $x$ or $y$ direction, respectively, or keeps it in the same place if it's already at the zero position.\footnote{As with the binary register's \texttt{TDEC} action, these ones return either a \texttt{Z} or \texttt{NZ} depending on whether or not the read head was already at the \texttt{0} location.} Finally, a \texttt{SET} action places a boat (i.e., a pixel) at the current pointer location.\footnote{Also just like the binary register's \texttt{SET} action, this mechanism will self-destruct if a pixel is \texttt{SET} when a boat is already present at the current pointer location.}
 
+% TODO summarize here: INC never has a return value, TDEC for all 3 components checks return value and THEN decs
+
 The 2D printer is extremely large, so we do not display it here. However, we will see it in each of the upcoming Figures~\ref{fig:koch_computer} and~\ref{fig:osqrtlogt}.
 
-% Need to mention that B2D requires a slower clock (2^24?), when using Osqrtlogt. this is also why it needs such a big space between logic unit and thing it prints
+% Need to mention that B2D requires a slower clock (2^24?). this is also why it needs such a big space between logic unit and thing it prints
 
 
 
@@ -1234,6 +1254,14 @@ Each of these computational devices used different Life mechanisms to implement 
 		
 		\item Use the APGsembly compiler that is linked at \httpsurl{conwaylife.com/wiki/APGsembly} to compile a Life pattern that implements your APGsembly code from part~(b).
 	\end{enumerate}
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:universal_computation_apgsembly_set_binary_value}
+	Write APGsembly code that stores the value $241$ in the binary register \texttt{B0} (using \texttt{INC} and \texttt{SET} actions as in APGsembly~\ref{alg:store_139}, not via the \texttt{\#REGISTERS} header).
 \end{problem}
 
 
