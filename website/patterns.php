@@ -183,7 +183,7 @@
 				$comments = '<p style="margin-bottom:6px;">' . $comments . '</p>';
 			}
 
-			$file_contents = $file_contents . PHP_EOL . '#C [[ GRID GRIDMAJOR 0 COLOR GRID 192 192 192 COLOR DEADRAMP 255 220 192 COLOR ALIVE 0 0 0 COLOR DEAD 192 220 255 COLOR BACKGROUND 255 255 255 ]]';
+			$file_contents = $file_contents . PHP_EOL . '#C [[ GRID THEME BOOK ]]';
 
 			echo '<a name="' . $file_main_name . '"></a><h6 class="docs-header" style="margin-top:30px;margin-bottom:6px;">' . $pattern_name . '</h6>' . $comments . $end_comments;
 			if(strlen($end_comments) == 0) {
