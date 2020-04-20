@@ -1,0 +1,38 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\begin{document}
+	\begin{tikzpicture}%
+		\node[inner sep=0pt,anchor=south west] (koch) at (0,0) {\includegraphics[width=12cm]{../universal_computation/koch_algorithm.png}};
+		
+		\draw[gray] (0.2,3.4) node[anchor=north west] {\tiny \texttt{0, 1, {\color{gren!75!white}2}, 3, 10, 11, 1{\color{gren!75!white}2}, 13, {\color{gren!75!white}2}0, 21, 2{\color{gren!75!white}2}, 23, 30, 31, 3{\color{gren!75!white}2}, 33, 100, ...}};
+		
+		\draw[color=gray,-{Latex[length=1mm,width=0.75mm]}] (0.28,2.9) -- (0.48,2.9);
+		\draw[color=gray,-{Latex[length=1mm,width=0.75mm]}] (0.57,2.81) -- (0.75,2.99);
+		\draw[color=gren!75!white,-{Latex[length=1mm,width=0.75mm]}] (0.85,2.99) -- (1.03,2.81);
+		\draw[color=gray,-{Latex[length=1mm,width=0.75mm]}] (1.13,2.9) -- (1.33,2.9);
+		\draw[color=gray,-{Latex[length=1mm,width=0.75mm]}] (1.46,2.81) -- (1.64,2.99);
+		\draw[color=gray,-{Latex[length=1mm,width=0.75mm]}] (1.92,2.8) -- (1.92,3);
+		\draw[color=gren!75!white,-{Latex[length=1mm,width=0.75mm]}] (2.21,2.9) -- (2.41,2.9);
+		\draw[color=gray,-{Latex[length=1mm,width=0.75mm]}] (2.59,2.81) -- (2.77,2.99);
+		\draw[color=gren!75!white,-{Latex[length=1mm,width=0.75mm]}] (2.95,2.99) -- (3.13,2.81);
+		\draw[color=gray,-{Latex[length=1mm,width=0.75mm]}] (3.33,2.9) -- (3.53,2.9);
+		\draw[color=gren!75!white,-{Latex[length=1mm,width=0.75mm]}] (3.78,3) -- (3.78,2.8);
+		\draw[color=gray,-{Latex[length=1mm,width=0.75mm]}] (4.07,2.99) -- (4.25,2.81);
+		\draw[color=gray,-{Latex[length=1mm,width=0.75mm]}] (4.43,2.9) -- (4.63,2.9);
+		\draw[color=gray,-{Latex[length=1mm,width=0.75mm]}] (4.82,2.81) -- (5,2.99);
+		\draw[color=gren!75!white,-{Latex[length=1mm,width=0.75mm]}] (5.2,2.99) -- (5.38,2.81);
+		\draw[color=gray,-{Latex[length=1mm,width=0.75mm]}] (5.57,2.9) -- (5.77,2.9);
+		\draw[color=gray,-{Latex[length=1mm,width=0.75mm]}] (5.99,2.81) -- (6.17,2.99);
+		
+		% s arrows
+		\draw[color=gray,-{stealth[length=1mm,width=0.75mm]}] (0.15,0.8) node[anchor=south,shift={(0.1,0)}]{\tiny$s = 4$} -- (0.15,0.2);
+		\draw[color=gray,-{stealth[length=1mm,width=0.75mm]}] (0.45,0.5) node[anchor=south,shift={(0.15,0)}]{\tiny$s = 4^2$} -- (0.45,0.2);
+		\draw[color=gray,-{stealth[length=1mm,width=0.75mm]}] (1.48,0.6) node[anchor=south,shift={(-0.05,0)}]{\tiny$s = 4^3$} -- (1.48,0.2);
+		\draw[color=gray,-{stealth[length=1mm,width=0.75mm]}] (4.94,0.6) node[anchor=south,shift={(-0.05,0)}]{\tiny$s = 4^4$} -- (4.94,0.2);
+		
+		% CIRCLE THE INTIAL GLIDERS
+		\draw[white,line width=1.5pt,opacity=0.6](0.047,0.047) circle (0.1);
+		\draw[redback2,line width=0.6pt](0.047,0.047) circle (0.1);
+	\end{tikzpicture}
+\end{document}

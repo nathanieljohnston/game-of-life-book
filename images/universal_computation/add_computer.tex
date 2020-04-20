@@ -1,0 +1,140 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\begin{document}
+	\begin{tikzpicture}%
+		\node[inner sep=0pt,anchor=south west] (sbr) at (0,0) {\includegraphics[width=12cm]{../universal_computation/add_computer.png}};
+		
+		% Z OUT
+		\newcommand\zoutx{4.32}
+		\newcommand\zouty{7.22}
+		\draw[gray] (\zoutx,\zouty) node[rotate=45] {\tiny \texttt{Z output}};
+		\draw[color=gray,-stealth] (\zoutx-0.3,\zouty-0.45) -- (\zoutx+0.5,\zouty+0.35);
+		
+		% NZ OUT
+		\newcommand\nzoutx{5.81}
+		\newcommand\nzouty{8.24}
+		\draw[gray] (\nzoutx,\nzouty) node[rotate=45] {\tiny \texttt{NZ output}};
+		\draw[color=gray,-stealth] (\nzoutx-0.32,\nzouty-0.45) -- (\nzoutx+0.48,\nzouty+0.35);
+		
+		% Z IN
+		\newcommand\nzinx{8.56}
+		\newcommand\nziny{6.12}
+		\draw[gray] (\nzinx,\nziny) node[rotate=-45] {\tiny \texttt{Z input}};
+		\draw[color=gray,-stealth] (\nzinx-0.43,\nziny+0.29) -- (\nzinx+0.37,\nziny-0.51);
+		
+		% NZ IN
+		\newcommand\zinx{8.97}
+		\newcommand\ziny{6.53}
+		\draw[gray] (\zinx,\ziny) node[rotate=-45] {\tiny \texttt{NZ input}};
+		\draw[color=gray,-stealth] (\zinx-0.43,\ziny+0.29) -- (\zinx+0.37,\ziny-0.51);
+		
+		% TDEC U0
+		\newcommand\tdecrzx{5.46}
+		\newcommand\tdecrzy{5.94}
+		\draw[gray] (\tdecrzx,\tdecrzy) node[rotate=45] {\tiny \texttt{TDEC U0}};
+		\draw[color=gray,stealth-] (\tdecrzx-0.3,\tdecrzy-0.45) -- (\tdecrzx+0.37,\tdecrzy+0.22);
+		
+		% INC U0
+		\newcommand\inczx{5.35}
+		\newcommand\inczy{5.01}
+		\draw[gray] (\inczx,\inczy) node[rotate=45] {\tiny \texttt{INC U0}};
+		\draw[color=gray,stealth-] (\inczx-0.3,\inczy-0.45) -- (\inczx+0.37,\inczy+0.22);
+		
+		% TDEC U1
+		\newcommand\tdecrox{5.25}
+		\newcommand\tdecroy{4.07}
+		\draw[gray] (\tdecrox,\tdecroy) node[rotate=45] {\tiny \texttt{TDEC U1}};
+		\draw[color=gray,stealth-] (\tdecrox-0.3,\tdecroy-0.45) -- (\tdecrox+0.37,\tdecroy+0.22);
+		
+		% INC U1
+		\newcommand\incox{5.15}
+		\newcommand\incoy{3.13}
+		\draw[gray] (\incox,\incoy) node[rotate=45] {\tiny \texttt{INC U1}};
+		\draw[color=gray,stealth-] (\incox-0.3,\incoy-0.45) -- (\incox+0.37,\incoy+0.22);
+		
+		% HALT_OUT
+		\newcommand\haltx{5.05}
+		\newcommand\halty{2.2}
+		\draw[gray] (\haltx,\halty) node[rotate=45] {\tiny \texttt{HALT\_OUT}};
+		\draw[color=gray,stealth-] (\haltx-0.35,\halty-0.5) -- (\haltx+0.42,\halty+0.27);
+		
+		% INITIAL; Z
+		\newcommand\initzx{8.53}
+		\newcommand\initzy{5.07}
+		\draw[gray] (\initzx,\initzy) node[rotate=45] {\tiny \texttt{INITIAL;Z}};
+		\draw[color=gray,stealth-] (\initzx-0.3,\initzy-0.45) -- (\initzx+0.42,\initzy+0.27);
+		
+		% ID1; Z
+		\newcommand\idox{9.3}
+		\newcommand\idoy{4.18}
+		\draw[gray] (\idox,\idoy) node[rotate=45] {\tiny \texttt{ID1;Z}};
+		\draw[color=gray,stealth-] (\idox-0.25,\idoy-0.4) -- (\idox+0.32,\idoy+0.17);
+		
+		% ID1; NZ
+		\newcommand\idonx{9.71}
+		\newcommand\idony{3.77}
+		\draw[gray] (\idonx,\idony) node[rotate=45] {\tiny \texttt{ID1;NZ}};
+		\draw[color=gray,stealth-] (\idonx-0.25,\idony-0.4) -- (\idonx+0.32,\idony+0.17);
+		
+		% CIRCLE THE INTIAL GLIDERS
+		\draw[white,line width=1.5pt,opacity=0.6](5.49,7.29) circle (0.1);
+		\draw[redback2,line width=0.6pt](5.49,7.29) circle (0.1);
+		\draw[white,line width=1.5pt,opacity=0.6](10.673,6.36549865229) circle (0.1);
+		\draw[redback2,line width=0.6pt](10.673,6.36549865229) circle (0.1);
+
+		% COMPONENT STACK
+		\draw[gridgray,dashed] (0.05,5.7) -- (0.05,6.2) -- (1.8,7.95) -- (2.8,7.95) -- (3.95,6.8) -- (3.95,5.7) -- (2.55,4.3) -- (1.45,4.3) -- cycle;
+		\draw[gray] (3.4,4.8) node[rotate=45] {\scriptsize \texttt{Component Stack}};
+		
+		% COMPUTER
+		\draw[gridgray,dashed] (5.7,1.9) -- (5.7,2.2) -- (8.1,4.6);
+		\draw[gridgray,dashed] (9,5.5) -- (9.1,5.6) -- (10.8,5.6) -- (11.95,4.45) -- (11.95,4.1) -- (7.9,0.05) -- (7.55,0.05) -- (5.7,1.9);
+		\draw[gray] (10.15,1.95) node[rotate=45] {\scriptsize \texttt{Computer}};
+		
+		% BORDER
+		\draw[gridgray] (0,0) rectangle (12,9.05);
+		
+		% ZOOM BOX U0
+			\path[draw,gridgray,line width=0.45pt] (2.102,7.8016) -- (2,10);
+			\path[draw,gridgray,line width=0.45pt] (2.2965,7.8016) -- (3.552,10);
+			
+			\node[inner sep=0pt,anchor=north west] (zoom1) at (2,10) {\includegraphics[width=1.552cm]{../universal_computation/add_computer_zoom1.png}};
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (2.102,7.8016) -- (2.2965,7.8016) -- (2.2965,7.6075) -- (3.552,8.448) -- (2,8.448) -- (2.102,7.6075) -- cycle;
+			
+			\path[draw,gridgray,line width=0.45pt] (2.102,7.6075) -- (2,8.448);
+			\path[draw,gridgray,line width=0.45pt] (2.2965,7.6075) -- (3.552,8.448);
+			
+			%\node[inner sep=0pt] (zoom1_3x) at (3.35,7.95) {\includegraphics[width=0.21cm]{../mag.png} \footnotesize 8x};
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (2.102,7.8016) rectangle (2.2965,7.6075);
+			\draw[gridgray,line width=0.6pt] (2,10) rectangle (3.552,8.448);
+			
+			\draw[gray] (2,10) node[anchor=north west] {\footnotesize \texttt{U0 = 7}};
+			\draw[dred,opacity=0.5] (2.65,8.85) node[anchor=south west] {\footnotesize \texttt{0}};
+			\draw[gray] (2.3,9.2) node[anchor=south west] {\footnotesize \texttt{7}};
+		% END ZOOM BOX U0
+		
+		% ZOOM BOX U1
+			\path[draw,gridgray,line width=0.45pt] (0.8539,6.6078) -- (0.1,9.5);
+			\path[draw,gridgray,line width=0.45pt] (1.048,6.6078) -- (1.652,9.5);
+			
+			\node[inner sep=0pt,anchor=north west] (zoom1) at (0.1,9.5) {\includegraphics[width=1.552cm]{../universal_computation/add_computer_zoom2.png}};
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (0.8539,6.6078) -- (1.048,6.6078) -- (1.048,6.4137) -- (1.652,7.948) -- (0.1,7.948) -- (0.8539,6.4137) -- cycle;
+			
+			\path[draw,gridgray,line width=0.45pt] (0.8539,6.4137) -- (0.1,7.948);
+			\path[draw,gridgray,line width=0.45pt] (1.048,6.4137) -- (1.652,7.948);
+			
+			%\node[inner sep=0pt] (zoom1_3x) at (0.92,7.58) {\includegraphics[width=0.21cm]{../mag.png} \footnotesize 8x};
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (0.8539,6.6078) rectangle (1.048,6.4137);
+			\draw[gridgray,line width=0.6pt] (0.1,9.5) rectangle (1.652,7.948);
+			
+			\draw[gray] (0.1,9.5) node[anchor=north west] {\footnotesize \texttt{U1 = 5}};
+			\draw[gray] (0.6,8.3) node[anchor=south west] {\footnotesize \texttt{5}};
+			\draw[gren,opacity=0.5] (0.2,8.7) node[anchor=south west] {\footnotesize \texttt{12}};
+		% END ZOOM BOX U1
+	\end{tikzpicture}
+\end{document}

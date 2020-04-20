@@ -1,0 +1,32 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\begin{document}
+	\begin{tikzpicture}%
+		\node[inner sep=0pt,anchor=south west] (sbr) at (0,0) {\includegraphics[width=12cm]{../universal_computation/mul_component.png}};
+		
+		% MUL 0
+		\newcommand\mulzx{10.45}
+		\newcommand\mulzy{1.45}
+		\draw[gray] (\mulzx-0.15,\mulzy-0.15) node[rotate=-45] {\tiny \texttt{MUL 0}};
+		\draw[color=gray,-stealth] (\mulzx+0.15,\mulzy-0.3) -- (\mulzx-0.4,\mulzy+0.25);
+		
+		% MUL 1
+		\newcommand\mulox{11.07}
+		\newcommand\muloy{2.07}
+		\draw[gray] (\mulox,\muloy) node[rotate=-45] {\tiny \texttt{MUL 1}};
+		\draw[color=gray,-stealth] (\mulox+0.15,\muloy-0.3) -- (\mulox-0.4,\muloy+0.25);
+		
+		% NZ OUT
+		\newcommand\nzx{10.83}
+		\newcommand\nzy{3.43}
+		\draw[gray] (\nzx-0.21,\nzy-0.09) node[rotate=-45] {\tiny \texttt{NZ}};
+		\draw[color=gray,stealth-] (\nzx+0.15,\nzy-0.3) -- (\nzx-0.4,\nzy+0.25);
+		
+		% Z OUT
+		\newcommand\zx{11.17}
+		\newcommand\zy{3.77}
+		\draw[gray] (\zx-0.05,\zy+0.05) node[rotate=-45] {\tiny \texttt{Z}};
+		\draw[color=gray,stealth-] (\zx+0.15,\zy-0.3) -- (\zx-0.4,\zy+0.25);
+	\end{tikzpicture}
+\end{document}

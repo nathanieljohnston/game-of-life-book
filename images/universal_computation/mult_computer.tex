@@ -1,5 +1,5 @@
 \documentclass[10pt]{standalone}
-\input{macros}
+\input{../macros}
 
 \begin{document}
 	\begin{tikzpicture}%
@@ -8,12 +8,12 @@
 		% Z OUT
 		\newcommand\zoutx{5.63}
 		\newcommand\zouty{8.62}
-		\draw[gray] (\zoutx,\zouty) node[rotate=45] {\tiny \texttt{Z out}};
-		\draw[color=gray,-stealth] (\zoutx-0.15,\zouty-0.3) -- (\zoutx+0.35,\zouty+0.2);
+		\draw[gray] (\zoutx-0.1,\zouty-0.1) node[rotate=45] {\tiny \texttt{Z}};
+		\draw[color=gray,-stealth] (\zoutx-0.15,\zouty-0.3) -- (\zoutx+0.15,\zouty+0);
 		
 		% NZ OUT
-		\newcommand\nzoutx{6.66}
-		\newcommand\nzouty{9.24}
+		\newcommand\nzoutx{6.56}
+		\newcommand\nzouty{9.14}
 		\draw[gray] (\nzoutx,\nzouty) node[rotate=45] {\tiny \texttt{NZ out}};
 		\draw[color=gray,-stealth] (\nzoutx-0.27,\nzouty-0.4) -- (\nzoutx+0.43,\nzouty+0.3);
 		
@@ -35,52 +35,52 @@
 		\draw[gray] (\haltx-0.15,\halty-0.15) node[rotate=-45] {\tiny \texttt{HALT\_OUT}};
 		\draw[color=gray,stealth-] (\haltx-0.45,\halty+0.31) -- (\haltx+0.24,\halty-0.38);
 		
-		% INC R3
+		% INC U3
 		\newcommand\incrtx{4.56}
 		\newcommand\incrty{4.17}
-		\draw[gray] (\incrtx-0.15,\incrty-0.15) node[rotate=-45] {\tiny \texttt{INC R3}};
+		\draw[gray] (\incrtx-0.15,\incrty-0.15) node[rotate=-45] {\tiny \texttt{INC U3}};
 		\draw[color=gray,stealth-] (\incrtx-0.45,\incrty+0.31) -- (\incrtx+0.24,\incrty-0.38);
 		
-		% TDEC R3
+		% TDEC U3
 		\newcommand\tdecrtx{4.88}
 		\newcommand\tdecrty{4.57}
-		\draw[gray] (\tdecrtx-0.15,\tdecrty-0.15) node[rotate=-45] {\tiny \texttt{TDEC R3}};
+		\draw[gray] (\tdecrtx-0.15,\tdecrty-0.15) node[rotate=-45] {\tiny \texttt{TDEC U3}};
 		\draw[color=gray,stealth-] (\tdecrtx-0.45,\tdecrty+0.31) -- (\tdecrtx+0.24,\tdecrty-0.38);
 		
-		% INC R2
+		% INC U2
 		\newcommand\incrtwx{5.2}
 		\newcommand\incrtwy{4.97}
-		\draw[gray] (\incrtwx-0.15,\incrtwy-0.15) node[rotate=-45] {\tiny \texttt{INC R2}};
+		\draw[gray] (\incrtwx-0.15,\incrtwy-0.15) node[rotate=-45] {\tiny \texttt{INC U2}};
 		\draw[color=gray,stealth-] (\incrtwx-0.45,\incrtwy+0.31) -- (\incrtwx+0.24,\incrtwy-0.38);
 		
-		% TDEC R2
+		% TDEC U2
 		\newcommand\tdecrtwx{5.52}
 		\newcommand\tdecrtwy{5.37}
-		\draw[gray] (\tdecrtwx-0.15,\tdecrtwy-0.15) node[rotate=-45] {\tiny \texttt{TDEC R2}};
+		\draw[gray] (\tdecrtwx-0.15,\tdecrtwy-0.15) node[rotate=-45] {\tiny \texttt{TDEC U2}};
 		\draw[color=gray,stealth-] (\tdecrtwx-0.45,\tdecrtwy+0.31) -- (\tdecrtwx+0.24,\tdecrtwy-0.38);
 		
-		% INC R1
+		% INC U1
 		\newcommand\incrox{5.84}
 		\newcommand\incroy{5.77}
-		\draw[gray] (\incrox-0.15,\incroy-0.15) node[rotate=-45] {\tiny \texttt{INC R1}};
+		\draw[gray] (\incrox-0.15,\incroy-0.15) node[rotate=-45] {\tiny \texttt{INC U1}};
 		\draw[color=gray,stealth-] (\incrox-0.45,\incroy+0.31) -- (\incrox+0.24,\incroy-0.38);
 		
-		% TDEC R1
+		% TDEC U1
 		\newcommand\tdecrox{6.16}
 		\newcommand\tdecroy{6.17}
-		\draw[gray] (\tdecrox-0.15,\tdecroy-0.15) node[rotate=-45] {\tiny \texttt{TDEC R1}};
+		\draw[gray] (\tdecrox-0.15,\tdecroy-0.15) node[rotate=-45] {\tiny \texttt{TDEC U1}};
 		\draw[color=gray,stealth-] (\tdecrox-0.45,\tdecroy+0.31) -- (\tdecrox+0.24,\tdecroy-0.38);
 		
-		% INC R0
+		% INC U0
 		\newcommand\incrzx{6.48}
 		\newcommand\incrzy{6.57}
-		\draw[gray] (\incrzx-0.15,\incrzy-0.15) node[rotate=-45] {\tiny \texttt{INC R0}};
+		\draw[gray] (\incrzx-0.15,\incrzy-0.15) node[rotate=-45] {\tiny \texttt{INC U0}};
 		\draw[color=gray,stealth-] (\incrzx-0.45,\incrzy+0.31) -- (\incrzx+0.24,\incrzy-0.38);
 		
-		% TDEC R0
+		% TDEC U0
 		\newcommand\tdecrzx{6.8}
 		\newcommand\tdecrzy{6.97}
-		\draw[gray] (\tdecrzx-0.15,\tdecrzy-0.15) node[rotate=-45] {\tiny \texttt{TDEC R0}};
+		\draw[gray] (\tdecrzx-0.15,\tdecrzy-0.15) node[rotate=-45] {\tiny \texttt{TDEC U0}};
 		\draw[color=gray,stealth-] (\tdecrzx-0.45,\tdecrzy+0.31) -- (\tdecrzx+0.24,\tdecrzy-0.38);
 		
 		% INITIAL; Z
@@ -126,8 +126,8 @@
 		\draw[color=gray,stealth-] (\idthnx-0.25,\idthny-0.4) -- (\idthnx+0.37,\idthny+0.22);
 		
 		% CIRCLE THE INTIAL GLIDERS
-		\draw[white,line width=1.5pt,opacity=0.6](6.51,8.38) circle (0.1);
-		\draw[redback2,line width=0.6pt](6.51,8.38) circle (0.1);
+		\draw[white,line width=1.5pt,opacity=0.6](6.2,8.2) circle (0.1);
+		\draw[redback2,line width=0.6pt](6.2,8.2) circle (0.1);
 		\draw[white,line width=1.5pt,opacity=0.6](9.902,8.243) circle (0.1);
 		\draw[redback2,line width=0.6pt](9.902,8.243) circle (0.1);
 
@@ -143,7 +143,7 @@
 		% BORDER
 		\draw[gridgray] (0,0) rectangle (12,9.72);
 		
-		% ZOOM BOX R0
+		% ZOOM BOX U0
 			\newcommand\rzsmlx{3.93}
 			\newcommand\rzsmrx{\rzsmlx+0.1945}
 			\newcommand\rzsmby{9.13}
@@ -169,12 +169,12 @@
 			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\rzsmlx,\rzsmty) rectangle (\rzsmrx,\rzsmby);
 			\draw[gridgray,line width=0.6pt] (\rzbglx,\rzbgty) rectangle (\rzbgrx,\rzbgby);
 			
-			\draw[gray] (\rzbglx,\rzbgty) node[anchor=north west] {\footnotesize \texttt{R0 = 7}};
+			\draw[gray] (\rzbglx,\rzbgty) node[anchor=north west] {\footnotesize \texttt{U0 = 7}};
 			\draw[dred,opacity=0.5] (4.26,9.9) node[anchor=south west] {\footnotesize \texttt{0}};
 			\draw[gray] (3.91,10.25) node[anchor=south west] {\footnotesize \texttt{7}};
-		% END ZOOM BOX R0
+		% END ZOOM BOX U0
 		
-		% ZOOM BOX R1
+		% ZOOM BOX U1
 			\newcommand\ronesmlx{2.85}
 			\newcommand\ronesmrx{\ronesmlx+0.1945}
 			\newcommand\ronesmby{8.06}
@@ -200,12 +200,12 @@
 			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\ronesmlx,\ronesmty) rectangle (\ronesmrx,\ronesmby);
 			\draw[gridgray,line width=0.6pt] (\ronebglx,\ronebgty) rectangle (\ronebgrx,\ronebgby);
 			
-			\draw[gray] (\ronebglx,\ronebgty) node[anchor=north west] {\footnotesize \texttt{R1 = 5}};
+			\draw[gray] (\ronebglx,\ronebgty) node[anchor=north west] {\footnotesize \texttt{U1 = 5}};
 			\draw[dred,opacity=0.5] (2.57,9.39) node[anchor=south west] {\footnotesize \texttt{0}};
 			\draw[gray] (2.32,9.66) node[anchor=south west] {\footnotesize \texttt{5}};
-		% END ZOOM BOX R1
+		% END ZOOM BOX U1
 		
-		% ZOOM BOX R2
+		% ZOOM BOX U2
 			\newcommand\rtwosmlx{1.59}
 			\newcommand\rtwosmrx{\rtwosmlx+2*0.193}
 			\newcommand\rtwosmby{7.01}
@@ -232,11 +232,11 @@
 			
 			\path[draw,gridgray,line width=0.45pt] (\rtwosmrx,\rtwosmby) -- (\rtwobgrx,\rtwobgby);
 			
-			\draw[gray] (\rtwobglx,\rtwobgty) node[anchor=north west] {\footnotesize \texttt{R2}};
+			\draw[gray] (\rtwobglx,\rtwobgty) node[anchor=north west] {\footnotesize \texttt{U2}};
 			\draw[gren,opacity=0.5] (0.35,9.35) node[anchor=south west] {\footnotesize \texttt{35}};
 			\draw[gray] (1.2,8.57) node[anchor=south west] {\footnotesize \texttt{0}};
-		% END ZOOM BOX R2
+		% END ZOOM BOX U2
 		
-		\draw[gray] (0.5,6.42) node[anchor=north west] {\footnotesize \texttt{R3}};
+		\draw[gray] (0.5,6.42) node[anchor=north west] {\footnotesize \texttt{U3}};
 	\end{tikzpicture}
 \end{document}

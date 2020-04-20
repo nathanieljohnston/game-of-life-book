@@ -1,0 +1,44 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\begin{document}
+	\begin{tikzpicture}[scale=0.5, every node/.style={transform shape}]%
+		\tikzset{
+			double arrow/.style args={#1 colored by #2 and #3}{
+				round cap-latex,line width=#1,#2, % first arrow
+				postaction={draw,round cap-latex,#3,line width=(#1)/3,
+					shorten <=(#1)/3,shorten >=2*(#1)/3}, % second arrow
+			}
+		}
+		
+		\node[inner sep=0pt,anchor=south west] at (0,0) {\includegraphics[width=10cm]{../still_lifes/density_border_improve.png}};
+		
+		\draw[double arrow=4pt colored by white and medgray] (1.5,9.9) -- (1.5,8.8);	
+		\draw[double arrow=4pt colored by white and medgray] (2.5,9.9) -- (2.5,8.8);
+		\draw[double arrow=4pt colored by white and medgray] (5.5,9.9) -- (5.5,8.8);
+		\draw[double arrow=4pt colored by white and medgray] (4.5,9.9) -- (4.5,8.8);
+		\draw[double arrow=4pt colored by white and medgray] (7.5,9.9) -- (7.5,8.8);
+		\draw[double arrow=4pt colored by white and medgray] (8.5,9.9) -- (8.5,8.8);
+		
+		\draw[double arrow=4pt colored by white and medgray] (2.5,0.1) -- (2.5,1.2);
+		\draw[double arrow=4pt colored by white and medgray] (1.5,0.1) -- (1.5,1.2);
+		\draw[double arrow=4pt colored by white and medgray] (4.5,0.1) -- (4.5,1.2);
+		\draw[double arrow=4pt colored by white and medgray] (5.5,0.1) -- (5.5,1.2);
+		\draw[double arrow=4pt colored by white and medgray] (7.5,0.1) -- (7.5,1.2);
+		\draw[double arrow=4pt colored by white and medgray] (8.5,0.1) -- (8.5,1.2);
+		
+		\draw[double arrow=4pt colored by white and medgray] (9.9,1.5) -- (8.8,1.5);
+		\draw[double arrow=4pt colored by white and medgray] (9.9,2.5) -- (8.8,2.5);
+		\draw[double arrow=4pt colored by white and medgray] (9.9,4.5) -- (8.8,4.5);
+		\draw[double arrow=4pt colored by white and medgray] (9.9,5.5) -- (8.8,5.5);
+		\draw[double arrow=4pt colored by white and medgray] (9.9,7.5) -- (8.8,7.5);
+		\draw[double arrow=4pt colored by white and medgray] (9.9,8.5) -- (8.8,8.5);
+		
+		\draw[double arrow=4pt colored by white and medgray] (0.1,1.5) -- (1.2,1.5);
+		\draw[double arrow=4pt colored by white and medgray] (0.1,2.5) -- (1.2,2.5);
+		\draw[double arrow=4pt colored by white and medgray] (0.1,4.5) -- (1.2,4.5);
+		\draw[double arrow=4pt colored by white and medgray] (0.1,5.5) -- (1.2,5.5);
+		\draw[double arrow=4pt colored by white and medgray] (0.1,7.5) -- (1.2,7.5);
+		\draw[double arrow=4pt colored by white and medgray] (0.1,8.5) -- (1.2,8.5);
+	\end{tikzpicture}
+\end{document}

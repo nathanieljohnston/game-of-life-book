@@ -1,0 +1,46 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\begin{document}
+	\centering
+	\begin{tikzpicture}%
+		\node[inner sep=0pt,anchor=south west] (zoom1) at (-1,1) {\includegraphics[scale=0.122]{../glider_guns/fermat_primer.png}};
+		\draw[gridgray,line width=0.75pt] (-1,1) rectangle (14.1,13.35);
+		
+		% ZOOM BOX 1
+			\path[draw,gridgray,line width=0.5pt] (2.3,1) -- (8.78,-7.39) -- cycle;
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (2.3,3.6) -- (8.78,0.2) -- (-1,0.2) -- (-1,1) -- (2.3,1) -- cycle;
+			
+			\path[draw,gridgray,line width=0.5pt] (-1,1) -- (-1,0.2) -- cycle;
+			\path[draw,gridgray,line width=0.5pt] (2.3,3.6) -- (8.78,0.2) -- cycle;
+			
+			\node[inner sep=0pt] (zoom1_3x) at (3,0.6) {\includegraphics[width=0.3cm]{../mag.png} 3x};
+			
+			\filldraw[draw=gridgray,line width=0.5pt,fill=white,fill opacity=0.64] (-1,1) rectangle (2.3,3.6);
+			\node[inner sep=0pt,anchor=north west] (zoom1) at (-1,0.2) {\includegraphics[scale=0.0915]{../glider_guns/fermat_primer_bl.png}};
+			\draw[gridgray,line width=0.75pt] (-1,0.2) rectangle (8.78,-7.39);
+		% END ZOOM BOX 1
+		
+		% ZOOM BOX 2
+			\path[draw,gridgray,line width=0.5pt] (12.7,1) -- (10.48,-7.39) -- cycle;
+			\path[draw,gridgray,line width=0.5pt] (13.9,1) -- (14.1,-7.39) -- cycle;
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (12.7,1) -- (12.7,3.6) -- (10.48,0.2) -- (14.1,0.2) -- (13.9,3.6) -- (13.9,1) -- cycle;
+		
+			\node[inner sep=0pt] (zoom2_3x) at (12.5,0.6) {\includegraphics[width=0.3cm]{../mag.png} 3x};
+			
+			\path[draw,gridgray,line width=0.5pt] (12.7,3.6) -- (10.48,0.2) -- cycle;
+			\path[draw,gridgray,line width=0.5pt] (13.9,3.6) -- (14.1,0.2) -- cycle;
+		
+			\filldraw[draw=gridgray,line width=0.5pt,fill=white,fill opacity=0.64] (12.7,1) rectangle (13.9,3.6);
+			\node[inner sep=0pt,anchor=north east] (zoom2) at (14.1,0.2) {\includegraphics[scale=0.0915]{../glider_guns/fermat_primer_br.png}};
+			\draw[gridgray,line width=0.75pt] (10.48,0.2) rectangle (14.1,-7.39);
+			
+			% Red circle
+			\draw[white,line width=3pt,opacity=0.6](2.61,-4.29) circle (0.165);
+			\draw[redback2,line width=1.25pt](2.61,-4.29) circle (0.165);
+			\draw[redback2] (2.61,-4.29) node[anchor=west,shift={(0.15,0.1)}]{\footnotesize $5$};
+		% END ZOOM BOX 2
+	\end{tikzpicture}
+\end{document}

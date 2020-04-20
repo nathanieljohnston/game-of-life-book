@@ -1,0 +1,82 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\begin{document}
+	\begin{tikzpicture}%
+		\begin{scope}
+			\clip (-0.4,0.9) rectangle (11.2,-3.95);
+			
+			% INPUT GLIDER
+			\draw[gray] (0.35,0.15) node[rotate=-45] {\scriptsize input \texttt{TEST} glider};
+			\draw[thick,color=darkgray,-stealth] (-0.1,0.1) -- (0.7,-0.7);
+			\glider{(-0.34,0.08)}{0}{0.08};
+			
+			% FIRST DUPLICATOR
+			\filldraw[color=black,fill=gray!50] (0.7,-0.7) -- (2.7,-0.7) -- (2.7,-1.3) -- (0.7,-1.3) -- cycle;
+			\draw[darkgray] (1.7,-1) node {\scriptsize duplicator};
+			
+			\draw[gray] (4.1,-2.4) node[rotate=-45] {\scriptsize trial \texttt{Z} (``zero'') signal};
+			\draw[thick,color=darkgray,-stealth] (2.7,-1.3) -- (5.3,-3.9) -- (6.3,-2.9);
+			
+			\draw[gray] (3.15,0.25) node[rotate=45,align=center] {\scriptsize trial \texttt{NZ} \\[-0.15cm] \scriptsize (``non-zero'') signal};
+			\draw[thick,color=darkgray,-stealth] (2.7,-0.7) -- (4,0.6) -- (5.3,-0.7);
+			
+			% SLIDING BLOCK
+			\def\sbshft{1.6};
+			\golblock{(3.75+\sbshft,-2.2+\sbshft)}{black}{0.08};
+			\draw[black] (3.75+\sbshft,-2.2+\sbshft) node[anchor=north west,shift={(0.1,0.1)}] {\scriptsize 0};
+			\golblock{(3.95+\sbshft,-2+\sbshft)}{black!60!white}{0.08};
+			\draw[black!60!white] (3.95+\sbshft,-2+\sbshft) node[anchor=north west,shift={(0.1,0.1)}] {\scriptsize 2};
+			\golblock{(4.15+\sbshft,-1.8+\sbshft)}{black!36!white}{0.08};
+			\draw[black!36!white] (4.15+\sbshft,-1.8+\sbshft) node[anchor=north west,shift={(0.1,0.1)}] {\scriptsize 4};
+			\golblock{(4.35+\sbshft,-1.6+\sbshft)}{black!22!white}{0.08};
+			\draw[black!22!white] (4.35+\sbshft,-1.6+\sbshft) node[anchor=north west,shift={(0.1,0.1)}] {\scriptsize 6};
+			\golblock{(4.55+\sbshft,-1.4+\sbshft)}{black!13!white}{0.08};
+			\draw[black!13!white] (4.55+\sbshft,-1.4+\sbshft) node[anchor=north west,shift={(0.1,0.1)}] {\scriptsize 8};
+			\golblock{(4.75+\sbshft,-1.2+\sbshft)}{black!8!white}{0.08};
+			\draw[black!8!white] (4.7+\sbshft,-1.2+\sbshft) node[anchor=north west,shift={(0.1,0.1)}] {\scriptsize 10};
+			\golblock{(4.95+\sbshft,-1+\sbshft)}{black!4!white}{0.08};
+			\draw[black!4!white] (4.95+\sbshft,-1+\sbshft) node[anchor=north west,shift={(0.1,0.1)}] {\scriptsize 12};
+%			\golblock{(5.15+\sbshft,-0.8+\sbshft)}{black!8!white}{0.08};
+%			\draw[black!8!white] (5.15+\sbshft,-0.8+\sbshft) node[anchor=north west,shift={(0.1,0.1)}] {\scriptsize 7};
+	%		\golblock{(5.35+\sbshft,-0.6+\sbshft)}{black!6!white}{0.08};
+	%		\draw[black!6!white] (5.35+\sbshft,-0.6+\sbshft) node[anchor=north west,shift={(0.1,0.1)}] {\scriptsize 8};
+	%		\golblock{(5.55+\sbshft,-0.4+\sbshft)}{black!4!white}{0.08};
+	%		\draw[black!4!white] (5.55+\sbshft,-0.4+\sbshft) node[anchor=north west,shift={(0.1,0.1)}] {\scriptsize 9};
+	%		\golblock{(5.75+\sbshft,-0.2+\sbshft)}{black!2!white}{0.08};
+	%		\draw[black!2!white] (5.75+\sbshft,-0.2+\sbshft) node[anchor=north west,shift={(0.1,0.1)}] {\scriptsize 10};
+			\golblock{(3.56+\sbshft,-2.11+\sbshft)}{darkorangeback}{0.08};
+			
+			% IF test is not 0
+			\draw[thick,color=darkgreenback,-stealth] (5.3,-0.7) -- (6.3,-1.7);
+			
+			% BEEHIVE STOPPER
+			\filldraw[color=black,fill=gray!50] (6.3,-1.7) -- (6.3,-2.9) -- (10.1,-2.9) -- (10.1,-1.7) -- cycle;
+			\draw[darkgray] (8.7,-2.3) node[align=center] {\scriptsize block \texttt{Z} if \texttt{NZ} \\[-0.15cm] \scriptsize comes from northwest \\[-0.15cm] \scriptsize (e.g., beehive stopper)};
+			
+			\draw[thick,color=darkgray] (6.3,-2.9) -- (6.9,-2.3);
+			\draw[thick,color=darkorangeback,-stealth] (6.9,-2.3) -- (7.5,-1.7);
+			\draw[thick,color=darkorangeback,-stealth] (7.5,-1.7) -- (8.1,-1.1);
+			\draw[thick,color=darkgreenback,-stealth] (6.3,-1.7) -- (7.5,-2.9);
+			
+			% NZ output
+			\draw[darkgreenback!75!white] (8.35,-3.45) node[rotate=-45] {\scriptsize \texttt{NZ} output};
+			\draw[thick,color=darkgreenback,-stealth] (7.5,-2.9) -- (8.5,-3.9);
+			
+			% SECOND DUPLICATOR
+			\filldraw[color=black,fill=gray!50] (8.1,-1.1) -- (10.1,-1.1) -- (10.1,-0.5) -- (8.1,-0.5) -- cycle;
+			\draw[darkgray] (9.1,-0.8) node {\scriptsize duplicator};
+			
+			% Z output reset block
+			\draw[darkorangeback!75!white] (7.2,-0.5) node[rotate=45] {\scriptsize reset moved 0 block};
+			\draw[thick,color=darkorangeback,-stealth] (8.1,-0.5) -- (7.8,-0.2) -- (6.5,-1.5) -- (5.8,-0.8);
+			
+			% Z output
+			\draw[darkorangeback!75!white] (10.75,-1.45) node[rotate=-45] {\scriptsize \texttt{Z} output};
+			\draw[thick,color=darkorangeback,-stealth] (10.1,-1.1) -- (11.1,-2.1);
+		\end{scope}
+		
+		% BORDER
+		\draw[gridgray] (-0.45,0.95) rectangle (11.25,-4);
+	\end{tikzpicture}
+\end{document}
