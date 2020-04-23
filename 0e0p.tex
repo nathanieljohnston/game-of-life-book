@@ -29,14 +29,68 @@ Stuff.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Notes and Historical Remarks}
+\section{Encoding Other Cellular Automata in Life}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Stuff.
 
+% Talk about other rules here and the neat-o patterns that we can construct out of many copies of 0E0P.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Notes and Historical Remarks}\label{sec:0e0p_history}\index{metacell}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Many metacells---patterns of size larger than $1 \times 1$ that emulate the behavior of a single cell---were constructed prior to 0E0P. The first one was the \emph{p$5760$~metacell}, which was constructed by David Bell in January 1996. This metacell is much smaller and faster than 0E0P, with a period of just $5760$~generations and a bounding box size of just $500 \times 500$ (see Figure~\ref{fig:p5760_metacell}). However, there are numerous trade-offs that make this metacell less useful:\smallskip
+
+\begin{figure}[!htb]
+	\centering
+	\begin{tikzpicture}
+		\node[inner sep=0pt,anchor=south west] at (0,0) {\embedlink{p5760_metacell}{\patternimg{0.15}{p5760_metacell}}};
+		
+		\draw[white,line width=2.5pt,opacity=0.6](2.63,8.15) circle (0.2);
+		\draw[redback2,line width=1pt](2.63,8.15) circle (0.2);
+	\end{tikzpicture}
+	\caption{The \emph{p$5760$~metacell}. Whether the cell is considered ``alive'' or ``dead'' is determined by the presence or absence of a glider at the location circled in \bgbox{redback}{red}. That glider, if present, is duplicated $8$ times and sent to its neighbors along the $8$ output paths highlighted in \bgbox{aquaback}{aqua}, signaling to them that it is alive. Similarly, neighboring alive cells send their signals to this one along the input paths highlighted in \bgbox{magentaback}{magenta}.}\label{fig:p5760_metacell}
+\end{figure}
+
+\begin{itemize}
+	\item[1)] It is hard-wired to emulate Life, and cannot easily be modified to emulate most of the $2^{512}$ different non-isotropic Life-like cellular automata.\smallskip
+	
+	\item[2)] It is not easy to tell at a glance which ``cells'' are alive and which are dead---it is determined by the presence or absence of a single extra glider in the cell---and thus is not interesting to look at from a far-out zoom level.\smallskip
+	
+	\item[3)] ``Dead'' cells must be placed on the Life plane, which means that, for example, spaceships cannot be emulated by this metacell unless the pattern is infinitely large.\smallskip
+\end{itemize}
+
+The first two of these problems were solved by the \emph{OTCA metapixel},\index{OTCA metapixel} which was constructed by Brice Due from late 2005 to mid-2006. While this metacell is a bit larger and slower than the first metacell (it is $2048 \times 2048$ and has period 35,328), it can be used to emulate any of the $2^{18}$ different outer-totalistic Life-like cellular automata. Indeed, built into its circuitry is an easily-adjustable array of eaters that determine how many live neighboring OTCA metapixels should lead to the birth or survival of the current metapixel (see Figure~\ref{fig:otca_metapixel}). 
+% Introduce Life-like CA, since no introduction earlier
+% mention out of the blue/honey bit/demultiplexer?
+
+% FIGURE HERE, SHOWING PIXEL AND RULE ENCODINGS
+
+The OTCA metapixel also has the remarkable feature that its alive and dead states look, from a distance, like alive and dead cells. This feature is achieved by the ``alive'' version of the cell releasing $43$ pairs of perpendicular lightweight spaceship streams that mutually annihilate each other, thus partially filling in the otherwise empty center of the metacell. For example, arranging a $1 \times 3$ row of ``alive'' metapixels (and a suitably large ``dead'' array of metapixels around its edges) results in a pattern that looks and evolves like a blinker, but 2,048 times as long and wide and 35,328 times as slow (see Figure~\ref{fig:metablinker}).
+
+\begin{figure}[!htb]
+	\centering
+	\embedlink{metablinker}{\vcenteredhbox{\patternimg{0.104}{metablinker_0}} \vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{5}{46} 35,328}}$}} \vcenteredhbox{\patternimg{0.104}{metablinker_35328}}}
+	\caption{A \emph{meta-blinker}: an arrangement of OTCA metapixels that emulates a blinker, but with period $2 \times 35,328$.}\label{fig:metablinker}\index{meta-blinker}
+\end{figure}
+
+The next notable metacell to be constructed was the \emph{p1 megacell},\index{p1 megacell} by Adam P.~Goucher in 2008. This metacell was, again, larger and slower than the metacells that came before it, with a bounding box of $2^{15} \times 2^{15}$ and a period of $2^{24}$. The new features this time that warranted the extra size and delay were twofold:\smallskip
+
+\begin{itemize}
+	\item This metacell was built entirely out of stable (p$1$) components like Herschel tracks, with the exception of a single period~$2^{24}$ gun used to regulate its timing.\footnote{This gun could be swapped out for a gun of another period, but periods that are multiples of $2$ help the pattern run quicker under the HashLife algorithm in Life simulation software like Golly.}\index{HashLife}\smallskip
+	
+	\item All $2^{512}$ non-totalistic Life-like cellular automata can be emulated by this metacell, versus the $2^{18}$ outer-totalistic Life-like cellular automata that can be emulated by the OTCA metapixel.\smallskip
+\end{itemize}
+
+% Figure of p1 megacell? Have had a lot of big figures bunched up closely here, so maybe not.
+
+Finally, Adam P.~Goucher spent 2014--2018 constructing the 0E0P metapixel, which solved problem~(3) described earlier---it does not require a background grid of ``dead'' cells to be placed on the Life plane.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Exercises \hfill \normalfont\textsf{\small solutions on \hyperlink{solutions_0e0p}{page \pageref{solutions_0e0p}}}}
+\section*{Exercises \hfill \normalfont\textsf{\small solutions to starred exercises on \hyperlink{solutions_0e0p}{page \pageref{solutions_0e0p}}}}
 \label{sec:solutions_0e0p}
 \addcontentsline{toc}{section}{Exercises}
 \vspace*{-0.4cm}\hrulefill\vspace*{-0.3cm}\footnotesize\begin{multicols}{2}\vspace*{-0.4cm}\raggedcolumns\interlinepenalty=10000
