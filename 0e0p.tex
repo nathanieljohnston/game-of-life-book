@@ -15,9 +15,92 @@
 \noindent Nothing yet.
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Some First Subsection}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Rule Emulation}
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+Conway's Game of Life is a 2-state 9-neighbour rule: the next state of a cell
+depends on the current state of the cell together with the current states of
+the eight surrounding cells. Building a metacell that directly emulates Life
+would be highly nontrivial for several reasons:
+
+\begin{itemize}
+\item \textbf{Quantity of neighbours}: each metacell would need to be able to
+construct a copy of itself in up to eight different positions. If both the
+north and east neighbours are present, it may be difficult to manoeuvre a
+construction arm to build the north-east neighbour.
+\item \textbf{Survival}: a cell can live for multiple generations, so its
+logic circuitry would need to be reusable. Reusable circuitry is considerably
+more expensive than single-use circuitry: compare, for instance, the size of
+a boat and a Snark --- the smallest known single-use and reusable stable
+reflector, respectively.
+\end{itemize}
+
+One of the main ideas behind the 0E0P metacell is that we can emulate any
+2-state 9-neighbour rule with an 8-state 4-neighbour rule, where a cell
+$(x, y)$ can only be alive at time $t$ if $x + y + t$ is even. This means
+that whenever a cell is alive, all four neighbours are dead, so there is
+plenty of empty space; moreover, every live cell always dies.
+
+We use the cell states $\{ 0, 1, 2, 3, 4, 5, 6, 7 \}$, where the background
+is state 0. In even generations in the emulating rule, the pattern consists
+entirely of cells in states $\{ 0, 7 \}$; a live cell at position $(x, y)$
+in generation $t$ of the original rule is encoded by a state-$7$ cell at
+position $(x + y, y - x)$ in generation $2t$ of the emulating rule.
+
+In odd generations, the pattern consists entirely of cells in states
+$\{ 0, 1, 2, 3, 4, 5, 6 \}$. The transition rule for computing generation
+$2t + 1$ from generation $2t$ is a fixed function:
+
+$$ h : \{ 0, 7 \}^4 \rightarrow \{ 0, 1, 2, 3, 4, 5, 6 \} $$
+
+specially chosen such that the following function is injective:
+
+$$ H : \{ 0, 7 \}^9 \rightarrow \{ 0, 1, 2, 3, 4, 5, 6 \}^4 $$
+
+% ensure no page break between declaration and definition
+
+$$ \begin{pmatrix}
+a_{11} & a_{12} & a_{13} \\
+a_{21} & a_{22} & a_{23} \\
+a_{31} & a_{32} & a_{33}
+\end{pmatrix} \mapsto \begin{pmatrix}
+h(a_{11}, a_{12}, a_{21}, a_{22}) & h(a_{12}, a_{13}, a_{22}, a_{23}) \\
+h(a_{21}, a_{22}, a_{31}, a_{32}) & h(a_{22}, a_{23}, a_{32}, a_{33})
+\end{pmatrix} $$
+
+Moreover, without loss of generality we can let $h(0, 0, 0, 0) = 0$.
+
+The transition rule for computing generation $2t + 2$ from $2t + 1$ is a
+function which depends on the rule being emulated:
+
+$$ g : \{ 0, 1, 2, 3, 4, 5, 6 \}^4 \rightarrow \{ 0, 7 \} $$
+
+The injectivity of $H$ means that we can specify the function $g$
+such that the composition $g \circ H$ is exactly the transition rule
+we want to emulate (up to having renamed the cell states to `0' and `7').
+Making the necessary assumption that a dead cell surrounded entirely by
+dead cells remains dead, we have $g(0, 0, 0, 0) = 0$. Consequently, we
+can define a function:
+
+$$ f : \{ 0, 1, 2, 3, 4, 5, 6, 7 \}^4 \rightarrow
+\{0, 1, 2, 3, 4, 5, 6, 7 \} $$
+
+where $f$ coincides with $g$ on the domain of $g$ and coincides with $h$
+on the domain of $h$.
+
+% TODO add an exercise to find a suitable function $h$. Up to permuting
+% the different cell states, there are 200 different such functions.
+
+The 0E0P metacell can be programmed to emulate any of the $8^{8^4-1}$
+zero-preserving 8-state 4-neighbour rules. It takes $2^{35}$ generations
+for the 0E0P metacell to run one generation of the 8-state rule (emulated
+at a 45-degree angle), and therefore $2^{36}$ generations to emulate one
+generation of the 2-state 9-neighbour rule (in the usual orientation).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Structure of the Metacell}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Stuff.
 
@@ -27,6 +110,24 @@ Stuff.
 	\caption{A schematic for the 0E0P metacell.}\label{fig:0e0p_schematic}
 \end{figure}
 
+
+%%%%%%%%%%%%%%%%%%%%%
+\section{Memory Tape}
+%%%%%%%%%%%%%%%%%%%%%
+
+Stuff.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Logic Circuitry}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Stuff.
+
+%%%%%%%%%%%%%%%%%%%%%%
+\section{Construction}
+%%%%%%%%%%%%%%%%%%%%%%
+
+Stuff.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Encoding Other Cellular Automata in Life}
