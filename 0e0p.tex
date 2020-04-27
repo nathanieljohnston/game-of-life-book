@@ -102,14 +102,33 @@ generation of the 2-state 9-neighbour rule (in the usual orientation).
 \section{Structure of the Metacell}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Stuff.
-
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[width=\textwidth]{0e0p/0e0p_schematic.pdf}
-	\caption{A schematic for the 0E0P metacell.}\label{fig:0e0p_schematic}
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\textwidth]{0e0p/0e0p_schematic.pdf}
+    \caption{A schematic for the 0E0P metacell. The symmetrical outer
+    \textbf{shell} is highlighted in pastel green, and the \textbf{nucleus}
+    is highlighted in yellow. The unhighlighted region between them is the
+    \textbf{kernel}.}\label{fig:0e0p_schematic}
 \end{figure}
 
+The large-scale structure of the metacell is tripartite, and each of the
+three parts is constructed separately. The outer \textbf{shell} has exact
+order-4 rotational symmetry, consisting of four spiral arms which propagate
+gliders inwards. Only one of these arms is actually used; the other four
+exist only to enforce the strict symmetry.
+
+Inside the shell is the \textbf{kernel}, which does not have any symmetry
+constraints. The south corner of the kernel contains logic circuitry for
+regulating the metacell's lifecycle and computing the state of the metacell
+based on the inputs from the four neighbouring cells. The kernel also contains
+an output path, shown in crimson in Figure~\ref{fig:0e0p_schematic}, which
+can connect to one of the four construction arms (violet, dashed) or to the
+input spiral arm of one of the four neighbours.
+
+The largest region of the metacell is the \textbf{nucleus}, a huge
+boustrophedonic glider loop with a period of exactly $2^{29}$. The nucleus
+is populated by over three million gliders, which together encode all of
+the construction recipes along with the lookup table for the metacell's rule.
 
 %%%%%%%%%%%%%%%%%%%%%
 \section{Memory Tape}
