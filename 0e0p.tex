@@ -12,8 +12,13 @@
 \vspace*{0.4in}
 
 
-\noindent Nothing yet.
+\noindent The previous chapter introduced universal construction and presented
+several adjustable spaceships using these techniques. This chapter explores a
+more complex application of universal construction: a self-reproducing cell
+which interacts with its neighbours to emulate Conway's Game of Life or a
+different cellular automaton on a much larger and slower scale.
 
+% TODO include more introductory text here.
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 \section{Rule Emulation}
@@ -58,7 +63,7 @@ specially chosen such that the following function is injective:
 
 $$ H : \{ 0, 7 \}^9 \rightarrow \{ 0, 1, 2, 3, 4, 5, 6 \}^4 $$
 
-% ensure no page break between declaration and definition
+% TODO ensure no page break between declaration and definition
 
 $$ \begin{pmatrix}
 a_{11} & a_{12} & a_{13} \\
@@ -123,7 +128,9 @@ regulating the metacell's lifecycle and computing the state of the metacell
 based on the inputs from the four neighbouring cells. The kernel also contains
 an output path, shown in crimson in Figure~\ref{fig:0e0p_schematic}, which
 can connect to one of the four construction arms (violet, dashed) or to the
-input spiral arm of one of the four neighbours.
+input spiral arm of one of the four neighbours. During the operation of the
+metacell, the glider stream is redirected between the different possible
+outputs by deleting Snarks.
 
 The largest region of the metacell is the \textbf{nucleus}, a huge
 boustrophedonic glider loop with a period of exactly $2^{29}$. The nucleus
