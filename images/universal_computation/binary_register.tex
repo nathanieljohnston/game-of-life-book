@@ -1,0 +1,96 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\begin{document}
+	\begin{tikzpicture}%
+		\node[inner sep=0pt,anchor=south west] (br) at (0,0) {\includegraphics[width=12cm]{binary_register.png}};
+		
+		% BORDER
+		\draw[gridgray] (0,0) rectangle (12,10.35);
+		
+		% ZOOM BOX BOATS
+			\newcommand\smlx{2.52}
+			\newcommand\smrx{\smlx+0.4}
+			\newcommand\smby{9.25}
+			\newcommand\smty{\smby+0.4}
+			
+			\newcommand\bglx{7.5}
+			\newcommand\bgrx{\bglx+4}
+			\newcommand\bgty{9.85}
+			\newcommand\bgby{\bgty-4}
+			
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
+			
+			\node[inner sep=0pt,anchor=north west] (zoom1) at (\bglx,\bgty) {\includegraphics[width=4cm]{binary_register_zoom.png}};
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (\smrx,\smty) -- (\bglx,\bgty) -- (\bglx,\bgby) -- (\smlx,\smby) -- (\smrx,\smby) -- cycle;
+			
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
+			
+			%\node[inner sep=0pt] (zoom1_3x) at (3.35,7.95) {\includegraphics[width=0.21cm]{../mag.png} \footnotesize 8x};
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\smlx,\smty) rectangle (\smrx,\smby);
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
+			
+			\newcommand\thskp{0.078}
+			\draw[gray] (\bglx+0.5,\bgty) node[anchor=north west] {\footnotesize \texttt{3065 = 101111111001}${}_{\text{\texttt{2}}}$};
+			\draw[gray] (\bglx+1.71,\bgty-0.4) node[anchor=north west] {\scriptsize \texttt{$\cdots$8\hspace{\thskp em}7\hspace{\thskp em}6\hspace{\thskp em}5\hspace{\thskp em}4\hspace{\thskp em}3\hspace{\thskp em}{\color{dred!50!white}2\hspace{\thskp em}1}\hspace{\thskp em}0}};
+			
+			\draw[gray] (11.05,6.3) node[anchor=north east] {\scriptsize \texttt{0}};
+			\draw[dred,opacity=0.5] (10.75,6.6) node[anchor=north east] {\scriptsize \texttt{1}};
+			\draw[dred,opacity=0.5] (10.45,6.9) node[anchor=north east] {\scriptsize \texttt{2}};
+			\draw[gray] (10.15,7.2) node[anchor=north east] {\scriptsize \texttt{3}};
+			\draw[gray] (9.85,7.5) node[anchor=north east] {\scriptsize \texttt{4}};
+			\draw[gray] (9.55,7.8) node[anchor=north east] {\scriptsize \texttt{5}};
+			\draw[gray] (9.25,8.1) node[anchor=north east] {\scriptsize \texttt{6}};
+			\draw[gray] (8.95,8.4) node[anchor=north east] {\scriptsize \texttt{7}};
+			\draw[gray] (8.65,8.7) node[anchor=north east] {\scriptsize \texttt{8}};
+			\draw[gray] (8.35,9) node[anchor=north east] {\scriptsize \texttt{9}};
+			\draw[dred,opacity=0.5] (8.05,9.3) node[anchor=north east] {\scriptsize \texttt{10}};
+			\fill[white] (7.4,9.23) rectangle (7.6,9.57);
+			\draw[gray] (7.75,9.6) node[anchor=north east] {\scriptsize \texttt{11}};
+		% END ZOOM BOX BOATS
+		
+		% CIRCLE THE SLIDING BLOCK
+		\draw[white,line width=2pt,opacity=0.6](10.758,7.345) circle (0.15);
+		\draw[redback2,line width=0.8pt](10.758,7.345) circle (0.15);
+		
+		% Z OUT
+		\newcommand\zoutx{11.25}
+		\newcommand\zouty{2.06}
+		\draw[gray] (\zoutx,\zouty) node[rotate=45] {\tiny \texttt{Z}};
+		\draw[color=gray,-stealth] (\zoutx-0.15,\zouty-0.3) -- (\zoutx+0.35,\zouty+0.2);
+		
+		% NZ OUT
+		\newcommand\nzoutx{11.565}
+		\newcommand\nzouty{1.745}
+		\draw[gray] (\nzoutx+0.15,\nzouty-0.15) node[rotate=45] {\tiny \texttt{NZ}};
+		\draw[color=gray,-stealth] (\nzoutx-0.15,\nzouty-0.3) -- (\nzoutx+0.35,\nzouty+0.2);
+		
+		% TDEC
+		\newcommand\tdoutx{11.75}
+		\newcommand\tdouty{1.05}
+		\draw[gray] (\tdoutx-0.14,\tdouty-0.16) node[rotate=-45] {\tiny \texttt{TDEC}};
+		\draw[color=gray,-stealth] (\tdoutx+0.15,\tdouty-0.3) -- (\tdoutx-0.35,\tdouty+0.2);
+		
+		% READ
+		\newcommand\reoutx{11.03}
+		\newcommand\reouty{0.4}
+		\draw[gray] (\reoutx-0.14,\reouty-0.16) node[rotate=-45] {\tiny \texttt{READ}};
+		\draw[color=gray,-stealth] (\reoutx+0.15,\reouty-0.3) -- (\reoutx-0.35,\reouty+0.2);
+		
+		% SET
+		\newcommand\seoutx{5.03}
+		\newcommand\seouty{0.4}
+		\draw[gray] (\seoutx-0.14,\seouty-0.16) node[rotate=-45] {\tiny \texttt{SET}};
+		\draw[color=gray,-stealth] (\seoutx+0.15,\seouty-0.3) -- (\seoutx-0.32,\seouty+0.17);
+		
+		% INC
+		\newcommand\inoutx{0.13}
+		\newcommand\inouty{2.46}
+		\draw[gray] (\inoutx+0.15,\inouty-0.15) node[rotate=45] {\tiny \texttt{INC}};
+		\draw[color=gray,-stealth] (\inoutx-0.08,\inouty-0.23) -- (\inoutx+0.3,\inouty+0.15);
+	\end{tikzpicture}
+\end{document}
