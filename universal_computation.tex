@@ -360,7 +360,7 @@ The four actions available to this binary register are a bit more abstract than 
 
 Unlike a simple sliding block register, where there's no way to damage the mechanism by sending action signals to it, there are indeed ways to program a binary register that will cause it to explode catastrophically. In particular, if you send a \texttt{SET} action while there's already a \texttt{1} stored at the current read head location, it will cause irrecoverable damage. There's no built-in safety mechanism to prevent this, but this problem can easily be avoided by always sending a \texttt{READ} signal just before any \texttt{SET} signal.
 
-We use \texttt{Bn} to denote the \texttt{n}-th binary register, (where we start counting at \texttt{n = 0}) just like we use \texttt{Un} to denote the \texttt{n}-th sliding block register. To illustrate how to make use of these actions to perform bitwise operations, APGsembly~\ref{apg:store_139} shows how to store the value $139 = 10001011_2$ in a binary register \texttt{B0}.\footnote{The subscript ``$2$'' indicates that we are writing the number in binary.} Another way of storing the value $139$ in a binary register would be to change the appropriate line of the APGsembly header to \texttt{\#REGISTERS \{"B0":[0,'11010001']\}}. However, the header-based method only works if you want to set \texttt{B0} to $139$ at the start of the computation and not partway through it.
+We use \texttt{Bn} to denote the \texttt{n}-th binary register (where we start counting at \texttt{n = 0}), just like we use \texttt{Un} to denote the \texttt{n}-th sliding block register. To illustrate how to make use of these actions to perform bitwise operations, APGsembly~\ref{apg:store_139} shows how to store the value $139 = 10001011_2$ in a binary register \texttt{B0}.\footnote{The subscript ``$2$'' indicates that we are writing the number in binary.} Another way of storing the value $139$ in a binary register would be to change the appropriate line of the APGsembly header to \texttt{\#REGISTERS \{"B0":[0,'11010001']\}}. However, the header-based method only works if you want to set \texttt{B0} to $139$ at the start of the computation and not partway through it.
 % NJ question for Dave: Is the #REGISTERS syntax for the B0 register above correct?
 
 \begin{apgsembly}
@@ -608,10 +608,72 @@ We can thus now multiply a binary register by $10$ just as quickly and easily as
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%   SECTION: DECIMAL PRINTER
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{A Decimal Printer}\label{sec:decimal_printer}
+\section{A Character Printer}\label{sec:decimal_printer}
 
-% NJ: We need an explanation of how the decimal printer works here. I'll leave this to Dave.
+We demonstrate how to construct a component that is capable of printing any characters (e.g., digits or letters) of our choosing, by placing blocks in empty space at its current cursor position. Fortunately, we have already seen most of the reactions that we need to assemble a printer of this type. Very much along the lines of the unary sliding-block register and the binary tape register in previous sections, a printer needs to use a variant of slide gun technology to move some kind of placeholder object (a block) that marks the current cursor position. Furthermore, it needs to be able to optionally place other objects (more blocks) nearby to serve as the pixels in printed characters.
 
+In order to make our printer somewhat simpler to construct, we will have it move and position blocks via slow salvos like the ones that we introduced back in Section~\ref{sec:slow_salvo}. Indeed, doing so lets us not have to worry about the precise timing of the gliders that we use to move and duplicate blocks---we just have to position them correctly (which is trivial via an array of edge-shooting Herschel conduits\footnote{This is the same technique that we used to construct the binary register in Figure~\ref{fig:binary_register}, which has a long diagonal line of $26$~edge shooters along its northeast edge.}). One particular salvo for placing a pixel block is displayed in Figure~\ref{fig:char_printer_salvos}(a). While this salvo is not quite slow (the first $3$ of its $7$ gliders must be synchronized, and the $4$th glider must have the correct mod~$8$ timing), it has the added benefit of being unidirectional.
+
+Similarly, Figure~\ref{fig:char_printer_salvos}(b) shows a 14-glider unidirectional slow salvo that pushes the cursor block 32 full diagonals farther away from the glider source. Importantly, this cursor-pushing reaction can be used regardless of whether or not the pixel-placing reaction was used, since the pixel is placed in a location that is never touched by the cursor-pushing reaction.
+
+\begin{figure}[!htb]
+	\centering
+	\begin{subfigure}{\textwidth}
+		\centering
+		\embedlink{char_printer_place_pixel}{\vcenteredhbox{\patternimg{0.076}{char_printer_place_pixel_0}}} \vcenteredhbox{\genarrow{138}} \raisebox{-0.48\height}{\begin{tikzpicture}[scale=0.5, every node/.style={transform shape}]%
+			\node[inner sep=0pt,anchor=south west] at (0,0) {\patternlink{char_printer_place_pixel}{\patternimg{0.152}{char_printer_place_pixel_138}}};
+			
+			\colorletternode{green}{4.1}{3.27}{1}
+			\colorletternode{green}{1.82}{3.62}{2}
+			\colorletternode{green}{0.93}{4.8}{3}
+			\end{tikzpicture}} \vcenteredhbox{\gliderarrow{3}} \patternlink{char_printer_place_pixel}{\vcenteredhbox{\patternimg{0.076}{char_printer_place_pixel_141}}}
+		\caption{A $7$-glider salvo that uses $4$ synchronized gliders and then $3$ slow gliders to create a far-away block, while only temporarily disturbing the target (cursor) block.}\label{fig:char_printer_place_pixel}
+	\end{subfigure}\\[0.2cm]
+	\begin{subfigure}{\textwidth}
+		\centering
+		\raisebox{-0.48\height}{\begin{tikzpicture}[scale=0.5, every node/.style={transform shape}]%
+			\node[inner sep=0pt,anchor=south west] at (0,0) {\embedlink{char_printer_push_cursor}{\patternimg{0.234}{char_printer_push_cursor_0}}};
+			
+			\colorletternode{green}{4.55}{5.7}{1}
+			\colorletternode{green}{3.7}{4.75}{2}
+			\colorletternode{green}{3.05}{4.45}{3}
+			\colorletternode{green}{0.55}{3.1}{4}
+			\colorletternode{green}{1.9}{3.8}{5}
+			\colorletternode{green}{2.9}{6.05}{6}
+			\colorletternode{green}{2.7}{6.7}{7}
+			\end{tikzpicture}} \vcenteredhbox{\gliderarrow{7}} \raisebox{-0.48\height}{\begin{tikzpicture}[scale=0.5, every node/.style={transform shape}]%
+			\node[inner sep=0pt,anchor=south west] at (0,0) {\patternlink{char_printer_push_cursor}{\patternimg{0.234}{char_printer_push_cursor_7}}};
+			
+			\colorletternode{green}{6.05}{4.25}{1}
+			\colorletternode{green}{5.4}{4.5}{2}
+			\colorletternode{green}{4.85}{2.9}{3}
+			\colorletternode{green}{4.8}{4.55}{4}
+			\colorletternode{green}{3.2}{5}{5}
+			\colorletternode{green}{3.05}{5.95}{6}
+			\colorletternode{green}{3.1}{3.7}{7}
+			\end{tikzpicture}} \vcenteredhbox{\gliderarrow{7}} \patternlink{char_printer_push_cursor}{\vcenteredhbox{\patternimg{0.117}{char_printer_push_cursor_14}}}
+		\caption{A $14$-glider p$2$ slow salvo that pushes the target (cursor) block $32$~full diagonals away, while avoiding the location of the hypothetical printed pixel from~(a).}\label{fig:char_printer_push_cursor}
+	\end{subfigure}
+	\caption{Glider salvos that can be used to print block pixels at a separation of $32$~full diagonals.}\label{fig:char_printer_salvos}
+\end{figure}
+
+To construct our printer, we simply use one cursor block for each pixel high that the printed characters will be. For example, if we wish to print characters that are $15$~pixels tall, we use $15$ cursor blocks, separated from each other by $32$ full diagonals, and we aim the pixel-placing and cursor-pushing glider salvos from Figure~\ref{fig:char_printer_salvos} at each of them.
+
+To create those salvos in a particular row, we just use the stable circuitry like Snarks, syringes, and edge-shooting Herschel conduits that we saw in Chapter~\ref{chp:stationary_circuitry}. If we want the next pixel in the current row to be empty, we just push the cursor block by creating the glider salvo from Figure~\ref{fig:char_printer_salvos}(b). If we want to print the next pixel in the current row, we instead create the salvo from Figure~\ref{fig:char_printer_salvos}(a) and then trigger the cursor-pushing mechanism. A device called a \emph{row printer}\index{row printer} that implements both of these operations is displayed in Figure~\ref{fig:row_printer}.
+
+\begin{figure}[!htb]
+	\centering
+	\embedlink{row_printer}{\includegraphics[width=\textwidth]{universal_computation/row_printer.pdf}}
+	\caption{A \emph{row printer} that can be used to either push a cursor block forward by $32$ full diagonals (highlighted in \bgbox{orangeback2}{orange}), or print a pixel block (highlighted in \bgbox{greenpastel}{green}) and \emph{then} push the cursor block.}\label{fig:row_printer}
+\end{figure}
+
+The end result of using (many copies of) this row printer is that each row always advances its cursor block by the same distance ($32$ full diagonals), regardless of whether or not a pixel has been placed. Signals for all the rows propagate through the rectangular area that makes up the "lookup table" for the printer. When the circuit stabilizes again, the effect is that all the pixels encoded by the positions of merge circuits in the lookup table have been written out to the Life universe in the form of appropriately-spaced blocks.
+
+% This very simple printer design adapts readily to any character height or width, and any number of characters. There's no requirement that all characters be the same width; technically they're all the same height, though they may appear to be different heights if some characters are padded with "0" pixels at the top or bottom.
+
+% Next up: show a completed printer, and how the arrangmenet of the circuits corresponds to the printed digits, and mention the automatic compilation script.
+
+% This next bit might need to be rewritten a bit, depending on what Dave does with his printer.
 While APGsembly requires us to explicitly specify which digit we want to print (e.g., we cannot print the contents of a sliding block register \texttt{U0} via the command \texttt{OUTPUT U0}), we can get around this limitation by repeatedly \texttt{TDEC}ing that register to determine its value, and then printing out that value. This idea is made explicit by APGsembly~\ref{alg:apgsembly_print_sbr}. Note that this APGsembly requires that \texttt{U0} is storing a value between $0$ and $9$, inclusive, but it could be modified straightforwardly to handle any fixed upper bound just by adding additional \texttt{TDEC} statements. It is even possible to print the contents of a sliding block register regardless of how many decimal digits it has, but this is much more complicated---see Exercise~\ref{exer:universal_computation_print_register}.
  
 \begin{apgsembly}
@@ -642,7 +704,6 @@ While APGsembly requires us to explicitly specify which digit we want to print (
 	\end{algorithmic}
 	\caption{APGsembly code for printing the contents of the sliding block register \texttt{U0} (which is pre-loaded with a value of \texttt{7} here) and setting \texttt{U0 = 0} at the same time.}\label{alg:apgsembly_print_sbr}
 \end{apgsembly}
-
 
 
 
@@ -1186,6 +1247,8 @@ The pattern that results from compiling this APGsembly code is displayed in Figu
 \section*{Notes and Historical Remarks}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% Mostly just random snippets in this section so far. Will organize once the rest of the chapter is done.
+
 Conway's and Gosper's groups showed in the early 1970s that it was theoretically possible to assemble a Life pattern to complete any computational task that a Turing machine could accomplish \cite{BCG82}. But it wasn't until almost three decades later that Life technology advanced far enough to allow for universal-computer patterns that were small enough to be simulated on a desktop computer: Paul Rendell's Turing machines in 2000--2011, Paul Chapman's Minsky Register Machines in 2002, Adam~P.~Goucher's Spartan universal computer-constructor in 2009 \cite{Gou10} (which was the basis for almost all of the components that we investigated in this chapter), and Nicolas Loizeau's 8-bit programmable computer in 2016.
 
 Each of these computational devices used different Life mechanisms to implement logic gates, memory, program storage, and so on.
@@ -1195,6 +1258,10 @@ Each of these computational devices used different Life mechanisms to implement 
 % Mention phi calculator that came before pi calculator, to put it into context. NJ question: Do we know exactly what algorithm the phi calc used? I probably don't care, but I think it was simpler than the pi alg.
 
 % The original $\pi$ calculator was constructed by Adam P. Goucher in February 2010. The one we construct here uses all of the same ideas and algorithms, but with some slightly newer technology to reduce its size.
+
+% When the phi and pi calculators first appeared in 2010 the printer component was something of a Life engineering marvel. Ticker-tape patterns had previously been constructed, which displayed pre-set messages as patterns of spaceships, and there were also various mechanisms that produced a changing display of stationary large large digits.* The new printer simply dropped blocks into empty space at its current cursor position to make readable digits, and the blocks stayed out of the way of future digits printed farther along.
+
+%This recipe (2 recipes used in character printer) is part of a database of slow-salvo recipes compiled for the 0E0P metacell project (which we'll cover in detail in Chapter 12) by an automated search script. There are many similar reactions with approximately the same cost in gliders.
 
 
 

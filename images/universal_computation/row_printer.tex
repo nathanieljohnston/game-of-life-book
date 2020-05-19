@@ -1,0 +1,54 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\begin{document}
+	\begin{tikzpicture}%
+		\node[inner sep=0pt,anchor=south west] (rp) at (0,0) {\includegraphics[width=12cm]{row_printer.png}};
+		
+		% BORDER
+		\draw[gridgray] (0,0) rectangle (12,10.3);
+		
+		% ZOOM BOX
+			\newcommand\smlx{11.3}
+			\newcommand\smrx{\smlx+0.65}
+			\newcommand\smby{0.8}
+			\newcommand\smty{\smby+0.65}
+			
+			\newcommand\bglx{7.5}
+			\newcommand\bgrx{\bglx+4}
+			\newcommand\bgty{9.85}
+			\newcommand\bgby{\bgty-4}
+			
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
+			
+			\node[inner sep=0pt,anchor=north west] (zoom1) at (\bglx,\bgty) {\includegraphics[width=4cm]{row_printer_blocks.png}};
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (\smrx,\smty) -- (\bgrx,\bgty) -- (\bgrx,\bgby) -- (\bglx,\bgby) -- (\smlx,\smby)-- (\smlx,\smty) -- cycle;
+			
+			%\node[inner sep=0pt] (zoom1_3x) at (3.35,7.95) {\includegraphics[width=0.21cm]{../mag.png} \footnotesize 8x};
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\smlx,\smty) rectangle (\smrx,\smby);
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
+			
+			\newcommand\thskp{0.078}
+			\draw[gray] (\bglx+1.12,\bgty-1.05) node[anchor=north west] {\footnotesize \texttt{CURSOR}};
+			\draw[gren,opacity=0.5] (\bglx+2.45,\bgty-1) node[anchor=north west] {\footnotesize \texttt{PRINT}};
+			\draw[dred,opacity=0.5] (\bglx+2.6,\bgty-3.07) node[anchor=north west] {\footnotesize \texttt{PUSH}};
+		% END ZOOM BOX
+		
+		% PRINT PIXEL, THEN PUSH CURSOR
+		\newcommand\ppx{0.5}
+		\newcommand\ppy{9.08}
+		\draw[gray] (\ppx+0.35,\ppy-0.15) node[rotate=45,align=left] {\tiny\texttt{PRINT PIXEL,}\\[-0.2cm]\tiny\texttt{THEN PUSH CURSOR}};
+		\draw[color=gray,-stealth] (\ppx-0.38,\ppy-0.53) -- (\ppx+0.6,\ppy+0.45);
+		
+		% JUST PUSH CURSOR
+		\newcommand\jmx{1.45}
+		\newcommand\jmy{3.6}
+		\draw[gray] (\jmx+0.15,\jmy-0.15) node[rotate=45,align=left] {\tiny\texttt{JUST PUSH CURSOR}};
+		\draw[color=gray,-stealth] (\jmx-0.54,\jmy-0.69) -- (\jmx+0.75,\jmy+0.6);
+	\end{tikzpicture}
+\end{document}
