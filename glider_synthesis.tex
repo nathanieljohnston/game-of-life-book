@@ -78,17 +78,18 @@ To begin down this road, we look at the simplest type of glider synthesis we can
 	\end{center}
 \end{table}
 
-While the objects that we can create with just two gliders are not particularly exciting, many of them are essential building blocks of complex patterns, such as eater~1 and the B-heptomino (which we recall evolves into a Herschel). It is also worth pointing out that the two collisions that result in a single glider can in fact sometimes be useful. In particular, the one of these collisions that is on the left in Table~\ref{tab:2_glider_synth} is called the \emph{kickback reaction}\index{kickback reaction}, and it is useful for that fact that the output glider travels in a different direction than either of the two input gliders. This feature can help us navigate gliders around tight spots and simplify many complicated glider syntheses (see Exercise~\ref{exer:glider_synth_two_directions}).
+% TODO: Highlight two named reactions with a color a-la chapter 2
 
-% TODO: Blue trails on tabl2 and rotate 2-glider-producing-single-glider collisions
+While the objects that we can create with just two gliders are not particularly exciting, many of them are essential building blocks of complex patterns, such as eater~1 and the B-heptomino (which we recall evolves into a Herschel). It is also worth pointing out that the two collisions that result in a single glider can in fact sometimes be useful. In particular, the one of these collisions that is on the left in Table~\ref{tab:2_glider_synth} is called the \emph{kickback reaction}\index{kickback reaction}, and it is useful for that fact that the output glider travels in a different direction than either of the two input gliders. This feature can help us navigate gliders around tight spots and simplify many complicated glider syntheses (see Exercise~\ref{exer:glider_synth_two_directions}, for example).
 
 
 \section{Syntheses Involving Three or More Gliders}\label{sec:3glidersynth}
 
-When moving from two-glider syntheses to three-glider syntheses, things become much more complicated---it is no longer possible to list all collisions and catalog their output, since there are far too many possibilities. To see why this is, recall that the two-glider mess takes 530 generations to stabilize, and we could fire a third glider from dozens of different positions and hundreds of different timings to collide with that chaotic mess.
+When moving from two-glider syntheses to three-glider syntheses, things become much more complicated---it is no longer possible to list all collisions and catalog their output, since there are far too many possibilities. To see why this is, recall that the two-glider mess takes 530 generations to stabilize, and we could fire a third glider from dozens of different positions and hundreds of different timings to collide with that chaotic mess. Even worse, that two-glider mess produces multiple gliders, which we could hit with the third glider after an arbitrarily long period of time so as to synthesize a new object as far away as we like.
 
-On the other hand, being unable to catalog all of these three-glider collisions is perhaps not too much of a loss, since we expect that the majority of them would lead to uninteresting combinations of blocks, blinkers, and other common objects that we already know how to synthesize with just two gliders. Some of the more interesting three-glider syntheses that are known are presented in Table~\ref{tab:3_glider_synth}. However, we do stress that this table is not complete: there are known 3-glider syntheses not presented in this table, and it is entirely possible that there are simple objects with three-glider syntheses that have not yet been found.\footnote{As an example, the pentadecathlon was not known to be synthesizable with only three gliders until Heinrich Koenig found the synthesis given in Table~\ref{tab:3_glider_synth} in April 1997. Similarly, it was not known how to create \emph{any} infinitely-growing object using just $3$ gliders until Michael Simkin found the displayed $3$-glider collision in October 2014.}
+On the other hand, being unable to catalog all of these three-glider collisions is perhaps not too much of a loss, since we expect that the majority of them would lead to uninteresting combinations of blocks, blinkers, and other common objects that we already know how to synthesize with just two gliders. Some of the more interesting three-glider syntheses that are known are presented in Table~\ref{tab:3_glider_synth}. However, we do stress that this table is not complete: there are known 3-glider syntheses not presented in this table, and it is entirely possible that there are simple objects with three-glider syntheses that have not yet been found.\footnote{For example, the pentadecathlon and switch engine were not known to be synthesizable via only three gliders until the syntheses given in Table~\ref{tab:3_glider_synth} were found by Heinrich Koenig and Luka Okanishi in April 1997 and March 2017, respectively. Similarly, it was not known how to create \emph{any} infinitely-growing object using just $3$ gliders until Michael Simkin found a $3$-glider collision that produces a glider-producing switch engine in October 2014.}
 
+% https://conwaylife.com/forums/viewtopic.php?f=&p=41558#p41557
 \begin{table}[!htp]\vspace*{0.05in}
 	\begin{center}		
 		\begin{tabular}{Sc Sl}
@@ -127,6 +128,7 @@ Glider syntheses of spaceships (such as the three-glider syntheses of the lightw
 	\caption{A ten-glider synthesis of a Gosper glider gun, which is composed of two syntheses of blocks (highlighted with an \bgbox{aquaback}{aqua background}) and two syntheses of queen bees. The queen bee synthesis with the \bgbox{magentaback}{magenta background} is the same as the one with the \bgbox{yellowback2}{yellow background}, but delayed by 20 generations in order to make the queen bees collide in their proper phases.}\label{fig:gosper_glider_synth}
 \end{figure}
 
+% TODO: This paragraph is out of date
 We have a fairly wide variety of objects that we can now synthesize with gliders, but there are still some rather fundamental objects that are missing from our lists of $2$- and $3$-glider syntheses. For example, if we wanted to synthesize a twin bees gun\index{twin bees gun}, we would first have to know how to synthesize twin bees, which (as far as we know) requires at least $4$~gliders. Similarly, even though we can use $3$~gliders to synthesize a glider-producing switch engine (plus lots of debris), we haven't yet seen how to synthesize a switch engine by itself. Again, as far as we know this requires at least $4$~gliders.
 
 It is also sometimes beneficial to be aware of glider syntheses that make use of more gliders, even when syntheses involving fewer gliders exist. For example, the $3$-glider synthesis of the heavyweight spaceship given in Table~\ref{tab:3_glider_synth} is actually quite difficult to make use of, since the two gliders coming in from the top-right are so close together that they cannot be generated by adjacent Gosper glider guns. Thus we often prefer glider syntheses that use widely-spaced gliders, even if that comes at the expense of a larger number of gliders. In particular, there are $4$-glider syntheses of a heavyweight spaceship that consist of one glider coming from each direction, and thus are often much easier to make use of. We present a summary of useful syntheses that involve $4$ or more gliders in Table~\ref{tab:other_glider_synth}.
@@ -154,8 +156,6 @@ It is also sometimes beneficial to be aware of glider syntheses that make use of
 		\caption{Some useful glider syntheses involving $4$ or more gliders. Most of these syntheses have been known for a long time, but the eater~2 synthesis was found by Tanner Jacobi in November 2014 (previously no synthesis with fewer than $17$ gliders was known, though there were syntheses of slight variants of eater~2 with as few as $8$ gliders).}\label{tab:other_glider_synth}
 	\end{center}
 \end{table}
-
-% ONE MORE SWITCH ENGINE SYNTH IN RLE FILE NOT DISPLAYED HERE DUE TO NO ROOM
 
 
 \section{Incremental Syntheses}\label{sec:incremental_synthesis}
@@ -283,6 +283,7 @@ Synthesizing the Coe ship is slightly less straightforward, since we have not ye
 \end{figure}
 
 
+% TODO: Most of this is out of date now
 \subsection{Corderships}\label{sec:incremental_schick}\index{Cordership}
 
 Corderships form another family of objects that are prime candidates for glider synthesis, since they are also made up of several easily-synthesized components---switch engines.\index{switch engine} The difficult part of synthesizing a Cordership is that the switch engines have to be synchronized with each other, making an incremental synthesis difficult, and each switch engine requires at least four gliders to synthesize. Thus the $10$-engine Cordership from Figure~\ref{fig:10_engine_cordership} would require at least $40$ gliders to synthesize, and the $6$ front and middle switch engines would have to be constructed at almost the exact same time, as would the $4$ rear switch engines.\footnote{Despite these obstacles, Stephen Silver created a $60$-glider synthesis of the $10$-engine Cordership in 1998.}

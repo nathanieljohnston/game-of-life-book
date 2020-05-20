@@ -6,17 +6,17 @@
 		\node[inner sep=0pt,anchor=south west] (rp) at (0,0) {\includegraphics[width=12cm]{row_printer.png}};
 		
 		% BORDER
-		\draw[gridgray] (0,0) rectangle (12,10.3);
+		\draw[gridgray] (0,0) rectangle (12,9.85);
 		
 		% ZOOM BOX
-			\newcommand\smlx{11.3}
-			\newcommand\smrx{\smlx+0.65}
-			\newcommand\smby{0.8}
-			\newcommand\smty{\smby+0.65}
+			\newcommand\smlx{11.2}
+			\newcommand\smrx{\smlx+0.75}
+			\newcommand\smby{0.34}
+			\newcommand\smty{\smby+0.75}
 			
-			\newcommand\bglx{7.5}
+			\newcommand\bglx{7.55}
 			\newcommand\bgrx{\bglx+4}
-			\newcommand\bgty{9.85}
+			\newcommand\bgty{9.4}
 			\newcommand\bgby{\bgty-4}
 			
 			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
@@ -35,19 +35,19 @@
 			
 			\newcommand\thskp{0.078}
 			\draw[gray] (\bglx+1.12,\bgty-1.05) node[anchor=north west] {\footnotesize \texttt{CURSOR}};
-			\draw[gren,opacity=0.5] (\bglx+2.45,\bgty-1) node[anchor=north west] {\footnotesize \texttt{PRINT}};
+			\draw[gren,opacity=0.5] (\bglx+2.35,\bgty-0.95) node[anchor=north west] {\footnotesize \texttt{PRINT}};
 			\draw[dred,opacity=0.5] (\bglx+2.6,\bgty-3.07) node[anchor=north west] {\footnotesize \texttt{PUSH}};
 		% END ZOOM BOX
 		
 		% PRINT PIXEL, THEN PUSH CURSOR
-		\newcommand\ppx{0.5}
-		\newcommand\ppy{9.08}
+		\newcommand\ppx{0.45}
+		\newcommand\ppy{6.46}
 		\draw[gray] (\ppx+0.35,\ppy-0.15) node[rotate=45,align=left] {\tiny\texttt{PRINT PIXEL,}\\[-0.2cm]\tiny\texttt{THEN PUSH CURSOR}};
 		\draw[color=gray,-stealth] (\ppx-0.38,\ppy-0.53) -- (\ppx+0.6,\ppy+0.45);
 		
 		% JUST PUSH CURSOR
 		\newcommand\jmx{1.45}
-		\newcommand\jmy{3.6}
+		\newcommand\jmy{4.8}
 		\draw[gray] (\jmx+0.15,\jmy-0.15) node[rotate=45,align=left] {\tiny\texttt{JUST PUSH CURSOR}};
 		\draw[color=gray,-stealth] (\jmx-0.54,\jmy-0.69) -- (\jmx+0.75,\jmy+0.6);
 	\end{tikzpicture}

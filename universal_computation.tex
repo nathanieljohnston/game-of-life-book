@@ -612,7 +612,7 @@ We can thus now multiply a binary register by $10$ just as quickly and easily as
 
 We demonstrate how to construct a component that is capable of printing any characters (e.g., digits or letters) of our choosing, by placing blocks in empty space at its current cursor position. Fortunately, we have already seen most of the reactions that we need to assemble a printer of this type. Very much along the lines of the unary sliding-block register and the binary tape register in previous sections, a printer needs to use a variant of slide gun technology to move some kind of placeholder object (a block) that marks the current cursor position. Furthermore, it needs to be able to optionally place other objects (more blocks) nearby to serve as the pixels in printed characters.
 
-In order to make our printer somewhat simpler to construct, we will have it move and position blocks via slow salvos like the ones that we introduced back in Section~\ref{sec:slow_salvo}. Indeed, doing so lets us not have to worry about the precise timing of the gliders that we use to move and duplicate blocks---we just have to position them correctly (which is trivial via an array of edge-shooting Herschel conduits\footnote{This is the same technique that we used to construct the binary register in Figure~\ref{fig:binary_register}, which has a long diagonal line of $26$~edge shooters along its northeast edge.}). One particular salvo for placing a pixel block is displayed in Figure~\ref{fig:char_printer_salvos}(a). While this salvo is not quite slow (the first $3$ of its $7$ gliders must be synchronized, and the $4$th glider must have the correct mod~$8$ timing), it has the added benefit of being unidirectional.
+In order to make our printer somewhat simpler to construct, we will have it move and position blocks via slow salvos like the ones that we introduced back in Section~\ref{sec:slow_salvo}. Indeed, doing so lets us not have to worry about the precise timing of the gliders that we use to move and duplicate blocks---we just have to position them correctly (which is trivial via an array of edge-shooting Herschel conduits\footnote{This is the same technique that we used to construct the binary register in Figure~\ref{fig:binary_register}, which has a long diagonal line of $26$~edge shooters along its northeast edge.}). One particular salvo for placing a pixel block is displayed in Figure~\ref{fig:char_printer_salvos}(a). While this salvo is not quite slow (the first $3$ of its $7$ gliders must be synchronized, and the $4$th glider must have the correct mod~$8$ timing), it has the added benefit of being unidirectional.\footnote{We have already seen the slow portion of this salvo---the first slow glider is the $(2,1)$ block pull from Figure~\ref{fig:glider_block_move}, and the second and third gliders duplicate the block as in Figure~\ref{fig:slow_salvo_splitter}. The first four (synchronized) gliders just reposition the cursor block so that these later (slow) gliders duplicate it in the correct positions.}
 
 Similarly, Figure~\ref{fig:char_printer_salvos}(b) shows a 14-glider unidirectional slow salvo that pushes the cursor block 32 full diagonals farther away from the glider source. Importantly, this cursor-pushing reaction can be used regardless of whether or not the pixel-placing reaction was used, since the pixel is placed in a location that is never touched by the cursor-pushing reaction.
 
@@ -620,13 +620,13 @@ Similarly, Figure~\ref{fig:char_printer_salvos}(b) shows a 14-glider unidirectio
 	\centering
 	\begin{subfigure}{\textwidth}
 		\centering
-		\embedlink{char_printer_place_pixel}{\vcenteredhbox{\patternimg{0.076}{char_printer_place_pixel_0}}} \vcenteredhbox{\genarrow{138}} \raisebox{-0.48\height}{\begin{tikzpicture}[scale=0.5, every node/.style={transform shape}]%
-			\node[inner sep=0pt,anchor=south west] at (0,0) {\patternlink{char_printer_place_pixel}{\patternimg{0.152}{char_printer_place_pixel_138}}};
+		\embedlink{char_printer_place_pixel}{\vcenteredhbox{\patternimg{0.08}{char_printer_place_pixel_0}}} \vcenteredhbox{\genarrow{138}} \raisebox{-0.48\height}{\begin{tikzpicture}[scale=0.5, every node/.style={transform shape}]%
+			\node[inner sep=0pt,anchor=south west] at (0,0) {\patternlink{char_printer_place_pixel}{\patternimg{0.16}{char_printer_place_pixel_138}}};
 			
-			\colorletternode{green}{4.1}{3.27}{1}
-			\colorletternode{green}{1.82}{3.62}{2}
-			\colorletternode{green}{0.93}{4.8}{3}
-			\end{tikzpicture}} \vcenteredhbox{\gliderarrow{3}} \patternlink{char_printer_place_pixel}{\vcenteredhbox{\patternimg{0.076}{char_printer_place_pixel_141}}}
+			\colorletternode{green}{5.07}{0.84}{1}
+			\colorletternode{green}{5.75}{1.8}{2}
+			\colorletternode{green}{3.6}{1.95}{3}
+			\end{tikzpicture}} \vcenteredhbox{\gliderarrow{3}} \patternlink{char_printer_place_pixel}{\vcenteredhbox{\patternimg{0.08}{char_printer_place_pixel_141}}}
 		\caption{A $7$-glider salvo that uses $4$ synchronized gliders and then $3$ slow gliders to create a far-away block, while only temporarily disturbing the target (cursor) block.}\label{fig:char_printer_place_pixel}
 	\end{subfigure}\\[0.2cm]
 	\begin{subfigure}{\textwidth}
