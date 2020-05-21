@@ -1,0 +1,112 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\begin{document}
+	\begin{tikzpicture}%
+		\node[inner sep=0pt,anchor=south west] (rp) at (0,0) {\includegraphics[width=12cm]{abracadabra_printer.png}};
+		
+		% BORDER
+		\draw[gridgray] (0,0) rectangle (12,9.61318681319);
+		\clip (0,0) rectangle (12,9.61318681319);
+		
+		% ZOOM BOX
+			\newcommand\smlx{11.7}
+			\newcommand\smrx{\smlx+0.3}
+			\newcommand\smby{0}
+			\newcommand\smty{\smby+0.3}
+			
+			\newcommand\bglx{8.5}
+			\newcommand\bgrx{\bglx+3}
+			\newcommand\bgty{9.11318681319}
+			\newcommand\bgby{\bgty-3}
+			
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
+			
+			\node[inner sep=0pt,anchor=north west] (zoom1) at (\bglx,\bgty) {\includegraphics[width=3cm]{abracadabra_cursors.png}};
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (\smrx,\smty) -- (\bgrx,\bgty) -- (\bgrx,\bgby) -- (\bglx,\bgby) -- (\smlx,\smby)-- (\smlx,\smty) -- cycle;
+			
+			%\node[inner sep=0pt] (zoom1_3x) at (3.35,7.95) {\includegraphics[width=0.21cm]{../mag.png} \footnotesize 8x};
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\smlx,\smty) rectangle (\smrx,\smby);
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
+			
+			% CIRCLE THE CURSOR BLOCKS
+			\draw[white,line width=1.5pt,opacity=0.6](11.17,8.39) circle (0.1);
+			\draw[redback2,line width=0.6pt](11.17,8.39) circle (0.1);
+			\draw[white,line width=1.5pt,opacity=0.6](10.9,8.12) circle (0.1);
+			\draw[redback2,line width=0.6pt](10.9,8.12) circle (0.1);
+			\draw[white,line width=1.5pt,opacity=0.6](10.63,7.86) circle (0.1);
+			\draw[redback2,line width=0.6pt](10.63,7.86) circle (0.1);
+			\draw[white,line width=1.5pt,opacity=0.6](10.37,7.59) circle (0.1);
+			\draw[redback2,line width=0.6pt](10.37,7.59) circle (0.1);
+			\draw[white,line width=1.5pt,opacity=0.6](10.1,7.32) circle (0.1);
+			\draw[redback2,line width=0.6pt](10.1,7.32) circle (0.1);
+			\draw[white,line width=1.5pt,opacity=0.6](9.83,7.05) circle (0.1);
+			\draw[redback2,line width=0.6pt](9.83,7.05) circle (0.1);
+			\draw[white,line width=1.5pt,opacity=0.6](9.57,6.78) circle (0.1);
+			\draw[redback2,line width=0.6pt](9.57,6.78) circle (0.1);
+			\draw[white,line width=1.5pt,opacity=0.6](9.3,6.51) circle (0.1);
+			\draw[redback2,line width=0.6pt](9.3,6.51) circle (0.1);
+		% END ZOOM BOX
+		
+		% ZOOM BOX 2
+			\newcommand\bsmlx{6.47}
+			\newcommand\bsmrx{\bsmlx+0.25}
+			\newcommand\bsmby{0.92}
+			\newcommand\bsmty{\bsmby+0.25}
+			
+			\newcommand\bbglx{0.5}
+			\newcommand\bbgrx{\bbglx+2.5}
+			\newcommand\bbgty{3}
+			\newcommand\bbgby{\bbgty-2.5}
+			
+			\path[draw,gridgray,line width=0.45pt] (\bsmrx,\bsmty) -- (\bbgrx,\bbgty);
+			\path[draw,gridgray,line width=0.45pt] (\bsmlx,\bsmty) -- (\bbglx,\bbgty);
+			\path[draw,gridgray,line width=0.45pt] (\bsmlx,\bsmby) -- (\bbglx,\bbgby);
+			
+			\node[inner sep=0pt,anchor=north west] (zoom2) at (\bbglx,\bbgty) {\includegraphics[width=2.5cm]{abracadabra_splitter.png}};
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (\bsmrx,\bsmty) -- (\bbgrx,\bbgty) -- (\bbgrx,\bbgby) -- (\bbglx,\bbgby) -- (\bsmlx,\bsmby)-- (\bsmlx,\bsmty) -- cycle;
+			
+			%\node[inner sep=0pt] (zoom1_3x) at (3.35,7.95) {\includegraphics[width=0.21cm]{../mag.png} \footnotesize 8x};
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\bsmlx,\bsmty) rectangle (\bsmrx,\bsmby);
+			\draw[gridgray,line width=0.6pt] (\bbglx,\bbgty) rectangle (\bbgrx,\bbgby);
+			\path[draw,gridgray,line width=0.45pt] (\bsmrx,\bsmby) -- (\bbgrx,\bbgby);
+		% END ZOOM BOX 2
+		
+		% A IN
+		\newcommand\ax{1.65}
+		\newcommand\ay{9.3}
+		\draw[gray] (\ax,\ay-0.05) node[rotate=-45,align=left] {\tiny\texttt{A}};
+		\draw[color=gray,-stealth] (\ax-0.03,\ay+0.18) -- (\ax+0.25,\ay-0.1);
+		
+		% B IN
+		\newcommand\bx{1.26}
+		\newcommand\by{8.91}
+		\draw[gray] (\bx,\by-0.05) node[rotate=-45,align=left] {\tiny\texttt{B}};
+		\draw[color=gray,-stealth] (\bx-0.03,\by+0.18) -- (\bx+0.25,\by-0.1);
+		
+		% C IN
+		\newcommand\cx{0.9}
+		\newcommand\cy{8.55}
+		\draw[gray] (\cx,\cy-0.05) node[rotate=-45,align=left] {\tiny\texttt{C}};
+		\draw[color=gray,-stealth] (\cx-0.03,\cy+0.18) -- (\cx+0.25,\cy-0.1);
+		
+		% D IN
+		\newcommand\dx{0.54}
+		\newcommand\dy{8.19}
+		\draw[gray] (\dx,\dy-0.05) node[rotate=-45,align=left] {\tiny\texttt{D}};
+		\draw[color=gray,-stealth] (\dx-0.03,\dy+0.18) -- (\dx+0.25,\dy-0.1);
+		
+		% R IN
+		\newcommand\rx{0.15}
+		\newcommand\ry{7.8}
+		\draw[gray] (\rx,\ry-0.05) node[rotate=-45,align=left] {\tiny\texttt{R}};
+		\draw[color=gray,-stealth] (\rx-0.03,\ry+0.18) -- (\rx+0.25,\ry-0.1);
+	\end{tikzpicture}
+\end{document}
