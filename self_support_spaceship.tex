@@ -16,6 +16,8 @@
 
 We will cover this topic in much more depth in Chapter~\ref{chp:universal_construction}, but this chapter provides a good preview of the general idea. In particular, we will construct patterns that can reach out into a region of empty space and construct something there.
 
+% TODO: Talk about general structure of self-supporting spaceship a bit more first.
+
 
 % GO THROUGH SILVERFISH. Mention centipede and shield bug use same reaction (maybe in notes/history?)
 % Probably split into many sections
@@ -24,6 +26,7 @@ We will cover this topic in much more depth in Chapter~\ref{chp:universal_constr
 \section{The Silverfish}\label{sec:silverfish}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% TODO: Talk up front about how your goal is to turn this reaction into a 31c/240 spaceship
 Most self-supporting spaceships rely on a core reaction that moves an object forward with the help of another object that was in its path. One such reaction (simply called the \emph{$31c/240$~reaction}) is the one displayed in Figure~\ref{fig:31c_240_reaction}, in which a Herschel collides with a block in such a way that it moves forward by $31$~cells over the course of $240$ generations.\footnote{We saw another such reaction back in Figure~\ref{fig:17c45_reaction}. We explore the consequences of this reaction a bit later, in Section~\ref{sec:caterpillar}, since building a spaceship out of it is somewhat more technical than the reaction we will use here.} At the same time, the block is moved back by $22$~cells, a second block is created, and two gliders are released.\index{31c/240 reaction}
 
 \begin{figure}[!htb]
@@ -49,7 +52,6 @@ We call this pattern a \emph{forward rake}\index{forward rake} even though it is
 
 These rakes have one big limitation, however---we can only use them to place an output glider on every $31$st lane. If we want to make sure that a glider is fired on a \emph{particular} lane, we need a mechanism for moving the block trail (and thus any subsequent rakes) slightly forward or backward. Fortunately, this is also straightforward---the \emph{rephaser} displayed in Figure~\ref{fig:31c_240_rephaser} moves the block trails backward by $22$~cells (or equivalently, forward by $9$~cells) simply by having a Herschel burn through each trail in such a way that their output gliders annihilate one another. Importantly, since $\mathrm{gcd}(22,31) = 1$, we can use multiple copies of this rephaser so as to make the rakes output gliders on any lanes of our choosing.
 
-% TODO: Color the output lanes green to better highlight them maybe?
 \begin{figure}[!htb]
 	\centering
 	\begin{subfigure}{0.28\textwidth}
@@ -70,14 +72,51 @@ These rakes have one big limitation, however---we can only use them to place an 
 
 Fortunately, even though we now have $6$ block trails, the problem of constructing the blocks in front of the Herschels is not much trickier than it was when we just had $2$ block trails. Indeed, we can construct $4$ of these block trails simply via these rakes and some additional kickback reactions, as illustrated in Figure~\ref{fig:31c_240_track_builder}.
 
-% Main TODO here is to color various pieces of the figure according to which track they create.
 \begin{figure}[!htb]
 	\centering
-	\gridbox{0.5pt}{\patternimglink{0.363}{31c_240_track_builder}}
-	\caption{Track builder. Still lots to do here.}\label{fig:31c_240_track_builder}
+	\embedlink{31c_240_track_builder}{\includegraphics[width=\textwidth]{self_support_spaceships/31c_240_track_builder.pdf}}
+	\caption{A configuration of rakes that uses multiple rakes and kickback reactions (circled in \bgbox{redback}{red}) to turn a $2$-block track (highlighted in \bgbox{orangeback2}{orange}) into a $6$-block track. The locations where gliders collide to synthesize the new block tracks are circled near the center.}\label{fig:31c_240_track_builder}
+\end{figure}
+% EXERCISE TODO: Some unhighlighted cells near center. What are they/what do they do?
+
+However, we still do not have a method of constructing the two other block tracks, since there is no way to arrange kickback reactions so as to put gliders in front of the frontmost rakes. While this may seem like an insurmountable problem at first, one solution is to synthesize light, middle, and/or heavyweight spaceships that travel in the same direction as the Herschels, and then bounce gliders off of those rows of xWSSs.
+
+While this approach works, instead of bouncing a glider back toward the front of the Herschels so as to synthesize the block track, we convert that glider into a middleweight spaceship via the reaction illustrated in Figure~??. The reason for this is that a middleweight spaceship can stabilize the front of the Herschel track in the exact same way as a block (in fact, one of the Herschel's sparks simply converts the MWSS into a block in the correct position), as illustrated in Figure~??.
+
+% Two figures, side by side.
+
+At this point, we have essentially everything that we need.
+
+% Talk about how majority of the length of the Silverfish comes from the numerous steps needed to synthesize the HWSS pair. Then come back to this observation in Caterpillar section. Also, majority of width comes from how close we can put frontmost forward rake.
+
+% TODO: Break this section into subsections. "Herschel crawlers and rakes", "synthesizing block trails", "synthesizing the HWSS pairs"?
+
+\begin{figure}[!htb]
+	\centering
+	\embedlink{silverfish}{\includegraphics[width=\textwidth]{self_support_spaceships/silverfish.pdf}}
+	\caption{The completed \emph{silverfish}: a $31c/240$ orthogonal spaceship, oriented so that it travels up. The track-building mechanism from Figure~\ref{fig:31c_240_track_builder} is highlighted in \bgbox{yellowback2}{yellow}. This is not done yet.}\label{fig:silverfish}
 \end{figure}
 
-However, we still do not have a method of constructing the two other block tracks, since there is no way to arrange kickback reactions so as to...
+% IN MAKE FORERAKES SECTION:
+% R1L0F is default rake (lane 0)
+% FTB in silverfish: custom 2-sync rake
+% R6L6F
+% R2L25F
+% R6L17F
+% R6L6F again
+% R1L0F
+% R6L6F again
+% R6L6F again
+% R2L23F
+% R2L25F (again, the one with ponds)
+% R6L21F
+% R2L25F again
+% R6L6F again
+% R2L25F again
+
+% R5L1F NEVER USED (maybe make an exercise with it? Like why it's not so useful? (answer: lane 1 can be reached by R2L23F in just 3 lengths instead of 5 anyway))
+% R2L16 NEVER USED
+% Uses 6 different forerakes total (plus the custom double forerake)
 
 
 % Nivasch article: http://www.gabrielnivasch.org/fun/life/caterpillar

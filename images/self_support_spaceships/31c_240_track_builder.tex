@@ -1,0 +1,50 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\begin{document}
+	\begin{tikzpicture}%
+		\node[inner sep=0pt,anchor=south west] (rp) at (0,0) {\includegraphics[width=12cm]{31c_240_track_builder.png}};
+		
+		% BORDER
+		\draw[gridgray] (0,-0.1) rectangle (12,7.6);
+		\clip (0,-0.1) rectangle (12,7.6);
+		
+		% RED CIRCLES around kickbacks
+		\draw[white,line width=1.5pt,opacity=0.6](6.19,6.81) circle (0.1);
+		\draw[redback2,line width=0.6pt](6.19,6.81) circle (0.1);
+		\draw[white,line width=1.5pt,opacity=0.6](6.19,0.7) circle (0.1);
+		\draw[redback2,line width=0.6pt](6.19,0.7) circle (0.1);
+		
+		\draw[white,line width=1.5pt,opacity=0.6](5.33,7.15) circle (0.1);
+		\draw[redback2,line width=0.6pt](5.33,7.15) circle (0.1);
+		\draw[white,line width=1.5pt,opacity=0.6](5.33,0.36) circle (0.1);
+		\draw[redback2,line width=0.6pt](5.33,0.36) circle (0.1);
+		
+		\draw[white,line width=1.5pt,opacity=0.6](4.47,7.48) circle (0.1);
+		\draw[redback2,line width=0.6pt](4.47,7.48) circle (0.1);
+		\draw[white,line width=1.5pt,opacity=0.6](4.47,0.03) circle (0.1);
+		\draw[redback2,line width=0.6pt](4.47,0.03) circle (0.1);
+		
+		% OTHER CIRCLES around syntheses
+		\draw[white,line width=1.5pt,opacity=0.6](7.29,4.5) circle (0.1);
+		\draw[aquaback!50!black,line width=0.6pt](7.29,4.5) circle (0.1);
+		\draw[white,line width=1.5pt,opacity=0.6](7.29,3) circle (0.1);
+		\draw[aquaback!50!black,line width=0.6pt](7.29,3) circle (0.1);
+		
+		\draw[white,line width=1.5pt,opacity=0.6](6.6,4.5) circle (0.1);
+		\draw[magentaback!50!black,line width=0.6pt](6.6,4.5) circle (0.1);
+		\draw[white,line width=1.5pt,opacity=0.6](6.6,3) circle (0.1);
+		\draw[magentaback!50!black,line width=0.6pt](6.6,3) circle (0.1);
+		
+		\draw[white,line width=1.5pt,opacity=0.6](6.1,4.08) circle (0.1);
+		\draw[greenpastel!50!black,line width=0.6pt](6.1,4.08) circle (0.1);
+		\draw[white,line width=1.5pt,opacity=0.6](6.1,3.43) circle (0.1);
+		\draw[greenpastel!50!black,line width=0.6pt](6.1,3.43) circle (0.1);
+		
+		% Arrows
+		\draw[color=gray,-stealth] (8.98,4.4) -- (8.2,4.9);
+		\draw[color=gray,-stealth] (3.31,5.4) -- (3.71,6.2);
+		\draw[color=gray,-stealth] (4.49,7.2) -- (4.77,6.6);
+		%\draw[color=gray,-stealth] (10.9,3.95) -- (11.7,3.95);
+	\end{tikzpicture}
+\end{document}

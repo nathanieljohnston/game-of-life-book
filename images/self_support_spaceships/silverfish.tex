@@ -1,0 +1,344 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\begin{document}
+	\begin{tikzpicture}%
+		\node[inner sep=0pt,anchor=south west] (rp) at (0,0) {\includegraphics[width=4.5cm]{silverfish.png}};
+		
+%		% BORDER
+%		\draw[gridgray] (0,0) rectangle (12,17.78);
+%		\clip (0,0) rectangle (12,17.78);
+%		
+		% ZOOM BOX 1
+			\newcommand\smlx{4.36}
+			\newcommand\smrx{\smlx+0.2}
+			\newcommand\smby{17.57}
+			\newcommand\smty{\smby+0.2}
+			
+			\newcommand\bglx{9}
+			\newcommand\bgrx{\bglx+3}
+			\newcommand\bgty{17.5}
+			\newcommand\bgby{\bgty-3}
+			
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
+			
+			\node[inner sep=0pt,anchor=north west] (zoom1) at (\bglx,\bgty) {\includegraphics[width=3cm]{silverfish_top_right.png}};
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (\smrx,\smty) -- (\smlx,\smty) -- (\bglx,\bgty) -- (\bglx,\bgby) -- (\smlx,\smby)-- (\smrx,\smby) -- cycle;
+			
+			%\node[inner sep=0pt] (zoom1_3x) at (3.35,7.95) {\includegraphics[width=0.21cm]{../mag.png} \footnotesize 8x};
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\smlx,\smty) rectangle (\smrx,\smby);
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
+		% END ZOOM BOX 1
+
+		% ZOOM BOX 2
+			\newcommand\twosmlx{2.165}
+			\newcommand\twosmrx{\twosmlx+0.2}
+			\newcommand\twosmby{17.03}
+			\newcommand\twosmty{\twosmby+0.2}
+			
+			\newcommand\twobglx{5.25}
+			\newcommand\twobgrx{\twobglx+3}
+			\newcommand\twobgty{17}
+			\newcommand\twobgby{\twobgty-3}
+			
+			\path[draw,gridgray,line width=0.45pt] (\twosmrx,\twosmby) -- (\twobgrx,\twobgby);
+			
+			\node[inner sep=0pt,anchor=north west] (zoom2) at (\twobglx,\twobgty) {\includegraphics[width=3cm]{silverfish_top_center.png}};
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (\twosmrx,\twosmty) -- (\twobgrx,\twobgty) -- (\twobglx,\twobgty) -- (\twobglx,\twobgby) -- (\twosmlx,\twosmby)-- (\twosmrx,\twosmby) -- cycle;
+			
+			%\node[inner sep=0pt] (zoom1_3x) at (3.35,7.95) {\includegraphics[width=0.21cm]{../mag.png} \footnotesize 8x};
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\twosmlx,\twosmty) rectangle (\twosmrx,\twosmby);
+			\draw[gridgray,line width=0.6pt] (\twobglx,\twobgty) rectangle (\twobgrx,\twobgby);
+			\path[draw,gridgray,line width=0.45pt] (\twosmrx,\twosmty) -- (\twobgrx,\twobgty);
+			\path[draw,gridgray,line width=0.45pt] (\twosmlx,\twosmby) -- (\twobglx,\twobgby);
+			\path[draw,gridgray,line width=0.45pt] (\twosmlx,\twosmty) -- (\twobglx,\twobgty);
+		% END ZOOM BOX 2
+		
+		% ZOOM BOX SYNTH1
+			\newcommand\thrsmlx{4.36}
+			\newcommand\thrsmrx{\thrsmlx+0.2}
+			\newcommand\thrsmby{8.5}
+			\newcommand\thrsmty{\thrsmby+0.2}
+			
+			\newcommand\thrbglx{5.25}
+			\newcommand\thrbgrx{\thrbglx+2}
+			\newcommand\thrbgty{12.5}
+			\newcommand\thrbgby{\thrbgty-2}
+			
+			\node[inner sep=0pt,anchor=north west] (zooms1) at (\thrbglx,\thrbgty) {\includegraphics[width=2cm]{silverfish_synth1.png}};
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.8] (\thrsmlx,\thrsmty) rectangle (\thrsmrx,\thrsmby);
+			\draw[gridgray,line width=0.6pt] (\thrbglx,\thrbgty) rectangle (\thrbgrx,\thrbgby);
+			
+			\draw[gray] (\thrsmlx+0.1,\thrsmty-0.1) node {\tiny \texttt{1}};
+			\draw[gray] (\thrbglx,\thrbgty) node[anchor=north west] {\small \texttt{1}};
+		% END ZOOM SYNTH1
+		
+		% ZOOM BOX SYNTH2
+			\newcommand\syntwosmlx{4.36}
+			\newcommand\syntwosmrx{\syntwosmlx+0.2}
+			\newcommand\syntwosmby{8.02}
+			\newcommand\syntwosmty{\syntwosmby+0.2}
+			
+			\newcommand\syntwobglx{7.625}
+			\newcommand\syntwobgrx{\syntwobglx+2}
+			\newcommand\syntwobgty{12.5}
+			\newcommand\syntwobgby{\syntwobgty-2}
+			
+			\node[inner sep=0pt,anchor=north west] (zooms2) at (\syntwobglx,\syntwobgty) {\includegraphics[width=2cm]{silverfish_synth2.png}};
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.8] (\syntwosmlx,\syntwosmty) rectangle (\syntwosmrx,\syntwosmby);
+			\draw[gridgray,line width=0.6pt] (\syntwobglx,\syntwobgty) rectangle (\syntwobgrx,\syntwobgby);
+			
+			\draw[gray] (\syntwosmlx+0.1,\syntwosmty-0.1) node {\tiny \texttt{2}};
+			\draw[gray] (\syntwobglx,\syntwobgty) node[anchor=north west] {\small \texttt{2}};
+		% END ZOOM SYNTH2
+		
+		% ZOOM BOX SYNTH3
+			\newcommand\synthreesmlx{4.36}
+			\newcommand\synthreesmrx{\synthreesmlx+0.2}
+			\newcommand\synthreesmby{7.42}
+			\newcommand\synthreesmty{\synthreesmby+0.2}
+			
+			\newcommand\synthreebglx{10}
+			\newcommand\synthreebgrx{\synthreebglx+2}
+			\newcommand\synthreebgty{12.5}
+			\newcommand\synthreebgby{\synthreebgty-2}
+			
+			\node[inner sep=0pt,anchor=north west] (zooms3) at (\synthreebglx,\synthreebgty) {\includegraphics[width=2cm]{silverfish_synth3.png}};
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.8] (\synthreesmlx,\synthreesmty) rectangle (\synthreesmrx,\synthreesmby);
+			\draw[gridgray,line width=0.6pt] (\synthreebglx,\synthreebgty) rectangle (\synthreebgrx,\synthreebgby);
+			
+			\draw[gray] (\synthreesmlx+0.1,\synthreesmty-0.1) node {\tiny \texttt{3}};
+			\draw[gray] (\synthreebglx,\synthreebgty) node[anchor=north west] {\small \texttt{3}};
+		% END ZOOM SYNTH3
+		
+		% ZOOM BOX SYNTH4
+			\newcommand\synfoursmlx{4.36}
+			\newcommand\synfoursmrx{\synfoursmlx+0.2}
+			\newcommand\synfoursmby{6.6}
+			\newcommand\synfoursmty{\synfoursmby+0.2}
+			
+			\newcommand\synfourbglx{5.25}
+			\newcommand\synfourbgrx{\synfourbglx+2}
+			\newcommand\synfourbgty{10.125}
+			\newcommand\synfourbgby{\synfourbgty-2}
+			
+			\node[inner sep=0pt,anchor=north west] (zooms4) at (\synfourbglx,\synfourbgty) {\includegraphics[width=2cm]{silverfish_synth4.png}};
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.8] (\synfoursmlx,\synfoursmty) rectangle (\synfoursmrx,\synfoursmby);
+			\draw[gridgray,line width=0.6pt] (\synfourbglx,\synfourbgty) rectangle (\synfourbgrx,\synfourbgby);
+			
+			\draw[gray] (\synfoursmlx+0.1,\synfoursmty-0.1) node {\tiny \texttt{4}};
+			\draw[gray] (\synfourbglx,\synfourbgty) node[anchor=north west] {\small \texttt{4}};
+		% END ZOOM SYNTH4
+		
+		% ZOOM BOX SYNTH5
+			\newcommand\synfivesmlx{4.36}
+			\newcommand\synfivesmrx{\synfivesmlx+0.2}
+			\newcommand\synfivesmby{6.19}
+			\newcommand\synfivesmty{\synfivesmby+0.2}
+			
+			\newcommand\synfivebglx{7.625}
+			\newcommand\synfivebgrx{\synfivebglx+2}
+			\newcommand\synfivebgty{10.125}
+			\newcommand\synfivebgby{\synfivebgty-2}
+			
+			\node[inner sep=0pt,anchor=north west] (zooms5) at (\synfivebglx,\synfivebgty) {\includegraphics[width=2cm]{silverfish_top_center.png}};
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.8] (\synfivesmlx,\synfivesmty) rectangle (\synfivesmrx,\synfivesmby);
+			\draw[gridgray,line width=0.6pt] (\synfivebglx,\synfivebgty) rectangle (\synfivebgrx,\synfivebgby);
+			
+			\draw[gray] (\synfivesmlx+0.1,\synfivesmty-0.1) node {\tiny \texttt{5}};
+			\draw[gray] (\synfivebglx,\synfivebgty) node[anchor=north west] {\small \texttt{5}};
+		% END ZOOM SYNTH5
+		
+		% ZOOM BOX SYNTH6
+			\newcommand\synsixsmlx{4.36}
+			\newcommand\synsixsmrx{\synsixsmlx+0.2}
+			\newcommand\synsixsmby{5.43}
+			\newcommand\synsixsmty{\synsixsmby+0.2}
+			
+			\newcommand\synsixbglx{10}
+			\newcommand\synsixbgrx{\synsixbglx+2}
+			\newcommand\synsixbgty{10.125}
+			\newcommand\synsixbgby{\synsixbgty-2}
+			
+			\node[inner sep=0pt,anchor=north west] (zooms6) at (\synsixbglx,\synsixbgty) {\includegraphics[width=2cm]{silverfish_top_center.png}};
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.8] (\synsixsmlx,\synsixsmty) rectangle (\synsixsmrx,\synsixsmby);
+			\draw[gridgray,line width=0.6pt] (\synsixbglx,\synsixbgty) rectangle (\synsixbgrx,\synsixbgby);
+			
+			\draw[gray] (\synsixsmlx+0.1,\synsixsmty-0.1) node {\tiny \texttt{6}};
+			\draw[gray] (\synsixbglx,\synsixbgty) node[anchor=north west] {\small \texttt{6}};
+		% END ZOOM SYNTH6
+
+		% ZOOM BOX SYNTH7
+			\newcommand\synsevensmlx{4.36}
+			\newcommand\synsevensmrx{\synsevensmlx+0.2}
+			\newcommand\synsevensmby{5.12}
+			\newcommand\synsevensmty{\synsevensmby+0.2}
+			
+			\newcommand\synsevenbglx{5.25}
+			\newcommand\synsevenbgrx{\synsevenbglx+2}
+			\newcommand\synsevenbgty{7.75}
+			\newcommand\synsevenbgby{\synsevenbgty-2}
+			
+			\node[inner sep=0pt,anchor=north west] (zooms7) at (\synsevenbglx,\synsevenbgty) {\includegraphics[width=2cm]{silverfish_top_center.png}};
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.8] (\synsevensmlx,\synsevensmty) rectangle (\synsevensmrx,\synsevensmby);
+			\draw[gridgray,line width=0.6pt] (\synsevenbglx,\synsevenbgty) rectangle (\synsevenbgrx,\synsevenbgby);
+			
+			\draw[gray] (\synsevensmlx+0.1,\synsevensmty-0.1) node {\tiny \texttt{7}};
+			\draw[gray] (\synsevenbglx,\synsevenbgty) node[anchor=north west] {\small \texttt{7}};
+		% END ZOOM SYNTH7
+		
+		% ZOOM BOX SYNTH8
+			\newcommand\syneightsmlx{4.36}
+			\newcommand\syneightsmrx{\syneightsmlx+0.2}
+			\newcommand\syneightsmby{4.27}
+			\newcommand\syneightsmty{\syneightsmby+0.2}
+			
+			\newcommand\syneightbglx{7.625}
+			\newcommand\syneightbgrx{\syneightbglx+2}
+			\newcommand\syneightbgty{7.75}
+			\newcommand\syneightbgby{\syneightbgty-2}
+			
+			\node[inner sep=0pt,anchor=north west] (zooms8) at (\syneightbglx,\syneightbgty) {\includegraphics[width=2cm]{silverfish_top_center.png}};
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.8] (\syneightsmlx,\syneightsmty) rectangle (\syneightsmrx,\syneightsmby);
+			\draw[gridgray,line width=0.6pt] (\syneightbglx,\syneightbgty) rectangle (\syneightbgrx,\syneightbgby);
+			
+			\draw[gray] (\syneightsmlx+0.1,\syneightsmty-0.1) node {\tiny \texttt{8}};
+			\draw[gray] (\syneightbglx,\syneightbgty) node[anchor=north west] {\small \texttt{8}};
+		% END ZOOM SYNTH8
+		
+		% ZOOM BOX SYNTH9
+			\newcommand\synninesmlx{4.36}
+			\newcommand\synninesmrx{\synninesmlx+0.2}
+			\newcommand\synninesmby{3.59}
+			\newcommand\synninesmty{\synninesmby+0.2}
+			
+			\newcommand\synninebglx{10}
+			\newcommand\synninebgrx{\synninebglx+2}
+			\newcommand\synninebgty{7.75}
+			\newcommand\synninebgby{\synninebgty-2}
+			
+			\node[inner sep=0pt,anchor=north west] (zooms9) at (\synninebglx,\synninebgty) {\includegraphics[width=2cm]{silverfish_top_center.png}};
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.8] (\synninesmlx,\synninesmty) rectangle (\synninesmrx,\synninesmby);
+			\draw[gridgray,line width=0.6pt] (\synninebglx,\synninebgty) rectangle (\synninebgrx,\synninebgby);
+			
+			\draw[gray] (\synninesmlx+0.1,\synninesmty-0.1) node {\tiny \texttt{9}};
+			\draw[gray] (\synninebglx,\synninebgty) node[anchor=north west] {\small \texttt{9}};
+		% END ZOOM SYNTH9
+		
+		% ZOOM BOX SYNTH10
+			\newcommand\syntensmlx{4.33}
+			\newcommand\syntensmrx{\syntensmlx+0.26}
+			\newcommand\syntensmby{3.37}
+			\newcommand\syntensmty{\syntensmby+0.2}
+			
+			\newcommand\syntenbglx{5.25}
+			\newcommand\syntenbgrx{\syntenbglx+2}
+			\newcommand\syntenbgty{5.375}
+			\newcommand\syntenbgby{\syntenbgty-2}
+			
+			\node[inner sep=0pt,anchor=north west] (zooms10) at (\syntenbglx,\syntenbgty) {\includegraphics[width=2cm]{silverfish_top_center.png}};
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.8] (\syntensmlx,\syntensmty) rectangle (\syntensmrx,\syntensmby);
+			\draw[gridgray,line width=0.6pt] (\syntenbglx,\syntenbgty) rectangle (\syntenbgrx,\syntenbgby);
+			
+			\draw[gray] (\syntensmlx+0.13,\syntensmty-0.1) node {\tiny \texttt{10}};
+			\draw[gray] (\syntenbglx,\syntenbgty) node[anchor=north west] {\small \texttt{10}};
+		% END ZOOM SYNTH10
+		
+		% ZOOM BOX SYNTH11
+			\newcommand\synelevensmlx{4.33}
+			\newcommand\synelevensmrx{\synelevensmlx+0.26}
+			\newcommand\synelevensmby{3.15}
+			\newcommand\synelevensmty{\synelevensmby+0.2}
+			
+			\newcommand\synelevenbglx{7.625}
+			\newcommand\synelevenbgrx{\synelevenbglx+2}
+			\newcommand\synelevenbgty{5.375}
+			\newcommand\synelevenbgby{\synelevenbgty-2}
+			
+			\node[inner sep=0pt,anchor=north west] (zooms11) at (\synelevenbglx,\synelevenbgty) {\includegraphics[width=2cm]{silverfish_top_center.png}};
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.8] (\synelevensmlx,\synelevensmty) rectangle (\synelevensmrx,\synelevensmby);
+			\draw[gridgray,line width=0.6pt] (\synelevenbglx,\synelevenbgty) rectangle (\synelevenbgrx,\synelevenbgby);
+			
+			\draw[gray] (\synelevensmlx+0.13,\synelevensmty-0.1) node {\tiny \texttt{11}};
+			\draw[gray] (\synelevenbglx,\synelevenbgty) node[anchor=north west] {\small \texttt{11}};
+		% END ZOOM SYNTH11
+		
+		% ZOOM BOX SYNTH12
+			\newcommand\syntwelvesmlx{4.33}
+			\newcommand\syntwelvesmrx{\syntwelvesmlx+0.26}
+			\newcommand\syntwelvesmby{2.36}
+			\newcommand\syntwelvesmty{\syntwelvesmby+0.2}
+			
+			\newcommand\syntwelvebglx{10}
+			\newcommand\syntwelvebgrx{\syntwelvebglx+2}
+			\newcommand\syntwelvebgty{5.375}
+			\newcommand\syntwelvebgby{\syntwelvebgty-2}
+			
+			\node[inner sep=0pt,anchor=north west] (zooms12) at (\syntwelvebglx,\syntwelvebgty) {\includegraphics[width=2cm]{silverfish_top_center.png}};
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.8] (\syntwelvesmlx,\syntwelvesmty) rectangle (\syntwelvesmrx,\syntwelvesmby);
+			\draw[gridgray,line width=0.6pt] (\syntwelvebglx,\syntwelvebgty) rectangle (\syntwelvebgrx,\syntwelvebgby);
+			
+			\draw[gray] (\syntwelvesmlx+0.13,\syntwelvesmty-0.1) node {\tiny \texttt{12}};
+			\draw[gray] (\syntwelvebglx,\syntwelvebgty) node[anchor=north west] {\small \texttt{12}};
+		% END ZOOM SYNTH12
+		
+		% ZOOM BOX SYNTH13
+			\newcommand\synthirsmlx{4.33}
+			\newcommand\synthirsmrx{\synthirsmlx+0.26}
+			\newcommand\synthirsmby{2.03}
+			\newcommand\synthirsmty{\synthirsmby+0.2}
+			
+			\newcommand\synthirbglx{5.25}
+			\newcommand\synthirbgrx{\synthirbglx+2}
+			\newcommand\synthirbgty{3}
+			\newcommand\synthirbgby{\synthirbgty-2}
+			
+			\node[inner sep=0pt,anchor=north west] (zooms13) at (\synthirbglx,\synthirbgty) {\includegraphics[width=2cm]{silverfish_top_center.png}};
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.8] (\synthirsmlx,\synthirsmty) rectangle (\synthirsmrx,\synthirsmby);
+			\draw[gridgray,line width=0.6pt] (\synthirbglx,\synthirbgty) rectangle (\synthirbgrx,\synthirbgby);
+			
+			\draw[gray] (\synthirsmlx+0.13,\synthirsmty-0.1) node {\tiny \texttt{13}};
+			\draw[gray] (\synthirbglx,\synthirbgty) node[anchor=north west] {\small \texttt{13}};
+		% END ZOOM SYNTH13
+		
+		% ZOOM BOX SYNTH14
+			\newcommand\synfrteensmlx{4.33}
+			\newcommand\synfrteensmrx{\synfrteensmlx+0.26}
+			\newcommand\synfrteensmby{1.45}
+			\newcommand\synfrteensmty{\synfrteensmby+0.2}
+			
+			\newcommand\synfrteenbglx{7.625}
+			\newcommand\synfrteenbgrx{\synfrteenbglx+2}
+			\newcommand\synfrteenbgty{3}
+			\newcommand\synfrteenbgby{\synfrteenbgty-2}
+			
+			\node[inner sep=0pt,anchor=north west] (zooms14) at (\synfrteenbglx,\synfrteenbgty) {\includegraphics[width=2cm]{silverfish_top_center.png}};
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.8] (\synfrteensmlx,\synfrteensmty) rectangle (\synfrteensmrx,\synfrteensmby);
+			\draw[gridgray,line width=0.6pt] (\synfrteenbglx,\synfrteenbgty) rectangle (\synfrteenbgrx,\synfrteenbgby);
+			
+			\draw[gray] (\synfrteensmlx+0.13,\synfrteensmty-0.1) node {\tiny \texttt{14}};
+			\draw[gray] (\synfrteenbglx,\synfrteenbgty) node[anchor=north west] {\small \texttt{14}};
+		% END ZOOM SYNTH14
+	\end{tikzpicture}
+\end{document}
