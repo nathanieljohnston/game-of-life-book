@@ -1,0 +1,50 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\begin{document}
+	\begin{tikzpicture}%[rotate=90,transform shape]%
+		\node[inner sep=0pt,anchor=south west] (rp) at (0,0) {\includegraphics[width=12cm]{31c_240_track_destroyer.png}};
+		
+		% BORDER
+		\draw[gridgray] (0,-0.1) rectangle (12,8.39);
+		\clip (0,-0.1) rectangle (12,8.39);
+		
+		\draw[white,line width=1.5pt,opacity=0.6](1.04,4.85) circle (0.1);
+		\draw[magentaback!50!black,line width=0.6pt](1.04,4.85) circle (0.1);
+		\draw[white,line width=1.5pt,opacity=0.6](0.94,3.45) circle (0.1);
+		\draw[magentaback!50!black,line width=0.6pt](0.94,3.45) circle (0.1);
+		
+		% RED CIRCLES around kickbacks
+		\draw[white,line width=1.5pt,opacity=0.6](6.09,8.26) circle (0.1);
+		\draw[redback2,line width=0.6pt](6.09,8.26) circle (0.1);
+		\draw[white,line width=1.5pt,opacity=0.6](6.09,0.03) circle (0.1);
+		\draw[redback2,line width=0.6pt](6.09,0.03) circle (0.1);
+		
+		\draw[white,line width=1.5pt,opacity=0.6](1.11,5) circle (0.1);
+		\draw[redback2,line width=0.6pt](1.11,5) circle (0.1);
+		\draw[white,line width=1.5pt,opacity=0.6](1.11,3.3) circle (0.1);
+		\draw[redback2,line width=0.6pt](1.11,3.3) circle (0.1);
+		
+		\draw[white,line width=1.5pt,opacity=0.6](1.46,5.76) circle (0.1);
+		\draw[redback2,line width=0.6pt](1.46,5.76) circle (0.1);
+		\draw[white,line width=1.5pt,opacity=0.6](1.46,2.54) circle (0.1);
+		\draw[redback2,line width=0.6pt](1.46,2.54) circle (0.1);
+		
+		% OTHER CIRCLES around block destruction
+		\draw[white,line width=1.5pt,opacity=0.6](0.36,4.25) circle (0.1);
+		\draw[aquaback!50!black,line width=0.6pt](0.36,4.25) circle (0.1);
+		\draw[white,line width=1.5pt,opacity=0.6](0.36,4.05) circle (0.1);
+		\draw[aquaback!50!black,line width=0.6pt](0.36,4.05) circle (0.1);
+		
+		\draw[white,line width=1.5pt,opacity=0.6](2.18,4.45) circle (0.1);
+		\draw[greenpastel!50!black,line width=0.6pt](2.18,4.45) circle (0.1);
+		\draw[white,line width=1.5pt,opacity=0.6](2.18,3.85) circle (0.1);
+		\draw[greenpastel!50!black,line width=0.6pt](2.18,3.85) circle (0.1);
+		
+		% Arrows
+		\draw[color=gray,-stealth] (8.95,6.5) -- (8.2,7);
+		\draw[color=gray,-stealth] (4.59,5.4) -- (4.99,6.2);
+		\draw[color=gray,-stealth] (4.3,7.2) -- (3.55,6.7);
+		%\draw[color=gray,-stealth] (10.9,3.95) -- (11.7,3.95);
+	\end{tikzpicture}
+\end{document}
