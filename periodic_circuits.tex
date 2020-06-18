@@ -809,13 +809,14 @@ Because of their simplicity, many of the period~$30$ and period~$46$ mechanisms 
 	
 	Guns producing wildly different sequences of gliders and with wildly varying periods can be constructed by changing the length of the glider loop (see Exercise~\ref{exer:prng_gun}).\bigskip
 	
-	\noindent\begin{minipage}{\linewidth}
-		\centering\addtocounter{subfigure}{-2}% needed since for some reason the subfigure captioning starts at (c) without the -2 modifier
-		\begin{minipage}{.57\textwidth}
-			\centering\patternimglink{0.095}{prng_gun}
-			\captionof{subfigure}{the pseudo-random gun}
-		\end{minipage} \ \ \ \ % 
-		\begin{minipage}{.39\textwidth}\vspace*{0.1cm}
+	\begin{figure}[!htb]
+		\centering
+		\begin{subfigure}{.57\textwidth}
+			\centering
+			\patternimglink{0.095}{prng_gun}
+			\caption{the pseudo-random gun}
+		\end{subfigure} \ \ \ \ % 
+		\begin{subfigure}{.39\textwidth}
 			\texttt{1111111111111111111111111}\\
 			\texttt{0101010101010101010101010}\\
 			\texttt{0110011001100110011001100}\\
@@ -830,19 +831,20 @@ Because of their simplicity, many of the period~$30$ and period~$46$ mechanisms 
 			\texttt{0010001001100110001000100}\\
 			\texttt{0011110001000100001111000}\\
 			\texttt{0010100001111000001010000\ensuremath{{}\, \cdots}}
-			\captionof{subfigure}{the first 400 bits of its output}
-		\end{minipage}
-		\captionof{figure}{A period $30 \times 10\,961\,685 = 328\,850\,550$ pseudo-random glider gun. It sends gliders around a $25 \times 30 = 750$-generation track (highlighted in \bgbox{aquaback}{aqua}) that contains a toggle (highlighted in \bgbox{greenpastel}{green}) and the glider duplication/inversion reaction introduced in Figure~\ref{fig:stream_inverter} (highlighted on the right in \bgbox{yellowback2}{yellow}). By feeding the output of the toggle back into itself, the arrangement of $25$ gliders along the track becomes quite unpredictable and random-looking, and thus so does the output glider stream (highlighted in \bgbox{magentaback}{magenta}) that follows the $10\,961\,685$-bit string whose first $400$ bits are displayed in~(b).}\label{fig:prng_gun}\bigskip
-	\end{minipage}
+			\caption{the first 400 bits of its output}
+		\end{subfigure}
+		\caption{A period $30 \times 10\,961\,685 = 328\,850\,550$ pseudo-random glider gun. It sends gliders around a $25 \times 30 = 750$-generation track (highlighted in \bgbox{aquaback}{aqua}) that contains a toggle (highlighted in \bgbox{greenpastel}{green}) and the glider duplication/inversion reaction introduced in Figure~\ref{fig:stream_inverter} (highlighted on the right in \bgbox{yellowback2}{yellow}). By feeding the output of the toggle back into itself, the arrangement of $25$ gliders along the track becomes quite unpredictable and random-looking, and thus so does the output glider stream (highlighted in \bgbox{magentaback}{magenta}) that follows the $10\,961\,685$-bit string whose first $400$ bits are displayed in~(b).}\label{fig:prng_gun}
+	\end{figure}
 
 	\item A pattern that uses four breeders that aim Gosper glider guns so as to repeatedly invert each other and have asymptotic growth related to $\pi \approx 3.14159$. This pattern fills the plane with triangular regions that alternate back and forth between being filled and being empty.
 
 	Specifically, if we use $T(n,t)$ to denote the triangle in the northeast quadrant with vertices at $(0,0)$ (i.e., the center of the pattern), $(0, t/(2n))$, and $(t/(2(n+2)), 0)$, then in generation~$t$ the triangle $T(1,t)$ is filled with gliders except that the smaller triangle $T(3,t)$ within it is empty, except that the smaller triangle $T(5,t)$ within it is filled with gliders, except that $T(7,t)$ is empty, and so on (see Figure~\ref{fig:life_computes_pi}).\bigskip
 	
-	\noindent\begin{minipage}{\linewidth}
-		\centering\embedlink{life_computes_pi}{\vcenteredhbox{\patternimg{0.101}{life_computes_pi_0}} \vcenteredhbox{$\xrightarrow{\text{\clock{12}{45} 4500}}$} \vcenteredhbox{\patternimg{0.125}{life_computes_pi_5000}}} % genarrow does not work with input as large as 5000
-		\captionof{figure}{An arrangement of four breeders (highlighted in \bgbox{yellowback2}{yellow}) that produce Gosper glider guns that fire at each other so as to invert each others' streams (shown on the left after the breeders have been moving away from each other for $500$~generations). In generation $t$ (shown here on the right with $t = 5000$), the \bgbox{greenpastel}{green} triangular region $T(1,t)$ is filled with gliders, except the \bgbox{aquaback}{aqua} triangular region $T(3,t)$ is empty, except the \bgbox{magentaback}{magenta} triangular region $T(5,t)$ is filled with gliders, and so on.}\label{fig:life_computes_pi}\bigskip
-	\end{minipage}
+	\begin{figure}[!htb]
+		\centering
+		\embedlink{life_computes_pi}{\vcenteredhbox{\patternimg{0.101}{life_computes_pi_0}} \vcenteredhbox{$\xrightarrow{\text{\clock{12}{45} 4500}}$} \vcenteredhbox{\patternimg{0.125}{life_computes_pi_5000}}} % genarrow does not work with input as large as 5000
+		\caption{An arrangement of four breeders (highlighted in \bgbox{yellowback2}{yellow}) that produce Gosper glider guns that fire at each other so as to invert each others' streams (shown on the left after the breeders have been moving away from each other for $500$~generations). In generation $t$ (shown here on the right with $t = 5000$), the \bgbox{greenpastel}{green} triangular region $T(1,t)$ is filled with gliders, except the \bgbox{aquaback}{aqua} triangular region $T(3,t)$ is empty, except the \bgbox{magentaback}{magenta} triangular region $T(5,t)$ is filled with gliders, and so on.}\label{fig:life_computes_pi}
+	\end{figure}
 	
 	Since the triangle $T(n,t)$ has area
 	\[

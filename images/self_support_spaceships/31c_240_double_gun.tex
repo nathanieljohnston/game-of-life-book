@@ -1,0 +1,33 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\begin{document}
+	\begin{tikzpicture}%[rotate=90,transform shape]%
+		\node[inner sep=0pt,anchor=south west] (rp) at (0,0) {\includegraphics[width=12cm]{31c_240_double_gun.png}};
+		
+		% BORDER
+		\draw[gridgray] (0,0) rectangle (12,9);
+		\clip (0,0) rectangle (12,9);
+		
+		% RED CIRCLES around kickbacks
+		\draw[white,line width=1.5pt,opacity=0.6](6.19,6.81) circle (0.1);
+		\draw[redback2,line width=0.6pt](6.19,6.81) circle (0.1);
+		\draw[white,line width=1.5pt,opacity=0.6](6.19,0.7) circle (0.1);
+		\draw[redback2,line width=0.6pt](6.19,0.7) circle (0.1);
+		
+		\draw[white,line width=1.5pt,opacity=0.6](5.33,7.15) circle (0.1);
+		\draw[redback2,line width=0.6pt](5.33,7.15) circle (0.1);
+		\draw[white,line width=1.5pt,opacity=0.6](5.33,0.36) circle (0.1);
+		\draw[redback2,line width=0.6pt](5.33,0.36) circle (0.1);
+		
+		\draw[white,line width=1.5pt,opacity=0.6](4.47,7.48) circle (0.1);
+		\draw[redback2,line width=0.6pt](4.47,7.48) circle (0.1);
+		\draw[white,line width=1.5pt,opacity=0.6](4.47,0.03) circle (0.1);
+		\draw[redback2,line width=0.6pt](4.47,0.03) circle (0.1);
+		
+		% Arrows
+		\draw[color=gray,-stealth] (9.1,7.05) -- (8.32,7.57);
+		\draw[color=gray,-stealth] (4.31,5.4) -- (4.71,6.2);
+		\draw[color=gray,-stealth] (4.88,7.67) -- (4.1,7.15);
+	\end{tikzpicture}
+\end{document}

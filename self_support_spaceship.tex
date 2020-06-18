@@ -109,10 +109,11 @@ While this approach works, instead of bouncing a glider back toward the front of
 	\caption{Some reactions that can be used to stabilize the front of the $31c/240$ Herschel crawler, as long as we can somehow create a parallel double stream of heavyweight spaceships.}\label{fig:silverfish_mwss_reactions}
 \end{figure}
 
-% TODO: Exercise from calcyman's backward rake idea
-% EXERCISE: R3L28. Why doesn't make it any shorter? Rebuild anyway
+The last remaining question before we can piece together all of these reactions is how to create the pair of heavyweight spaceships that are used in Figure~\ref{fig:g_2h_to_m}. The key insight that makes this possible is the fact that we can fire a glider at an HWSS so as to create some debris without affecting the HWSS (after all, heavyweight spaceships are nice and sparky), and then we can fire additional gliders at that debris so as to create a HWSS.\footnote{In a sense, we are using a heavyweight spaceship to synthesize itself. It is this self-creation that is really what makes it possible to turn the $31c/240$ reaction into a spaceship.} One reaction that implements the first half of this process, by creating a toad and a beehive when a pair of gliders hits an HWSS (without disturbing the HWSS\footnote{That is, this reaction is a Heisenburp.}\index{Heisenburp}), is displayed in Figure~??. An unfortunate feature of this reaction is that it relies on two synchronized gliders, and synchronizing the precise time and (especially) position of multiple gliders that are fired from these block tracks is quite tricky. Nevertheless, this synchronization is possible via kickback reactions, and one configuration of rakes that produces the exact glider pair that we need is displayed in Figure~??.
 
-The last remaining question before we can piece together all of these reactions is how to create the pair of heavyweight spaceships that are used in Figure~\ref{fig:g_2h_to_m}. The key insight that makes this possible is the fact that we can fire a glider at an HWSS so as to create some debris without affecting the HWSS (after all heavyweight spaceships are nice and sparky), and then we can fire additional gliders at that debris so as to create a HWSS.\footnote{} Some particular reactions that implement... in Figure~??.% to the Silverfish is this  Heisenburp reaction, which conveniently produces a miscellaneous slow-salvo target (beehive and toad) a safe distance from the stream of upward HWSSes --
+% Figures
+
+There are numerous different ways that we could fire gliders at that toad and beehive so as to turn them into a heavyweight spaceship. For the sake of simplicity, we use a slow salvo, since synchronizing the precise time and (especially) position of multiple gliders that are fired from these block tracks is quite tricky. synthesize the HWSS in this way, and one particularSome particular reactions that implement... in Figure~??.% to the Silverfish is this  Heisenburp reaction, which conveniently produces a miscellaneous slow-salvo target (beehive and toad) a safe distance from the stream of upward HWSSes --
 
 %[code]x = 45, y = 24, rule = B3/S23
 %5$2bo9b2o$b3o8bobo$2obo8bo$3o$3o$3o$b2o8$37b2o$37bobo$37bo![/code]
@@ -130,8 +131,10 @@ The last remaining question before we can piece together all of these reactions 
 
 %This recipe, like the backrake inward-MWSS recipe below, was produced by a long-running breadth-first search.  It was one of the first options that showed up that just happened to produce an upward HWSS with enough clearance that other HWSSes could safely travel past all the intermediate stages of the slow-salvo construction.  So it's probably fairly close to being optimal, though it's possible that the search program missed a good result if it missed covering some part of the search space.
 
+% TODO: Exercise from calcyman's backward rake idea
+% EXERCISE: R3L28. Why doesn't make it any shorter? Rebuild anyway
 
-% todo: Add R3L28 and remove R6L6
+
 \subsection{Glider Lanes and More Rakes}\label{sec:silverfish_more_rakes}
 
 At this point, we have essentially everything that we need to construct a $31c/240$ spaceship. However, the spaceship that results from combining the various reactions and patterns that we have constructed in this section ends up being monstrously large, so it is worthwhile to spend some time thinking about how we can reduce its size prior to assembling it.
