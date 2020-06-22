@@ -18,7 +18,7 @@ We will cover this topic in much more depth in Chapter~\ref{chp:universal_constr
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{The Silverfish}\label{sec:silverfish}
+\section{The Silverfish}\label{sec:silverfish}\index{silverfish}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Most self-supporting spaceships rely on a core reaction that moves an object forward with the help of another object that is in its path. One such reaction (simply called the \emph{$31c/240$~reaction}) is displayed in Figure~\ref{fig:31c_240_reaction}, in which a Herschel collides with a block in such a way that it moves forward by $31$~cells over the course of $240$ generations.\footnote{We saw another such reaction back in Figure~\ref{fig:17c45_reaction}. We explore the consequences of this reaction a bit later, in Section~\ref{sec:caterpillar}, since building a spaceship out of it is somewhat more technical than the reaction that we use here.} At the same time, the block is moved back by $22$~cells, a second block is created, and two gliders are released.\index{31c/240 reaction}
@@ -28,7 +28,7 @@ Most self-supporting spaceships rely on a core reaction that moves an object for
 	\caption{The $31c/240$~reaction. A Herschel collides with a block so as to move forward by $31$~cells (and move the block back by $22$~cells) over the course of $240$~generations. This reaction also produces a second block (at the top-center) and two gliders as by-products.}\label{fig:31c_240_reaction}
 \end{figure}
 
-The first major goal of this chapter is to use this reaction to create a $31c/240$ spaceship. The major obstacles that we will have to overcome are cleaning up the extra objects (blocks and gliders) left behind by the Herschel as it moves, and using the Herschel to create a block in front of itself before it gets there.
+The first major goal of this chapter is to use this reaction to create a $31c/240$ spaceship, which we call the \emph{silverfish}. The major obstacles that we will have to overcome are cleaning up the extra objects (blocks and gliders) left behind by the Herschel as it moves, and using the Herschel to create a block in front of itself before it gets there.
 
 
 \subsection{Herschel Crawlers and Rakes}\label{sec:silverfish_herschel_crawler}
@@ -99,63 +99,79 @@ While this approach works, instead of bouncing a glider back toward the front of
 	\centering
 	\begin{subfigure}[b]{0.43\textwidth}
 		\centering
-		\embedlink{g_2h_to_m}{\vcenteredhbox{\patternimg{0.13}{g_2h_to_m}} \vcenteredhbox{\genarrow{38}} \vcenteredhbox{\patternimg{0.13}{g_2h_to_m_38}}}
+		\embedlink{g_2h_to_m}{\vcenteredhbox{\patternimg{0.132}{g_2h_to_m}} \vcenteredhbox{\genarrow{38}} \vcenteredhbox{\patternimg{0.132}{g_2h_to_m_38}}}
 		\caption{A way of colliding a glider with two heavyweight spaceships so as to make a perpendicular middleweight spaceship.}\label{fig:g_2h_to_m}
 	\end{subfigure} \ \	\ \ \begin{subfigure}[b]{0.53\textwidth}
 		\centering
-		\embedlink{herschel_mwss_stabilize}{\vcenteredhbox{\patternimg{0.08}{herschel_mwss_stabilize}} \vcenteredhbox{\genarrow{98}} \vcenteredhbox{\patternimg{0.08}{herschel_mwss_stabilize_98}} \vcenteredhbox{\genarrow{142}} \vcenteredhbox{\patternimg{0.08}{herschel_mwss_stabilize_240}}}
+		\embedlink{herschel_mwss_stabilize}{\vcenteredhbox{\patternimg{0.075}{herschel_mwss_stabilize}} \vcenteredhbox{\genarrow{98}} \vcenteredhbox{\patternimg{0.075}{herschel_mwss_stabilize_98}} \vcenteredhbox{\genarrow{142}} \vcenteredhbox{\patternimg{0.075}{herschel_mwss_stabilize_240}}}
 		\caption{An MWSS stabilizing a Herschel crawler.}\label{fig:herschel_mwss_stabilize}
 	\end{subfigure}
 	\caption{Some reactions that can be used to stabilize the front of the $31c/240$ Herschel crawler, as long as we can somehow create a parallel double stream of heavyweight spaceships.}\label{fig:silverfish_mwss_reactions}
 \end{figure}
 
-The last remaining question before we can piece together all of these reactions is how to create the pair of heavyweight spaceships that are used in Figure~\ref{fig:g_2h_to_m}. The key insight that makes this possible is the fact that we can fire a glider at an HWSS so as to create some debris without affecting the HWSS (after all, heavyweight spaceships are nice and sparky), and then we can fire additional gliders at that debris so as to create a HWSS.\footnote{In a sense, we are using a heavyweight spaceship to synthesize itself. It is this self-creation that is really what makes it possible to turn the $31c/240$ reaction into a spaceship.} One reaction that implements the first half of this process, by creating a toad and a beehive when a pair of gliders hits an HWSS (without disturbing the HWSS\footnote{That is, this reaction is a Heisenburp.}\index{Heisenburp}), is displayed in Figure~??. An unfortunate feature of this reaction is that it relies on two synchronized gliders, and synchronizing the precise time and (especially) position of multiple gliders that are fired from these block tracks is quite tricky. Nevertheless, this synchronization is possible via kickback reactions, and one configuration of rakes that produces the exact glider pair that we need is displayed in Figure~??.
+The last remaining question before we can piece together all of these reactions is how to create the pair of heavyweight spaceships that are used in Figure~\ref{fig:g_2h_to_m}. The key insight that makes this possible is the fact that we can fire a glider at an HWSS so as to create some debris without affecting the HWSS (after all, heavyweight spaceships are nice and sparky), and then we can fire additional gliders at that debris so as to create a HWSS.\footnote{In a sense, we are using a heavyweight spaceship to synthesize itself. It is this self-creation that is really what makes it possible to turn the $31c/240$ reaction into a spaceship.} One reaction that implements the first half of this process, by creating a toad and a beehive a safe distance from the HWSS when a pair of gliders hits it (without disturbing the HWSS\footnote{That is, this reaction is a Heisenburp.}\index{Heisenburp}), is displayed in Figure~\ref{fig:hwss_toad_beehive}. An unfortunate feature of this reaction is that it relies on two synchronized gliders, and synchronizing the precise time and (especially) position of multiple gliders that are fired from these block tracks is quite tricky. Nevertheless, this synchronization is possible via kickback reactions, and one configuration of rakes that produces the exact glider pair that we need is displayed in Figure~\ref{fig:31c_240_double_gun}.
 
-% Figures
+\begin{figure}[!htb]
+	\centering
+	\begin{subfigure}[b]{0.28\textwidth}
+		\centering
+		\embedlink{hwss_toad_beehive}{\begin{tikzpicture}[rotate=-90,transform shape]%
+			\node[inner sep=0pt,anchor=south west] (dg) at (0,0) {\vcenteredhbox{\patternimg{0.093}{hwss_toad_beehive_0}} \vcenteredhbox{{\color{black}$\xrightarrow{\scriptsize\rotatebox[origin=c]{90}{\text{\clock{2}{40} 160}}}$}} \vcenteredhbox{\patternimg{0.093}{hwss_toad_beehive_160}}};
+		\end{tikzpicture}}
+		\caption{A way of colliding two gliders with an HWSS so as to make a beehive and a toad away from the HWSS stream, and without affecting the HWSS.}\label{fig:hwss_toad_beehive}
+	\end{subfigure} \ \	\ \ \begin{subfigure}[b]{0.69\textwidth}
+		\centering
+		\embedlink{31c_240_double_gun}{\includegraphics[width=\textwidth]{self_support_spaceships/31c_240_double_gun.pdf}}
+		\caption{A configuration of block-crawling rakes that uses some kickback reactions (circled in \bgbox{redback}{red}) to create the synchronized $2$-glider paired needed in (a).}\label{fig:31c_240_double_gun}
+	\end{subfigure}
+	\caption{The configuration of rakes in (b) sends out a pair of gliders that, when they collide with a heavyweight spaceship as in (a), produce a beehive and a toad. That beehive and toad can then be used as a seed for a slow-salvo synthesis of that heavyweight spaceship.}\label{fig:31c_240_double_gun_at_hwss}
+\end{figure}
 
-There are numerous different ways that we could fire gliders at that toad and beehive so as to turn them into a heavyweight spaceship. For the sake of simplicity, we use a slow salvo, since synchronizing the precise time and (especially) position of multiple gliders that are fired from these block tracks is quite tricky. synthesize the HWSS in this way, and one particularSome particular reactions that implement... in Figure~??.% to the Silverfish is this  Heisenburp reaction, which conveniently produces a miscellaneous slow-salvo target (beehive and toad) a safe distance from the stream of upward HWSSes --
-
-%[code]x = 45, y = 24, rule = B3/S23
-%5$2bo9b2o$b3o8bobo$2obo8bo$3o$3o$3o$b2o8$37b2o$37bobo$37bo![/code]
-%
-%-- followed by this 13-glider slow salvo (make sure this is exactly the same as in silverfish figure. we will have an exercise later about mixing it up):
-%
-%[code]x = 232, y = 236, rule = B3/S23
-%bo$obo$obo$bo10$9bo$9b2o$9b2o$10bo34$43b3o$43bo$44bo12b2o$56b2o$58bo8$
-%64b2o$63b2o$65bo9$74b2o$73b2o$75bo12$94b2o$93b2o$95bo$81b3o$81bo$82bo
-%14$101b2o$100b2o$102bo16$143b3o$143bo$144bo14$141b3o$141bo$142bo18$
-%153b3o$153bo$154bo14$183b3o$183bo$184bo14$208b2o$207b2o$209bo39$230b2o
-%$229b2o$231bo![/code]
-
-% TWo figures, side by side again
-
-%This recipe, like the backrake inward-MWSS recipe below, was produced by a long-running breadth-first search.  It was one of the first options that showed up that just happened to produce an upward HWSS with enough clearance that other HWSSes could safely travel past all the intermediate stages of the slow-salvo construction.  So it's probably fairly close to being optimal, though it's possible that the search program missed a good result if it missed covering some part of the search space.
-
-% TODO: Exercise from calcyman's backward rake idea
-% EXERCISE: R3L28. Why doesn't make it any shorter? Rebuild anyway
+There are numerous different ways that we could fire gliders at that toad and beehive so as to turn them into a heavyweight spaceship. For the sake of simplicity, we use a slow salvo, since synchronizing the precise time and (especially) position of multiple gliders that are fired from these block tracks is quite tricky (as we saw for just two gliders in Figure~\ref{fig:31c_240_double_gun}). We furthermore just use gliders coming from one of the four possible directions, since (a) the gliders are fired from the $6$-block track, which restricts us to just two directions (i.e., from forward and backward rakes on the block track), and (b) if we further restrict to gliders just coming from forward rakes then it makes the resulting construction of the $31c/240$ spaceship somewhat simpler and more uniform.\footnote{Point (b) here is somewhat subjective---allowing gliders from backward rakes would decrease the number of gliders required, but perhaps increase the spacing needed between the rakes and make their placement somewhat more complicated. See Exercise~?? for an example of how backward gliders might be useful.} One particular slow salvo of this type that works is displayed in Figure~\ref{fig:hwss_from_toad_beehive}.\footnote{This recipe was produced by a long-running breadth-first search using a script that was written by ConwayLife.com forums user ``oblique''---see \httpsurl{conwaylife.com/forums/viewtopic.php?t=1296}. It was one of the first options to show up that produced an upward HWSS with enough clearance that other HWSSes could safely travel past all the intermediate stages of the slow-salvo construction. It is not necessarily the smallest unidirectional salvo that exists, but it is probably fairly close.}
 
 
 \subsection{Glider Lanes and More Rakes}\label{sec:silverfish_more_rakes}
 
-At this point, we have essentially everything that we need to construct a $31c/240$ spaceship. However, the spaceship that results from combining the various reactions and patterns that we have constructed in this section ends up being monstrously large, so it is worthwhile to spend some time thinking about how we can reduce its size prior to assembling it.
+At this point, we have essentially everything that we need to construct a $31c/240$ spaceship. However, the spaceship that results from combining the various reactions and patterns that we have developed in this section ends up being monstrously large, so it is worthwhile to spend some time thinking about how we can reduce its size prior to assembling it.
 
-The majority of this spaceship's length will come from the multi-step process needed to synthesize the heavyweight spaceship pair on each of its sides via the slow salvo of Figure~??.\footnote{Similarly, the majority of its width comes from how close to the front of the spaceship we can put the first forward rake.} Indeed, implementing this synthesis requires $13$ gliders and thus $13$ forward rakes. Furthermore, we need to use between $0$ and $30$ rephasers before each of those rakes to make sure that the gliders that it emits are positioned on the correct mod~$31$ lane.
+The majority of this spaceship's length will come from the multi-step process needed to synthesize the heavyweight spaceship pair on each of its sides via the slow salvo of Figure~\ref{fig:hwss_from_toad_beehive}.\footnote{Similarly, the majority of its width comes from how close to the front of the spaceship we can put the first forward rake.} Indeed, implementing this synthesis requires $13$ gliders and thus $13$ forward rakes. Furthermore, we need to use between $0$ and $30$ rephasers before each of those rakes to make sure the gliders that they emit are positioned on the correct mod~$31$ lane.
 
-In order to reduce the number of rephasers needed, and thus reduce the spaceship's length, we now introduce several other forward rakes that emit gliders on different lanes. These rakes, which are displayed in Figure~\ref{fig:31c_240_forerakes}, work in one of three different ways:\smallskip
+\begin{figure}[!htb]
+	\centering\raisebox{-0.49\height}{\begin{tikzpicture}[scale=0.5, every node/.style={transform shape}]%
+		\node[inner sep=0pt,anchor=south west] at (0,0) {\embedlink{hwss_from_toad_beehive}{\patternimg{0.182}{hwss_from_toad_beehive}}};
+		
+		\colorletternode{green}{9.89}{6.3}{1}
+		\colorletternode{green}{10.43}{10.8}{2}
+		\colorletternode{green}{8.77}{8.53}{3}
+		\colorletternode{green}{7.88}{7.7}{4}
+		\colorletternode{green}{9.16}{5.05}{5}
+		\colorletternode{green}{6.68}{7.48}{6}
+		\colorletternode{green}{8.08}{4.49}{7}
+		\colorletternode{green}{5.07}{8.45}{8}
+		\colorletternode{green}{6.08}{5.81}{9}
+		\colorletternode{green}{7.21}{3.3}{10}
+		\colorletternode{green}{4.45}{5.42}{11}
+		\colorletternode{green}{3.14}{5.83}{12}
+		\colorletternode{green}{6.12}{2.63}{13}
+		\end{tikzpicture}} \patternlink{hwss_from_toad_beehive}{\vcenteredhbox{\gliderarrow{13}} \vcenteredhbox{\patternimg{0.091}{hwss_from_toad_beehive_13}}}
+	\caption{A $13$-glider slow salvo that turns the configuration of a beehive and toad from Figure~\ref{fig:hwss_toad_beehive} back into an HWSS on the same lane as the HWSS that was used to create them.}\label{fig:hwss_from_toad_beehive}
+\end{figure}
+
+In order to reduce the number of rephasers needed, and thus reduce the spaceship's length, we now introduce several other forward rakes that emit gliders on different lanes. These rakes, which are displayed in Figure~\ref{fig:31c_240_forerakes},\footnote{This collection of rakes is by no means exhaustive. See Exercises~\ref{exer:self_support_spaceships_r4l1}--\ref{exer:self_support_spaceships_r2l16}, and there are many others known as well (and probably quite a few others waiting to be found). The rakes given in Figure~\ref{fig:31c_240_forerakes} are pretty good at hitting each mod~$31$ lane efficiently, though.} work in one of three different ways:\smallskip
 
 \begin{itemize}
-	\item by using multiple copies of the two-glider kickback reaction (as in Figure~\ref{fig:R6L17}),\smallskip
+	\item by using multiple copies of the two-glider kickback reaction (as in Figure~\ref{fig:R6L17}),\footnote{Each pair of kickback reactions that we use in this way has the net effect of adding $2$ rephaser lengths to the rake and increasing its output lane number by $16$ (mod $31$)---see Exercise~\ref{exer:self_support_spaceships_r4l1}.}\smallskip
 	
-	\item by using the two-glider synthesis of a traffic light and a glider from Table~\ref{tab:2_glider_synth}, and then using another glider to clean up the traffic light (as in Figures~\ref{fig:31c_240_forerakes}(d) and~(e)), or\smallskip
+	\item by using the two-glider synthesis of a traffic light and a glider from Table~\ref{tab:2_glider_synth}, and then using another glider or two to clean up the traffic light (as in Figure~\ref{fig:R6L6}), or\smallskip
 	
 	\item by using two gliders to synthesize a small object that can be used to release a glider on another lane when it is destroyed (as in Figures~\ref{fig:31c_240_forerakes}(a) and~(b)).\smallskip
 \end{itemize}
 
-In order to help us keep track of where each of these rakes emits a glider, we name them according to what mod~$31$ lane they fire a glider on (relative to the forward rake from Figure~\ref{fig:31c_240_forward_rake}, which we say fires on lane~$0$) and the number of Herschels that are used on each block trail. Specifically, their names have the form
+In order to help us keep track of where each of these rakes emits a glider, we name them according to what mod~$31$ lane they fire a glider on (relative to the original forward rake that we saw in Figure~\ref{fig:31c_240_forward_rake}, which we say fires on lane~$0$) and the number of Herschels that are used on each block trail. Specifically, their names have the form
 \[
 	\text{\texttt{R<number of Herschels>L<lane number>}},
 \]
-so that the rake from Figure~\ref{fig:31c_240_forward_rake}, for example, is called \texttt{R1L0} (it uses a single Herschel on each block trail and produces a glider on lane~0).\footnote{The ``\texttt{R}'' in this naming scheme stands for the fact that the rake has approximately the same length as this number of \textbf{r}ephasers, and the ``\texttt{L}'' stands for ``\textbf{l}ane''.}
+so that the original rake from Figure~\ref{fig:31c_240_forward_rake}, for example, is called \texttt{R1L0} (it uses a single Herschel on each block trail and produces a glider on lane~0).\footnote{The ``\texttt{R}'' in this naming scheme stands for the fact that the rake has approximately the same length as this number of \textbf{r}ephasers, and the ``\texttt{L}'' stands for ``\textbf{l}ane''.}
 
 \begin{figure}[!htb]
 	\centering
@@ -186,7 +202,7 @@ so that the rake from Figure~\ref{fig:31c_240_forward_rake}, for example, is cal
 	\caption{Several forward rakes that crawl along a six-block trail and emit gliders on different lanes mod~$31$. The forward rake from Figure~\ref{fig:31c_240_forward_rake} is the one displayed here at the bottom-left, called \texttt{R1L0}.}\label{fig:31c_240_forerakes}
 \end{figure}
 
-The ``\texttt{R}'' piece of this naming scheme is useful both as a measure of how long the rake is (e.g., it tells us that \texttt{R6L21} is roughly three times as long as \texttt{R2L25}) and also for computing the mod~$31$ output glider lane of subsequent rakes. Indeed, a single rephaser (i.e., one Herschel on each block track) changes the output lane of subsequent gliders by $-22$ (or equivalently, by $+9$) mod $31$, so a rake with name \texttt{R<m>L<n>} adjusts the output lane of subsequent gliders by \texttt{9m}. For example, \texttt{R6L21} changes the output lane of subsequent gliders by $9 \times 6 = 54 \equiv 23$ mod $31$.
+The ``\texttt{R}'' piece of this naming scheme is useful both as a measure of how long the rake is (e.g., it tells us that \texttt{R6L17} is roughly three times as long as \texttt{R2L25}) and also for computing the mod~$31$ output glider lane of subsequent rakes. Indeed, a single rephaser (i.e., one Herschel on each block track) changes the output lane of subsequent gliders by $-22$ (or equivalently, by $+9$) mod $31$, so a rake with name \texttt{R<m>L<n>} adjusts the output lane of subsequent gliders by $+9m$ (mod $31$). For example, \texttt{R6L21} increases the output lane of subsequent gliders by $9 \times 6 = 54 \equiv 23$ (mod $31$).
 
 With these rakes in hand, we can fire gliders on particular mod~$31$ lanes much more efficiently than we could previously. For example, placing a glider on lane~$22$ (when the block trail is currently aligned to lane~$0$) via just the rakes and rephaser from Figure~\ref{fig:31c_240_rakes_and_rephaser} would require $30$~rephasers followed by the forward rake \texttt{R1L0}. However, a much more efficient way of firing a glider on lane~$22$ is to use just $4$~rephasers and then the forward rake \texttt{R6L17} (for a total length of $4 + 6 = 10$ Herschels per track, instead of $30 + 1 = 31$ Herschels per track). A summary of the most efficient rake to use to place a glider on each mod~$31$ lane is provided in Table~\ref{tab:silverfish_forward_rakes}.
 
@@ -195,53 +211,49 @@ With these rakes in hand, we can fire gliders on particular mod~$31$ lanes much 
 	\begin{tabular}{c l | c l | c l | c l}
 		\toprule
 		Lane & Cheapest Rake & Lane & Rake & Lane & Rake & Lane & Rake \\ \midrule
-		0 & \texttt{R1L0} & 9 & \texttt{R1L0} + 1 & 18 & \texttt{R1L0} + 2 & 27 & \texttt{R1L0} + 3 \\
-		1 & \texttt{R2L23} + 1 rephaser & 10 & \texttt{R2L23} + 2 & 19 & \texttt{R2L23} + 3 & 28 & \texttt{R2L23} + 4\\
-		2 & \texttt{R6L6} + 3 rephasers & 11 & \texttt{R6L6} + 4 & 20 & \texttt{R6L6} + 5 & 29 & \texttt{R6L6} + 6 \\
-		3 & \texttt{R2L25} + 1 rephaser & 12 & \texttt{R2L25} + 2 & 21 & \texttt{R2L25} + 3 & 30 & \texttt{R2L25} + 4 \\
-		4 & \texttt{R6L17} + 2 rephasers & 13 & \texttt{R6L17} + 3 & 22 & \texttt{R6L17} + 4 & & \\
-		5 & \texttt{R1L0} + 4 rephasers & 14 & \texttt{R1L0} + 5 & 23 & \texttt{R2L23} & & \\
-		6 & \texttt{R6L6} & 15 & \texttt{R6L6} + 1 & 24 & \texttt{R6L6} + 2 & & \\
-		7 & \texttt{R6L6} + 7 rephasers & 16 & \texttt{R6L6} + 8 & 25 & \texttt{R2L25} & & \\
-		8 & \texttt{R2L25} + 5 rephasers & 17 & \texttt{R6L17} & 26 & \texttt{R6L17} + 1 & & \\
+		0 & \texttt{R1L0} & 9 & 1 + \texttt{R1L0} & 18 & 2 + \texttt{R1L0} & 27 & 3 + \texttt{R1L0} \\
+		1 & 1 rephaser + \texttt{R2L23} & 10 & 2 + \texttt{R2L23} & 19 & 3 + \texttt{R2L23} & 28 & 4 + \texttt{R2L23}\\
+		2 & 3 rephasers + \texttt{R6L6} & 11 & 4 + \texttt{R6L6} & 20 & 5 + \texttt{R6L6} & 29 & 6 + \texttt{R6L6} \\
+		3 & 1 rephaser + \texttt{R2L25} & 12 & 2 + \texttt{R2L25} & 21 & 3 + \texttt{R2L25} & 30 & 4 + \texttt{R2L25} \\
+		4 & 2 rephasers + \texttt{R6L17} & 13 & 3 + \texttt{R6L17} & 22 & 4 + \texttt{R6L17} & & \\
+		5 & 4 rephasers + \texttt{R1L0} & 14 & 5 + \texttt{R1L0} & 23 & \texttt{R2L23} & & \\
+		6 & \texttt{R6L6} & 15 & 1 + \texttt{R6L6} & 24 & 2 + \texttt{R6L6} & & \\
+		7 & 7 rephasers + \texttt{R6L6} & 16 & 8 + \texttt{R6L6} & 25 & \texttt{R2L25} & & \\
+		8 & 5 rephasers + \texttt{R2L25} & 17 & \texttt{R6L17} & 26 & 1 + \texttt{R6L17} & & \\
 		\bottomrule
 	\end{tabular}
-	\caption{A summary of the shortest forward rakes that can be used to put a glider on a given lane (mod $31$). For example, the shortest configuration of rephasers and forward rakes that can put a glider on lane~22 (when currently aligned to lane~0) consists of \texttt{R6L17} and 4 rephasers. Indeed, that configuration has a total length that is the same as that of $6 + 4 = 10$ rephasers, and no other way of using forward rakes and rephasers is shorter.}\label{tab:silverfish_forward_rakes}
+	\caption{A summary of the shortest forward rakes that can be used to put a glider on a given lane (mod $31$). For example, the shortest configuration of rephasers and forward rakes that can put a glider on lane~22 (when currently aligned to lane~0) consists of 4 rephasers followed by \texttt{R6L17}. Indeed, that configuration has a total length that is roughly the same as that of $6 + 4 = 10$ rephasers, and no other way of using rephasers and forward rakes is shorter.}\label{tab:silverfish_forward_rakes}
 \end{table}
 
-We now proceed with construction of the silverfish. After the first two synchronized gliders that a HWSS to create a toad and beehive and beehive as in Figure~??, we want to create $13$~gliders on the following sequence of lanes:\footnote{We actually have some flexibility in which lanes we use here---see Exercise~??.}% Actually have more flexibility here: (0 and 11 in either order), 8, 7, (29 and 13 in either order), 1, (15 or 16 or 19 or 26), 8, 0, 14, 22, (1 or 2 or 3 or 4 or 5 or 6)
+We now proceed with construction of the silverfish. At the front of the spaceship we use the track-building component that we built in Figure~\ref{fig:31c_240_track_builder} (with the understanding that we will still have to construct the two central block trails somehow), and at the back of the spaceship we use the track-destroying component that we built in Figure~\ref{fig:31c_240_track_destroyer}. Right behind the track-building component, we place a forward rake that is aimed at a parallel stream of heavyweight spaceship pairs as in Figure~\ref{fig:g_2h_to_m}, which create middleweight spaceships to stabilize the two central block trails as in Figure~\ref{fig:herschel_mwss_stabilize}.
+
+The remainder of the silverfish is made up of forward rakes that synthesize the stream of heavyweight spaceship pairs, using the mechanisms of Figures~\ref{fig:31c_240_double_gun_at_hwss} and~\ref{fig:hwss_from_toad_beehive}. Indeed, after using the double gun from Figure~\ref{fig:31c_240_double_gun} to create a beehive and toad, we want to create $13$~gliders on the following sequence of lanes, as indicated by Figure~\ref{fig:hwss_from_toad_beehive}:\footnote{We actually have some flexibility in which lanes we use here---see Exercise~\ref{exer:silverfish_list_of_lanes}.}\label{page:silverfish_lanes}
 \[
 	\text{\texttt{0, 11, 8, 7, 29, 13, 1, 19, 8, 0, 14, 22, 2}.}
 \]
-We can place gliders on these lanes by repeatedly using Table~\ref{tab:silverfish_forward_rakes} and keeping track of what lane the block trails are currently synchronized to. The two-glider rake from Figure~?? synchronizes the block trails to lane~7. We then place $13$ more rakes as follows:\smallskip
+We can place gliders on these lanes by repeatedly using Table~\ref{tab:silverfish_forward_rakes} and keeping track of what lane the block trails are currently synchronized to. After the two-glider rake from Figure~\ref{fig:31c_240_double_gun}, the block tracks are synchronized to lane~7. We then place $13$ more rakes as follows:\smallskip
 
 \begin{itemize}
-	\item First, we want to fire a glider 24 (mod~31) lanes up from the current lane, on lane~0. Table~\ref{tab:silverfish_forward_rakes} tells us that the most efficient way to do this is to use $2$~rephasers and then \texttt{R6L6}. Since this places $8$ Herschels on each track, it synchronizes the block tracks to lane $7 + (9 \times 8) = 79 \equiv 17$ mod~$31$.\smallskip
+	\item First, we want to fire a glider 24 (mod~31) lanes up from the current lane, on lane~0. Table~\ref{tab:silverfish_forward_rakes} tells us that the most efficient way to do this is to use $2$~rephasers and then \texttt{R6L6}. Since this places $8$ Herschels on each track, it synchronizes the block tracks to lane $7 + (9 \times 8) = 79 \equiv 17$ (mod~$31$).\smallskip
 	
-	\item Next, we want to fire a glider $6$ lanes down (i.e., $25$ lanes up) from here on lane $11$ mod $31$. Table~\ref{tab:silverfish_forward_rakes} tells us that the most efficient way to do this is to use \texttt{R2L25}. Since this places $2$ Herschels on each track, it synchronizes the tracks to lane $17 + (9 \times 2) = 35 \equiv 4$ mod~$31$.\smallskip
+	\item Next, we want to fire a glider $6$ lanes down (i.e., $25$ lanes up) from here on lane $11$ mod $31$. Table~\ref{tab:silverfish_forward_rakes} tells us that the most efficient way to do this is to use \texttt{R2L25}. Since this places $2$ Herschels on each track, it synchronizes the tracks to lane $17 + (9 \times 2) = 35 \equiv 4$ (mod~$31$).\smallskip
 	
-	\item Next, we want to fire a glider $4$ lanes up from here on lane $8$. Table~\ref{tab:silverfish_forward_rakes} tells us that the most efficient way to do this is to use $2$~rephasers followed by \texttt{R6L17}. Since this places $8$ Herschels on each track, it synchronizes the tracks to lane $4 + (9 \times 8) = 76 \equiv 14$ mod~$31$.\smallskip
+	\item Next, we want to fire a glider $4$ lanes up from here on lane $8$. Table~\ref{tab:silverfish_forward_rakes} tells us that the most efficient way to do this is to use $2$~rephasers followed by \texttt{R6L17}. Since this places $8$ Herschels on each track, it synchronizes the tracks to lane $4 + (9 \times 8) = 76 \equiv 14$ (mod~$31$).\smallskip
 \end{itemize}
 
-If we continue in this way, we quickly arrive at the following sequence of rakes and rephasers that should be placed along the $6$-block trail so as to synthesize one of the heavyweight spaceships that we need beside it:
+If we continue in this way, we quickly arrive at the following sequence of rakes and rephasers that should be placed along the $6$-block trail so as to synthesize one of the heavyweight spaceships that we need beside it:\footnote{The timing of most of these rakes and rephasers does not matter, so we can simply pack them as tightly together as possible. However, the final \texttt{R6L6} has to be delayed slightly so that the HWSS it created arrives at the front double rake at the correct time.}
 \begin{gather*}
 	\text{\texttt{double rake, 2 rephasers, R6L6, R2L25, 2 rephasers, R6L17, 2 rephasers, R6L6,}} \\
 	\text{\texttt{4 rephasers, R1L0, R6L6, 3 rephasers, R6L6, 1 rephaser, R2L23, R2L25,}} \\
 	\text{\texttt{4 rephasers, R2L25, 3 rephasers, R2L25, 1 rephaser, R6L6, R2L25.}}
 \end{gather*}
 
-% Maybe note that the final R6L6 above has to be delayed 72 ticks from its closest possible position, to build the HWSS at the right time.
-
-% R6L21 is useless, get rid of it (turn into exercise).
-
-If we use two copies of this entire sequence of rakes and rephasers (since we need to synthesize two heavyweight spaceships on each side of the block trail) along with the front and back components that we saw in Figures~?? and~??, we finally get a $31c/240$ orthogonal spaceship. This pattern is called the \emph{silverfish}, and it is displayed in Figure~\ref{fig:silverfish}.
-% Footnote who/when created.
-% Talk about size a bit.
+If we use two copies of this entire sequence of rakes and rephasers (since we need to synthesize two heavyweight spaceships on each side of the block trail), we finally get a complete $31c/240$ orthogonal spaceship,\footnote{Created by Chris Cain, Dave Greene, and Adam P. Goucher in May 2020.} which is displayed in Figure~\ref{fig:silverfish}. Despite its massive size of $215,338$ live cells and $11,970 \times 48,047$ bounding box, it is the smallest known $31c/240$ spaceship.\footnote{Actually, there are some modifications of it that can reduce its size a bit---see Exercises~?? and~??.}
 
 \begin{figure}[!htbp]
 	\centering
 	\embedlink{silverfish}{\includegraphics[width=\textwidth]{self_support_spaceships/silverfish.pdf}}
-	\caption{The completed \emph{silverfish}: a $31c/240$ orthogonal spaceship, oriented so that it travels up. The track-building mechanism from Figure~\ref{fig:31c_240_track_builder} is highlighted in \bgbox{yellowback2}{yellow}, and the double-glider forward rakes from Figure~?? are highlighted in \bgbox{aquaback}{aqua}. The remaining un-highlighted rakes implement the 13-step slow salvo synthesis of a heavyweight spaceship from Figure~??.}\label{fig:silverfish}
+	\caption{The \emph{silverfish}: a $31c/240$ orthogonal spaceship oriented so that it travels up. The track-building mechanism from Figure~\ref{fig:31c_240_track_builder} is highlighted in \bgbox{yellowback2}{yellow}, a track-destroying mechanism like the one from Figure~\ref{fig:31c_240_track_destroyer} is highlighted in \bgbox{magentaback}{magenta}, and the double-glider forward rakes from Figure~\ref{fig:31c_240_double_gun} are highlighted in \bgbox{aquaback}{aqua}. The remaining un-highlighted rakes implement the 13-step slow salvo synthesis of a heavyweight spaceship from Figure~\ref{fig:hwss_from_toad_beehive}.}\label{fig:silverfish}
 \end{figure}
 
 
@@ -292,6 +304,8 @@ Despite its monstrous size, the silverfish displayed in Figure~\ref{fig:silverfi
 %** Exercise: A rephaser adjusted so that its mutually annihilating gliders no longer hit each other, would put out a glider on lane 16.
 % R5L1F NEVER USED (maybe make an exercise with it? Like why it's not so useful? (answer: lane 1 can be reached by R2L23F in just 3 lengths instead of 5 anyway))
 % R2L16 NEVER USED
+% TODO: Exercise from calcyman's backward rake idea
+% EXERCISE: R3L28. Why doesn't make it any shorter? Rebuild anyway
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Exercises \hfill \normalfont\textsf{\small solutions to starred exercises on \hyperlink{solutions_self_support_spaceships}{page \pageref{solutions_self_support_spaceships}}}}
 \label{sec:solutions_self_support_spaceships}
@@ -311,10 +325,10 @@ Despite its monstrous size, the silverfish displayed in Figure~\ref{fig:silverfi
 
 
 \begin{problemstar}\label{exer:self_support_spaceships_r4l1}\index{double kickback}
-	One way of creating rakes for Herschel crawlers (used by the silverfish) that output gliders on different lanes is to use a \emph{double kickback} reaction: the two-glider kickback reaction twice. For example, the\texttt{R6L17} rake from Figure~\ref{fig:r6l17} uses two double kickback reactions.
+	One way of creating rakes for Herschel crawlers (used by the silverfish) that output gliders on different lanes is to use a \emph{double kickback} reaction: the two-glider kickback reaction twice. For example, the\texttt{R6L17} rake from Figure~\ref{fig:R6L17} uses two double kickback reactions.
 	
 	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item Modify the rake from Figure~\ref{fig:r6l17} so as to use just \emph{one} double kickback reaction.
+		\item Modify the rake from Figure~\ref{fig:R6L17} so as to use just \emph{one} double kickback reaction.
 		
 		\item What is the name (in the \texttt{R\#L\#} format) of the rake that you created in part~(a)?
 		
@@ -365,6 +379,17 @@ Despite its monstrous size, the silverfish displayed in Figure~\ref{fig:silverfi
 \end{problem}
 % Side note: This rake is the one from Exercise~\ref{exer:self_support_spaceships_r4l1}, but with the double kickbacks removed.
 
+% TODO: After putting in last forward rake exercise, update footnote from main text that has range of exercises
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:silverfish_list_of_lanes}
+	On page~\pageref{page:silverfish_lanes} we listed a sequence of mod~$31$ lane numbers for implementing the slow salvo synthesis from Figure~\ref{fig:hwss_from_toad_beehive}. The list of lanes that can be used is actually much more flexible than indicated there. For example, we can fire the first two gliders on lanes $0$ and $11$ in either order, since the first two gliders in that slow salvo do not interact with each other.
+	
+	Provide a complete description of all possible sequences of mod~$31$ lane numbers that implement the synthesis from Figure~\ref{fig:hwss_from_toad_beehive}.
+\end{problem}
+% Solution: (0 and 11 in either order), 8, 7, (29 and 13 in either order), 1, (15 or 16 or 19 or 26), 8, 0, 14, 22, (1 or 2 or 3 or 4 or 5 or 6)
 
 %% EXERCISE END COMMANDS
 \end{multicols}

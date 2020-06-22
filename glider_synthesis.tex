@@ -364,6 +364,7 @@ In generation~0 (i.e., its starting phase), this breeder has a population of $20
 While this breeder is quite large, we have purposely not optimized it all, in order to make the mechanisms that make it work more apparent. The space rakes could be moved much closer to each other without compromising its functionality, and by cleverly manipulating the space rake debris it is actually possible to place more than one of the still lifes at the same time, thus halving the total number of space rakes from $12$ to $6$. We will present and make use of a much more compact Gosper glider gun breeder that comes from these ideas a bit later, in Section~\ref{sec:primer_itself}.
 
 
+
 \section{Slow Salvo Synthesis}\label{sec:slow_salvo}
 
 In Section~\ref{sec:incremental_synthesis}, we saw that we can often break glider syntheses down into bits and pieces that are individually easy to understand and make use of. In this section, we take this idea to its most extreme by considering \emph{slow salvos}\index{salvo}, which are collections of gliders\footnote{Technically, a salvo can be made up of any spaceships, but the term almost always refers to gliders.} that (1) are \emph{slow}: only one glider interacts in the synthesis at a time, and (2) form a \emph{salvo}: all of the gliders come from the same direction.
@@ -377,7 +378,7 @@ Despite how restrictive slow salvos seem at first, it is a remarkable fact that 
 
 Our first step toward showing that slow salvos can construct anything that regular glider synthesis can is to demonstrate how we can create almost any arrangement of any number of blocks in the Life plane that we like. The first reaction that we will need is the one displayed in Figure~\ref{fig:slow_salvo_splitter}, which uses a slow salvo of $2$ gliders to turn a single block into two blocks.
 
-\begin{figure}[!ht]
+\begin{figure}[!htb]
 	\centering\embedlink{slow_salvo_splitter}{\vcenteredhbox{\patternimg{0.1}{slow_salvo_splitter_0}} \vcenteredhbox{\gliderarrow{1}} \vcenteredhbox{\patternimg{0.1}{slow_salvo_splitter_1}} \vcenteredhbox{\gliderarrow{1}} \vcenteredhbox{\patternimg{0.1}{slow_salvo_splitter_2}}}
 	\caption{A $2$-glider slow salvo can turn one block into two blocks.}\label{fig:slow_salvo_splitter}
 \end{figure}
