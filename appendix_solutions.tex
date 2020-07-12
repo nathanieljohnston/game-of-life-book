@@ -805,18 +805,18 @@
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%   SECTION: INF GROWTH (TO REMOVE)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\hypertarget{solutions_infinite_growth}{}\label{solutions_infinite_growth}
-\section*{Chapter 9: Infinite Growth}
-\renewcommand{\chapterfolder}{infinite_growth/}
-
-\begin{multicols}{2}
-	\begin{itemize}[leftmargin=0em]
-		\item[\bf\color{ocre}\sffamily\ref{exer:caber_tosser_rewind}] This does not work because the phase of the Cordership in the caber tosser is not actually such that the glider was reflected a few generations ago (rather, it is offset $48$ generations from the phase in which it can reflect a glider). The reason for this is that the previous trip that the glider took from the guns to the Cordership (if it actually took place) would have taken $240$~generations, which is not divisible by $96$ (the period of the Cordership). However, the \emph{next} trip from the guns to the Cordership takes $480$~generations, which \emph{is} divisible by $96$, so the reaction works from this point on.
-	\end{itemize}
-\end{multicols}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%   SECTION: INF GROWTH (TO REMOVE)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\hypertarget{solutions_infinite_growth}{}\label{solutions_infinite_growth}
+%\section*{Chapter 9: Infinite Growth}
+%\renewcommand{\chapterfolder}{infinite_growth/}
+%
+%\begin{multicols}{2}
+%	\begin{itemize}[leftmargin=0em]
+%		\item[\bf\color{ocre}\sffamily\ref{exer:caber_tosser_rewind}] This does not work because the phase of the Cordership in the caber tosser is not actually such that the glider was reflected a few generations ago (rather, it is offset $48$ generations from the phase in which it can reflect a glider). The reason for this is that the previous trip that the glider took from the guns to the Cordership (if it actually took place) would have taken $240$~generations, which is not divisible by $96$ (the period of the Cordership). However, the \emph{next} trip from the guns to the Cordership takes $480$~generations, which \emph{is} divisible by $96$, so the reaction works from this point on.
+%	\end{itemize}
+%\end{multicols}
 
 
 
@@ -926,6 +926,19 @@
 			\item \texttt{R4L1}.
 			
 			\item One rephaser followed by \texttt{R2L23F} outputs a glider on the same lane (lane~1) and is shorter.\\
+		\end{enumerate}
+	
+	
+		\item[\bf\color{ocre}\sffamily\ref{exer:self_support_spaceships_r2l16}] \begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+			\item \raisebox{-\height+0.5em}{\gridbox{0.5pt}{\patternimglink{0.1}{R2L16_partial}}} \\
+			
+			\item \raisebox{-\height+0.5em}{\gridbox{0.5pt}{\patternimglink{0.1}{R2L16}}} 
+			
+			As a side note, this is the same rake as the one from Exercise~\ref{exer:self_support_spaceships_r4l1}, but without the double kickbacks added to it.\\
+			
+			\item \texttt{R2L16}.
+			
+			\item Even though this rake is more efficient than the equivalent one given in Table~\ref{tab:silverfish_forward_rakes} (8 rephasers followed by \texttt{R6L6}), we do not ever use a lane~16 rake building silverfish. Furthermore, lane~16 is the \emph{only} one improved by \texttt{R2L16} -- all other lanes can be fired on more efficiently by \texttt{R2L25}.\\
 		\end{enumerate}
 	\end{itemize}
 \end{multicols}
