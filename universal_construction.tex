@@ -12,7 +12,51 @@
 \vspace*{0.4in}
 
 
-\noindent Just testing some stuff out for now.
+\noindent In the previous chapter, we learned that we can often stabilize unstable reactions (like the $31c/240$~reaction of Figure~\ref{fig:31c_240_reaction}, or the $17c/45$~reaction of Figure~\ref{fig:17c45_reaction}) by using them to create gliders, and then using those gliders to synthesize stabilizing components. In this chapter, we take this idea one step further and show that similar behavior can be achieved without the need for the initial unstable reaction---we can use gliders to create or move some component in the Life plane, while simultaneously moving or recreating those gliders so that they can be re-used.
+
+% Some paragraph about what makes construction 'Universal" -- anything that can be glider constructed can be constructed via these mechanisms. Maybe footnote that it is not known if every non-GoE is glider constructible.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Gemini}\label{sec:gemini}\index{gemini}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We have seen the basic idea behind universal construction several times now, starting back in Section~\ref{sec:slide_guns}. By using a sliding block (or other small still life) as an elbow, we can fire gliders at any location in the Life plane, thus allowing a sequence of gliders to encode the construction or destruction of essentially any pattern (via the slow salvo techniques of Section~\ref{sec:slow_salvo}, for example).
+
+We already saw gliders salvos that push or pull a sliding block back in Figure~\ref{fig:synchronized_block_movers}, as well as salvos that can be used to fire perpendicular gliders of either color in Figure~\ref{fig:synchronized_block_reflectors}. We summarize those reactions that we will make use of in Figure~\ref{fig:gemini_glider_operations},\footnote{The names ``\texttt{FIRE WHITE}'' and ``\texttt{FIRE BLACK}'' used for two of these reactions just refer to the fact that they fire perpendicular gliders of opposite colors (the absolute color names do not matter).} noting that just these four operations are enough for us to be able to implement any unidirectional slow salvo of our choosing.% Footnote about only needing 3?
+
+\begin{figure}[!htb]
+	\centering
+	\begin{tabular}{@{}cccc@{}}
+		\begin{subfigure}{0.23\textwidth}
+			\centering
+			\patternimglink{0.12}{gemini_pull}
+			\caption{\texttt{PULL}}
+			\label{fig:gemini_pull}
+		\end{subfigure} & \begin{subfigure}{0.23\textwidth}
+			\centering
+			\patternimglink{0.12}{gemini_push}
+			\caption{\texttt{PUSH}}
+			\label{fig:gemini_push}
+		\end{subfigure} & \begin{subfigure}{0.23\textwidth}
+			\centering
+			\patternimglink{0.12}{gemini_fire_white}
+			\caption{\texttt{FIRE WHITE}}
+			\label{fig:gemini_fire_white}
+		\end{subfigure} & \begin{subfigure}{0.23\textwidth}
+			\centering
+			\patternimglink{0.12}{gemini_fire_black}
+			\caption{\texttt{FIRE BLACK}}
+			\label{fig:gemini_fire_black}
+		\end{subfigure}
+	\end{tabular}
+	\caption{A collection of reactions that can be used to fire perpendicular gliders (to the southwest) along any lane of our choosing. All four reactions use the same initial pair of gliders (highlighted in \bgbox{orangeback2}{orange}).}\label{fig:gemini_glider_operations}
+\end{figure}
+% Note that the first two gliders of each salvo are the same
+
+By using some Herschel circuitry to create these glider configurations, we can straightforwardly construct the component displayed in Figure~?? that takes an input glider on one of four different lanes and performs the corresponding operation on  the sliding block. This particular component uses some slightly old conduits like Silver reflectors (refer back to Figure~\ref{fig:silver_reflector}) rather than more recent conduits for two reasons: (1) it will be useful for us to have this component built entirely out of pieces like blocks and eater~1s (and unlike Snarks) that are ``simple'' to synthesize, and (2) the Gemini spaceship that we will construct out of this component was built before many of the more efficient conduits that we have explored.\footnote{For example, the Gemini spaceship that we will soon construct was built in 2010, whereas the Snark was found in 2013 and the syringe was found in 2015.}
+
+% FIGURE. Make sure in same order and has same coloring as previous figure.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
