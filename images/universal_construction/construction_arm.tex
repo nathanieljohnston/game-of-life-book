@@ -1,0 +1,36 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\begin{document}
+	\begin{tikzpicture}%
+		\node[inner sep=0pt,anchor=south west] (ca) at (0,0) {\includegraphics[width=9cm]{construction_arm.png}};
+
+		% BORDER
+		\draw[gridgray] (0,0) rectangle (9,6.247);
+		\clip (0,0) rectangle (9,6.247);
+
+		% PULL
+		\newcommand\pullx{0.4}
+		\newcommand\pully{4.8}
+		\draw[gray] (\pullx,\pully) node[rotate=45] {\tiny \texttt{PULL}};
+		\draw[color=gray,-stealth] (\pullx-0.15,\pully-0.3) -- (\pullx+0.35,\pully+0.2);
+		
+		% PUSH
+		\newcommand\pushx{1.7}
+		\newcommand\pushy{1.7}
+		\draw[gray] (\pushx,\pushy) node[rotate=45] {\tiny \texttt{PUSH}};
+		\draw[color=gray,-stealth] (\pushx-0.15,\pushy-0.3) -- (\pushx+0.35,\pushy+0.2);
+		
+		% FIRE WHITE
+		\newcommand\whitex{2.6}
+		\newcommand\whitey{1.1}
+		\draw[gray] (\whitex,\whitey) node[rotate=45] {\tiny \texttt{FIRE WHITE}};
+		\draw[color=gray,-stealth] (\whitex-0.35,\whitey-0.5) -- (\whitex+0.55,\whitey+0.4);
+		
+		% FIRE BLACK
+		\newcommand\blackx{4.93}
+		\newcommand\blacky{0.6}
+		\draw[gray] (\blackx,\blacky) node[rotate=45] {\tiny \texttt{FIRE BLACK}};
+		\draw[color=gray,-stealth] (\blackx-0.35,\blacky-0.5) -- (\blackx+0.55,\blacky+0.4);
+	\end{tikzpicture}
+\end{document}

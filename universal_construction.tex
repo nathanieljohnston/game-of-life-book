@@ -52,11 +52,20 @@ We already saw gliders salvos that push or pull a sliding block back in Figure~\
 	\end{tabular}
 	\caption{A collection of reactions that can be used to fire perpendicular gliders (to the southwest) along any lane of our choosing. All four reactions use the same initial pair of gliders (highlighted in \bgbox{orangeback2}{orange}).}\label{fig:gemini_glider_operations}
 \end{figure}
-% Note that the first two gliders of each salvo are the same
 
-By using some Herschel circuitry to create these glider configurations, we can straightforwardly construct the component displayed in Figure~?? that takes an input glider on one of four different lanes and performs the corresponding operation on  the sliding block. This particular component uses some slightly old conduits like Silver reflectors (refer back to Figure~\ref{fig:silver_reflector}) rather than more recent conduits for two reasons: (1) it will be useful for us to have this component built entirely out of pieces like blocks and eater~1s (and unlike Snarks) that are ``simple'' to synthesize, and (2) the Gemini spaceship that we will construct out of this component was built before many of the more efficient conduits that we have explored.\footnote{For example, the Gemini spaceship that we will soon construct was built in 2010, whereas the Snark was found in 2013 and the syringe was found in 2015.}
+By using some Herschel circuitry to create these glider configurations, we can straightforwardly construct the component displayed in Figure~\ref{fig:construction_arm} that takes an input glider on one of four different lanes and performs the corresponding operation on  the sliding block. This particular component uses some slightly old conduits like Silver reflectors (refer back to Figure~\ref{fig:silver_reflector}) rather than more recent conduits for two reasons: (1) it will be useful for us to have this component built entirely out of pieces like blocks and eater~1s (and unlike Snarks) that are ``simple'' to synthesize, and (2) the Gemini spaceship that we will construct out of this component was built before many of the more efficient conduits that we have explored.\footnote{For example, the Gemini spaceship that we will soon construct was built in 2010, whereas the Snark was found in 2013 and the syringe was found in 2015.}
 
-% FIGURE. Make sure in same order and has same coloring as previous figure.
+\begin{figure}[!htb]
+	\centering
+	\embedlink{construction_arm}{\includegraphics[width=\textwidth]{universal_construction/construction_arm.pdf}}
+	\caption{An elbow-operation circuit, which takes a glider on one of four input glider lanes and as a result either pulls or pushes the sliding block (elbow), or uses it to fire a perpendicular glider of either color to the southwest. Note that all four actions require the \texttt{PULL} circuit to be activated, as it produces the frontmost pair of gliders in all four operations (see Exercise~\ref{exer:construction_arm_lanes_timed}). Constructed by Paul Chapman in 2004.}\label{fig:construction_arm}
+\end{figure}
+
+By aiming the output gliders of two of these elbow-operation circuits at each other, we can encode the construction of any glider-synthesizable pattern in the input streams (with the advantage that the input lanes are fixed, whereas the output lanes are not).\footnote{This is similar to how we encoded the synthesis of a $2$-engine Cordership in some glider sequences back in Figure~\ref{fig:armless_cordership_gun}.} For example, the pattern displayed in Figure~??...
+
+% FIGURE
+
+Importantly, because these circuits are made up of such simple components (mostly blocks and eater~1s, with the most difficult piece to synthesize being a tub), they can even be used to synthesize copies of \emph{themselves}. Indeed, this is the key idea behind the Gemini: use an extremely long chain of gliders to have two of these circuits build 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -80,6 +89,7 @@ Stuff.
 Stuff.
 
 
+% BUILD A GEMINI WITH DIFFERENT PERIOD/SLOPE/WHATEVER
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Exercises \hfill \normalfont\textsf{\small solutions on \hyperlink{solutions_universal_construction}{page \pageref{solutions_universal_construction}}}}
 \label{sec:universal_construction_exercises}
@@ -89,8 +99,10 @@ Stuff.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\begin{problem}\label{exer:universal_construction_ex1}
-	An exercise could be placed here.
+\begin{problem}\label{exer:construction_arm_lanes_timed}
+	The elbow-operation circuit of Figure~\ref{fig:construction_arm} requires two synchronized input gliders to trigger each of the \texttt{PUSH}, \texttt{FIRE WHITE}, and \texttt{FIRE BLACK} operations---one to create the frontmost pair of gliders via the \texttt{PULL} circuit, and one to create the additional glider(s).
+	
+	Add additional Herschel conduits to that circuit so that each of the four operations can be triggered by just a single input glider.
 \end{problem}
 
 
