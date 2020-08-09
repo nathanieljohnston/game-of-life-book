@@ -21,7 +21,14 @@
 \section{Gemini}\label{sec:gemini}\index{gemini}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% TODO: Describe the general shape of gemini a bit better first? Spaceship that builds itself in front of itself.
+
 We have seen the basic idea behind universal construction several times now, starting back in Section~\ref{sec:slide_guns}. By using a sliding block (or other small still life) as an elbow, we can fire gliders at any location in the Life plane, thus allowing a sequence of gliders to encode the construction or destruction of essentially any pattern (via the slow salvo techniques of Section~\ref{sec:slow_salvo}, for example).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Elbow Operations}\label{sec:gemini_elbow}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 We already saw gliders salvos that push or pull a sliding block back in Figure~\ref{fig:synchronized_block_movers}, as well as salvos that can be used to fire perpendicular gliders of either color in Figure~\ref{fig:synchronized_block_reflectors}. We summarize those reactions that we will make use of in Figure~\ref{fig:gemini_glider_operations},\footnote{The names ``\texttt{FIRE WHITE}'' and ``\texttt{FIRE BLACK}'' used for two of these reactions just refer to the fact that they fire perpendicular gliders of opposite colors (the absolute color names do not matter).} noting that just these four operations are enough for us to be able to implement any unidirectional slow salvo of our choosing.% Footnote about only needing 3?
 
@@ -65,7 +72,34 @@ By aiming the output gliders of two of these elbow-operation circuits at each ot
 
 % FIGURE
 
-Importantly, because these circuits are made up of such simple components (mostly blocks and eater~1s, with the most difficult piece to synthesize being a tub), they can even be used to synthesize copies of \emph{themselves}. Indeed, this is the key idea behind the Gemini: use an extremely long chain of gliders to have two of these circuits build 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The Spaceship Itself}\label{sec:gemini_itself}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Importantly, because these circuits are made up of such simple components (mostly blocks and eater~1s, with the most difficult piece to synthesize being a tub), they can even be used to synthesize copies of \emph{themselves}. Indeed, this is the key idea behind the Gemini spaceship: use an extremely long chain of gliders to have two of these circuits build copies of themselves somewhere else in the plane. To turn this idea into a \emph{spaceship} though (rather than just something that repeatedly builds copies of itself), we need to make two additions:\smallskip
+
+\begin{itemize}
+	\item[1)] We need to destroy the original pair of elbow-operation circuits after they have constructed the new ones. To do this, we simply use a third elbow-operation circuit, which is constructed alongside the original pair. After all three circuits are constructed, the first two start construction again while the third one starts destroying the old circuits. Since objects like blocks and eater~1s can easily be destroyed by a single glider each, it is straightforward to find a glider recipe that destroys the elbow-operation circuits.\smallskip
+	
+	\item[2)] We need to be able to re-use the glider recipes that store the construction and destruction recipes. Since we cannot use a static loop (we need the glider recipes to move along with the elbow-operation circuits), we instead have the glider recipes bounce back and forth between \emph{two} copies of the entire three-elbow-operation circuit that we have described.\smallskip
+\end{itemize}
+
+After we put all of these ideas together, we get the Gemini spaceship that is displayed in Figure~\ref{fig:gemini}. % Describe its speed/slope/etc.
+
+\begin{figure}[!htbp]
+	\centering
+	\embedlink{gemini}{\includegraphics[width=\textwidth]{universal_construction/gemini.pdf}}
+	\caption{The self-constructing \emph{gemini} spaceship, which simply looks like a long, thin diagonal line when zoomed out far enough to see in its entirety. The bulk of the spaceship of made up of 24 parallel glider lanes (12 travelling in each direction), which carry a recipe for building the ship. The ends of the spaceship, which are zoomed in on here, are identical arrangements of stable glider reflectors, glider duplicators, and three elbow-operation circuits whose sliding blocks are circled in \bgbox{redback}{red}. The elbow-operation circuits highlighted in \bgbox{aquaback}{aqua} and \bgbox{greenpastel}{green} build the next copy of the spaceship (highlighted in \bgbox{yellowback2}{yellow}), while the elbow-operation circuit higlighted in \bgbox{magentaback}{magenta} destroys the previous copy of the spaceship (highlighted in \bgbox{orangeback2}{orange}).}\label{fig:gemini}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Geminoids}\label{sec:geminoids}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Stuff.
+% Describe how fast we can make it go, what the limiting factor is. Say not worth showing variations in bookks since they look essentially identical.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
