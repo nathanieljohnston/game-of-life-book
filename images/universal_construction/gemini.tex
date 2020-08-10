@@ -11,9 +11,11 @@
 		
 		% DIRECTION
 		\newcommand\dirx{4.6}
-		\newcommand\diry{9.5}
+		\newcommand\diry{9.7}
 		\draw[gray] (\dirx,\diry) node[rotate=-78.69,shift={(0.05,0.12)}] {\tiny \texttt{direction of travel}};
 		\draw[color=gray,-stealth] (\dirx+0.23,\diry-1.15) -- (\dirx-0.23,\diry+1.15);
+		
+		\draw[gray] (6.1,6.1) node[rotate=-45] {\tiny \texttt{Gemini}};
 		
 		% ZOOM NW
 			\newcommand\smlx{0.195}
@@ -55,7 +57,7 @@
 			\draw[color=gray,-stealth] (2.8,3.25) -- (2.4,2.85);
 			\draw[color=gray,-stealth] (3.5,2.6) -- (3.9,3);
 			\draw[color=gray,-stealth] (1.5,2.33) -- (1.1,2.73);
-			\draw[color=gray,-stealth] (1.5,2.1) -- (1.1,1.7);
+			%\draw[color=gray,-stealth] (1.5,2.1) -- (1.1,1.7);
 			\draw[color=gray,-stealth] (3.78,3.5) -- (3.38,3.9);
 			\draw[color=gray,-stealth] (0.7,3.6) -- (1.1,4);
 		% END ZOOM BOX NW
@@ -68,7 +70,7 @@
 			
 			\renewcommand\bglx{7.2}
 			\renewcommand\bgrx{\bglx+4.28407079646}
-			\renewcommand\bgty{11.4}
+			\renewcommand\bgty{11.3}
 			\renewcommand\bgby{\bgty-5.40707964602}
 			
 			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
@@ -87,22 +89,19 @@
 			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
 			
 			% CIRCLE THE SLIDING BLOCKS
-			\draw[white,line width=1.5pt,opacity=0.6](0.66,3.38) circle (0.1);
-			\draw[redback2,line width=0.6pt](0.66,3.38) circle (0.1);
-			\draw[white,line width=1.5pt,opacity=0.6](3.85,3.2) circle (0.1);
-			\draw[redback2,line width=0.6pt](3.85,3.2) circle (0.1);
+			\draw[white,line width=1.5pt,opacity=0.6](8.41,9.22) circle (0.1);
+			\draw[redback2,line width=0.6pt](8.41,9.22) circle (0.1);
 			
 			% GLIDER PATH ARROWS
-			\draw[color=gray,-stealth] (3.3,0.65) -- (2.8,1.15);
-			\draw[color=gray,-stealth] (2.9,1.25) -- (3.3,1.65);
-			\draw[color=gray,-stealth] (3.45,1.55) -- (4.3,0.7);
-			\draw[color=gray,-stealth] (3.25,2.85) -- (2.85,3.25);
-			\draw[color=gray,-stealth] (2.8,3.25) -- (2.4,2.85);
-			\draw[color=gray,-stealth] (3.5,2.6) -- (3.9,3);
-			\draw[color=gray,-stealth] (1.5,2.33) -- (1.1,2.73);
-			\draw[color=gray,-stealth] (1.5,2.1) -- (1.1,1.7);
-			\draw[color=gray,-stealth] (3.78,3.5) -- (3.38,3.9);
-			\draw[color=gray,-stealth] (0.7,3.6) -- (1.1,4);
+			\draw[color=gray,-stealth] (7.35,10.95) -- (8.15,10.15);
+			\draw[color=gray,-stealth] (8.35,10.15) -- (8.75,10.55);
+			\draw[color=gray,-stealth] (8.75,10.75) -- (8.35,11.15);
+			\draw[color=gray,-stealth] (9.55,11) -- (9.95,10.6);
+			\draw[color=gray,-stealth] (8.7,9.7) -- (8.4,9.4);
+			\draw[color=gray,-stealth] (8.45,9) -- (8.95,8.5);
 		% END ZOOM BOX SE
+		
+		\draw[gray] (0.45,6.29) node[anchor=south west]{\tiny \texttt{northwest corner, currently building}};
+		\draw[gray] (7.1,11.21) node[anchor=south west]{\tiny \texttt{southeast corner, currently destroying}};
 	\end{tikzpicture}
 \end{document}
