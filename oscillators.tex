@@ -194,7 +194,7 @@ Of course, this technique does not work for \emph{all} types of debris and \emph
 	\begin{subfigure}{.3\textwidth}%f
 		\centering
 		\patternimglink{0.1}{honey_thieves}
-		\caption{\emph{Honey thieves}\index{honey thieves} (p17)}
+		\caption{\emph{Honey thieves}\index{honey!thieves} (p17)}
 		\label{fig:honey_thieves}
 	\end{subfigure}% 
 	\begin{subfigure}{.3\textwidth}%i
@@ -393,11 +393,11 @@ The other most commonly-occurring spark is the one that consists of just a singl
 			\centering\vspace*{-0.49cm}
 			\patternimglink{0.081538461538}{middleweight_supervolcano}
 			\caption{\emph{MW supervolcano}\index{middleweight!supervolcano} (p5)}
-			\label{fig:mw_supervolcano}
+			\label{fig:mw_supervolcano}\index{middleweight!supervolcano}
 		\end{subfigure}} & \begin{subfigure}{.3\textwidth}
 			\centering\vspace*{0.33cm}
 			\patternimglink{0.1}{middleweight_emulator}
-			\caption{\emph{MW emulator}\index{Middleweight!emulator} (p4)}
+			\caption{\emph{MW emulator}\index{middleweight!emulator} (p4)}
 			\label{fig:middleweight_emulator}
 		\end{subfigure} \\
 		& & \begin{subfigure}{.3\textwidth}
@@ -495,7 +495,7 @@ It is also worth pointing out that the caterer is particularly useful as a resul
 	\label{fig:composite_periods}
 \end{figure}
 
-Finally, there are two more types of sparkers that are somewhat less common, but possibly even more useful than the other sparkers that we have seen so far. Some sparkers create a \emph{duoplet}\index{duoplet} spark (i.e., a spark consisting of two diagonally-connected alive cells\footnote{The term ``duoplet'' technically refers to \emph{any} connected two-cell object, but since the only other connected two-cell object is the domino spark, there is not much chance for ambiguity in using the term to refer to two diagonally-connected cells.}), such as the twin bees shuttle\index{twin bees shuttle} that we constructed back in Section~\ref{sec:twin_bees}. Another type of spark, which it seems appropriate to call a \emph{banana spark}\index{banana spark} based on its shape, is emitted by the variant of the queen bee shuttle\index{queen bee shuttle} (called a \emph{buckaroo})\index{buckaroo} displayed in Figure~\ref{fig:buckaroo}. Recall that we demonstrated how to construct this oscillator in Exercise~\ref{exer:queen_bee_eater_1}.
+Finally, there are two more types of sparkers that are somewhat less common, but possibly even more useful than the other sparkers that we have seen so far. Some sparkers create a \emph{duoplet}\index{duoplet} spark (i.e., a spark consisting of two diagonally-connected alive cells\footnote{The term ``duoplet'' technically refers to \emph{any} connected two-cell object, but since the only other connected two-cell object is the domino spark, there is not much chance for ambiguity in using the term to refer to two diagonally-connected cells.}), such as the twin bees shuttle\index{twin bees!shuttle} that we constructed back in Section~\ref{sec:twin_bees}. Another type of spark, which it seems appropriate to call a \emph{banana spark}\index{banana spark} based on its shape, is emitted by the variant of the queen bee shuttle\index{queen bee!shuttle} (called a \emph{buckaroo})\index{buckaroo} displayed in Figure~\ref{fig:buckaroo}. Recall that we demonstrated how to construct this oscillator in Exercise~\ref{exer:queen_bee_eater_1}.
 
 \begin{figure}[!htb]
 	\centering
@@ -530,9 +530,9 @@ While these sparkers can be used to create higher-period oscillators just like t
 %----------------------------------------------------------------------------------------
 \section{Hasslers and Shuttles}\label{sec:hasslers}
 
-In many of the oscillators that we saw in the previous section, the debris that was bounced around between the eaters was recognizable. For example, the dinner table\index{dinner table} in Figure~\ref{fig:dinner_table} bounces around a pre-beehive\index{pre-beehive}, the honey thieves\index{honey thieves} in Figure~\ref{fig:honey_thieves} bounce around a pre-honey farm\index{pre-honey farm} (hence its name), the oscillator in Figure~\ref{fig:period_36} stabilizes two T-tetrominoes\index{T-tetromino}, and the eaters in Figure~\ref{fig:period_52} stabilize lumps of muck\index{lumps of muck}.
+In many of the oscillators that we saw in the previous section, the debris that was bounced around between the eaters was recognizable. For example, the dinner table\index{dinner table} in Figure~\ref{fig:dinner_table} bounces around a pre-beehive\index{pre-beehive}, the honey thieves\index{honey!thieves} in Figure~\ref{fig:honey_thieves} bounce around a pre-honey farm\index{pre-honey farm} (hence its name), the oscillator in Figure~\ref{fig:period_36} stabilizes two T-tetrominoes\index{T-tetromino}, and the eaters in Figure~\ref{fig:period_52} stabilize lumps of muck\index{lumps of muck}.
 
-This observation suggests that it might be fruitful to look for oscillators in which the debris in the middle is one of the ``standard'' unstable evolutionary sequences. With this in mind, we say that one pattern \emph{hassles}\index{hassle} another one if it repeatedly moves or changes it, typically in a periodic way so as to create an oscillator or gun. Oscillators created in this way are called \emph{hasslers}\index{hassler}. In the special case when a hassler moves an object back and forth between two positions (such as the queen bee shuttle from Section~\ref{sec:queen_bee}), it is called a \emph{shuttle}\index{shuttle}.
+This observation suggests that it might be fruitful to look for oscillators in which the debris in the middle is one of the ``standard'' unstable evolutionary sequences. With this in mind, we say that one pattern \emph{hassles} another one if it repeatedly moves or changes it, typically in a periodic way so as to create an oscillator or gun. Oscillators created in this way are called \emph{hasslers}\index{hassler}. In the special case when a hassler moves an object back and forth between two positions (such as the queen bee shuttle from Section~\ref{sec:queen_bee}), it is called a \emph{shuttle}\index{shuttle}.
 
 
 %----------------------------------------------------------------------------------------
@@ -642,7 +642,7 @@ It would be theoretically possible to use this reaction together with two period
 	\caption{Three dot sparks (highlighted in \bgbox{orangeback}{orange}) can be used to hassle generation~$1$ of a T-tetromino (i.e., the $7$-cell object on the far left), moving it to the left by $2$ cells and mirroring it over the course of $9$~generations.}\label{fig:t_tetromino_hassle_2}
 \end{figure}
 
-By combining these two reactions to move a T-tetromino back and forth, it now takes a total of $11 + 9 = 20$ generations to return to its original position. Fortunately, we have seen some p$4$ and p$5$ sparkers that can create the dot sparks needed to perform the hassling. A period~$20$ T-tetromino shuttle that uses these two shuttle reactions (assisted by a period~$5$ middleweight volcano\index{middleweight volcano} and three period~$4$ middleweight emulators\index{middleweight emulator} that have been welded together) is displayed in Figure~\ref{fig:p20_t_tetromino_hassler}.
+By combining these two reactions to move a T-tetromino back and forth, it now takes a total of $11 + 9 = 20$ generations to return to its original position. Fortunately, we have seen some p$4$ and p$5$ sparkers that can create the dot sparks needed to perform the hassling. A period~$20$ T-tetromino shuttle that uses these two shuttle reactions (assisted by a period~$5$ middleweight volcano\index{middleweight!volcano} and three period~$4$ middleweight emulators\index{middleweight!emulator} that have been welded together) is displayed in Figure~\ref{fig:p20_t_tetromino_hassler}.
 
 \begin{figure}[!htb]
 	\centering
@@ -745,7 +745,7 @@ Note that some combinations of the pre-pulsar pushers cannot work together to cr
 %	SECTION: Glider Loops and Reflectors
 %----------------------------------------------------------------------------------------
 
-\section{Glider Loops and Reflectors}\label{sec:glider_loops}\index{glider loop}\index{reflector}
+\section{Glider Loops and Reflectors}\label{sec:glider_loops}\index{glider!loop}\index{reflector}
 
 In the previous sections, we looked at methods of constructing oscillators that were largely ad hoc: they worked sometimes, but it was almost impossible to actually predict when they would work or what period the resulting oscillators would have. We now start looking at methods of constructing oscillators that are a bit more precise and calculated.
 
@@ -771,7 +771,7 @@ There are also patterns that directly reflect a glider by 180 degrees, rather th
 
 Although 180-degree reflectors like this one result in simpler glider tracks (since you only need $2$ reflectors instead of $4$ to create a complete track), they are typically less useful than their 90-degree counterparts, since we can use two 90-degree reflectors to create a single 180-degree reflector, but we cannot used 180-degree reflectors to make a 90-degree reflector. Furthermore, we can only place a single glider on the track in Figure~\ref{fig:relay}, regardless of how far apart we space the pentadecathlons, since the input and output paths of the reflection overlap each other.
 
-At this point, we have shown that there are oscillators with arbitrarily large periods, but we are still missing a lot of them---we only know how to construct an oscillator with every 30th period. The most obvious way to improve this result would be to find a glider reflector that is a still life rather than an oscillator, since then we would not need to worry about the oscillators being in the correct phase at the start of the collision. Glider reflectors consisting entirely of still lifes are called \emph{stable reflectors}\index{reflector!stable reflector}, and they would immediately allow us to construct an oscillator with every 8th (sufficiently large) period. Furthermore, if the input and output paths of the glider do not interfere with each other, we could construct oscillators with \emph{every} sufficiently large period, simply by placing multiple gliders in loop at whatever spacing we like.
+At this point, we have shown that there are oscillators with arbitrarily large periods, but we are still missing a lot of them---we only know how to construct an oscillator with every 30th period. The most obvious way to improve this result would be to find a glider reflector that is a still life rather than an oscillator, since then we would not need to worry about the oscillators being in the correct phase at the start of the collision. Glider reflectors consisting entirely of still lifes are called \emph{stable reflectors}\index{stable reflector}, and they would immediately allow us to construct an oscillator with every 8th (sufficiently large) period. Furthermore, if the input and output paths of the glider do not interfere with each other, we could construct oscillators with \emph{every} sufficiently large period, simply by placing multiple gliders in loop at whatever spacing we like.
 
 % A stable reflector with repeat time 894. The input glider comes in from the top left (and can been seen with the blue trail above) and three gliders are output in various directions: toward the bottom-right, bottom-left, and top-left. If any of those three output gliders are not desired, they can easily be destroyed with eaters. The reason for the large repeat time is that the glider's initial collision with the reflector creates a beehive that is not destroyed until the very end of the reflection process.
 
@@ -1281,7 +1281,7 @@ Herschel tracks remain one of the pinnacles of Life technology to this day, alth
 
 
 \begin{problem}\label{exer:volcanoes}
-	Several period~$4$ and~$5$ lightweight, middleweight, and heavyweight supervolcanoes\index{supervolcano} are displayed below,\footnote{The p$4$ LW supervolcano was found by Noam Elkies in 2010, the p$5$ MW supervolcano was found by Dongook Lee in 2019, the p$5$ HW supervolcano was found by Karel Suhajda 2004, and the rest were found by Matthias Merzenich in 2010.} and they are particularly useful due to how far they push away their sparks.
+	Several period~$4$ and~$5$ lightweight, middleweight, and heavyweight supervolcanoes\index{supervolcano}\index{lightweight!supervolcano}\index{middleweight!supervolcano}\index{heavyweight!supervolcano} are displayed below,\footnote{The p$4$ LW supervolcano was found by Noam Elkies in 2010, the p$5$ MW supervolcano was found by Dongook Lee in 2019, the p$5$ HW supervolcano was found by Karel Suhajda 2004, and the rest were found by Matthias Merzenich in 2010.} and they are particularly useful due to how far they push away their sparks.
 	
 	\begin{center}
 		\patternimglink{0.07}{supervolcanoes}
