@@ -268,100 +268,101 @@ Synthesizing the Coe ship is slightly less straightforward, since we have not ye
 \end{figure}
 
 
-% TODO: Most of this is out of date now
 % https://conwaylife.com/forums/viewtopic.php?f=&p=41558#p41557
+\subsection{Corderships}\label{sec:cordership_synth}\index{Cordership}
 
-\subsection{Corderships}\label{sec:incremental_schick}\index{Cordership}
+Corderships make up another family of objects that are prime candidates for glider synthesis, since they are also made up of several easily-synthesized components---switch engines.\index{switch engine} The difficult part of synthesizing a Cordership is that the switch engines have to be synchronized with each other, making an incremental synthesis difficult. Since each switch engine requires at least three gliders to synthesize, we expect the $10$-engine Cordership from Figure~\ref{fig:10_engine_cordership} to require at least $30$ gliders to synthesize. Furthermore, the $6$ front and middle switch engines will have to be constructed at almost the exact same time as each other.\footnote{Despite these obstacles, Stephen Silver created a $60$-glider synthesis of the $10$-engine Cordership in 1998 (using a 4-glider synthesis of a switch engine, since the 3-glider synthesis was not yet known).}
 
-Corderships make up another family of objects that are prime candidates for glider synthesis, since they are also made up of several easily-synthesized components---switch engines.\index{switch engine} The difficult part of synthesizing a Cordership is that the switch engines have to be synchronized with each other, making an incremental synthesis difficult. Since each switch engine requires at least three gliders to synthesize, we expect the $10$-engine Cordership from Figure~\ref{fig:10_engine_cordership} to require at least $30$ gliders to synthesize, the $6$ front and middle switch engines would have to be constructed at almost the exact same time, as would the $4$ rear switch engines.\footnote{Despite these obstacles, Stephen Silver created a $60$-glider synthesis of the $10$-engine Cordership in 1998.}
+With these difficulties in mind, it seems desirable to try synthesizing a Cordership that uses as few switch engines as possible---the $2$-engine Cordership from Exercise~\ref{exer:2_engine_cordership} or the $3$-engine Cordership from Figure~\ref{fig:3_engine_cordership}. Here we focus on the $3$-engine Cordership, and we leave the task of synthesizing its $2$-engine counterpart to Exercise~\ref{exer:2_engine_cordership_synthesis}.
 
-With these difficulties in mind, it seems desirable to try synthesizing a Cordership that uses as few switch engines as possible---the $3$-engine Cordership from Figure~\ref{fig:3_engine_cordership}. Even just with $3$ switch engines to synthesize, it is somewhat challenging to find an arrangement of switch engine syntheses that can be placed close enough together without the gliders that are synthesizing different switch engines interfering with each other. Thus we use the $3$-direction syntheses of the switch engine rather than the $4$-direction synthesis so as to minimize the glider crossings that we have to worry about. In particular, we use the second synthesis listed in Table~\ref{tab:other_glider_synth} to construct the central switch engine, and we use the third synthesis to construct the other two switch engines.
-
-Unfortunately, one more small problem arises after we use these $12$~gliders. While the Cordership is indeed synthesized correctly, the debris from the switch engines take a few generations to sync up with each other, and thus some unwanted junk is left behind. To prevent this junk from forming, we use three extra gliders---one for each switch engine---to suppress the debris until it matches up properly with the debris from the other switch engines. Altogether, this results in the $15$-glider synthesis of the $3$-engine Cordership displayed in Figure~\ref{fig:3_engine_cordership_synthesis}.
+As expected, it is not too difficult to use $3 \times 3 = 9$ gliders to synthesize the three switch engines that make up this Cordership. However, one small problem arises after we use these $9$~gliders: while the Cordership is indeed synthesized correctly, the switch engines take a few generations to sync up with each other, so some unwanted debris is left behind. To prevent this debris from forming, we use $2$~extra gliders---one for each of the outermost switch engines---to suppress some chaotic reactions that are normally suppressed by the central switch engine. Altogether, this results in the $11$-glider synthesis of the $3$-engine Cordership displayed in Figure~\ref{fig:3_engine_cordership_synthesis}.
 
 \begin{figure}[!htb]
 	\centering
-	\embedlink{3_engine_cordership_synthesis}{\vcenteredhbox{\phantom{$\cdots$ \genarrow{20}}} \vcenteredhbox{\patternimg{0.1}{3_engine_cordership_synthesis_0}} \vcenteredhbox{\fixarrowc{45}} \vcenteredhbox{\patternimg{0.1}{3_engine_cordership_synthesis_45}}} \\[1em]
+	\embedlink{3_engine_cordership_synthesis}{\vcenteredhbox{\phantom{$\cdots$ \genarrow{71}}} \vcenteredhbox{\patternimg{0.1}{3_engine_cordership_synthesis_0}} \vcenteredhbox{\fixarrowc{47}} \vcenteredhbox{\patternimg{0.1}{3_engine_cordership_synthesis_47}}} \\[1em]
 	
-	\patternlink{3_engine_cordership_synthesis}{\vcenteredhbox{$\cdots$ \genarrow{61}} \vcenteredhbox{\patternimg{0.1}{3_engine_cordership_synthesis_106}} \vcenteredhbox{\genarrow{288}} \vcenteredhbox{\patternimg{0.1}{3_engine_cordership_synthesis_394}}} \\[1em]
-	\caption{A $15$-glider synthesis of the $3$-engine Cordership, which was found by Jason Summers in 2004. The $3$~switch engines are synthesized by the \bgbox{aquaback}{aqua}, \bgbox{magentaback}{magenta}, and \bgbox{greenback}{green} glider collisions. The remaining $3$~gliders clean up some extra debris that is left behind by the switch engines.}\label{fig:3_engine_cordership_synthesis}
+	\patternlink{3_engine_cordership_synthesis}{\vcenteredhbox{$\cdots$ \genarrow{71}} \vcenteredhbox{\patternimg{0.1}{3_engine_cordership_synthesis_118}} \vcenteredhbox{\genarrow{232}} \vcenteredhbox{\patternimg{0.1}{3_engine_cordership_synthesis_350}}} \\[1em]
+	\caption{An $11$-glider synthesis of the $3$-engine Cordership. The $3$~switch engines are synthesized by the $3$-glider syntheses highlighted in \bgbox{aquaback}{aqua}, \bgbox{magentaback}{magenta}, and \bgbox{greenpastel}{green}. The remaining $2$~gliders clean up some extra junk that would otherwise be left behind by the outermost switch engines.}\label{fig:3_engine_cordership_synthesis}
 \end{figure}
 
 
 
 \section{Developing New Syntheses}\label{sec:new_syntheses}
 
-So far the glider syntheses that we have seen have been restricted to two basic types: (a)~syntheses that were found just by crashing gliders together and cataloguing what objects were created, and (b)~syntheses that can be made simply by piecing together the syntheses of type~(a). Let's now start to branch out and construct glider syntheses of more exotic objects that do not decompose in any natural way into simpler objects that we already know how to synthesize.
+So far the glider syntheses that we have seen have been restricted to two basic types: (a)~syntheses that were found just by crashing gliders together and cataloguing what objects were created, and (b)~syntheses that can be made simply by piecing together the syntheses of type~(a). We now branch out and demonstrate how to construct glider syntheses of more exotic objects that do not decompose in any natural way into simpler objects that we already know how to synthesize.
 
 Perhaps the most common way to develop new glider syntheses is to find a soup that leaves behind the pattern of interest in its ash, and try to reverse-engineer the part of the soup's evolution that led to the object's formation. To illustrate this method, consider Rich's p16\index{Rich's p16} (the period~16 oscillator that we introduced in Figure~\ref{fig:rich_p16}), which was found by evolving the soup displayed in Figure~\ref{fig:richs_p16_soup}.
 
 \begin{figure}[!ht]
-	\centering\embedlink{richs_p16_soup}{\vcenteredhbox{\patternimg{0.1}{richs_p16_soup}} \vcenteredhbox{\genarrow{196}} \vcenteredhbox{\patternimg{0.125}{richs_p16_soup_196}}}
+	\centering\embedlink{richs_p16_soup}{\vcenteredhbox{\patternimg{0.1464}{richs_p16_soup}} \vcenteredhbox{\genarrow{196}} \vcenteredhbox{\patternimg{0.11}{richs_p16_soup_196}}}
 	\caption{The soup that led to the discovery of Rich's p16 (highlighted on the right in \bgbox{aquaback}{aqua}).}\label{fig:richs_p16_soup}
 \end{figure}
 
-To develop a glider synthesis for this oscillator, we evolve the soup to just before its formation (in this case, slightly earlier than generation $196$) and try to isolate the reaction that creates the oscillator. In this step, it is important to keep in mind that the goal is to go back far enough that all (or at least most) of the reactions are ones that we are familiar with, such as a T-tetromino or a queen bee colliding with some still lifes. In this particular case, if we go to generation $164$ of the soup's evolution then the reaction has decomposed enough that we can identify all of the important pieces of the oscillator's creation: Rich's p16 (plus a lot of extra debris) is created when two honeyfarm predecessors and two B-heptominoes collide with two blocks and two beehives (see Figure~\ref{fig:richs_p16_soup_detailed}).
+To develop a glider synthesis for this oscillator, we evolve the soup to just before its formation (in this case, slightly earlier than generation $196$) and try to isolate the reaction that creates the oscillator. In this step, it is important to keep in mind that the goal is to go back far enough that all (or at least most) of the reactions are ones that we are familiar with, such as a T-tetromino or a queen bee colliding with some still lifes. In this particular case, if we go to generation $164$ of the soup's evolution then the reaction has decomposed enough that we can identify all of the important pieces of the oscillator's creation: Rich's p16 (plus a lot of extra debris) is forms when a particular configuration of two honey farm predecessors and two B-heptominoes collide with two blocks and two beehives (see Figure~\ref{fig:richs_p16_soup_detailed}).
 
 \begin{figure}[!htb]
 	\centering
 	\begin{subfigure}{.48\textwidth}
-		\centering\patternlink{richs_p16_soup}{\patternimg{0.125}{richs_p16_soup_164}}
+		\centering\patternlink{richs_p16_soup}{\patternimg{0.13}{richs_p16_soup_164}}
 		\caption{Generation~164.}\label{fig:richs_p16_soup_164}
 	\end{subfigure} \ \ \ \ % 
 	\begin{subfigure}{.48\textwidth}
-		\centering\patternlink{richs_p16_soup}{\patternimg{0.125}{richs_p16_soup_155}}
+		\centering\patternlink{richs_p16_soup}{\patternimg{0.13}{richs_p16_soup_155}}
 		\caption{Generation~155.}
 		\label{fig:richs_p16_soup_155}
 	\end{subfigure}
-	\caption{Rich's p16 is created when (a)~two honey farm predecessors (highlighted in \bgbox{yellowback2}{yellow}) and two B-heptominoes (highlighted in \bgbox{greenback}{green}) collide with two blocks and two beehives (highlighted in \bgbox{magentaback}{magenta}). The honey farm predecessors can be identified by comparing them with Figure~\ref{fig:pre_honeyfarm}, and the B-heptomino can be identified by going backward to generation~155 of the soup as in~(b).}\label{fig:richs_p16_soup_detailed}
+	\caption{Rich's p16 is created (a) when two honey farm predecessors (highlighted in \bgbox{yellowback2}{yellow}) and two B-heptominoes (highlighted in \bgbox{greenpastel}{green}) collide with two blocks and two beehives (highlighted in \bgbox{magentaback}{magenta}). The honey farm predecessors can be identified by comparing them with Figure~\ref{fig:pre_honeyfarm}, and the B-heptomino can be identified by (b) going backward to generation~155 of the soup.}\label{fig:richs_p16_soup_detailed}
 \end{figure}
 
-We now have enough tools at our disposal to synthesize this oscillator, since we know how to synthesize blocks, beehives, honey farms, and B-heptominoes. However, the B-heptominoes in this reaction are quite messy, and create a lot of leftover debris that we would then have to clean up with several additional gliders (see Exercise~\ref{exer:single_glider_cleanup}). To reduce the number of required gliders somewhat, we can notice that only three cells on one side of the B-heptominoes interact with the rest of the reaction, and only for two generations. Another easy-to-synthesize object with the same configuration of three cells is the eater~1, which we can thus use to replace the B-heptominoes as in Figure~\ref{fig:richs_p16_predecessor}. Fortunately, using eater~1s in this way does result in a much smaller amount of debris being created around the p16 oscillator.
+We now have enough tools at our disposal to synthesize this oscillator, since we know how to synthesize blocks, beehives, honey farms, and B-heptominoes. However, the B-heptominoes in this reaction are quite messy, and create a lot of leftover debris that we would then have to clean up with several additional gliders (see Exercise~\ref{exer:single_glider_cleanup}). To reduce the number of required gliders somewhat, we notice that only three cells on one side of the B-heptominoes interact with the rest of the reaction, and only for two generations. Another easy-to-synthesize object with the same configuration of three cells is the eater~1, which can thus replace the B-heptominoes as in Figure~\ref{fig:richs_p16_predecessor}. Fortunately, using eater~1s in this way does result in a much smaller amount of debris being created around the Rich's p16.
 
 \begin{figure}[!ht]
-	\centering\embedlink{richs_p16_predecessor}{\vcenteredhbox{\patternimg{0.1}{richs_p16_predecessor}} \vcenteredhbox{\genarrow{32}} \vcenteredhbox{\patternimg{0.1}{richs_p16_predecessor_32}}}
-	\caption{A reaction of common objects that results in Rich's p16 (and two unwanted boats).}\label{fig:richs_p16_predecessor}
+	\centering\embedlink{richs_p16_predecessor}{\vcenteredhbox{\patternimg{0.11}{richs_p16_predecessor}} \vcenteredhbox{\genarrow{32}} \vcenteredhbox{\patternimg{0.11}{richs_p16_predecessor_32}}}
+	\caption{A reaction of common objects that results in Rich's p16 (and two unwanted boats). This is the same reaction as in Figure~\ref{fig:richs_p16_soup_164}, but with the B-heptominoes replaced by eater~1s (highlighted in \bgbox{greenpastel}{green}).}\label{fig:richs_p16_predecessor}
 \end{figure}
 
-The only somewhat tricky part of synthesizing this collection of objects is creating the two honey farm predecessors, since they are unstable and thus we have to create them after creating the still lifes. Thus we opt to use the incremental honey farm synthesis from Table~\ref{tab:sequential_synth}, so that instead of having to use $4$ coordinated gliders in the final stage of synthesis ($2$ for each honey farm), we only need to use $2$ coordinated gliders (plus $2$ blocks that we can place much earlier). A complete incremental synthesis of this oscillator is presented in Figure~\ref{fig:richs_p16_synthesis},\footnote{This synthesis was originally found, using the method we outlined in this section, by user ``BlinkerSpawn'' on the ConwayLife.com forums less than a day after the oscillator's discovery.} and we stress that there is nothing clever about this synthesis; it just makes use of the $2$-glider syntheses from Table~\ref{tab:2_glider_synth}, the incremental honey farm synthesis we already mentioned, and one final glider collision (which is easily found by hand) to destroy the left-over boats.
+The only somewhat tricky part of synthesizing this collection of objects is creating the two honey farm predecessors, since they are unstable and we thus have to create them after creating the still lifes. For this reason, we opt to use the incremental honey farm synthesis from Table~\ref{tab:sequential_synth}, so that instead of having to use $4$ coordinated gliders in the final stage of synthesis ($2$ for each honey farm), we only need to use $2$ coordinated gliders (plus $2$ blocks that we can place much earlier). A complete incremental synthesis of this oscillator is presented in Figure~\ref{fig:richs_p16_synthesis}.\footnote{This synthesis was originally found, using the method we outlined in this section, by user ``BlinkerSpawn'' on the ConwayLife.com forums less than a day after the oscillator's discovery.} We stress that there is nothing particularly clever about this synthesis; it just makes use of the $2$-glider syntheses from Table~\ref{tab:2_glider_synth}, the incremental honey farm synthesis we already mentioned, and one final glider collision (which is easily found by hand) to destroy the left-over boats.
 
 \begin{figure}[!ht]
 	\centering
-	\embedlink{richs_p16_synthesis}{\vcenteredhbox{\patternimg{0.125}{richs_p16_synthesis_1}} \vcenteredhbox{\gliderarrow{4}} \vcenteredhbox{\patternimg{0.125}{richs_p16_synthesis_2}} \vcenteredhbox{\gliderarrow{4}} \vcenteredhbox{\patternimg{0.125}{richs_p16_synthesis_3}} \vcenteredhbox{\gliderarrow{6}} \vcenteredhbox{\patternimg{0.125}{richs_p16_synthesis_4}} \vcenteredhbox{\gliderarrow{2}} \vcenteredhbox{\patternimg{0.125}{richs_p16_synthesis_5}} \vcenteredhbox{\gliderarrow{2}} \vcenteredhbox{\patternimg{0.125}{richs_p16_synthesis_6}}}
+	\embedlink{richs_p16_synthesis}{\vcenteredhbox{\patternimg{0.179}{richs_p16_synthesis_1}} \vcenteredhbox{\gliderarrow{4}} \vcenteredhbox{\patternimg{0.179}{richs_p16_synthesis_2}} \vcenteredhbox{\gliderarrow{4}} \vcenteredhbox{\patternimg{0.179}{richs_p16_synthesis_3}} \vcenteredhbox{\gliderarrow{6}} \vcenteredhbox{\patternimg{0.179}{richs_p16_synthesis_4}} \vcenteredhbox{\gliderarrow{2}} \vcenteredhbox{\patternimg{0.179}{richs_p16_synthesis_5}} \vcenteredhbox{\gliderarrow{2}} \vcenteredhbox{\patternimg{0.179}{richs_p16_synthesis_6}}}
 	
-	\caption{An $18$-glider incremental synthesis of Rich's p16. The first three stages of synthesis just involve placing still lifes that can each be synthesized by $2$ gliders. The next stage synthesizes the honey farm predecessors, and the final stage uses $2$ additional gliders to destroy the $2$ leftover boats. Objects that were created or modified in the previous step of the synthesis are shown in \bgbox{redback}{red}, and the gliders that will be involved in the next collision are shown in \bgbox{greenback}{green}.}\label{fig:richs_p16_synthesis}
+	\caption{An $18$-glider incremental synthesis of Rich's p16. The first three stages of synthesis just involve placing still lifes that can each be synthesized by $2$ gliders. The next stage synthesizes the honey farm predecessors, and the final stage uses $2$ additional gliders to destroy the $2$ leftover boats. Objects that were created or modified in the previous step of the synthesis are shown in \bgbox{redback}{red}, and the gliders that will be involved in the next collision are shown in \bgbox{greenpastel}{green}.}\label{fig:richs_p16_synthesis}
 \end{figure}
 
 
 \section{A Gosper Glider Gun Breeder}\label{sec:gosper_breeder}
 
-We have now learned quite a few recipes for synthesizing different objects with gliders. To demonstrate how useful these glider syntheses can be, we now switch focus a bit and start \emph{using} these glider syntheses to create new types of patterns. In particular, we will now construct our first \emph{breeder}\index{breeder}: a pattern that grows quadratically\footnote{There are actually breeders that grow slower than quadratically, and not all patterns with quadratic growth are breeders. We will return to the subject of breeders in Section~\ref{sec:breeders} and give a more precise definition then.} (as opposed to objects like guns or rakes, which grow linearly). In other words, we will construct a pattern that does not just fill up some \emph{strip} of the Life plane, but instead fills an ever-expanding \emph{region} of the Life plane.
+We have now learned quite a few recipes for synthesizing different objects with gliders. To demonstrate how useful these glider syntheses can be, we now switch focus a bit and start \emph{using} these glider syntheses to create new types of patterns. In particular, we now construct our first \emph{breeder}\index{breeder}: a object that grows quadratically (as opposed to objects like guns or rakes, which grow linearly). In other words, we will construct an object that does not just fill up some \emph{strip} of the Life plane, but instead fills an ever-expanding \emph{region} of the Life plane.
 
-The idea behind our construction is simple enough: we use the rakes we introduced in Section~\ref{sec:rakes} to fire gliders in such a way that those gliders synthesize Gosper glider guns (using the incremental synthesis in Figure~\ref{fig:gosper_sequential}). Since the rakes will create Gosper glider guns at a linear rate, and the Gosper glider guns will then each create gliders at a linear rate, the overall growth of our pattern will be quadratic.
+The idea behind this breeder is simple enough: we use the rakes that we introduced in Section~\ref{sec:rakes} to fire gliders in such a way that those gliders synthesize Gosper glider guns (using the incremental synthesis from Figure~\ref{fig:gosper_sequential}). Since the rakes will create Gosper glider guns at a linear rate, and the Gosper glider guns will then each create gliders at a linear rate, the overall growth of our pattern will be quadratic.
 
-To make this construction explicit, we first note that we cannot possibly use the period~20 space rakes directly, since they can only be used to construct objects that are 10~cells apart, and Gosper glider guns are wider than that, so they would collide and destroy each other. Thus we make use of the slightly more complicated period~60 variants of the space rake that we introduced in Section~\ref{sec:schick_engine}, which will produce glider guns that are 30~cells apart from each other.
+To make this construction explicit, we first note that we cannot possibly use the period~20 space rakes directly, since they can only be used to construct objects that are 10~cells apart. Since Gosper glider guns are wider than that, they would collide and destroy each other. We thus make use of the slightly more complicated period~60 variants of the space rake that we introduced in Section~\ref{sec:schick_engine}, which will produce glider guns that are 30~cells apart from each other.
 
-Now we just go through the Gosper glider gun's incremental synthesis step by step, lining up rakes so that the gliders they produce collide in the desired way. For example, for the first step of the synthesis (i.e., creating the two initial ponds), we will need four rakes, which we can position as in Figure~\ref{fig:breeder_front}.
-\begin{figure}[!ht]
-	\centering\includegraphics[width=0.7\textwidth]{glider_synthesis/breeder_front.png}
+Now we just go through the Gosper glider gun's incremental synthesis step by step, lining up rakes so that the gliders they produce collide in the desired way. For example, for the first step of the synthesis (i.e., creating the two initial ponds), we need four rakes, which we can position as in Figure~\ref{fig:breeder_front}.
+
+\begin{figure}[!htb]
+	\centering
+	\patternimglinkwidth{\textwidth}{breeder_front}
 	\caption{The front end of our breeder features two copies of the period~60 backward space rake (outlined in \bgbox{yellowback2}{yellow}), followed by two copies of the period~60 forward space rake (outlined in \bgbox{aquaback}{aqua}), all traveling to the right. The gliders from these rakes collide in such a way as to create ponds, which is the first step of the incremental synthesis of a Gosper glider gun presented in Figure~\ref{fig:gosper_sequential}.}\label{fig:breeder_front}
 \end{figure}
 
-Once we have positioned those four rakes, they create two endless lines of ponds with a distance of 30~cells between each consecutive pair. At this point, we simply move on to the next portion of the glider synthesis: we need to construct two blocks near each pair of ponds, which we can do with another four rakes. Then we need to hit the ponds with a single glider each in order to turn them into ships, which we do with two more rakes. Finally, we use two more rakes to fire gliders at the pair of ships, turning each of them into queen bees and thus completing the Gosper glider gun synthesis. Our completed breeder is depicted in Figure~\ref{fig:breeder_done}.\footnote{The first breeder was found by Bill Gosper in the early 1970s, and used the exact same ideas that we used in the construction of ours. However, instead of using space rakes, it used another puffer that emits two blocks and four gliders every 64~generations. The fact that this puffer drops blocks is useful because there is then no need to synthesize them, but the trade-off is that the puffer only shoots gliders backward, not forward, so lining up other collisions is slightly more difficult.}
+Once we have positioned those four rakes, they create two endless lines of ponds with a distance of 30~cells between each consecutive pair. At this point, we simply move on to the next portion of the glider synthesis: we construct two blocks near each pair of ponds, which we can do with four more rakes. We then need to hit the ponds with a single glider each in order to turn them into ships, which we do with two more rakes. Lastly, we use two final rakes to fire gliders at the pair of ships, turning each of them into queen bees and thus completing the Gosper glider gun synthesis. The resulting breeder is displayed in Figure~\ref{fig:breeder_done}.\footnote{The first breeder was found by Bill Gosper in the early 1970s. It used the exact same ideas that we used in the construction of our breeder, but used a different puffer in place of the space rakes that we used.}
 
 \begin{figure}[!ht]
-	\centering\patternimglinkwidth{0.95\textwidth}{breeder_done}
-	\caption{A breeder constructed using an incremental glider synthesis of a Gosper glider gun. First, a forward and backward period~60 space rake are used to collide two gliders and create a pond as in Figure~\ref{fig:breeder_front} (outlined on the right in \bgbox{yellowback2}{yellow}), followed by another forward and backward space rake colliding two gliders to create a block (outlined in \bgbox{greenback}{green}). Next, a backward space rake uses one glider to convert the pond into a ship (outlined in \bgbox{aquaback}{aqua}), and finally another backward space rake uses one glider to convert the ship into a queen bee (outlined in \bgbox{magentaback}{magenta}), thus completing the synthesis of the Gosper glider gun.}\label{fig:breeder_done}
+	\centering
+	\patternimglinkwidth{\textwidth}{breeder_done}
+	\caption{A breeder constructed using an incremental glider synthesis of a Gosper glider gun. First, a forward and backward p60 space rake create a pond as in Figure~\ref{fig:breeder_front} (outlined on the right in \bgbox{yellowback2}{yellow}), followed by another forward and backward space rake creating a block (outlined in \bgbox{greenpastel}{green}). Next, a backward space rake converts the pond into a ship (outlined in \bgbox{aquaback}{aqua}), and finally another backward space rake converts the ship into a queen bee (outlined in \bgbox{magentaback}{magenta}), thus completing the synthesis of the Gosper glider gun.}\label{fig:breeder_done}
 \end{figure}
 
-In generation~0 (i.e., its starting phase), this breeder has a population of $2038$ cells. The quadratic growth of this breeder can be quantified by noting that every 60~generations, an additional $44$-cell Gosper glider gun is created, and each of the guns creates two additional $5$-cell gliders, for a total population in generation $60n$ of $5n^2 + 44n + 2038$. This quadratic growth is demonstrated in Figure~\ref{fig:breeder_done_1200}, which shows the expanding triangular region of gliders behind generation~1200 of the breeder.
+In generation~0 (i.e., its starting phase), this breeder has a population of $2038$ cells. The quadratic growth of this breeder can be quantified by noting that every 60~generations, an additional $44$-cell Gosper glider gun is created, and each of those guns creates two additional $5$-cell gliders, for a total population in generation $60n$ of $5n^2 + 44n + 2038$. This quadratic growth is illustrated in Figure~\ref{fig:breeder_done_1200}, which shows the expanding triangular region of gliders behind generation~1200 of the breeder.
 
-\begin{figure}[!ht]
-	\centering\includegraphics[width=0.95\textwidth]{glider_synthesis/breeder_done_1200.png}
-	\caption{After running the breeder for 1200~generations, we see a triangle of gliders form on the left, above the line of Gosper glider guns that has been synthesized. As the breeder moves farther to the right, the triangle continues to expand.}\label{fig:breeder_done_1200}
+\begin{figure}[!htb]
+	\centering\includegraphics[width=\textwidth]{glider_synthesis/breeder_done_1200.png}
+	\caption{After running the breeder for 1200~generations, we see a triangle of gliders form at the west, above the line of Gosper glider guns that has been synthesized. As the breeder moves farther to the east, the triangle continues to expand to the northeast.}\label{fig:breeder_done_1200}
 \end{figure}
 
-While this breeder is quite large, we have purposely not optimized it all, in order to make the mechanisms that make it work more apparent. The space rakes could be moved much closer to each other without compromising its functionality, and by cleverly manipulating the space rake debris it is actually possible to place more than one of the still lifes at the same time, thus halving the total number of space rakes from $12$ to $6$. We will present and make use of a much more compact Gosper glider gun breeder that comes from these ideas a bit later, in Section~\ref{sec:primer_itself}.
+While this breeder is quite large, we have purposely not optimized it all, in order to make the mechanisms that make it work more apparent. The space rakes can be moved much closer to each other without compromising its functionality (see Exercise~\ref{exer:breeder_minimize}), and by cleverly manipulating the space rake debris it is actually possible to place more than one of the still lifes at the same time, thus halving the total number of space rakes from $12$ to $6$. We present and make use of a much more compact Gosper glider gun breeder that comes from these ideas a bit later, in Section~\ref{sec:primer_itself}.
 
 
 
@@ -639,7 +640,8 @@ It remains an open question whether or not every still life (or every oscillator
 % One-time glider to LWSS: http://conwaylife.com/forums/viewtopic.php?f=2&t=1134&p=8489#p8488
 % one-time LWSS turner: http://conwaylife.com/forums/viewtopic.php?f=2&t=1134&p=8489#p8519
 
-		
+
+% TODO: Check syntheses of Corderships in these solutions, make sure they use 3-glider synth of switch engine, not 4
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Exercises \hfill \normalfont\textsf{\small solutions on \hyperlink{solutions_glider_synthesis}{page \pageref{solutions_glider_synthesis}}}}
 \label{sec:synthesis_exercises}
@@ -698,7 +700,7 @@ It remains an open question whether or not every still life (or every oscillator
 \begin{problem}\label{exer:glider_block_collisions}
 	There are exactly $6$~distinct ways for a glider to collide with a block. List them all and describe the result of each collision.
 \end{problem}
-% pi, honeyfarm, move block, final 3 annihilate both glider and block
+% pi, honey farm, move block, final 3 annihilate both glider and block
 
 
 \mfilbreak
@@ -786,6 +788,7 @@ It remains an open question whether or not every still life (or every oscillator
 \mfilbreak
 
 
+% TODO: double check switch engine synth here uses 3-glider synth, not 4
 \begin{problem}\label{exer:glider_synth_two_directions}\index{kickback reaction}
 	By using the $2$-glider \emph{kickback reaction} from Table~\ref{tab:2_glider_synth} that changes the direction of a glider, we can decrease the number of directions used in many glider syntheses at the expense of increasing the number of gliders required. Use this technique to create glider syntheses for each of the following patterns with the property that all gliders come from just two different directions.
 	\begin{enumerate}[label=(\alph*)]
@@ -889,6 +892,15 @@ It remains an open question whether or not every still life (or every oscillator
 
 \begin{problem}\label{exer:glider_producing_switch_breeder}
 	Create a breeder that uses three rakes to synthesize glider-producing switch engines via the $3$-glider collision displayed in Table~\ref{tab:3_glider_synth}. [Hint: You will need to use rakes with very high period.]
+\end{problem}
+
+
+\mfilbreak
+
+
+
+\begin{problem}\label{exer:breeder_minimize}
+	The breeder from Figure~\ref{fig:breeder_done} can be made quite a bit smaller by moving its space rakes closer together (and rephasing them as necessary). Use this technique to reduce the breeder's width by at least $50$ cells.
 \end{problem}
 
 
