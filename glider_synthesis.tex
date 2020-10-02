@@ -368,32 +368,32 @@ While this breeder is quite large, we have purposely not optimized it all, in or
 
 \section{Slow Salvo Synthesis}\label{sec:slow_salvo}
 
-In Section~\ref{sec:incremental_synthesis}, we saw that we can often break glider syntheses down into bits and pieces that are individually easy to understand and make use of. In this section, we take this idea to its most extreme by considering \emph{slow salvos}\index{salvo}, which are collections of gliders\footnote{Technically, a salvo can be made up of any spaceships, but the term almost always refers to gliders.} that (1) are \emph{slow}: only one glider interacts in the synthesis at a time, and (2) form a \emph{salvo}: all of the gliders come from the same direction.
+In Section~\ref{sec:incremental_synthesis}, we saw that we can often break glider syntheses down into bits and pieces that are individually easy to understand and make use of. In this section, we take this idea to its most extreme by considering \emph{slow salvos}\index{salvo}, which are collections of gliders\footnote{Technically, a salvo can be made up of any spaceships, but the term almost always refers to gliders.} that (a) are \emph{slow}: only one glider interacts in the synthesis at a time, and (b) form a \emph{salvo}: all of the gliders come from the same direction.
 
-In order for the gliders in a slow salvo to be able to actually synthesize anything, we need another object (called a \emph{seed}\index{seed}) for it to crash into. While we could in principle use any object, it is typical to use a block\index{block} as a starting point, since it is the simplest and most symmetric stationary object. Furthermore, it is typical to only consider either \emph{p1 slow salvos} or \emph{p2 slow salvos}, which are slow salvos in which the intermediate objects that are created after every glider collision are still lifes or some combination of still lifes and period~2 oscillators, respectively.\footnote{P2 salvos are advantageous because blinkers are so easy to synthesize, and we will see shortly that the clock\index{clock} is also a useful tool when working with slow salvos. We could analogously consider p$n$ slow salvos for some $n \geq 3$, but in practice not much is gained by doing so, since objects with period~3 or higher typically aren't any easier to create in intermediate stages of synthesis than objects period~1 or period~2.} This perhaps seems like quite an extensive list of restrictions, but we have in fact already seen a few objects that can be created via p1 slow salvos. For example, we saw in Table~\ref{tab:sequential_synth} that we could use a pond as a seed in a p1~slow salvo to produce a ship, and then a queen bee. % As a less trivial example, consider the p1 slow salvo synthesis presented in Figure~??, which uses a total of 12 gliders to gradually change the starting block into more and more complicated still lifes, eventually resulting in an eater~1. Compare this synthesis with the one presented in Figure~\ref{fig:17_cell_synthesis}, which was neither slow (multiple gliders are involved in most stages of synthesis) nor a salvo (gliders approach from all four directions).
+In order for the gliders in a slow salvo to be able to actually synthesize anything, we need another object (called a \emph{seed}\index{seed}) for it to crash into. While we could in principle use any object, it is typical to use a block\index{block} as a starting point, since it is the simplest and most symmetric stationary object. Furthermore, it is typical to only consider either \emph{p1 slow salvos} or \emph{p2 slow salvos}, which are slow salvos in which the intermediate objects that are created after every glider collision are still lifes or some combination of still lifes and period~2 oscillators, respectively.\footnote{P2 salvos are advantageous because blinkers are so easy to synthesize, and we will see shortly that the clock\index{clock} is also a useful tool when working with slow salvos. We could analogously consider p$n$ slow salvos for some $n \geq 3$, but in practice not much is gained by doing so, since objects with period~3 or higher typically aren't any easier to create in intermediate stages of synthesis than objects period~1 or period~2.} This perhaps seems like quite an extensive list of restrictions, but we have in fact already seen a few objects that can be created via p1 slow salvos. For example, we saw in Table~\ref{tab:sequential_synth} that we could use a pond as a seed in a p1~slow salvo to produce a ship, and then a queen bee.% As a less trivial example, consider the p1 slow salvo synthesis presented in Figure~??, which uses a total of 12 gliders to gradually change the starting block into more and more complicated still lifes, eventually resulting in an eater~1. Compare this synthesis with the one presented in Figure~\ref{fig:17_cell_synthesis}, which was neither slow (multiple gliders are involved in most stages of synthesis) nor a salvo (gliders approach from all four directions).
 
-Despite how restrictive slow salvos seem at first, it is a remarkable fact that they are exactly as general as regular glider synthesis. That is, if we can synthesize an object with gliders then we can synthesize it with a p2 slow salvo.\footnote{However, the slow salvo might contain considerably more gliders than other glider syntheses.} In order to pin down exactly why this is the case, we will introduce several new reactions that allow us to systematically create slow salvo syntheses from standard glider syntheses.
+Despite how restrictive slow salvos seem at first, it is a remarkable fact that they are exactly as general as standard glider syntheses. That is, if we can synthesize an object with gliders at all then we can synthesize it with a p2 slow salvo.\footnote{However, the slow salvo might contain considerably more gliders than other glider syntheses.} In order to pin down exactly why this is the case, we now introduce several new reactions that allow us to systematically create slow salvo syntheses from standard glider syntheses.
 
 
 \subsection{Creating and Moving Blocks}\label{sec:slow_salvo_blocks}
 
-Our first step toward showing that slow salvos can construct anything that regular glider synthesis can is to demonstrate how we can create almost any arrangement of any number of blocks in the Life plane that we like. The first reaction that we will need is the one displayed in Figure~\ref{fig:slow_salvo_splitter}, which uses a slow salvo of $2$ gliders to turn a single block into two blocks.
+Our first step toward showing that slow salvos can construct anything that regular glider syntheses can is to demonstrate how we can create almost any arrangement of any number of blocks in the Life plane that we like. The first reaction that we will need is the one displayed in Figure~\ref{fig:slow_salvo_splitter}, which uses a slow salvo of $2$ gliders to turn a single block into two blocks.
 
 \begin{figure}[!htb]
-	\centering\embedlink{slow_salvo_splitter}{\vcenteredhbox{\patternimg{0.1}{slow_salvo_splitter_0}} \vcenteredhbox{\gliderarrow{1}} \vcenteredhbox{\patternimg{0.1}{slow_salvo_splitter_1}} \vcenteredhbox{\gliderarrow{1}} \vcenteredhbox{\patternimg{0.1}{slow_salvo_splitter_2}}}
+	\centering\embedlink{slow_salvo_splitter}{\vcenteredhbox{\patternimg{0.101}{slow_salvo_splitter_0}} \vcenteredhbox{\gliderarrow{1}} \vcenteredhbox{\patternimg{0.101}{slow_salvo_splitter_1}} \vcenteredhbox{\gliderarrow{1}} \vcenteredhbox{\patternimg{0.101}{slow_salvo_splitter_2}}}
 	\caption{A $2$-glider slow salvo can turn one block into two blocks.}\label{fig:slow_salvo_splitter}
 \end{figure}
 
-While the two resulting blocks are in very different positions than the initial block, it turns out that this does not particularly matter, as we are able to use p1 slow salvos to move a block from any position to any other position on the Life plane. To show that such a movement is possible, we will use the two block-moving reactions displayed in Figure~\ref{fig:block_movers}. The first of these reactions uses a single glider to move a block up $2$~cells and left $1$~cell (in fact, this is exactly the (2,1) block pull\index{(2,1) block pull} that we saw way back in Figure~\ref{fig:glider_block_move}), and the second reaction uses six gliders (in a p1 slow salvo) to move a block down and to the right $1$ cell.
+While the two resulting blocks are in very different positions than the initial block, it turns out that this does not particularly matter, as we can also use p1 slow salvos to move a block from one position on the Life plane to any other. To show that such a movement is possible, we use the two block-moving reactions displayed in Figure~\ref{fig:block_movers}. The first of these reactions uses a single glider to move a block up $2$~cells and left $1$~cell (in fact, this is exactly the (2,1) block pull\index{(2,1) block pull} that we saw way back in Figure~\ref{fig:glider_block_move}), and the second reaction uses six gliders (in a p1 slow salvo) to move a block down and to the right $1$ cell.
 
 \begin{figure}[!htb]
 	\centering
-	\begin{tabular}{cc}
-		\begin{subfigure}[b]{.3\textwidth}
-			\centering\embedlink{block_move_1_glider}{\vcenteredhbox{\patternimg{0.1}{block_move_1_glider_0}} \vcenteredhbox{\gliderarrow{1}} \vcenteredhbox{\patternimg{0.1}{block_move_1_glider_1}}}
+	\begin{tabular}{@{}cc@{}}
+		\begin{subfigure}[b]{.39\textwidth}
+			\centering\embedlink{block_move_1_glider}{\vcenteredhbox{\patternimg{0.176}{block_move_1_glider_0}} \vcenteredhbox{\gliderarrow{1}} \vcenteredhbox{\patternimg{0.176}{block_move_1_glider_1}}}
 			\caption{The (2,1) block pull is a reaction in which a single glider pulls a block by $2$~cells in one direction and $1$~cell in the other.}\label{fig:block_move_1_glider}
 		\end{subfigure} &
-		\begin{subfigure}[b]{.65\textwidth}
+		\begin{subfigure}[b]{.59\textwidth}
 			\centering\raisebox{-0.48\height}{\begin{tikzpicture}[scale=0.5, every node/.style={transform shape}]%
 				\node[inner sep=0pt,anchor=south west] at (0,0) {\embedlink{block_move_6_gliders}{\patternimg{0.2}{block_move_6_gliders_0}}};
 				
@@ -407,44 +407,46 @@ While the two resulting blocks are in very different positions than the initial 
 			\caption{A $6$-glider slow salvo moving a block down and right by $1$ cell.}\label{fig:block_move_6_gliders}
 		\end{subfigure}
 	\end{tabular}
-	\caption{Two methods of moving a block around with p1 slow salvos that can be repeated in order to move a block to any position on the Life plane. The order in which the gliders should come in is indicated by the \bgbox{greenback}{green} numbers---their exact timing does not matter, as long as they are far enough apart that each collision settles down before the next glider arrives.}
+	\caption{Two methods of moving a block around with p1 slow salvos. The order in which the gliders should come in is indicated by the \bgbox{greenpastel}{green} numbers---their exact timing does not matter, as long as they are far enough apart that each collision settles down before the next glider arrives. Repeating these slow salvos allows us to move a block to any position on the Life plane.}
 	\label{fig:block_movers}
 \end{figure}
 
-By combining these two reactions, we can move a block a single cell up, down, left, or right. For example, to move a block up a single cell, we could perform the movement in Figure~\ref{fig:block_move_1_glider}, followed by the movement in Figure~\ref{fig:block_move_6_gliders} (for a total cost of $7$ gliders). Similarly,
+If we repeat these two reactions then we can move a block a single cell up, down, left, or right. For example, to move a block up a single cell, we could perform the movement in Figure~\ref{fig:block_move_1_glider}, followed by the movement in Figure~\ref{fig:block_move_6_gliders} (for a total cost of $7$ gliders). Similarly:\smallskip
+
 \begin{itemize}
-	\item To move a block right by a single cell, perform the movement in Figure~\ref{fig:block_move_1_glider}, followed by the movement in Figure~\ref{fig:block_move_6_gliders} twice.\footnote{This requires a total of $13$ gliders, which is far from optimal---another reaction is known that accomplishes the same movement in only $7$ total gliders. However, we are just interested in presenting the conceptually simplest method of moving blocks, not necessarily the most efficient method. Paul Chapman and Dave Greene put together an extensive table of the cheapest known block-moving slow salvos, which is available at \httpurl{b3s23life.blogspot.com/2004/09/glues-slow-salvo-block-move-table.html} (note that the values in their table assume that the gliders come from the bottom-right, rather than the top-left). A slightly more up-to-date table that makes use of p2 salvos rather than just p1 salvos is available at \httpsurl{conwaylife.com/forums/viewtopic.php?f=7\&t=1072\#p8182}}
+	\item To move a block right by a single cell, we could perform the movement in Figure~\ref{fig:block_move_1_glider}, followed by the movement in Figure~\ref{fig:block_move_6_gliders} twice.\footnote{This requires a total of $13$ gliders, which is far from optimal---another p1 slow salvo is known that accomplishes the same movement via only $7$~total gliders. However, we are just interested in presenting the conceptually simplest method of moving blocks, not necessarily the most efficient one. Paul Chapman and Dave Greene put together an extensive table of the cheapest known block-moving slow salvos, which is available at \httpurl{b3s23life.blogspot.com/2004/09/glues-slow-salvo-block-move-table.html} (note that the values in their table assume that the gliders come from the bottom-right, rather than the top-left). A slightly more up-to-date table that makes use of p2 salvos rather than just p1 salvos is available at \httpsurl{conwaylife.com/forums/viewtopic.php?f=7\&t=1072\#p8182}}\smallskip
 	
-	\item To move a block left by a single cell, perform the movement in Figure~\ref{fig:block_move_1_glider}, but reflected along the diagonal from the top-left to the bottom right. Then perform the movement in Figure~\ref{fig:block_move_6_gliders}.
+	\item To move a block left by a single cell, we could perform the movement in Figure~\ref{fig:block_move_1_glider}, but reflected along the diagonal from the top-left to the bottom right. Then perform the movement in Figure~\ref{fig:block_move_6_gliders}.\smallskip
 	
-	\item To move a block down by a single cell, first move it left by a single cell and then perform the movement in Figure~\ref{fig:block_move_6_gliders}.
+	\item To move a block down by a single cell, we could first move it left by a single cell and then perform the movement in Figure~\ref{fig:block_move_6_gliders}.\smallskip
 \end{itemize}
 
-Now that we know how to use p1 slow salvos to move a block by a single cell in any direction, we can easily repeat these reactions over and over until the block is moved to whatever position we desire.\footnote{In linear algebra terms, what we have shown is that every point in $\mathbb{Z}^2$ is a positive linear combination of the vectors $(-1,2)$, $(-2,1)$, and $(1,-1)$.}
+Now that we know how to use p1 slow salvos to move a block by a single cell in any direction, we can easily repeat these reactions over and over until the block is moved to whatever position we desire.%\footnote{In slightly more mathematical language, what we have shown is that every point in $\mathbb{Z}^2$ is a positive linear combination of the vectors $(-1,2)$, $(-2,1)$, and $(1,-1)$.}
+% Note that there are more efficient ways than this though
 
 
 % IMPORTANT http://conwaylife.com/forums/viewtopic.php?f=2&t=918&p=7291&hilit=blockic#p7291
 \subsection{One-Time Turners}\label{sec:slow_salvo_turners}
 
-Just like we can use gliders to create and move blocks around the Life plane, we can also use blocks to move gliders around the Life plane. Thus we can use a p1 slow salvo to create arrangements of blocks that then change the direction of other gliders in the salvo, thus creating salvos that come from multiple directions.
+Just like we can use gliders to create and move blocks around the Life plane, we can also use blocks to move gliders around the Life plane. We can thus use a p1 slow salvo to create arrangements of blocks that then change the direction of other gliders in the salvo, thus creating salvos that come from multiple directions.
 
-To be a bit more explicit, consider the arrangement of blocks presented in Figure~\ref{fig:one_time_turner}, which can be used to rotate a glider by 90 degrees, but is destroyed in the process (contrast this with reflectors like the Snark\index{Snark}, which rotate gliders but remain unchanged). Reflectors like this are called \emph{one-time turners}\index{one-time turner}, and they will be invaluable for us when using slow salvos to emulate arbitrary glider syntheses. There are also numerous other 90-degree one-time turners involving various numbers of blocks (and sometimes other small still lifes), but this turner involving just two blocks is perhaps the simplest, and for now it will be enough for our purposes.
+To be a bit more explicit, consider the arrangement of blocks presented in Figure~\ref{fig:one_time_turner}, which can be used to rotate a glider by 90 degrees, but is destroyed in the process (contrast this with reflectors like the Snark\index{Snark}, which rotate gliders but remain unchanged). Reflectors like this are called \emph{one-time turners}\index{one-time turner}, and they are one of the key ingredients that let us emulate arbitrary glider syntheses via slow salvos. There are also numerous other 90-degree one-time turners involving various numbers of blocks (and sometimes other small still lifes---see Exercise~\ref{exer:boat_one_time_turner}), but this turner involving just two blocks is perhaps the simplest, and for now it is enough for our purposes.
 
-\begin{figure}[!ht]
-	\centering\embedlink{one_time_turner}{\vcenteredhbox{\patternimg{0.1}{one_time_turner_0}} \vcenteredhbox{\genarrow{35}} \vcenteredhbox{\patternimg{0.1}{one_time_turner_35}}}
+\begin{figure}[!htb]
+	\centering\embedlink{one_time_turner}{\vcenteredhbox{\patternimg{0.14}{one_time_turner_0}} \vcenteredhbox{\genarrow{35}} \vcenteredhbox{\patternimg{0.14}{one_time_turner_35}}}
 	\caption{A \emph{one-time turner} composed of two blocks that rotates a glider by 90 degrees and destroys the blocks at the same time.}\label{fig:one_time_turner}
 \end{figure}
 
-Importantly, because this one-time turner is made up of nothing other than blocks, we can construct it using a p1 slow salvo via the techniques that we developed in the previous section. An explicit $12$-glider p1 slow salvo that does the job (and also leaves us with an extra block that we can then use to construct additional turners) is displayed in Figure~\ref{fig:create_one_time_turner}. This salvo works by using 2 gliders to duplicate the initial block (as in Figure~\ref{fig:slow_salvo_splitter}), 8 gliders to move one of these blocks to a new position, and then 2 more gliders to duplicate this block again (and due to the clever way we repositioned the second block, this second duplication leaves a pair of blocks in exactly the one-time turner configuration).
+Importantly, because this one-time turner is made up of nothing other than blocks, we can construct it using a p1 slow salvo via the techniques that we developed in the previous section. An explicit $12$-glider p1 slow salvo that does the job (and also leaves us with an extra block that we can then use to construct additional turners) is displayed in Figure~\ref{fig:create_one_time_turner}. This salvo works by using 2 gliders to duplicate the initial block (as in Figure~\ref{fig:slow_salvo_splitter}), 8 gliders to move one of these blocks to a new position, and then 2 more gliders to duplicate this block again.% (and due to the clever way we repositioned the second block, this second duplication leaves a pair of blocks in exactly the one-time turner configuration).
 
 \begin{figure}[!ht]
-	\centering\raisebox{-0.5\height}{\begin{tikzpicture}[scale=0.5, every node/.style={transform shape}]%
-	\node[inner sep=0pt,anchor=south west] at (0,0) {\embedlink{create_one_time_turner}{\patternimg{0.195}{create_one_time_turner_0}}};
+	\centering\raisebox{-0.5\height}{\begin{tikzpicture}[scale=0.518, every node/.style={transform shape}]%
+	\node[inner sep=0pt,anchor=south west] at (0,-0.2) {\embedlink{create_one_time_turner}{\patternimg{0.195}{create_one_time_turner_0}}};
 				
 	\colorletternode{green}{4.2}{3.75}{1}
 	\colorletternode{green}{4.15}{5.9}{2}
-	\end{tikzpicture}} \patternlink{create_one_time_turner}{\vcenteredhbox{\gliderarrow{2}}} \raisebox{-0.5\height}{\begin{tikzpicture}[scale=0.5, every node/.style={transform shape}]%
-	\node[inner sep=0pt,anchor=south west] at (0,0) {\patternlink{create_one_time_turner}{\patternimg{0.195}{create_one_time_turner_2}}};
+	\end{tikzpicture}} \patternlink{create_one_time_turner}{\vcenteredhbox{\gliderarrow{2}}} \raisebox{-0.5\height}{\begin{tikzpicture}[scale=0.518, every node/.style={transform shape}]%
+	\node[inner sep=0pt,anchor=south west] at (0,-0.2) {\patternlink{create_one_time_turner}{\patternimg{0.195}{create_one_time_turner_2}}};
 	
 	\colorletternode{green}{3.07}{6.35}{1}
 	\colorletternode{green}{1.69}{7}{2}
@@ -454,44 +456,47 @@ Importantly, because this one-time turner is made up of nothing other than block
 	\colorletternode{green}{0.15}{7.87}{6}
 	\colorletternode{green}{1.73}{8.09}{7}
 	\colorletternode{green}{1.02}{8.98}{8}
-	\end{tikzpicture}} \patternlink{create_one_time_turner}{\vcenteredhbox{\gliderarrow{8}}} \raisebox{-0.5\height}{\begin{tikzpicture}[scale=0.5, every node/.style={transform shape}]%
-	\node[inner sep=0pt,anchor=south west] at (0,0) {\patternlink{create_one_time_turner}{\patternimg{0.195}{create_one_time_turner_10}}};
+	\end{tikzpicture}} \patternlink{create_one_time_turner}{\vcenteredhbox{\gliderarrow{8}}} \raisebox{-0.5\height}{\begin{tikzpicture}[scale=0.518, every node/.style={transform shape}]%
+	\node[inner sep=0pt,anchor=south west] at (0,-0.2) {\patternlink{create_one_time_turner}{\patternimg{0.195}{create_one_time_turner_10}}};
 	
 	\colorletternode{green}{5.05}{4.8}{1}
 	\colorletternode{green}{5}{7}{2}
-	\end{tikzpicture}} \patternlink{create_one_time_turner}{\vcenteredhbox{\gliderarrow{2}}} \raisebox{-0.5\height}{\begin{tikzpicture}[scale=0.5, every node/.style={transform shape}]%
-	\node[inner sep=0pt,anchor=south west] at (0,0) {\patternlink{create_one_time_turner}{\patternimg{0.195}{create_one_time_turner_12}}};
+	\end{tikzpicture}} \patternlink{create_one_time_turner}{\vcenteredhbox{\gliderarrow{2}}} \raisebox{-0.5\height}{\begin{tikzpicture}[scale=0.518, every node/.style={transform shape}]%
+	\node[inner sep=0pt,anchor=south west] at (0,-0.2) {\patternlink{create_one_time_turner}{\patternimg{0.195}{create_one_time_turner_12}}};
 	\end{tikzpicture}}
-	\caption{A p1 slow salvo of 12 gliders can be used to create the one-time turner from Figure~\ref{fig:one_time_turner} and leave us with another block left over (to create additional turners or other objects with). The first two gliders duplicate the initial block, using the reaction from Figure~\ref{fig:slow_salvo_splitter}. The next $8$ gliders move one of the blocks down and to the right, and then the final two gliders duplicate that moved block. The order in which the gliders should come in is indicated by the \bgbox{greenback}{green} numbers---their exact timing does not matter, as long as they are far enough apart that each collision settles down before the next glider arrives.}
+	\caption{A 12-glider p1 slow salvo creating the one-time turner from Figure~\ref{fig:one_time_turner} (highlighted in \bgbox{magentaback}{magenta}) and leaving behind another block to create additional turners or other objects with. The first $2$ gliders duplicate the initial block via the reaction of Figure~\ref{fig:slow_salvo_splitter}, the next $8$ gliders move one of the blocks down and to the right, and then the final $2$ gliders duplicate that moved block.}% The order in which the gliders should come in is indicated by the \bgbox{greenpastel}{green} numbers---their exact timing does not matter, as long as they are far enough apart that each collision settles down before the next glider arrives.}
 	\label{fig:create_one_time_turner}
 \end{figure}
 
-Thus we can use a total of $13$ gliders in a p1 slow salvo ($12$ to create the one-time turner and $1$ to use and destroy it) to create one glider in a perpendicular direction, while still having a block left over to perform additional constructions with. Using this technique, we are now able to emulate multi-directional glider syntheses from unidirectional ones. For example, consider the four-glider syntheses of the clock\index{clock} that we saw in Table~\ref{tab:other_glider_synth}, which use one glider coming from each of the four possible directions. A unidirectional synthesis of the clock can be constructed by using a p1 slow salvo to construct four one-time turners (one of the gliders does not need to be turned at all, two gliders need to be turned once each, and one glider needs to be turned twice) and then firing four gliders at the one-time turners with the proper timing. An explicit configuration of one-time turners that works is displayed in Figure~\ref{fig:unidirection_clock_synthesis}.\footnote{We do not explicitly demonstrate how to create this arrangement of blocks using a p1 slow salvo, since it would require dozens of gliders.}
+We can thus use a total of $13$ gliders in a p1 slow salvo ($12$~to create the one-time turner and $1$~to use and destroy it) to create $1$~glider in a perpendicular direction, while still having a block left over to perform additional constructions with. Using this technique, we are now able to emulate multi-directional glider syntheses via unidirectional syntheses.
 
-\begin{figure}[!ht]
-	\centering\embedlink{unidirection_clock_synthesis}{\vcenteredhbox{\patternimg{0.097}{unidirection_clock_synthesis}} \vcenteredhbox{\genarrow{135}} \vcenteredhbox{\patternimg{0.097}{unidirection_clock_synthesis_135}}}
+For example, consider the four-glider syntheses of the clock\index{clock} that we saw in Table~\ref{tab:other_glider_synth}, which each use one glider coming from all four possible directions. A unidirectional synthesis of the clock can be constructed by using a p1 slow salvo to construct four one-time turners---one of the gliders does not need to be turned at all, two gliders need to be turned once each, and one glider needs to be turned twice---and then firing four gliders at the one-time turners with the proper timing. An explicit configuration of one-time turners that works is displayed in Figure~\ref{fig:unidirection_clock_synthesis}.\footnote{It is possible to create a p1 slow salvo that builds this arrangement of blocks by hand, but there are also computer scripts that automate this process---see Exercise~\ref{exer:create_clock_turners}.}
+
+\begin{figure}[!htb]
+	\centering\embedlink{unidirection_clock_synthesis}{\vcenteredhbox{\patternimg{0.1}{unidirection_clock_synthesis}} \vcenteredhbox{\genarrow{135}} \vcenteredhbox{\patternimg{0.1}{unidirection_clock_synthesis_135}}}
 	\caption{One-time turners (which can be synthesized with a p1 slow salvo) can be used to allow unidirectional glider waves (like the one on the left) to emulate multi-directional glider syntheses (like the one on the right). The gliders on the right are in exactly the position of the clock synthesis that we saw in Table~\ref{tab:other_glider_synth}.}\label{fig:unidirection_clock_synthesis}
 \end{figure}
 
-Unfortunately, this construction does not give us a true p1 slow salvo for constructing a clock, since the final four gliders in the synthesis (i.e., the ones that hit the one-time turners) must be synchronized with each other---we are not free to space them arbitrarily far from one another. In order to fix this problem, we will need to introduce some methods for using blocks to duplicate gliders and then adjust the timing of those gliders.
+Unfortunately, this construction does not give us a true p1 slow salvo for constructing a clock, since the final four gliders in the synthesis (i.e., the ones that hit the one-time turners) must be synchronized with each other---we are not free to space them arbitrarily far from one another. In order to fix this problem, we need to introduce some methods for using blocks to duplicate gliders and adjust their timing.
 
 
 % http://conwaylife.com/forums/viewtopic.php?f=2&t=1512
 % table of blockic splitters: http://conwaylife.com/forums/viewtopic.php?f=2&t=1065#p7661
 \subsection{Splitters and Timing}\label{sec:slow_salvo_splitters}
 
-The first ingredient that we will need in order avoid having to send synchronized gliders at our one-time turners is a method of turning one glider into many gliders. Just like our one-time turner, we would like this pattern to be composed entirely of blocks, and we would like it to be cleanly destroyed during the glider-duplicating reaction. Patterns with these properties are called \emph{blockic splitters}\index{blockic splitter},\footnote{The term \emph{blockic} refers to the fact that it is composed entirely of blocks. There are also splitters (and one-time turners) made up of other still lifes (or even blinkers), but we do not consider them here since blocks are enough for our purposes.} and one example is provided in Figure~\ref{fig:one_time_splitter}.
+The first ingredient that we need in order avoid having to send synchronized gliders at our one-time turners is a method of turning one glider into many gliders. Just like our one-time turner, we would like this pattern to be composed entirely of blocks, and we would like it to be cleanly destroyed during the glider-duplicating reaction. Patterns with these properties are called \emph{blockic splitters}\index{blockic splitter},\footnote{The term \emph{blockic} refers to the fact that it is composed entirely of blocks. There are also splitters (and one-time turners) made up of other still lifes (or even blinkers), but we do not consider them here since blocks are enough for our purposes.} and one example is provided in Figure~\ref{fig:one_time_splitter}.
 
-\begin{figure}[!ht]
-	\centering\embedlink{one_time_splitter}{\vcenteredhbox{\patternimg{0.1}{one_time_splitter_0}} \vcenteredhbox{\genarrow{212}} \vcenteredhbox{\patternimg{0.1}{one_time_splitter_212}}}
+\begin{figure}[!htb]
+	\centering\embedlink{one_time_splitter}{\vcenteredhbox{\patternimg{0.15}{one_time_splitter_0}} \vcenteredhbox{\genarrow{202}} \vcenteredhbox{\patternimg{0.09}{one_time_splitter_202}}}
 	\caption{A \emph{blockic splitter}, which uses three blocks to turn one glider into four gliders (while destroying the blocks in the process).}\label{fig:one_time_splitter}
 \end{figure}
 
-This splitter \emph{almost} gets us what we need---it lets us turn one glider into four gliders, and we could chain multiple splitters together to turn one glider into as many gliders as we desire. We can use one-time turners to move these gliders around the Life plane, but unfortunately we are faced with two brand new problems:
+This splitter \emph{almost} gets us what we need---it lets us turn one glider into four gliders, and we could chain multiple splitters together to turn one glider into as many gliders as we desire. We can use one-time turners to move these gliders around the Life plane, but unfortunately we are faced with two brand new problems:\smallskip
+
 \begin{itemize}
-	\item The one-time turner that we introduced in Figure~\ref{fig:one_time_turner} preserves the glider's color,\index{glider!color} so we have no way of obtaining glider color combinations other than those provided to us by the splitter in Figure~\ref{fig:one_time_splitter} (in which the bottom-left glider has the same color as the input glider, whereas the other $3$ gliders have the opposite color). Since the $4$-glider synthesis of a clock uses $2$ gliders of each color, in order to make a slow salvo synthesis of the clock we would have to use this splitter multiple times and then use blocks to delete the excess gliders, which is quite wasteful.
+	\item The one-time turner that we introduced in Figure~\ref{fig:one_time_turner} preserves the glider's color,\index{glider!color} so we have no way of obtaining glider color combinations other than those provided to us by the splitter in Figure~\ref{fig:one_time_splitter} (in which the bottom-left glider has the same color as the input glider, whereas the other $3$ gliders have the opposite color). Since the $4$-glider synthesis of a clock uses $2$ gliders of each color, in order to make a slow salvo synthesis of the clock we would have to use this splitter multiple times and then use blocks to delete the excess gliders, which is quite wasteful.\smallskip
 	
-	\item Even though the one-time turner in Figure~\ref{fig:one_time_turner} is pretty good at moving gliders around the plane (ignoring the color issue that we just discussed), it gives us no control over timing, and we need some way of making sure that all of the desired gliders not only arrive at the right place, but they also arrive there at the same time.
+	\item Even though the one-time turner in Figure~\ref{fig:one_time_turner} is pretty good at moving gliders around the plane (ignoring the color issue that we just discussed), it gives us no control over timing, and we need some way of making sure that all of the desired gliders not only arrive at the right place, but they also arrive there at the same time.\smallskip
 \end{itemize}
 
 Fortunately, there is a common solution to both of the above problems, and it is simply to introduce several new one-time turners. In particular, the family of 180-degree one-time turners presented in Table~\ref{tab:180_degree_one_time_turners} are capable of either preserving or changing the color of a glider, and also offsetting its timing by any amount that we desire.\footnote{This collection of 180-degree one-time turners was compiled by Dave Greene.}
@@ -641,6 +646,7 @@ It remains an open question whether or not every still life (or every oscillator
 % one-time LWSS turner: http://conwaylife.com/forums/viewtopic.php?f=2&t=1134&p=8489#p8519
 
 
+% TODO: Fix "seed". A late exercise uses the term after we already see it earlier.
 % TODO: Check syntheses of Corderships in these solutions, make sure they use 3-glider synth of switch engine, not 4
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Exercises \hfill \normalfont\textsf{\small solutions to starred exercises on \hyperlink{solutions_glider_synthesis}{page \pageref{solutions_glider_synthesis}}}}
@@ -1057,7 +1063,9 @@ It remains an open question whether or not every still life (or every oscillator
 
 
 \begin{problem}\label{exer:other_blockic}
-	Create blockic seeds\index{blockic seed} for each of the following objects. [Hint: These can all be created using the same techniques that we used to make the blockic seed in Figure~\ref{fig:clock_slow_salvo}.]
+	Create blockic seeds\index{blockic seed} for each of the following objects.
+	
+	[Hint: These can all be created using the same techniques that we used to make the blockic seed in Figure~\ref{fig:clock_slow_salvo}.]
 	\begin{enumerate}[label=(\alph*)]
 		\item A lightweight spaceship.
 		
@@ -1067,7 +1075,19 @@ It remains an open question whether or not every still life (or every oscillator
 	\end{enumerate}
 \end{problem}
 
+
 \mfilbreak
+
+
+\begin{problem}\label{exer:create_clock_turners}
+	Create a slow salvo that turns a single block into the configuration of $8$~blocks displayed in Figure~\ref{fig:unidirection_clock_synthesis}.
+	
+	\noindent [Hint: You can do this by hand via $60$ or so gliders by repeating the method of Figure\ref{fig:create_one_time_turner}. However, there is a search program called \emph{slsparse}\index{slsparse} that builds slow salvos like this automatically. Tutorials and a download link can be found at \httpsurl{conwaylife.com/wiki/Slsparse}.]
+\end{problem}
+
+
+\mfilbreak
+
 
 \begin{problem}\label{exer:new_splitter}
 	A commonly-used blockic splitter that turns one glider into four gliders is displayed below. This splitter has the advantage of being much faster and cleaner than the one in Figure~\ref{fig:one_time_splitter}, but the disadvantage of requiring 9 blocks instead of just 3. Use this splitter as part of a blockic seed for a clock.
@@ -1138,6 +1158,9 @@ It remains an open question whether or not every still life (or every oscillator
 		\item Create a glider synthesis that first creates your seed from part~(c) and then creates a $2$-engine Cordership from it.
 	\end{enumerate}
 \end{problem}
+
+
+
 
 %% EXERCISE END COMMANDS
 \end{multicols}
