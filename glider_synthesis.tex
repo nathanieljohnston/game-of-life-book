@@ -585,36 +585,38 @@ By 1973, the majority of ``basic'' Life objects were synthesizable, including li
 
 Over the following decades, David Buckingham continued to develop syntheses for still lifes and oscillators, and he completed syntheses of all of them with $14$ or fewer cells by no later than 1992. His technique was to make heavy use of incremental synthesis, building the objects from the inside out, only using a couple of gliders at a time to tweak the outermost portion of the object that he was synthesizing. This method works very well when synthesizing objects that have ``end pieces'' like tails that can be removed or altered without affecting the pattern's stability. However, compact still lifes like the one in Figure~\ref{fig:14_cell_synth} are much more difficult to construct, and this particular still life (which was the last $14$-cell still life to be synthesized) was initially synthesized using a massive incremental synthesis involving more than $30$ gliders.
 
-\begin{figure}[!ht]
+\begin{figure}[!htb]
 	\centering
-	\begin{subfigure}{.17\textwidth}
-		\centering\patternimglink{0.1}{14_cell_synth}
+	\begin{subfigure}{.135\textwidth}
+		\centering\patternimglink{0.135}{14_cell_synth}
 		\caption{$14$ cells.}\label{fig:14_cell_synth}
 	\end{subfigure} \ \ \ \ % 
-	\begin{subfigure}{.17\textwidth}
-		\centering\patternimglink{0.1}{15_cell_synth}
+	\begin{subfigure}{.135\textwidth}
+		\centering\patternimglink{0.135}{15_cell_synth}
 		\caption{$15$ cells.}\label{fig:15_cell_synth}
 	\end{subfigure} \ \ \ \ % 
-	\begin{subfigure}{.17\textwidth}
-		\centering\patternimglink{0.1}{16_cell_synth}
+	\begin{subfigure}{.13\textwidth}
+		\centering\patternimglink{0.135}{16_cell_synth}
 		\caption{$16$ cells.}\label{fig:16_cell_synth}
 	\end{subfigure} \ \ \ \ % 
-	\begin{subfigure}{.17\textwidth}
-		\centering\patternimglink{0.1}{17_cell_synth}
+	\begin{subfigure}{.14\textwidth}
+		\centering\patternimglink{0.135}{17_cell_synth}
 		\caption{$17$ cells.}\label{fig:17_cell_synth}
 	\end{subfigure} \ \ \ \ % 
-	\begin{subfigure}{.17\textwidth}
-		\centering\patternimglink{0.1}{18_cell_synth}
+	\begin{subfigure}{.14\textwidth}
+		\centering\patternimglink{0.135}{18_cell_synth}
 		\caption{$18$ cells.}\label{fig:18_cell_synth}
+	\end{subfigure} \ \ \ \ % 
+	\begin{subfigure}{.145\textwidth}
+		\centering\patternimglink{0.12161157024}{19_cell_synth}
+		\caption{$19$ cells.}\label{fig:19_cell_synth}
 	\end{subfigure}
-	\caption{The final still lifes with $14$--$18$ cells to be synthesized by gliders.}\label{fig:hard_to_synth_sls}
+	\caption{The final still lifes with $14$--$19$ cells to be synthesized by gliders.}\label{fig:hard_to_synth_sls}
 \end{figure}
 
 Mark Niemiec continued on with this work, creating a large database that he used to automatically generate syntheses of thousands of still lifes by piecing together known reactions \cite{Nie03,Nie10}. This greatly reduced the number of still life syntheses that needed to be found by hand, and in 2013 he completed syntheses of all $15$-cell still lifes (as well as syntheses for all except for a few hundred 16-, 17-, and 18-cell still lifes).
 
-Glider syntheses for the remaining 16-cell still lifes were then found via a collaborative effort on the ConwayLife.com forums, mostly led by Martin Grant, Matthias Merzenich, and Mark Niemiec, with the final synthesis (see Figure~\ref{fig:16_cell_synth}) being completed in January 2014. Another five-month collaborative effort, led by the same group of people, completed syntheses of the 17-cell still lifes in May 2014. Finally, a comparatively quick two-month effort finished the remaining syntheses of 18-cell still lifes in November of that year.
-
-To give an idea of the size of this achievement, recall from Table~\ref{tab:small_still_lifes} that there are 32,538 different strict still lifes with 18 or fewer cells. Not only is this a huge number of distinct objects to synthesize, but the syntheses themselves are often monstrously large. For example, Figure~\ref{fig:17_cell_synthesis} shows how one of the ``problematic'' 17-cell still lifes was constructed by using a whopping total of 94 gliders and over 20 stages of incremental synthesis.
+Glider syntheses for the remaining 16-cell still lifes were then found via a collaborative effort on the ConwayLife.com forums, mostly led by Martin Grant, Matthias Merzenich, and Mark Niemiec, with the final synthesis (see Figure~\ref{fig:16_cell_synth}) being completed in January 2014. Another five-month collaborative effort, led by the same group of people, completed syntheses of the 17-cell still lifes in May 2014. A comparatively quick two-month effort finished the remaining syntheses of 18-cell still lifes in November of that year, and then a final four-month effort resulted in the synthesis of the last $930$ or so 19-cell still lifes in February 2020.
 
 \begin{figure}[!htb]
 	\centering
@@ -630,10 +632,12 @@ To give an idea of the size of this achievement, recall from Table~\ref{tab:smal
 	
 	\patternlink{17_cell_synthesis}{\vcenteredhbox{$\cdots$ \gliderarrow{2}} \vcenteredhbox{\patternimg{0.12}{17_cell_21}} \vcenteredhbox{\gliderarrow{2}} \vcenteredhbox{\patternimg{0.12}{17_cell_22}} \vcenteredhbox{\gliderarrow{10}} \vcenteredhbox{\patternimg{0.12}{17_cell_23}} \vcenteredhbox{\gliderarrow{4}} \vcenteredhbox{\patternimg{0.12}{17_cell_24}}}
 	
-	\caption{A summary of a massive $94$-glider incremental synthesis of a hard-to-construct 17-cell still life (shown at the bottom right). Each stage in the synthesis works by using another glider collision to transform one still life into another. The cells that were created or modified in the previous step of the synthesis are shown in \bgbox{redback}{red}, and the gliders that will be involved in the next collision are shown in \bgbox{greenback}{green}.}\label{fig:17_cell_synthesis}
+	\caption{A summary of a massive $94$-glider incremental synthesis of a hard-to-construct 17-cell still life (shown at the bottom right). Each stage in the synthesis works by using a glider collision to transform one still life into another. The cells that were created or modified in the previous step of the synthesis are shown in \bgbox{redback}{red}, and the gliders that will be involved in the next collision are shown in \bgbox{greenback}{green}.}\label{fig:17_cell_synthesis}
 \end{figure}
 
-Rather than trying to push these techniques to synthesize all still lifes with 19 live cells, focus has shifted somewhat to trying to reduce the number of gliders required to synthesize these objects. It has been known for decades how to synthesize all still lifes with $8$ or fewer cells via $4$ or fewer gliders. Similarly, glider syntheses are known for constructing every still life with $9, 10, 11, 12,$ and $13$ live cells via $5, 9, 9, 11,$ and $12$ or fewer gliders, respectively.\footnote{It was not known how to synthesize the $9$-cell long$^3$ snake\index{long$^3$ snake} with fewer than $6$ gliders until February 2015, when Matthias Merzenich derived a $5$-glider synthesis from an apgsearch\index{apgsearch} soup.} Recent efforts have attempted to continue this pattern and synthesize all small still lifes in fewer than $1$ glider per live cell. This project was completed for $14$-, $15$-, $16$-, and $17$-cell still lifes in October 2016, November 2016, May 2017, and September 2019, respectively. For example, we now know how to construct the $17$-cell still life from Figure~\ref{fig:17_cell_synthesis} (which was first synthesized by $94$ gliders) via just $10$ gliders---see Figure~\ref{fig:17_cell_synthesis_small}.
+To give an idea of the size of this achievement, recall from Table~\ref{tab:small_still_lifes} that there are 78,297 different strict still lifes with 19 or fewer cells. Not only is this a huge number of distinct objects to synthesize, but the syntheses themselves are often monstrously large. For example, Figure~\ref{fig:17_cell_synthesis} shows how one of the ``problematic'' 17-cell still lifes was constructed by using a whopping total of 94 gliders and over 20 stages of incremental synthesis.
+
+Rather than trying to push these techniques to synthesize all still lifes with 20 live cells, focus has shifted somewhat to trying to reduce the number of gliders required to synthesize these objects. It has been known for decades how to synthesize all still lifes with $8$ or fewer cells via $4$ or fewer gliders. Similarly, glider syntheses are known for constructing every still life with $9, 10, 11, 12,$ and $13$ live cells via $5, 9, 9, 11,$ and $12$ or fewer gliders, respectively.\footnote{It was not known how to synthesize the $9$-cell long$^3$ snake\index{long$^3$ snake} with fewer than $6$ gliders until February 2015, when Matthias Merzenich derived a $5$-glider synthesis from an apgsearch\index{apgsearch} soup.} Recent efforts have attempted to continue this pattern and synthesize all small still lifes in fewer than $1$ glider per live cell. This project was completed for $14$-, $15$-, $16$-, and $17$-cell still lifes in October 2016, November 2016, May 2017, and September 2019, respectively. For example, we now know how to construct the $17$-cell still life from Figure~\ref{fig:17_cell_synthesis} (which was first synthesized by $94$ gliders) via just $10$ gliders---see Figure~\ref{fig:17_cell_synthesis_small}.
 
 \begin{figure}[!htb]
 	\centering
@@ -643,13 +647,11 @@ Rather than trying to push these techniques to synthesize all still lifes with 1
 
 It remains an open question whether or not every still life (or every oscillator, or even every pattern that has predecessors) can be constructed by glider synthesis. Closely related is the (also open) question of whether or not there exists a still life whose only parent is itself.\footnote{For the purposes of this problem, a still life together with far away non-interacting dying ash is not considered a different parent than just the still life itself. Conway offered a \$50 prize for a solution to this problem in October 1972, which has gone unclaimed to this day.} Finding such a pattern would answer both of these questions, since if a still life's only parent is itself then it can not be constructed via glider synthesis (or any other means).
 
-% TODO: Mention more-or-less complete recent computer search for 3-glider syntheses and recently found such syntheses
 
+% TODO(?): Mention more-or-less complete recent computer search for 3-glider syntheses and recently found such syntheses
+% TODO(?): <1 glider per bit for 18-cell? or just RCT?
 % One-time glider to LWSS: http://conwaylife.com/forums/viewtopic.php?f=2&t=1134&p=8489#p8488
 % one-time LWSS turner: http://conwaylife.com/forums/viewtopic.php?f=2&t=1134&p=8489#p8519
-
-
-% TODO: Check syntheses of Corderships in these solutions, make sure they use 3-glider synth of switch engine, not 4
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Exercises \hfill \normalfont\textsf{\small solutions to starred exercises on \hyperlink{solutions_glider_synthesis}{page \pageref{solutions_glider_synthesis}}}}
 \label{sec:synthesis_exercises}
@@ -660,7 +662,7 @@ It remains an open question whether or not every still life (or every oscillator
 
 \begin{problemstar}\label{exer:glider_cleanup}
 	Many glider syntheses work by using a small number of gliders to create the desired object plus some debris, and then additional gliders to clean up the debris. In each of the following syntheses, identify which gliders are used to clean up debris.
-	\begin{enumerate}[label=(\alph*),series=exer_glider_cleanup]
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 		\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{exercise_glider_cleanup_1}}
 		\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{tumbler_synthesis}}
 		\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{snacker_synthesis}}\\
@@ -673,7 +675,7 @@ It remains an open question whether or not every still life (or every oscillator
 
 \begin{problem}\label{exer:single_glider_cleanup}
 	Gliders can be used to destroy essentially any unwanted debris that is left over after a synthesis. Use a single glider to destroy each of the following objects (and also destroy the glider in the process):
-	\begin{enumerate}[label=(\alph*),series=exer_glider_cleanup]
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 		\item A block.
 		
 		\item A beehive.
@@ -691,8 +693,10 @@ It remains an open question whether or not every still life (or every oscillator
 
 
 \begin{problem}\label{exer:multiple_glider_cleanup}
-	Use multiple gliders to completely destroy each of the following objects. [Hint: Use one or two gliders to break the object down into simple ash objects like those from Exercise~\ref{exer:single_glider_cleanup} and then use additional gliders to clean up those simpler objects.]
-	\begin{enumerate}[label=(\alph*),series=exer_glider_cleanup]
+	Use multiple gliders to completely destroy each of the following objects.
+	
+	\noindent [Hint: Use one or two gliders to break the object down into simple ash objects like those from Exercise~\ref{exer:single_glider_cleanup} and then use additional gliders to clean up those simpler objects.]
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 		\item A queen bee shuttle.
 		
 		\item A copperhead.
@@ -724,7 +728,7 @@ It remains an open question whether or not every still life (or every oscillator
 
 % Solution: p60_lwss_backrake.txt
 \begin{problem}\label{exer:p60_lwss_backrake}
-	Use the syntheses from this chapter to create a backrake that creates a period~$120$ stream of lightweight spaceships.
+	Use a lightweight spaceship synthesis from this chapter to construct a backrake that creates a period~$120$ stream of lightweight spaceships.
 \end{problem}
 
 
@@ -741,15 +745,14 @@ It remains an open question whether or not every still life (or every oscillator
 
 \begin{problem}\label{exer:hwss_gun}
 	Consider the heavyweight spaceship synthesis in Table~\ref{tab:3_glider_synth}.
-	\begin{enumerate}[label=(\alph*)]
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 		\item Why can't you use three Gosper glider guns and this synthesis to create a heavyweight spaceship gun?
 		
-		\item One way to overcome this problem is to use \emph{glider pushers}\index{glider!pusher} (see Figure~\ref{fig:glider_pusher}) to repeatedly push one glider stream closer to another. How many glider pushers would you need to use to fix the problem from part~(a)?\medskip
-		
-		\noindent\begin{minipage}{\linewidth}
+		\item One way to overcome this problem is to use \emph{glider pushers}\footnote{Found by Dietrich Leithner in December 1993.}\index{glider!pusher} (displayed below) to repeatedly push one glider stream closer to another. How many glider pushers would you need to use to fix the problem from part~(a)?\smallskip
+				
+		\begin{minipage}{\linewidth}
 			\centering
 			\patternimglink{0.1}{glider_pusher}
-			\captionof{figure}{\footnotesize A \emph{glider pusher} is a configuration of a queen bee (top center) and a pentadecathlon (middle right) that was found by Dietrich Leithner in December 1993. It pushes a passing glider away by one lane, and thus closes gaps between glider streams with periods that are a multiple of $30$.}\label{fig:glider_pusher}\medskip
 		\end{minipage}
 	\end{enumerate}
 \end{problem}
@@ -769,7 +772,7 @@ It remains an open question whether or not every still life (or every oscillator
 \begin{problem}\label{exer:twin_bee_shuttle_synth}
 	Consider the four-glider synthesis of the twin bees\index{twin bees} presented in Figure~\ref{tab:other_glider_synth}.\smallskip
 	
-	\begin{enumerate}[label=(\alph*)]
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 		\item Use this synthesis to synthesize a twin bees shuttle.
 		
 		\item Use this synthesis to synthesize the twin bees gun from Figure~\ref{fig:twin_bees_gun}.
@@ -781,7 +784,7 @@ It remains an open question whether or not every still life (or every oscillator
 
 
 \begin{problem}\label{exer:synthesize_glider_pusher}
-	Create a glider synthesis of the glider pusher from Figure~\ref{fig:glider_pusher}.
+	Create a glider synthesis of the glider pusher from Exercise~\ref{exer:hwss_gun}.
 \end{problem}
 
 
@@ -789,7 +792,7 @@ It remains an open question whether or not every still life (or every oscillator
 
 
 \begin{problem}\label{exer:oscillator_syntheses}
-	Construct a glider synthesis of the period~36 oscillator in Figure~\ref{fig:period_36}.
+	Construct a glider synthesis of the period~36 oscillator from Figure~\ref{fig:period_36}.
 \end{problem}
 
 
@@ -799,7 +802,7 @@ It remains an open question whether or not every still life (or every oscillator
 % TODO: double check switch engine synth here uses 3-glider synth, not 4
 \begin{problemstar}\label{exer:glider_synth_two_directions}\index{kickback reaction}
 	By using the $2$-glider \emph{kickback reaction} from Table~\ref{tab:2_glider_synth} that changes the direction of a glider, we can decrease the number of directions used in many glider syntheses at the expense of increasing the number of gliders required. Use this technique to create glider syntheses for each of the following patterns with the property that all gliders come from just two different directions.
-	\begin{enumerate}[label=(\alph*)]
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 		\item A switch engine.\index{switch engine}
 		
 		\item A clock.\index{clock}
@@ -812,14 +815,15 @@ It remains an open question whether or not every still life (or every oscillator
 \mfilbreak
 
 
-% Solution: http://conwaylife.com/forums/viewtopic.php?t=&p=54444#p54453
 \begin{problemstar}\label{exer:2_engine_cordership_synthesis}
 	Recall the $2$-engine Cordership from Exercise~\ref{exer:2_engine_cordership}.\smallskip
 	
-	\begin{enumerate}[label=(\alph*)]
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 		\item Construct a glider synthesis of this Cordership.
 		
-		\item Construct a glider synthesis of this Cordership that uses gliders coming only from two different directions. [Hint: Refer back to Exercise~\ref{exer:glider_synth_two_directions}.]
+		\item Construct a glider synthesis of this Cordership that uses gliders coming only from two different directions.
+		
+		\noindent [Hint: Refer back to Exercise~\ref{exer:glider_synth_two_directions}.]
 	\end{enumerate}
 \end{problemstar}
 
@@ -828,8 +832,8 @@ It remains an open question whether or not every still life (or every oscillator
 
 
 \begin{problemstar}\label{exer:glider_synth_tee}
-	By using the $3$-glider collision in Table~\ref{tab:3_glider_synth} called a ``tee'',\index{tee} which produces a glider perpendicular to each of the input gliders, we can modify many glider syntheses so that all input gliders come from two directions that are opposite each other. Use this technique to create glider syntheses of each of the following patterns, with the property that all gliders come from two opposing directions.
-	\begin{enumerate}[label=(\alph*)]
+	By using the $3$-glider \emph{tee}\index{tee} collision from Table~\ref{tab:3_glider_synth}, which produces a glider perpendicular to each of the input gliders, we can modify many glider syntheses so that all input gliders come from two directions that are opposite each other. Use this technique to create glider syntheses of each of the following patterns, with the property that all gliders come from two opposing directions.
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 		\item A switch engine.
 		
 		\item A clock.
@@ -851,7 +855,9 @@ It remains an open question whether or not every still life (or every oscillator
 
 
 \begin{problem}\label{exer:ecologist_synth}
-	Complete the incremental glider synthesis of the ecologist presented in Figure~\ref{fig:ecologist_synth_b} (i.e., construct it in its entirety from an arrangement of gliders). This synthesis should only use gliders coming from the bottom-left and bottom-right. [Hint: You can use two gliders to create a block and then two more gliders to turn the block into a LWSS.]
+	Complete the incremental glider synthesis of the ecologist presented in Figure~\ref{fig:ecologist_synth_b} (i.e., construct it in its entirety from an arrangement of gliders). This synthesis should only use gliders coming from the bottom-left and bottom-right.
+	
+	\noindent [Hint: You can use two gliders to create a block and then two more gliders to turn the block into a LWSS.]
 \end{problem}
 
 
@@ -860,7 +866,7 @@ It remains an open question whether or not every still life (or every oscillator
 
 \begin{problemstar}\label{exer:make_space_rake_synth}
 	In Figure~\ref{fig:space_rake_synth} we showed how to use gliders to turn an ecologist into a forward space rake.
-	\begin{enumerate}[label=(\alph*)]
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 		\item Complete this incremental glider synthesis of the space rake (i.e., construct it in its entirety from an arrangement of gliders).
 		
 		\item Show how to synthesize a period~$60$ space rake. [Hint: Recall the synthesis of the Schick engine from Figure~\ref{fig:schick_engine_synth}.]
@@ -899,7 +905,9 @@ It remains an open question whether or not every still life (or every oscillator
 
 
 \begin{problem}\label{exer:glider_producing_switch_breeder}
-	Create a breeder that uses three rakes to synthesize glider-producing switch engines via the $3$-glider collision displayed in Table~\ref{tab:3_glider_synth}. [Hint: You will need to use rakes with very high period.]
+	Create a breeder that uses three rakes to synthesize glider-producing switch engines via the $3$-glider collision displayed in Table~\ref{tab:3_glider_synth}.
+	
+	\noindent [Hint: You will need to use rakes with very high period.]
 \end{problem}
 
 
@@ -933,7 +941,7 @@ It remains an open question whether or not every still life (or every oscillator
 
 
 \begin{problem}\label{exer:block_laying_switch_breeder}
-	Create a breeder that uses several rakes to synthesize block-laying switch engines as they move. [Hint: Use a $4$-glider synthesis of a switch engine together with the reaction from Figure~\ref{fig:switch_engine_block}.]
+	Create a breeder that uses several rakes to synthesize block-laying switch engines as they move. [Hint: Use a $3$-glider synthesis of a switch engine together with the reaction from Figure~\ref{fig:switch_engine_block}.]
 \end{problem}
 
 
@@ -962,7 +970,7 @@ It remains an open question whether or not every still life (or every oscillator
 	\begin{center}
 		\vcenteredhbox{\patternimg{0.1}{tubstretcher_synth}}
 	\end{center}
-	\begin{enumerate}[label=(\alph*)]
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 		\item Remove some gliders so as to produce a glider synthesis of the crab.\index{crab}
 		
 		\item Add some extra gliders to destroy the tubstretcher (but not the tub itself) after it has been synthesized. Use this method to show that a fixed number of gliders (say 40 or so) can be used to synthesize arbitrarily-large strict still lifes.\index{strict still life}
@@ -975,7 +983,7 @@ It remains an open question whether or not every still life (or every oscillator
 
 \begin{problemstar}\label{exer:boat_one_time_turner}
 	In this exercise, you will construct some limited-use turners that are different from the blockic one-time turners that we saw in this chapter.
-	\begin{enumerate}[label=(\alph*)]
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 		\item Show that a single boat\index{boat} can be used as a 90-degree one-time turner.
 		
 		\item Show that a single eater~1\index{eater!1} can be used as a 90-degree one-time turner.
@@ -994,8 +1002,8 @@ It remains an open question whether or not every still life (or every oscillator
 
 
 \begin{problemstar}\label{exer:turner_tracks}
-	In this exercise, we will practice moving gliders around one-time tracks.
-	\begin{enumerate}[label=(\alph*)]
+	In this exercise, we practice moving gliders around one-time tracks.
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 		\item Use four boats to move a glider around a square track once, and then leave the track in the same direction that it started in (destroying the track in the process).
 		
 		\item The following pattern might be called a ``two-time turner'',\index{two-time turner} since it can be used to turn two gliders (by firing the second glider at the boat that the first glider produces). Explain why it is \emph{not} possible to use four copies of this pattern to move a single glider around a square track twice (destroying the track in the process).
@@ -1013,7 +1021,7 @@ It remains an open question whether or not every still life (or every oscillator
 
 \begin{problemstar}\label{exer:one_time_track}
 	One-time turners can be used as tracks for gliders, allowing us to create objects that move at a different speed at the front than at the back (such patterns are called \emph{growing spaceships}\index{growing spaceship}).
-	\begin{enumerate}[label=(\alph*)]
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 		\item Use two copies of the blinker puffer from Figure~\ref{fig:adjustable_spaceship} to lay two blinker fuses that a glider bounces back and forth between, using the reaction from Exercise~\ref{exer:boat_one_time_turner}(d).
 		
 		\item Use rakes of your choosing to synthesize a track of boats that a glider uses as one-time turners and destroys (as in Exercise~\ref{exer:boat_one_time_turner}(a)).
@@ -1035,12 +1043,12 @@ It remains an open question whether or not every still life (or every oscillator
 \begin{problemstar}\label{exer:clock_inserter_use}
 	Use a clock inserter to insert the orange glider into each of these glider salvos, similar to how we inserted the orange glider into the salvo in Figure~\ref{fig:clock_inserter_effective}. In all cases, the input gliders to the clock inserter must come only from the lower-left and the upper-right.
 	\vspace*{-0.3cm}\begin{multicols}{2}
-		\begin{enumerate}[label=(\alph*)]
-			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{clock_inserter_use_b}}
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item[\bf\color{ocre}(a)] \raisebox{-\height+0.5em}{\patternimglink{0.1}{clock_inserter_use_b}}
 			
-			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{clock_inserter_use_c}}
+			\item[\bf\color{ocre}(c)] \raisebox{-\height+0.5em}{\patternimglink{0.1}{clock_inserter_use_c}}
 			
-			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{clock_inserter_use_d}}
+			\item[\bf\color{ocre}(b)] \raisebox{-\height+0.5em}{\patternimglink{0.1}{clock_inserter_use_d}}
 		\end{enumerate}
 	\end{multicols}
 \end{problemstar}
@@ -1051,7 +1059,7 @@ It remains an open question whether or not every still life (or every oscillator
 
 \begin{problemstar}\label{exer:other_inserters}
 	Many reactions can be used as inserters other than the clock inserter from Figure~\ref{fig:clock_inserter} (however, none are quite as good as the clock inserter itself).
-	\begin{enumerate}[label=(\alph*)]
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 		\item Use the ``tee''\index{tee} $3$-glider collision from Table~\ref{tab:3_glider_synth} to insert a glider $15$~generations in front of another glider.
 		
 		\item Use an eater~1 to insert a glider $15$~generations in front of another glider. [Hint: Refer to Exercise~\ref{exer:boat_one_time_turner}(b).]
@@ -1067,8 +1075,8 @@ It remains an open question whether or not every still life (or every oscillator
 \begin{problem}\label{exer:other_blockic}
 	Create blockic seeds\index{blockic seed} for each of the following objects.
 	
-	[Hint: These can all be created using the same techniques that we used to make the blockic seed in Figure~\ref{fig:clock_slow_salvo}.]
-	\begin{enumerate}[label=(\alph*)]
+	\noindent [Hint: These can all be created using the same techniques that we used to make the blockic seed in Figure~\ref{fig:clock_slow_salvo}.]
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 		\item A lightweight spaceship.
 		
 		\item A pulsar.
@@ -1110,7 +1118,7 @@ It remains an open question whether or not every still life (or every oscillator
 
 \begin{problem}\label{exer:blockic_splitter_chain}
 	By chaining together multiple blockic splitters, we can turn one glider into any number of gliders. Create a blockic seed that turns one glider into exactly...
-	\begin{enumerate}[label=(\alph*)]
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 		\item $7$ gliders.
 		
 		\item $10$ gliders.
@@ -1124,15 +1132,17 @@ It remains an open question whether or not every still life (or every oscillator
 
 
 \begin{problemstar}\label{exer:slow_salvo_clock_slope}
-	In the proof of Proposition~\ref{prop:clock_inserter}, we defined a glider's ``rank'' as its lane number plus its timing. Let $w$ be a real number and suppose that we instead defined a glider's rank as its lane number plus $w$ times its timing.
-	\begin{enumerate}[label=(\alph*)]
-		\item What parts of the proof of Proposition~\ref{prop:clock_inserter} change if we use $w = 2$? Does the proof still work?
+	In the proof of universality of the clock inserter in Appendix~\ref{chp:appendix_salvo}, we defined a glider's ``rank'' as its lane number plus its timing. Let $w$ be a real number and suppose that we instead defined a glider's rank as its lane number plus $w$ times its timing.
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item What parts of this proof change if we use $w = 2$? Does the proof still work?
 		
 		\item What is the slope of the lines of constant rank in the Life plane when $w = 2$ (recall that the lines of constant rank have slope $3$ when $w = 1$)?
 		
-		\item The largest value of $w$ for which the proof of Proposition~\ref{prop:clock_inserter} still works is $w = 7/3$. However, there is one extra technicality in this case---what is it, and how can it be overcome?
+		\item The largest value of $w$ for which the proof still works is $w = 7/3$. However, there is one extra technicality in this case---what is it, and how can it be overcome?
 		
-		\item What is the smallest value of $w$ for which the proof of Proposition~\ref{prop:clock_inserter} still works? [Hint: There will be a technicality similar to the one from part~(b) that has to be overcome if $w$ is minimal.]
+		\item What is the smallest value of $w$ for which the proof still works?
+		
+		\noindent [Hint: There will be a technicality similar to the one from part~(c) that has to be overcome if $w$ is minimal.]
 		
 		\item What are the possible slopes of lines of constant rank in the Life plane as $w$ ranges from its minimal to maximal values? These are the slopes that we can use to define the ``front'' of a glider salvo for clock-insertion purposes.
 	\end{enumerate}
@@ -1142,10 +1152,10 @@ It remains an open question whether or not every still life (or every oscillator
 \mfilbreak
 
 
-% TODO: This exercise is referenced in chapter 8. We should include its solution?
+% TODO: This exercise is referenced in chapter 8. Should we include its solution?
 \begin{problem}\label{exer:2_engine_corder_seed}\index{seed}
 	In this exercise, we demonstrate how to construct seeds for Corderships.
-	\begin{enumerate}[label=(\alph*)]
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 		\item Show how a single glider can be fired at the following pair of boats so as to synthesize (generation~$2$ of) a switch engine.
 		\begin{center}
 			\patternimg{0.1}{2_boat_se_seed}
