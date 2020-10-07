@@ -1,0 +1,24 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\begin{document}
+	\begin{tikzpicture}%
+		\node[inner sep=0pt,anchor=south west] (ca) at (0,0) {\includegraphics[width=8cm]{minus_16_0degree_2.png}};
+
+		% BORDER
+		\draw[gridgray] (0,0) rectangle (8,8);
+		\clip (0,0) rectangle (8,8);
+		
+		% LANE 0
+		\newcommand\whitex{3}
+		\newcommand\whitey{5.05}
+		\draw[gray] (\whitex,\whitey) node[rotate=-45,shift={(0,0.25)}] {\scriptsize lane 0};
+		\draw[color=gray,-stealth] (\whitex-0.28,\whitey+0.43) -- (\whitex+0.45,\whitey-0.3);
+		
+		% LANE -16
+		\newcommand\newlx{6.95}
+		\newcommand\newly{0.45}
+		\draw[gray] (\newlx,\newly) node[rotate=-45,shift={(0,-0.03)}] {\scriptsize lane -16};
+		\draw[color=gray,-stealth] (\newlx-0.3,\newly+0.45) -- (\newlx+0.5,\newly-0.35);
+	\end{tikzpicture}
+\end{document}

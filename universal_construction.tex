@@ -104,18 +104,40 @@ Stuff.
 % Describe how fast we can make it go, what the limiting factor is. Say not worth showing variations in bookks since they look essentially identical.
 
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Demonoids}\label{sec:demonoid}
+\section{Single-Channel Glider Synthesis}\label{sec:single_channel_synth}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Stuff.
+Recall from Section~\ref{sec:slow_salvo} that slow salvo synthesis is a method of encoding the construction of a pattern in the positions of a sequence gliders, with their timing playing no role (except the gap between consecutive gliders must be sufficiently large that each glider's collision must settle down before the next glider arrives). We now flip this idea around and instead show how to encode the construction of a pattern in the timing of a sequence of gliders, with their position playing no role. In particular, we show how to encode glider synthesis via gliders that are all coming from the same direction on the same lane.
+
+The key objects that lets single-channel synthesis work is a \emph{zero-degree elbow}:\index{zero-degree elbow} a small stable object (typically a block) that several gliders are fired at on a particular lane, so as to produce a single glider going in the same direction but on a different lane. For example, % intro to figure
 
 \begin{figure}[!htb]
 	\centering
-	\patternimglink{0.1}{demonoid}
-	\caption{A demonoid. Just testing some stuff for now.}\label{fig:demonoid}
+	\patternlink{minus_16_0degree}{\vcenteredhbox{\includegraphics[width=0.4508\textwidth]{universal_construction/minus_16_0degree.pdf}} \vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{3}{3} 1753}}$}} \vcenteredhbox{\includegraphics[width=0.4508\textwidth]{universal_construction/minus_16_0degree_2.pdf}}}
+	\caption{A sequence of $17$ gliders travelling along the same lane that collide with a block so as to (a) produce a single glider travelling in the same direction, but shifted down by $16$~lanes, and (b) recreate the target block along the same lane (but shifted southeast by 4 cells) so that it can be re-used by other single-channel recipes. The numbers on the left indicate the number of generations between consecutive gliders.}\label{fig:minus_16_0degree}
 \end{figure}
 
+% Next: elbow block duplicator. close block is the 0-degree block, farther block is the one used to build the seed out of
+% Give a bunch of recipes as lists of numbers, mention it's not reasonable to actually show them all. Annotate above fiture to show what the numbers mean (relative timings), and mention minimum timining gap is actually quite large, so these can be fed into things like syringes
+% Explain why 90, 91 is a common gap here
+
+% Mostly compiled by simeks
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{A Slow Demonoid}\label{sec:demonoid}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The usefulness of single-channel synthesis when building self-constructing patterns comes from the fact that...
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{A Fast Demonoid}\label{sec:fast_demonoid}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Stuff.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -124,6 +146,9 @@ Stuff.
 
 Stuff.
 % TAlk about Gemini took 5 months to complete. Maybe earlier instead. Made with a custom computer script to make the glider recipe
+% Orthogonoid in the notes/history here?
+
+% There's a huge new idea at "single-channel", of course, and again it's a case where a relative newcomer, Simon Ekström, just cavalierly disregarded accumulated prejudices from the previous decade, and tried a search, and found that it worked.
 
 
 % BUILD A GEMINI WITH DIFFERENT PERIOD/SLOPE/WHATEVER
