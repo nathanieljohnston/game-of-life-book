@@ -109,21 +109,75 @@ Stuff.
 \section{Single-Channel Glider Synthesis}\label{sec:single_channel_synth}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Recall from Section~\ref{sec:slow_salvo} that slow salvo synthesis is a method of encoding the construction of a pattern in the positions of a sequence gliders, with their timing playing no role (except the gap between consecutive gliders must be sufficiently large that each glider's collision must settle down before the next glider arrives). We now flip this idea around and instead show how to encode the construction of a pattern in the timing of a sequence of gliders, with their position playing no role. In particular, we show how to encode glider synthesis via gliders that are all coming from the same direction on the same lane.
+Recall from Section~\ref{sec:slow_salvo} that slow salvo synthesis is a method of encoding the construction of a pattern in the positions of a sequence gliders, with their timing playing no role (except that the gap between consecutive gliders must be sufficiently large that each glider's collision must settle down before the next glider arrives). We now flip this idea around and instead show how to encode the construction of a pattern in the \emph{timing} of a sequence of gliders, with their \emph{position} playing no role. In particular, we show how to encode glider synthesis via gliders that are all coming from the same direction on the same lane.
 
-The key objects that lets single-channel synthesis work is a \emph{zero-degree elbow}:\index{zero-degree elbow} a small stable object (typically a block) that several gliders are fired at on a particular lane, so as to produce a single glider going in the same direction but on a different lane. For example, % intro to figure
+As with many of our other universal constructions, we will make use of a block that acts as an elbow in order to make these single-lane syntheses possible. However, this time the block that we use is going to act as a \emph{zero-degree elbow}:\index{zero-degree elbow} a small stable object that several gliders are fired at on a particular lane so as to produce a single glider going in the same direction but on a different lane.\footnote{Single-channel synthesis can also use a 90-degree elbow (i.e., the type of elbow we used to construct slide guns or Gemini, which fires output gliders perpendicularly), but a zero-degree elbow will be more useful for the next pair of spaceships that we construct.} For example, Figure~\ref{fig:minus_16_0degree} displayed a sequence of $17$~gliders that, when it collides with a block, produces a single glider going in the same direction, but shifted by $16$ lanes.
 
 \begin{figure}[!htb]
 	\centering
 	\patternlink{minus_16_0degree}{\vcenteredhbox{\includegraphics[width=0.4508\textwidth]{universal_construction/minus_16_0degree.pdf}} \vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{3}{3} 1753}}$}} \vcenteredhbox{\includegraphics[width=0.4508\textwidth]{universal_construction/minus_16_0degree_2.pdf}}}
-	\caption{A sequence of $17$ gliders travelling along the same lane that collide with a block so as to (a) produce a single glider travelling in the same direction, but shifted down by $16$~lanes, and (b) recreate the target block along the same lane (but shifted southeast by 4 cells) so that it can be re-used by other single-channel recipes. The numbers on the left indicate the number of generations between consecutive gliders.}\label{fig:minus_16_0degree}
+	\caption{A sequence of $17$ gliders travelling along the same lane that collide with a block so as to (a) produce a single glider travelling in the same direction, but shifted down by $16$~lanes, and (b) recreate the target block along the same lane (but shifted southeast by 8 half-diagonals) so that it can be re-used by other single-channel recipes. The numbers on the left indicate the number of generations between consecutive gliders.}\label{fig:minus_16_0degree}
 \end{figure}
 
-% Next: elbow block duplicator. close block is the 0-degree block, farther block is the one used to build the seed out of
-% Give a bunch of recipes as lists of numbers, mention it's not reasonable to actually show them all. Annotate above fiture to show what the numbers mean (relative timings), and mention minimum timining gap is actually quite large, so these can be fed into things like syringes
-% Explain why 90, 91 is a common gap here
+Since all gliders in a single-channel recipe like this come from the same direction on the same lane, we can encode it simply via the number of generations between each consecutive pair of gliders. For example, the $17$-glider sequence from Figure~\ref{fig:minus_16_0degree} could be encoded by the following sequence of $16$~timing gaps:
+\begin{center}
+	\texttt{109, 91, 94, 91, 91, 124, 91, 126, 91, 140, 162, 148, 90, 90, 119, 90}.
+\end{center}
 
-% Mostly compiled by simeks
+Extensive computer searches\footnote{Mostly carried out by Simon Ekstr{\"o}m, with some optimizations by Dave Greene, in 2017.} have been carried out to generate single-channel glider sequences that, when aimed at a block as in Figure~\ref{fig:minus_16_0degree} (i.e., so that the first glider triggers a block-to-pi-heptomino explosion), a single output glider is produced in the same direction in some lane. A summary of some of these sequences is provided in Table~\ref{tab:single_lane_glider_timings}. However, we emphasize that this table is not even close to exhaustive---there are tens of thousands of single-channel recipes of this type known, which produce an output glider and move the output block in all sorts of different lane and position combinations.\footnote{These recipes can be downloaded from \httpsurl{gitlab.com/apgoucher/slmake/-/tree/master/data/simeks}.}
+
+% TODO: Add things to this table. Something like https://conwaylife.com/forums/viewtopic.php?f=2&t=2660&start=50#p44020
+% Need a block move column and an odd/even column probably. Also update the caption for this table, not done yet.
+\begin{table}[!htb]
+	\centering
+	\begin{tabular}{cc}\toprule
+		Lane & Timings \\\midrule
+		-16 & \texttt{109,91,94,91,91,124,91,126,91,140,162,148,90,90,119,90} \\\bottomrule
+	\end{tabular}
+	\caption{Glider timings for firing a glider on different lanes.}\label{tab:single_lane_glider_timings}
+\end{table}
+
+In most of these recipes (including the very first one, shown in Figure~\ref{fig:minus_16_0degree}), there are numerous gaps of 90 and 91 generations. The reason for this is that we want to be able to feed these single-channel glider recipes through standard components like Snarks (repeat time~$43$) and the Lx200-assisted syringe from ?? (repeat time~$90$). Most of the timings of 90 and 91 generations are actually gliders whose timing does not matter (or only matters mod~$2$ due to p$2$ components like blinkers in an intermediate reaction), so they could be decreased further if desired.
+
+% Next: elbow block duplicator. close block is the 0-degree block, farther block is the one used to build the seed out of
+% Make an earlier exercise in Ch7 to construct this version of the syringe (current version in text uses F166 instead of Lx200,
+% Some single-channel spacings listed here: https://conwaylife.com/forums/viewtopic.php?t=1622&start=1525
+% List: https://conwaylife.com/forums/viewtopic.php?f=2&t=2660&p=44020#p44020
+
+
+% Slow-salvo Snark and other goodies:
+%https://conwaylife.com/forums/viewtopic.php?f=2&t=2660&start=25
+%x = 641, y = 615, rule = LifeHistory
+%639.2E$627.2D10.2E$626.3D$625.4D$624.4D$623.4D$622.4D$621.4D$620.4D$
+%619.4D11.2A$618.4D11.A.A$617.4D14.A$616.4D$615.4D$614.4D$613.4D$612.
+%4D$611.4D$610.4D$609.4D$608.4D$607.4D$606.4D$605.4D$604.4D18.2A$603.
+%4D11.2A5.A.A$602.4D11.A.A7.A$602.3D14.A12$613.2A$612.A.A$614.A8$586.
+%2A$569.2A14.A.A$570.2A15.A13.2A$569.A30.A.A$602.A$565.2A40.2A$566.2A
+%40.2A$565.A41.A9$554.2A$555.2A$554.A15$535.2A$536.2A$535.A10$536.2A$
+%537.2A$536.A32$539.2A$540.2A$539.A$486.2A$485.A.A$487.A12$466.2A$467.
+%2A2.2A$466.A3.A.A$472.A4$471.2A$472.2A$471.A14$488.2A$489.2A$488.A6$
+%422.2A$423.2A$422.A6$423.2A$422.A.A$424.A2$438.2A9.2A$407.2A28.A.A8.A
+%.A$406.A.A30.A10.A$408.A2$435.2A$434.A.A$436.A3$440.2A$441.2A$440.A3$
+%428.2A$427.A.A$429.A4$427.2A$426.A.A$391.2A35.A$390.A.A$392.A2$426.2A
+%$425.A.A$404.2A21.A$403.A.A$405.A$425.2A$424.A.A$426.A8$395.2A$394.A.
+%A$396.A8$383.2A$382.A.A$384.A5$366.2A$367.2A$366.A4$387.2A$376.2A10.
+%2A$375.A.A9.A$377.A6$339.2A41.2A$338.A.A40.A.A$340.A42.A3$381.2A$380.
+%A.A$382.A6$330.2A$329.A.A$331.A5$315.2A$314.A.A$316.A13$308.2A$309.2A
+%$308.A3$302.2A$303.2A$302.A$350.2A$291.2A56.A.A$292.2A57.A$291.A2$
+%361.2A$362.2A$361.A3$336.2A$301.2A32.A.A$302.2A33.A$301.A25.2A$328.2A
+%$327.A15.2A$342.A.A$344.A3$333.2A$318.2A12.A.A$317.A.A14.A$319.A3$
+%266.2A$265.A.A$267.A20.2A$289.2A$288.A24.2A$299.2A11.A.A$300.2A12.A$
+%299.A4$316.2A$317.2A$316.A$257.2A$256.A.A$258.A2$289.2A$290.2A$289.A
+%21.2A$310.A.A$251.2A29.2A28.A$250.A.A30.2A$252.A29.A3$271.2A9.2A$272.
+%2A9.2A$271.A10.A3$268.2A$238.2A29.2A$237.A.A28.A$239.A51.2A$292.2A$
+%291.A2$253.2A$254.2A$253.A6.2A3.2A$261.2A.A.A$260.A5.A31$252.2A$253.
+%2A$252.A2$201.2A$202.2A$201.A18$183.2A$184.2A$183.A6$177.2A$178.2A$
+%177.A5$178.2A$177.A.A$179.A9$167.2A$166.A.A$168.A15$142.2A$143.2A$
+%142.A$138.2A$133.2A4.2A$134.2A2.A$133.A52$110.2A$111.2A$110.A11$100.
+%2A$101.2A$100.A12$73.2A9.2A10.2A$74.2A9.2A8.A.A$73.A10.A12.A$91.2A$
+%90.A.A$92.A3$54.2A$55.2A$54.A$61.2A$60.A.A$62.A5$41.2A$42.2A$41.A2$
+%27.2A$26.A.A$28.A3$24.2A$23.A.A42.2A$25.A41.A.A$69.A2$29.2A$30.2A$29.
+%A9$29.2A$30.2A$29.A3$.2A$A.A$2.A5$18.2A$17.A.A$19.A!
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -152,6 +206,7 @@ Stuff.
 % There's a huge new idea at "single-channel", of course, and again it's a case where a relative newcomer, Simon Ekström, just cavalierly disregarded accumulated prejudices from the previous decade, and tried a search, and found that it worked.
 
 
+% Exercise based on spiral growth? Or include somewhere? https://www.conwaylife.com/forums/viewtopic.php?f=&p=44792#p44792
 % BUILD A GEMINI WITH DIFFERENT PERIOD/SLOPE/WHATEVER
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Exercises \hfill \normalfont\textsf{\small solutions to starred exercises on \hyperlink{solutions_universal_construction}{page \pageref{solutions_universal_construction}}}}
