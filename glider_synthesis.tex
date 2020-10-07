@@ -149,7 +149,7 @@ For this reason, we often prefer glider syntheses that use widely-spaced gliders
 
 \section{Incremental Syntheses}\label{sec:incremental_synthesis}
 
-Glider syntheses can quickly become cumbersome to use as the number of gliders involved increases. While the guns and rakes that we have already developed let us fire two streams of gliders that collide in any of the 71 possible ways illustrated in Table~\ref{tab:2_glider_synth}, as soon as three or more gliders are involved, problems can arise. If the gliders in a synthesis are very close together, it can be very difficult to pack guns or rakes together tightly enough to produce the desired glider streams. For example, even the task of creating a heavyweight spaceship gun using the 3-glider synthesis provided in Table~\ref{tab:3_glider_synth} is quite challenging (see Exercise~\ref{exer:hwss_gun}). Trying to actually make use of the ten-glider synthesis of a Gosper glider gun displayed in Figure~\ref{fig:gosper_glider_synth} would similarly be challenging, as there are just too many streams of gliders travelling along paths that are close together in the same direction.
+Glider syntheses can quickly become cumbersome to use as the number of gliders involved increases. While the guns and rakes that we have already developed let us fire two streams of gliders that collide in any of the 71 possible ways illustrated in Table~\ref{tab:2_glider_synth}, as soon as three or more gliders are involved, it can be quite difficult to coordinate them so that they all arise at the desired time. For example, it would be challenging to implement the ten-glider synthesis of a Gosper glider gun from Figure~\ref{fig:gosper_glider_synth} ``directly'', as it would require to coordinate the precise positioning and timing of all ten gliders.
 
 To get around this problem, we make use of \emph{incremental synthesis}: we build up complicated patterns by first synthesizing a small stable pattern (like a block or a pond), and then collide only a few gliders with that stable pattern to create a slightly more complicated stable pattern, and so on until we arrive at the pattern we actually want. The main benefit of this type of synthesis is that we do not need to be particularly precise with the timing of the gliders---the different stages of synthesis can take place as many generations apart from each other as we like, so we only need to coordinate a few gliders at a time.
 
@@ -572,9 +572,7 @@ The only p2 object that we needed to prove Theorem~\ref{thm:p2_slow_salvo} was t
 %% Last 18-bit SL: http://conwaylife.com/forums/viewtopic.php?f=2&t=1467&start=50#p14272
 %% 5-glider very long snake: http://conwaylife.com/forums/viewtopic.php?f=2&t=1452&p=17219#p17102
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Notes and Historical Remarks}
-\label{sec:synthesis_notes}
-\addcontentsline{toc}{section}{\nameref{sec:synthesis_notes}}
+\section{Notes and Historical Remarks}\label{sec:synthesis_notes}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The importance of glider synthesis was known essentially as soon as the glider itself was found in 1970, with common folklore being that we could send gliders as signals throughout the Life plane and collide those gliders in different ways to simulate arbitrary computations. This basic idea has been refined and made more precise repeatedly over the past 50 years, to the point that there are now explicit patterns that do exactly this---they collide gliders so as to perform arbitrary computations and build almost any pattern of our choosing (we will delve deeply into the specifics of how these patterns work in Chapters~\ref{chp:universal_computation} and~\ref{chp:universal_construction}).
@@ -645,11 +643,10 @@ Rather than trying to push these techniques to synthesize all still lifes with 2
 	\caption{A $10$-glider synthesis of the $17$-cell still life from Figure~\ref{fig:17_cell_synthesis} that was constructed with the help of a soup that was found by apgsearch.}\label{fig:17_cell_synthesis_small}
 \end{figure}
 
-It remains an open question whether or not every still life (or every oscillator, or even every pattern that has predecessors) can be constructed by glider synthesis. Closely related is the (also open) question of whether or not there exists a still life whose only parent is itself.\footnote{For the purposes of this problem, a still life together with far away non-interacting dying ash is not considered a different parent than just the still life itself. Conway offered a \$50 prize for a solution to this problem in October 1972, which has gone unclaimed to this day.} Finding such a pattern would answer both of these questions, since if a still life's only parent is itself then it can not be constructed via glider synthesis (or any other means).
+Remarkably, it was even shown in September 2020 that every glider-synthesizable still life can be synthesized via $17$ or fewer gliders---see Section~\ref{sec:universal_construction_history}. However, it remains an open question whether or not every still life (or every oscillator, or even every pattern that has predecessors) is actually glider-synthesizable. Closely related is the (also open) question of whether or not there exists a still life whose only parent is itself.\footnote{For the purposes of this problem, a still life together with far away non-interacting dying ash is not considered a different parent than just the still life itself. Conway offered a \$50 prize for a solution to this problem in October 1972, which has gone unclaimed to this day.} Finding such a pattern would answer both of these questions, since if a still life's only parent is itself then it can not be constructed via glider synthesis (or any other means).
 
 
 % TODO(?): Mention more-or-less complete recent computer search for 3-glider syntheses and recently found such syntheses
-% TODO(?): <1 glider per bit for 18-cell? or just RCT?
 % One-time glider to LWSS: http://conwaylife.com/forums/viewtopic.php?f=2&t=1134&p=8489#p8488
 % one-time LWSS turner: http://conwaylife.com/forums/viewtopic.php?f=2&t=1134&p=8489#p8519
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
