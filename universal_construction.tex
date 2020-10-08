@@ -111,33 +111,80 @@ Stuff.
 
 Recall from Section~\ref{sec:slow_salvo} that slow salvo synthesis is a method of encoding the construction of a pattern in the positions of a sequence gliders, with their timing playing no role (except that the gap between consecutive gliders must be sufficiently large that each glider's collision must settle down before the next glider arrives). We now flip this idea around and instead show how to encode the construction of a pattern in the \emph{timing} of a sequence of gliders, with their \emph{position} playing no role. In particular, we show how to encode glider synthesis via gliders that are all coming from the same direction on the same lane.
 
-As with many of our other universal constructions, we will make use of a block that acts as an elbow in order to make these single-lane syntheses possible. However, this time the block that we use is going to act as a \emph{zero-degree elbow}:\index{zero-degree elbow} a small stable object that several gliders are fired at on a particular lane so as to produce a single glider going in the same direction but on a different lane.\footnote{Single-channel synthesis can also use a 90-degree elbow (i.e., the type of elbow we used to construct slide guns or Gemini, which fires output gliders perpendicularly), but a zero-degree elbow will be more useful for the next pair of spaceships that we construct.} For example, Figure~\ref{fig:minus_16_0degree} displayed a sequence of $17$~gliders that, when it collides with a block, produces a single glider going in the same direction, but shifted by $16$ lanes.
+As with many of our other universal constructions, we will make use of a block that acts as an elbow in order to make these single-lane syntheses possible. However, this time the block that we use is going to act as a \emph{zero-degree elbow}:\index{zero-degree elbow} a small stable object that several gliders are fired at on a particular lane so as to produce a single glider going in the same direction but on a different lane.\footnote{Here, ``zero-degree'' refers to the fact that the input glider stream is being ``reflected'' by zero degrees (i.e., not reflected at all, but just shifted to a different lane). Single-channel synthesis can also use a 90-degree elbow (i.e., the type of elbow we used to construct slide guns or Gemini, which fires output gliders perpendicularly), but a zero-degree elbow will be more useful for the next pair of spaceships that we construct.} For example, Figure~\ref{fig:lane_8_0degree} displays a sequence of $14$~gliders that, when it collides with a block, produces a single glider going in the same direction, but shifted by $8$ lanes.
 
 \begin{figure}[!htb]
 	\centering
-	\patternlink{minus_16_0degree}{\vcenteredhbox{\includegraphics[width=0.4508\textwidth]{universal_construction/minus_16_0degree.pdf}} \vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{3}{3} 1753}}$}} \vcenteredhbox{\includegraphics[width=0.4508\textwidth]{universal_construction/minus_16_0degree_2.pdf}}}
-	\caption{A sequence of $17$ gliders travelling along the same lane that collide with a block so as to (a) produce a single glider travelling in the same direction, but shifted down by $16$~lanes, and (b) recreate the target block along the same lane (but shifted southeast by 8 half-diagonals) so that it can be re-used by other single-channel recipes. The numbers on the left indicate the number of generations between consecutive gliders.}\label{fig:minus_16_0degree}
+	\patternlink{lane_8_0degree}{\vcenteredhbox{\includegraphics[width=0.4508\textwidth]{universal_construction/lane_8_0degree.pdf}} \vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{3}{3} 1440}}$}} \vcenteredhbox{\includegraphics[width=0.4508\textwidth]{universal_construction/lane_8_0degree_2.pdf}}}
+	\caption{A sequence of $14$ gliders travelling along the same lane that collide with a block so as to (a) produce a single glider travelling in the same direction, but shifted up by $8$~lanes, and (b) recreate the target block along the same lane (but shifted southeast by 8 half-diagonals) so that it can be re-used by other single-channel recipes. The numbers on the left indicate the number of generations between consecutive gliders.}\label{fig:lane_8_0degree}
 \end{figure}
 
-Since all gliders in a single-channel recipe like this come from the same direction on the same lane, we can encode it simply via the number of generations between each consecutive pair of gliders. For example, the $17$-glider sequence from Figure~\ref{fig:minus_16_0degree} could be encoded by the following sequence of $16$~timing gaps:
+Since all gliders in a single-channel recipe like this come from the same direction on the same lane, we can encode it simply via the number of generations between each consecutive pair of gliders. For example, the $14$-glider sequence from Figure~\ref{fig:lane_8_0degree} could be encoded by the following sequence of $13$~timing gaps:
 \begin{center}
-	\texttt{109, 91, 94, 91, 91, 124, 91, 126, 91, 140, 162, 148, 90, 90, 119, 90}.
+	\texttt{109, 91, 94, 91, 91, 93, 90, 158, 90, 91, 90, 90, 116}.
 \end{center}
 
-Extensive computer searches\footnote{Mostly carried out by Simon Ekstr{\"o}m, with some optimizations by Dave Greene, in 2017.} have been carried out to generate single-channel glider sequences that, when aimed at a block as in Figure~\ref{fig:minus_16_0degree} (i.e., so that the first glider triggers a block-to-pi-heptomino explosion), a single output glider is produced in the same direction in some lane. A summary of some of these sequences is provided in Table~\ref{tab:single_lane_glider_timings}. However, we emphasize that this table is not even close to exhaustive---there are tens of thousands of single-channel recipes of this type known, which produce an output glider and move the output block in all sorts of different lane and position combinations.\footnote{These recipes can be downloaded from \httpsurl{gitlab.com/apgoucher/slmake/-/tree/master/data/simeks}.}
+Extensive computer searches\footnote{Mostly carried out by Simon Ekstr{\"o}m, with some optimizations by Dave Greene, in 2017.} have been carried out to generate single-channel glider sequences that, when aimed at a block as in Figure~\ref{fig:lane_8_0degree} (i.e., so that the first glider triggers a block-to-pi-heptomino explosion), a single output glider is produced on some lane in the same direction. A summary of sequences of this type for output lanes $-22$ through $+22$ is provided in Table~\ref{tab:single_lane_glider_timings}. However, we emphasize that this table is not even close to exhaustive---there are tens of thousands of single-channel recipes of this type known for all output lanes from $-100$ to $+100$.\footnote{These recipes can be downloaded from \httpsurl{gitlab.com/apgoucher/slmake/-/tree/master/data/simeks}. It can be useful to have multiple recipes for the same output lane, since they might move the zero-degree elbow by different amounts.}
 
-% TODO: Add things to this table. Something like https://conwaylife.com/forums/viewtopic.php?f=2&t=2660&start=50#p44020
-% Need a block move column and an odd/even column probably. Also update the caption for this table, not done yet.
-\begin{table}[!htb]
+\newcolumntype{L}{>{\hspace*{-\tabcolsep}}r}
+\newcolumntype{R}{l<{\hspace*{-\tabcolsep}}}
+\begin{table}[!phtb]
 	\centering
-	\begin{tabular}{cc}\toprule
-		Lane & Timings \\\midrule
-		-16 & \texttt{109,91,94,91,91,124,91,126,91,140,162,148,90,90,119,90} \\\bottomrule
+	\begin{tabular}{@{\hskip 0.31cm}L@{\hskip 0.27cm}r@{\hskip 0.27cm}R@{\hskip 0.34cm}}\toprule
+		Lane & Move & Timings \\\midrule
+		\texttt{-22} & \texttt{-20} & \footnotesize\texttt{109,91,94,91,91,136,90,90,91,114,90,91,90,99,90,97,90,90,90,126,90,137,90,{\color{gray}(90)}} \\
+		\rowcolor{gray!20}\texttt{-21} & \texttt{8} & \footnotesize\texttt{109,91,94,91,91,95,91,90,146,91,99,90,118,120,135,90,90,121,{\color{gray}(90)}} \\
+		\texttt{-20} & \texttt{-29} & \footnotesize\texttt{93,90,91,91,90,90,91,90,103,113,91,103,90,152,181,140,91,90,166,91,{\color{gray}(106)}} \\
+		\rowcolor{gray!20}\texttt{-19} & \texttt{-20} & \footnotesize\texttt{109,91,93,91,171,91,90,90,94,91,106,91,91,90,90,143,90,91,91,91,90,91,112,{\color{gray}(90)}} \\
+		\texttt{-18} & \texttt{8} & \footnotesize\texttt{109,90,93,91,91,128,91,91,90,97,90,99,90,139,91,91,117,134,92,90,90,90,{\color{gray}(90)}} \\
+		\rowcolor{gray!20}\texttt{-17} & \texttt{-22} & \footnotesize\texttt{109,91,93,91,123,90,129,90,90,111,142,91,90,120,91,142,{\color{gray}(98)}} \\
+		\texttt{-16} & \texttt{8} & \footnotesize\texttt{109,91,94,91,91,124,91,126,91,140,162,148,90,90,119,90,{\color{gray}(90)}} \\
+		\rowcolor{gray!20}\texttt{-15} & \texttt{13} & \footnotesize\texttt{109,91,93,90,156,91,91,94,91,90,147,117,91,144,90,91,128,100,91,90,105,91,{\color{gray}(90)}} \\
+		\texttt{-14} & \texttt{-39} & \footnotesize\texttt{109,91,93,91,155,106,91,91,96,90,90,91,108,90,156,90,90,120,90,112,91,99,{\color{gray}(90)}} \\
+		\rowcolor{gray!20}\texttt{-13} & \texttt{1} & \footnotesize\texttt{109,91,93,91,92,90,158,90,94,270,172,130,90,91,91,96,90,90,147,{\color{gray}(90)}} \\
+		\texttt{-12} & \texttt{-23} & \footnotesize\texttt{109,91,94,91,90,162,122,111,90,90,90,96,91,91,91,122,91,91,171,{\color{gray}(90)}} \\
+		\rowcolor{gray!20}\texttt{-11} & \texttt{-53} & \footnotesize\texttt{93,91,151,90,139,180,103,115,167,91,120,139,135,91,91,{\color{gray}(169)}} \\
+		\texttt{-10} & \texttt{15} & \footnotesize\texttt{109,91,93,91,97,91,90,91,120,90,95,91,143,90,90,90,90,{\color{gray}(90)}} \\
+		\rowcolor{gray!20}\texttt{-9} & \texttt{-15} & \footnotesize\texttt{109,91,94,91,91,90,91,91,90,158,90,91,90,90,101,90,107,90,90,90,{\color{gray}(90)}} \\
+		\texttt{-8} & \texttt{1} & \footnotesize\texttt{93,91,116,90,106,91,143,91,109,90,91,103,110,91,136,91,92,91,155,{\color{gray}(199)}} \\
+		\rowcolor{gray!20}\texttt{-7} & \texttt{-34} & \footnotesize\texttt{109,91,93,91,92,91,98,201,91,129,90,90,90,90,90,103,90,108,90,104,{\color{gray}(90)}} \\
+		\texttt{-6} & \texttt{-11} & \footnotesize\texttt{109,91,94,91,90,90,90,90,109,91,101,90,98,90,{\color{gray}(90)}} \\
+		\rowcolor{gray!20}\texttt{-5} & \texttt{-20} & \footnotesize\texttt{109,91,94,91,91,95,91,90,104,90,90,97,91,91,94,191,97,90,126,{\color{gray}(90)}} \\
+		\texttt{-4} & \texttt{-23} & \footnotesize\texttt{0,93,91,90,144,90,111,91,92,91,103,91,144,90,168,91,91,102,90,92,90,94,{\color{gray}(90)}} \\
+		\rowcolor{gray!20}\texttt{-3} & \texttt{-9} & \footnotesize\texttt{109,91,94,91,91,136,90,90,91,168,90,106,90,90,138,90,90,106,{\color{gray}(90)}} \\
+		\texttt{-2} & \texttt{7} & \footnotesize\texttt{109,91,93,91,92,91,90,90,162,91,91,90,129,91,113,90,90,90,{\color{gray}(90)}} \\
+		\rowcolor{gray!20}\texttt{-1} & \texttt{-9} & \footnotesize\texttt{109,90,95,245,90,95,90,123,91,90,115,142,{\color{gray}(90)}} \\
+		\texttt{0} & \texttt{-1} & \scriptsize\texttt{109,91,93,91,92,90,97,91,116,91,145,90,91,98,90,90,188,91,90,90,{\color{gray}(90)}} \\
+		\rowcolor{gray!20}\texttt{1} & \texttt{-24} & \scriptsize\texttt{109,91,94,91,91,93,90,95,90,113,90,99,90,156,90,90,90,138,{\color{gray}(170)}} \\
+		\texttt{2} & \texttt{-27} & \scriptsize\texttt{109,91,94,91,91,124,91,90,91,91,90,91,90,141,90,172,91,161,90,169,228,{\color{gray}(90)}} \\
+		\rowcolor{gray!20}\texttt{3} & \texttt{4} & \scriptsize\texttt{109,91,94,91,91,92,90,169,90,90,90,107,90,90,91,90,95,91,{\color{gray}(90)}} \\
+		\texttt{4} & \texttt{-56} & \scriptsize\texttt{109,91,94,91,91,92,90,169,91,90,116,90,161,91,104,{\color{gray}(90)}} \\
+		\rowcolor{gray!20}\texttt{5} & \texttt{-8} & \footnotesize\texttt{109,90,93,91,91,135,91,124,90,90,148,91,91,97,141,91,{\color{gray}(90)}} \\
+		\texttt{6} & \texttt{-15} & \scriptsize\texttt{93,90,90,90,91,90,91,136,155,98,120,90,90,91,92,90,97,161,161,{\color{gray}(139)}} \\
+		\rowcolor{gray!20}\texttt{7} & \texttt{-30} & \footnotesize\texttt{109,91,94,91,91,124,91,105,90,169,91,90,116,91,142,90,90,{\color{gray}(90)}} \\
+		\texttt{8} & \texttt{8} & \scriptsize\texttt{109,91,94,91,91,93,90,158,90,91,90,90,116,{\color{gray}(104)}} \\
+		\rowcolor{gray!20}\texttt{9} & \texttt{11} & \footnotesize\texttt{109,91,93,90,171,90,90,91,90,91,90,91,129,144,90,90,120,90,91,91,169,90,{\color{gray}(90)}} \\
+		\texttt{10} & \texttt{14} & \scriptsize\texttt{109,91,93,90,140,150,108,91,90,111,91,91,194,98,90,169,{\color{gray}(90)}} \\
+		\rowcolor{gray!20}\texttt{11} & \texttt{-5} & \scriptsize\texttt{109,91,94,91,91,92,90,146,90,90,90,91,135,91,152,{\color{gray}(135)}} \\
+		\texttt{12} & \texttt{8} & \scriptsize\texttt{91,94,91,91,121,90,90,90,90,90,90,99,90,165,119,90,106,90,90,{\color{gray}(90)}} \\
+		\rowcolor{gray!20}\texttt{13} & \texttt{-32} & \scriptsize\texttt{109,91,94,91,91,96,90,97,91,91,145,90,113,90,90,105,91,193,{\color{gray}(90)}} \\
+		\texttt{14} & \texttt{-16} & \scriptsize\texttt{109,91,93,91,129,149,91,90,90,142,219,90,99,91,109,115,92,185,{\color{gray}(90)}} \\
+		\rowcolor{gray!20}\texttt{15} & \texttt{9} & \scriptsize\texttt{109,90,93,91,91,158,94,113,91,90,91,96,90,142,{\color{gray}(90)}} \\
+		\texttt{16} & \texttt{8} & \scriptsize\texttt{109,91,94,91,91,95,91,90,93,218,172,90,90,90,116,112,341,107,106,90,163,91,{\color{gray}(90)}} \\
+		\rowcolor{gray!20}\texttt{17} & \texttt{-28} & \scriptsize\texttt{109,91,94,91,91,96,90,166,91,91,114,90,90,91,90,90,114,91,101,{\color{gray}(90)}} \\
+		\texttt{18} & \texttt{1} & \scriptsize\texttt{109,90,93,91,91,148,91,90,151,90,91,163,108,151,112,144,90,149,90,90,99,{\color{gray}(90)}} \\
+		\rowcolor{gray!20}\texttt{19} & \texttt{-19} & \scriptsize\texttt{109,91,93,91,115,107,90,90,90,90,90,90,90,103,99,118,91,130,{\color{gray}(90)}} \\
+		\texttt{20} & \texttt{12} & \scriptsize\texttt{109,91,93,90,169,90,91,103,91,133,90,90,91,91,90,110,91,93,90,112,171,{\color{gray}(90)}} \\
+		\rowcolor{gray!20}\texttt{21} & \texttt{-2} & \scriptsize\texttt{109,91,93,91,120,91,91,91,91,90,91,100,91,90,97,91,91,90,90,{\color{gray}(160)}} \\
+		\texttt{22} & \texttt{27} & \scriptsize\texttt{109,91,94,91,91,93,90,91,91,90,100,90,94,90,108,90,91,91,119,{\color{gray}(90)}} \\\bottomrule
 	\end{tabular}
-	\caption{Glider timings for firing a glider on different lanes.}\label{tab:single_lane_glider_timings}
+	\caption{Single-channel glider sequences that produce an output glider on a given lane (relative of the sequence itself, which is on lane~0). The ``Move'' column indicates how many half-diagonals the zero-degree elbow is moved forward or backward, and the ``Timings'' column indicates the number of generations between successive pairs of gliders in the sequence. The final number in parentheses indicates the number of generations that must pass before it is safe to send subsequent glider sequences.}\label{tab:single_lane_glider_timings}
 \end{table}
 
-In most of these recipes (including the very first one, shown in Figure~\ref{fig:minus_16_0degree}), there are numerous gaps of 90 and 91 generations. The reason for this is that we want to be able to feed these single-channel glider recipes through standard components like Snarks (repeat time~$43$) and the Lx200-assisted syringe from ?? (repeat time~$90$). Most of the timings of 90 and 91 generations are actually gliders whose timing does not matter (or only matters mod~$2$ due to p$2$ components like blinkers in an intermediate reaction), so they could be decreased further if desired.
+In most of these recipes (including the very first one, shown in Figure~\ref{fig:lane_8_0degree}), there are numerous gaps of 90 and 91 generations. The reason for this is that we want to be able to feed these single-channel glider recipes through standard components like Snarks (repeat time~$43$) and the Lx200-assisted syringe from ?? (repeat time~$90$). Most of the timings of 90 and 91 generations are actually gliders whose timing does not matter (or only matters mod~$2$ due to p$2$ components like blinkers in an intermediate reaction), so they could be decreased further if desired.
+% parity encoded in parity of 'move'
+% Mention sometimes not actually left with a block at the end, as long as it's something that explodes into a pi-heptomino in the same way. For example, might be left with a boat or beehive.
+% single channel make xWSS: https://conwaylife.com/forums/viewtopic.php?f=2&t=2660&start=50#p43737
 
 % Next: elbow block duplicator. close block is the 0-degree block, farther block is the one used to build the seed out of
 % Make an earlier exercise in Ch7 to construct this version of the syringe (current version in text uses F166 instead of Lx200,
