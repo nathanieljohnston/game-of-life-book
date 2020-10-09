@@ -124,7 +124,7 @@ Since all gliders in a single-channel recipe like this come from the same direct
 	\texttt{109, 91, 94, 91, 91, 93, 90, 158, 90, 91, 90, 90, 116}.
 \end{center}
 
-Extensive computer searches\footnote{Mostly carried out by Simon Ekstr{\"o}m, with some optimizations by Dave Greene, in 2017.} have been carried out to generate single-channel glider sequences that, when aimed at a block as in Figure~\ref{fig:lane_8_0degree} (i.e., so that the first glider triggers a block-to-pi-heptomino explosion), a single output glider is produced on some lane in the same direction. A summary of sequences of this type for output lanes $-22$ through $+22$ is provided in Table~\ref{tab:single_lane_glider_timings}. However, we emphasize that this table is not even close to exhaustive---there are tens of thousands of single-channel recipes of this type known for all output lanes from $-100$ to $+100$.\footnote{These recipes can be downloaded from \httpsurl{gitlab.com/apgoucher/slmake/-/tree/master/data/simeks}. It can be useful to have multiple recipes for the same output lane, since they might move the zero-degree elbow by different amounts.}
+Extensive computer searches\footnote{Mostly carried out by Simon Ekstr{\"o}m, with some optimizations by Dave Greene, in 2017.} have been carried out to generate single-channel glider sequences that, when aimed at a block as in Figure~\ref{fig:lane_8_0degree} (i.e., so that the first glider triggers a block-to-pi-heptomino explosion), a single output glider is produced on some lane in the same direction. A summary of sequences of this type for output lanes $-22$ through $+22$ is provided in Table~\ref{tab:single_lane_glider_timings}. There are numerous points of clarification that need to be made about these recipes:\smallskip
 
 \newcolumntype{L}{>{\hspace*{-\tabcolsep}}r}
 \newcolumntype{R}{l<{\hspace*{-\tabcolsep}}}
@@ -178,19 +178,27 @@ Extensive computer searches\footnote{Mostly carried out by Simon Ekstr{\"o}m, wi
 		\rowcolor{gray!20}\texttt{21} & \texttt{-2} & \scriptsize\texttt{109,91,93,91,120,91,91,91,91,90,91,100,91,90,97,91,91,90,90,{\color{gray}(160)}} \\
 		\texttt{22} & \texttt{27} & \scriptsize\texttt{109,91,94,91,91,93,90,91,91,90,100,90,94,90,108,90,91,91,119,{\color{gray}(90)}} \\\bottomrule
 	\end{tabular}
-	\caption{Single-channel glider sequences that produce an output glider on a given lane (relative of the sequence itself, which is on lane~0). The ``Move'' column indicates how many half-diagonals the zero-degree elbow is moved forward or backward, and the ``Timings'' column indicates the number of generations between successive pairs of gliders in the sequence. The final number in parentheses indicates the number of generations that must pass before it is safe to send subsequent glider sequences.}\label{tab:single_lane_glider_timings}
+	\caption{Single-channel glider sequences that produce an output glider on a given lane (relative of the sequence itself, which is on lane~0). The ``move'' column indicates how many half-diagonals the zero-degree elbow is moved forward or backward, and the ``timings'' column indicates the number of generations between successive pairs of gliders in the sequence. The final number in parentheses indicates the number of generations that must pass before it is safe to send subsequent glider sequences.}\label{tab:single_lane_glider_timings}
 \end{table}
 
-In most of these recipes (including the very first one, shown in Figure~\ref{fig:lane_8_0degree}), there are numerous gaps of 90 and 91 generations. The reason for this is that we want to be able to feed these single-channel glider recipes through standard components like Snarks (repeat time~$43$) and the Lx200-assisted syringe from ?? (repeat time~$90$). Most of the timings of 90 and 91 generations are actually gliders whose timing does not matter (or only matters mod~$2$ due to p$2$ components like blinkers in an intermediate reaction), so they could be decreased further if desired.
-% parity encoded in parity of 'move'
-% Mention sometimes not actually left with a block at the end, as long as it's something that explodes into a pi-heptomino in the same way. For example, might be left with a boat or beehive.
+\begin{itemize}
+	\item Some of these glider sequences, like the ones that output lane~4 or 7, change the zero-degree elbow block into another small object like a boat, beehive, or pond. This is okay because those objects explode into a pi-heptomino when they are hit by a glider in the exact same way that a block does, and this is always the reaction that the first glider in these single-channel sequence triggers.\smallskip
+	
+	\item The ``move'' column of Table~\ref{tab:single_lane_glider_timings} specifies how many half-diagonals farther away the zero-degree elbow is moved by the glider sequence.\smallskip
+	
+	\item The value in the ``move'' column being odd means that the zero-degree elbow was moved to the other side of the input glider stream. If this happens, the output lanes of all subsequence glider sequences are flipped from positive to negative, and vice-versa. For example, the sequence corresponding to lane~2 has a ``move'' value of $-27$, which is odd. Thus if we want to output gliders on lanes $2$ and then $3$, we would have to send the sequences corresponding to lanes $2$ and then $-3$.\footnote{Since the ``move'' value for the lane~$-3$ sequence is also odd, the zero-degree elbow would then be back on its original side of the glider stream after this second sequence. See Exercise~??.}\smallskip
+	
+	\item In most of these glider sequences (including the very first one, from Figure~\ref{fig:lane_8_0degree}), there are numerous gaps of 90 generations. The reason for this is that we want to be able to feed these single-channel glider recipes through standard components like Snarks and the easy-to-synthesize Lx200-assisted\index{Lx200} syringe\index{syringe} from Exercise~\ref{exer:syringe_Lx200} (which has a repeat time of~$90$ generations). Most of the gliders that have a timing of 90 generations could actually be moved much closer (i.e., the previous glider's collision settles down before they arrive) if we so desired. The numerous gliders with a timing of 91 generations are similar, except their timing matters mod~$2$ due to p$2$ components like blinkers in an intermediate reaction, so they cannot arrive after exactly 90 generations.
+	
+	% Talk about how 115 gen is universal, and larger is conjectured (larger spacing is better)
+		
+	\item Table~\ref{tab:single_lane_glider_timings} is not even close to exhaustive---there are tens of thousands of single-channel recipes of this type known for all output lanes from $-100$ to $+100$.\footnote{These recipes can be downloaded from \httpsurl{gitlab.com/apgoucher/slmake/-/tree/master/data/simeks}.} It can be useful to have multiple recipes for the same output lane, since they might move the zero-degree elbow by different amounts.\smallskip
+\end{itemize}
+
+% talk about block move recipe here, keep the not exhausive bullet point last so it leads in
+
 % single channel make xWSS: https://conwaylife.com/forums/viewtopic.php?f=2&t=2660&start=50#p43737
-
 % Next: elbow block duplicator. close block is the 0-degree block, farther block is the one used to build the seed out of
-% Make an earlier exercise in Ch7 to construct this version of the syringe (current version in text uses F166 instead of Lx200,
-% Some single-channel spacings listed here: https://conwaylife.com/forums/viewtopic.php?t=1622&start=1525
-% List: https://conwaylife.com/forums/viewtopic.php?f=2&t=2660&p=44020#p44020
-
 
 % Slow-salvo Snark and other goodies:
 %https://conwaylife.com/forums/viewtopic.php?f=2&t=2660&start=25
