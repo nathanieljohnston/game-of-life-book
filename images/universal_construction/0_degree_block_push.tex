@@ -1,0 +1,61 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\begin{document}
+	\begin{tikzpicture}%
+		\node[inner sep=0pt,anchor=south west] (ca) at (0,0) {\includegraphics[width=8cm]{0_degree_block_push.png}};
+
+		% BORDER
+		\draw[gridgray] (0,0) rectangle (8,8);
+		\clip (0,0) rectangle (8,8);
+		
+		% 109, 91, 94, 91, 91, 92, 90, 119, 90
+
+		% GENERATION GAPS
+		\draw[color=white,decorate,decoration={brace,amplitude=0.1pt},opacity=0] (7,1.2) -- (7.2,1.1) node [color=gray,midway,rotate=-45,yshift=1.7,opacity=1] {\footnotesize $109$};
+		
+		\draw[color=white,decorate,decoration={brace,amplitude=4pt},opacity=0] (6-0.2,2.2-0.2) -- (6.6-0.2,1.6-0.2) node [color=gray,midway,rotate=-45,yshift=-1.5,opacity=1] {\footnotesize $91$};
+		
+		\draw[color=white,decorate,decoration={brace,amplitude=4pt},opacity=0] (4.4,3.8) -- (6.74,1.46) node [color=gray,midway,rotate=-45,yshift=1.7,opacity=1] {\footnotesize $94$};
+		
+		\draw[color=white,decorate,decoration={brace,amplitude=4pt},opacity=0] (3.74-0.2,4.46-0.2) -- (5.98-0.2,2.22-0.2) node [color=gray,midway,rotate=-45,yshift=-1.5,opacity=1] {\footnotesize $91$};
+		
+		\draw[color=white,decorate,decoration={brace,amplitude=4pt},opacity=0] (3.0,5.2) -- (5.35,2.85) node [color=gray,midway,rotate=-45,yshift=1.7,opacity=1] {\footnotesize $91$};
+		
+		\draw[color=white,decorate,decoration={brace,amplitude=4pt},opacity=0] (1.9-0.2,6.3-0.2) -- (5-0.2,3.2-0.2) node [color=gray,midway,rotate=-45,yshift=-1.5,opacity=1] {\footnotesize $92$};
+		
+		\draw[color=white,decorate,decoration={brace,amplitude=4pt},opacity=0] (0.6,7.6) -- (4.88,3.32) node [color=gray,midway,rotate=-45,yshift=1.7,opacity=1] {\footnotesize $90$};
+		
+		\draw[color=white,decorate,decoration={brace,amplitude=4pt},opacity=0] (0.05-0.2,8.15-0.2) -- (3.78-0.2,4.32-0.2) node [color=gray,midway,rotate=-45,yshift=-1.5,opacity=1] {\footnotesize $119$};
+		
+		\draw[color=white,decorate,decoration={brace,amplitude=4pt},opacity=0] (0.2,8) -- (2.05,6.15) node [color=gray,midway,rotate=-45,yshift=1.7,opacity=1] {\footnotesize $90$};
+		
+		
+		% ZOOM
+			\newcommand\smlx{7.15}
+			\newcommand\smrx{\smlx+0.6}
+			\newcommand\smby{0.25}
+			\newcommand\smty{\smby+0.6}
+			
+			\newcommand\bglx{0.5}
+			\newcommand\bgrx{\bglx+3}
+			\newcommand\bgty{3.5}
+			\newcommand\bgby{\bgty-3}
+			
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
+			
+			\node[inner sep=0pt,anchor=north west] (zoom1) at (\bglx,\bgty) {\includegraphics[width=3cm]{0_degree_block_push_zoom.png}};
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (\smrx,\smty) -- (\bgrx,\bgty) -- (\bgrx,\bgby) -- (\bglx,\bgby) -- (\smlx,\smby) -- (\smlx,\smty) -- cycle;
+			
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
+			
+			%\node[inner sep=0pt] (zoom1_3x) at (3.35,7.95) {\includegraphics[width=0.21cm]{../mag.png} \footnotesize 8x};
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\smlx,\smty) rectangle (\smrx,\smby);
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+		% END ZOOM BOX
+	\end{tikzpicture}
+\end{document}

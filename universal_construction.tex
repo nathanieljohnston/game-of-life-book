@@ -87,7 +87,7 @@ Importantly, because these circuits are made up of such simple components (mostl
 	\item[2)] We need to be able to re-use the glider recipes that store the construction and destruction recipes. Since we cannot use a static loop (we need the glider recipes to move along with the elbow-operation circuits), we instead have the glider recipes bounce back and forth between \emph{two} copies of the entire three-elbow-operation circuit that we have described.\footnote{In fact, the two ends of the spaceship that we construct will be exactly identical. This is the reason for its name ``Gemini''---it is Latin for ``twins''.}\smallskip
 \end{itemize}
 
-After we put all of these ideas together, we get the Gemini spaceship that is displayed in Figure~\ref{fig:gemini}.\footnote{Constructed by Andrew Wade in May 2010.} It builds a copy of itself displaced by 5,120 cells in one direction and 1,024 cells in the other direction every 33,699,586 generations, making it the first spaceship that we have seen that does not travel orthogonally or diagonally at a slope of~$1$ (its slope is $5120/1024 = 5$).
+After we put all of these ideas together, we get the Gemini spaceship that is displayed in Figure~\ref{fig:gemini}.\footnote{Constructed by Andrew J.~Wade in May 2010.} It builds a copy of itself displaced by 5,120 cells in one direction and 1,024 cells in the other direction every 33,699,586 generations, making it the first spaceship that we have seen that does not travel orthogonally or diagonally at a slope of~$1$ (its slope is $5120/1024 = 5$).
 
 \begin{figure}[!htbp]
 	\centering
@@ -188,16 +188,38 @@ Extensive computer searches\footnote{Mostly carried out by Simon Ekstr{\"o}m, wi
 	
 	\item The value in the ``move'' column being odd means that the zero-degree elbow was moved to the other side of the input glider stream. If this happens, the output lanes of all subsequence glider sequences are flipped from positive to negative, and vice-versa. For example, the sequence corresponding to lane~2 has a ``move'' value of $-27$, which is odd. Thus if we want to output gliders on lanes $2$ and then $3$, we would have to send the sequences corresponding to lanes $2$ and then $-3$.\footnote{Since the ``move'' value for the lane~$-3$ sequence is also odd, the zero-degree elbow would then be back on its original side of the glider stream after this second sequence. See Exercise~??.}\smallskip
 	
-	\item In most of these glider sequences (including the very first one, from Figure~\ref{fig:lane_8_0degree}), there are numerous gaps of 90 generations. The reason for this is that we want to be able to feed these single-channel glider recipes through standard components like Snarks and the easy-to-synthesize Lx200-assisted\index{Lx200} syringe\index{syringe} from Exercise~\ref{exer:syringe_Lx200} (which has a repeat time of~$90$ generations). Most of the gliders that have a timing of 90 generations could actually be moved much closer (i.e., the previous glider's collision settles down before they arrive) if we so desired. The numerous gliders with a timing of 91 generations are similar, except their timing matters mod~$2$ due to p$2$ components like blinkers in an intermediate reaction, so they cannot arrive after exactly 90 generations.
+	\item In most of these glider sequences, there are numerous gaps of 90 and 91~generations. The reason for this is that we want to be able to feed these single-channel glider recipes through standard components like Snarks and the easy-to-synthesize Lx200-assisted\index{Lx200} syringe\index{syringe} from Exercise~\ref{exer:syringe_Lx200} (which has a repeat time of~$90$ generations).\footnote{Single-channel glider sequences with large timing gaps are desirable since they can make use of circuitry that has a higher repeat time. We could use sequences with gaps no smaller than $115$~generations (such sequences are known to be able to emulate arbitrary glider syntheses), thus letting us feed these sequences through the syringe variant from Figure~\ref{fig:syringe_modified}. However, as the minimum timing gap increases, so does the length of the resulting glider sequences, so we stick with a minimum timing gap of 90~generations.}
 	
-	% Talk about how 115 gen is universal, and larger is conjectured (larger spacing is better)
+	Most of the gliders that have a timing of 90 or 91 generations could actually be moved much closer (i.e., the previous glider's collision settles down before they arrive) if we so desired. The reason that some gliders use a gap of $91$~generations instead of just $90$ is that their timing matters mod~$2$, due to p$2$ components like blinkers in an intermediate reaction.\smallskip
 		
 	\item Table~\ref{tab:single_lane_glider_timings} is not even close to exhaustive---there are tens of thousands of single-channel recipes of this type known for all output lanes from $-100$ to $+100$.\footnote{These recipes can be downloaded from \httpsurl{gitlab.com/apgoucher/slmake/-/tree/master/data/simeks}.} It can be useful to have multiple recipes for the same output lane, since they might move the zero-degree elbow by different amounts.\smallskip
 \end{itemize}
 
-% talk about block move recipe here, keep the not exhausive bullet point last so it leads in
+Since these single-lane glider sequences move the zero-degree elbow forward and backward by some amount that we do not control (it is dictated by the lane that we wish the output glider to fire on), it is important to be able to move the elbow \emph{without} firing a glider as well. We typically do not care about its exact position, but we still have to make sure that it stays at least roughly where we want it (so it does not crash into an object that we are trying to synthesize, for example). The two elbow-moving sequences provided below, and displayed in Figure~??, take care of this task.
+\begin{align*}
+	& \text{\texttt{~push~8hd: \footnotesize 109, 91, 94, 91, 91, 92, 90, 119, 90, {\color{gray}(90)},}}\\
+	& \text{\texttt{pull~12hd: \footnotesize 109, 91, 93, 91, 137, 91, 91, 125, 172, 108, 90, 109, 91, 101, 120, 90, {\color{gray}(90)}.}}
+\end{align*}
 
-% single channel make xWSS: https://conwaylife.com/forums/viewtopic.php?f=2&t=2660&start=50#p43737
+\begin{figure}[!htb]
+	\centering
+	\begin{tabular}{@{}cc@{}}
+		\begin{subfigure}{0.48\textwidth}
+			\centering
+			\patternlink{0_degree_block_push}{\vcenteredhbox{\includegraphics[width=\textwidth]{universal_construction/0_degree_block_push.pdf}}}
+			\caption{push 8 half diagonals}
+			\label{fig:0_degree_block_push}
+		\end{subfigure} & \begin{subfigure}{0.48\textwidth}
+			\centering
+			\patternlink{0_degree_block_pull}{\vcenteredhbox{\includegraphics[width=\textwidth]{universal_construction/0_degree_block_pull.pdf}}}
+			\caption{pull 12 half diagonals}
+			\label{fig:0_degree_block_pull}
+		\end{subfigure}
+	\end{tabular}
+	\caption{Single-channel glider sequences that (a) push or (b) pull a zero-degree elbow. The location of the elbow after being pushed or pulled is marked in \bgbox{greenpastel}{green}.}\label{fig:0_degree_block_push_pull}
+\end{figure}
+% Exercise: 12hd pull creates a pond. Why not a problem?
+
 % Next: elbow block duplicator. close block is the 0-degree block, farther block is the one used to build the seed out of
 
 % Slow-salvo Snark and other goodies:
@@ -253,14 +275,16 @@ Stuff.
 \section{Notes and Historical Remarks}\label{sec:universal_construction_history}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Stuff.
-% Talk about RCT here, and how it shows every glider-synthesizable object can be built wtih 17 far-apart gliders. This is referenced in Ch5 Notes section.
 % TAlk about Gemini took 5 months to complete. Maybe earlier instead. Made with a custom computer script to make the glider recipe
+
+The development of single-channel glider synthesis mostly took place in 2017, when a relative newcomer, Simon Ekstr{\"o}m, cavalierly disregarded accumulated prejudices from the previous decade, tried a search, and found that it worked.\footnote{This is not unlike when Andrew J. Wade built Gemini in 2010, or ConwayLife.com forums user ``zdr'' found the copperhead spaceship in 2016. In all of these cases, a newcomer simply looked where the members of the Life community thought there wasn't anything to find.} It was already known in 2015 how to emulate arbitrary glider synthesis via gliders on a single lane, and that technique was used by Chris Cain and Dave Greene to construct an earlier demonoid than the ones we presented in this chapter, called the \emph{0hd demonoid}\index{0hd demonoid} that year.\footnote{The ``0hd'' in the name of this demonoid refers to the fact that there are zero half-diagonals separating its gliders.} However, Ekstr{\"o}m was the first to show that it is possible even when the gliders are far enough apart from each other that they can be fed through components like Snarks and syringes.
+% Talk about RCT here, and how it shows every glider-synthesizable object can be built wtih 17 far-apart gliders. This is referenced in Ch5 Notes section.
 % Orthogonoid in the notes/history here?
 
-% There's a huge new idea at "single-channel", of course, and again it's a case where a relative newcomer, Simon Ekström, just cavalierly disregarded accumulated prejudices from the previous decade, and tried a search, and found that it worked.
 
+% single channel make xWSS: https://conwaylife.com/forums/viewtopic.php?f=2&t=2660&start=50#p43737
 
+% exercise with the chirality-swapping 0-degree sequence?
 % Exercise based on spiral growth? Or include somewhere? https://www.conwaylife.com/forums/viewtopic.php?f=&p=44792#p44792
 % BUILD A GEMINI WITH DIFFERENT PERIOD/SLOPE/WHATEVER
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
