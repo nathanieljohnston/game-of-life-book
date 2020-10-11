@@ -74,6 +74,8 @@ By aiming the output gliders of two of these elbow-operation circuits at each ot
 
 % FIGURE
 
+% Somewhere: a bit more on its construction itself. Starting top-to bottom, one still life at a time.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{The Spaceship Itself}\label{sec:gemini_itself}
@@ -111,7 +113,67 @@ Stuff.
 
 Recall from Section~\ref{sec:slow_salvo} that slow salvo synthesis is a method of encoding the construction of a pattern in the positions of a sequence gliders, with their timing playing no role (except that the gap between consecutive gliders must be sufficiently large that each glider's collision must settle down before the next glider arrives). We now flip this idea around and instead show how to encode the construction of a pattern in the \emph{timing} of a sequence of gliders, with their \emph{position} playing no role. In particular, we show how to encode glider synthesis via gliders that are all coming from the same direction on the same lane.
 
-As with many of our other universal constructions, we will make use of a block that acts as an elbow in order to make these single-lane syntheses possible. However, this time the block that we use is going to act as a \emph{zero-degree elbow}:\index{zero-degree elbow} a small stable object that several gliders are fired at on a particular lane so as to produce a single glider going in the same direction but on a different lane.\footnote{Here, ``zero-degree'' refers to the fact that the input glider stream is being ``reflected'' by zero degrees (i.e., not reflected at all, but just shifted to a different lane). Single-channel synthesis can also use a 90-degree elbow (i.e., the type of elbow we used to construct slide guns or Gemini, which fires output gliders perpendicularly), but a zero-degree elbow will be more useful for the next pair of spaceships that we construct.} For example, Figure~\ref{fig:lane_8_0degree} displays a sequence of $14$~gliders that, when it collides with a block, produces a single glider going in the same direction, but shifted by $8$ lanes.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{With a 90-Degree Elbow}\label{sec:single_channel_synth_90}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+As with many of our other universal constructions, we make use of a block that acts as an elbow in order to make these single-lane syntheses possible. In particular, we fire a stream of gliders at a block so as to first create a chaotic explosion, and then clean up the resulting debris while creating a perpendicular glider. For example, Figure~\ref{fig:90_degree_first_example} displays a sequence of 13~gliders that, when it collides with a block, produces a single glider travelling in a different direction.
+
+\begin{figure}[!htb]
+	\centering
+	\patternlink{90_degree_first_example}{\vcenteredhbox{\includegraphics[width=0.486864\textwidth]{universal_construction/90_degree_first_example.pdf}} \vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{3}{3} 1186}}$}} \vcenteredhbox{\includegraphics[width=0.414736\textwidth]{universal_construction/90_degree_first_example_2.pdf}}}
+	\caption{A sequence of $13$ gliders travelling along the same lane that collide with a block so as to (a) produce a single perpendicular glider, and (b) recreate the target block along the same lane (but shifted northwest by 20 half-diagonals) so that it can be re-used by other single-channel recipes. The numbers on the left indicate the number of generations between consecutive gliders.}\label{fig:90_degree_first_example}
+\end{figure}
+
+Since all gliders in a single-channel sequence like this come from the same direction on the same lane, we can encode it simply via the number of generations between each consecutive pair of gliders. For example, the $13$-glider sequence from Figure~\ref{fig:90_degree_first_example} could be encoded by the following sequence of $12$~timing gaps:
+\begin{center}
+	\texttt{109, 91, 94, 91, 91, 124, 91, 105, 90, 106, 112, 108}.
+\end{center}
+
+Computer searches have been carried out\footnote{Mostly by Simon Ekstr{\"o}m, with some optimizations by Dave Greene, in 2017.} to generate single-channel glider sequences that, when aimed at a block as in Figure~\ref{fig:90_degree_first_example} (i.e., so that the first glider triggers a block-to-pi-heptomino explosion), a single output glider is produced on some perpendicular lane. A summary of some reasonably short sequences of this type that produce gliders on a variety of different output lanes (and in either of the two perpendicular output directions) is provided in Table~\ref{tab:single_lane_90deg_glider_timings}.
+
+\newcolumntype{L}{>{\hspace*{-\tabcolsep}}r}
+\newcolumntype{R}{l<{\hspace*{-\tabcolsep}}}
+\begin{table}[!htb]
+	\centering
+	\begin{tabular}{@{\hskip 0.31cm}L@{\hskip 0.27cm}r@{\hskip 0.27cm}R@{\hskip 0.34cm}}\toprule
+		Lane & Move & Timings \\\midrule
+		\texttt{-18i} & \texttt{-20} & \footnotesize\texttt{109,91,94,91,91,124,91,105,90,106,112,108,{\color{gray}(90)}}\\
+		\rowcolor{gray!20}\texttt{-15i} & \texttt{-4} & \footnotesize\texttt{109,90,93,91,91,92,90,90,91,90,110,90,90,91,124,133,90,91,113,90,90,{\color{gray}(90)}}\\
+		\texttt{-7i} & \texttt{-25} & \footnotesize\texttt{109,91,94,91,91,136,91,90,91,104,90,90,90,110,90,90,98,{\color{gray}(90)}}\\
+		\rowcolor{gray!20}\texttt{1i} & \texttt{2} & \footnotesize\texttt{109,91,94,91,90,96,90,91,146,240,109,91,94,91,91,92,90,143,90,91,158,{\color{gray}(90)}}\\
+		\texttt{3i} & \texttt{-27} & \footnotesize\texttt{109,90,93,91,91,142,90,109,91,92,90,92,90,118,91,91,90,90,119,{\color{gray}(90)}}\\
+		\rowcolor{gray!20}\texttt{5i} & \texttt{8} & \footnotesize\texttt{109,91,94,91,91,136,91,90,91,139,98,90,156,{\color{gray}(133)}}\\
+		\texttt{8i} & \texttt{-8} & \footnotesize\texttt{109,90,95,245,90,126,208,128,90,96,91,90,90,91,91,91,91,100,90,90,{\color{gray}(90)}}\\
+		\rowcolor{gray!20}\texttt{19i} & \texttt{15} & \footnotesize\texttt{109,91,94,91,91,92,90,97,91,90,91,90,149,90,98,91,90,95,{\color{gray}(90)}}\\\midrule
+		\texttt{-21x} & \texttt{-37} & \footnotesize\texttt{109,91,93,90,155,106,90,90,92,91,109,90,93,91,90,100,124,{\color{gray}(90)}}\\
+		\rowcolor{gray!20}\texttt{-15x} & \texttt{-26} & \footnotesize\texttt{109,91,93,91,127,91,90,113,90,90,111,90,111,91,91,91,{\color{gray}(90)}}\\
+		\texttt{-11x} & \texttt{8} & \footnotesize\texttt{109,91,94,91,91,136,91,90,91,101,90,90,90,92,90,144,90,91,90,90,126,{\color{gray}(90)}}\\
+		\rowcolor{gray!20}\texttt{-9x} & \texttt{16} & \footnotesize\texttt{109,91,94,91,91,136,91,90,91,168,90,90,97,91,91,91,90,116,90,90,90,90,90,{\color{gray}(90)}}\\
+		\texttt{-3x} & \texttt{-15} & \footnotesize\texttt{109,91,93,91,97,91,91,106,91,90,90,90,90,90,91,163,90,90,104,{\color{gray}(90)}}\\
+		\rowcolor{gray!20}\texttt{-1x} & \texttt{-5} & \footnotesize\texttt{109,91,94,91,91,136,91,90,91,139,98,90,94,90,95,90,91,118,207,93,{\color{gray}(90)}}\\
+		\texttt{2x} & \texttt{3} & \footnotesize\texttt{109,91,94,91,91,92,90,143,90,91,158,{\color{gray}(90)}}\\
+		\rowcolor{gray!20}\texttt{10x} & \texttt{11} & \footnotesize\texttt{109,91,94,91,91,92,90,119,90,90,109,91,94,91,91,92,90,143,90,91,158,{\color{gray}(90)}}\\
+		\bottomrule
+	\end{tabular}
+	\caption{Single-channel glider sequences that collide with a 90-degree elbow so as to produce a perpendicular output glider on a given lane. The first 8 rows give sequences that produce an ``\textbf{i}nternal'' glider (i.e., one that travels northeast when oriented as in Figure~\ref{fig:90_degree_first_example}) and the last 8 rows give sequences that produce an ``e\textbf{x}ternal'' glider (i.e., one that travels southwest). The ``move'' column indicates how many half-diagonals the elbow is moved forward or backward, and the ``timings'' column indicates the number of generations between consecutive gliders in the sequence. The final number in parentheses is the number of generations that must pass before it is safe to send subsequent glider sequences.}\label{tab:single_lane_90deg_glider_timings}
+\end{table}
+
+There are numerous points of clarification that we need to make about these sequences:\smallskip
+
+% Next: then block movers to fill in the gaps (move to here from later), then give a table. Make sure to give recipe for moving by \pm 2hd and an odd number, so that it's clear that ti's universal
+% Explain x versus i external versus internal. Shortest up table caption and move i/x explanation to main text? Move most of table of clarifications to here.
+%2x,3 turns into a beehive. This clarification is needed before block movers, since one of the displayed ones makes a pond
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{With a Zero-Degree Elbow}\label{sec:single_channel_synth_0}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+While the single-channel syntheses of the previous subsection are very useful, it is sometimes desirable to use single-channel glider sequences to build an object directly in front of them, rather than off to their side. For example, it will be useful for us to be able to use gliders from a single lane to construct a Snark that accepts gliders on that same lane as input.
+
+To make this possible, instead of using a 90-degree elbow, we use a \emph{zero-degree elbow}:\index{zero-degree elbow} a small stable object (like a block) that several gliders are fired at on a particular lane so as to produce a single glider going in the \emph{same direction} but on a different lane.\footnote{Here, ``zero-degree'' refers to the fact that the input glider stream is being ``reflected'' by zero degrees (i.e., not reflected at all, but just shifted to a different lane).} For example, Figure~\ref{fig:lane_8_0degree} displays a sequence of $14$~gliders that, when it collides with a block, produces a single glider going in the same direction, but shifted by $8$ lanes.
 
 \begin{figure}[!htb]
 	\centering
@@ -119,15 +181,14 @@ As with many of our other universal constructions, we will make use of a block t
 	\caption{A sequence of $14$ gliders travelling along the same lane that collide with a block so as to (a) produce a single glider travelling in the same direction, but shifted up by $8$~lanes, and (b) recreate the target block along the same lane (but shifted southeast by 8 half-diagonals) so that it can be re-used by other single-channel recipes. The numbers on the left indicate the number of generations between consecutive gliders.}\label{fig:lane_8_0degree}
 \end{figure}
 
-Since all gliders in a single-channel recipe like this come from the same direction on the same lane, we can encode it simply via the number of generations between each consecutive pair of gliders. For example, the $14$-glider sequence from Figure~\ref{fig:lane_8_0degree} could be encoded by the following sequence of $13$~timing gaps:
+As with $90$-degree single-channel sequences, we encode zero-degree single-channel sequences simply by the number of generations between each consecutive pair of gliders. For example, we encode the $14$-glider sequence from Figure~\ref{fig:lane_8_0degree} via the following sequence of $13$~timing gaps:
 \begin{center}
 	\texttt{109, 91, 94, 91, 91, 93, 90, 158, 90, 91, 90, 90, 116}.
 \end{center}
 
-Extensive computer searches\footnote{Mostly carried out by Simon Ekstr{\"o}m, with some optimizations by Dave Greene, in 2017.} have been carried out to generate single-channel glider sequences that, when aimed at a block as in Figure~\ref{fig:lane_8_0degree} (i.e., so that the first glider triggers a block-to-pi-heptomino explosion), a single output glider is produced on some lane in the same direction. A summary of sequences of this type for output lanes $-22$ through $+22$ is provided in Table~\ref{tab:single_lane_glider_timings}. There are numerous points of clarification that need to be made about these recipes:\smallskip
+% Talk about why it's more important to have a wide variety of lanes in this setting. Block move doesn't help as much as it did with 90deg
+Once again, extensive computer searches have been used to generate single-channel glider sequences of this type that produce a single output glider on a wide variety of different lanes. A summary of sequences of this type for output lanes $-22$ through $+22$ is provided in Table~\ref{tab:single_lane_0deg_glider_timings}. There are numerous points of clarification that need to be made about these recipes:\smallskip
 
-\newcolumntype{L}{>{\hspace*{-\tabcolsep}}r}
-\newcolumntype{R}{l<{\hspace*{-\tabcolsep}}}
 \begin{table}[!phtb]
 	\centering
 	\begin{tabular}{@{\hskip 0.31cm}L@{\hskip 0.27cm}r@{\hskip 0.27cm}R@{\hskip 0.34cm}}\toprule
@@ -178,7 +239,7 @@ Extensive computer searches\footnote{Mostly carried out by Simon Ekstr{\"o}m, wi
 		\rowcolor{gray!20}\texttt{21} & \texttt{-2} & \scriptsize\texttt{109,91,93,91,120,91,91,91,91,90,91,100,91,90,97,91,91,90,90,{\color{gray}(160)}} \\
 		\texttt{22} & \texttt{27} & \scriptsize\texttt{109,91,94,91,91,93,90,91,91,90,100,90,94,90,108,90,91,91,119,{\color{gray}(90)}} \\\bottomrule
 	\end{tabular}
-	\caption{Single-channel glider sequences that produce an output glider on a given lane (relative of the sequence itself, which is on lane~0). The ``move'' column indicates how many half-diagonals the zero-degree elbow is moved forward or backward, and the ``timings'' column indicates the number of generations between successive pairs of gliders in the sequence. The final number in parentheses indicates the number of generations that must pass before it is safe to send subsequent glider sequences.}\label{tab:single_lane_glider_timings}
+	\caption{Single-channel glider sequences that produce an output glider on a given lane (relative of the sequence itself, which is on lane~0). The ``move'' and ``timings'' columns are as in Table~\ref{tab:single_lane_90deg_glider_timings}.}\label{tab:single_lane_0deg_glider_timings}
 \end{table}
 
 \begin{itemize}
@@ -221,6 +282,7 @@ Since these single-lane glider sequences move the zero-degree elbow forward and 
 % Exercise: 12hd pull creates a pond. Why not a problem?
 
 % Next: elbow block duplicator. close block is the 0-degree block, farther block is the one used to build the seed out of
+% Then describe/give a schematic for how this is all we need for universality.
 
 % Slow-salvo Snark and other goodies:
 %https://conwaylife.com/forums/viewtopic.php?f=2&t=2660&start=25

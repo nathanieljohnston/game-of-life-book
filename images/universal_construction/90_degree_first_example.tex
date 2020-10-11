@@ -1,0 +1,39 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\begin{document}
+	\begin{tikzpicture}%
+		\node[inner sep=0pt,anchor=south west] (ca) at (0,0) {\includegraphics[width=8cm]{90_degree_first_example.png}};
+
+		% BORDER
+		\draw[gridgray] (0,0) rectangle (8,8);
+		\clip (0,0) rectangle (8,8);
+		
+		% 109, 91, 94, 91, 91, 124, 91, 105, 90, 106, 112, 108
+
+		% GENERATION GAPS
+		\draw[color=white,decorate,decoration={brace,amplitude=0.1pt},opacity=0] (7.07,1.13) -- (7.3,0.9) node [color=gray,midway,rotate=-45,yshift=1.7,opacity=1] {\footnotesize $109$};
+		
+		\draw[color=white,decorate,decoration={brace,amplitude=4pt},opacity=0] (6.8,1.0) -- (6,1.8) node [color=gray,midway,rotate=-45,yshift=-1.5,opacity=1] {\footnotesize $91$};
+		
+		\draw[color=white,decorate,decoration={brace,amplitude=4pt},opacity=0] (5.35,2.85) -- (6.74,1.46) node [color=gray,midway,rotate=-45,yshift=1.7,opacity=1] {\footnotesize $94$};
+		
+		\draw[color=white,decorate,decoration={brace,amplitude=4pt},opacity=0] (5,2.8) -- (5.65,2.15) node [color=gray,midway,rotate=-45,yshift=-1.5,opacity=1] {\footnotesize $91$};
+		
+		\draw[color=white,decorate,decoration={brace,amplitude=4pt},opacity=0] (4.6,3.6) -- (5.4,2.8) node [color=gray,midway,rotate=-45,yshift=1.7,opacity=1] {\footnotesize $91$};
+		
+		\draw[color=white,decorate,decoration={brace,amplitude=4pt},opacity=0] (3.4,4.4) -- (5.08-0.2,3.12-0.2) node [color=gray,midway,rotate=-45,yshift=-1.5,opacity=1] {\footnotesize $124$};
+		
+		\draw[color=white,decorate,decoration={brace,amplitude=4pt},opacity=0] (3.0,5.2) -- (4.45,3.75) node [color=gray,midway,rotate=-45,yshift=1.7,opacity=1] {\footnotesize $91$};
+		
+		\draw[color=white,decorate,decoration={brace,amplitude=4pt},opacity=0] (2,5.8) -- (4.13-0.2,4.07-0.2) node [color=gray,midway,rotate=-45,yshift=-1.5,opacity=1] {\footnotesize $105$};
+		
+		\draw[color=white,decorate,decoration={brace,amplitude=4pt},opacity=0] (1,7.2) -- (4.18,4.02) node [color=gray,midway,rotate=-45,yshift=1.7,opacity=1] {\footnotesize $90$};
+		
+		\draw[color=white,decorate,decoration={brace,amplitude=4pt},opacity=0] (0.6,7.2) -- (3.0,4.8) node [color=gray,midway,rotate=-45,yshift=-1.5,opacity=1] {\footnotesize $106$};
+		
+		\draw[color=white,decorate,decoration={brace,amplitude=4pt},opacity=0] (0.2,8) -- (2.6,5.6) node [color=gray,midway,rotate=-45,yshift=1.7,opacity=1] {\footnotesize $112$};
+		
+		\draw[color=white,decorate,decoration={brace,amplitude=4pt},opacity=0] (0.1,7.7) -- (1,6.8) node [color=gray,midway,rotate=-45,yshift=-1.5,opacity=1] {\footnotesize $108$};
+	\end{tikzpicture}
+\end{document}

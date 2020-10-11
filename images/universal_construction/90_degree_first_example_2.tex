@@ -1,0 +1,18 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\begin{document}
+	\begin{tikzpicture}%
+		\node[inner sep=0pt,anchor=south west] (ca) at (0,0) {\includegraphics[width=6.81481481481cm]{90_degree_first_example_2.png}};
+
+		% BORDER
+		\draw[gridgray] (0,0) rectangle (6.81481481481,8);
+		\clip (0,0) rectangle (6.81481481481,8);
+
+		% LANE -16
+		\newcommand\newlx{4.45}
+		\newcommand\newly{6.2}
+		\draw[gray] (\newlx,\newly) node[rotate=45,shift={(0,0.1)}] {\footnotesize lane $-18$};
+		\draw[color=gray,-stealth] (\newlx-0.35,\newly-0.5) -- (\newlx+0.55,\newly+0.45);
+	\end{tikzpicture}
+\end{document}
