@@ -439,7 +439,7 @@ To be a bit more explicit, consider the arrangement of blocks presented in Figur
 
 Importantly, because this one-time turner is made up of nothing other than blocks, we can construct it using a p1 slow salvo via the techniques that we developed in the previous section. An explicit $12$-glider p1 slow salvo that does the job (and also leaves us with an extra block that we can then use to construct additional turners) is displayed in Figure~\ref{fig:create_one_time_turner}. This salvo works by using 2 gliders to duplicate the initial block (as in Figure~\ref{fig:slow_salvo_splitter}), 8 gliders to move one of these blocks to a new position, and then 2 more gliders to duplicate this block again.% (and due to the clever way we repositioned the second block, this second duplication leaves a pair of blocks in exactly the one-time turner configuration).
 
-\begin{figure}[!ht]
+\begin{figure}[!htb]
 	\centering\raisebox{-0.5\height}{\begin{tikzpicture}[scale=0.518, every node/.style={transform shape}]%
 	\node[inner sep=0pt,anchor=south west] at (0,-0.2) {\embedlink{create_one_time_turner}{\patternimg{0.195}{create_one_time_turner_0}}};
 				
@@ -560,12 +560,15 @@ With this reaction in hand, we can now use a p2 slow salvo to construct any arra
 	\caption{A demonstration of how the clock inserter (shown in \bgbox{greenback}{green} on the left) can be used to place a glider (shown in \bgbox{orangeback}{orange} on the right) closely beside and in front of other already-placed gliders.}\label{fig:clock_inserter_effective}
 \end{figure}
 
-The only p2 object that we needed to prove Theorem~\ref{thm:p2_slow_salvo} was the clock, which we used to place clusters of tightly-packed gliders. There are other reactions involving only p1 objects that can similarly be used to place gliders close to each other (see Exercise~\ref{exer:other_inserters}), but none of them are quite as clean, simple, and universal as the clock inserter. In particular, there is no known p1 inserter that works for all tight glider packings---some packings require one p1 inserter, while other packings require a different p1 inserter. For this reason, it is widely accepted that we can replace ``p2'' in Theorem~\ref{thm:p2_slow_salvo} with ``p1'', but pinning down the details is messy enough that no one has made the proof explicit.
+The only p2 object that we needed to prove Theorem~\ref{thm:p2_slow_salvo} was the clock, which we used to place clusters of tightly-packed gliders. We can get around having to use clocks (and thus avoid p$2$ objects altogether) by instead using the blockic seed of a clock from Figure~\ref{fig:clock_slow_salvo}. More specifically, if we wish to use a clock insertion reaction, we first split a single glider into three via blockic splitters---one of those gliders then hits the seed, creating a clock, and the other two are reflected so as to trigger the clock insertion reaction as in Figure~\ref{fig:clock_inserter}. Since this entire process is carried out by a single glider in the slow salvo synthesis, the result is a p1 slow salvo synthesis. We thus have the following strengthening of Theorem~\ref{thm:p2_slow_salvo}:\footnote{There are some mild technicalities that we have glossed over here---see Exercise~\ref{exer:p2_salvo_reduce_to_p1}.}%\footnote{The fact that some p2 clocks are created during this synthesis is irrelevant, since they are destroyed before the next glider in the salvo arrives.}
+
+\begin{theorem}\label{thm:p1_slow_salvo}
+	Every pattern that can be constructed via glider synthesis can be constructed by a p1 slow salvo glider synthesis.
+\end{theorem}
+
 
 % http://conwaylife.com/forums/viewtopic.php?f=2&t=1512&start=25#p23670
 % IMPORTANT: http://conwaylife.com/forums/viewtopic.php?f=2&t=1006&p=7574#p7574
-
-
 %% Last 15-bit SL: http://conwaylife.com/forums/viewtopic.php?f=2&t=1155&start=75#p9258
 %% Last 16-bit SL: http://conwaylife.com/forums/viewtopic.php?f=2&t=1155&start=225#p10227
 %% Last 17-bit SL: http://conwaylife.com/forums/viewtopic.php?f=2&t=1276&start=100#p11972
@@ -614,8 +617,6 @@ Over the following decades, David Buckingham continued to develop syntheses for 
 
 Mark Niemiec continued on with this work, creating a large database that he used to automatically generate syntheses of thousands of still lifes by piecing together known reactions \cite{Nie03,Nie10}. This greatly reduced the number of still life syntheses that needed to be found by hand, and in 2013 he completed syntheses of all $15$-cell still lifes (as well as syntheses for all except for a few hundred 16-, 17-, and 18-cell still lifes).
 
-Glider syntheses for the remaining 16-cell still lifes were then found via a collaborative effort on the ConwayLife.com forums, mostly led by Martin Grant, Matthias Merzenich, and Mark Niemiec, with the final synthesis (see Figure~\ref{fig:16_cell_synth}) being completed in January 2014. Another five-month collaborative effort, led by the same group of people, completed syntheses of the 17-cell still lifes in May 2014. A comparatively quick two-month effort finished the remaining syntheses of 18-cell still lifes in November of that year, and then a final four-month effort resulted in the synthesis of the last $930$ or so 19-cell still lifes in February 2020.
-
 \begin{figure}[!htb]
 	\centering
 	\embedlink{17_cell_synthesis}{\vcenteredhbox{\phantom{$\cdots$ \gliderarrow{2}}} \vcenteredhbox{\patternimg{0.12}{17_cell_1}} \vcenteredhbox{\gliderarrow{4}} \vcenteredhbox{\patternimg{0.12}{17_cell_2}} \vcenteredhbox{\gliderarrow{2}} \vcenteredhbox{\patternimg{0.12}{17_cell_3}} \vcenteredhbox{\gliderarrow{2}} \vcenteredhbox{\patternimg{0.12}{17_cell_4}}} \\[1em]
@@ -632,6 +633,8 @@ Glider syntheses for the remaining 16-cell still lifes were then found via a col
 	
 	\caption{A summary of a massive $94$-glider incremental synthesis of a hard-to-construct 17-cell still life (shown at the bottom right). Each stage in the synthesis works by using a glider collision to transform one still life into another. The cells that were created or modified in the previous step of the synthesis are shown in \bgbox{redback}{red}, and the gliders that will be involved in the next collision are shown in \bgbox{greenback}{green}.}\label{fig:17_cell_synthesis}
 \end{figure}
+
+Glider syntheses for the remaining 16-cell still lifes were then found via a collaborative effort on the ConwayLife.com forums, mostly led by Martin Grant, Matthias Merzenich, and Mark Niemiec, with the final synthesis (see Figure~\ref{fig:16_cell_synth}) being completed in January 2014. Another five-month collaborative effort, led by the same group of people, completed syntheses of the 17-cell still lifes in May 2014. A comparatively quick two-month effort finished the remaining syntheses of 18-cell still lifes in November of that year, and then a final four-month effort resulted in the synthesis of the last $930$ or so 19-cell still lifes in February 2020.
 
 To give an idea of the size of this achievement, recall from Table~\ref{tab:small_still_lifes} that there are 78,297 different strict still lifes with 19 or fewer cells. Not only is this a huge number of distinct objects to synthesize, but the syntheses themselves are often monstrously large. For example, Figure~\ref{fig:17_cell_synthesis} shows how one of the ``problematic'' 17-cell still lifes was constructed by using a whopping total of 94 gliders and over 20 stages of incremental synthesis.
 
@@ -852,9 +855,20 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 
 
 \begin{problem}\label{exer:ecologist_synth}
-	Complete the incremental glider synthesis of the ecologist presented in Figure~\ref{fig:ecologist_synth_b} (i.e., construct it in its entirety from an arrangement of gliders). This synthesis should only use gliders coming from the bottom-left and bottom-right.
+	For incremental syntheses of moving objects, like this ecologist from Figure~\ref{fig:ecologist_synth_b}, there tend to be more choices to be made, since individual components may be constructed earlier or later in time, and the location where they must be constructed will change accordingly.\smallskip
 	
-	\noindent [Hint: You can use two gliders to create a block and then two more gliders to turn the block into a LWSS.]
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item Complete this glider synthesis (i.e., construct the ecologist its entirety from an arrangement of gliders). This synthesis should only use gliders coming from the bottom-left and bottom-right.
+		
+		\noindent [Hint: You can use two gliders to create a block and then two more gliders to turn the block into a LWSS.]
+		
+		\item Find the four gliders that synthesize the first LWSS in this ecologist. To construct that LWSS four generations sooner without disrupting the final recipe, how far and in what direction should each of these gliders be moved?
+		
+		\noindent [Hint: Depending on their direction of travel, one pair of gliders will move in one direction, and the other will move the same distance but in a different direction.]
+		
+		% SOLUTION: constructing a rightward-moving LWSS four ticks sooner means constructing it two spaces to the left. So all four gliders should move two spaces to the left. However, this will mean that the LWSS will arrive at its original location four ticks too late! So the NEward gliders also have to move one cell diagonally NE, and the NWward gliders have to move one cell diagonally NW. The final result is that the NEward gliders move diagonally NW by one cell, and the NWward gliders move three cells west and one cell north.
+		% More info and RLEs: https://www.conwaylife.com/forums/viewtopic.php?f=15&t=4200#p105931
+	\end{enumerate}
 \end{problem}
 
 
@@ -1059,7 +1073,9 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 		\item Use the ``tee''\index{tee} $3$-glider collision from Table~\ref{tab:3_glider_synth} to insert a glider $15$~generations in front of another glider.
 		
-		\item Use an eater~1 to insert a glider $15$~generations in front of another glider. [Hint: Refer to Exercise~\ref{exer:boat_one_time_turner}(b).]
+		\item Use an eater~1 to insert a glider $15$~generations in front of another glider.
+		
+		\noindent [Hint: Refer to Exercise~\ref{exer:boat_one_time_turner}(b).]
 		
 		\item Use the clock inserter to insert a glider $14$~generations in front of another glider.
 	\end{enumerate}
@@ -1111,7 +1127,9 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	\end{center}
 \end{problem}
 
+
 \mfilbreak
+
 
 \begin{problem}\label{exer:blockic_splitter_chain}
 	By chaining together multiple blockic splitters, we can turn one glider into any number of gliders. Create a blockic seed that turns one glider into exactly...
@@ -1123,6 +1141,14 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 		\item $9$ gliders.
 	\end{enumerate}
 \end{problem}
+
+
+\mfilbreak
+
+
+\begin{problemstar}\label{exer:p2_salvo_reduce_to_p1}
+	The argument that we used to improve Theorem~\ref{thm:p2_slow_salvo} to Theorem~\ref{thm:p1_slow_salvo} relied on us being able to use blockic splitters to create three gliders: one to trigger a clock seed and two to trigger the clock insertion reaction. How can we ensure that the clock is in the correct phase when the latter two gliders arrive to trigger the clock insertion?
+\end{problemstar}
 
 
 \mfilbreak
