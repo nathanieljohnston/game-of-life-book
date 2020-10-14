@@ -162,9 +162,125 @@ Computer searches have been carried out\footnote{Mostly by Simon Ekstr{\"o}m, wi
 
 There are numerous points of clarification that we need to make about these sequences:\smallskip
 
-% Next: then block movers to fill in the gaps (move to here from later), then give a table. Make sure to give recipe for moving by \pm 2hd and an odd number, so that it's clear that ti's universal
-% Explain x versus i external versus internal. Shortest up table caption and move i/x explanation to main text? Move most of table of clarifications to here.
-%2x,3 turns into a beehive. This clarification is needed before block movers, since one of the displayed ones makes a pond
+\begin{itemize}
+	\item The output lane number has either an ``\texttt{i}'' or ``\texttt{x}'' suffix, indicating in which of the two perpendicular directions the output glider travels. The suffixes stand for \textbf{i}nternal and e\textbf{x}ternal, which refer to the output glider travelling on the same side as the elbow block that the input glider sequence hits, or the opposite side, respectively.\smallskip 
+	
+	\item Some of these glider sequences, like the one with output on lane~2x, change the zero-degree elbow block into another small object like a boat, beehive, or pond. This is okay because those objects explode into a pi-heptomino when they are hit by a glider in the exact same way that a block does, and this is always the reaction that the first glider in these single-channel sequence triggers.\smallskip
+	
+	\item The ``move'' column of Table~\ref{tab:single_lane_90deg_glider_timings} specifies how many half-diagonals farther away the zero-degree elbow is moved by the glider sequence.\smallskip
+	
+	\item The value in the ``move'' column being odd means that the elbow was moved to the other side of the input glider stream. If this happens, the output lanes of all subsequent glider sequences are flipped from \texttt{i} to \texttt{x}, and vice-versa. For example, the sequence corresponding to lane~$2x$ has a ``move'' value of $3$, which is odd. Thus if we want to output gliders on lanes $2x$ and then $-12x$, we would have to send the sequences corresponding to lanes $2x$ and then $-15i$ (not $-15x$).\smallskip
+	
+	\item In most of these glider sequences, there are numerous gaps of 90 and 91~generations. The reason for this is that we want to be able to feed these single-channel glider recipes through standard components like Snarks and the easy-to-synthesize Lx200-assisted\index{Lx200} syringe\index{syringe} from Exercise~\ref{exer:syringe_Lx200} (which has a repeat time of~$90$ generations).\footnote{Single-channel glider sequences with large timing gaps are desirable since they can make use of circuitry that has a higher repeat time. We could use sequences with gaps no smaller than $115$~generations (such sequences are known to be able to emulate arbitrary glider syntheses), thus letting us feed these sequences through the syringe variant from Figure~\ref{fig:syringe_modified}. However, as the minimum timing gap increases, so does the length of the resulting glider sequences, so we stick with a minimum timing gap of 90~generations.}
+	
+	Most of the gliders that have a timing of 90 or 91 generations could actually be moved much closer (i.e., the previous glider's collision settles down before they arrive) if we so desired. The reason that some gliders use a gap of $91$~generations instead of just $90$ is that their timing matters mod~$2$, due to p$2$ components like blinkers in an intermediate reaction.\smallskip
+\end{itemize}
+
+The sequences given in Table~\ref{tab:single_lane_90deg_glider_timings} can only be used to fire gliders on a small selection of lanes (8 in each direction). Furthermore, these sequences move the elbow forward and backward by some amount that we do not control---an amount that is dictated by the output lane on which we wish to fire a glider. It is thus important to be able to move the elbow however far forward or backward we like, \emph{without} firing a glider, so that the glider-firing sequences then produce a glider where we actually want it. For example, the following pair of elbow-moving sequences, which are displayed in Figure~\ref{fig:0_degree_block_push_pull}, move the elbow forward by $8$~half diagonals or backward by $12$ half diagonals, respectively.
+\begin{align*}
+	& \text{\texttt{~push~8hd: \footnotesize 109, 91, 94, 91, 91, 92, 90, 119, 90, {\color{gray}(90)},}}\\
+	& \text{\texttt{pull~12hd: \footnotesize 109, 91, 93, 91, 137, 91, 91, 125, 172, 108, 90, 109, 91, 101, 120, 90, {\color{gray}(90)}.}}
+\end{align*}
+
+\begin{figure}[!htb]
+	\centering
+	\begin{tabular}{@{}cc@{}}
+		\begin{subfigure}{0.48\textwidth}
+			\centering
+			\patternlink{0_degree_block_push}{\vcenteredhbox{\includegraphics[width=\textwidth]{universal_construction/0_degree_block_push.pdf}}}
+			\caption{push 8 half diagonals}
+			\label{fig:0_degree_block_push}
+		\end{subfigure} & \begin{subfigure}{0.48\textwidth}
+			\centering
+			\patternlink{0_degree_block_pull}{\vcenteredhbox{\includegraphics[width=\textwidth]{universal_construction/0_degree_block_pull.pdf}}}
+			\caption{pull 12 half diagonals}
+			\label{fig:0_degree_block_pull}
+		\end{subfigure}
+	\end{tabular}
+	\caption{Single-channel glider sequences that (a) push or (b) pull an elbow. The location of the elbow after being pushed or pulled is marked in \bgbox{greenpastel}{green}.}\label{fig:0_degree_block_push_pull}
+\end{figure}
+
+A more complete summary of elbow-moving sequences is given in Table~\ref{tab:single_lane_elbow_movers}, which tells us how to move the $90$-degree elbow in either direction by any number of half-diagonals up to $10$. To move the elbow by a larger amount, we can simply repeat these sequences.
+
+\begin{table}[!htb]
+	\centering
+	\begin{tabular}{@{\hskip 0.31cm}L@{\hskip 0.27cm}R@{\hskip 0.34cm}}\toprule
+		Move & Timings \\\midrule
+		\texttt{-10} & \footnotesize\texttt{109,91,94,91,91,96,90,97,91,91,130,94,90,105,90,95,111,{\color{gray}(90)}}\\
+		\rowcolor{gray!20} \texttt{-9} & \footnotesize\texttt{109,91,94,91,91,179,90,91,94,91,102,91,105,91,108,90,91,91,120,90,{\color{gray}(90)}}\\
+		\texttt{-8} & \footnotesize\texttt{109,90,93,91,90,95,91,90,91,91,90,90,91,90,90,99,90,90,91,90,94,90,{\color{gray}(90)}}\\
+		\rowcolor{gray!20} \texttt{-7} & \footnotesize\texttt{109,91,93,91,118,90,91,91,91,90,90,156,114,90,90,90,90,141,{\color{gray}(90)}}\\
+		\texttt{-6} & \footnotesize\texttt{109,91,93,91,156,91,91,94,90,91,140,91,103,91,91,132,{\color{gray}(90)}}\\
+		\rowcolor{gray!20} \texttt{-5} & \footnotesize\texttt{109,91,94,91,91,92,90,173,100,90,141,91,90,90,90,147,90,117,{\color{gray}(192)}}\\
+		\texttt{-4} & \footnotesize\texttt{109,90,93,91,91,90,90,92,90,95,91,170,90,90,91,91,98,91,91,{\color{gray}(90)}}\\
+		\rowcolor{gray!20} \texttt{-3} & \footnotesize\texttt{109,91,94,91,90,96,90,91,92,90,217,90,103,{\color{gray}(90)}}\\
+		\texttt{-2} & \footnotesize\texttt{109,91,94,91,91,136,90,90,91,171,100,118,90,{\color{gray}(90)}}\\
+		\rowcolor{gray!20} \texttt{-1} & \footnotesize\texttt{109,91,94,91,90,96,90,91,146,{\color{gray}(240)}}\\\midrule
+		\texttt{1} & \footnotesize\texttt{109,91,94,91,91,92,90,143,90,91,156,90,104,{\color{gray}(164)}}\\
+		\rowcolor{gray!20} \texttt{2} & \footnotesize\texttt{109,90,93,91,91,90,90,91,91,90,90,91,90,90,94,90,{\color{gray}(90)}}\\
+		\texttt{3} & \footnotesize\texttt{109,91,94,91,91,92,90,143,90,90,90,129,101,102,{\color{gray}(90)}}\\
+		\rowcolor{gray!20} \texttt{4} & \footnotesize\texttt{109,91,93,91,92,90,90,90,151,93,90,143,134,94,90,90,90,109,91,{\color{gray}(90)}}\\
+		\texttt{5} & \footnotesize\texttt{109,91,93,91,92,90,110,90,152,90,90,91,91,91,90,90,90,90,175,119,115,{\color{gray}(193)}}\\
+		\rowcolor{gray!20} \texttt{6} & \footnotesize\texttt{109,91,93,91,145,215,104,90,90,90,90,90,102,92,90,90,90,106,155,150,{\color{gray}(90)}}\\
+		\texttt{7} & \footnotesize\texttt{109,91,94,91,90,96,90,91,146,240,109,91,94,91,91,92,90,119,90,{\color{gray}(90)}}\\
+		\rowcolor{gray!20} \texttt{8} & \footnotesize\texttt{109,91,94,91,91,92,90,119,90,{\color{gray}(90)}}\\
+		\texttt{9} & \footnotesize\texttt{109,90,93,91,91,90,90,95,90,91,90,90,140,90,90,128,{\color{gray}(93)}}\\
+		\rowcolor{gray!20} \texttt{10} & \footnotesize\texttt{109,91,93,91,129,149,91,90,90,105,90,90,90,90,114,91,100,90,{\color{gray}(90)}}\\\bottomrule
+	\end{tabular}
+	\caption{Single-channel glider sequences that can be used to move the 90-degree elbow to any location along the input glider lane. The ``move'' and ``timings'' columns are as in Table~\ref{tab:single_lane_90deg_glider_timings}.}\label{tab:single_lane_elbow_movers}
+\end{table}
+
+With these block-moving sequences at our disposal, we are now able to use gliders on a single lane to fire slow perpendicular gliders on any sequence of lanes of our choosing: by repeating the sequences from Table~\ref{tab:single_lane_elbow_movers} we can move the elbow to any lane that we like, and we can then use a sequence from Table~\ref{tab:single_lane_90deg_glider_timings} to  actually fire a perpendicular glider.
+
+The only extra ingredient that we need in order to show that single-channel glider synthesis with a 90-degree elbow block is universal (i.e., can implement any glider synthesis) is a way of creating a target block (which we refer to as a \emph{hand}\footnote{It is connected to an elbow, after all.})\index{hand} that the perpendicular slow gliders will be fired at. One sequence of gliders that works to create such a hand block is
+\begin{align}\begin{split}\label{eq:make_hand_90_deg}
+	& \text{\texttt{109, 91, 93, 90, 132, 115, 127, 91, 90, 91, 95, 90, 114,}} \\
+	& \text{\texttt{~~~~~~~~~162, 233, 159, 90, 155, 126, 93, 118, 90, 91, 90, {\color{gray}(90)}.}}
+\end{split}\end{align}
+Indeed, this recipe creates a hand block $86$ half-diagonals away, on the internal side of the elbow block, while pushing that elbow block away by $17$ half~diagonals.\footnote{In particular, since we have described the elbow block as moving by an odd number of half-diagonals, we know that it moves to the opposite side of the single-lane glider sequence.}
+
+Since we can now use single-channel glider sequences and a $90$-degree elbow to create slow gliders on any lane, and we can also create a hand block for those gliders to collide with, we immediately see from Theorem~\ref{thm:p1_slow_salvo} that these types of glider syntheses are universal. That is, we have demonstrated the following result:
+
+\begin{theorem}\label{thm:single_channel_90_degree}
+	Every pattern that can be constructed via glider synthesis can be constructed by a single-channel glider synthesis with a $90$-degree elbow.
+\end{theorem}
+
+To illustrate how to implement slow salvo synthesis via single-channel synthesis, consider the problem of moving the hand block after we create it. We can use any of the slow salvos from Figures~\ref{fig:block_movers} and~?? to carry out this task---we will implement the $4$-glider $(-11,0)$ block move from Figure~??, which uses gliders on lanes (relative to the initial position of the elbow block) $-6i$, $-6i$, $6i$, and $0i$, in that order.
+
+To this end, we first use the hand-making sequence of gliders~\eqref{eq:make_hand_90_deg}, which moves the block to position~$17$. We can then fire the four slow gliders as follows:\smallskip
+
+\begin{itemize}
+	\item We want to fire a glider $17 - (-6) = 23$ lanes behind the elbow. Since the hand-making sequence of gliders flipped the orientation of the elbow block, we thus want to fire the first glider on lane $-23x$ (not $-23i$). This can be achieved by a $-2$ half-diagonal elbow move (from Table~\ref{tab:single_lane_elbow_movers}) followed by firing a glider on lane $-21x$ (from Table~\ref{tab:single_lane_90deg_glider_timings}).\smallskip
+	
+	\item Since firing a glider on lane $-21x$ moved the elbow by $-37$ half-diagonals (which is odd, so the elbow's orientation is flipped back to where it started), the elbow is now on lane $17 - 2 - 37 = -22$. We want to fire a glider $-22 - (-6) = -16$ lanes behind the elbow, which is lane $16i$. This can be achieved by pushing the elbow forward by $8$hd and then firing on lane $8i$.\smallskip
+	
+	\item Since firing on lane $8i$ moved the elbow by $-8$hd, it is now on lane $-22 + 8 - 8 = -22$. We want to fire a glider $-22 - 6 = -28$ lanes behind the elbow, which is lane $28i$. This can be achieved by pushing the elbow forward by $10$hd, pushing it by $10$hd again, and then firing on lane $8i$.\footnote{Be careful---we cannot just push the elbow forward by $9$hd and then fire on lane $19i$, since the $9$hd move would flip the orientation of the block, meaning you would have to fire on lane $19x$ instead.}\smallskip
+	
+	\item Finally, since firing on lane $8i$ moved the elbow backward by $8$hd, it is now on lane $-22 + 10 + 10 - 8 = -10$. We want to fire a glider $-10 - 0 = -10$ lanes behind the elbow, which is lane $10i$. This can be achieved by a $2$hd elbow move followed by firing a glider on lane $8i$.\smallskip
+\end{itemize}
+
+When we put all of this together, we get the following single-lane sequence of 185 gliders (specified by 184 timings between those gliders) that first creates a hand block and then moves that hand block $11$~cells via a sequence of $4$ perpendicular slow gliders:\footnote{We did something tricky with the timing.... (exercise)}
+\begin{align*}
+		& \text{\texttt{\footnotesize make hand: {\scriptsize 109, 91, 93, 90, 132, 115, 127, 91, 90, 91, 95, 90, 114, 162, 233, 159, 90, 155, 126, 93,}}} \\
+		& \text{\texttt{\footnotesize ~~~~~~~~~~~~{\scriptsize 118, 90, 91, 90, 90,}}} \\
+		& \text{\texttt{\footnotesize move -2hd: {\scriptsize 109, 91, 94, 91, 91, 136, 90, 90, 91, 171, 100, 118, 90, 90,}}} \\
+		& \text{\texttt{\footnotesize fire -21x: {\scriptsize 109, 91, 93, 90, 155, 106, 90, 90, 92, 91, 109, 90, 93, 91, 90, 100, 124, 90,}}} \\
+		& \text{\texttt{\footnotesize move~~8hd: {\scriptsize 109, 91, 94, 91, 91, 92, 90, 119, 90, 90,}}} \\
+		& \text{\texttt{\footnotesize fire~~~8i: {\scriptsize 109, 90, 95, 245, 90, 126, 208, 128, 90, 96, 91, 90, 90, 91, 91, 91, 91, 100, 90, 90, 90,}}} \\
+		& \text{\texttt{\footnotesize move~10hd: {\scriptsize 109, 91, 93, 91, 129, 149, 91, 90, 90, 105, 90, 90, 90, 90, 114, 91, 100, 90, 90,}}} \\
+		& \text{\texttt{\footnotesize move~10hd: {\scriptsize 109, 91, 93, 91, 129, 149, 91, 90, 90, 105, 90, 90, 90, 90, 114, 91, 100, 90, 91,}}} \\
+		& \text{\texttt{\footnotesize fire~~~8i: {\scriptsize 109, 90, 95, 245, 90, 126, 208, 128, 90, 96, 91, 90, 90, 91, 91, 91, 91, 100, 90, 90, 90,}}} \\
+		& \text{\texttt{\footnotesize move~~2hd: {\scriptsize 109, 90, 93, 91, 91, 90, 90, 91, 91, 90, 90, 91, 90, 90, 94, 90, 90,}}} \\
+		& \text{\texttt{\footnotesize fire~~~8i: {\scriptsize 109, 90, 95, 245, 90, 126, 208, 128, 90, 96, 91, 90, 90, 91, 91, 91, 91, 100, 90, 90.}}}
+\end{align*}
+
+% Next: figure. Try to illustrate this a bit.
+
+% Do 4-glider (0,11) block move here as the illustration of 90-degree single channel. Put figure into chapter 5
+% Third glider timing matters mod 2
+% Exercise: give larger move operation and ask reader to rebuild this sequence without the "double move" partway through.
+% Exercise: why are the two 10hd moves slightly different? p2 issues
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -214,8 +330,8 @@ Once again, extensive computer searches have been used to generate single-channe
 		\texttt{-4} & \texttt{-23} & \footnotesize\texttt{0,93,91,90,144,90,111,91,92,91,103,91,144,90,168,91,91,102,90,92,90,94,{\color{gray}(90)}} \\
 		\rowcolor{gray!20}\texttt{-3} & \texttt{-9} & \footnotesize\texttt{109,91,94,91,91,136,90,90,91,168,90,106,90,90,138,90,90,106,{\color{gray}(90)}} \\
 		\texttt{-2} & \texttt{7} & \footnotesize\texttt{109,91,93,91,92,91,90,90,162,91,91,90,129,91,113,90,90,90,{\color{gray}(90)}} \\
-		\rowcolor{gray!20}\texttt{-1} & \texttt{-9} & \footnotesize\texttt{109,90,95,245,90,95,90,123,91,90,115,142,{\color{gray}(90)}} \\
-		\texttt{0} & \texttt{-1} & \scriptsize\texttt{109,91,93,91,92,90,97,91,116,91,145,90,91,98,90,90,188,91,90,90,{\color{gray}(90)}} \\
+		\rowcolor{gray!20}\texttt{-1} & \texttt{-9} & \footnotesize\texttt{109,90,95,245,90,95,90,123,91,90,115,142,{\color{gray}(90)}} \\\midrule
+		\texttt{0} & \texttt{-1} & \scriptsize\texttt{109,91,93,91,92,90,97,91,116,91,145,90,91,98,90,90,188,91,90,90,{\color{gray}(90)}} \\\midrule
 		\rowcolor{gray!20}\texttt{1} & \texttt{-24} & \scriptsize\texttt{109,91,94,91,91,93,90,95,90,113,90,99,90,156,90,90,90,138,{\color{gray}(170)}} \\
 		\texttt{2} & \texttt{-27} & \scriptsize\texttt{109,91,94,91,91,124,91,90,91,91,90,91,90,141,90,172,91,161,90,169,228,{\color{gray}(90)}} \\
 		\rowcolor{gray!20}\texttt{3} & \texttt{4} & \scriptsize\texttt{109,91,94,91,91,92,90,169,90,90,90,107,90,90,91,90,95,91,{\color{gray}(90)}} \\
@@ -243,43 +359,13 @@ Once again, extensive computer searches have been used to generate single-channe
 \end{table}
 
 \begin{itemize}
-	\item Some of these glider sequences, like the ones that output lane~4 or 7, change the zero-degree elbow block into another small object like a boat, beehive, or pond. This is okay because those objects explode into a pi-heptomino when they are hit by a glider in the exact same way that a block does, and this is always the reaction that the first glider in these single-channel sequence triggers.\smallskip
-	
-	\item The ``move'' column of Table~\ref{tab:single_lane_glider_timings} specifies how many half-diagonals farther away the zero-degree elbow is moved by the glider sequence.\smallskip
-	
-	\item The value in the ``move'' column being odd means that the zero-degree elbow was moved to the other side of the input glider stream. If this happens, the output lanes of all subsequence glider sequences are flipped from positive to negative, and vice-versa. For example, the sequence corresponding to lane~2 has a ``move'' value of $-27$, which is odd. Thus if we want to output gliders on lanes $2$ and then $3$, we would have to send the sequences corresponding to lanes $2$ and then $-3$.\footnote{Since the ``move'' value for the lane~$-3$ sequence is also odd, the zero-degree elbow would then be back on its original side of the glider stream after this second sequence. See Exercise~??.}\smallskip
-	
-	\item In most of these glider sequences, there are numerous gaps of 90 and 91~generations. The reason for this is that we want to be able to feed these single-channel glider recipes through standard components like Snarks and the easy-to-synthesize Lx200-assisted\index{Lx200} syringe\index{syringe} from Exercise~\ref{exer:syringe_Lx200} (which has a repeat time of~$90$ generations).\footnote{Single-channel glider sequences with large timing gaps are desirable since they can make use of circuitry that has a higher repeat time. We could use sequences with gaps no smaller than $115$~generations (such sequences are known to be able to emulate arbitrary glider syntheses), thus letting us feed these sequences through the syringe variant from Figure~\ref{fig:syringe_modified}. However, as the minimum timing gap increases, so does the length of the resulting glider sequences, so we stick with a minimum timing gap of 90~generations.}
-	
-	Most of the gliders that have a timing of 90 or 91 generations could actually be moved much closer (i.e., the previous glider's collision settles down before they arrive) if we so desired. The reason that some gliders use a gap of $91$~generations instead of just $90$ is that their timing matters mod~$2$, due to p$2$ components like blinkers in an intermediate reaction.\smallskip
+	\item The value in the ``move'' column being odd means that the zero-degree elbow was moved to the other side of the input glider stream. If this happens, the output lanes of all subsequent glider sequences are flipped from positive to negative, and vice-versa. For example, the sequence corresponding to lane~2 has a ``move'' value of $-27$, which is odd. Thus if we want to output gliders on lanes $2$ and then $3$, we would have to send the sequences corresponding to lanes $2$ and then $-3$.\footnote{Since the ``move'' value for the lane~$-3$ sequence is also odd, the zero-degree elbow would then be back on its original side of the glider stream after this second sequence. See Exercise~??.}\smallskip
 		
 	\item Table~\ref{tab:single_lane_glider_timings} is not even close to exhaustive---there are tens of thousands of single-channel recipes of this type known for all output lanes from $-100$ to $+100$.\footnote{These recipes can be downloaded from \httpsurl{gitlab.com/apgoucher/slmake/-/tree/master/data/simeks}.} It can be useful to have multiple recipes for the same output lane, since they might move the zero-degree elbow by different amounts.\smallskip
 \end{itemize}
 
-Since these single-lane glider sequences move the zero-degree elbow forward and backward by some amount that we do not control (it is dictated by the lane that we wish the output glider to fire on), it is important to be able to move the elbow \emph{without} firing a glider as well. We typically do not care about its exact position, but we still have to make sure that it stays at least roughly where we want it (so it does not crash into an object that we are trying to synthesize, for example). The two elbow-moving sequences provided below, and displayed in Figure~??, take care of this task.
-\begin{align*}
-	& \text{\texttt{~push~8hd: \footnotesize 109, 91, 94, 91, 91, 92, 90, 119, 90, {\color{gray}(90)},}}\\
-	& \text{\texttt{pull~12hd: \footnotesize 109, 91, 93, 91, 137, 91, 91, 125, 172, 108, 90, 109, 91, 101, 120, 90, {\color{gray}(90)}.}}
-\end{align*}
-
-\begin{figure}[!htb]
-	\centering
-	\begin{tabular}{@{}cc@{}}
-		\begin{subfigure}{0.48\textwidth}
-			\centering
-			\patternlink{0_degree_block_push}{\vcenteredhbox{\includegraphics[width=\textwidth]{universal_construction/0_degree_block_push.pdf}}}
-			\caption{push 8 half diagonals}
-			\label{fig:0_degree_block_push}
-		\end{subfigure} & \begin{subfigure}{0.48\textwidth}
-			\centering
-			\patternlink{0_degree_block_pull}{\vcenteredhbox{\includegraphics[width=\textwidth]{universal_construction/0_degree_block_pull.pdf}}}
-			\caption{pull 12 half diagonals}
-			\label{fig:0_degree_block_pull}
-		\end{subfigure}
-	\end{tabular}
-	\caption{Single-channel glider sequences that (a) push or (b) pull a zero-degree elbow. The location of the elbow after being pushed or pulled is marked in \bgbox{greenpastel}{green}.}\label{fig:0_degree_block_push_pull}
-\end{figure}
-% Exercise: 12hd pull creates a pond. Why not a problem?
+% Block moving text:
+Unlike with a $90$-degree elbow, here we typically do not care about its exact position,\footnote{This is one feature that makes zero-degree elbows easier to work with than $90$-degree elbows.} but we still have to make sure that it stays at least roughly where we want it (so it does not crash into an object that we are trying to synthesize, for example). The two elbow-moving sequences provided below, and displayed in Figure~??, take care of this task.
 
 % Next: elbow block duplicator. close block is the 0-degree block, farther block is the one used to build the seed out of
 % Then describe/give a schematic for how this is all we need for universality.
@@ -323,7 +409,7 @@ Since these single-lane glider sequences move the zero-degree elbow forward and 
 \section{A Slow Demonoid}\label{sec:demonoid}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The usefulness of single-channel synthesis when building self-constructing patterns comes from the fact that...
+The downside of single-channel glider synthesis versus slow salvo synthesis is that the former requires somewhere around $25$ to $40$ times as many gliders to synthesize the same object (roughly the length of an average elbow-moving sequence followed by a glider-firing sequence). However, the upside of it is that the surrounding circuitry that makes use of the synthesis can be considerably simply, since it just needs to be able to manipulate gliders along a single lane.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -336,6 +422,8 @@ Stuff.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Notes and Historical Remarks}\label{sec:universal_construction_history}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Maybe note somewhere that pushes tend to be more expensive/rarer than pulls (in all types of circuitry, since the collision starts on the pull side perhaps)
 
 % TAlk about Gemini took 5 months to complete. Maybe earlier instead. Made with a custom computer script to make the glider recipe
 
@@ -371,6 +459,15 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 \begin{problemstar}\label{exer:gemini_unhighlighted_reflectors}
 	The two zoom boxes in Figure~\ref{fig:gemini} each have two rows of unhighlighted reflectors that never reflect a single glider. What is their purpose?
 \end{problemstar}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:block_pull_pond}
+	The single-channel elbow-pulling sequence displayed in Figure~\ref{fig:0_degree_block_pull} turns an elbow block into a pond (rather than another block). Why is this not a problem?
+\end{problem}
+% Pond acts as an elbow in the same way (also explodes into a pi-heptomino)
 
 
 %% EXERCISE END COMMANDS
