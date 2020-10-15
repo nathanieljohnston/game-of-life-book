@@ -414,18 +414,77 @@ While the two resulting blocks are in very different positions than the initial 
 If we repeat these two reactions then we can move a block a single cell up, down, left, or right. For example, to move a block up a single cell, we could perform the movement in Figure~\ref{fig:block_move_1_glider}, followed by the movement in Figure~\ref{fig:block_move_6_gliders} (for a total cost of $7$ gliders). Similarly:\smallskip
 
 \begin{itemize}
-	\item To move a block right by a single cell, we could perform the movement in Figure~\ref{fig:block_move_1_glider}, followed by the movement in Figure~\ref{fig:block_move_6_gliders} twice.\footnote{This requires a total of $13$ gliders, which is far from optimal---another p1 slow salvo is known that accomplishes the same movement via only $7$~total gliders. However, we are just interested in presenting the conceptually simplest method of moving blocks, not necessarily the most efficient one. Paul Chapman and Dave Greene put together an extensive table of the cheapest known block-moving slow salvos, which is available at \httpurl{b3s23life.blogspot.com/2004/09/glues-slow-salvo-block-move-table.html} (note that the values in their table assume that the gliders come from the bottom-right, rather than the top-left). A slightly more up-to-date table that makes use of p2 salvos rather than just p1 salvos is available at \httpsurl{conwaylife.com/forums/viewtopic.php?f=7\&t=1072\#p8182}.}\smallskip
+	\item To move a block right by a single cell, we could perform the movement in Figure~\ref{fig:block_move_1_glider}, followed by the movement in Figure~\ref{fig:block_move_6_gliders} twice.\footnote{This requires a total of $13$ gliders, which is far from optimal---another p1 slow salvo is known that accomplishes the same movement via only $7$~total gliders. However, we are just interested in presenting the conceptually simplest method of moving blocks, not necessarily the most efficient one. Paul Chapman and Dave Greene put together an extensive table of the cheapest known block-moving slow salvos, which is available at \httpurl{b3s23life.blogspot.com/2004/09/glues-slow-salvo-block-move-table.html} (note that the values in their table assume that the gliders come from the bottom-right, rather than the top-left).}\smallskip
 	
 	\item To move a block left by a single cell, we could perform the movement in Figure~\ref{fig:block_move_1_glider}, but reflected along the diagonal from the top-left to the bottom right. Then perform the movement in Figure~\ref{fig:block_move_6_gliders}.\smallskip
 	
 	\item To move a block down by a single cell, we could first move it left by a single cell and then perform the movement in Figure~\ref{fig:block_move_6_gliders}.\smallskip
 \end{itemize}
 
-Now that we know how to use p1 slow salvos to move a block by a single cell in any direction, we can easily repeat these reactions over and over until the block is moved to whatever position we desire.%\footnote{In slightly more mathematical language, what we have shown is that every point in $\mathbb{Z}^2$ is a positive linear combination of the vectors $(-1,2)$, $(-2,1)$, and $(1,-1)$.}
-% Note that there are more efficient ways than this though
+Now that we know how to use p1 slow salvos to move a block by a single cell in any direction, we can easily repeat these reactions over and over until the block is moved to whatever position we desire. However, there are a few other block-moving slow salvos that are worth making note of, since they help us move blocks around the plane a bit more quickly. In particular, if we are willing to make use of p2 salvos instead of just p1 ones, then we gain access to the salvos displayed in Figure~\ref{fig:p2_block_movers}. There are hundreds of salvos of this type known.\footnote{A collection of them is available at \httpsurl{conwaylife.com/forums/viewtopic.php?f=7\&t=1072\#p8182}.} It is worth noting that the \emph{$(2,1)$ block push}\index{(2,1) block push} of Figure~\ref{fig:block_push_2_1} \emph{pushes} the block by the same amount that the $(2,1)$ block pull of Figure~\ref{fig:block_move_1_glider} pulls it.
 
-% Couple of p2 movers here, from ch11 thread: https://www.conwaylife.com/forums/viewtopic.php?f=15&t=4117
-% They're all p2 though, so makes sense to not mingle them with earlier movers. 
+% General note now about pushes being more expensive than pulls?
+
+\begin{figure}[!htb]
+	\centering
+	\begin{tabular}{@{}cccc@{}}
+		\begin{subfigure}[b]{.205\textwidth}
+			\centering
+			\raisebox{-0.48\height}{\begin{tikzpicture}[scale=0.5, every node/.style={transform shape}]%
+				\node[inner sep=0pt,anchor=south west] at (0,0) {\embedlink{block_push_2_1}{\patternimg{0.1850615094}{block_push_2_1}}};
+				
+				\colorletternode{green}{3.97}{2.7}{1}
+				\colorletternode{green}{2}{1.5}{2}
+				\colorletternode{green}{2.4}{3.3}{3}
+				\colorletternode{green}{0.4}{4.55}{4}
+				\colorletternode{green}{3.95}{6.15}{5}
+				\end{tikzpicture}}
+			\caption{$(2,1)$ \emph{block push}.}\label{fig:block_push_2_1}
+		\end{subfigure} &
+		\begin{subfigure}[b]{.21\textwidth}
+			\centering
+			\raisebox{-0.48\height}{\begin{tikzpicture}[scale=0.5, every node/.style={transform shape}]%
+				\node[inner sep=0pt,anchor=south west] at (0,0) {\embedlink{block_move_1_neg1}{\patternimg{0.1850615094}{block_move_1_neg1}}};
+				
+				\colorletternode{green}{3.9}{2.75}{1}
+				\colorletternode{green}{2.35}{1.15}{2}
+				\colorletternode{green}{2.05}{3.65}{3}
+				\colorletternode{green}{0.5}{2.1}{4}
+				\colorletternode{green}{2.3}{5.7}{5}
+				\colorletternode{green}{0.5}{6.2}{6}
+				\end{tikzpicture}}
+			\caption{$(1,-1)$ \emph{block move}.}\label{fig:block_move_1_neg1}
+		\end{subfigure} &
+		\begin{subfigure}[b]{.27\textwidth}
+			\centering
+			\raisebox{-0.48\height}{\begin{tikzpicture}[scale=0.5, every node/.style={transform shape}]%
+				\node[inner sep=0pt,anchor=south west] at (0,0) {\embedlink{block_move_11_0}{\patternimg{0.2541}{block_move_11_0}}};
+				
+				\colorletternode{green}{6.3}{3.3}{1}
+				\colorletternode{green}{4.25}{5.35}{2}
+				\colorletternode{green}{0.68}{3.82}{3}
+				\colorletternode{green}{1.25}{5.72}{4}
+				\end{tikzpicture}}
+			\caption{$(11,0)$ \emph{block pull}.\index{(11,0) block pull}}\label{fig:block_move_11_0}
+		\end{subfigure} &
+		\begin{subfigure}[b]{.23\textwidth}
+			\centering
+			\raisebox{-0.48\height}{\begin{tikzpicture}[scale=0.5, every node/.style={transform shape}]%
+				\node[inner sep=0pt,anchor=south west] at (0,0) {\embedlink{block_push_11_0}{\patternimg{0.15089630767}{block_push_11_0}}};
+				
+				\colorletternode{green}{3.45}{4.9}{1}
+				\colorletternode{green}{2.15}{6.2}{2}
+				\colorletternode{green}{2.65}{2.25}{3}
+				\colorletternode{green}{1.85}{3.75}{4}
+				\colorletternode{green}{0.35}{5.05}{5}
+				\colorletternode{green}{4.65}{6.35}{6}
+				\end{tikzpicture}}
+			\caption{$(11,0)$ \emph{block push}.\index{(11,0) block push}}\label{fig:block_push_11_0}
+		\end{subfigure}
+	\end{tabular}
+	\caption{Some p2 slow salvos that move a block by various amounts. The output location of the block is highlighted in \bgbox{greenpastel}{green}.}
+	\label{fig:p2_block_movers}
+\end{figure} 
 
 
 % IMPORTANT http://conwaylife.com/forums/viewtopic.php?f=2&t=918&p=7291&hilit=blockic#p7291
@@ -620,6 +679,10 @@ Over the following decades, David Buckingham continued to develop syntheses for 
 
 Mark Niemiec continued on with this work, creating a large database that he used to automatically generate syntheses of thousands of still lifes by piecing together known reactions \cite{Nie03,Nie10}. This greatly reduced the number of still life syntheses that needed to be found by hand, and in 2013 he completed syntheses of all $15$-cell still lifes (as well as syntheses for all except for a few hundred 16-, 17-, and 18-cell still lifes).
 
+Glider syntheses for the remaining 16-cell still lifes were then found via a collaborative effort on the ConwayLife.com forums, mostly led by Martin Grant, Matthias Merzenich, and Mark Niemiec, with the final synthesis (see Figure~\ref{fig:16_cell_synth}) being completed in January 2014. Another five-month collaborative effort, led by the same group of people, completed syntheses of the 17-cell still lifes in May 2014. A comparatively quick two-month effort finished the remaining syntheses of 18-cell still lifes in November of that year, and then a final four-month effort resulted in the synthesis of the last $930$ or so 19-cell still lifes in February 2020.
+
+To give an idea of the size of this achievement, recall from Table~\ref{tab:small_still_lifes} that there are 78,297 different strict still lifes with 19 or fewer cells. Not only is this a huge number of distinct objects to synthesize, but the syntheses themselves are often monstrously large. For example, Figure~\ref{fig:17_cell_synthesis} shows how one of the ``problematic'' 17-cell still lifes was constructed by using a whopping total of 94 gliders and over 20 stages of incremental synthesis.
+
 \begin{figure}[!htb]
 	\centering
 	\embedlink{17_cell_synthesis}{\vcenteredhbox{\phantom{$\cdots$ \gliderarrow{2}}} \vcenteredhbox{\patternimg{0.12}{17_cell_1}} \vcenteredhbox{\gliderarrow{4}} \vcenteredhbox{\patternimg{0.12}{17_cell_2}} \vcenteredhbox{\gliderarrow{2}} \vcenteredhbox{\patternimg{0.12}{17_cell_3}} \vcenteredhbox{\gliderarrow{2}} \vcenteredhbox{\patternimg{0.12}{17_cell_4}}} \\[1em]
@@ -637,10 +700,6 @@ Mark Niemiec continued on with this work, creating a large database that he used
 	\caption{A summary of a massive $94$-glider incremental synthesis of a hard-to-construct 17-cell still life (shown at the bottom right). Each stage in the synthesis works by using a glider collision to transform one still life into another. The cells that were created or modified in the previous step of the synthesis are shown in \bgbox{redback}{red}, and the gliders that will be involved in the next collision are shown in \bgbox{greenback}{green}.}\label{fig:17_cell_synthesis}
 \end{figure}
 
-Glider syntheses for the remaining 16-cell still lifes were then found via a collaborative effort on the ConwayLife.com forums, mostly led by Martin Grant, Matthias Merzenich, and Mark Niemiec, with the final synthesis (see Figure~\ref{fig:16_cell_synth}) being completed in January 2014. Another five-month collaborative effort, led by the same group of people, completed syntheses of the 17-cell still lifes in May 2014. A comparatively quick two-month effort finished the remaining syntheses of 18-cell still lifes in November of that year, and then a final four-month effort resulted in the synthesis of the last $930$ or so 19-cell still lifes in February 2020.
-
-To give an idea of the size of this achievement, recall from Table~\ref{tab:small_still_lifes} that there are 78,297 different strict still lifes with 19 or fewer cells. Not only is this a huge number of distinct objects to synthesize, but the syntheses themselves are often monstrously large. For example, Figure~\ref{fig:17_cell_synthesis} shows how one of the ``problematic'' 17-cell still lifes was constructed by using a whopping total of 94 gliders and over 20 stages of incremental synthesis.
-
 Rather than trying to push these techniques to synthesize all still lifes with 20 live cells, focus has shifted somewhat to trying to reduce the number of gliders required to synthesize these objects. It has been known for decades how to synthesize all still lifes with $8$ or fewer cells via $4$ or fewer gliders. Similarly, glider syntheses are known for constructing every still life with $9, 10, 11, 12,$ and $13$ live cells via $5, 9, 9, 11,$ and $12$ or fewer gliders, respectively.\footnote{It was not known how to synthesize the $9$-cell long$^3$ snake\index{long$^3$ snake} with fewer than $6$ gliders until February 2015, when Matthias Merzenich derived a $5$-glider synthesis from an apgsearch\index{apgsearch} soup.} Recent efforts have attempted to continue this pattern and synthesize all small still lifes in fewer than $1$ glider per live cell. This project was completed for $14$-, $15$-, $16$-, and $17$-cell still lifes in October 2016, November 2016, May 2017, and September 2019, respectively. For example, we now know how to construct the $17$-cell still life from Figure~\ref{fig:17_cell_synthesis} (which was first synthesized by $94$ gliders) via just $10$ gliders---see Figure~\ref{fig:17_cell_synthesis_small}.
 
 \begin{figure}[!htb]
@@ -650,6 +709,9 @@ Rather than trying to push these techniques to synthesize all still lifes with 2
 \end{figure}
 
 Remarkably, it was even shown in September 2020 that every glider-synthesizable still life can be synthesized via $17$ or fewer gliders---see Section~\ref{sec:universal_construction_history}. However, it remains an open question whether or not every still life (or every oscillator, or even every pattern that has predecessors) is actually glider-synthesizable. Closely related is the (also open) question of whether or not there exists a still life whose only parent is itself.\footnote{For the purposes of this problem, a still life together with far away non-interacting dying ash is not considered a different parent than just the still life itself. Conway offered a \$50 prize for a solution to this problem in October 1972, which has gone unclaimed to this day.} Finding such a pattern would answer both of these questions, since if a still life's only parent is itself then it can not be constructed via glider synthesis (or any other means).
+
+
+\clearpage % move "Exercises" header to next page, so not empty on page
 
 
 % TODO(?): Mention more-or-less complete recent computer search for 3-glider syntheses and recently found such syntheses

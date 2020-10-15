@@ -255,7 +255,7 @@ Since we can now use single-channel glider sequences and a $90$-degree elbow to 
 	Every pattern that can be constructed via glider synthesis can be constructed by a single-channel glider synthesis with a $90$-degree elbow.
 \end{theorem}
 
-To illustrate how to implement slow salvo synthesis via single-channel synthesis, consider the problem of moving the hand block after we create it. We can use any of the slow salvos from Figures~\ref{fig:block_movers} and~?? to carry out this task---we will implement the $4$-glider $(-11,0)$ block move from Figure~??, which uses gliders on lanes (relative to the initial position of the elbow block) $-6i$, $-6i$, $6i$, and $0i$, in that order.
+To illustrate how to implement slow salvo synthesis via single-channel synthesis, consider the problem of moving the hand block after we create it. We can use any of the slow salvos from Figures~\ref{fig:block_movers} and~\ref{fig:p2_block_movers} to carry out this task---we will implement the $4$-glider $(11,0)$ block pull\index{(11,0) block pull} from Figure~\ref{fig:block_move_11_0}, which uses gliders on lanes (relative to the initial position of the elbow block) $-6i$, $-6i$, $6i$, and $0i$, in that order.
 
 To this end, we first use the hand-making sequence of gliders~\eqref{eq:make_hand_90_deg}, which moves the block to position~$17$. We can then fire the four slow gliders as follows:\smallskip
 
@@ -297,12 +297,10 @@ When we put all of this together, we get the following single-lane sequence of 1
 	\caption{A sequence of 185 single-lane gliders creating a hand block and then firing 4 perpendicular slow gliders at that hand block so as to move it down by 11~cells. The perpendicular slow gliders are created on the correct lanes by repeatedly adjusting the position of the 90-degree elbow.}\label{fig:90_degree_block_move}
 \end{figure}
 
-% Put figure into chapter 5
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Single-Channel Glider Synthesis with a with a Zero-Degree Elbow}\label{sec:single_channel_synth_0}
+\section{Single-Channel Glider Synthesis with a Zero-Degree Elbow}\label{sec:single_channel_synth_0}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 While the single-channel syntheses of the previous subsection are very useful, it is sometimes desirable to use single-channel glider sequences to build an object directly in front of them, rather than off to their side. For example, it will be useful for us to be able to use gliders from a single lane to construct a Snark that accepts gliders on that same lane as input.
