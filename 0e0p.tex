@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%   CHAPTER: SELF-SUPPORTING SPACESHIPS
+%%   CHAPTER: THE 0E0P METACELL
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \renewcommand{\chapterfolder}{0e0p/}
@@ -18,7 +18,32 @@ more complex application of universal construction: a self-reproducing cell
 which interacts with its neighbours to emulate Conway's Game of Life or a
 different cellular automaton on a much larger and slower scale.
 
-% TODO include more introductory text here.
+As an example application, there is a simple replicator in a similar cellular
+automaton, HighLife (B36/S23), discovered in 1994 by Nathan Thompson. This
+takes 12 ticks to reproduce into two identical copies of itself:
+
+% TODO include picture
+
+Each of these attempt the same behaviour. The two copies that would otherwise
+occupy the same space mutually annihilate, resulting in (at time 24) two copies
+separated by a greater distance. By generation 36 there are four copies. More
+generally, at generation $12n$, the number of copies is $2^{h(n)}$, where
+$h(n)$ is the \emph{Hamming weight} of $n$ -- the number of `1'-bits when $n$
+is written in binary.
+
+However, since we're using Thompson's modified rules instead of Conway's
+original rules, this is not a valid replicator in Life: when run, it merely
+degenerates into a configuration of eight blinkers. To `import' the behaviour
+of the HighLife replicator into regular Life, we need a `unit cell' in Life
+which emulates HighLife. We could then appropriately arrange twelve copies of
+this unit cell in order to create a pattern that faithfully emulates
+HighLife's replicator.
+
+This chapter introduces the \emph{0E0P metacell}, a programmable configuration
+which can emulate any non-B0 two-state Moore-neighbourhood cellular automaton.
+Since it needs to be able to construct multiple copies of itself in different
+locations, it uses the same universal construction technology developed in
+the previous chapter.
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 \section{Rule Emulation}
