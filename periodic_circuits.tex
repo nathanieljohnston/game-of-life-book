@@ -12,10 +12,10 @@
 \vspace*{0.4in}
 
 
-\noindent The breeder that we constructed in Section~\ref{sec:gosper_breeder} demonstrated a very important fact about how we will proceed with Life from this point on: constructing large patterns that do unusual things typically boils down to a two-step process:\smallskip
+\noindent The breeder that we constructed in Section~\ref{sec:gosper_breeder} demonstrated a very important fact about how we will proceed with Life from this point on---we typically construct large patterns that do unusual things via a two-step process:\smallskip
 
 \begin{enumerate}
-	\item[1)] First, we design a ``schematic'' that illustrates the rough shape of the object and where the gliders (our standard building blocks) will travel. For example, for the breeder we wanted to construct a pattern that synthesizes an endless row of Gosper glider guns. Thus we need the source of gliders that create those guns to move (i.e., we need them to come from rakes), so we reasonably quickly arrive at the schematic shown in Figure~\ref{fig:ggg_breeder_schematic}.\bigskip
+	\item[1)] First, we design a ``schematic'' that illustrates the rough shape of the object and where the gliders (our standard building blocks) will travel. For example, for the breeder we wanted to construct a pattern that synthesizes an endless row of Gosper glider guns. We thus need the source of gliders that create those guns to move (i.e., we need them to come from rakes), so we reasonably quickly arrive at the schematic shown in Figure~\ref{fig:ggg_breeder_schematic}.\bigskip
 	
 	\noindent\begin{minipage}{\linewidth}
 		\centering
@@ -26,9 +26,9 @@
 	\item[2)] Next, we fill in the details---we place guns, rakes, reflectors, and other components that actually make the gliders (and potentially other spaceships) follow the tracks indicated and perform the required syntheses. For example, when constructing the breeder in Section~\ref{sec:gosper_breeder}, we arranged a total of $12$ period~$60$ space rakes at the right-hand-side of the pattern to carry out the indicated Gosper glider gun synthesis.\smallskip
 \end{enumerate}
 
-Depending on the complexity of the schematic, implementing the second step above might be rather tricky, as manipulating glider paths and timing can be a somewhat fiddly and time-consuming affair. In this chapter, our goal is to develop circuitry that can help us do exactly this---our goal is to be able to move gliders (and other spaceships) around tracks in such a way that we can make them appear wherever we want, whenever we want.
+Depending on the complexity of the schematic, implementing the second step above might be rather tricky, as manipulating glider paths and timing can be a somewhat fiddly and time-consuming affair. In this chapter, our goal is to develop circuitry that can help us do exactly this. That is, we start introducing circuitry that makes it easier to move gliders (and other spaceships) around tracks in such a way that we can make them appear wherever we want, whenever we want.
 
-For now, we focus on periodic circuitry based on oscillators. The advantage of this type of circuitry is that it is typically smaller and simpler than stationary circuitry (which we explore in the next chapter and is based on still lifes). However, it has the disadvantage that it can be difficult or impossible to make circuitry based on different periods work together. For example, if a period-$5$ oscillator is used to reflect a glider in some part of a mechanism, then the glider stream we are working with must have a period that is a multiple of $5$, and all other connected circuitry must also work at the same period.
+For now, we focus on periodic circuitry based on oscillators. The advantage of this type of circuitry is that it is typically smaller and simpler than stationary circuitry (which we explore in the next chapter, and is instead based on still lifes). However, it has the disadvantage that it can be difficult or impossible to make circuitry based on different periods work together. For example, if a period-$5$ oscillator is used to reflect a glider in some part of a mechanism, then the glider stream we are working with must have a period that is a multiple of $5$, and all other connected circuitry must also work at the same period.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -36,12 +36,22 @@ For now, we focus on periodic circuitry based on oscillators. The advantage of t
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Period~30 Circuitry}\label{sec:p30}
 
-\begin{wrapfigure}{R}{0.28\textwidth}
-	\centering\vspace*{-0.8cm}
-	\patternimg{0.125}{buckaroo_reflect}
-	\caption{A buckaroo can reflect a glider by $90$~degrees, from the position marked in \bgbox{greenback}{green} to the one in \bgbox{orangeback}{orange} $30$ generations later.}\label{fig:buckaroo_reflect}
-\end{wrapfigure}
-The simplest set of circuitry that exists is based off of the queen bee shuttle and thus has period~$30$. For example, we already saw that we can use the queen bee shuttle to construct the Gosper glider gun (Figure~\ref{fig:gosper_glider_gun}) and buckaroo (Figures~\ref{fig:buckaroo} and~\ref{fig:buckaroo_reflect}), which create and reflect gliders, respectively. We now present some other oscillators and circuits with compatible periods that can be used in conjunction with period~$30$ glider streams, and we also investigate how we can use these objects to manipulate glider streams in even more exotic ways.
+The simplest set of circuitry that exists is based off of the queen bee shuttle and thus has period~$30$. For example, we already saw that we can use the queen bee shuttle to construct the Gosper glider gun (Figure~\ref{fig:ch6_ggg}) and buckaroo\index{buckaroo} (Figure~\ref{fig:buckaroo_reflect}), which create and reflect gliders, respectively. We now present some other oscillators and circuits with compatible periods that can be used in conjunction with period~$30$ glider streams, and we also investigate how we can use these objects to manipulate glider streams in even more exotic ways.
+
+
+\begin{figure}[!htb]
+	\centering
+	\begin{minipage}[b]{0.48\textwidth}
+		\centering
+		\patternimg{0.125}{gosper_glider_gun}
+		\caption{A Gosper glider gun producing gliders at a spacing of $30$~generations.}\label{fig:ch6_ggg}
+	\end{minipage}\hfill
+	\begin{minipage}[b]{0.48\textwidth}
+		\centering
+		\patternimg{0.125}{buckaroo_reflect}
+		\caption{A buckaroo can reflect a glider by $90$~degrees, from the position marked in \bgbox{greenback}{green} to the one in \bgbox{orangeback}{orange} $30$ generations later.}\label{fig:buckaroo_reflect}
+	\end{minipage}
+\end{figure}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -49,27 +59,27 @@ The simplest set of circuitry that exists is based off of the queen bee shuttle 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Reflectors}\label{sec:p30_reflectors}
 
-Because the period of the pentadecathlon\index{pentadecathlon} is $15$, which evenly divides $30$, it works very well with other period~$30$ circuitry. In particular, it can be used to reflect gliders in numerous different ways that are shown in Figure~\ref{fig:p30_reflectors}. The reflection shown in Figure~\ref{fig:p30_relay} is the same one that we saw back in the period~$60$ oscillator of Figure~\ref{fig:relay}, but the other two are new.
+Because the pentadecathlon\index{pentadecathlon} has period $15$, which is a divisor of $30$, it works very well with other period~$30$ circuitry. In particular, it can be used to reflect gliders in numerous different ways that are shown in Figure~\ref{fig:p30_reflectors}. The reflection shown in Figure~\ref{fig:p30_relay} is the same one that we saw back in the period~$60$ oscillator of Figure~\ref{fig:relay}, but the other two are new.
 
 \begin{figure}[!htb]
 	\centering
-	\begin{tabular}{ccc}
+	\begin{tabular}{@{}ccc@{}}
 		\begin{subfigure}{.31\textwidth}
-			\centering\vspace*{1.7cm}
-			\patternimg{0.1}{p30_relay}
-			\caption{A pentadecathlon reflecting by $180$~degrees.}
+			\centering\vspace*{1.91cm}
+			\patternimg{0.14}{p30_relay}
+			\caption{A pentadecathlon reflecting a glider by $180$~degrees.}
 			\label{fig:p30_relay}
 		\end{subfigure} &
 		\begin{subfigure}{.31\textwidth}
-			\centering\vspace*{0.23cm}
-			\patternimglink{0.1}{p30_180_reflect}
-			\caption{Two pentadecathlons reflecting by $180$~degrees.}
+			\centering
+			\patternimglink{0.135}{p30_180_reflect}
+			\caption{Two pentadecathlons reflecting a glider by $180$~degrees.}
 			\label{fig:p30_180_reflect}
 		\end{subfigure} &
 		\begin{subfigure}{.31\textwidth}
 			\centering
-			\patternimglink{0.1}{p30_90_reflect_penta}
-			\caption{Two pentadecathlons reflecting by $90$~degrees.}
+			\patternimglink{0.135}{p30_90_reflect_penta}
+			\caption{Two pentadecathlons reflecting a glider by $90$~degrees.}
 			\label{fig:p30_90_reflect_penta}
 		\end{subfigure}
 	\end{tabular}
@@ -77,8 +87,10 @@ Because the period of the pentadecathlon\index{pentadecathlon} is $15$, which ev
 	\label{fig:p30_reflectors}
 \end{figure}
 
-In particular, Figure~\ref{fig:p30_180_reflect} shows how two pentadecathlons can be used as a $180$-degree reflector with slightly different timing and positioning than the one that we already knew about (i.e., the one in Figure~\ref{fig:p30_relay}), and Figure~\ref{fig:p30_90_reflect_penta} shows that two pentadecathlons can be used to create a $90$-degree color-preserving reflector. There are also a few other period~$30$-friendly ways to reflect gliders aside from using pentadecathlons and buckaroos. We will see some color-changing $90$-degree methods in Figures~\ref{fig:p15_bouncer} and~\ref{fig:p5_bouncer}, and two more color-preserving $90$-degree options in Exercises~\ref{exer:bumper_high_period}c and~\ref{exer:bumper_high_period}d.\footnote{It is also trivially the case that stable reflectors work with glider streams whose period is a large enough multiple of~$30$ (at least~$60$ in the case of the Snark).} 
+In particular, Figure~\ref{fig:p30_180_reflect} shows how two pentadecathlons can be used as a $180$-degree reflector with slightly different timing and positioning than the one that we already knew about (i.e., the one in Figure~\ref{fig:p30_relay}), and Figure~\ref{fig:p30_90_reflect_penta} shows that two pentadecathlons can be used to create a $90$-degree color-preserving reflector. There are also a few other period~$30$-friendly ways to reflect gliders aside from using pentadecathlons and buckaroos. We will see some color-changing $90$-degree methods in Figures~\ref{fig:p15_bouncer} and~\ref{fig:p5_bouncer}, and two more color-preserving $90$-degree options in Exercises~\ref{exer:bumper_high_period}(c) and~\ref{exer:bumper_high_period}(d).\footnote{It is also trivially the case that stable reflectors work with glider streams whose period is a large enough multiple of~$30$ (at least~$60$ in the case of the Snark).} 
 
+
+% TODO: Nate is here in the clean-up process.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%   SUBSECTION: P30 INVERSION
