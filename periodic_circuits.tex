@@ -90,98 +90,98 @@ Because the pentadecathlon\index{pentadecathlon} has period $15$, which is a div
 In particular, Figure~\ref{fig:p30_180_reflect} shows how two pentadecathlons can be used as a $180$-degree reflector with slightly different timing and positioning than the one that we already knew about (i.e., the one in Figure~\ref{fig:p30_relay}), and Figure~\ref{fig:p30_90_reflect_penta} shows that two pentadecathlons can be used to create a $90$-degree color-preserving reflector. There are also a few other period~$30$-friendly ways to reflect gliders aside from using pentadecathlons and buckaroos. We will see some color-changing $90$-degree methods in Figures~\ref{fig:p15_bouncer} and~\ref{fig:p5_bouncer}, and two more color-preserving $90$-degree options in Exercises~\ref{exer:bumper_high_period}(c) and~\ref{exer:bumper_high_period}(d).\footnote{It is also trivially the case that stable reflectors work with glider streams whose period is a large enough multiple of~$30$ (at least~$60$ in the case of the Snark).} 
 
 
-% TODO: Nate is here in the clean-up process.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%   SUBSECTION: P30 INVERSION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{The Inline Inverter}\label{sec:p30_inline_inverter}
 
-One of the most useful features of the Gosper glider gun is that it can be turned into an \emph{inline inverter}\index{inline inverter}---a reaction that ``flips'' a period~$30$ glider stream so that any glider present in the stream is destroyed, while any glider missing from the stream is inserted.\footnote{The inline inverter was discovered by David Bell.} The resulting stream travels in the same direction as the input stream, but is slightly offset (see Figure~\ref{fig:inline_inverter}).
+Recall that the Gosper glider gun works by colliding two queen bees with each other so that they create a small explosion that then generates a glider. If we carefully fire a glider at that small explosion, we can suppress its creation of a glider, resulting in a reaction called an \emph{inline inverter}\index{inline inverter}. This reaction ``flips'' a period~$30$ glider stream so that any glider present in the stream is destroyed, while any glider missing from the stream is inserted.\footnote{This inline inverter based on the Gosper glider gun was discovered by David Bell. There are also inline inverters based on some other glider guns---see the upcoming Figure~\ref{fig:tanners_p46_inline_inverter}.} The resulting stream travels in the same direction as the input stream, but is slightly offset (see Figure~\ref{fig:inline_inverter}).
 
 The inline inverter provides us with a simple way to construct irregular glider streams. For example, if we feed a period~$120$ glider stream into it, we get as output a period~$30$ glider stream in which only $3$ out of every $4$ gliders are present (see Figure~\ref{fig:inline_inverter_p120}).
 
 \begin{figure}[!htb]
 	\centering
-	\begin{tabular}{ccc}
-		\begin{subfigure}{.45\textwidth}
+	\begin{tabular}{@{}ccc@{}}
+		\begin{subfigure}{.46\textwidth}
 			\centering
-			\patternimglink{0.1}{inline_inverter}
-			\caption{inline inverter}
+			\patternimglink{0.11}{inline_inverter}
+			\caption{If an input glider is \emph{not} present then an output glider will appear at the location marked in \bgbox{orangeback}{orange} $30$ generations after the phase shown here (i.e., the output stream is $5$ cell further south than the input stream).}
 			\label{fig:inline_inverter}
 		\end{subfigure} &
 		\begin{subfigure}{.51\textwidth}
 			\centering
-			\patternimglink{0.089}{inline_inverter_p120}
-			\caption{inverting a p$120$ stream}
+			\patternimglink{0.105}{inline_inverter_p120}
+			\caption{An inline inverter can be used to turn a thin glider stream into a thick one. In this case, a period~$120$ glider stream is converted into a period~$30$ stream that is missing one out of every four gliders.}
 			\label{fig:inline_inverter_p120}
 		\end{subfigure}	
 	\end{tabular}
-	\caption{The inline inverter is a reaction involving the Gosper glider gun in which the gun fails to produce a glider if it receives a glider as input at the same time. (a) If an input glider is \emph{not} present then an output glider will appear at the location marked in \bgbox{greenback}{green} $30$ generations after the phase shown here (i.e., the output stream is $5$ cell further south than the input stream). (b) An inline inverter can be used to turn thin glider stream into a thick one (in this case, a period~$120$ glider stream into a period~$30$ stream that is missing one out of every four gliders).}
+	\caption{An \emph{inline inverter} is a reaction involving the Gosper glider gun in which the gun fails to produce a glider if it receives a glider as input at the same time.}
 	\label{fig:inline_inverter_both}
 \end{figure}
 
-Similarly, we can use one Gosper glider gun to feed gliders into an inline inverter, creating a period~$30$ oscillator made up of a glider stream of any finite length of our choosing. We could of course do the same thing simply by aiming the glider stream from a Gosper glider gun at an eater (as in Exercise~\ref{exer:gosper_oscillator}), but this method has the advantage that we can trigger it to release a glider by destroying one of the gliders in the middle stream. For example, we can use one of the two-glider collisions from Table~\ref{tab:2_glider_synth} to have a glider bounce off of the glider stream, resulting in a single other glider escaping from the stream, as in Figure~\ref{fig:inline_inverter_bounce}.
+Similarly, we can use one Gosper glider gun to feed gliders into an inline inverter, creating a period~$30$ oscillator made up of a glider stream of any finite length of our choosing. We could of course do the same thing simply by aiming the glider stream from a Gosper glider gun at an eater (as in Exercise~\ref{exer:gosper_oscillator}), but this method has the advantage that we can trigger it to release a glider by destroying one of the gliders in the central stream. For example, we can use one of the two-glider collisions from Table~\ref{tab:2_glider_synth} to have a glider bounce off of the glider stream, resulting in a single other glider escaping from the stream, as in Figure~\ref{fig:inline_inverter_bounce}.
 
 \begin{figure}[!htb]
 	\centering
-	\embedlink{inline_inverter_bounce}{\vcenteredhbox{\patternimg{0.116}{inline_inverter_bounce}} \vcenteredhbox{\genarrow{15}} \vcenteredhbox{\patternimg{0.116}{inline_inverter_bounce_15}} \vcenteredhbox{\genarrow{15}} \vcenteredhbox{\patternimg{0.116}{inline_inverter_bounce_30}}}
-	\caption{Two Gosper glider guns can be placed near each other so as to create a finite stream of gliders (shown here in \bgbox{aquaback}{aqua}) between them. Here, we bounce a single glider (in \bgbox{greenpastel}{green}) off of one of those gliders (in \bgbox{magentaback}{magenta}) so that it is destroyed and thus released by the inline inverter to the southeast.}
+	\embedlink{inline_inverter_bounce}{\vcenteredhbox{\patternimg{0.12}{inline_inverter_bounce}} \vcenteredhbox{\genarrow{15}} \vcenteredhbox{\patternimg{0.12}{inline_inverter_bounce_15}} \vcenteredhbox{\genarrow{15}} \vcenteredhbox{\patternimg{0.12}{inline_inverter_bounce_30}}}
+	\caption{Two Gosper glider guns can be placed near each other so as to create a finite stream of gliders (highlighted here in \bgbox{aquaback}{aqua}) between them. Here, we bounce a single glider (in \bgbox{greenback}{green}) off of one of those gliders (in \bgbox{orangeback}{orange}) so that it is destroyed and thus released by the inline inverter to the southeast.}
 	\label{fig:inline_inverter_bounce}
 \end{figure}
 
-By bouncing a glider back and forth between two of these finite-length glider streams, we can create glider guns with arbitrarily large periods. In particular, by shifting these two mechanisms $15$ cells farther away from each other, we can create glider guns with period equal to $120n$ for any integer $n \geq 1$. Figure~\ref{fig:inline_inverter_p120_gun} illustrates a gun of this type of period~$120$.
+By bouncing a glider back and forth between two of these finite-length glider streams, we can create glider guns with arbitrarily large periods. In particular, by shifting these two mechanisms away from each other by multiples of $15$ cells, we can create glider guns with period equal to $120n$ for any integer $n \geq 1$. Figure~\ref{fig:inline_inverter_p120_gun} illustrates a gun of this type of period~$120$.
 
-We should clarify at this point that there are actually many other methods of stream inversion possible as well, but the inverted stream is typically reflected by $90$~degrees from the input stream, rather than going in the same direction as it (i.e., the inversion is not ``inline'').\footnote{We will see a period~$46$ inline inverter a bit later in this chapter, in Figure~\ref{fig:tanners_p46_inline_inverter}.} For example, simply firing an irregular stream at a regular stream so that they collide as in one of the two-glider annihilations from Table~\ref{tab:2_glider_synth} gives an inverter. This inverter can do many of the same things as the inline inverter, such as creating high-period guns as in Figure~\ref{fig:inverter_p120_gun}. If desired, we can turn this inversion into one that is inline simply by pairing it with any compatible 90-degree periodic reflector, or with a Snark as long as the period is $43$ or greater.
-
-\begin{figure}[!htb]
-	\centering
-	\begin{subfigure}{.46\textwidth}
-		\centering
-		\patternimglink{0.075}{inline_inverter_p120_gun}
-		\caption{p$120$ gun from inline inverter}
-		\label{fig:inline_inverter_p120_gun}
-	\end{subfigure} \ \ % 
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\patternimglink{0.075}{inverter_p120_gun}
-		\caption{p$120$ gun from collision-based non-inline inverter}
-		\label{fig:inverter_p120_gun}
-	\end{subfigure}
-	\caption{Three Gosper glider guns (highlighted in \bgbox{yellowback2}{yellow}, the bottom of which acts as an inverter) can be used to create a period~$120$ glider gun. The glider outlined in \bgbox{greenpastel}{green} bounces back and forth between the two \bgbox{aquaback}{aqua} glider streams, destroying one glider in each stream every time it is reflected. The glider that is destroyed in the left stream is then created (in \bgbox{magentaback}{magenta}) by the inverter. In (a), the bottom glider gun is an inline inverter whereas it is a non-inline inverter in (b). The period of these guns can be increased by~$120$ generations by moving the top-right glider gun and eater northeast by $15$ cells.}\label{fig:inverter_p120_gun_inline_and_not}
-\end{figure}
-
-Another slightly more useful (non-inline) inversion reaction is provided in Figure~\ref{fig:stream_inverter}, in which a glider stream of any period $20$ or larger comes in from the northwest, and a stream of the same period (but potentially with some gliders missing) comes in from the northeast. When the stream from the northwest reaches the block, it either passes by unharmed (if there is no corresponding glider in the stream from the northeast), or it collides with the glider from the northeast, producing a single glider to the southwest. Thus two output glider streams are produced: one to the southwest that contains the same gliders and spacing as the northeast input stream (which can be destroyed with an eater if it is not needed), and one to the southeast that is the inverse of the northeast input stream.
+We should clarify at this point that there are actually many other methods of stream inversion possible as well, but these other methods typically result in the inverted stream being reflected by $90$~degrees from the input stream, rather than going in the same direction as it (i.e., the inversion is not ``inline''). For example, simply firing an irregular stream at a regular stream so that they collide as in one of the two-glider annihilations from Table~\ref{tab:2_glider_synth} results in an inverter. This inverter can do many of the same things as the inline inverter, such as creating high-period guns, as in Figure~\ref{fig:inverter_p120_gun}. If desired, we can turn this inversion into one that is inline simply by pairing it with any compatible 90-degree periodic reflector, or with a Snark as long as the period is $43$ or greater.
 
 \begin{figure}[!htb]
 	\centering
 	\begin{subfigure}{.48\textwidth}
 		\centering
-		\embedlink{stream_inverter}{\vcenteredhbox{\patternimg{0.1}{inverter0_0}} \vcenteredhbox{\genarrow{12}} \vcenteredhbox{\patternimg{0.1}{inverter0_12}}}
+		\patternimglink{0.084}{inline_inverter_p120_gun}
+		\caption{p$120$ gun from inline inverter}
+		\label{fig:inline_inverter_p120_gun}
+	\end{subfigure} \ \ \ % 
+	\begin{subfigure}{.49\textwidth}
+		\centering
+		\patternimglink{0.084}{inverter_p120_gun}
+		\caption{p$120$ gun from collision-based non-inline inverter}
+		\label{fig:inverter_p120_gun}
+	\end{subfigure}
+	\caption{Three Gosper glider guns (highlighted in \bgbox{yellowback2}{yellow}, the bottom of which acts as an inverter) can be used to create a period~$120$ glider gun. The glider displayed in \bgbox{greenback}{green} bounces back and forth between the two \bgbox{aquaback}{aqua} glider streams, destroying one glider in each stream every time it is reflected. The glider that is destroyed in the left stream is then created (in \bgbox{orangeback}{orange}) by the inverter. In (a) the bottom glider gun is an inline inverter, whereas in (b) it is a non-inline inverter.}\label{fig:inverter_p120_gun_inline_and_not}
+\end{figure}
+
+Another slightly more useful (non-inline) inversion reaction is provided in Figure~\ref{fig:stream_inverter}, in which a glider stream of any period $20$ or larger collides with an \emph{irregular}\index{irregular stream} stream of the same period (i.e., a stream with some gliders potentially missing). If a glider is missing in the irregular glider stream, then the corresponding glider in the regular stream passes by unharmed. On the other hand, if a glider is present in the irregular glider stream, then a collision occurs that generates a glider in a different direction. There are thus two output glider streams: one that contains exactly the same gliders as the irregular input stream, and one that is the inverse of that stream (i.e., it contains a glider if and only if the irregular input stream did not).
+
+\begin{figure}[!htb]
+	\centering
+	\begin{subfigure}{.48\textwidth}
+		\centering
+		\embedlink{stream_inverter}{\vcenteredhbox{\patternimg{0.12}{inverter0_0}} \vcenteredhbox{\genarrow{12}} \vcenteredhbox{\patternimg{0.12}{inverter0_12}}}
 		\caption{This collision causes the top-right glider to be erased and the top-left glider to be slightly offset.}
 		\label{fig:stream_inverter_yes}
 	\end{subfigure} \ \ \ \ % 
 	\begin{subfigure}{.48\textwidth}
 		\centering
-		\embedlink{stream_inverter}{\vcenteredhbox{\patternimg{0.1}{inverter1_0}} \vcenteredhbox{\genarrow{12}} \vcenteredhbox{\patternimg{0.1}{inverter1_12}}}
+		\embedlink{stream_inverter}{\vcenteredhbox{\patternimg{0.12}{inverter1_0}} \vcenteredhbox{\genarrow{12}} \vcenteredhbox{\patternimg{0.12}{inverter1_12}}}
 		\caption{If the top-left glider is omitted, the top-right glider passes by unharmed.}
 		\label{fig:stream_inverter_no}
 	\end{subfigure}
-	\caption{A stream inverter that splits the glider stream coming in from the northeast based on which gliders are present in the stream coming in from the northwest. This reaction can be used with any glider stream of period~$20$ or higher.}\label{fig:stream_inverter}
+	\caption{A stream inverter that splits the glider stream coming in from the northeast based on which gliders are present in the stream coming in from the northwest. This reaction can be used with any glider stream of period~$20$ or higher. The output stream going to the southeast is a duplicate of the input stream coming from the northwest, whereas the output stream going to the southwest is its inverse.}\label{fig:stream_inverter}
 \end{figure}
 
-By reflecting the inverted stream and using an eater to destroy the other output stream, we can use this reaction to create an inline inverter of any period at least $20$ (as long as the repeat time of the reflector is low enough---see Exercise~\ref{exer:make_inline_inverter_with_weird_period}). Even more remarkably, we can combine this reaction with another inverter to duplicate arbitrary glider streams (even irregular ones with holes), simply by inverting the inverted output stream, as in Figure~\ref{fig:glider_duplicator}. Patterns like this one are called \emph{glider duplicators}\index{glider!duplicator}, and they are extremely important because they let us use a single input signal (i.e., a glider) to trigger multiple different reactions.
+By reflecting the inverted stream and using an eater to destroy the non-inverted output stream, we can use this reaction to create an inline inverter of any period at least $20$ (as long as the repeat time of the reflector is low enough---see Exercise~\ref{exer:make_inline_inverter_with_weird_period}). Even more remarkably, we can combine this reaction with another inverter to duplicate arbitrary glider streams (even irregular ones), simply by inverting the inverted output stream, as in Figure~\ref{fig:glider_duplicator}. Patterns like this one are called \emph{glider duplicators}\index{glider!duplicator}, and they are extremely important because they let us use a single input signal (i.e., a glider) to trigger multiple different reactions.
 
 \begin{figure}[!htb]
 	\centering
-	\embedlink{glider_duplicator}{\vcenteredhbox{\patternimg{0.1}{glider_duplicator_0}} \vcenteredhbox{\genarrow{30}} \vcenteredhbox{\patternimg{0.1}{glider_duplicator_30}} \vcenteredhbox{\genarrow{60}} \vcenteredhbox{\patternimg{0.1}{glider_duplicator_90}}}
-	\caption{A glider duplicator that makes use of the inline inverter and the reaction from Figure~\ref{fig:stream_inverter}. The input glider from the northwest (highlighted in \bgbox{aquaback}{aqua}) is copied to the southeast and destroys the corresponding glider going southwest. The southern inline inverter then creates a glider going southwest, thus duplicating the original glider.}\label{fig:glider_duplicator}
+	\embedlink{glider_duplicator}{\vcenteredhbox{\patternimg{0.125}{glider_duplicator_0}} \vcenteredhbox{\genarrow{30}} \vcenteredhbox{\patternimg{0.125}{glider_duplicator_30}} \vcenteredhbox{\genarrow{60}} \vcenteredhbox{\patternimg{0.125}{glider_duplicator_90}}}
+	\caption{A glider duplicator that makes use of the inline inverter and the reaction from Figure~\ref{fig:stream_inverter}. The input glider from the northwest (highlighted in \bgbox{greenback}{green}) is copied to the southeast and destroys the corresponding glider going southwest. The southern inline inverter then creates a glider going southwest (highlighted in \bgbox{orangeback}{orange}), thus duplicating the original glider.}\label{fig:glider_duplicator}
 \end{figure}
 
 
+% NJ is here in the clean-up process
+
 \subsection{Miscellaneous Period~30 Circuits}\label{sec:p30_misc_circuits}
 
-There are also a few other useful tricks that can be done with period~$30$ glider streams in order to make them easier to work with. For example, one object that can be used to help push glider streams closer together (which is extremely useful when trying to implement some tight glider syntheses) is a \emph{glider pusher}\index{glider!pusher},\footnote{Found by Dietrich Leithner in December 1993.} which is a combination of a (half-stabilized) queen bee and a pentadecathlon that push a glider over by a single lane (see Figure~\ref{fig:glider_pusher_main}).\footnote{We first saw this glider pusher in Exercise~\ref{exer:hwss_gun}b.}
+There are also a few other useful tricks that can be done with period~$30$ glider streams in order to make them easier to work with. For example, one object that can be used to help push glider streams closer together (which is extremely useful when trying to implement some tight glider syntheses) is a \emph{glider pusher}\index{glider!pusher},\footnote{Found by Dietrich Leithner in December 1993.} which is a combination of a (half-stabilized) queen bee and a pentadecathlon that push a glider over by a single lane (see Figure~\ref{fig:glider_pusher_main}).\footnote{We first saw this glider pusher in Exercise~\ref{exer:hwss_gun}(b).}
 
 Two other simple reactions that make use of the debris and sparks left behind by queen bees and pentadecathlons are shown in Figures~\ref{fig:glider_to_lwss} and~\ref{fig:lwss_to_glider}. These reactions let us convert gliders directly into lightweight spaceships (rather than having to synthesize them via $3$ gliders) and then convert them back into gliders if desired. Note, however, that the former reaction can only be used with streams of period at least~$60$, since otherwise the output LWSS collides with the next input glider.
 
