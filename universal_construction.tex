@@ -490,7 +490,17 @@ Snarkmaker etc in here.
 \section{A Slow Demonoid}\label{sec:demonoid}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The downside of single-channel glider synthesis versus slow salvo synthesis is that the former requires somewhere around $25$ to $40$ times as many gliders to synthesize the same object (roughly the length of an average elbow-moving sequence followed by a glider-firing sequence). However, the upside of it is that the surrounding circuitry that makes use of the synthesis can be considerably simply, since it just needs to be able to manipulate gliders along a single lane.
+The downside of single-channel glider synthesis versus slow salvo synthesis is that the former requires somewhere around $25$ to $40$ times as many gliders to synthesize the same object (roughly the length of an average elbow-moving sequence followed by a glider-firing sequence). However, the upside of it is that the surrounding circuitry that makes use of the synthesis can be considerably simpler, since it just needs to be able to manipulate gliders along a single lane.
+
+We now demonstrate the utility of single-channel glider synthesis by creating another self-constructing spaceship. This spaceship, which is called a \emph{demonoid}\footnote{The name \emph{demonoid} is a portmanteau of ``diagonal'' and ``Geminoid'', where ``Geminoid'' refers to any Gemini-like spaceship that shuttles one or more construction tapes between two universal constructors.},\index{demonoid}\index{Geminoid} is smaller than the Gemini by roughly one order of magnitude---its bounding box has a side length of approximately $5 \times 10^5$ cells instead of $4 \times 10^6$ cells. 
+
+% There are also Orthogonoid spaceships... (put in footenote? Mention in notes and history?)
+
+c/256 Demonoid (16384c/4194304):
+* 2-engine and 3-engine Cordership pushes for elbows and target blocks
+* 90-degree elbows for most of the construction
+* Snarkmakers/Snarkbreakers to change the construction arm's direction when needed
+* 135-degree single-channel elbows to shoot down old circuitry (construction arm becomes destruction arm)
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
