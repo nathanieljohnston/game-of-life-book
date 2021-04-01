@@ -446,10 +446,31 @@ When we put all of this together, we get the following single-lane sequence of $
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Making and Breaking a Snark}\label{sec:snarkmaker}
+\section{Duplicating and Reflecting Single-Channel Recipes}\label{sec:snarkmaker}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Snarkmaker etc in here.
+Now that we know how to build things with single-channel glider recipes, we would like to be able to manipulate them. In particular, it is going to be important that we are able to reflect these recipes and also duplicate them, so that we can use one copy of the recipe to build something while potentially saving the other copy for later use.
+
+Thanks to the fact that these recipes are single-channel, a single Snark can be used to reflect the entire recipe. However, if there is not already a Snark at the location we would like the reflection to take place, we have to be a bit more clever. In this situation, we can use a single-channel recipe to build a Snark directly in the path of the recipe itself, then let an arbitrary number of gliders be reflected by the Snark, and then use another single-channel recipe to destroy the Snark once it is done being useful. The recipes that create and destroy this in-lane Snark are appropriately called the \emph{Snarkmaker}\index{Snarkmaker} and \emph{Snarkbreaker}.\index{Snarkbreaker}
+
+The Snarkmaker is (by far) the more complicated of the two recipes, and it was constructed by first searching for a unidirectional slow-salvo recipe for a Snark, and then using the zero-degree elbow toolkit from the previous section to turn it into a single-lane recipe (at the expense of having many more gliders). The unidirectional slow salvo synthesis of a Snark that was found consists of $95$ gliders, and is displayed in Figure~\ref{fig:snark_slow_salvo}.
+
+\begin{figure}[!htb]
+	\centering
+	\embedlink{snark_slow_salvo}{\includegraphics[width=\textwidth]{universal_construction/snark_slow_salvo.pdf}}
+	\caption{A $95$-glider unidirectional slow salvo of a Snark. The location of the to-be-constructed Snark is highlighted in \bgbox{greenpastel}{green}, and the lane that it can reflect gliders from is highlighted in \bgbox{orangeback2}{orange}.}\label{fig:snark_slow_salvo}
+\end{figure}
+
+This unidirectional slow salvo can be turned into a single-channel recipe by consulting a database of zero-degree single-channel glider sequences. For example, the first glider in the Snark-creating slow salvo is on lane~$15$ (relative to the input lane of the Snark), so it can be created by the lane~$15$ recipe from Table~\ref{tab:single_lane_0deg_glider_timings}:
+\begin{center}
+	\texttt{\small 109,90,93,91,91,158,94,113,91,90,91,96,90,142,{\color{gray}(90)}}.
+\end{center}
+The next glider is on lane~22, so we could again simply use the corresponding recipe from Table~\ref{tab:single_lane_0deg_glider_timings}:
+\begin{center}
+	\texttt{\small 109,91,94,91,91,93,90,91,91,90,100,90,94,90,108,90,91,91,119,{\color{gray}(90)}}.
+\end{center}
+
+After stringing together 95 recipes of this type,\footnote{This process is completely mechanical, but also extremely tedious, which means it is best done by a computer instead of a human.} we get a single-channel recipe consisting of 2253 gliders that creates a Snark. % NEXT: Why this isn't good enough, need to create new elbow etc (and target block that we aimed the 95 slow gliders at -- probably need to reword some earlier text for that)
 
 % Slow-salvo Snark and other goodies:
 %https://conwaylife.com/forums/viewtopic.php?f=2&t=2660&start=25
@@ -615,6 +636,14 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 \begin{problemstar}\label{exer:0degree_hand_move}
 	What is the ``move'' value of the zero-degree hand-making glider sequence from Figure~\ref{fig:0degree_hand} (i.e., how many half-diagonals is the elbow block moved)?
 \end{problemstar}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:snark_slow_salvo_pieces}
+	The $95$-glider slow salvo synthesis of a Snark from Figure~\ref{fig:snark_slow_salvo} is an incremental synthesis. Break it down into steps like we did with the $94$-glider synthesis from Figure~\ref{fig:17_cell_synthesis}.
+\end{problem}
 
 %% EXERCISE END COMMANDS
 \end{multicols}

@@ -1,0 +1,39 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\begin{document}
+	\begin{tikzpicture}%
+		\node[inner sep=0pt,anchor=south west] (ca) at (0,0) {\includegraphics[width=12cm]{snark_slow_salvo.png}};
+
+		% BORDER
+		\draw[gridgray] (0,0) rectangle (12,12);
+		\clip (0,0) rectangle (12,12);
+
+		% ZOOM SE
+			\newcommand\smlx{11.1}
+			\newcommand\smrx{\smlx+0.7}
+			\newcommand\smby{0.4}
+			\newcommand\smty{\smby+0.7}
+			
+			\newcommand\bglx{7.2}
+			\newcommand\bgrx{\bglx+4.28407079646}
+			\newcommand\bgty{11.3}
+			\newcommand\bgby{\bgty-4.28407079646}
+			
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
+			
+			\node[inner sep=0pt,anchor=north west] (zoom1) at (\bglx,\bgty) {\includegraphics[width=4.28407079646cm]{snark_slow_salvo_zoom.png}};
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (\smrx,\smty) -- (\bgrx,\bgty) -- (\bgrx,\bgby) -- (\bglx,\bgby) -- (\smlx,\smby) -- (\smlx,\smty) -- cycle;
+			
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
+			
+			%\node[inner sep=0pt] (zoom1_3x) at (3.35,7.95) {\includegraphics[width=0.21cm]{../mag.png} \footnotesize 8x};
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\smlx,\smty) rectangle (\smrx,\smby);
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+		% END ZOOM BOX SE
+	\end{tikzpicture}
+\end{document}
