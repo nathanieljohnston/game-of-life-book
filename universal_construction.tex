@@ -486,21 +486,39 @@ Snarkmaker etc in here.
 %A9$29.2A$30.2A$29.A3$.2A$A.A$2.A5$18.2A$17.A.A$19.A!
 
 
+% TODO: Need scorbie splitter. Maybe a section titled "duplicating a single-channel recipe" or some such? Then give single-channel recipe for it, then an example where it duplicates itself?
+%x = 71, y = 68, rule = B3/S23
+%9bo$9b3o$12bo$11bobo$11bobo$12bo5$27b2o$27b2o4$7b2o$6bobo$6bo$5b2o7b2o
+%$14b2o2$22b2obo$22b2ob3o$28bo$22b2ob3o$23bobo$23bobo$24bo2$25bo$23b3o$
+%22bo$22b2o$14b2o$14b2o6$3b2o$4bo$4bobo$5b2o3$2o$bo$bobo$2b2o5$23b2o$
+%23bo34bobobobobo$24b3o$26bo31bobo2$58bo3bo2$58bo5bo2$58bo7bo2$68bo2$
+%70bo!
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{A Slow Demonoid}\label{sec:demonoid}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The downside of single-channel glider synthesis versus slow salvo synthesis is that the former requires somewhere around $25$ to $40$ times as many gliders to synthesize the same object (roughly the length of an average elbow-moving sequence followed by a glider-firing sequence). However, the upside of it is that the surrounding circuitry that makes use of the synthesis can be considerably simpler, since it just needs to be able to manipulate gliders along a single lane.
 
-We now demonstrate the utility of single-channel glider synthesis by creating another self-constructing spaceship. This spaceship, which is called a \emph{demonoid}\footnote{The name \emph{demonoid} is a portmanteau of ``diagonal'' and ``Geminoid'', where ``Geminoid'' refers to any Gemini-like spaceship that shuttles one or more construction tapes between two universal constructors.},\index{demonoid}\index{Geminoid} is smaller than the Gemini by roughly one order of magnitude---its bounding box has a side length of approximately $5 \times 10^5$ cells instead of $4 \times 10^6$ cells. 
+We now demonstrate the utility of single-channel glider synthesis by creating another self-constructing spaceship. This spaceship, which is called a \emph{demonoid}\footnote{The name \emph{demonoid} is a portmanteau of ``diagonal'' and ``Geminoid'', where ``Geminoid'' refers to any Gemini-like spaceship that shuttles one or more construction tapes between two universal constructors.},\index{demonoid}\index{Geminoid} is smaller than the Gemini by roughly one order of magnitude---its bounding box has a side length of approximately $5 \times 10^5$ cells instead of $4 \times 10^6$ cells.
+% TODO: Alter footnote here -- Geminoids already discussed earlier
+
+% Give schematic here, or a sequence of schematics.
 
 % There are also Orthogonoid spaceships... (put in footenote? Mention in notes and history?)
+%c/256 Demonoid (16384c/4194304):
+%* 2-engine and 3-engine Cordership pushes for elbows and target blocks
+%* 90-degree elbows for most of the construction
+%* Snarkmakers/Snarkbreakers to change the construction arm's direction when needed
+%* 135-degree single-channel elbows to shoot down old circuitry (construction arm becomes destruction arm)
 
-c/256 Demonoid (16384c/4194304):
-* 2-engine and 3-engine Cordership pushes for elbows and target blocks
-* 90-degree elbows for most of the construction
-* Snarkmakers/Snarkbreakers to change the construction arm's direction when needed
-* 135-degree single-channel elbows to shoot down old circuitry (construction arm becomes destruction arm)
+
+\begin{figure}[!htbp]
+	\centering
+	\embedlink{c256_demonoid}{\includegraphics[width=\textwidth]{universal_construction/c256_demonoid.pdf}}
+	\caption{A $c/256$ demonoid spaceship that works by bouncing a (very long) single-channel glider recipe (highlighted in \bgbox{greenpastel}{green}) between two self-constructing ends. In the phase shown here, the recipe is about to construct a Cordership in the southeast corner (at the circled location), which moves northeast along the path highlighted in \bgbox{aquaback}{aqua}. The single-channel glider recipe then destroys the Cordership (at the location circled in the northwest corner) so as to leave behind a seed. That seed is then used to build the Snarks and Scorbie splitters necessary to repeat this process. Finally, a single glider is sent backwards to destroy a Snark, letting the single-channel glider recipe follow that path higlighted in \bgbox{magentaback}{magenta}, which is used to destroy old Snarks and Scorbie splitters that are no longer needed.}\label{fig:c256_demonoid}
+\end{figure}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
