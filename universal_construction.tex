@@ -451,11 +451,11 @@ When we put all of this together, we get the following single-lane sequence of $
 
 Now that we know how to build things with single-channel glider recipes, we would like to be able to manipulate them. In particular, it is going to be important that we are able to reflect these recipes and also duplicate them, so that we can use one copy of the recipe to build something while potentially saving the other copy for later use.
 
-Thanks to the fact that these recipes are single-channel, a single Snark can be used to reflect the entire recipe. However, if there is not already a Snark at the location we would like the reflection to take place, we have to be a bit more clever. In this situation, we can use a single-channel recipe to build a Snark directly in the path of the recipe itself, then let an arbitrary number of gliders be reflected by the Snark, and then use another single-channel recipe to destroy the Snark once it is done being useful. The recipes that create and destroy this in-lane Snark are appropriately called the \emph{Snarkmaker}\index{Snarkmaker} and \emph{Snarkbreaker}.\index{Snarkbreaker}
+Thanks to the fact that these recipes are single-channel, a single Snark can be used to reflect the entire recipe. However, if there is not already a Snark at the location we would like the reflection to take place, we have to be a bit more clever. In this situation, we can use a single-channel recipe to build a Snark directly in the path of the recipe itself, then let an arbitrary number of gliders be reflected by the Snark, and then use another single-channel recipe to destroy the Snark once it is done being useful. The recipes that create and destroy this in-lane Snark are appropriately called the \emph{Snarkmaker} and \emph{Snarkbreaker}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{The Snarkmaker}\label{sec:snarkmaker_itself}
+\subsection{The Snarkmaker}\label{sec:snarkmaker_itself}\index{Snarkmaker}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The Snarkmaker can be constructed by first searching for a unidirectional slow-salvo recipe for a Snark, and then using the zero-degree elbow toolkit from the previous section to turn it into a single-lane recipe (at the expense of having many more gliders). One unidirectional slow salvo synthesis of a Snark that works is the $95$-glider monstrosity displayed in Figure~\ref{fig:snark_slow_salvo}.\footnote{This salvo was found by Adam P.~Goucher in March 2017.}
@@ -488,17 +488,36 @@ After stringing together 95 recipes of this type (one for each glider in the slo
 		\texttt{\small 109, 91, 95, 113, 90, 134, 90, {\color{gray}(90)}}.
 	\end{center}
 	
-	\item Finally, we can use the elbow-moving recipes of Table~\ref{fig:90_degree_block_move} adjust the relative positioning of the three different elbows that are used throughout all of these operations.\smallskip
+	\item Finally, we can use the elbow-moving recipes of Table~\ref{fig:90_degree_block_move} to adjust the relative positioning of the three different elbows that are used throughout all of these operations.\smallskip
 \end{itemize}
 
-After we put all of this together, we get a single-channel glider recipe containing a grand total of 2,427 gliders that creates a Snark, and also moves the elbow to the far side of the Snark so that subsequent glider recipes on that lane hit the elbow after passing through the Snark. We do not provide a figure containing the Snarkmaker (it as, after all, just a single-file straight line consisting of 2,427 gliders), but the complete sequence of glider timings that make it up is provided in Appendix~\ref{sec:appendix_snarkmaker}.
+After we put all of this together, we get a single-channel glider recipe containing a grand total of 2,427 gliders that creates a Snark, and also moves the elbow to its far side so that subsequent glider recipes on that lane hit the elbow after passing through the Snark. This \emph{Snarkmaker} is displayed in Figure~\ref{fig:snarkmaker}, and the complete sequence of glider timings that make it up is provided in Appendix~\ref{sec:appendix_snarkmaker}.
+
+\begin{figure}[!htb]
+	\centering
+	\embedlink{snarkmaker}{\vcenteredhbox{\patternimg{0.08}{snarkmaker_0}} \vcenteredhbox{\gliderarrow{56}} \vcenteredhbox{\patternimg{0.08}{snarkmaker_56}} \vcenteredhbox{\gliderarrow{34}} \vcenteredhbox{\patternimg{0.08}{snarkmaker_90}} \\[1em] \vcenteredhbox{\phantom{\patternimg{0.075}{snarkmaker_0}}} \vcenteredhbox{\gliderarrow{2253}} \vcenteredhbox{\patternimg{0.08}{snarkmaker_2343}} \,\! \vcenteredhbox{\gliderarrow{8}} \,\! \vcenteredhbox{\patternimg{0.08}{snarkmaker_2351}}}
+	
+	\caption{The Snarkmaker, which is a single-channel glider recipe that first creates the post-Snark elbow block, then creates a zero-degree elbow, then creates a Snark via that zero-degree elbow, and then finally destroys the zero-degree elbow. Not displayed are 76 (optional) final gliders that are typically appended at the end to push the post-Snark elbow far enough away from the Snark that another Snarkmaker recipe could be used.}\label{fig:snarkmaker}
+\end{figure}
+
+Single-channel recipes are also known for creating a Snark in its three other possible orientations.\footnote{These recipes were all found by Adam P.~Goucher in March 2017---see \httpsurl{conwaylife.com/forums/viewtopic.php?f=2\&t=2660\&start=25\#p42121}.} However, they are all roughly as large as the Snarkmaker, and the details of their construction are all very similar to that of the Snarkmaker, so we do not present them here.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{The Snarkbreaker}\label{sec:snarkbreaker}
+\subsection{The Snarkbreaker}\label{sec:snarkbreaker}\index{Snarkbreaker}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The Snarkbreaker is \emph{considerably} simpler than the Snarkmaker.\footnote{In Life, just like in life, it is typically much easier to break something than it is to make it.}
+The Snarkbreaker is \emph{considerably} simpler than the Snarkmaker.\footnote{In Life, just like in life, it is typically much easier to break something than it is to make it.} Basically all we need is a way of colliding a glider (or gliders) with the Snark so as to destroy it, and a single-channel recipe that creates those gliders. Two reactions that take care of these tasks are displayed in Figure~??.
+
+% FIGURES
+
+The Snarkbreaker is simply the combination of these two reactions, which consists of ?? gliders and the following ?? timings:
+\begin{align*}
+	& \text{\texttt{\footnotesize return glider: {\footnotesize 93, 91, 118, 93, 151, 90, 99, 155, 120, 92, 108, 90, 102, 164, 90, 90,}}} \\
+	& \text{\texttt{\footnotesize Snark destroy: {\footnotesize varies, 143, 97, {\color{gray}(90)}.}}}
+\end{align*}
+
+% Talk about "varies" because it depends on how far away the elbow block is
 
 
 
@@ -560,6 +579,7 @@ The downside of single-channel glider synthesis versus slow salvo synthesis is t
 
 We now demonstrate the utility of single-channel glider synthesis by creating another self-constructing spaceship. This spaceship, which is called a \emph{demonoid}\footnote{The name \emph{demonoid} is a portmanteau of ``diagonal'' and ``Geminoid'', where ``Geminoid'' refers to any Gemini-like spaceship that shuttles one or more construction tapes between two universal constructors.},\index{demonoid}\index{Geminoid} is smaller than the Gemini by roughly one order of magnitude---its bounding box has a side length of approximately $5 \times 10^5$ cells instead of $4 \times 10^6$ cells.
 % TODO: Alter footnote here -- Geminoids already discussed earlier
+% c/256 = 16384c/4194304
 
 % Give schematic here, or a sequence of schematics.
 
@@ -571,6 +591,7 @@ We now demonstrate the utility of single-channel glider synthesis by creating an
 %* 135-degree single-channel elbows to shoot down old circuitry (construction arm becomes destruction arm)
 
 
+% TODO: Circle/highlight/dashed lines around different segments of gliders that do different things?
 \begin{figure}[!htbp]
 	\centering
 	\embedlink{c256_demonoid}{\includegraphics[width=\textwidth]{universal_construction/c256_demonoid.pdf}}
@@ -594,8 +615,10 @@ Stuff.
 % TAlk about Gemini took 5 months to complete. Maybe earlier instead. Made with a custom computer script to make the glider recipe
 
 The development of single-channel glider synthesis mostly took place in 2017, when a relative newcomer, Simon Ekstr{\"o}m, cavalierly disregarded accumulated prejudices from the previous decade, tried a search, and found that it worked.\footnote{This is not unlike when Andrew J. Wade built Gemini in 2010, or ConwayLife.com forums user ``zdr'' found the copperhead spaceship in 2016. In all of these cases, a newcomer simply looked where the members of the Life community thought there wasn't anything to find.} It was already known in 2015 how to emulate arbitrary glider synthesis via gliders on a single lane, and that technique was used by Chris Cain and Dave Greene to construct an earlier demonoid than the ones we presented in this chapter, called the \emph{0hd demonoid}\index{0hd demonoid} that year.\footnote{The ``0hd'' in the name of this demonoid refers to the fact that there are zero half-diagonals separating its gliders.} However, Ekstr{\"o}m was the first to show that it is possible even when the gliders are far enough apart from each other that they can be fed through components like Snarks and syringes.
-% Talk about RCT here, and how it shows every glider-synthesizable object can be built wtih 17 far-apart gliders. This is referenced in Ch5 Notes section.
 % Orthogonoid in the notes/history here?
+
+% TODO: Discuss reverse-caber tosser here, and its ability to construct anything with just a few gliders. This is forward-referenced in Chapter 5.
+% Talk about RCT here, and how it shows every glider-synthesizable object can be built wtih 17 far-apart gliders. This is referenced in Ch5 Notes section.
 
 
 % single channel make xWSS: https://conwaylife.com/forums/viewtopic.php?f=2&t=2660&start=50#p43737
