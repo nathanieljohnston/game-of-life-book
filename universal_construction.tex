@@ -502,73 +502,45 @@ After we put all of this together, we get a single-channel glider recipe contain
 
 Single-channel recipes are also known for creating a Snark in its three other possible orientations.\footnote{These recipes were all found by Adam P.~Goucher in March 2017---see \httpsurl{conwaylife.com/forums/viewtopic.php?f=2\&t=2660\&start=25\#p42121}.} However, they are all roughly as large as the Snarkmaker, and the details of their construction are all very similar to that of the Snarkmaker, so we do not present them here.
 
+% Turn this into a computer-aided exercise? Give a slow salvo and ask user to turn it into a single-channel recipe?
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{The Snarkbreaker}\label{sec:snarkbreaker}\index{Snarkbreaker}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The Snarkbreaker is \emph{considerably} simpler than the Snarkmaker.\footnote{In Life, just like in life, it is typically much easier to break something than it is to make it.} Basically all we need is a way of colliding a glider (or gliders) with the Snark so as to destroy it, and a single-channel recipe that creates those gliders. Two reactions that take care of these tasks are displayed in Figure~??.
+The Snarkbreaker, which destroys a Snark that is in the path a single-channel glider stream, is \emph{considerably} simpler than the Snarkmaker.\footnote{In Life, just like in life, it is typically much easier to break something than it is to make it.} To create it, basically all we need is a way of colliding a glider (or gliders) with the Snark so as to destroy it, and a single-channel recipe that creates those gliders. The Snarkbreaker is simply the combination of these two reactions, which are displayed in Figure~\ref{fig:snarkbreaker}.
 
 % FIGURES
 
-The Snarkbreaker is simply the combination of these two reactions, which consists of ?? gliders and the following ?? timings:
+Altogether, the Snarkbreaker consists of ?? gliders, with the following timing gaps:
 \begin{align*}
 	& \text{\texttt{\footnotesize return glider: {\footnotesize 93, 91, 118, 93, 151, 90, 99, 155, 120, 92, 108, 90, 102, 164, 90, 90,}}} \\
 	& \text{\texttt{\footnotesize Snark destroy: {\footnotesize varies, 143, 97, {\color{gray}(90)}.}}}
 \end{align*}
-
-% Talk about "varies" because it depends on how far away the elbow block is
+The exact timing of the glider that is labelled ``varies'' depends on how far away the elbow block is from the Snark that is is being used to destroy---the ``varies'' glider must collide with the Snark at the same time as the glider that is fired backward from the elbow by the previous 17 gliders. It follows that if the elbow block is $n$ cells away from the Snark, then the ``varies'' glider must come roughly $8n$ generations after the previous one.
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{The Scorbie Splitter}\label{sec:scorbie_splitter}
+\subsection{The Scorbie Splitter}\label{sec:scorbie_splitter}\index{Scorbie splitter}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Stuff.
+The final piece of machinery that we will need for our upcoming constructions is a method of making a single-channel recipe duplicate itself. We have seen numerous methods of duplicating glider streams (e.g., the periodic duplicator of Figure~\ref{fig:glider_duplicator}, and the stable duplicators of Figure~\ref{fig:glider_multipliers}), but we cannot assume that such mechanisms are already in the path of the single-channel recipe. Instead, we would like to use a single-channel recipe to build a duplicating mechanism in such a way that further recipes along the same lane can make use of it.
 
-% Slow-salvo Snark and other goodies:
-%https://conwaylife.com/forums/viewtopic.php?f=2&t=2660&start=25
-%x = 641, y = 615, rule = LifeHistory
-%639.2E$627.2D10.2E$626.3D$625.4D$624.4D$623.4D$622.4D$621.4D$620.4D$
-%619.4D11.2A$618.4D11.A.A$617.4D14.A$616.4D$615.4D$614.4D$613.4D$612.
-%4D$611.4D$610.4D$609.4D$608.4D$607.4D$606.4D$605.4D$604.4D18.2A$603.
-%4D11.2A5.A.A$602.4D11.A.A7.A$602.3D14.A12$613.2A$612.A.A$614.A8$586.
-%2A$569.2A14.A.A$570.2A15.A13.2A$569.A30.A.A$602.A$565.2A40.2A$566.2A
-%40.2A$565.A41.A9$554.2A$555.2A$554.A15$535.2A$536.2A$535.A10$536.2A$
-%537.2A$536.A32$539.2A$540.2A$539.A$486.2A$485.A.A$487.A12$466.2A$467.
-%2A2.2A$466.A3.A.A$472.A4$471.2A$472.2A$471.A14$488.2A$489.2A$488.A6$
-%422.2A$423.2A$422.A6$423.2A$422.A.A$424.A2$438.2A9.2A$407.2A28.A.A8.A
-%.A$406.A.A30.A10.A$408.A2$435.2A$434.A.A$436.A3$440.2A$441.2A$440.A3$
-%428.2A$427.A.A$429.A4$427.2A$426.A.A$391.2A35.A$390.A.A$392.A2$426.2A
-%$425.A.A$404.2A21.A$403.A.A$405.A$425.2A$424.A.A$426.A8$395.2A$394.A.
-%A$396.A8$383.2A$382.A.A$384.A5$366.2A$367.2A$366.A4$387.2A$376.2A10.
-%2A$375.A.A9.A$377.A6$339.2A41.2A$338.A.A40.A.A$340.A42.A3$381.2A$380.
-%A.A$382.A6$330.2A$329.A.A$331.A5$315.2A$314.A.A$316.A13$308.2A$309.2A
-%$308.A3$302.2A$303.2A$302.A$350.2A$291.2A56.A.A$292.2A57.A$291.A2$
-%361.2A$362.2A$361.A3$336.2A$301.2A32.A.A$302.2A33.A$301.A25.2A$328.2A
-%$327.A15.2A$342.A.A$344.A3$333.2A$318.2A12.A.A$317.A.A14.A$319.A3$
-%266.2A$265.A.A$267.A20.2A$289.2A$288.A24.2A$299.2A11.A.A$300.2A12.A$
-%299.A4$316.2A$317.2A$316.A$257.2A$256.A.A$258.A2$289.2A$290.2A$289.A
-%21.2A$310.A.A$251.2A29.2A28.A$250.A.A30.2A$252.A29.A3$271.2A9.2A$272.
-%2A9.2A$271.A10.A3$268.2A$238.2A29.2A$237.A.A28.A$239.A51.2A$292.2A$
-%291.A2$253.2A$254.2A$253.A6.2A3.2A$261.2A.A.A$260.A5.A31$252.2A$253.
-%2A$252.A2$201.2A$202.2A$201.A18$183.2A$184.2A$183.A6$177.2A$178.2A$
-%177.A5$178.2A$177.A.A$179.A9$167.2A$166.A.A$168.A15$142.2A$143.2A$
-%142.A$138.2A$133.2A4.2A$134.2A2.A$133.A52$110.2A$111.2A$110.A11$100.
-%2A$101.2A$100.A12$73.2A9.2A10.2A$74.2A9.2A8.A.A$73.A10.A12.A$91.2A$
-%90.A.A$92.A3$54.2A$55.2A$54.A$61.2A$60.A.A$62.A5$41.2A$42.2A$41.A2$
-%27.2A$26.A.A$28.A3$24.2A$23.A.A42.2A$25.A41.A.A$69.A2$29.2A$30.2A$29.
-%A9$29.2A$30.2A$29.A3$.2A$A.A$2.A5$18.2A$17.A.A$19.A!
+The simplest such mechanism to synthesize is called a \emph{Scorbie splitter},\footnote{Named after Dongook Lee, who uses the ConwayLife.com forums username ``Scorbie''. They were partially responsible for the identification of this conduit and its prominent usage in self-constructing circuitry.} which is displayed in Figure~\ref{fig:scorbie_splitter}. This conduit uses the left half of the large easier-to-synthesize version of the syringe from Figure~\ref{fig:syringe_modified} to convert the input glider into a Herschel, and then another conduit to convert that Herschel into two output gliders (this is the exact same method that was used to create the syringe variant in Exercise~\ref{exer:syringe_Lx200}, and it has the exact same repeat time of $90$~generations as that pattern).
 
+\begin{figure}[!htb]
+	\centering
+	\patternimglink{0.1}{scorbie_splitter}
+	\caption{The \emph{Scorbie splitter} is a stable glider duplicator that is made up of the left half of a syringe, followed by an H-to-2G conduit on the right that was found by Aidan F.~Pierce in January 2016.}
+	\label{fig:scorbie_splitter}
+\end{figure}
 
-% TODO: Need scorbie splitter. Maybe a section titled "duplicating a single-channel recipe" or some such? Then give single-channel recipe for it, then an example where it duplicates itself?
-%x = 71, y = 68, rule = B3/S23
-%9bo$9b3o$12bo$11bobo$11bobo$12bo5$27b2o$27b2o4$7b2o$6bobo$6bo$5b2o7b2o
-%$14b2o2$22b2obo$22b2ob3o$28bo$22b2ob3o$23bobo$23bobo$24bo2$25bo$23b3o$
-%22bo$22b2o$14b2o$14b2o6$3b2o$4bo$4bobo$5b2o3$2o$bo$bobo$2b2o5$23b2o$
-%23bo34bobobobobo$24b3o$26bo31bobo2$58bo3bo2$58bo5bo2$58bo7bo2$68bo2$
-%70bo!
+Just like we can use a single-channel recipe to synthesize a Snark directly on its path, so too can we use such a recipe to synthesize a Scorbie splitter directly on its path. In principle, we could build a recipe to carry out this task by hand---we just need to make a slow salvo synthesis that builds each of the Scorbie splitter's still lifes, one at a time, and then convert that slow-salvo synthesis into a zero-degree single-channel recipe in the same way that we did with the Snarkmaker. However, the computer script \emph{slsparse}\index{slsparse} (see \httpsurl{conwaylife.com/wiki/Slsparse} for tutorials and a download link) automates this procedure and is able to generate single-channel recipes for objects of this size and complexity in a minute or two. One such Scorbie-splitter-making recipe consists of 4,006 gliders, whose timing gaps are provided in Appendix~\ref{sec:appendix_scorbie_splitter_maker}.
+% Exercise: build slow-salvo synth from single-channel recipe in appendix
+
+We can also use single-channel recipes to synthesize Scorbie splitters in any other orientation, or via a 90-degree elbow instead of a zero-degree elbow. In all cases, the method of construction is basically the same, and slsparse can deal with them straightforwardly---see Exercise~\ref{exer:scorbie_splitter_zero_degree}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -637,7 +609,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 
 
 \begin{problem}\label{exer:construction_arm_lanes_timed}
-	The elbow-operation circuit of Figure~\ref{fig:construction_arm} requires two synchronized input gliders to trigger each of the \texttt{PUSH}, \texttt{FIRE WHITE}, and \texttt{FIRE BLACK} operations---one to create the frontmost pair of gliders via the \texttt{PULL} circuit, and one to create the additional glider(s).
+	The elbow-operation circuit of Figure~\ref{fig:construction_arm} requires two synchronized input gliders to trigger each of the \texttt{PUSH}, \texttt{FIRE WHITE}, and \texttt{FIRE BLACK} operations---one to create the frontmost pair of gliders via the \texttt{PULL} input, and one to create the additional glider(s) via one of the other three inputs.
 	
 	\noindent Add additional Herschel conduits to that circuit so that each of the four operations can be triggered by just a single input glider.
 \end{problem}
@@ -703,6 +675,29 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 \begin{problem}\label{exer:snark_slow_salvo_pieces}
 	The $95$-glider slow salvo synthesis of a Snark from Figure~\ref{fig:snark_slow_salvo} is an incremental synthesis. Break it down into steps like we did with the $94$-glider synthesis from Figure~\ref{fig:17_cell_synthesis}.
 \end{problem}
+
+
+\mfilbreak
+
+
+\begin{problemstar}\label{exer:scorbie_splitter_slow_salvo}
+	Extract a unidirectional slow-salvo synthesis of a Scorbie splitter from the 4,006-glider single-channel recipe that is provided in Appendix~\ref{sec:appendix_scorbie_splitter_maker}. How many gliders does this slow salvo have?
+\end{problemstar}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:scorbie_splitter_zero_degree}
+	Use slsparse (\httpsurl{conwaylife.com/wiki/Slsparse}) to create a single-channel glider recipe that synthesizes a Scorbie splitter in the following orientation, starting with a zero-degree elbow block in the location indicated at the top-center:
+	
+	\noindent\begin{center}
+		\patternimglink{0.1}{exercise_single_channel_scorbie_splitter}
+	\end{center}
+\end{problem}
+
+% TODO: Exercise with weird double-snark to make splitter and snark jig. Ask user why they think it's there.
+
 
 %% EXERCISE END COMMANDS
 \end{multicols}
