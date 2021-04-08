@@ -1,0 +1,93 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\begin{document}
+	\begin{tikzpicture}%
+		\node[inner sep=0pt,anchor=south west] (sd) at (2,0) {\includegraphics[width=10cm]{slow_demonoid.png}};
+
+		% BORDER
+		\draw[gridgray] (2,0) rectangle (12,10);
+		
+		% DIRECTION
+		\newcommand\dirx{8.4}
+		\newcommand\diry{6.3}
+		\draw[gray] (\dirx,\diry) node[rotate=45,shift={(0.05,0.12)}] {\tiny \texttt{direction of travel}};
+		\draw[color=gray,-stealth] (\dirx-0.7,\diry-0.7) -- (\dirx+0.8,\diry+0.8);
+		
+		\draw[color=gray,-stealth] (5.5,6.9) -- (6.1,6.3);
+		\draw[color=gray,-stealth] (5.7,5.9) -- (5.1,6.5);
+		
+		% ZOOM NW
+			\newcommand\zoomwid{3.2}
+			\newcommand\zoomxgap{1.1}
+			\newcommand\bottomshft{0.75}
+		
+			\newcommand\smlx{2.13}
+			\newcommand\smrx{\smlx+0.15}
+			\newcommand\smby{9.75}
+			\newcommand\smty{\smby+0.2067}
+			
+			\newcommand\bglx{0}
+			\newcommand\bgrx{\bglx+\zoomwid}
+			\newcommand\bgty{4.1}
+			\newcommand\bgby{\bgty-\zoomwid*1.3780821917}
+			
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (\smrx,\smty) -- (\bgrx,\bgty) -- (\bglx,\bgty) -- (\smlx,\smty) -- cycle;
+			
+			\node[inner sep=0pt,anchor=north west] (zoom0) at (\bglx,\bgty) {\includegraphics[width=\zoomwid cm]{slow_demonoid_zoom0.png}};
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\smlx,\smty) rectangle (\smrx,\smby);
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
+			
+			% CIRCLE THE ELBOW BLOCK USED FOR CONSTRUCTION
+			\draw[white,line width=1.5pt,opacity=0.6](0.99,1.21) circle (0.1);
+			\draw[redback2,line width=0.6pt](0.99,1.21) circle (0.1);
+			
+			% GLIDER PATH ARROWS
+			\draw[color=gray,-stealth] (2.4,0) -- (1.9,0.5);
+			\draw[color=gray,-stealth] (2.38,1.55) -- (2.88,1.05);
+			\draw[color=gray,-stealth] (1.25,1.25) -- (1.75,1.75);
+		% END ZOOM BOX NW
+		
+		\node[inner sep=0pt,anchor=north west] at (\bglx+\zoomwid+0.03,\bgty-\zoomwid*0.66) {\vcenteredhbox{\gliderarrow{2460}}};
+		
+		\node[inner sep=0pt,anchor=north west] at (\bglx+\zoomwid+\zoomxgap,\bgty) {\includegraphics[width=\zoomwid cm]{slow_demonoid_zoom2460.png}};
+		\draw[gridgray,line width=0.6pt] (\bglx+\zoomwid+\zoomxgap,\bgty) rectangle (\bgrx+\zoomwid+\zoomxgap,\bgby);
+		
+		% GLIDER PATH ARROWS
+		\draw[color=gray,-stealth] (5.23,1.1) -- (4.73,1.6);
+		\draw[color=gray,-stealth] (4.55,2.1) -- (5.05,2.6);
+		
+		\node[inner sep=0pt,anchor=north west] at (\bglx-0.8+\bottomshft,\bgty-\zoomwid*2.02-0.4) {\vcenteredhbox{\gliderarrow{11065}}};
+		
+		\node[inner sep=0pt,anchor=north west] at (\bglx+0.46+\bottomshft,\bgty-\zoomwid*1.3780821917-0.4) {\includegraphics[width=\zoomwid cm]{slow_demonoid_zoom13525.png}};
+		\draw[gridgray,line width=0.6pt] (\bglx+0.46+\bottomshft,\bgty-\zoomwid*1.3780821917-0.4) rectangle (\bgrx+0.46+\bottomshft,\bgby-\zoomwid*1.3780821917-0.4);
+		
+		% GLIDER PATH ARROWS
+		\draw[color=gray,-stealth] (1.8,-2.3) -- (2.3,-1.8);
+		\draw[color=gray,-stealth] (3.15,-1.6) -- (3.65,-2.1);
+		
+		\node[inner sep=0pt,anchor=north west] at (\bgrx+0.53+\bottomshft,\bgty-\zoomwid*2.02-0.4) {\vcenteredhbox{\gliderarrow{20}}};
+		
+		\node[inner sep=0pt,anchor=north west] at (\bglx+\zoomwid+\zoomxgap+0.27+\bottomshft,\bgty-\zoomwid*1.3780821917-0.4) {\includegraphics[width=\zoomwid cm]{slow_demonoid_zoom13545.png}};
+		\draw[gridgray,line width=0.6pt] (\bglx+\zoomwid+\zoomxgap+0.27+\bottomshft,\bgty-\zoomwid*1.3780821917-0.4) rectangle (\bgrx+\zoomwid+\zoomxgap+0.27+\bottomshft,\bgby-\zoomwid*1.3780821917-0.4);
+		
+		% GLIDER PATH ARROWS
+		\draw[color=gray,-stealth] (6.4,-1.85) -- (5.9,-2.35);
+		\draw[color=gray,-stealth] (6.4,-3.48) -- (5.9,-2.98);
+		
+		\node[inner sep=0pt,anchor=north west] at (12-\zoomwid-\zoomxgap+0.13+\bottomshft,\bgty-\zoomwid*2.02-0.4) {\vcenteredhbox{\gliderarrow{547}}};
+		
+		\node[inner sep=0pt,anchor=north west] at (12-\zoomwid+\bottomshft,\bgty-\zoomwid*1.3780821917-0.4) {\includegraphics[width=\zoomwid cm]{slow_demonoid_zoom14092.png}};
+		\draw[gridgray,line width=0.6pt] (12-\zoomwid+\bottomshft,\bgty-\zoomwid*1.3780821917-0.4) rectangle (12+\bottomshft,\bgby-\zoomwid*1.3780821917-0.4);
+		
+		% GLIDER PATH ARROWS
+		\draw[color=gray,-stealth] (10.55,-3.38) -- (10.05,-2.88);
+		\draw[color=gray,-stealth] (10.23,-3.38) -- (10.23,-4.08);
+	\end{tikzpicture}
+\end{document}
