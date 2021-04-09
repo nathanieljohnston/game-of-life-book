@@ -579,34 +579,32 @@ This Demonoid has period $2^{21} = 2\, 097\, 152$ and speed $128c/2097152 = c/16
 
 In order to construct a Demonoid that is faster than $22c/2283$ (or even one that is close to that speed without being an order of magnitude larger than the one we constructed earlier), we need a faster way of moving a construction elbow forward than we have seen so far. One technique that works well (over long distances, at least) is to use the elbow block to synthesize a spaceship that moves in the desired direction, and then use a recipe to shoot it down, turning it back into a construction elbow some time later. By letting the spaceship travel a longer and longer distance before shooting it down, we can move the elbow at speeds closer and closer to that of the spaceship.
 
-Perhaps the simplest elbow-moving spaceships to implement this idea with are Corderships, thanks to how straightforward they are to synthesize (compared to most other spaceships, anyway).
+Perhaps the simplest elbow-moving spaceships to implement this idea with are Corderships, thanks to how straightforward they are to synthesize (compared to most other spaceships, anyway). Indeed, we saw a seed for the $2$-engine Cordership back in Exercise~\ref{exer:2_engine_corder_seed}, and by adding a one-time splitter and some one-time turners\index{one-time turner} to it, we can trigger it via just a single glider from behind (see Figure~\ref{fig:2_engine_cordership_seed}). We can build this seed via a unidirectional slow salvo synthesis consisting of $112$ gliders, and that slow salvo synthesis can be emulated via a single-channel glider recipe made up of $2{\thousep}393$ gliders. We leave the exact timing gaps to Appendix~??.
 
-% In notes and history: Mention at-most c/5 demonoid that was constructed via this same method
+\begin{figure}[!htb]
+	\centering
+	\embedlink{cordership_seed}{\vcenteredhbox{\patternimg{0.125}{cordership_seed_0}} \vcenteredhbox{\genarrow{366}} \vcenteredhbox{\patternimg{0.125}{cordership_seed_366}}}
+	
+	\caption{A seed that, when hit by a single glider, produces a $2$-engine Cordership travelling in the same direction. It uses a one-time splitter (displayed in \bgbox{greenback}{green}) and some one-time turners (displayed in \bgbox{redback}{red}) to convert the input glider into a pair of synchronized gliders that each synthesize a switch engine.}\label{fig:2_engine_cordership_seed}
+\end{figure}
 
-% Speed limit of c/12. Introduce cordership seed stuff here.
+After the Cordership has been synthesized and travelled however far we would like it to move, it is comparatively straightforward to turn it back into an elbow block via a single-channel recipe. As illustrated in Figure~??, a single glider can be used to stop the Cordership, leaving behind just a few simple still lifes. A few more slow gliders can then be used to clean up those still lifes, leaving just an elbow block behind. Finally, that slow salvo can be converted in a single-channel recipe that uses a zero-degree elbow as usual.
+
+% FIGURE
+% How many gliders in this recipe? Put recipe here, or in appendix?
+
+Stuff.
+
+% Mention c/12 speed limit
 % c/256 = 16384c/4194304
 
-% Give schematic here, or a sequence of schematics.
-
-% There are also Orthogonoid spaceships... (put in footenote? Mention in notes and history?)
-%c/256 Demonoid (16384c/4194304):
-%* 2-engine and 3-engine Cordership pushes for elbows and target blocks
-%* 90-degree elbows for most of the construction
-%* Snarkmakers/Snarkbreakers to change the construction arm's direction when needed
-%* 135-degree single-channel elbows to shoot down old circuitry (construction arm becomes destruction arm)
-
-
-% Talk about how the Cordership lets us avoid the mild slowdown caused by sending a glider back for cleanup -- don't need to send glider back from Cordership, but just back from where the Cordership was fired(?)
-
-
-% TODO: Circle/highlight/dashed lines around different segments of gliders that do different things?
 \begin{figure}[!htbp]
 	\centering
 	\embedlink{c256_demonoid}{\includegraphics[width=\textwidth]{universal_construction/c256_demonoid.pdf}}
-	\caption{A $c/256$ Demonoid spaceship that works by bouncing a (very long) single-channel glider recipe (highlighted in \bgbox{greenpastel}{green}) between two self-constructing ends. In the phase shown here, the recipe is about to construct a Cordership in the southeast corner (at the circled location), which moves northeast along the path highlighted in \bgbox{aquaback}{aqua}. The single-channel glider recipe then destroys the Cordership (at the location circled in the northwest corner) so as to leave behind a seed. That seed is then used to build the Snarks and Scorbie splitters necessary to repeat this process. Finally, a single glider is sent backwards to destroy a Snark, letting the single-channel glider recipe follow that path higlighted in \bgbox{magentaback}{magenta}, which is used to destroy old Snarks and Scorbie splitters that are no longer needed.}\label{fig:c256_demonoid}
+	\caption{A $c/256$ Demonoid spaceship that works by bouncing a (very long) single-channel glider recipe (highlighted in \bgbox{greenpastel}{green}) between two self-constructing ends. In the phase shown here, the recipe is about to construct a Cordership in the southeast corner (at the location circled in \bgbox{redback}{red}), which moves northeast along the path highlighted in \bgbox{aquaback}{aqua}. The single-channel glider recipe then destroys the Cordership (at the location similarly circled in the northwest corner) so as to leave behind a construction elbow. That elbow is then used to build the Snarks and Scorbie splitters necessary to repeat this process. Finally, a single glider is sent backwards as part of a Snarkbreaker, letting the single-channel glider recipe follow that path higlighted in \bgbox{magentaback}{magenta}, which is used to destroy old Snarks and Scorbie splitters that are no longer needed.}\label{fig:c256_demonoid}
 \end{figure}
-
-
+ 
+ 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{A Fast Demonoid}\label{sec:fast_demonoid}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -627,7 +625,8 @@ Stuff.
 % TAlk about Gemini took 5 months to complete. Maybe earlier instead. Made with a custom computer script to make the glider recipe
 
 The development of single-channel glider synthesis mostly took place in 2017, when a relative newcomer, Simon Ekstr{\"o}m, cavalierly disregarded accumulated prejudices from the previous decade, tried a search, and found that it worked.\footnote{This is not unlike when Andrew J. Wade built Gemini in 2010, or ConwayLife.com forums user ``zdr'' found the copperhead spaceship in 2016. In all of these cases, a newcomer simply looked where the members of the Life community thought there wasn't anything to find.} It was already known in 2015 how to emulate arbitrary glider synthesis via gliders on a single lane, and that technique was used by Chris Cain and Dave Greene to construct an earlier Demonoid than the ones we presented in this chapter, called the \emph{0hd Demonoid}\index{0hd Demonoid} that year.\footnote{The ``0hd'' in the name of this Demonoid refers to the fact that there are zero half-diagonals separating its gliders.} However, Ekstr{\"o}m was the first to show that it is possible even when the gliders are far enough apart from each other that they can be fed through components like Snarks and syringes.
-% Orthogonoid in the notes/history here?
+% In notes and history: Mention at-most c/5 (c/9 with cleanup?) demonoid that was constructed via this same method. Actually just the puffer was made
+% There are also Orthogonoid spaceships... (put in footenote? Mention in notes and history?)
 
 % TODO: Discuss reverse-caber tosser here, and its ability to construct anything with just a few gliders. This is forward-referenced in Chapter 5.
 % Talk about RCT here, and how it shows every glider-synthesizable object can be built wtih 17 far-apart gliders. This is referenced in Ch5 Notes section.
@@ -768,6 +767,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 \mfilbreak
 
 
+% TODO: Fix this exercise. Cannot just push both Scorbie splitter and snark farther -- need to separate them as well.
 \begin{problemstar}\label{exer:44hd_elbow_push}
 	The following single-lane glider recipe (called the \emph{44hd elbow push}\index{44hd elbow push}) is the fastest-known elbow-pushing recipe---it moves the elbow block forward by $44$ half-diagonals in 2195 generations, for a speed of $22c/2195$:
 	\begin{align*}

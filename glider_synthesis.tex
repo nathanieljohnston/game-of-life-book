@@ -1255,32 +1255,23 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 \mfilbreak
 
 
-% TODO: This exercise is referenced in chapter 8. Should we include its solution?
-\begin{problem}\label{exer:2_engine_corder_seed}\index{seed}
+\begin{problemstar}\label{exer:2_engine_corder_seed}\index{seed}
 	In this exercise, we demonstrate how to construct seeds for Corderships.
 	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 		\item Show how a single glider can be fired at the following pair of boats so as to synthesize (generation~$2$ of) a switch engine.
 		\begin{center}
 			\patternimg{0.1}{2_boat_se_seed}
 		\end{center}
-		% SOLUTION:
-		%x = 8, y = 7, rule = B3/S23
-		%bo4bo$obo2bobo$b2o3b2o2$3bo$3b2o$2bobo!
-		
 		
 		\item Create a glider synthesis that first creates the pair of boats displayed in part~(a) and then creates a switch engine from them.
 		
 		\item Use your solution to part~(a) to construct a seed that, when hit by $2$~gliders, synthesizes a $2$-engine Cordership (refer back to Exercise~\ref{exer:2_engine_cordership}).
-		% SOLUTION:
-%		x = 36, y = 41, rule = B3/S23
-%		22bo$22bobo$22b2o3$11bo$10bobo13b2o$11b2o13b2o3$11bo$10bobo$11b2o2$34b
-%		2o$34b2o5$16b2o$16b2o2$bo4bo$obo2bobo$b2o3b2o4$b2o$obo$2bo$13b2o$13b2o
-%		6$b2o$b2o!
-		% TODO: Hint for part (c)? Blocks are maybe not obvious
+		
+		[Hint: The seed will need to include two copies of this boat configuration, some blocks on the side, and also some blocks in the middle to stabilize the first period of each switch engine. It might be helpful to write a computer program to find a configuration of central blocks that works.]
 		
 		\item Create a glider synthesis that first creates your seed from part~(c) and then creates a $2$-engine Cordership from it.
 	\end{enumerate}
-\end{problem}
+\end{problemstar}
 
 
 
