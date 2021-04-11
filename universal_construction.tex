@@ -89,7 +89,7 @@ Importantly, because these circuits are made up of such simple components (mostl
 	\item[2)] We need to be able to re-use the glider recipes that store the construction and destruction recipes. Since we cannot use a static loop (we need the glider recipes to move along with the elbow-operation circuits), we instead have the glider recipes bounce back and forth between \emph{two} copies of the entire three-elbow-operation circuit that we have described.\footnote{In fact, the two ends of the spaceship that we construct will be exactly identical. This is the reason for its name ``Gemini''---it is Latin for ``twins''.}\smallskip
 \end{itemize}
 
-After we put all of these ideas together, we get the Gemini spaceship that is displayed in Figure~\ref{fig:gemini}.\footnote{Constructed by Andrew J.~Wade in May 2010.} It builds a copy of itself displaced by 5,120 cells in one direction and 1,024 cells in the other direction every 33,699,586 generations, making it the first spaceship that we have seen that does not travel orthogonally or diagonally at a slope of~$1$ (its slope is $5120/1024 = 5$).
+After we put all of these ideas together, we get the Gemini spaceship that is displayed in Figure~\ref{fig:gemini}.\footnote{Constructed by Andrew J.~Wade in May 2010.} It builds a copy of itself displaced by $5{\thousep}120$ cells in one direction and $1{\thousep}024$ cells in the other direction every $33{\thousep}699{\thousep}586$ generations, making it the first spaceship that we have seen that does not travel orthogonally or diagonally at a slope of~$1$ (its slope is $5120/1024 = 5$).
 
 \begin{figure}[!htbp]
 	\centering
@@ -183,8 +183,8 @@ There are numerous points of clarification that we need to make about these sequ
 
 The sequences given in Table~\ref{tab:single_lane_90deg_glider_timings} can only be used to fire gliders on a small selection of lanes (8 in each direction). Furthermore, these sequences move the elbow forward and backward by some amount that we do not control---an amount that is dictated by the output lane on which we wish to fire a glider. It is thus important to be able to move the elbow however far forward or backward we like, \emph{without} firing a glider, so that the glider-firing sequences then produce a glider where we actually want it. For example, the following pair of elbow-moving sequences, which are displayed in Figure~\ref{fig:0_degree_block_push_pull}, move the elbow forward by $8$~half diagonals or backward by $12$ half diagonals, respectively.
 \begin{align*}
-	& \text{\texttt{~push~8hd: \footnotesize 109, 91, 94, 91, 91, 92, 90, 119, 90, {\color{gray}(90)},}}\\
-	& \text{\texttt{pull~12hd: \footnotesize 109, 91, 93, 91, 137, 91, 91, 125, 172, 108, 90, 109, 91, 101, 120, 90, {\color{gray}(90)}.}}
+& \text{\texttt{~push~8hd: \footnotesize 109, 91, 94, 91, 91, 92, 90, 119, 90, {\color{gray}(90)},}}\\
+& \text{\texttt{pull~12hd: \footnotesize 109, 91, 93, 91, 137, 91, 91, 125, 172, 108, 90, 109, 91, 101, 120, 90, {\color{gray}(90)}.}}
 \end{align*}
 
 \begin{figure}[!htb]
@@ -244,8 +244,8 @@ With these block-moving sequences at our disposal, we are now able to use glider
 
 The only extra ingredient that we need in order to show that single-channel glider synthesis with a 90-degree elbow block is universal (i.e., can implement any glider synthesis) is a way of creating a target block (which we refer to as a \emph{hand}\footnote{It is connected to an elbow, after all.})\index{hand} that the perpendicular slow gliders will be fired at. One sequence of gliders that works to create such a hand block is
 \begin{align}\begin{split}\label{eq:make_hand_90_deg}
-	& \text{\texttt{109, 91, 93, 90, 132, 115, 127, 91, 90, 91, 95, 90, 114,}} \\
-	& \text{\texttt{~~~~~~~~~162, 233, 159, 90, 155, 126, 93, 118, 90, 91, 90, {\color{gray}(90)},}}
+& \text{\texttt{109, 91, 93, 90, 132, 115, 127, 91, 90, 91, 95, 90, 114,}} \\
+& \text{\texttt{~~~~~~~~~162, 233, 159, 90, 155, 126, 93, 118, 90, 91, 90, {\color{gray}(90)},}}
 \end{split}\end{align}
 which is illustrated as the first transition in Figure~\ref{fig:90_degree_block_move}. Indeed, this recipe creates a hand block $86$ half-diagonals away, on the internal side of the elbow block, while pushing that elbow block away by $17$ half~diagonals.\footnote{In particular, since we have described the elbow block as moving by an odd number of half-diagonals, we know that it moves to the opposite side of the single-lane glider sequence.}
 
@@ -271,17 +271,17 @@ To this end, we first use the hand-making sequence of gliders~\eqref{eq:make_han
 
 When we put all of this together, we get the following single-lane sequence of 185 gliders (which we illustrate in Figure~\ref{fig:90_degree_block_move} and specify by 184 timings between those gliders) that first creates a hand block and then moves that hand block $11$~cells via a sequence of $4$ perpendicular slow gliders:\footnote{We did something slightly tricky with with the two ``move 10hd'' sequences here---notice that the gap between their final pair of gliders are not the same as each other. See Exercise~\ref{exer:single_lane_glider_final_glider_explain}.}
 \begin{align*}
-		& \text{\texttt{\footnotesize make hand: {\scriptsize 109, 91, 93, 90, 132, 115, 127, 91, 90, 91, 95, 90, 114, 162, 233, 159, 90, 155, 126, 93,}}} \\
-		& \text{\texttt{\footnotesize ~~~~~~~~~~~~{\scriptsize 118, 90, 91, 90, 90,}}} \\
-		& \text{\texttt{\footnotesize move -2hd: {\scriptsize 109, 91, 94, 91, 91, 136, 90, 90, 91, 171, 100, 118, 90, 90,}}} \\
-		& \text{\texttt{\footnotesize fire -21x: {\scriptsize 109, 91, 93, 90, 155, 106, 90, 90, 92, 91, 109, 90, 93, 91, 90, 100, 124, 90,}}} \\
-		& \text{\texttt{\footnotesize move~~8hd: {\scriptsize 109, 91, 94, 91, 91, 92, 90, 119, 90, 90,}}} \\
-		& \text{\texttt{\footnotesize fire~~~8i: {\scriptsize 109, 90, 95, 245, 90, 126, 208, 128, 90, 96, 91, 90, 90, 91, 91, 91, 91, 100, 90, 90, 90,}}} \\
-		& \text{\texttt{\footnotesize move~10hd: {\scriptsize 109, 91, 93, 91, 129, 149, 91, 90, 90, 105, 90, 90, 90, 90, 114, 91, 100, 90, 90,}}} \\
-		& \text{\texttt{\footnotesize move~10hd: {\scriptsize 109, 91, 93, 91, 129, 149, 91, 90, 90, 105, 90, 90, 90, 90, 114, 91, 100, 90, 91,}}} \\
-		& \text{\texttt{\footnotesize fire~~~8i: {\scriptsize 109, 90, 95, 245, 90, 126, 208, 128, 90, 96, 91, 90, 90, 91, 91, 91, 91, 100, 90, 90, 90,}}} \\
-		& \text{\texttt{\footnotesize move~~2hd: {\scriptsize 109, 90, 93, 91, 91, 90, 90, 91, 91, 90, 90, 91, 90, 90, 94, 90, 90,}}} \\
-		& \text{\texttt{\footnotesize fire~~~8i: {\scriptsize 109, 90, 95, 245, 90, 126, 208, 128, 90, 96, 91, 90, 90, 91, 91, 91, 91, 100, 90, 90.}}}
+& \text{\texttt{\footnotesize make hand: {\scriptsize 109, 91, 93, 90, 132, 115, 127, 91, 90, 91, 95, 90, 114, 162, 233, 159, 90, 155, 126, 93,}}} \\
+& \text{\texttt{\footnotesize ~~~~~~~~~~~~{\scriptsize 118, 90, 91, 90, 90,}}} \\
+& \text{\texttt{\footnotesize move -2hd: {\scriptsize 109, 91, 94, 91, 91, 136, 90, 90, 91, 171, 100, 118, 90, 90,}}} \\
+& \text{\texttt{\footnotesize fire -21x: {\scriptsize 109, 91, 93, 90, 155, 106, 90, 90, 92, 91, 109, 90, 93, 91, 90, 100, 124, 90,}}} \\
+& \text{\texttt{\footnotesize move~~8hd: {\scriptsize 109, 91, 94, 91, 91, 92, 90, 119, 90, 90,}}} \\
+& \text{\texttt{\footnotesize fire~~~8i: {\scriptsize 109, 90, 95, 245, 90, 126, 208, 128, 90, 96, 91, 90, 90, 91, 91, 91, 91, 100, 90, 90, 90,}}} \\
+& \text{\texttt{\footnotesize move~10hd: {\scriptsize 109, 91, 93, 91, 129, 149, 91, 90, 90, 105, 90, 90, 90, 90, 114, 91, 100, 90, 90,}}} \\
+& \text{\texttt{\footnotesize move~10hd: {\scriptsize 109, 91, 93, 91, 129, 149, 91, 90, 90, 105, 90, 90, 90, 90, 114, 91, 100, 90, 91,}}} \\
+& \text{\texttt{\footnotesize fire~~~8i: {\scriptsize 109, 90, 95, 245, 90, 126, 208, 128, 90, 96, 91, 90, 90, 91, 91, 91, 91, 100, 90, 90, 90,}}} \\
+& \text{\texttt{\footnotesize move~~2hd: {\scriptsize 109, 90, 93, 91, 91, 90, 90, 91, 91, 90, 90, 91, 90, 90, 94, 90, 90,}}} \\
+& \text{\texttt{\footnotesize fire~~~8i: {\scriptsize 109, 90, 95, 245, 90, 126, 208, 128, 90, 96, 91, 90, 90, 91, 91, 91, 91, 100, 90, 90.}}}
 \end{align*}
 
 \begin{figure}[!htb]
@@ -424,13 +424,13 @@ With the glider sequences that we have now seen, it is straightforward to use a 
 
 When we put all of this together, we get the following single-lane sequence of $118$ gliders (which we illustrate in Figure~\ref{fig:0_degree_block_move} and specify by $117$ timings between those gliders) that first creates a hand block and then moves that hand block $11$~cells via a sequence of $4$ parallel slow gliders:
 \begin{align*}
-	& \text{\texttt{\footnotesize make hand: {\footnotesize 109, 90, 93, 91, 91, 90, 90, 100, 90, 90, 146, 96, 90, 90, 90, 92, 156, 144, 90,}}} \\
-	& \text{\texttt{\footnotesize ~fire~~-1: {\footnotesize 109, 90, 95, 245, 90, 95, 90, 123, 91, 90, 115, 142, 90,}}} \\
-	& \text{\texttt{\footnotesize ~move~-12: {\footnotesize 109, 91, 93, 91, 137, 91, 91, 125, 172, 108, 90, 109, 91, 101, 120, 90, 90,}}} \\
-	& \text{\texttt{\footnotesize ~move~-12: {\footnotesize 109, 91, 93, 91, 137, 91, 91, 125, 172, 108, 90, 109, 91, 101, 120, 90, 90,}}} \\
-	& \text{\texttt{\footnotesize ~fire~~~1: {\footnotesize 109, 91, 94, 91, 91, 93, 90, 95, 90, 113, 90, 99, 90, 156, 90, 90, 90, 138, 170,}}} \\
-	& \text{\texttt{\footnotesize ~fire~-11: {\footnotesize 93, 91, 151, 90, 139, 180, 103, 115, 167, 91, 120, 139, 135, 91, 91, 169,}}} \\
-	& \text{\texttt{\footnotesize ~fire~~~5: {\footnotesize 109, 90, 93, 91, 91, 135, 91, 124, 90, 90, 148, 91, 91, 97, 141, 91.}}}
+& \text{\texttt{\footnotesize make hand: {\footnotesize 109, 90, 93, 91, 91, 90, 90, 100, 90, 90, 146, 96, 90, 90, 90, 92, 156, 144, 90,}}} \\
+& \text{\texttt{\footnotesize ~fire~~-1: {\footnotesize 109, 90, 95, 245, 90, 95, 90, 123, 91, 90, 115, 142, 90,}}} \\
+& \text{\texttt{\footnotesize ~move~-12: {\footnotesize 109, 91, 93, 91, 137, 91, 91, 125, 172, 108, 90, 109, 91, 101, 120, 90, 90,}}} \\
+& \text{\texttt{\footnotesize ~move~-12: {\footnotesize 109, 91, 93, 91, 137, 91, 91, 125, 172, 108, 90, 109, 91, 101, 120, 90, 90,}}} \\
+& \text{\texttt{\footnotesize ~fire~~~1: {\footnotesize 109, 91, 94, 91, 91, 93, 90, 95, 90, 113, 90, 99, 90, 156, 90, 90, 90, 138, 170,}}} \\
+& \text{\texttt{\footnotesize ~fire~-11: {\footnotesize 93, 91, 151, 90, 139, 180, 103, 115, 167, 91, 120, 139, 135, 91, 91, 169,}}} \\
+& \text{\texttt{\footnotesize ~fire~~~5: {\footnotesize 109, 90, 93, 91, 91, 135, 91, 124, 90, 90, 148, 91, 91, 97, 141, 91.}}}
 \end{align*}
 
 \begin{figure}[!htb]
@@ -475,7 +475,7 @@ The next glider is on lane~22, so we can again simply use the corresponding reci
 	\texttt{\small 109, 91, 94, 91, 91, 93, 90, 91, 91, 90, \\ 100, 90, 94, 90, 108, 90, 91, 91, 119, {\color{gray}(90)}}.
 \end{center}
 
-After stringing together 95 recipes of this type (one for each glider in the slow salvo),\footnote{This process is completely mechanical, but also extremely tedious, which means it is best done by a computer instead of a human. Also, the particular recipes that we used in the Snarkmaker do not always match up exactly with the recipes from Table~\ref{tab:single_lane_0deg_glider_timings}---multiple recipes are known for most lane numbers.} we get a single-channel recipe consisting of 2,253 gliders that creates a Snark. However, there are still a few other zero-degree elbow recipes that we must prepend and append to make this Snarkmaker actually usable:\smallskip
+After stringing together 95 recipes of this type (one for each glider in the slow salvo),\footnote{This process is completely mechanical, but also extremely tedious, which means it is best done by a computer instead of a human. Also, the particular recipes that we used in the Snarkmaker do not always match up exactly with the recipes from Table~\ref{tab:single_lane_0deg_glider_timings}---multiple recipes are known for most lane numbers.} we get a single-channel recipe consisting of $2{\thousep}253$ gliders that creates a Snark. However, there are still a few other zero-degree elbow recipes that we must prepend and append to make this Snarkmaker actually usable:\smallskip
 
 \begin{itemize}
 	\item We first need to use a recipe that creates a block that is offset far to the side, so that the glider recipes that are reflected through the Snark have something to hit (i.e., we need to create a block that will become the 0-degree elbow after the Snark has been made). The 90-degree hand recipe~\eqref{eq:make_hand_90_deg} can carry out this task.\smallskip
@@ -491,7 +491,7 @@ After stringing together 95 recipes of this type (one for each glider in the slo
 	\item Finally, we can use the elbow-moving recipes of Table~\ref{fig:90_degree_block_move} to adjust the relative positioning of the three different elbows that are used throughout all of these operations.\smallskip
 \end{itemize}
 
-After we put all of this together, we get a single-channel glider recipe containing a grand total of 2,427 gliders that creates a Snark, and also moves the elbow to its far side so that subsequent glider recipes on that lane hit the elbow after passing through the Snark. This \emph{Snarkmaker} is displayed in Figure~\ref{fig:snarkmaker}, and the complete sequence of glider timings that make it up is provided in Appendix~\ref{sec:appendix_snarkmaker}.
+After we put all of this together, we get a single-channel glider recipe containing a grand total of $2{\thousep}427$ gliders that creates a Snark, and also moves the elbow to its far side so that subsequent glider recipes on that lane hit the elbow after passing through the Snark. This \emph{Snarkmaker} is displayed in Figure~\ref{fig:snarkmaker}, and the complete sequence of glider timings that make it up is provided in Appendix~\ref{sec:appendix_snarkmaker}.
 
 \begin{figure}[!htb]
 	\centering
@@ -519,8 +519,8 @@ The Snarkbreaker, which destroys a Snark that is in the path a single-channel gl
 
 Altogether, the Snarkbreaker consists of 20 gliders, with the following timing gaps:
 \begin{align*}
-	& \text{\texttt{\footnotesize return glider: {\footnotesize 93, 91, 118, 93, 151, 90, 99, 155, 120, 92, 108, 90, 102, 164, 90, 90,}}} \\
-	& \text{\texttt{\footnotesize Snark destroy: {\footnotesize varies, 143, 97, {\color{gray}(90)}.}}}
+& \text{\texttt{\footnotesize return glider: {\footnotesize 93, 91, 118, 93, 151, 90, 99, 155, 120, 92, 108, 90, 102, 164, 90, 90,}}} \\
+& \text{\texttt{\footnotesize Snark destroy: {\footnotesize varies, 143, 97, {\color{gray}(90)}.}}}
 \end{align*}
 The exact timing of the glider that is labelled ``varies'' depends on how far away the elbow block is from the Snark that is is being used to destroy---the ``varies'' glider must collide with the Snark at the same time as the glider that is fired backward from the elbow by the previous 17 gliders. It follows that if the elbow block is $n$ cells away from the Snark, then the ``varies'' glider must come roughly $8n$ generations after the previous one.
 
@@ -541,7 +541,7 @@ The simplest such mechanism to synthesize is called a \emph{Scorbie splitter},\f
 	\label{fig:scorbie_splitter}
 \end{figure}
 
-Just like we can use a single-channel recipe to synthesize a Snark directly on its path, so too can we use such a recipe to synthesize a Scorbie splitter directly on its path. In principle, we could build a recipe to carry out this task by hand---we just need to make a slow salvo synthesis that builds each of the Scorbie splitter's still lifes, one at a time, and then convert that slow-salvo synthesis into a zero-degree single-channel recipe in the same way that we did with the Snarkmaker. However, the computer script \emph{slsparse}\index{slsparse} (see \httpsurl{conwaylife.com/wiki/Slsparse} for tutorials and a download link) automates this procedure and is able to generate single-channel recipes for objects of this size and complexity in a minute or two. One such Scorbie-splitter-making recipe consists of 4,006 gliders, whose timing gaps are provided in Appendix~\ref{sec:appendix_scorbie_splitter_maker}.
+Just like we can use a single-channel recipe to synthesize a Snark directly on its path, so too can we use such a recipe to synthesize a Scorbie splitter directly on its path. In principle, we could build a recipe to carry out this task by hand---we just need to make a slow salvo synthesis that builds each of the Scorbie splitter's still lifes, one at a time, and then convert that slow-salvo synthesis into a zero-degree single-channel recipe in the same way that we did with the Snarkmaker. However, the computer script \emph{slsparse}\index{slsparse} (see \httpsurl{conwaylife.com/wiki/Slsparse} for tutorials and a download link) automates this procedure and is able to generate single-channel recipes for objects of this size and complexity in a minute or two. One such Scorbie-splitter-making recipe consists of $4{\thousep}006$ gliders, whose timing gaps are provided in Appendix~\ref{sec:appendix_scorbie_splitter_maker}.
 
 We can also use single-channel recipes to synthesize Scorbie splitters in any other orientation, or via a 90-degree elbow instead of a zero-degree elbow. In all cases, the method of construction is basically the same, and slsparse can deal with them straightforwardly---see Exercise~\ref{exer:scorbie_splitter_zero_degree}. In fact, once we figure out how to synthesize an object from one orientation via a single-channel recipe, the other orientations come for free since we can just prepend as many Snarkmakers to the recipe as we need---see Exercise~\ref{exer:why_scorbie_splitter_snarkmakers}.
 
@@ -559,10 +559,10 @@ Much like the Gemini works by bouncing 12 glider streams back and forth between 
 \begin{figure}[!htbp]
 	\centering
 	\embedlink{slow_demonoid}{\includegraphics[width=\textwidth]{universal_construction/slow_demonoid.pdf}}
-	\caption{A $c/16384$ Demonoid spaceship that works by bouncing a (very long) single-channel glider recipe between two self-constructing ends that are made up of a Scorbie splitter and a Snark. The first 2460 gliders collide with an elbow block (circled in \bgbox{redback}{red}) so as to build a temporary Snark (highlighted in \bgbox{aquaback}{aqua}) to provide a better angle for construction. The next 11,065 gliders use a $90$-degree elbow to construct the next Scorbie splitter and Snark (highlighted in \bgbox{greenpastel}{green}). The next $20$ gliders implement a Snarkbreaker that gets rid of the temporary Snark (highlighted in \bgbox{yellowback2}{yellow}). Finally, the last $547$ gliders create some lightweight and middleweight spaceships that destroy the previous, no longer needed, Scorbie splitter and Snark (highlighted in \bgbox{magentaback}{magenta}).}\label{fig:slow_demonoid}
+	\caption{A $c/16384$ Demonoid spaceship that works by bouncing a (very long) single-channel glider recipe between two self-constructing ends that are made up of a Scorbie splitter and a Snark. The first $2{\thousep}460$ gliders collide with an elbow block (circled in \bgbox{redback}{red}) so as to build a temporary Snark (highlighted in \bgbox{aquaback}{aqua}) to provide a better angle for construction. The next $11{\thousep}220$ gliders use a $90$-degree elbow to construct the next Scorbie splitter and Snark (highlighted in \bgbox{greenpastel}{green}). The next $20$ gliders implement a Snarkbreaker that gets rid of the temporary Snark (highlighted in \bgbox{yellowback2}{yellow}). Finally, the last $547$ gliders create some lightweight and middleweight spaceships that destroy the previous, no longer needed, Scorbie splitter and Snark (highlighted in \bgbox{magentaback}{magenta}).}\label{fig:slow_demonoid}
 \end{figure}
 
-The single-channel recipe that this Demonoid uses consists of 14,092 gliders that perform the following tasks:\smallskip
+The single-channel recipe that this Demonoid uses consists of $14{\thousep}247$ gliders that perform the following tasks:\smallskip
 
 \begin{itemize}
 	\item Construct the next Scorbie splitter and Snark $128$ cells in front of the ones currently in use. This is done by using a Snarkmaker to bend the single-channel recipe around the existing Scorbie splitter and Snark, and then do the actual construction via a $90$-degree elbow.\smallskip
@@ -570,14 +570,16 @@ The single-channel recipe that this Demonoid uses consists of 14,092 gliders tha
 	\item Destroy the previous Scorbie splitter and Snark that are no longer needed. Since the Scorbie splitter and Snark (and pretty much any other object---see Exercise~\ref{exer:multiple_glider_cleanup}) can be destroyed by gliders, this task could be taken care of via another Snarkmaker and $90$-degree elbow. However, we can avoid having to use a Snarkmaker by instead performing the destruction via lightweight and middleweight spaceships. Figure~?? and~?? illustrate slow salvos that create these spaceships, and how this Demonoid uses them to shoot down the old Scorbie splitter and Snark.\smallskip
 \end{itemize}
 
-This Demonoid has period $2^{21} = 2\, 097\, 152$ and speed $128c/2097152 = c/16384$, but those can be improved slightly by moving its ends closer together---see Exercise~\ref{exer:slow_demonoid_adjust}. By adding some extra block-pushing recipes to it, so that the new Scorbie splitter and Snark are built more than $128$ cells away, its speed can be further increased to be arbitrarily close (but not equal) to $22c/2283$---see Exercise~\ref{exer:44hd_elbow_push}.
+% DESTRUCTION FIGURES HERE
+
+This Demonoid has period $2^{21} = 2{\thousep}097{\thousep}152$ and speed $128c/2097152 = c/16384$, but those values can be improved slightly by moving its ends closer together---see Exercise~\ref{exer:slow_demonoid_adjust}. By adding some extra block-pushing recipes to it, so that the new Scorbie splitter and Snark are built more than $128$ cells away, its speed can be further increased to be arbitrarily close (but not equal) to $22c/2239$---see Exercise~\ref{exer:44hd_elbow_push}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{A Middling Demonoid}\label{sec:medium_demonoid}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In order to construct a Demonoid that is faster than $22c/2283$ (or even one that is close to that speed without being an order of magnitude larger than the one we constructed earlier), we need a faster way of moving a construction elbow forward than we have seen so far. One technique that works well (over long distances, at least) is to use the elbow block to synthesize a spaceship that moves in the desired direction, and then use a recipe to shoot it down, turning it back into a construction elbow some time later. By letting the spaceship travel a longer and longer distance before shooting it down, we can move the elbow at speeds closer and closer to that of the spaceship.
+In order to construct a Demonoid that is faster than $22c/2239$ (or even one that is close to that speed without being an order of magnitude larger than the one we constructed earlier), we need a faster way of moving a construction elbow forward than we have seen so far. One technique that works well (over long distances, at least) is to use the elbow block to synthesize a spaceship that moves in the desired direction, and then use a recipe to shoot it down, turning it back into a construction elbow some time later. By letting the spaceship travel a longer and longer distance before shooting it down, we can move the elbow at speeds closer and closer to that of the spaceship.
 
 Perhaps the simplest elbow-moving spaceships to implement this idea with are Corderships, thanks to how straightforward they are to synthesize (compared to most other spaceships, anyway). Indeed, we saw a seed for the $2$-engine Cordership back in Exercise~\ref{exer:2_engine_corder_seed}, and by adding a one-time splitter and some one-time turners\index{one-time turner} to it, we can trigger it via just a single glider from behind (see Figure~\ref{fig:2_engine_cordership_seed}). We can build this seed via a unidirectional slow salvo synthesis consisting of $112$ gliders, and that slow salvo synthesis can be emulated via a single-channel glider recipe made up of $2{\thousep}393$ gliders. We leave the exact timing gaps to Appendix~??.
 
@@ -595,7 +597,7 @@ After the Cordership has been synthesized and travelled however far we would lik
 
 Stuff.
 
-% Mention c/12 speed limit
+% explain in detail why c/14 here, not c/12, and mention in passing that this is the same reason slow demonoid can approach 22c/thing not 22c/otherthing.
 % c/256 = 16384c/4194304
 
 \begin{figure}[!htbp]
@@ -603,17 +605,25 @@ Stuff.
 	\embedlink{c256_demonoid}{\includegraphics[width=\textwidth]{universal_construction/c256_demonoid.pdf}}
 	\caption{A $c/256$ Demonoid spaceship that works by bouncing a (very long) single-channel glider recipe (highlighted in \bgbox{greenpastel}{green}) between two self-constructing ends. In the phase shown here, the recipe is about to construct a Cordership in the southeast corner (at the location circled in \bgbox{redback}{red}), which moves northeast along the path highlighted in \bgbox{aquaback}{aqua}. The single-channel glider recipe then destroys the Cordership (at the location similarly circled in the northwest corner) so as to leave behind a construction elbow. That elbow is then used to build the Snarks and Scorbie splitters necessary to repeat this process. Finally, a single glider is sent backwards as part of a Snarkbreaker, letting the single-channel glider recipe follow that path higlighted in \bgbox{magentaback}{magenta}, which is used to destroy old Snarks and Scorbie splitters that are no longer needed.}\label{fig:c256_demonoid}
 \end{figure}
- 
- 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{A Fast Demonoid}\label{sec:fast_demonoid}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+We now push these ideas to their absolute limit, and demonstrate how to construct Demonoids with speeds arbitrarily close to $c/4$ (rather than just $c/14$).\footnote{Recall from Theorem~\ref{thm:speed_limits} that no diagonal spaceship can go faster than this.}
 % Speed limit c/4. Introduce wickstretcher method here.
+
+By making use of this wickstretcher instead of a Cordership for long-distance elbow moves, we can now construct Demonoids with speeds approaching $c/6$. However, we cannot yet get speeds arbitrarily close to $c/4$, due to the return glider that is needed for the Snarkbreaker that we discussed earlier (i.e., the same reason that the Cordership-based Demonoid of Section~\ref{sec:medium_demonoid} can reach speeds close to $c/14$, but not $c/12$). To solve this problem, we introduce another method of destroying old, no-longer-needed circuitry: by placing other still lifes nearby that facilitate their destruction. For example, Figure~?? illustrates how 
+
+% what search program is used to find these still lifes?
 
 % Mention how self-destruction mechanism is baked in with circuitry this time, instead of sending back gliders to do the cleanup.
 
-Stuff.
+% FIGURE
+% Rotate so that it moves to the top-right instead of the top-left?
+% Exercise with another way to destroy snark: just fire lots of gliders from the forward direction
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -643,169 +653,168 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 \label{sec:universal_construction_exercises}
 \addcontentsline{toc}{section}{Exercises}
 \vspace*{-0.4cm}\hrulefill\vspace*{-0.3cm}\footnotesize\begin{multicols}{2}\vspace*{-0.4cm}\raggedcolumns\interlinepenalty=10000
-\setlength{\parskip}{0pt}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\begin{problem}\label{exer:construction_arm_lanes_timed}
-	The elbow-operation circuit of Figure~\ref{fig:construction_arm} requires two synchronized input gliders to trigger each of the \texttt{PUSH}, \texttt{FIRE WHITE}, and \texttt{FIRE BLACK} operations---one to create the frontmost pair of gliders via the \texttt{PULL} input, and one to create the additional glider(s) via one of the other three inputs.
+	\setlength{\parskip}{0pt}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
-	Add additional Herschel conduits to that circuit so that each of the four operations can be triggered by just a single input glider.
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problemstar}\label{exer:gemini_unhighlighted_reflectors}
-	The two zoom boxes in Figure~\ref{fig:gemini} each have two rows of unhighlighted reflectors that never reflect a single glider. What is their purpose?
-\end{problemstar}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:block_pull_pond}
-	The single-channel elbow-pulling sequence displayed in Figure~\ref{fig:0_degree_block_pull} turns an elbow block into a pond (rather than another block). Why is this not a problem?
-\end{problem}
-% Pond acts as an elbow in the same way (also explodes into a pi-heptomino)
-
-
-\mfilbreak
-
-
-\begin{problemstar}\label{exer:single_lane_glider_final_glider_explain}
-	The 185-glider single-lane sequence illustrated in Figure~\ref{fig:90_degree_block_move} makes use of two copies of the glider sequence that moves the elbow forward by $10$ half-diagonals. In the first sequence the final glider arrives after 90~generations, whereas in the second sequence it arrives after 91~generations. Explain the reason for this discrepancy---why can't the final glider in the second sequence also arrive after just 90~generations?
-\end{problemstar}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:push_elbow_longer}
-	The following single-lane glider recipe moves the elbow block:
-	\begin{align*}
+	
+	\begin{problem}\label{exer:construction_arm_lanes_timed}
+		The elbow-operation circuit of Figure~\ref{fig:construction_arm} requires two synchronized input gliders to trigger each of the \texttt{PUSH}, \texttt{FIRE WHITE}, and \texttt{FIRE BLACK} operations---one to create the frontmost pair of gliders via the \texttt{PULL} input, and one to create the additional glider(s) via one of the other three inputs.
+		
+		Add additional Herschel conduits to that circuit so that each of the four operations can be triggered by just a single input glider.
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:gemini_unhighlighted_reflectors}
+		The two zoom boxes in Figure~\ref{fig:gemini} each have two rows of unhighlighted reflectors that never reflect a single glider. What is their purpose?
+	\end{problemstar}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:block_pull_pond}
+		The single-channel elbow-pulling sequence displayed in Figure~\ref{fig:0_degree_block_pull} turns an elbow block into a pond (rather than another block). Why is this not a problem?
+	\end{problem}
+	% Pond acts as an elbow in the same way (also explodes into a pi-heptomino)
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:single_lane_glider_final_glider_explain}
+		The 185-glider single-lane sequence illustrated in Figure~\ref{fig:90_degree_block_move} makes use of two copies of the glider sequence that moves the elbow forward by $10$ half-diagonals. In the first sequence the final glider arrives after 90~generations, whereas in the second sequence it arrives after 91~generations. Explain the reason for this discrepancy---why can't the final glider in the second sequence also arrive after just 90~generations?
+	\end{problemstar}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:push_elbow_longer}
+		The following single-lane glider recipe moves the elbow block:
+		\begin{align*}
 		& \text{\texttt{\footnotesize 109, 91, 93, 91, 145, 215, 106, 90, 90,}} \\
 		& \text{\texttt{\footnotesize~91, 91, 174, 90, 158, 90, 90, 90, 91,}} \\
 		& \text{\texttt{\footnotesize~~~~~~~~137, 90, 91, 127, {\color{gray}(90)}.}}
-	\end{align*}
-	
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item How many half-diagonals (and in which direction) does this sequence move the elbow?
-		% SOLUTION: 20, forward
+		\end{align*}
 		
-		\item Use this 23-glider sequence to rebuild the 185-glider sequence from Figure~\ref{fig:90_degree_block_move} to be at least $15$~gliders shorter, while still performing the same task (i.e., building a hand block and then moving it south by $11$~cells).
-		% SOLUTION: Replace the pair of 10hd moves with this single 20hd move.
-	\end{enumerate}
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problemstar}\label{exer:0degree_hand_move}
-	What is the ``move'' value of the zero-degree hand-making glider sequence from Figure~\ref{fig:0degree_hand} (i.e., how many half-diagonals is the elbow block moved)?
-\end{problemstar}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:exercise_hwss_slow_salvo}
-	An 8-glider unidirectional slow salvo that synthesizes a heavyweight spaceship\footnote{Found by Adam P.~Goucher in December 2016.} is displayed below:
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item How many half-diagonals (and in which direction) does this sequence move the elbow?
+			% SOLUTION: 20, forward
+			
+			\item Use this 23-glider sequence to rebuild the 185-glider sequence from Figure~\ref{fig:90_degree_block_move} to be at least $15$~gliders shorter, while still performing the same task (i.e., building a hand block and then moving it south by $11$~cells).
+			% SOLUTION: Replace the pair of 10hd moves with this single 20hd move.
+		\end{enumerate}
+	\end{problem}
 	
-	\noindent\begin{center}
-		\patternimglink{0.112}{exercise_hwss_slow_salvo}
-	\end{center}
-
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-	\item Use the recipes of Tables~\ref{tab:single_lane_90deg_glider_timings} and~\ref{tab:single_lane_elbow_movers} to emulate this slow salvo via a single-channel glider recipe and a 90-degree elbow.
 	
-	\item Use the recipes of Table~\ref{tab:single_lane_0deg_glider_timings} to emulate this slow salvo via a single-channel glider recipe and a zero-degree elbow.
-	\end{enumerate}
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:snark_slow_salvo_pieces}
-	The $95$-glider slow salvo synthesis of a Snark from Figure~\ref{fig:snark_slow_salvo} is an incremental synthesis. Break it down into steps like we did with the $94$-glider synthesis from Figure~\ref{fig:17_cell_synthesis}.
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problemstar}\label{exer:scorbie_splitter_slow_salvo}
-	Extract a unidirectional slow-salvo synthesis of a Scorbie splitter from the 4,006-glider single-channel recipe that is provided in Appendix~\ref{sec:appendix_scorbie_splitter_maker}. How many gliders does this slow salvo have?
-\end{problemstar}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:scorbie_splitter_zero_degree}
-	Use slsparse (\httpsurl{conwaylife.com/wiki/Slsparse}) to create a single-channel glider recipe that synthesizes a Scorbie splitter in the following orientation, starting with a zero-degree elbow block in the location indicated at the top-center:
+	\mfilbreak
 	
-	\noindent\begin{center}
-		\patternimglink{0.11}{exercise_single_channel_scorbie_splitter}
-	\end{center}
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problemstar}\label{exer:slow_demonoid_adjust}
-	The bounding box of the slow Demonoid from Figure~\ref{fig:slow_demonoid} can be decreased considerably just by moving its two stabilizing ends closer together, and doing so also reduces its period and increases its speed.
 	
-	Adjust that Demonoid so that the longest side of its bounding box is no more than 200,000 cells long. What are its period and speed after you make this adjustment?
-\end{problemstar}
-
-
-\mfilbreak
-
-
-% TODO: Fix this exercise. Cannot just push both Scorbie splitter and snark farther -- need to separate them as well.
-\begin{problemstar}\label{exer:44hd_elbow_push}
-	The following single-lane glider recipe (called the \emph{44hd elbow push}\index{44hd elbow push}) is the fastest-known elbow-pushing recipe---it moves the elbow block forward by $44$ half-diagonals in 2195 generations, for a speed of $22c/2195$:
-	\begin{align*}
-	& \text{\texttt{\footnotesize 109, 90, 93, 91, 90, 95, 91, 91, 138, 157,}} \\
-	& \text{\texttt{\footnotesize~96, 90, 120, 91, 97, 107, 90, 90, 93, {\color{gray}(188)}.}}
-	\end{align*}
+	\begin{problemstar}\label{exer:0degree_hand_move}
+		What is the ``move'' value of the zero-degree hand-making glider sequence from Figure~\ref{fig:0degree_hand} (i.e., how many half-diagonals is the elbow block moved)?
+	\end{problemstar}
 	
-	\begin{center}
-		\centering
-		\embedlink{44hd_elbow_push}{\vcenteredhbox{\patternimg{0.123}{44hd_elbow_push_0}} \vcenteredhbox{\begin{tabular}{@{}c@{}}\color{black}{$\xrightarrow{\text{\clock{7}{17} 2195}}$} \\ \gliderarrow{20}\end{tabular}} \vcenteredhbox{\patternimg{0.123}{44hd_elbow_push_20}}}
-	\end{center}
 	
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item Insert this recipe into an appropriate spot in the slow Demonoid from Figure~\ref{fig:slow_demonoid} so that it moves forward $150$~cells throughout its period, instead of just $128$~cells. What is the speed of this new, slightly faster Demonoid?
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:exercise_hwss_slow_salvo}
+		An 8-glider unidirectional slow salvo that synthesizes a heavyweight spaceship\footnote{Found by Adam P.~Goucher in December 2016.} is displayed below:
 		
-		[Hint: Be careful -- you will need to adjust the timing of the Snarkbreaker as a result of inserting this extra 44hd elbow push.]
+		\noindent\begin{center}
+			\patternimglink{0.112}{exercise_hwss_slow_salvo}
+		\end{center}
 		
-		\item Adding more and more of these 44hd elbow pushes makes the Demonoid faster and faster (but also larger and larger). Explain why it is possible to reach speeds that are arbitrarily close (but not equal) to $22c/2283$, but not $22c/2195$.
-	\end{enumerate}
-\end{problemstar}
-
-
-\mfilbreak
-
-
-% Eh, there are easier ways, so maybe remove/rephrase this exercise? It's kinda just a byproduct of slsparse
-\begin{problemstar}\label{exer:why_scorbie_splitter_snarkmakers}
-	When the $c/256$ Demonoid from Figure~\ref{fig:c256_demonoid} synthesizes its Scorbie splitters, it uses two Snarkmakers and a 90-degree elbow to perform the synthesis via gliders coming from the northeast:
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Use the recipes of Tables~\ref{tab:single_lane_90deg_glider_timings} and~\ref{tab:single_lane_elbow_movers} to emulate this slow salvo via a single-channel glider recipe and a 90-degree elbow.
+			
+			\item Use the recipes of Table~\ref{tab:single_lane_0deg_glider_timings} to emulate this slow salvo via a single-channel glider recipe and a zero-degree elbow.
+		\end{enumerate}
+	\end{problem}
 	
-	\noindent\begin{center}
-		\patternimg{0.113}{exercise_demonoid_ss_via_snarkmakers}
-	\end{center}
 	
-	Explain why this method might be preferable or easier than, for example, just using a zero-degree elbow and no Snarkmakers to synthesize it via gliders coming from the northwest.
-\end{problemstar}
-
-
-%% EXERCISE END COMMANDS
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:snark_slow_salvo_pieces}
+		The $95$-glider slow salvo synthesis of a Snark from Figure~\ref{fig:snark_slow_salvo} is an incremental synthesis. Break it down into steps like we did with the $94$-glider synthesis from Figure~\ref{fig:17_cell_synthesis}.
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:scorbie_splitter_slow_salvo}
+		Extract a unidirectional slow-salvo synthesis of a Scorbie splitter from the $4{\thousep}006$-glider single-channel recipe that is provided in Appendix~\ref{sec:appendix_scorbie_splitter_maker}. How many gliders does this slow salvo have?
+	\end{problemstar}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:scorbie_splitter_zero_degree}
+		Use slsparse (\httpsurl{conwaylife.com/wiki/Slsparse}) to create a single-channel glider recipe that synthesizes a Scorbie splitter in the following orientation, starting with a zero-degree elbow block in the location indicated at the top-center:
+		
+		\noindent\begin{center}
+			\patternimglink{0.11}{exercise_single_channel_scorbie_splitter}
+		\end{center}
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:slow_demonoid_adjust}
+		The bounding box of the slow Demonoid from Figure~\ref{fig:slow_demonoid} can be decreased considerably just by moving its two stabilizing ends closer together, and doing so also reduces its period and increases its speed.
+		
+		Adjust that Demonoid so that the longest side of its bounding box is no more than $200{\thousep}000$ cells long. What are its period and speed after you make this adjustment?
+	\end{problemstar}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:44hd_elbow_push}
+		The following single-lane glider recipe (called the \emph{44hd elbow push}\index{44hd elbow push}) is the fastest-known elbow-pushing recipe---it moves the elbow block forward by $44$ half-diagonals in 2195 generations, for a speed of $22c/2195$:
+		\begin{align*}
+		& \text{\texttt{\footnotesize 109, 90, 93, 91, 90, 95, 91, 91, 138, 157,}} \\
+		& \text{\texttt{\footnotesize~96, 90, 120, 91, 97, 107, 90, 90, 93, {\color{gray}(188)}.}}
+		\end{align*}
+		
+		\begin{center}
+			\centering
+			\embedlink{44hd_elbow_push}{\vcenteredhbox{\patternimg{0.123}{44hd_elbow_push_0}} \vcenteredhbox{\begin{tabular}{@{}c@{}}\color{black}{$\xrightarrow{\text{\clock{7}{17} 2195}}$} \\ \gliderarrow{20}\end{tabular}} \vcenteredhbox{\patternimg{0.123}{44hd_elbow_push_20}}}
+		\end{center}
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Insert copies of this elbow push into into the appropriate spots in the slow Demonoid from Figure~\ref{fig:slow_demonoid} so that it moves forward $172$~cells throughout its period, instead of just $128$~cells. What is the speed of this new, slightly faster Demonoid?
+			
+			[Hint: You will also have to slightly adjust the Snarkbreaker timing, as well as the position of the elbow during the Demonoid's destruction phase.]
+			
+			\item Adding more and more of these 44hd elbow pushes makes the Demonoid faster and faster (but also larger and larger). Explain why it is possible to reach speeds that are arbitrarily close (but not equal) to $22c/2239$, but not $22c/2195$.
+		\end{enumerate}
+	\end{problemstar}
+	
+	
+	\mfilbreak
+	
+	
+	% Eh, there are easier ways, so maybe remove/rephrase this exercise? It's kinda just a byproduct of slsparse
+	\begin{problemstar}\label{exer:why_scorbie_splitter_snarkmakers}
+		When the $c/256$ Demonoid from Figure~\ref{fig:c256_demonoid} synthesizes its Scorbie splitters, it uses two Snarkmakers and a 90-degree elbow to perform the synthesis via gliders coming from the northeast:
+		
+		\noindent\begin{center}
+			\patternimg{0.113}{exercise_demonoid_ss_via_snarkmakers}
+		\end{center}
+		
+		Explain why this method might be preferable or easier than, for example, just using a zero-degree elbow and no Snarkmakers to synthesize it via gliders coming from the northwest.
+	\end{problemstar}
+	
+	
+	%% EXERCISE END COMMANDS
 \end{multicols}
 \normalsize\vspace*{0.01cm}
 %% DONE EXERCISE END COMMANDS
