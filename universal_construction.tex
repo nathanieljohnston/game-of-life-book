@@ -94,7 +94,7 @@ After we put all of these ideas together, we get the Gemini spaceship that is di
 \begin{figure}[!htbp]
 	\centering
 	\embedlink{gemini}{\includegraphics[width=\textwidth]{universal_construction/gemini.pdf}}
-	\caption{The self-constructing \emph{Gemini} spaceship, which simply looks like a long, thin diagonal line when zoomed out far enough to see in its entirety. The bulk of the spaceship of made up of 24 parallel glider lanes (12 travelling in each direction), which carry a recipe for building the ship. The ends of the spaceship, which are zoomed in on here, are identical arrangements of stable glider reflectors, glider duplicators, and three elbow-operation circuits whose sliding blocks are circled in \bgbox{redback}{red}. The elbow-operation circuits highlighted in \bgbox{aquaback}{aqua} and \bgbox{greenpastel}{green} build the next copy of the spaceship (highlighted in \bgbox{yellowback2}{yellow}), while the elbow-operation circuit higlighted in \bgbox{magentaback}{magenta} destroys the previous copy of the spaceship (highlighted in \bgbox{orangeback2}{orange}).}\label{fig:gemini}
+	\caption{The self-constructing \emph{Gemini} spaceship, which simply looks like a long, thin diagonal line when zoomed out far enough to see in its entirety. The bulk of the spaceship of made up of 24 parallel glider lanes (12 travelling in each direction), which carry a recipe for building the ship. The ends of the spaceship, which are zoomed in on here, are identical arrangements of stable glider reflectors, glider duplicators, and three elbow-operation circuits whose sliding blocks are circled in \bgbox{redback2!25!redback}{red}. The elbow-operation circuits highlighted in \bgbox{aquaback}{aqua} and \bgbox{greenpastel}{green} build the next copy of the spaceship (highlighted in \bgbox{yellowback2}{yellow}), while the elbow-operation circuit higlighted in \bgbox{magentaback}{magenta} destroys the previous copy of the spaceship (highlighted in \bgbox{orangeback2}{orange}).}\label{fig:gemini}
 \end{figure}
 
 
@@ -536,7 +536,7 @@ The simplest such mechanism to synthesize is called a \emph{Scorbie splitter},\f
 
 \begin{figure}[!htb]
 	\centering
-	\patternimglink{0.1}{scorbie_splitter}
+	\patternimglink{0.12}{scorbie_splitter}
 	\caption{The \emph{Scorbie splitter} is a stable glider duplicator that is made up of the left half of a syringe, followed by an H-to-2G conduit on the right that was found by Aidan F.~Pierce in January 2016.}
 	\label{fig:scorbie_splitter}
 \end{figure}
@@ -559,7 +559,7 @@ Much like the Gemini works by bouncing 12 glider streams back and forth between 
 \begin{figure}[!htbp]
 	\centering
 	\embedlink{slow_demonoid}{\includegraphics[width=\textwidth]{universal_construction/slow_demonoid.pdf}}
-	\caption{A $c/16384$ Demonoid spaceship that works by bouncing a (very long) single-channel glider recipe between two self-constructing ends that are made up of a Scorbie splitter and a Snark. The first $2{\thousep}460$ gliders collide with an elbow block (circled in \bgbox{redback}{red}) so as to build a temporary Snark (highlighted in \bgbox{aquaback}{aqua}) to provide a better angle for construction. The next $11{\thousep}220$ gliders use a $90$-degree elbow to construct the next Scorbie splitter and Snark (highlighted in \bgbox{greenpastel}{green}). The next $20$ gliders implement a Snarkbreaker that gets rid of the temporary Snark (highlighted in \bgbox{yellowback2}{yellow}). Finally, the last $547$ gliders create some lightweight and middleweight spaceships that destroy the previous, no longer needed, Scorbie splitter and Snark (highlighted in \bgbox{magentaback}{magenta}).}\label{fig:slow_demonoid}
+	\caption{A $c/16384$ Demonoid spaceship that works by bouncing a (very long) single-channel glider recipe between two self-constructing ends that are made up of a Scorbie splitter and a Snark. The first $2{\thousep}460$ gliders collide with an elbow block (circled in \bgbox{redback2!25!redback}{red}) so as to build a temporary Snark (highlighted in \bgbox{aquaback}{aqua}) to provide a better angle for construction. The next $11{\thousep}220$ gliders use a $90$-degree elbow to construct the next Scorbie splitter and Snark (highlighted in \bgbox{greenpastel}{green}). The next $20$ gliders implement a Snarkbreaker that gets rid of the temporary Snark (highlighted in \bgbox{yellowback2}{yellow}). Finally, the last $547$ gliders create some lightweight and middleweight spaceships that destroy the previous, no longer needed, Scorbie splitter and Snark (highlighted in \bgbox{magentaback}{magenta}).}\label{fig:slow_demonoid}
 \end{figure}
 
 The single-channel recipe that this Demonoid uses consists of $14{\thousep}247$ gliders that perform the following tasks:\smallskip
@@ -567,19 +567,34 @@ The single-channel recipe that this Demonoid uses consists of $14{\thousep}247$ 
 \begin{itemize}
 	\item Construct the next Scorbie splitter and Snark $128$ cells in front of the ones currently in use. This is done by using a Snarkmaker to bend the single-channel recipe around the existing Scorbie splitter and Snark, and then do the actual construction via a $90$-degree elbow.\smallskip
 	
-	\item Destroy the previous Scorbie splitter and Snark that are no longer needed. Since the Scorbie splitter and Snark (and pretty much any other object---see Exercise~\ref{exer:multiple_glider_cleanup}) can be destroyed by gliders, this task could be taken care of via another Snarkmaker and $90$-degree elbow. However, we can avoid having to use a Snarkmaker by instead performing the destruction via lightweight and middleweight spaceships. Figure~?? and~?? illustrate slow salvos that create these spaceships, and how this Demonoid uses them to shoot down the old Scorbie splitter and Snark.\smallskip
+	\item Destroy the previous Scorbie splitter and Snark that are no longer needed. Since the Scorbie splitter and Snark (and pretty much any other object---see Exercise~\ref{exer:multiple_glider_cleanup}) can be destroyed by gliders, this task could be taken care of via another Snarkmaker and $90$-degree elbow. However, it is much cheaper (costing just $547$ gliders instead of $3{\thousep}000$ or so) to instead perform the destruction via lightweight and middleweight spaceships. Figure~\ref{fig:snark_scorbie_destroy} illustrates a method of using a single LWSS to destroy a Snark, as well as a slow salvo of 4 MWSSes and 2LWSSes that destroys a Scorbie splitter. The timing gaps that specify a $461$-glider single-channel recipe for producing this slow salvo is provided in Appendix~\ref{sec:appendix_scorbie_splitter_destroyer} -- see Exercise~\ref{exer:snark_scorbie_splitter_xwss_destroy} for a breakdown of what the different pieces of this recipe do.\smallskip
 \end{itemize}
 
-% DESTRUCTION FIGURES HERE
+\begin{figure}[!htb]
+	\centering
+	\begin{subfigure}{.4\textwidth}
+		\centering
+		\patternimglink{0.13845771144}{snark_lwss_destroy}
+		\caption{An LWSS about to cleanly destroy a Snark.}\label{fig:snark_lwss_destroy}
+	\end{subfigure} \ \ \ \ % 
+	\begin{subfigure}{.56\textwidth}
+		\centering
+		\patternimglink{0.11}{scorbie_splitter_xwss_destroy}
+		\caption{Six slow xWSSes about to cleanly destroy a Scorbie splitter.}\label{fig:scorbie_splitter_xwss_destroy}
+	\end{subfigure}
+	\caption{A Snark and a Scorbie splitter (and pretty much any other object---see Exercise~\ref{exer:syringe_xwss_destroy}) can be destroyed by slow salvos of lightweight, middleweight, and heavyweight spaceships.}\label{fig:snark_scorbie_destroy}
+\end{figure}
 
-This Demonoid has period $2^{21} = 2{\thousep}097{\thousep}152$ and speed $128c/2097152 = c/16384$, but those values can be improved slightly by moving its ends closer together---see Exercise~\ref{exer:slow_demonoid_adjust}. By adding some extra block-pushing recipes to it, so that the new Scorbie splitter and Snark are built more than $128$ cells away, its speed can be further increased to be arbitrarily close (but not equal) to $22c/2239$---see Exercise~\ref{exer:44hd_elbow_push}.
+Altogether, this Demonoid has period $2^{21} = 2{\thousep}097{\thousep}152$ and speed $128c/2097152 = c/16384$, but those values can be improved slightly by moving its ends closer together---see Exercise~\ref{exer:slow_demonoid_adjust}. By adding some extra block-pushing recipes to it, so that the new Scorbie splitter and Snark are built more than $128$ cells away, its speed can be further increased to be arbitrarily close (but not equal) to $22c/2239$---see Exercise~\ref{exer:44hd_elbow_push}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{A Middling Demonoid}\label{sec:medium_demonoid}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In order to construct a Demonoid that is faster than $22c/2239$ (or even one that is close to that speed without being an order of magnitude larger than the one we constructed earlier), we need a faster way of moving a construction elbow forward than we have seen so far. One technique that works well (over long distances, at least) is to use the elbow block to synthesize a spaceship that moves in the desired direction, and then use a recipe to shoot it down, turning it back into a construction elbow some time later. By letting the spaceship travel a longer and longer distance before shooting it down, we can move the elbow at speeds closer and closer to that of the spaceship.
+In order to construct a Demonoid that is faster than $22c/2239$ (or even one that is close to that speed without being an order of magnitude larger than the Demonoid from Figure~\ref{fig:slow_demonoid}), we need a faster way of moving a construction elbow forward than we have seen so far. One technique that works well (over long distances, at least) is to use the elbow block to synthesize a spaceship that moves in the desired direction, and then use a recipe to shoot it down, turning it back into a construction elbow some time later. By letting the spaceship travel a longer and longer distance before shooting it down, we can move the elbow at speeds closer and closer to that of the spaceship.
+
+% Mid-section of above paragraph needs work. Explain that speed limit is determined mostly by how quickly we can push the elbow forward
 
 Perhaps the simplest elbow-moving spaceships to implement this idea with are Corderships, thanks to how straightforward they are to synthesize (compared to most other spaceships, anyway). Indeed, we saw a seed for the $2$-engine Cordership back in Exercise~\ref{exer:2_engine_corder_seed}, and by adding a one-time splitter and some one-time turners\index{one-time turner} to it, we can trigger it via just a single glider from behind (see Figure~\ref{fig:2_engine_cordership_seed}). We can build this seed via a unidirectional slow salvo synthesis consisting of $112$ gliders, and that slow salvo synthesis can be emulated via a single-channel glider recipe made up of $2{\thousep}393$ gliders. We leave the exact timing gaps to Appendix~??.
 
@@ -603,7 +618,7 @@ Stuff.
 \begin{figure}[!htbp]
 	\centering
 	\embedlink{c256_demonoid}{\includegraphics[width=\textwidth]{universal_construction/c256_demonoid.pdf}}
-	\caption{A $c/256$ Demonoid spaceship that works by bouncing a (very long) single-channel glider recipe (highlighted in \bgbox{greenpastel}{green}) between two self-constructing ends. In the phase shown here, the recipe is about to construct a Cordership in the southeast corner (at the location circled in \bgbox{redback}{red}), which moves northeast along the path highlighted in \bgbox{aquaback}{aqua}. The single-channel glider recipe then destroys the Cordership (at the location similarly circled in the northwest corner) so as to leave behind a construction elbow. That elbow is then used to build the Snarks and Scorbie splitters necessary to repeat this process. Finally, a single glider is sent backwards as part of a Snarkbreaker, letting the single-channel glider recipe follow that path higlighted in \bgbox{magentaback}{magenta}, which is used to destroy old Snarks and Scorbie splitters that are no longer needed.}\label{fig:c256_demonoid}
+	\caption{A $c/256$ Demonoid spaceship that works by bouncing a (very long) single-channel glider recipe (highlighted in \bgbox{greenpastel}{green}) between two self-constructing ends. In the phase shown here, the recipe is about to construct a Cordership in the southeast corner (at the location circled in \bgbox{redback2!25!redback}{red}), which moves northeast along the path highlighted in \bgbox{aquaback}{aqua}. The single-channel glider recipe then destroys the Cordership (at the location similarly circled in the northwest corner) so as to leave behind a construction elbow. That elbow is then used to build the Snarks and Scorbie splitters necessary to repeat this process. Finally, a single glider is sent backwards as part of a Snarkbreaker, letting the single-channel glider recipe follow that path higlighted in \bgbox{magentaback}{magenta}, which is used to destroy old Snarks and Scorbie splitters that are no longer needed.}\label{fig:c256_demonoid}
 \end{figure}
 
 
@@ -772,6 +787,37 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 		
 		Adjust that Demonoid so that the longest side of its bounding box is no more than $200{\thousep}000$ cells long. What are its period and speed after you make this adjustment?
 	\end{problemstar}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:snark_scorbie_splitter_xwss_destroy}
+		Recall the $461$-glider single-channel recipe from Appendix~\ref{sec:appendix_scorbie_splitter_destroyer} that produces the $6$-xWSS slow salvo of Figure~\ref{fig:scorbie_splitter_xwss_destroy} for destroying a Scorbie splitter.
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Separate this single-channel recipe into smaller recipes that (i) move the elbow, (ii) synthesize lightweight spaceships, (iii) synthesize middleweight spaceships, and (iv) destroy the elbow once it is no longer needed.
+			
+			\item In part~(a), you should have found two different LWSS recipes, and also two MWSS recipes. Why do there have to be two of each? Would it be possible to create this destruction salvo with just one LWSS recipe and one MWSS recipe?
+			% Solution: there's a parity problem. The elbow moves diagonally, *WSSes are p4 but move at c/2 , so a given recipe can only reach half the possible output positions for any *WSS.
+		\end{enumerate}
+	\end{problem}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:syringe_xwss_destroy}
+		The fact that Snarks and Scorbie splitters can be destroyed by xWSS slow salvos is not surprising---most objects can be similarly destroyed.
+				
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Construct an xWSS slow salvo that destroys the syringe from Figure~\ref{fig:syringe_main}.
+			
+			\item Construct a single-channel glider recipe that synthesizes the slow salvo from part~(a), and thus destroys a syringe.
+			
+			[Hint: Use the LWSS- and MWSS-synthesizing recipes that you found in Exercise~\ref{exer:snark_scorbie_splitter_xwss_destroy}.]
+		\end{enumerate}
+	\end{problem}
 	
 	
 	\mfilbreak
