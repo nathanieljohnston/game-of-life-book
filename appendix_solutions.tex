@@ -991,9 +991,11 @@
 		\item[\bf\color{ocre}\sffamily\ref{exer:44hd_elbow_push}] \begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
 			\item Since we can insert a few copies of this recipe into the Demonoid without actually increasing its size or period, its new speed is simply $172c/2097152 = 43c/524288$.
 			
-			\item The speed limit is $22c/(2195+44) = 22c/2239$, since for every $22$ cells that we push the elbow block forward, we have to wait $2195$ generations for the $44$hd elbow push to complete, plus another $44$~generations for the backward glider from the Snarkbreaker that cleans up the temporary Snark. We only have to wait $44$~generations for the backward glider (instead of $88$) since we do not have to wait until it breaks the Snark---we just have to wait until it makes its journey halfway there, so that it is past the Scorbie splitter that is used for construction in the next period of the Demonoid.
+			\item It is not possible for this spaceship to reach the speed $22c/(2195+44) = 22c/2239$, since for every $22$ cells that we push the elbow block forward, we have to wait $2195$ generations for the $44$hd elbow push to complete, plus another $44$~generations for the backward glider from the Snarkbreaker that cleans up the temporary Snark. We only have to wait $44$~generations for the backward glider (instead of $88$) since we do not have to wait until it breaks the Snark---we just have to wait until it makes its journey halfway there, so that it is past the Scorbie splitter that is used for construction in the next period of the Demonoid.
 			
-			This is the same reason that the Cordership-based Demonoid of Section~\ref{sec:medium_demonoid} can reach speeds close to $c/14$, but not $c/12$.\\
+			This is the same reason that the Cordership-based Demonoid of Section~\ref{sec:medium_demonoid} can reach speeds close to $c/14$, but not $c/12$.
+			
+			Note that the speed limit of this spaceship is even slower than $22c/2239$ (but computing the exact speed limit would be ugly). The reason for this is that, after we add lots of copies of the $44$hd elbow pushing recipe to the Demonoid, we will run out of room in between its two ends and be forced to further separate them from each other, slightly increasing the Demonoid's period and decreasing its speed.\\
 		\end{enumerate}
 		
 		\item[\bf\color{ocre}\sffamily\ref{exer:why_scorbie_splitter_snarkmakers}] The Scorbie splitter is about 150--200 lanes off to the side of the single-channel glider recipe (coming from the northwest), so zero-degree recipes would be very expensive (and not already located in pre-existing recipe databases, which only cover up to about 100 lane offsets).\\
