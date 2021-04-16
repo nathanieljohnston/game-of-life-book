@@ -1,9 +1,15 @@
 \documentclass[10pt]{standalone}
 \input{../macros}
 
+\newcommand{\backgliderarrow}[1]{\color{black}{$\xleftarrow{\text{ \includegraphics[width=0.25cm]{../glider.png} #1}}$}}
+
 \begin{document}
 	\begin{tikzpicture}%
 		\node[inner sep=0pt,anchor=south west] (sd) at (2,0) {\includegraphics[width=10cm]{slow_demonoid.png}};
+
+		% Adjustment for diagonal glider arrow. Hack-ish, but easier than manually adjusting.
+		\newcommand\diagx{-1.2}
+		\newcommand\diagy{-0.8}
 
 		% BORDER
 		\draw[gridgray] (2,0) rectangle (12,10);
@@ -27,9 +33,9 @@
 			\newcommand\smby{9.75}
 			\newcommand\smty{\smby+0.2067}
 			
-			\newcommand\bglx{0}
+			\newcommand\bglx{0.45}
 			\newcommand\bgrx{\bglx+\zoomwid}
-			\newcommand\bgty{4.1}
+			\newcommand\bgty{3.7}
 			\newcommand\bgby{\bgty-\zoomwid*1.3780821917}
 			
 			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
@@ -49,9 +55,9 @@
 			\draw[redback2,line width=0.6pt](0.99,1.21) circle (0.1);
 			
 			% GLIDER PATH ARROWS
-			\draw[color=gray,-stealth] (2.4,0) -- (1.9,0.5);
-			\draw[color=gray,-stealth] (2.38,1.55) -- (2.88,1.05);
-			\draw[color=gray,-stealth] (1.25,1.25) -- (1.75,1.75);
+			\draw[color=gray,-stealth] (2.4+\bglx,-0.4) -- (1.9+\bglx,0.1);
+			\draw[color=gray,-stealth] (2.38+\bglx,1.15) -- (2.88+\bglx,0.65);
+			\draw[color=gray,-stealth] (1.25+\bglx,0.85) -- (1.75+\bglx,1.35);
 		% END ZOOM BOX NW
 		
 		\node[inner sep=0pt,anchor=north west] at (\bglx+\zoomwid+0.03,\bgty-\zoomwid*0.66) {\vcenteredhbox{\gliderarrow{2460}}};
@@ -60,34 +66,34 @@
 		\draw[gridgray,line width=0.6pt] (\bglx+\zoomwid+\zoomxgap,\bgty) rectangle (\bgrx+\zoomwid+\zoomxgap,\bgby);
 		
 		% GLIDER PATH ARROWS
-		\draw[color=gray,-stealth] (5.23,1.1) -- (4.73,1.6);
-		\draw[color=gray,-stealth] (4.55,2.1) -- (5.05,2.6);
+		\draw[color=gray,-stealth] (5.23+\bglx,0.7) -- (4.73+\bglx,1.2);
+		\draw[color=gray,-stealth] (4.55+\bglx,1.7) -- (5.05+\bglx,2.2);
 		
-		\node[inner sep=0pt,anchor=north west] at (\bglx-0.8+\bottomshft,\bgty-\zoomwid*2.02-0.4) {\vcenteredhbox{\gliderarrow{11220}}};
+		\node[inner sep=0pt,anchor=north west,rotate=45] at (\bglx+\zoomwid+\zoomxgap-1.2,\bgby-0.9) {\vcenteredhbox{\backgliderarrow{11220}}};
 		
-		\node[inner sep=0pt,anchor=north west] at (\bglx+0.46+\bottomshft,\bgty-\zoomwid*1.3780821917-0.4) {\includegraphics[width=\zoomwid cm]{slow_demonoid_zoom13525.png}};
-		\draw[gridgray,line width=0.6pt] (\bglx+0.46+\bottomshft,\bgty-\zoomwid*1.3780821917-0.4) rectangle (\bgrx+0.46+\bottomshft,\bgby-\zoomwid*1.3780821917-0.4);
-		
-		% GLIDER PATH ARROWS
-		\draw[color=gray,-stealth] (1.8,-2.3) -- (2.3,-1.8);
-		\draw[color=gray,-stealth] (3.25,-1.5) -- (3.75,-2);
-		
-		\node[inner sep=0pt,anchor=north west] at (\bgrx+0.53+\bottomshft,\bgty-\zoomwid*2.02-0.4) {\vcenteredhbox{\gliderarrow{20}}};
-		
-		\node[inner sep=0pt,anchor=north west] at (\bglx+\zoomwid+\zoomxgap+0.27+\bottomshft,\bgty-\zoomwid*1.3780821917-0.4) {\includegraphics[width=\zoomwid cm]{slow_demonoid_zoom13545.png}};
-		\draw[gridgray,line width=0.6pt] (\bglx+\zoomwid+\zoomxgap+0.27+\bottomshft,\bgty-\zoomwid*1.3780821917-0.4) rectangle (\bgrx+\zoomwid+\zoomxgap+0.27+\bottomshft,\bgby-\zoomwid*1.3780821917-0.4);
+		\node[inner sep=0pt,anchor=north west] at (\bglx+0.46+\bottomshft+\diagx,\bgty-\zoomwid*1.3780821917-0.4+\diagy) {\includegraphics[width=\zoomwid cm]{slow_demonoid_zoom13525.png}};
+		\draw[gridgray,line width=0.6pt] (\bglx+0.46+\bottomshft+\diagx,\bgty-\zoomwid*1.3780821917-0.4+\diagy) rectangle (\bgrx+0.46+\bottomshft+\diagx,\bgby-\zoomwid*1.3780821917-0.4+\diagy);
 		
 		% GLIDER PATH ARROWS
-		\draw[color=gray,-stealth] (6.4,-1.85) -- (5.9,-2.35);
-		\draw[color=gray,-stealth] (6.4,-3.48) -- (5.9,-2.98);
+		\draw[color=gray,-stealth] (1.8+\diagx+\bglx,-2.7+\diagy) -- (2.3+\diagx+\bglx,-2.2+\diagy);
+		\draw[color=gray,-stealth] (3.25+\diagx+\bglx,-1.9+\diagy) -- (3.75+\diagx+\bglx,-2.4+\diagy);
 		
-		\node[inner sep=0pt,anchor=north west] at (12-\zoomwid-\zoomxgap+0.13+\bottomshft,\bgty-\zoomwid*2.02-0.4) {\vcenteredhbox{\gliderarrow{547}}};
+		\node[inner sep=0pt,anchor=north west] at (\bgrx+0.53+\bottomshft+\diagx,\bgty-\zoomwid*2.02-0.4+\diagy) {\vcenteredhbox{\gliderarrow{20}}};
 		
-		\node[inner sep=0pt,anchor=north west] at (12-\zoomwid+\bottomshft,\bgty-\zoomwid*1.3780821917-0.4) {\includegraphics[width=\zoomwid cm]{slow_demonoid_zoom14092.png}};
-		\draw[gridgray,line width=0.6pt] (12-\zoomwid+\bottomshft,\bgty-\zoomwid*1.3780821917-0.4) rectangle (12+\bottomshft,\bgby-\zoomwid*1.3780821917-0.4);
+		\node[inner sep=0pt,anchor=north west] at (\bglx+\zoomwid+\zoomxgap+0.27+\bottomshft+\diagx,\bgty-\zoomwid*1.3780821917-0.4+\diagy) {\includegraphics[width=\zoomwid cm]{slow_demonoid_zoom13545.png}};
+		\draw[gridgray,line width=0.6pt] (\bglx+\zoomwid+\zoomxgap+0.27+\bottomshft+\diagx,\bgty-\zoomwid*1.3780821917-0.4+\diagy) rectangle (\bgrx+\zoomwid+\zoomxgap+0.27+\bottomshft+\diagx,\bgby-\zoomwid*1.3780821917-0.4+\diagy);
 		
 		% GLIDER PATH ARROWS
-		\draw[color=gray,-stealth] (10.55,-3.38) -- (10.05,-2.88);
-		\draw[color=gray,-stealth] (10.23,-3.38) -- (10.23,-4.08);
+		\draw[color=gray,-stealth] (6.4+\diagx+\bglx,-2.25+\diagy) -- (5.9+\diagx+\bglx,-2.75+\diagy);
+		\draw[color=gray,-stealth] (6.4+\diagx+\bglx,-3.88+\diagy) -- (5.9+\diagx+\bglx,-3.38+\diagy);
+		
+		\node[inner sep=0pt,anchor=north west] at (12-\zoomwid-\zoomxgap+0.13+\bottomshft+\diagx+\bglx,\bgty-\zoomwid*2.02-0.4+\diagy) {\vcenteredhbox{\gliderarrow{547}}};
+		
+		\node[inner sep=0pt,anchor=north west] at (12-\zoomwid+\bottomshft+\diagx+\bglx,\bgty-\zoomwid*1.3780821917-0.4+\diagy) {\includegraphics[width=\zoomwid cm]{slow_demonoid_zoom14092.png}};
+		\draw[gridgray,line width=0.6pt] (12-\zoomwid+\bottomshft+\diagx+\bglx,\bgty-\zoomwid*1.3780821917-0.4+\diagy) rectangle (12+\bottomshft+\diagx+\bglx,\bgby-\zoomwid*1.3780821917-0.4+\diagy);
+		
+		% GLIDER PATH ARROWS
+		\draw[color=gray,-stealth] (10.55+\diagx+\bglx,-3.78+\diagy) -- (10.05+\diagx+\bglx,-3.28+\diagy);
+		\draw[color=gray,-stealth] (10.23+\diagx+\bglx,-3.78+\diagy) -- (10.23+\diagx+\bglx,-4.48+\diagy);
 	\end{tikzpicture}
 \end{document}

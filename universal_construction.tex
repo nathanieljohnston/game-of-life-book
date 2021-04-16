@@ -636,14 +636,14 @@ We now push these ideas to their absolute limit, and demonstrate how to construc
 \begin{itemize}
 	\item We have to replace the $c/12$ elbow-carrying Cordership with a $c/4$ diagonal spaceship.\smallskip
 	
-	\item We have to destroy any no-longer-needed circuitry without making use of Snarkbreakers (which are slow due to their usage of a long-distance backward glider on the construction lane).\smallskip
+	\item We have to destroy any no-longer-needed circuitry without making use of Snarkbreakers\index{Snarkbreaker} (which are slow due to their usage of a long-distance backward glider on the construction lane).\smallskip
 \end{itemize}
 
 We now discuss how to implement both of these changes, so that we can construct Demonoids of essentially any speed of our choosing.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{A c/4 Elbow-Carrying Spaceship}\label{sec:fast_demonoid_elbow_carry}
+\subsection{A Faster Elbow-Carrying Spaceship}\label{sec:fast_demonoid_elbow_carry}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 A rather large problem appears right away if we try to synthesize a $c/4$ diagional spaceship that we later shoot down from behind by gliders---those gliders cannot possibly catch up to the elbow-carrying spaceship since they travel at the same speed. To get around this problem, we instead synthesize a $c/4$ diagonal \emph{wickstretcher}, since we can burn wicks at speeds faster than $c/4$ and can thus shoot down a $c/4$ wickstretcher from behind.\index{wickstretcher}
@@ -652,7 +652,7 @@ We saw a synthesis for a $c/4$ diagonal boatstretcher\index{boatstretcher} based
 
 \begin{figure}[!htb]
 	\centering
-	\embedlink{boatstretcher_seed}{\vcenteredhbox{\patternimg{0.122}{boatstretcher_seed_0}} \vcenteredhbox{\genarrow{553}} \vcenteredhbox{\patternimg{0.122}{boatstretcher_seed_553}}}
+	\embedlink{boatstretcher_seed}{\vcenteredhbox{\patternimg{0.121}{boatstretcher_seed_0}} \vcenteredhbox{\genarrow{553}} \vcenteredhbox{\patternimg{0.121}{boatstretcher_seed_553}}}
 	
 	\caption{A seed that, when hit by a single glider, produces a crab-based boatstretcher travelling in the same direction. It uses some one-time splitters and one-time turners (see Exercise~\ref{exer:boatstretcher_seed_identify}) to convert the input glider into multiple synchronized gliders that synthesize the boatstretcher.}\label{fig:boatstretcher_seed}
 \end{figure}
@@ -661,27 +661,42 @@ To shoot down this boatstretcher, we fire a glider at the end of the wick (i.e.,
 
 \begin{figure}[!htb]
 	\centering
-	\embedlink{boatstretcher_shoot_down}{\vcenteredhbox{\patternimg{0.15}{boatstretcher_shoot_down_0}} \vcenteredhbox{\genarrow{252}} \vcenteredhbox{\patternimg{0.15}{boatstretcher_shoot_down_252}} \vcenteredhbox{\genarrow{187}} \vcenteredhbox{\patternimg{0.15}{boatstretcher_shoot_down_439}}}
+	\embedlink{boatstretcher_shoot_down}{\vcenteredhbox{\patternimg{0.125}{boatstretcher_shoot_down_0}} \vcenteredhbox{\genarrow{252}} \vcenteredhbox{\patternimg{0.125}{boatstretcher_shoot_down_252}} \vcenteredhbox{\genarrow{187}} \vcenteredhbox{\patternimg{0.125}{boatstretcher_shoot_down_439}}}
 	
-	\caption{By colliding a glider with a boat near the end of the boat wick, we can ignite a $c/3$ fuse. That $c/3$ fuse eventually catches up with the crab and glider at the front, causing them to self-destruct back into some simple ash objects (which could then be converted back into an elbow block by subsequent gliders).}\label{fig:boatstretcher_shoot_down}
+	\caption{By colliding a glider with a boat near the end of a boat wick, we can ignite a $c/3$ fuse. That $c/3$ fuse eventually catches up with the crab and glider at the front, causing them to self-destruct back into some simple ash objects (which could then be converted back into an elbow block by subsequent gliders).}\label{fig:boatstretcher_shoot_down}
 \end{figure}
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{A Faster Destruction Method}\label{sec:fast_demonoid_faster_destruction}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-By making use of this wickstretcher instead of a Cordership for long-distance elbow moves, we can now construct Demonoids with speeds approaching $c/6$. However, we cannot yet get speeds arbitrarily close to $c/4$, due to the return glider that is needed for the Snarkbreaker that we discussed earlier (i.e., the same reason that the Cordership-based Demonoid of Section~\ref{sec:medium_demonoid} can reach speeds close to $c/14$, but not $c/12$). To solve this problem, we introduce another method of destroying old, no-longer-needed circuitry: by placing other still lifes nearby that facilitate their destruction. For example, Figure~?? illustrates how 
+By making use of this wickstretcher instead of a Cordership for long-distance elbow moves, we can now construct Demonoids with speeds approaching $c/6$. However, we cannot yet get speeds arbitrarily close to $c/4$, due to the return glider that is needed for the Snarkbreaker that we discussed earlier (i.e., the same reason that the Cordership-based Demonoid of Section~\ref{sec:medium_demonoid} can reach speeds close to $c/14$, but not $c/12$). To solve this problem, we introduce another method of destroying old, no-longer-needed circuitry: by placing other still lifes nearby that facilitate their destruction.\footnote{Another method of avoiding Snarkbreakers, thus increasing the Demonoid speed limit from $c/6$ to $c/4$, is presented in Exercise~\ref{exer:slow_demonoid_no_snarkbreaker}.}
 
-% what search program is used to find these still lifes?
-% Mention another way of avoiding Snarkbreakers: {exer:slow_demonoid_no_snarkbreaker}
+For example, Figure~\ref{fig:snark_scorbie_seeded_destroy} illustrates how still lifes can be placed around a Snark and Scorbie splitter so that they can each be destroyed by a single glider.\footnote{Still life configurations like this that aid the self-destruction of a given pattern can be found via Simon Ekstr\"{o}m's \emph{GoL-destroy}\index{GoL-destroy} program, which is available at \httpsurl{github.com/simeksgol/GoL_destroy}.} Importantly, these still life do not interfere with the usual function of the circuit (which is to either reflect or duplicate a glider). Furthermore, the circuit-destroying glider comes from the same direction (but on a different lane) as the usual input glider, so the destruction can be triggered straightforwardly via the single-lane glider recipe (without having to wait for a return glider from the other side, as in a Snarkbreaker).
 
-% Mention how self-destruction mechanism is baked in with circuitry this time, instead of sending back gliders to do the cleanup.
-% Exercise with another way to destroy snark: just fire lots of gliders from the forward direction (this is different from the alread-existing exercise about pre-constructing the temporary snark)
+\begin{figure}[!htb]
+	\centering
+	\begin{subfigure}{0.455\textwidth}
+		\centering
+		\embedlink{snark_seeded_destroy}{\vcenteredhbox{\patternimg{0.110419214}{snark_seeded_destroy_0}} \vcenteredhbox{\genarrow{240}} \vcenteredhbox{\patternimg{0.110419214}{snark_seeded_destroy_240}}}
+		\caption{A Snark, seeded with 3 extra still lifes, being destroyed by a single glider.}
+		\label{fig:snark_seeded_destroy}
+	\end{subfigure} \hfill % 
+	\begin{subfigure}{0.505\textwidth}
+		\centering
+		\embedlink{scorbie_splitter_seeded_destroy}{\vcenteredhbox{\patternimg{0.094}{scorbie_splitter_seeded_destroy_0}} \vcenteredhbox{\genarrow{551}} \vcenteredhbox{\patternimg{0.094}{scorbie_splitter_seeded_destroy_551}}}
+		\caption{A Scorbie splitter, seeded with 8 extra still lifes, being destroyed by a single glider.}
+		\label{fig:scorbie_splitter_seeded_destroy}
+	\end{subfigure}
+	\caption{Additional still lifes (displayed in \bgbox{redback}{red}) can be placed near a circuit so as to make it simpler to destroy, without affecting its functionality. Here we use (a) 3 extra still lifes to turn a Snark into a one-time turner, and (b) 8 extra still lifes to turn a Scorbie splitter into a one-time-splitter.}\label{fig:snark_scorbie_seeded_destroy}
+\end{figure}
 
-% FIGURE
-% Rotate so that it moves to the top-right instead of the top-left
+In fact, since these destruction recipes produce output gliders, we don't even need to generation the destruction-triggering gliders via single-channel recipes at all. Instead, we can just use a single glider that follows along behind (but slightly offset from) the single-channel recipe to clean up every single piece of circuitry in the Demonoid once it is no longer needed. After one piece of circuitry is cleaned up, it is reflected toward the next piece of circuitry that needs cleaning up, and so on.
+
+% Exercise with another way to destroy Snark: just fire lots of gliders from the forward direction (this is different from the alread-existing exercise about pre-constructing the temporary snark)
+% Exercise: build another version of the slow Demonoid that uses the seeds-of-destruction technique instead of a Snarkbreaker
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -716,6 +731,9 @@ TRIGGER2 activates the second wick, which also burns until it reaches the leadin
 Again, the entire slow salvos for the Scorbie Splitter and Snark are already moving at c/4, next to the wicks created by the crab-wickstretcher, before either of the fuses are lit. Depending on the speed of the Speed Demonoid, the entire single-channel recipe for the wickstretcher and everything else may have been reflected into place by the newly-created Snark reflector -- so it may also be traveling alongside the wick, before the second wick starts to burn. (The first wick must have been lit, and must have burned all the way up to the crab-wickstretcher, to provide the target object for the Snark construction -- otherwise the Snark wouldn't be there.)
 
 The second wick burns at c/3, just a little faster than c/4, so it gradually catches up to the front of the wickstretcher, stops it and destroys it, and provides a target for all of the following gliders to hit. First the slow salvo hits the initial target and builds a Scorbie Splitter, and then the single-channel recipe comes along behind that, activates the Scorbie Splitter construction arm, and starts the whole process over again. And the same thing happens with a one-half period offset in the other half of the Demonoid, as usual.
+
+% FIGURE
+% Rotate so that it moves to the top-right instead of the top-left
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -992,7 +1010,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	
 	
 	\begin{problem}\label{exer:middling_demonoid_faster}
-		By separating the Cordership-creation and Cordership-destruction portions of the single-channel glider recipe, make a version of the ``middling'' Demonoid from Figure~\ref{fig:c256_demonoid} that advances by at least $2^{15}$ cells per period, instead of just $2^{14}$. What is the speed of this new, faster Demonoid?
+		By separating the Cordership-creation and Cordership-destruction portions of the single-channel glider recipe, make a version of the $c/256$ Demonoid from Figure~\ref{fig:c256_demonoid} that advances by at least $2^{15}$ cells per period, instead of just $2^{14}$. What is the speed of this new, faster Demonoid?
 		
 		\noindent [Hint: You will have to adjust the timing of Corderships in both the construction and destruction portions of the recipe, and also the timing of some backward glider collisions (e.g., for a Snarkbreaker).]
 	\end{problem}
@@ -1030,7 +1048,15 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 			% SOLUTION: Because it makes the resulting Demonoid a bit smaller (don't have to wait as long to ignite the fuse).
 		\end{enumerate}
 	\end{problem}
+
+
+	\mfilbreak
 	
+	
+	\begin{problem}\label{exer:use_gol_destroy}\index{GoL-destroy}
+		Use GoL-destroy (\httpsurl{github.com/simeksgol/GoL_destroy}) to find an arrangement of still lifes that can be placed around the color-changing reflector from Figure~\ref{fig:color_change_stable} so that it can be destroyed by a single glider.
+	\end{problem}
+
 	%% EXERCISE END COMMANDS
 \end{multicols}
 \normalsize\vspace*{0.01cm}
