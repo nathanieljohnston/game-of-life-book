@@ -588,7 +588,6 @@ The single-channel recipe that this Demonoid uses consists of $14{\thousep}247$ 
 Altogether, this Demonoid has period $2^{21} = 2{\thousep}097{\thousep}152$ and speed $128c/2097152 = c/16384$, but those values can be improved slightly by moving its ends closer together---see Exercise~\ref{exer:slow_demonoid_adjust}. By adding some extra block-pushing recipes to it, so that the new Scorbie splitter and Snark are built more than $128$ cells away, its speed can be increased by a considerably larger amount, but never past $c/100$ or so---see Exercise~\ref{exer:44hd_elbow_push}.
 
 
-% TODO: Figure out of c/14 is approachable or not. Does the Demonoid-widening argument apply here?
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{A Middling Demonoid}\label{sec:medium_demonoid}\index{Cordership}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -632,18 +631,112 @@ By waiting longer to shoot down the Cordership after it has been constructed, we
 \section{A Fast Demonoid}\label{sec:fast_demonoid}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-We now push these ideas to their absolute limit, and demonstrate how to construct Demonoids with speeds arbitrarily close to $c/4$ (rather than just $c/14$).\footnote{Recall from Theorem~\ref{thm:speed_limits} that no diagonal spaceship can go faster than this.}
-% Speed limit c/4. Introduce wickstretcher method here.
+We now push these ideas to their absolute limit, and demonstrate how to construct Demonoids with \emph{any} rational speed below $c/4$ (rather than just speeds below $c/14$).\footnote{Recall from Theorem~\ref{thm:speed_limits} that no diagonal spaceship can go faster than $c/4$.} In order to make this possible, we have two modify the $c/256$ Demonoid from Figure~\ref{fig:c256_demonoid} in two ways:\smallskip
+
+\begin{itemize}
+	\item We have to replace the $c/12$ elbow-carrying Cordership with a $c/4$ diagonal spaceship.\smallskip
+	
+	\item We have to destroy any no-longer-needed circuitry without making use of Snarkbreakers (which are slow due to their usage of a long-distance backward glider on the construction lane).\smallskip
+\end{itemize}
+
+We now discuss how to implement both of these changes, so that we can construct Demonoids of essentially any speed of our choosing.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{A c/4 Elbow-Carrying Spaceship}\label{sec:fast_demonoid_elbow_carry}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+A rather large problem appears right away if we try to synthesize a $c/4$ diagional spaceship that we later shoot down from behind by gliders---those gliders cannot possibly catch up to the elbow-carrying spaceship since they travel at the same speed. To get around this problem, we instead synthesize a $c/4$ diagonal \emph{wickstretcher}, since we can burn wicks at speeds faster than $c/4$ and can thus shoot down a $c/4$ wickstretcher from behind.\index{wickstretcher}
+
+We saw a synthesis for a $c/4$ diagonal boatstretcher\index{boatstretcher} based on the crab\index{crab} spaceship back in Exercise~\ref{exer:large_still_life_synth}, and it is fairly routine at this point to turn that glider synthesis into a unidirectional slow synthesis, and then finally into a single-channel recipe. Indeed, Figure~\ref{fig:boatstretcher_seed} shows a seed for this boatstretcher that can be triggered by just a single glider from behind\footnote{This seed was constructed and heavily optimized via a collaborative effort involving Dave Greene, Tanner Jacobi, and ConwayLife.com forums users ``Goldtiger997'' and ``toroidalet'' in July and August 2020.} (much like the single-glider seed for the Cordership from Figure~\ref{fig:2_engine_cordership_seed}). This particular seed also produces some small ash objects near the end of the boat wick (which is easily cleaned up by a few extra slow gliders---see Exercise~\ref{exer:boatstretcher_seed_slow_cleanup}), as well as a single glider that travels along the side of the boat wick, whose purpose we will see shortly.
+
+\begin{figure}[!htb]
+	\centering
+	\embedlink{boatstretcher_seed}{\vcenteredhbox{\patternimg{0.122}{boatstretcher_seed_0}} \vcenteredhbox{\genarrow{553}} \vcenteredhbox{\patternimg{0.122}{boatstretcher_seed_553}}}
+	
+	\caption{A seed that, when hit by a single glider, produces a crab-based boatstretcher travelling in the same direction. It uses some one-time splitters and one-time turners (see Exercise~\ref{exer:boatstretcher_seed_identify}) to convert the input glider into multiple synchronized gliders that synthesize the boatstretcher.}\label{fig:boatstretcher_seed}
+\end{figure}
+
+To shoot down this boatstretcher, we fire a glider at the end of the wick (i.e., the boat that is being stretched) so as to ignite a fuse that travels faster than $c/4$, thus eventually catching up to the crab at the front and destroying it. A suitable technique for igniting a $c/3$ fuse\index{fuse} is displayed in Figure~\ref{fig:boatstretcher_shoot_down}, as is the resulting destruction of the crab boatstretcher.\footnote{There is also a common $2c/3$ fuse that can burn through this wick and destroy the crab---see Exercise~\ref{exer:boatstretcher_2c3_fuse}.} This destruction technique is why we made sure that the seed from Figure~\ref{fig:boatstretcher_seed} fires a glider next to the crab---when the fuse catches up to the crab, it just fizzles out, without actually destroying the crab itself. However, the presence of the glider changes that fizzle into an explosion, thus destroying the crab and letting us turn it back into an elbow block.
+
+\begin{figure}[!htb]
+	\centering
+	\embedlink{boatstretcher_shoot_down}{\vcenteredhbox{\patternimg{0.15}{boatstretcher_shoot_down_0}} \vcenteredhbox{\genarrow{252}} \vcenteredhbox{\patternimg{0.15}{boatstretcher_shoot_down_252}} \vcenteredhbox{\genarrow{187}} \vcenteredhbox{\patternimg{0.15}{boatstretcher_shoot_down_439}}}
+	
+	\caption{By colliding a glider with a boat near the end of the boat wick, we can ignite a $c/3$ fuse. That $c/3$ fuse eventually catches up with the crab and glider at the front, causing them to self-destruct back into some simple ash objects (which could then be converted back into an elbow block by subsequent gliders).}\label{fig:boatstretcher_shoot_down}
+\end{figure}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{A Faster Destruction Method}\label{sec:fast_demonoid_faster_destruction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 By making use of this wickstretcher instead of a Cordership for long-distance elbow moves, we can now construct Demonoids with speeds approaching $c/6$. However, we cannot yet get speeds arbitrarily close to $c/4$, due to the return glider that is needed for the Snarkbreaker that we discussed earlier (i.e., the same reason that the Cordership-based Demonoid of Section~\ref{sec:medium_demonoid} can reach speeds close to $c/14$, but not $c/12$). To solve this problem, we introduce another method of destroying old, no-longer-needed circuitry: by placing other still lifes nearby that facilitate their destruction. For example, Figure~?? illustrates how 
 
 % what search program is used to find these still lifes?
+% Mention another way of avoiding Snarkbreakers: {exer:slow_demonoid_no_snarkbreaker}
 
 % Mention how self-destruction mechanism is baked in with circuitry this time, instead of sending back gliders to do the cleanup.
+% Exercise with another way to destroy snark: just fire lots of gliders from the forward direction (this is different from the alread-existing exercise about pre-constructing the temporary snark)
 
 % FIGURE
-% Rotate so that it moves to the top-right instead of the top-left?
-% Exercise with another way to destroy snark: just fire lots of gliders from the forward direction
+% Rotate so that it moves to the top-right instead of the top-left
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The Speed Demonoid Itself}\label{sec:speed_demonoid}\index{Speed Demonoid}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Speed Demonoid construction script: https://conwaylife.com/forums/viewtopic.php?p=105167#p108786
+Basically, the design allows for trivial adjustments to make a spaceship with a diagonal step size that's any even distance d >= 3285622, and a period that's any multiple of eight p >= 16493928 -- provided that the resulting d/p fraction comes out to less than 1/4.
+
+There are options in the script to specify build a HashLife-friendly Speed Demonoid, which just means that the distance is chosen to be the smallest workable multiple of a power of two that comes out >= 3285622 and makes the correct fraction (when you adjust the period appropriately).
+
+Given an existing Speed Demonoid, or a glider recipe for one (which is what the script produces) it's quite trivial to make speed adjustments by hand.
+
+Description of the Inner Workings
+As usual, the main body of the Speed Demonoid is its single-channel recipe -- a long stream of gliders that encodes all the construction work that will have to be done to support the creation of a meandering path ahead of the spaceship, of exactly the right length to produce the required speed.
+
+First the single-channel recipe hits a Scorbie Splitter, starts up its construction arm, and builds
+
+1) a complete 1-glider seed for a double crab-wickstretcher, pointing toward the locations where the next Snark and Scorbie Splitter will have to be built;
+2) a trigger glider for the 1G seed, starting the double wickstretcher on its way at a speed of c/4 diagonally;
+3) a few bait still lifes at the right locations to allow each of the two wicks to be activated, with a particular type of clean fuse that burns slowly, at c/3 instead of the usual 2c/3 or lightspeed;
+4) a series of unidirectional gliders in two slow salvos, traveling alongside the wick without disturbing it, which will eventually construct the new copies of the required Snark and Scorbie Splitter ahead of the spaceship on that side.
+
+Following the main single-channel recipe are two isolated gliders on different lanes -- TRIGGER1 first, then TRIGGER2.
+
+TRIGGER1 activates the first wick, which burns until it reaches the leading crab spaceship, but does not destroy it. Instead, a "guard glider" following along behind the wickstretcher catalyzes the wick-burning reaction to produce a target block safely off to the side, where the Snark part of the slow salvo can use it to build a Snark. The first part of this salvo just moves the block a little farther to the side, since the entire Scorbie Splitter part of the recipe has to fly past the block before the Snark can be constructed. (A completed Snark would be badly in the way of the slow salvo doing the Scorbie Splitter construction.)
+
+So the Scorbie Splitter slow salvo flies past the block and keeps flying, while the Snark slow salvo hits the target block and builds the Snark. The Scorbie Splitter recipe is still moving, at the same speed as the wickstretcher, while the Snark is incrementally constructed in the space that the Scorbie Splitter recipe has just passed through.
+
+TRIGGER2 activates the second wick, which also burns until it reaches the leading crab spaceship. But this time, the "guard glider" on that side of the wickstretcher is placed so that the burning wick reaction reaches forward and destroys the crab, stopping it in its tracks and making a small amount of debris, which can be used by the following slow salvo to build a new Scorbie Splitter on that side.
+
+Again, the entire slow salvos for the Scorbie Splitter and Snark are already moving at c/4, next to the wicks created by the crab-wickstretcher, before either of the fuses are lit. Depending on the speed of the Speed Demonoid, the entire single-channel recipe for the wickstretcher and everything else may have been reflected into place by the newly-created Snark reflector -- so it may also be traveling alongside the wick, before the second wick starts to burn. (The first wick must have been lit, and must have burned all the way up to the crab-wickstretcher, to provide the target object for the Snark construction -- otherwise the Snark wouldn't be there.)
+
+The second wick burns at c/3, just a little faster than c/4, so it gradually catches up to the front of the wickstretcher, stops it and destroys it, and provides a target for all of the following gliders to hit. First the slow salvo hits the initial target and builds a Scorbie Splitter, and then the single-channel recipe comes along behind that, activates the Scorbie Splitter construction arm, and starts the whole process over again. And the same thing happens with a one-half period offset in the other half of the Demonoid, as usual.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Adjusting the Speed Demonoid}\label{sec:speed_demonoid_adjust}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The adjustment math for these Speed Demonoids is surprisingly easy.
+
+The smallest "safe" numbers in an unsimplified fractional speed for the current Speed Demonoid -- actual step size, divided by actual period -- is 3285622c/16493928.
+
+You can't move the trigger gliders any closer than they are in a 3285622c/16493928 Speed Demonoid, because (for TRIGGER1) the attempt to light the fuse will fail because some of the mechanism is still under construction, or (TRIGGER2) the single-channel salvo will start to run into the next Snark while it's still under construction.
+
+(There are ways to overclock a Speed Demonoid slighty and reduce the fraction some distance into the "unsafe" range without actually breaking anything, but pretty quickly you'll run into hard limits.)
+
+Moving the two halves of the Demonoid farther apart by one cell diagonally has the usual result of increasing the period of the spaceship by 8 ticks, without changing the step size.
+
+Adjusting the trigger gliders is more interesting. It turns out that delaying the TRIGGER1 glider by one tick, will change the location where the burning wick will catch up with the crab spaceship by exactly four ticks -- one cell diagonally. The Snark will then be built at a slightly different location, off by (-1,-1) compared to the unadjusted TRIGGER1.
+
+For every tick that TRIGGER1 is delayed, it's necessary to delay TRIGGER2 by two ticks -- because TRIGGER2 controls the location where the next Scorbie Splitter is built, in a similar way. If TRIGGER1 and TRIGGER2 are not kept exactly in synch, then the Scorbie Splitter location in one half of the spaceship won't line up with the Snark location in the other half, and the Demonoid will stop working.
+
+% Script is here: https://www.conwaylife.com/forums/viewtopic.php?f=15&t=4117#p105196
 
 
 
@@ -902,6 +995,40 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 		By separating the Cordership-creation and Cordership-destruction portions of the single-channel glider recipe, make a version of the ``middling'' Demonoid from Figure~\ref{fig:c256_demonoid} that advances by at least $2^{15}$ cells per period, instead of just $2^{14}$. What is the speed of this new, faster Demonoid?
 		
 		\noindent [Hint: You will have to adjust the timing of Corderships in both the construction and destruction portions of the recipe, and also the timing of some backward glider collisions (e.g., for a Snarkbreaker).]
+	\end{problem}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:boatstretcher_seed_slow_cleanup}
+		Show how some additional slow gliders coming from the southwest can be used to clean up the ash objects (i.e., the blinkers, blocks, and loaf) left behind by the boatstretcher seed from Figure~\ref{fig:boatstretcher_seed}.
+	\end{problem}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:boatstretcher_seed_identify}
+		Determine which of the still lifes in the boatstretcher seed from Figure~\ref{fig:boatstretcher_seed} are (a) one-time splitters, and (b) one-time turners. How many synchronized gliders do the one-time splitters produce, and what is their role (i.e., what object(s) do they help synthesize)?
+	\end{problem}
+	% SOLUTION: 6 synchronized gliders (4: make crab, 1: append boat wick, 1: make the trailing glider)
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:boatstretcher_2c3_fuse}\index{fuse}
+		Recall the boat wick that was created by the one-glider seed in Figure~\ref{fig:boatstretcher_seed}.
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Find a $2c/3$ fuse that burns through this wick.
+			
+			\noindent [Hint: This fuse is much more common than the $c/3$ fuse that we found in the main text---just look for it by hand.]
+			
+			\item Why do you think we used the $c/3$ fuse to build the Speed Demonoid instead of this $2c/3$ fuse?
+			% SOLUTION: Because it makes the resulting Demonoid a bit smaller (don't have to wait as long to ignite the fuse).
+		\end{enumerate}
 	\end{problem}
 	
 	%% EXERCISE END COMMANDS
