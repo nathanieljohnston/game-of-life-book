@@ -711,7 +711,7 @@ The only additional wrinkle that we add to this Demonoid design is that we use t
 	\centering
 	\embedlink{double_boatstretcher_shoot_down}{\vcenteredhbox{\patternimg{0.125}{double_boatstretcher_shoot_down_0}} \vcenteredhbox{\genarrow{343}} \vcenteredhbox{\patternimg{0.125}{double_boatstretcher_shoot_down_343}}}
 	
-	\caption{A double boatstretcher that can have its two wicks ignited independently, allowing the crab two carry two construction elbows instead of just one. Here, the first fuse (highlighted in \bgbox{aquaback}{aqua}) creates a small explosion, without hurting the crab, that the nearby glider helps turn into the first elbow. The second fuse (highlighted in \bgbox{orangeback2}{orange}) then destroys the crab, and the nearby glider helps turn it into the second elbow, as in Figure~\ref{fig:boatstretcher_shoot_down}.}\label{fig:double_boatstretcher_shoot_down}
+	\caption{A double boatstretcher that can have its two wicks ignited independently, allowing the crab two carry two construction elbows instead of just one. Here, the first fuse (highlighted in \bgbox{aquaback}{aqua}) creates a small explosion, without hurting the crab, that the nearby glider helps turn into the first elbow. The second fuse (highlighted in \bgbox{magentaback}{magenta}) then destroys the crab, and the nearby glider helps turn it into the second elbow, as in Figure~\ref{fig:boatstretcher_shoot_down}.}\label{fig:double_boatstretcher_shoot_down}
 \end{figure}
 
 We similarly needed to make two construction elbows in each of our previous Demonoids. In the slow Demonoid from Figure~\ref{fig:slow_demonoid}, we first pushed the construction elbow to the correct location to build the next Scorbie splitter, and then once it was built we pushed the construction elbow forward again to the correct location to build the next Snark. In the $c/256$ Demonoid from Figure~\ref{fig:c256_demonoid}, the Cordership was shot down into an elbow at the location of the next Snark, and then a backward glider was shot back to create an elbow at the location of the next Scorbie splitter (alternatively, we could have used two Corderships). We could use similar tricks in this Speed Demonoid, but a single double boatstretcher is a bit faster and more elegant.
@@ -746,10 +746,8 @@ The second wick burns at c/3, just a little faster than c/4, so it gradually cat
 \begin{figure}[!htbp]
 	\centering
 	\embedlink{speed_demonoid}{\includegraphics[width=\textwidth]{universal_construction/speed_demonoid.pdf}}
-	\caption{A Speed Demonoid spaceship that moves $3{\thousep}285{\thousep}622$ cells diagonally every $16{\thousep}493{\thousep}928$ generations, for a speed of $1642811c/8246964 \approx 0.1992c$. The single-channel glider recipe constructs Snarks, Scorbie splitters, and crab-based double boatstretchers. The two \texttt{TRIGGER} gliders (circled in \bgbox{redback}{red}) each ignite one of the fuses behind the boatstretcher, and \texttt{TRIGGER2} also destroys everything in its path.}\label{fig:speed_demonoid}
+	\caption{A Speed Demonoid spaceship that moves $3{\thousep}285{\thousep}622$ cells diagonally every $16{\thousep}493{\thousep}928$ generations, for a speed of $1642811c/8246964 \approx 0.1992c$. The single-channel glider recipe (whose path is highlighted in \bgbox{orangeback2}{orange}) constructs Snarks, Scorbie splitters, and crab-based double boatstretchers. The two \texttt{TRIGGER} gliders (circled in \bgbox{redback}{red} and highlighted in \bgbox{aquaback}{aqua} and \bgbox{magentaback}{magenta}, respectively) each ignite one of the fuses behind the boatstretcher, and \texttt{TRIGGER2} also destroys no-longer-needed Snarks and Scorbie splitters.}\label{fig:speed_demonoid}
 \end{figure}
-% minimal Speed Demonoid here. 3285622c/16493928
-% TODO: Change color of trigger2 path in large image, and add that path to the small zoom image at the bottom-right. Then mention those colors in the caption. Actually, make sure that those colors match the previous figure too (you will have to change orange in previous picture to something else, like magenta)!
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
