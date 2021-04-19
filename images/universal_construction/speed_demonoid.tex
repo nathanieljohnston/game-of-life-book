@@ -1,0 +1,76 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\begin{document}
+	\begin{tikzpicture}%
+		\node[inner sep=0pt,anchor=south west] (sd) at (1.5,0) {\includegraphics[width=9cm]{speed_demonoid.png}};
+
+		% BORDER
+		\draw[gridgray] (0,0) rectangle (12,17.6476868327);
+		\clip (0,0) rectangle (12,17.6476868327);
+		
+		% DIRECTION
+		\newcommand\dirx{6.5}
+		\newcommand\diry{16}
+		\draw[gray] (\dirx,\diry) node[rotate=45,shift={(0.05,0.12)}] {\tiny \texttt{direction of travel}};
+		\draw[color=gray,-stealth] (\dirx-0.7,\diry-0.7) -- (\dirx+0.8,\diry+0.8);
+		
+		% ZOOM SOUTHERN CORNER TRIGGER1
+			\newcommand\smlx{5.98}
+			\newcommand\smrx{\smlx+0.2}
+			\newcommand\smby{4.44}
+			\newcommand\smty{\smby+0.2}
+			
+			\newcommand\bglx{7}
+			\newcommand\bgrx{\bglx+4.5}
+			\newcommand\bgty{5}
+			\newcommand\bgby{\bgty-4.5}
+			
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
+			
+			\node[inner sep=0pt,anchor=north west] (zoom2) at (\bglx,\bgty) {\includegraphics[width=4.5cm]{speed_demonoid_zoom_trigger1.png}};
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (\smlx,\smty) -- (\bglx,\bgty) -- (\bglx,\bgby) -- (\smlx,\smby) -- (\smrx,\smby) -- (\smrx,\smty) -- cycle;
+			
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\smlx,\smty) rectangle (\smrx,\smby);
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+			
+			% CIRCLE TRIGGER1
+			\draw[white,line width=1.5pt,opacity=0.6](9.305,2.885) circle (0.1);
+			\draw[redback2,line width=0.6pt](9.305,2.885) circle (0.1);
+			
+			% TRIGGER1 Label
+			\newcommand\trigox{9.13}
+			\newcommand\trigoy{2.97}
+			\draw[gray] (\trigox,\trigoy) node[rotate=45,shift={(0.05,0.12)}] {\tiny \texttt{TRIGGER1}};
+			\draw[color=gray,-stealth] (\trigox-0.35,\trigoy-0.35) -- (\trigox+0.45,\trigoy+0.45);
+		% END ZOOM BOX NW
+	
+		% CIRCLE TRIGGER2
+		\draw[white,line width=1.5pt,opacity=0.6](1.77,0.2) circle (0.1);
+		\draw[redback2,line width=0.6pt](1.77,0.2) circle (0.1);
+		
+		% TRIGGER2 Label
+		\newcommand\trigtx{2.2}
+		\newcommand\trigty{0.75}
+		\draw[gray] (\trigtx,\trigty) node[rotate=45,shift={(0.05,0.12)}] {\tiny \texttt{TRIGGER2}};
+		\draw[color=gray,-stealth] (\trigtx-0.35,\trigty-0.35) -- (\trigtx+0.45,\trigty+0.45);
+		
+		% TRIGGER separation
+		\draw[color=gray,decorate,decoration={brace,amplitude=10pt}]
+		(\trigtx+3.95,\trigty+3.6) -- (\trigtx-0.3,\trigty-0.65) node[midway,rotate=45,shift={(0.03,-0.55)}] {\tiny \texttt{TRIGGER separation: n = 1642811 generations}};
+		
+		% END separation
+		\draw[color=gray,decorate,decoration={brace,amplitude=10pt}]
+		(5.93,4.47) -- (1.65,8.75) node[midway,rotate=-45,shift={(0.03,-0.55)}] {\tiny \texttt{halves separation: m = 418930 full diagonals}};
+		
+		% GLIDER PATH ARROWS
+		\draw[color=gray,-stealth] (4.3,6.5) -- (3.8,7);
+		\draw[color=gray,-stealth] (7.81,6.5) -- (8.31,7);
+		\draw[color=gray,-stealth] (3.8,11.2) -- (4.3,11.7);
+	\end{tikzpicture}
+\end{document}

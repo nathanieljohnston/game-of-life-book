@@ -717,7 +717,7 @@ The only additional wrinkle that we add to this Demonoid design is that we use t
 We similarly needed to make two construction elbows in each of our previous Demonoids. In the slow Demonoid from Figure~\ref{fig:slow_demonoid}, we first pushed the construction elbow to the correct location to build the next Scorbie splitter, and then once it was built we pushed the construction elbow forward again to the correct location to build the next Snark. In the $c/256$ Demonoid from Figure~\ref{fig:c256_demonoid}, the Cordership was shot down into an elbow at the location of the next Snark, and then a backward glider was shot back to create an elbow at the location of the next Scorbie splitter (alternatively, we could have used two Corderships). We could use similar tricks in this Speed Demonoid, but a single double boatstretcher is a bit faster and more elegant.
 
 % TRIGGER1 just triggers. TRIGGER2 also does self-destruction stuff
-% STuff from here on can be simplified considerably
+% STuff from here on can be simplified considerably, since a lot of these ideas are explained earlier now
 
 More specifically, the single-channel recipe first hits a Scorbie splitter, starts up its construction arm, and builds:\smallskip
 
@@ -743,9 +743,13 @@ Again, the entire slow salvos for the Scorbie Splitter and Snark are already mov
 
 The second wick burns at c/3, just a little faster than c/4, so it gradually catches up to the front of the wickstretcher, stops it and destroys it, and provides a target for all of the following gliders to hit. First the slow salvo hits the initial target and builds a Scorbie Splitter, and then the single-channel recipe comes along behind that, activates the Scorbie Splitter construction arm, and starts the whole process over again. And the same thing happens with a one-half period offset in the other half of the Demonoid, as usual.
 
-% FIGURE. Probably a lot earlier, actually.
+\begin{figure}[!htbp]
+	\centering
+	\embedlink{speed_demonoid}{\includegraphics[width=\textwidth]{universal_construction/speed_demonoid.pdf}}
+	\caption{A Speed Demonoid spaceship that moves $3{\thousep}285{\thousep}622$ cells diagonally every $16{\thousep}493{\thousep}928$ generations, for a speed of $1642811c/8246964 \approx 0.1992c$. The single-channel glider recipe constructs Snarks, Scorbie splitters, and crab-based double boatstretchers. The two \texttt{TRIGGER} gliders (circled in \bgbox{redback}{red}) each ignite one of the fuses behind the boatstretcher, and \texttt{TRIGGER2} also destroys everything in its path.}\label{fig:speed_demonoid}
+\end{figure}
 % minimal Speed Demonoid here. 3285622c/16493928
-% Rotate so that it moves to the top-right instead of the top-left
+% TODO: Change color of trigger2 path in large image, and add that path to the small zoom image at the bottom-right. Then mention those colors in the caption. Actually, make sure that those colors match the previous figure too (you will have to change orange in previous picture to something else, like magenta)!
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -779,25 +783,6 @@ After making these adjustments, the Speed Demonoid has speed
 \]
 Since every rational number between $0$ and $1$ can be written in the form $n/(n+m)$ for some integers $m,n > 0$,\footnote{Furthermore, since $n/(n+m) = (cn)/(cn+cm)$ for all $c > 0$, we can choose $m$ and $n$ to be as large as we like. In particular, we can choose $n > 3{\thousep}285{\thousep}622$ and $n+m > 16{\thousep}493{\thousep}928$ so that the resulting Speed Demonoid is actually constructible.} it follows that Speed Demonoids can be adjusted to have any rational speed that is slower than $c/4$.
 
-%\begin{theorem}[Speed Demonoids Attain Any Speed]\label{thm:speed_demonoid_all_speeds}
-%	Suppose $p$ and $q$ are positive integers with $p/q < 1/4$. Then there exist positive integers $m$ and $n$ such that
-%	\[
-%		\frac{p}{q} = \frac{3285622 + 2n}{16493928 + 8n + 8m}.
-%	\]
-%	In particular, this means that the Speed Demonoid from Figure~?? can be adjusted to have any rational speed strictly slower than $c/4$.
-%\end{theorem}
-%
-%\begin{proof}
-%	Multiplying both sides of this equation by the denominators and then rearranging shows that it is equivalent to
-%	\[
-%		m(4p) - n(q - 4p) = 1642811q - 2061741(4p).
-%	\]
-%	If we make the change of variables $a = 4p$ and $b = q - 4p$ (noting that $p/q < 1/4$ implies $q - 4p > 0$, so $a$ and $b$ are both positive integers), then this equation simplifies further to
-%	\[
-%		ma - nb = 1642811b - 418930a.
-%	\]
-%	Since $1642811b - 418930a$ is a multiple of $\mathrm{gcd}(a,b)$, B\'ezout's identity (Theorem~\ref{thm:linear_diophantine}) immediately tell us that there are positive integers $m$ and $n$ satisfying this equation.
-%\end{proof}
 % Exercise: Given rational speed, find m and n
 % Adjustment script is here: https://www.conwaylife.com/forums/viewtopic.php?f=2&t=4711&start=25#p105167 (v4)
 
