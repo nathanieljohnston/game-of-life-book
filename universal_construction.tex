@@ -16,9 +16,12 @@
 
 We refer to these techniques as \emph{universal construction},\index{universal construction} and a pattern that implements them as a \emph{universal constructor},\index{universal constructor} with ``universal'' referring to the fact that they can build any Life pattern that is synthesizable via gliders.\footnote{Some patterns, like Gardens of Eden and the grandparentless pattern from Figure~\ref{fig:grandparentless}, cannot be synthesized by gliders.} Although most universal constructors only fire slow glider salvos, we know from Theorem~\ref{thm:p2_slow_salvo} that this is enough to implement arbitrary glider syntheses. Most useful universal constructors are built out of simple stable components like blocks, beehives, and eater~1s, so that it is relatively straightforward to synthesize them via gliders, and thus they can even be used to build copies of themselves.
 
+% Give big picture: We show how to construct spaceships with any slope first (but not any speed), then show how to construct diagonal spaceships with any speed (but not any slope)
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Gemini}\label{sec:gemini}\index{gemini}
+\section{Gemini and Geminoids}\label{sec:gemini}\index{gemini}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % As our first illustration of the utility of universal computation...
@@ -78,7 +81,7 @@ By aiming the output gliders of two of these elbow-operation circuits at each ot
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{The Spaceship Itself}\label{sec:gemini_itself}
+\subsection{The Gemini Itself}\label{sec:gemini_itself}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Importantly, because these circuits are made up of such simple components (mostly blocks and eater~1s, with the most difficult piece to synthesize being a tub), they can even be used to synthesize copies of \emph{themselves}. Indeed, this is the key idea behind the Gemini spaceship: use an extremely long chain of gliders to have two of these circuits build copies of themselves somewhere else in the plane. To turn this idea into a \emph{spaceship} though (rather than just something that repeatedly builds copies of itself), we need to make two additions:\smallskip
@@ -91,7 +94,7 @@ Importantly, because these circuits are made up of such simple components (mostl
 
 After we put all of these ideas together, we get the Gemini spaceship that is displayed in Figure~\ref{fig:gemini}.\footnote{Constructed by Andrew J.~Wade in May 2010.} It builds a copy of itself displaced by $5{\thousep}120$ cells in one direction and $1{\thousep}024$ cells in the other direction every $33{\thousep}699{\thousep}586$ generations, making it the first spaceship that we have seen that does not travel orthogonally or diagonally at a slope of~$1$ (its slope is $5120/1024 = 5$).
 
-\begin{figure}[!htbp]
+\begin{figure}[!htb]
 	\centering
 	\embedlink{gemini}{\includegraphics[width=\textwidth]{universal_construction/gemini.pdf}}
 	\caption{The self-constructing \emph{Gemini} spaceship, which simply looks like a long, thin diagonal line when zoomed out far enough to see in its entirety. The bulk of the spaceship of made up of 24 parallel glider lanes (12 travelling in each direction), which carry a recipe for building the ship. The ends of the spaceship, which are zoomed in on here, are identical arrangements of stable glider reflectors, glider duplicators, and three elbow-operation circuits whose sliding blocks are circled in \bgbox{redback}{red}. The elbow-operation circuits highlighted in \bgbox{aquaback}{aqua} and \bgbox{greenpastel}{green} build the next copy of the spaceship (highlighted in \bgbox{yellowback2}{yellow}), while the elbow-operation circuit higlighted in \bgbox{magentaback}{magenta} destroys the previous copy of the spaceship (highlighted in \bgbox{orangeback2}{orange}).}\label{fig:gemini}
@@ -102,8 +105,31 @@ After we put all of these ideas together, we get the Gemini spaceship that is di
 \subsection{Geminoids}\label{sec:geminoids}\index{geminoid}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Stuff.
-% Describe how fast we can make it go, what the limiting factor is. Say not worth showing variations in bookks since they look essentially identical.
+The Gemini spaceship of Figure~\ref{fig:gemini} travels at a speed of $(1024,5120)c/33699586$, but it can be modified in numerous ways to produce closely-related spaceships, called \emph{Geminoids}, that have a wide variety of different speeds and directions. We now explore some of these alterations, and discuss what their theoretical limits are.
+
+The simplest way to change the speed of the Gemini is to change the distance between its two identical ends, without changing any of the glider recipes that bounce back and forth between them. Each additional cell (i.e., full diagonal) by which we separate the ends increases the travel time of each glider by $8$~generations per period ($4$~generations in each direction). Since this change does not affect how far the Gemini travels over the course of its period, this lets us build Geminoids that are arbitrarily slow, having any speed of the form $(1024,5120)c/(33699586 + 8k)$, where $k \geq 0$ is an integer.\footnote{We can also squeeze the ends of the Gemini closer together, which \emph{decreases} its period by $8$ generation per full diagonal, but only by a bit. The glider sequence still has to fit between the two ends---if we squeeze them too close together then gliders will try to use circuitry before it is constructed (see Exercise~\ref{exer:squeeze_gemini_how_far}).}
+
+We can also change the slope (i.e., the direction) that the Gemini travels at, just by changing how many \texttt{INC} operations are applied to the two construction elbows and the destruction elbow before they actually start constructing and destructing. If the northwest construction elbow (i.e., the aqua elbow, in the orientation and coloring scheme of the Gemini displayed in Figure~\ref{fig:gemini}) is pushed out $m$ cells before beginning construction, and the northeast construction elbow (i.e., the green one) is similarly pushed out $n$ cells,\footnote{The destruction elbow must be pushed out by the same amount as the northeast construction elbow: $n$ cells.} then the resulting displacement of the Geminoid will be $(m-n,m+n)$ cells per period.
+
+The slope of this Geminoid spaceship will be $(m+n)/(m-n)$,\footnote{If $m = n$ then the Geminoid will travel straight up, orthogonally.} so any rational slope $p/q \neq 1$ (i.e., diagonal) is attainable:\footnote{Since $m+n > m-n$, this particular argument only gives Geminoids with rational slopes that are \emph{bigger} than $1$. To get slopes between $0$ and $1$, just rotate the Geminoid by $90$~degrees.} we can choose $m = p+q$ and $n = p-q$ to get
+\[
+	\frac{m+n}{m-n} = \frac{(p+q)+(p-q)}{(p+q)-(p-q)} = \frac{2p}{2q} = \frac{p}{q}.
+\]
+
+In the Gemini itself, the construction elbows are pushed out by $m = 3{\thousep}072$ and $n = 2{\thousep}048$ cells, respectively, for a displacement of $(m-n,m+n) = (1024,5120)$ cells per period, and a slope of $5120/1024 = 5$. We can change this into, for example, a knightship\index{knightship} (i.e., a spaceship with slope $2$) by increasing $m$ and/or $n$ so that $m+n = 2(m-n)$ (i.e., $m = 3n$). The easiest way to do this is to insert another $3{\thousep}072$ \texttt{INC} operations on the northwest construction elbow's path of the Gemini. This will give $m = 3{\thousep}072 + 3{\thousep}072 = 6{\thousep}144$ and $n = 2{\thousep}048$.
+
+% Show knightship, use same coloring/highlighting as original Gemini, but just show the northwest corner
+
+% Talk about how m and n need to be sufficiently large
+% Talk about how m and n are not equal to number of INC operations, since near 0 things get fuzzy
+
+% Knightship, slope 3 ship, and lead into asymptotic speed limit
+% When talking about lowering past 579 gens, mention lots of crossings to be careful of
+
+% Describe how fast we can make it go, what the limiting factor is. Say not worth showing variations in bookks since they look essentially identical. (Maybe show an ends of the knightship?)
+% Gemini adjustments: https://conwaylife.com/forums/viewtopic.php?f=2&t=399&p=2327#p2348
+% DAVE SAYS: Meaning a slope of 3 in a 45-degree coordinate system? Can't we just call this a slope of 2? You should be able to produce a true (2x, x) Gemini knightship just by adding 3072 INC instructions to the westward construction arm, lengthening the distance between the two ends appropriately, and recompiling to avoid collisions in the glider-stream crossings in the upper part of the westward arm in the southeast replicator... I haven't looked at Andrew's code closely enough yet to find out if the (1024, 5120) offset is deeply buried in underlying assumptions in the collision-avoidance code, or if it's easy to change, or if anything will even need changing...!
+% Relevant thread: https://www.conwaylife.com/forums/viewtopic.php?f=2&t=406
 
 
 
@@ -742,6 +768,7 @@ While we cannot decrease $n$ or $n+m$,\footnote{However, we can decrease $m$ (th
 \[
 	\frac{2nc}{8n + 8m} = \left(\frac{n}{n+m}\right)\frac{c}{4}.
 \]
+
 Every rational number between $0$ and $1$ can be written in the form $n/(n+m)$ for some integers $m,n > 0$, simply by first choosing $n$ to get whatever numerator we want, and then choosing $m$ to get whatever denominator we want. Furthermore, since $n/(n+m) = (kn)/(kn+km)$ for all $k > 0$, we can choose $m$ and $n$ to be as large as we like. In particular, we can choose $n \geq 1{\thousep}642{\thousep}811$ and $n+m \geq 2{\thousep}061{\thousep}741$ so that the resulting Speed Demonoid is actually constructible.
 
 For example, to build a $3c/14$ Speed Demonoid, we want $n/(n+m) = 4(3/14) = 12/14$, so we could first choose $n = 12$ and then $m = 2$ (so that $n+m = 14$). However, these values of $n$ and $m$ are much too small for us to actually be able to build a Speed Demonoid with these parameters (we cannot separate the trigger gliders by just $n = 12$ generations, for example, without components crashing into each other), so we scale them up. That is, we replace $n$ and $m$ by $\widetilde{n} = kn$ and $\widetilde{m} = km$, respectively, where $k$ is an integer chosen so that $kn \geq 1{\thousep}642{\thousep}811$ and $k(n+m) \geq 2{\thousep}061{\thousep}741$.\footnote{In other words, $k \geq \max\{ \lceil 1{\thousep}642{\thousep}811/n \rceil, \lceil 2{\thousep}061{\thousep}741/(n+m) \rceil \}$.} In this case, $k = 147{\thousep}268$ works, which gives $\widetilde{n} = 12 \times 147{\thousep}268 = 1{\thousep}767{\thousep}216$ and $\widetilde{m} = 2 \times 147{\thousep}268 = 294{\thousep}536$ (see Exercise~\ref{exer:3c14_speed_demonoid}).
@@ -769,6 +796,10 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 % single channel make xWSS: https://conwaylife.com/forums/viewtopic.php?f=2&t=2660&start=50#p43737
 % Exercise: give slow salvo for eater 1 (for example) and ask reader to build it via single-channel 90-degree and then single-channel 0-degree
 
+% TODO: When finishing this chapter, have Dave look it over for attributions etc that I missed
+% Mention Pianola breeders? https://www.conwaylife.com/forums/viewtopic.php?t=&p=3525#p3525
+
+
 % exercise with the chirality-swapping 0-degree sequence?
 % Exercise based on spiral growth? Or include somewhere? https://www.conwaylife.com/forums/viewtopic.php?f=&p=44792#p44792
 % BUILD A GEMINI WITH DIFFERENT PERIOD/SLOPE/WHATEVER
@@ -794,7 +825,30 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\begin{problemstar}\label{exer:gemini_unhighlighted_reflectors}
 		The two zoom boxes in Figure~\ref{fig:gemini} each have two rows of unhighlighted reflectors that never reflect a single glider. What is their purpose?
 	\end{problemstar}
+
+
+	\mfilbreak
 	
+	
+	\begin{problem}\label{exer:gemini_separate_ends_slow}
+		Move the two identical ends of the Gemini spaceship farther apart, so as to create a spaceship that travels slower than $(1024,5120)c/50000000$.
+	\end{problem}
+
+
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:squeeze_gemini_how_far}
+		By moving the two identical ends of the Gemini spaceship closer together, we can make it slightly faster.
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Move the ends $1$~full diagonal closer together. What is the speed of the resulting spaceship?
+			
+			\item How many full diagonals closer together can the ends be moved without causing the Gemini to self-destruct? What is the speed of the resulting spaceship?
+			% Explicitly built at https://www.conwaylife.com/forums/viewtopic.php?f=2&t=406#p2564
+		\end{enumerate}
+	\end{problemstar}
+
 	
 	\mfilbreak
 	
