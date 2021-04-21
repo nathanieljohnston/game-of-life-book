@@ -109,27 +109,31 @@ The Gemini spaceship of Figure~\ref{fig:gemini} travels at a speed of $(1024,512
 
 The simplest way to change the speed of the Gemini is to change the distance between its two identical ends, without changing any of the glider recipes that bounce back and forth between them. Each additional cell (i.e., full diagonal) by which we separate the ends increases the travel time of each glider by $8$~generations per period ($4$~generations in each direction). Since this change does not affect how far the Gemini travels over the course of its period, this lets us build Geminoids that are arbitrarily slow, having any speed of the form $(1024,5120)c/(33699586 + 8k)$, where $k \geq 0$ is an integer.\footnote{We can also squeeze the ends of the Gemini closer together, which \emph{decreases} its period by $8$ generation per full diagonal, but only by a bit. The glider sequence still has to fit between the two ends---if we squeeze them too close together then gliders will try to use circuitry before it is constructed (see Exercise~\ref{exer:squeeze_gemini_how_far}).}
 
-We can also change the slope (i.e., the direction) that the Gemini travels at, just by changing how many \texttt{INC} operations are applied to the two construction elbows and the destruction elbow before they actually start constructing and destructing. If the northwest construction elbow (i.e., the aqua elbow, in the orientation and coloring scheme of the Gemini displayed in Figure~\ref{fig:gemini}) is pushed out $m$ cells before beginning construction, and the northeast construction elbow (i.e., the green one) is similarly pushed out $n$ cells,\footnote{The destruction elbow must be pushed out by the same amount as the northeast construction elbow: $n$ cells.} then the resulting displacement of the Geminoid will be $(m-n,m+n)$ cells per period.
+We can also change the slope (i.e., the direction) that the Gemini travels at, just by changing how many \texttt{INC} operations are applied to the two construction elbows and the destruction elbow before they actually start constructing and destructing. If the northwest construction elbow (i.e., the aqua elbow, in the orientation and coloring scheme of the Gemini displayed in Figure~\ref{fig:gemini}) is pushed out $m$ cells before beginning construction, and the northeast construction elbow (i.e., the green one) is similarly pushed out $n$ cells,\footnote{The destruction elbow must be pushed out by the same amount as the northeast construction elbow: $n$ cells.} then the resulting displacement of the Geminoid will be $(m-n,m+n)$ cells per period.\footnote{When we talk about an elbow being pushed by $m$ or $n$ cells before constructing, we really just mean that the diagonal displacement of the Geminoid over the course of one period is $m$ full diagonals in the northwest direction and $n$ full diagonals in the northeast direction (i.e., we are working in a coordinate system that is rotated $45$~degrees from the usual one).}
 
 The slope of this Geminoid spaceship will be $(m+n)/(m-n)$,\footnote{If $m = n$ then the Geminoid will travel straight up, orthogonally.} so any rational slope $p/q \neq 1$ (i.e., diagonal) is attainable:\footnote{Since $m+n > m-n$, this particular argument only gives Geminoids with rational slopes that are \emph{bigger} than $1$. To get slopes between $0$ and $1$, just rotate the Geminoid by $90$~degrees.} we can choose $m = p+q$ and $n = p-q$ to get
 \[
 	\frac{m+n}{m-n} = \frac{(p+q)+(p-q)}{(p+q)-(p-q)} = \frac{2p}{2q} = \frac{p}{q}.
 \]
 
-In the Gemini itself, the construction elbows are pushed out by $m = 3{\thousep}072$ and $n = 2{\thousep}048$ cells, respectively, for a displacement of $(m-n,m+n) = (1024,5120)$ cells per period, and a slope of $5120/1024 = 5$. We can change this into, for example, a knightship\index{knightship} (i.e., a spaceship with slope $2$) by increasing $m$ and/or $n$ so that $m+n = 2(m-n)$ (i.e., $m = 3n$). The easiest way to do this is to insert another $3{\thousep}072$ \texttt{INC} operations on the northwest construction elbow's path of the Gemini. This will give $m = 3{\thousep}072 + 3{\thousep}072 = 6{\thousep}144$ and $n = 2{\thousep}048$.
+In the Gemini itself, the construction elbows are pushed out by $m = 3072$ and $n = 2048$ cells, respectively, for a displacement of $(m-n,m+n) = (1024,5120)$ cells per period, and a slope of $5120/1024 = 5$. We can change this into, for example, a knightship\index{knightship} (i.e., a spaceship with slope $2$) by increasing $m$ and/or $n$ so that $m+n = 2(m-n)$ (i.e., $m = 3n$). The easiest way to do this is to insert another $3072$ \texttt{INC} operations on the northwest construction elbow's path of the Gemini. This alteration produces the knightship Geminoid with $m = 3072 + 3072 = 6144$ and $n = 2048$ (i.e., a displacement of $(4096,8192)$ cells per period) that is displayed in Figure~\ref{fig:geminoid_knightship}.\footnote{This knightship was constructed by Dave Greene in June 2010.}
 
-% Show knightship, use same coloring/highlighting as original Gemini, but just show the northwest corner
+\begin{figure}[!htb]
+	\centering
+	\embedlink{geminoid_knightship}{\includegraphics[width=\textwidth]{universal_construction/geminoid_knightship.pdf}}
+	\caption{The northwest corner of a (slope $2$) knightship Geminoid. It functions the exact same as the Gemini itself from Figure~\ref{fig:gemini}, except the construction elbow along the \bgbox{aquaback}{aqua} path is pushed an extra $3072$ full diagonals before beginning construction. It travels at a speed of $(4096,8192)c/35567490$.}\label{fig:geminoid_knightship}
+\end{figure}
 
-% Talk about how m and n need to be sufficiently large
-% Talk about how m and n are not equal to number of INC operations, since near 0 things get fuzzy
+In addition to changing Gemini's slope, we can also use this method of inserting additional \texttt{INC} operations to increase its speed. For example, if we insert another $3072$ \texttt{INC} operations on the Gemini's northwest construction elbow's path,\footnote{This is the exact same number of additional \texttt{INC} operations that we added in the knightship Geminoid.} and another $2048$ \texttt{INC} operations on its northeast construction elbow's path, we get a Geminoid that travels exactly twice as far per period: $(2048,10240)$. The speed of this new Geminoid depends a bit on some fine details like how much space we leave between the new \texttt{INC}-triggering gliders, and how tightly we push the ends of the Geminoid together. If we optimize this Geminoid in both of these regards, its speed will be $(2048,10240)c/35461914 = (1024,5120)c/17730957$, which is roughly twice as fast as the original Gemini.
+% TODO: Double check the above speed. I used 575 in the calc, should it be 579?
 
-% Knightship, slope 3 ship, and lead into asymptotic speed limit
+By adding more and more \texttt{INC} operations to each of the construction elbows, we can construct Geminoids that travel faster and faster. However, this speed increase is limited by the speed at which we can perform \texttt{INC} operations. Since the Gemini's circuitry contains a Callahan G-to-H\index{Callahan G-to-H} (refer back to Figure~??), which has a repeat time of $575$ generations, any \texttt{INC}-triggering gliders that we add to the Gemini must be separated by at least that much. Furthermore, since each \texttt{INC} operation pushes the elbow $1$ full diagonal (i.e., $4$ generations) farther away, it takes $575+4 = 579$~generations to...
+
+% lead into asymptotic speed limit
 % When talking about lowering past 579 gens, mention lots of crossings to be careful of
+% How does inserting an additional glider for an additional INC operation in the gemini's path affect it's speed limit? this isn't discussed anywhere yet, I don't think.
 
-% Describe how fast we can make it go, what the limiting factor is. Say not worth showing variations in bookks since they look essentially identical. (Maybe show an ends of the knightship?)
-% Gemini adjustments: https://conwaylife.com/forums/viewtopic.php?f=2&t=399&p=2327#p2348
 % DAVE SAYS: Meaning a slope of 3 in a 45-degree coordinate system? Can't we just call this a slope of 2? You should be able to produce a true (2x, x) Gemini knightship just by adding 3072 INC instructions to the westward construction arm, lengthening the distance between the two ends appropriately, and recompiling to avoid collisions in the glider-stream crossings in the upper part of the westward arm in the southeast replicator... I haven't looked at Andrew's code closely enough yet to find out if the (1024, 5120) offset is deeply buried in underlying assumptions in the collision-avoidance code, or if it's easy to change, or if anything will even need changing...!
-% Relevant thread: https://www.conwaylife.com/forums/viewtopic.php?f=2&t=406
 
 
 
@@ -644,7 +648,7 @@ After the Cordership has been synthesized and travelled however far we would lik
 
 We can now place these elbow-to-Cordership and Cordership-to-elbow recipes into the slow Demonoid that we already constructed in order to speed it up. Note that we have to insert this pair of Cordership-based recipes not just in the construction half of the Demonoid (to push the elbow block far forward to construct the next Snark and Scorbie splitter), but also in the destruction half of the Demonoid (to push the elbow block far enough backward to destroy the previous Snark and Scorbie splitter). See Figure~\ref{fig:c256_demonoid} for a completed Demonoid of this type. It displaces itself by $2^{14} = 16{\thousep}384$ cells over the course of $2^{22} = 4{\thousep}194{\thousep}304$ generations, for a speed of $16384c/4194304 = c/256$, making it a whopping $64$ times as fast as our earlier Demonoid.
 
-\begin{figure}[!htbp]
+\begin{figure}[!htb]
 	\centering
 	\embedlink{c256_demonoid}{\includegraphics[width=\textwidth]{universal_construction/c256_demonoid.pdf}}
 	\caption{A $c/256$ Demonoid spaceship that works by bouncing a (very long) single-channel glider recipe (highlighted in \bgbox{greenpastel}{green}) between two self-constructing ends. In the phase shown here, the recipe is about to construct a Cordership in the southeast corner (at the location circled in \bgbox{redback}{red}), which moves northeast along the path highlighted in \bgbox{aquaback}{aqua}. The single-channel glider recipe then destroys the Cordership (at the location similarly circled in the northwest corner) so as to leave behind a construction elbow. That elbow is then used to build the Snarks and Scorbie splitters necessary to repeat this process. Finally, a single glider is sent backwards as part of a Snarkbreaker, letting the single-channel glider recipe follow the path higlighted in \bgbox{magentaback}{magenta}, which is used to destroy old Snarks and Scorbie splitters that are no longer needed.}\label{fig:c256_demonoid}
@@ -847,6 +851,14 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 			\item How many full diagonals closer together can the ends be moved without causing the Gemini to self-destruct? What is the speed of the resulting spaceship?
 			% Explicitly built at https://www.conwaylife.com/forums/viewtopic.php?f=2&t=406#p2564
 		\end{enumerate}
+	\end{problemstar}
+
+
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:gemini_slope_n_fixed}
+		The slope-$2$ Geminoid from Figure~\ref{fig:gemini_knightship} was created by just adding additional \texttt{INC} operations to the northwest construction elbow (i.e., we increased the value that we called ``$m$'' in that section, while leaving ``$n$'' fixed at $n = 2{\thousep}048$). What Geminoid slopes are attainable by making this type of change to Gemini? That is, what slopes can be attained by increasing $m$, but not changing $n$?
 	\end{problemstar}
 
 	
