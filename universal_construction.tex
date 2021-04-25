@@ -16,26 +16,23 @@
 
 We refer to these techniques as \emph{universal construction},\index{universal construction} and a pattern that implements them as a \emph{universal constructor},\index{universal constructor} with ``universal'' referring to the fact that they can build any Life pattern that is synthesizable via gliders.\footnote{Some patterns, like Gardens of Eden and the grandparentless pattern from Figure~\ref{fig:grandparentless}, cannot be synthesized by gliders.} Although most universal constructors only fire slow glider salvos, we know from Theorem~\ref{thm:p2_slow_salvo} that this is enough to implement arbitrary glider syntheses. Most useful universal constructors are built out of simple stable components like blocks, beehives, and eater~1s, so that it is relatively straightforward to synthesize them via gliders, and thus they can even be used to build copies of themselves.
 
-% Give big picture: We show how to construct spaceships with any slope first (but not any speed), then show how to construct diagonal spaceships with any speed (but not any slope)
-
+The applications of universal construction that we will present in this chapter are a wide variety of spaceships with speeds and slopes that we have not yet seen. Indeed, we start off by first showing how to construct spaceships with any rational slope (but not necessarily any rational speed), and then we flip things around so as to construct spaceships with any rational speed (but fixed at a diagonal slope of $1$).\footnote{Well, any rational speed below $c/4$, which is the diagonal speed limit from Theorem~\ref{thm:speed_limits}.}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Gemini and Geminoids}\label{sec:gemini}\index{gemini}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% As our first illustration of the utility of universal computation...
+We have seen the basic idea behind universal construction several times now, starting back in Section~\ref{sec:slide_guns}. By using a sliding block (or other small still life) as a construction elbow, we can fire gliders at any location in the Life plane, thus allowing a sequence of gliders to encode the construction or destruction of essentially any pattern (via the slow salvo techniques of Section~\ref{sec:slow_salvo}, for example).
 
-% TODO: Describe the general shape of Gemini a bit better first? Spaceship that builds itself in front of itself.
-
-We have seen the basic idea behind universal construction several times now, starting back in Section~\ref{sec:slide_guns}. By using a sliding block (or other small still life) as an elbow, we can fire gliders at any location in the Life plane, thus allowing a sequence of gliders to encode the construction or destruction of essentially any pattern (via the slow salvo techniques of Section~\ref{sec:slow_salvo}, for example).
+As our first illustration of the utility of universal computation, we now construct a spaceship called \emph{Gemini} that is primarily made up of long sequences of gliders that encode its own construction. Much like the silverfish and caterpillar spaceships of Chapter~\ref{chp:self_support_spaceships}, Gemini works by reaching out in front of itself to construct a track along which it can travel. This time, the track that it travels along is simply a series of Herschel tracks that manipulate the glider trails that then construct those Herschel tracks.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Elbow Operations}\label{sec:gemini_elbow}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-We already saw gliders salvos that push or pull a sliding block back in Figure~\ref{fig:synchronized_block_movers}, as well as salvos that can be used to fire perpendicular gliders of either color in Figure~\ref{fig:synchronized_block_reflectors}. We summarize those reactions that we will make use of in Figure~\ref{fig:gemini_glider_operations},\footnote{The names ``\texttt{FIRE WHITE}'' and ``\texttt{FIRE BLACK}'' used for two of these reactions just refer to the fact that they fire perpendicular gliders of opposite colors (the absolute color names do not matter).} noting that just these four operations are enough for us to be able to implement any unidirectional slow salvo of our choosing.% Footnote about only needing 3?
+We already saw gliders salvos that push or pull a sliding block back in Figure~\ref{fig:synchronized_block_movers}, as well as salvos that can be used to fire perpendicular gliders of either color in Figure~\ref{fig:synchronized_block_reflectors}. These operations are the heart and core of the Gemini spaceship, and we summarize the ones that it makes use of in Figure~\ref{fig:gemini_glider_operations}.\footnote{The names ``\texttt{FIRE WHITE}'' and ``\texttt{FIRE BLACK}'' used for two of these reactions just refer to the fact that they fire perpendicular gliders of opposite colors (the absolute color names do not matter).} Just these four operations are enough for us to be able to implement any unidirectional slow salvo of our choosing.\footnote{Strictly speaking, we just need the three \texttt{PULL}, \texttt{PUSH}, and \texttt{FIRE WHITE} operations, since monochromatic (i.e., single-color) slow glider salvos are universal (i.e., can implement any glider synthesis). However, they are somewhat less efficient than their polychromatic counterparts, so we do not make use of them.}
 
 \begin{figure}[!htb]
 	\centering
@@ -65,24 +62,32 @@ We already saw gliders salvos that push or pull a sliding block back in Figure~\
 	\caption{A collection of reactions that can be used to fire perpendicular gliders (to the southwest) along any lane of our choosing. All four reactions use the same initial pair of gliders (highlighted in \bgbox{orangeback2}{orange}).}\label{fig:gemini_glider_operations}
 \end{figure}
 
-By using some Herschel circuitry to create these glider configurations, we can straightforwardly construct the component displayed in Figure~\ref{fig:construction_arm} that takes an input glider on one of four different lanes and performs the corresponding operation on  the sliding block. This particular component uses some slightly old conduits like Silver reflectors (refer back to Figure~\ref{fig:silver_reflector}) rather than more recent conduits for two reasons: (1) it will be useful for us to have this component built entirely out of pieces like blocks and eater~1s (and unlike Snarks) that are ``simple'' to synthesize, and (2) the Gemini spaceship that we will construct out of this component was built before many of the more efficient conduits that we have explored.\footnote{For example, the Gemini spaceship that we will soon construct was built in 2010, whereas the Snark was found in 2013 and the syringe was found in 2015.}
+By using some Herschel circuitry to create these glider configurations, we can straightforwardly construct the component displayed in Figure~\ref{fig:construction_arm} that takes an input glider on one of four different lanes and performs the corresponding operation on  the sliding block. This particular component uses some slightly old conduits like the Callahan G-to-H\index{Callahan G-to-H} (refer back to Figure~\ref{fig:callahan_g_to_h}) rather than more recent conduits for two reasons: (1) it will be useful for us to have this component built entirely out of pieces like blocks and eater~1s (and unlike Snarks) that are ``simple'' to synthesize, and (2) the Gemini spaceship that we will construct out of this component was built before many of the more efficient conduits that we have explored.\footnote{For example, the Gemini spaceship that we will soon present was built in 2010, whereas the Snark was found in 2013 and the syringe was found in 2015.}
 
 \begin{figure}[!htb]
 	\centering
 	\embedlink{construction_arm}{\includegraphics[width=\textwidth]{universal_construction/construction_arm.pdf}}
-	\caption{An elbow-operation circuit, which takes a glider on one of four input glider lanes and as a result either pulls or pushes the sliding block (elbow), or uses it to fire a perpendicular glider of either color to the southwest. Note that all four actions require the \texttt{PULL} circuit to be activated, as it produces the frontmost pair of gliders in all four operations (see Exercise~\ref{exer:construction_arm_lanes_timed}). Constructed by Paul Chapman in 2004.}\label{fig:construction_arm}
+	\caption{An elbow-operation circuit, which takes a glider on one or two of four input glider lanes and as a result either pulls or pushes the sliding block (elbow), or uses it to fire a perpendicular glider of either color to the southwest. Note that all four actions require the \texttt{PULL} circuit to be activated, as it produces the frontmost pair of gliders in all four operations (see Exercise~\ref{exer:construction_arm_lanes_timed}). Constructed by Paul Chapman in 2004.}\label{fig:construction_arm}
 \end{figure}
 
-By aiming the output gliders of two of these elbow-operation circuits at each other, we can encode the construction of any glider-synthesizable pattern in the input streams (with the advantage that the input lanes are fixed, whereas the output lanes are not).\footnote{This is similar to how we encoded the synthesis of a $2$-engine Cordership in some glider sequences back in Figure~\ref{fig:armless_cordership_gun}.} For example, the pattern displayed in Figure~??...
+By making use of this elbow-operation circuit, we can use slow salvo syntheses in which gliders come in from must one or two out of four specified lanes to simulate general slow salvo glider syntheses (in which the gliders can come from any lane). For example, by aiming the output gliders of two of these elbow-operation circuits at each other, we can encode any two-direction slow salvo synthesis in the sequence of $4$ input lanes that are used. This method is much like we encoded the synthesis of a $2$-engine Cordership in some glider sequences back in Figure~\ref{fig:armless_cordership_gun}, but with the advantage that the \emph{input} glider streams that do the encoding are slow this time---not just the output streams.
 
-% FIGURE
+The pattern displayed in Figure~?? illustrates how this technique can be used to build a middleweight spaceship gun. While this gun is much larger and more complicated than other MWSS guns that we have seen, it has the advantage that the MWSS is encoded entirely in the glider streams. To instead have this gun fire a different type of spaceship, we do not need to change its circuitry at all---only the order in which slow gliders are fed into it.
 
-% Somewhere: a bit more on its construction itself. Starting top-to bottom, one still life at a time.
+% MWSS figure
+% EXERCISE: Rebuild to make LWSS instead
+% Exercise about FIRE WHITE being slightly different in construction elbow than in earlier figure? Why?
+
+% Construct an MWSS via
+%x = 13, y = 6, rule = LifeHistory
+%5.A$5.A$5.A$3A7.3A$2.A7.A$.A9.A!
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{The Gemini Itself}\label{sec:gemini_itself}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Somewhere: a bit more on its construction itself. Starting top-to bottom, one still life at a time.
 
 Importantly, because these circuits are made up of such simple components (mostly blocks and eater~1s, with the most difficult piece to synthesize being a tub), they can even be used to synthesize copies of \emph{themselves}. Indeed, this is the key idea behind the Gemini spaceship: use an extremely long chain of gliders to have two of these circuits build copies of themselves somewhere else in the plane. To turn this idea into a \emph{spaceship} though (rather than just something that repeatedly builds copies of itself), we need to make two additions:\smallskip
 
@@ -109,14 +114,14 @@ The Gemini spaceship of Figure~\ref{fig:gemini} travels at a speed of $(1024,512
 
 The simplest way to change the speed of the Gemini is to change the distance between its two identical ends, without changing any of the glider recipes that bounce back and forth between them. Each additional cell (i.e., full diagonal) by which we separate the ends increases the travel time of each glider by $8$~generations per period ($4$~generations in each direction). Since this change does not affect how far the Gemini travels over the course of its period, this lets us build Geminoids that are arbitrarily slow, having any speed of the form $(1024,5120)c/(33699586 + 8k)$, where $k \geq 0$ is an integer.\footnote{We can also squeeze the ends of the Gemini closer together, which \emph{decreases} its period by $8$ generation per full diagonal, but only by a bit. The glider sequence still has to fit between the two ends---if we squeeze them too close together then gliders will try to use circuitry before it is constructed (see Exercise~\ref{exer:squeeze_gemini_how_far}).}
 
-We can also change the slope (i.e., the direction) that the Gemini travels at, just by changing how many \texttt{INC} operations are applied to the two construction elbows and the destruction elbow before they actually start constructing and destructing. If the northwest construction elbow (i.e., the aqua elbow, in the orientation and coloring scheme of the Gemini displayed in Figure~\ref{fig:gemini}) is pushed out $m$ cells before beginning construction, and the northeast construction elbow (i.e., the green one) is similarly pushed out $n$ cells,\footnote{The destruction elbow must be pushed out by the same amount as the northeast construction elbow: $n$ cells.} then the resulting displacement of the Geminoid will be $(m-n,m+n)$ cells per period.\footnote{When we talk about an elbow being pushed by $m$ or $n$ cells before constructing, we really just mean that the diagonal displacement of the Geminoid over the course of one period is $m$ full diagonals in the northwest direction and $n$ full diagonals in the northeast direction (i.e., we are working in a coordinate system that is rotated $45$~degrees from the usual one).}
+We can also change the slope (i.e., the direction) that the Gemini travels at, just by changing how many \texttt{PUSH} operations are applied to the two construction elbows and the destruction elbow before they actually start constructing and destructing. If the northwest construction elbow (i.e., the aqua elbow, in the orientation and coloring scheme of the Gemini displayed in Figure~\ref{fig:gemini}) is pushed out $m$ cells before beginning construction, and the northeast construction elbow (i.e., the green one) is similarly pushed out $n$ cells,\footnote{The destruction elbow must be pushed out by the same amount as the northeast construction elbow: $n$ cells.} then the resulting displacement of the Geminoid will be $(m-n,m+n)$ cells per period.\footnote{When we talk about an elbow being pushed by $m$ or $n$ cells before constructing, we really just mean that the diagonal displacement of the Geminoid over the course of one period is $m$ full diagonals in the northwest direction and $n$ full diagonals in the northeast direction (i.e., we are working in a coordinate system that is rotated $45$~degrees from the usual one).}
 
 The slope of this Geminoid spaceship will be $(m+n)/(m-n)$,\footnote{If $m = n$ then the Geminoid will travel straight up, orthogonally.} so any rational slope $p/q \neq 1$ (i.e., diagonal) is attainable:\footnote{Since $m+n > m-n$, this particular argument only gives Geminoids with rational slopes that are \emph{bigger} than $1$. To get slopes between $0$ and $1$, just rotate the Geminoid by $90$~degrees.} we can choose $m = p+q$ and $n = p-q$ to get
 \[
 	\frac{m+n}{m-n} = \frac{(p+q)+(p-q)}{(p+q)-(p-q)} = \frac{2p}{2q} = \frac{p}{q}.
 \]
 
-In the Gemini itself, the construction elbows are pushed out by $m = 3072$ and $n = 2048$ cells, respectively, for a displacement of $(m-n,m+n) = (1024,5120)$ cells per period, and a slope of $5120/1024 = 5$. We can change this into, for example, a knightship\index{knightship} (i.e., a spaceship with slope $2$) by increasing $m$ and/or $n$ so that $m+n = 2(m-n)$ (i.e., $m = 3n$). The easiest way to do this is to insert another $3072$ \texttt{INC} operations on the northwest construction elbow's path of the Gemini. This alteration produces the knightship Geminoid with $m = 3072 + 3072 = 6144$ and $n = 2048$ (i.e., a displacement of $(4096,8192)$ cells per period) that is displayed in Figure~\ref{fig:geminoid_knightship}.\footnote{This knightship was constructed by Dave Greene in June 2010.}
+In the Gemini itself, the construction elbows are pushed out by $m = 3072$ and $n = 2048$ cells, respectively, for a displacement of $(m-n,m+n) = (1024,5120)$ cells per period, and a slope of $5120/1024 = 5$. We can change this into, for example, a knightship\index{knightship} (i.e., a spaceship with slope $2$) by increasing $m$ and/or $n$ so that $m+n = 2(m-n)$ (i.e., $m = 3n$). The easiest way to do this is to insert another $3072$ \texttt{PUSH} operations on the northwest construction elbow's path of the Gemini. This alteration produces the knightship Geminoid with $m = 3072 + 3072 = 6144$ and $n = 2048$ (i.e., a displacement of $(4096,8192)$ cells per period) that is displayed in Figure~\ref{fig:geminoid_knightship}.\footnote{This knightship was constructed by Dave Greene in June 2010.}
 
 \begin{figure}[!htb]
 	\centering
@@ -124,16 +129,16 @@ In the Gemini itself, the construction elbows are pushed out by $m = 3072$ and $
 	\caption{The northwest corner of a (slope $2$) knightship Geminoid. It functions the exact same as the Gemini itself from Figure~\ref{fig:gemini}, except the construction elbow along the \bgbox{aquaback}{aqua} path is pushed an extra $3072$ full diagonals before beginning construction. It travels at a speed of $(4096,8192)c/35567490$.}\label{fig:geminoid_knightship}
 \end{figure}
 
-In addition to changing Gemini's slope, we can also use this method of inserting additional \texttt{INC} operations to increase its speed. For example, if we insert another $3072$ \texttt{INC} operations on the Gemini's northwest construction elbow's path,\footnote{This is the exact same number of additional \texttt{INC} operations that we added in the knightship Geminoid.} and another $2048$ \texttt{INC} operations on its northeast construction elbow's path, we get a Geminoid that travels exactly twice as far per period: $(2048,10240)$. The speed of this new Geminoid depends a bit on some fine details like how much space we leave between the new \texttt{INC}-triggering gliders, and how tightly we push the ends of the Geminoid together. If we optimize this Geminoid in both of these regards, its speed will be $(2048,10240)c/35461914 = (1024,5120)c/17730957$, which is roughly twice as fast as the original Gemini.
+In addition to changing Gemini's slope, we can also use this method of inserting additional \texttt{PUSH} operations to increase its speed. For example, if we insert another $3072$ \texttt{PUSH} operations on the Gemini's northwest construction elbow's path,\footnote{This is the exact same number of additional \texttt{PUSH} operations that we added in the knightship Geminoid.} and another $2048$ \texttt{PUSH} operations on its northeast construction elbow's path, we get a Geminoid that travels exactly twice as far per period: $(2048,10240)$. The speed of this new Geminoid depends a bit on some fine details like how much space we leave between the new \texttt{PUSH}-triggering gliders, and how tightly we push the ends of the Geminoid together. If we optimize this Geminoid in both of these regards, its speed will be $(2048,10240)c/35461914 = (1024,5120)c/17730957$, which is roughly twice as fast as the original Gemini.
 % TODO: Double check the above speed. I used 575 in the calc, should it be 579?
 
-By adding more and more \texttt{INC} operations to each of the construction elbows, we can construct Geminoids that travel faster and faster. However, this speed increase is limited by the speed at which we can perform \texttt{INC} operations. Since the Gemini's circuitry contains a Callahan G-to-H\index{Callahan G-to-H} (refer back to Figure~??), which has a repeat time of $575$ generations, any \texttt{INC}-triggering gliders that we add to the Gemini must be separated by at least that much. Furthermore, since each \texttt{INC} operation pushes the elbow $1$ full diagonal (i.e., $4$ generations) farther away, it takes $575+4 = 579$~generations to...
+By adding more and more \texttt{PUSH} operations to each of the construction elbows, we can construct Geminoids that travel faster and faster. However, this speed increase is limited by the speed at which we can perform \texttt{PUSH} operations. Since the Gemini's circuitry contains a Callahan G-to-H\index{Callahan G-to-H} (refer back to Figure~??), which has a repeat time of $575$ generations, any \texttt{PUSH}-triggering gliders that we add to the Gemini must be separated by at least that much. Furthermore, since each \texttt{PUSH} operation pushes the elbow $1$ full diagonal (i.e., $4$ generations) farther away, it takes $575+4 = 579$~generations to...
 
 % lead into asymptotic speed limit
 % When talking about lowering past 579 gens, mention lots of crossings to be careful of
-% How does inserting an additional glider for an additional INC operation in the gemini's path affect it's speed limit? this isn't discussed anywhere yet, I don't think.
+% How does inserting an additional glider for an additional PUSH operation in the gemini's path affect it's speed limit? this isn't discussed anywhere yet, I don't think.
 
-% DAVE SAYS: Meaning a slope of 3 in a 45-degree coordinate system? Can't we just call this a slope of 2? You should be able to produce a true (2x, x) Gemini knightship just by adding 3072 INC instructions to the westward construction arm, lengthening the distance between the two ends appropriately, and recompiling to avoid collisions in the glider-stream crossings in the upper part of the westward arm in the southeast replicator... I haven't looked at Andrew's code closely enough yet to find out if the (1024, 5120) offset is deeply buried in underlying assumptions in the collision-avoidance code, or if it's easy to change, or if anything will even need changing...!
+% DAVE SAYS: Meaning a slope of 3 in a 45-degree coordinate system? Can't we just call this a slope of 2? You should be able to produce a true (2x, x) Gemini knightship just by adding 3072 PUSH instructions to the westward construction arm, lengthening the distance between the two ends appropriately, and recompiling to avoid collisions in the glider-stream crossings in the upper part of the westward arm in the southeast replicator... I haven't looked at Andrew's code closely enough yet to find out if the (1024, 5120) offset is deeply buried in underlying assumptions in the collision-avoidance code, or if it's easy to change, or if anything will even need changing...!
 
 
 
@@ -804,6 +809,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 % Mention Pianola breeders? https://www.conwaylife.com/forums/viewtopic.php?t=&p=3525#p3525
 
 
+% EXERCISE: How many 44hd block pushes to make slow demonoid faster than SPEED? Similar with other demonoids and gemini.
 % exercise with the chirality-swapping 0-degree sequence?
 % Exercise based on spiral growth? Or include somewhere? https://www.conwaylife.com/forums/viewtopic.php?f=&p=44792#p44792
 % BUILD A GEMINI WITH DIFFERENT PERIOD/SLOPE/WHATEVER
@@ -815,11 +821,18 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\setlength{\parskip}{0pt}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
+	\begin{problem}\label{exer:rebuild_construction_arm}
+		Rebuild the elbow-operation circuit from Figure~\ref{fig:construction_arm} via modern components like Snarks and syringes.
+	\end{problem}
+	
+	
+	\mfilbreak
+	
 	
 	\begin{problem}\label{exer:construction_arm_lanes_timed}
 		The elbow-operation circuit of Figure~\ref{fig:construction_arm} requires two synchronized input gliders to trigger each of the \texttt{PUSH}, \texttt{FIRE WHITE}, and \texttt{FIRE BLACK} operations---one to create the frontmost pair of gliders via the \texttt{PULL} input, and one to create the additional glider(s) via one of the other three inputs.
 		
-		Add additional Herschel conduits to that circuit so that each of the four operations can be triggered by just a single input glider.
+		Add additional Herschel conduits to that circuit (or the one from Exercise~\ref{exer:rebuild_construction_arm}) so that each of the four operations can be triggered by just a single input glider.
 	\end{problem}
 	
 	
@@ -829,6 +842,14 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\begin{problemstar}\label{exer:gemini_unhighlighted_reflectors}
 		The two zoom boxes in Figure~\ref{fig:gemini} each have two rows of unhighlighted reflectors that never reflect a single glider. What is their purpose?
 	\end{problemstar}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:gemini_which_lane_operations}
+		The 12 glider lanes in the Gemini spaceship from Figure~\ref{fig:gemini} each implement one of the 4 basic operations from Figure~\ref{fig:gemini_glider_operations} (i.e., \texttt{PULL}, \texttt{PUSH}, \texttt{FIRE WHITE}, and \texttt{FIRE BLACK}). Determine which lanes implement which of those operations.
+	\end{problem}
 
 
 	\mfilbreak
@@ -858,7 +879,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	
 	
 	\begin{problemstar}\label{exer:gemini_slope_n_fixed}
-		The slope-$2$ Geminoid from Figure~\ref{fig:gemini_knightship} was created by just adding additional \texttt{INC} operations to the northwest construction elbow (i.e., we increased the value that we called ``$m$'' in that section, while leaving ``$n$'' fixed at $n = 2{\thousep}048$). What Geminoid slopes are attainable by making this type of change to Gemini? That is, what slopes can be attained by increasing $m$, but not changing $n$?
+		The slope-$2$ Geminoid from Figure~\ref{fig:gemini_knightship} was created by just adding additional \texttt{PUSH} operations to the northwest construction elbow (i.e., we increased the value that we called ``$m$'' in that section, while leaving ``$n$'' fixed at $n = 2{\thousep}048$). What Geminoid slopes are attainable by making this type of change to Gemini? That is, what slopes can be attained by increasing $m$, but not changing $n$?
 	\end{problemstar}
 
 	
