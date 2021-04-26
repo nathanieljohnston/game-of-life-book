@@ -62,39 +62,41 @@ We already saw gliders salvos that push or pull a sliding block back in Figure~\
 	\caption{A collection of reactions that can be used to fire perpendicular gliders (to the southwest) along any lane of our choosing. All four reactions use the same initial pair of gliders (highlighted in \bgbox{orangeback2}{orange}).}\label{fig:gemini_glider_operations}
 \end{figure}
 
-By using some Herschel circuitry to create these glider configurations, we can straightforwardly construct the component displayed in Figure~\ref{fig:construction_arm} that takes an input glider on one of four different lanes and performs the corresponding operation on  the sliding block. This particular component uses some slightly old conduits like the Callahan G-to-H\index{Callahan G-to-H} (refer back to Figure~\ref{fig:callahan_g_to_h}) rather than more recent conduits for two reasons: (1) it will be useful for us to have this component built entirely out of pieces like blocks and eater~1s (and unlike Snarks) that are ``simple'' to synthesize, and (2) the Gemini spaceship that we will construct out of this component was built before many of the more efficient conduits that we have explored.\footnote{For example, the Gemini spaceship that we will soon present was built in 2010, whereas the Snark was found in 2013 and the syringe was found in 2015.}
+By using some Herschel circuitry to create these glider configurations, we can straightforwardly construct the \emph{construction arm}\index{construction arm} displayed in Figure~\ref{fig:construction_arm} that takes an input glider on one of four different lanes and performs the corresponding operation on the sliding block. This particular construction arm uses some slightly old conduits like the Callahan G-to-H\index{Callahan G-to-H} (refer back to Figure~\ref{fig:callahan_g_to_h}) rather than more recent conduits for two reasons:\smallskip
+
+\begin{itemize}
+	\item[1)] It will be useful for us to have this component built entirely out of pieces like blocks and eater~1s (and unlike Snarks) that are ``simple'' to synthesize.\smallskip
+	
+	\item[2)] The Gemini spaceship that we will construct out of this component was built before many of the more efficient conduits that we have explored. For example, the Gemini spaceship that we will soon present was built in 2010, whereas the Snark was found in 2013 and the syringe was found in 2015.\smallskip
+\end{itemize}
 
 \begin{figure}[!htb]
 	\centering
 	\embedlink{construction_arm}{\includegraphics[width=\textwidth]{universal_construction/construction_arm.pdf}}
-	\caption{An elbow-operation circuit, which takes a glider on one or two of four input glider lanes and as a result either pulls or pushes the sliding block (elbow), or uses it to fire a perpendicular glider of either color to the southwest. Note that all four actions require the \texttt{PULL} circuit to be activated, as it produces the frontmost pair of gliders in all four operations (see Exercise~\ref{exer:construction_arm_lanes_timed}). Constructed by Paul Chapman in 2004.}\label{fig:construction_arm}
+	\caption{A \emph{construction arm}, which takes a glider on one or two of four input glider lanes and as a result either pulls or pushes the sliding elbow block (circled in \bgbox{redback}{red}), or uses it to fire a perpendicular glider of either color to the southwest. Note that all four actions require the \texttt{PULL} circuit to be activated, as it produces the frontmost pair of gliders in all four operations (see Exercise~\ref{exer:construction_arm_lanes_timed}). Constructed by Paul Chapman in 2004.}\label{fig:construction_arm}
 \end{figure}
 
-By making use of this elbow-operation circuit, we can use slow salvo syntheses in which gliders come in from must one or two out of four specified lanes to simulate general slow salvo glider syntheses (in which the gliders can come from any lane). For example, by aiming the output gliders of two of these elbow-operation circuits at each other, we can encode any two-direction slow salvo synthesis in the sequence of $4$ input lanes that are used. This method is much like we encoded the synthesis of a $2$-engine Cordership in some glider sequences back in Figure~\ref{fig:armless_cordership_gun}, but with the advantage that the \emph{input} glider streams that do the encoding are slow this time---not just the output streams.
+By making use of this construction arm, we can use slow salvo syntheses in which gliders come in from just one or two out of four specified lanes to simulate general slow salvo glider syntheses (in which the gliders can come from any lane). For example, by aiming the output gliders of two construction arms at each other, we can encode any two-direction slow salvo synthesis in the sequence of $4$ input lanes that are used, much like we used armless construction to encode the synthesis of a $2$-engine Cordership in some glider sequences back in Figure~\ref{fig:armless_cordership_gun}.
 
-The pattern displayed in Figure~?? illustrates how this technique can be used to build a middleweight spaceship gun. While this gun is much larger and more complicated than other MWSS guns that we have seen, it has the advantage that the MWSS is encoded entirely in the glider streams. To instead have this gun fire a different type of spaceship, we do not need to change its circuitry at all---only the order in which slow gliders are fed into it.
+The pattern displayed in Figure~\ref{fig:mwss_universal_constructor} illustrates how this technique can be used to build a middleweight spaceship gun. While this gun is much larger and more complicated than other MWSS guns that we have seen, it has the advantage that the MWSS is encoded entirely in the input glider streams. To instead have this gun fire a different type of spaceship, or even produce essentially any arrangement of objects in the upper-central quarter of the Life plane, we do not need to change its circuitry at all---only the order in which slow gliders are fed into it (see Exercise~\ref{exer:mwss_universal_constructor_turn_into_other}).
 
-% MWSS figure
-% EXERCISE: Rebuild to make LWSS instead
-% Exercise about FIRE WHITE being slightly different in construction elbow than in earlier figure? Why?
-
-% Construct an MWSS via
-%x = 13, y = 6, rule = LifeHistory
-%5.A$5.A$5.A$3A7.3A$2.A7.A$.A9.A!
+\begin{figure}[!htb]
+	\centering
+	\embedlink{mwss_universal_constructor}{\includegraphics[width=\textwidth]{universal_construction/mwss_universal_constructor.pdf}}
+	\caption{A pair of construction arms that are aimed at each other so they can implement two-direction slow salvo syntheses. Here, we first fire a glider from each of the construction arms so as to synthesize a blinker, and then we adjust the positions of the sliding blocks and fire another from each of the constructions arms so as to turn that blinker into the middleweight spaceship highlighted in \bgbox{yellowback2}{yellow} (via the incremental synthesis of Table~\ref{tab:sequential_synth}).}\label{fig:mwss_universal_constructor}
+\end{figure}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{The Gemini Itself}\label{sec:gemini_itself}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Somewhere: a bit more on its construction itself. Starting top-to bottom, one still life at a time.
-
-Importantly, because these circuits are made up of such simple components (mostly blocks and eater~1s, with the most difficult piece to synthesize being a tub), they can even be used to synthesize copies of \emph{themselves}. Indeed, this is the key idea behind the Gemini spaceship: use an extremely long chain of gliders to have two of these circuits build copies of themselves somewhere else in the plane. To turn this idea into a \emph{spaceship} though (rather than just something that repeatedly builds copies of itself), we need to make two additions:\smallskip
+We can use arrangements of construction arms like the one in Figure~\ref{fig:mwss_universal_constructor} to construct anything that has a glider synthesis. In particular, because these construction arms are made up of such simple components (mostly blocks and eater~1s, with the most difficult piece to synthesize being a tub), they can even be used to synthesize copies of \emph{themselves}. Indeed, this is the key idea behind the Gemini spaceship: use an extremely long chain of gliders to have two construction arms build copies of themselves somewhere else in the plane. To turn this idea into a \emph{spaceship} though (i.e., to make the construction propagate from one location in the Life plane to another, without leaving anything behind itself), we need to make two additions:\smallskip
 
 \begin{itemize}
-	\item[1)] We need to destroy the original pair of elbow-operation circuits after they have constructed the new ones. To do this, we simply use a third elbow-operation circuit, which is constructed alongside the original pair. After all three circuits are constructed, the first two start construction again while the third one starts destroying the old circuits. Since objects like blocks and eater~1s can easily be destroyed by a single glider each, it is straightforward to find a glider recipe that destroys the elbow-operation circuits.\smallskip
+	\item[1)] We need to destroy the original pair of construction arms after they have constructed the new ones. To do this, we simply use a third construction arm (which we will instead call the \emph{destruction arm}),\index{destruction arm} which is constructed alongside the original pair. After all three arms are constructed, the first two start construction again while the third one starts destroying the no-longer-needed circuitry from the spaceship's previous period. Since objects like blocks and eater~1s can easily be destroyed by a single glider each, it is straightforward to find a glider recipe that destroys these old circuits.\smallskip
 	
-	\item[2)] We need to be able to re-use the glider recipes that store the construction and destruction recipes. Since we cannot use a static loop (we need the glider recipes to move along with the elbow-operation circuits), we instead have the glider recipes bounce back and forth between \emph{two} copies of the entire three-elbow-operation circuit that we have described.\footnote{In fact, the two ends of the spaceship that we construct will be exactly identical. This is the reason for its name ``Gemini''---it is Latin for ``twins''.}\smallskip
+	\item[2)] We need to be able to re-use the glider recipes that store the construction and destruction recipes. Since we cannot use a static loop (we need the glider recipes to move along with the construction arms), we instead have the glider recipes bounce back and forth between \emph{two} copies of the entire three-arm circuit that we have described.\footnote{In fact, the two ends of the spaceship that we construct will be exactly identical. This is the reason for its name ``Gemini''---it is Latin for ``twins''.}\smallskip
 \end{itemize}
 
 After we put all of these ideas together, we get the Gemini spaceship that is displayed in Figure~\ref{fig:gemini}.\footnote{Constructed by Andrew J.~Wade in May 2010.} It builds a copy of itself displaced by $5{\thousep}120$ cells in one direction and $1{\thousep}024$ cells in the other direction every $33{\thousep}699{\thousep}586$ generations, making it the first spaceship that we have seen that does not travel orthogonally or diagonally at a slope of~$1$ (its slope is $5120/1024 = 5$).
@@ -102,7 +104,7 @@ After we put all of these ideas together, we get the Gemini spaceship that is di
 \begin{figure}[!htb]
 	\centering
 	\embedlink{gemini}{\includegraphics[width=\textwidth]{universal_construction/gemini.pdf}}
-	\caption{The self-constructing \emph{Gemini} spaceship, which simply looks like a long, thin diagonal line when zoomed out far enough to see in its entirety. The bulk of the spaceship of made up of 24 parallel glider lanes (12 travelling in each direction), which carry a recipe for building the ship. The ends of the spaceship, which are zoomed in on here, are identical arrangements of stable glider reflectors, glider duplicators, and three elbow-operation circuits whose sliding blocks are circled in \bgbox{redback}{red}. The elbow-operation circuits highlighted in \bgbox{aquaback}{aqua} and \bgbox{greenpastel}{green} build the next copy of the spaceship (highlighted in \bgbox{yellowback2}{yellow}), while the elbow-operation circuit higlighted in \bgbox{magentaback}{magenta} destroys the previous copy of the spaceship (highlighted in \bgbox{orangeback2}{orange}).}\label{fig:gemini}
+	\caption{The self-constructing \emph{Gemini} spaceship, which simply looks like a long, thin diagonal line when zoomed out far enough to see in its entirety. The bulk of the spaceship of made up of 24 parallel glider lanes (12 travelling in each direction), which carry a recipe for building the ship. The ends of the spaceship, which are zoomed in on here, are identical arrangements of stable glider reflectors, glider duplicators, and three construction/destruction arms whose sliding blocks are circled in \bgbox{redback}{red}. The construction arms highlighted in \bgbox{aquaback}{aqua} and \bgbox{greenpastel}{green} build the next copy of the spaceship (highlighted in \bgbox{yellowback2}{yellow}), while the destruction arm higlighted in \bgbox{magentaback}{magenta} destroys the previous copy of the spaceship (highlighted in \bgbox{orangeback2}{orange}).}\label{fig:gemini}
 \end{figure}
 
 
@@ -822,7 +824,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	\begin{problem}\label{exer:rebuild_construction_arm}
-		Rebuild the elbow-operation circuit from Figure~\ref{fig:construction_arm} via modern components like Snarks and syringes.
+		Rebuild the construction arm from Figure~\ref{fig:construction_arm} via modern components like Snarks and syringes.
 	\end{problem}
 	
 	
@@ -830,9 +832,55 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	
 	
 	\begin{problem}\label{exer:construction_arm_lanes_timed}
-		The elbow-operation circuit of Figure~\ref{fig:construction_arm} requires two synchronized input gliders to trigger each of the \texttt{PUSH}, \texttt{FIRE WHITE}, and \texttt{FIRE BLACK} operations---one to create the frontmost pair of gliders via the \texttt{PULL} input, and one to create the additional glider(s) via one of the other three inputs.
+		The construction arm of Figure~\ref{fig:construction_arm} requires two synchronized input gliders to trigger each of the \texttt{PUSH}, \texttt{FIRE WHITE}, and \texttt{FIRE BLACK} operations---one to create the frontmost pair of gliders via the \texttt{PULL} input, and one to create the additional glider(s) via one of the other three inputs.
 		
-		Add additional Herschel conduits to that circuit (or the one from Exercise~\ref{exer:rebuild_construction_arm}) so that each of the four operations can be triggered by just a single input glider.
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Find the correct timing for the pair of input gliders to trigger each of the \texttt{PUSH}, \texttt{FIRE WHITE}, and \texttt{FIRE BLACK} operations.
+			
+			\item Add additional Herschel conduits to that arm (or the one from Exercise~\ref{exer:rebuild_construction_arm}) so that each of the four operations can be triggered by just a single input glider.
+		\end{enumerate}
+	\end{problem}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:construction_arm_fire_white_different}
+		The arrangement of two gliders that the \texttt{FIRE WHITE} circuit in Figure~\ref{fig:construction_arm} makes is slightly different than the pair of \texttt{FIRE WHITE} gliders highlighted in green in Figure~\ref{fig:gemini_fire_white}. Why is this not a problem?
+	\end{problem}
+	% SOLUTION: The first 3 gliders create a one-time-turner boat. It doesn't matter when the fourth glider hits that boat, as long as it is one the right lane.
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:mwss_universal_constructor_turn_into_gun}
+		The pattern in Figure~\ref{fig:mwss_universal_constructor} uses two universal constructors to synthesize a middleweight spaceship.
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Add a loop gun to each of the 8 input lanes, so that universal constructor \emph{repeatedly} constructs middleweight spaceships.
+			
+			\item Adjust the input glider recipes so that each middleweight spaceship is produced on the same lane as the previous one (thus making this pattern a middleweight spaceship gun).
+			% Solution: Add some PULLs on each lane after the final FIRE BLACK
+		\end{enumerate}
+	\end{problem}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:mwss_universal_constructor_turn_into_other}
+		Adjust the input glider sequences for the pattern from Figure~\ref{fig:mwss_universal_constructor} so that instead of constructing an MWSS, it constructs...
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item a lightweight spaceship,
+			
+			\item a line of blocks (of any slope and spacing of your choosing), and
+			
+			\item a $2$-engine Cordership.
+			
+			[Hint: You can use the $2$-direction slow synthesis from Figure~\ref{fig:armless_cordership_gun}.]
+		\end{enumerate}
 	\end{problem}
 	
 	

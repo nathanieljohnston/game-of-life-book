@@ -1,0 +1,72 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\begin{document}
+	\begin{tikzpicture}%
+		\node[inner sep=0pt,anchor=south west] (ca) at (0,0) {\includegraphics[width=10.5cm]{mwss_universal_constructor.png}};
+
+		% BORDER
+		\draw[gridgray] (0,0) rectangle (10.5,8.60416666667);
+		\clip (0,0) rectangle (10.5,8.60416666667);
+
+		% GLIDER DIRECTION ARROWS
+		\newcommand\arrzerox{7.9}
+		\newcommand\arrzeroy{8.25}
+		\draw[color=gray,-stealth] (\arrzerox,\arrzeroy) -- (\arrzerox+0.65,\arrzeroy);
+		
+		\newcommand\arronex{1.3}
+		\newcommand\arroney{4.8}
+		\draw[color=gray,-stealth] (\arronex-0.15,\arroney-0.3) -- (\arronex+0.35,\arroney+0.2);
+		
+		\newcommand\arrtwox{9.2}
+		\newcommand\arrtwoy{4.8}
+		\draw[color=gray,-stealth] (\arrtwox+0.15,\arrtwoy-0.3) -- (\arrtwox-0.35,\arrtwoy+0.2);
+		
+		\newcommand\arrthrx{9.2}
+		\newcommand\arrthry{2.4}
+		\draw[color=gray,-stealth] (\arrthrx-0.15,\arrthry-0.3) -- (\arrthrx+0.35,\arrthry+0.2);
+		
+		\newcommand\arrfoux{1.32}
+		\newcommand\arrfouy{2.4}
+		\draw[color=gray,-stealth] (\arrfoux+0.15,\arrfouy-0.3) -- (\arrfoux-0.35,\arrfouy+0.2);
+		
+		\newcommand\arrfivx{3.85}
+		\newcommand\arrfivy{2.7}
+		\draw[color=gray,-stealth] (\arrfivx+0.15,\arrfivy-0.3) -- (\arrfivx-0.35,\arrfivy+0.2);
+		
+		\newcommand\arrsixx{6.65}
+		\newcommand\arrsixy{2.7}
+		\draw[color=gray,-stealth] (\arrsixx-0.15,\arrsixy-0.3) -- (\arrsixx+0.35,\arrsixy+0.2);
+		
+		\newcommand\arrsevx{4.65}
+		\newcommand\arrsevy{0.49}
+		\draw[color=gray,-stealth] (\arrsevx-0.15,\arrsevy-0.3) -- (\arrsevx+0.35,\arrsevy+0.2);
+		
+		\newcommand\arreigx{5.88}
+		\newcommand\arreigy{0.49}
+		\draw[color=gray,-stealth] (\arreigx+0.15,\arreigy-0.3) -- (\arreigx-0.35,\arreigy+0.2);
+		
+		% Dashed rectangles
+		\draw[color=gray,dashed] (4.1,0.35) rectangle (4.65,0.6);
+		\draw[color=gray,dashed] (6.45,0.35) rectangle (5.88,0.6);
+		
+		\draw[gray] (1,0.5) node[align=right] {\tiny \texttt{FIRE WHITE}\\[-0.2cm] \tiny \texttt{PUSH $\times$ 7}\\[-0.2cm] \tiny \texttt{FIRE BLACK}};
+		
+		\draw[gray] (9.5,0.5) node[align=left] {\tiny \texttt{FIRE WHITE}\\[-0.2cm] \tiny \texttt{PUSH $\times$ 5}\\[-0.2cm] \tiny \texttt{FIRE BLACK}};
+		
+		% Lines connecting instructions
+		\draw[color=gray] (4.1,0.475) to[out=200,in=0] (1.53,0.73);
+		\draw[color=gray] (3.2,0) to[out=145,in=0] (1.53,0.49);
+		\draw[color=gray] (2.3,0) to[out=125,in=0] (1.53,0.28);
+		
+		\draw[color=gray] (6.45,0.475) to[out=-20,in=180] (8.97,0.73);
+		\draw[color=gray] (7.3,0) to[out=35,in=180] (8.97,0.49);
+		\draw[color=gray] (8.2,0) to[out=55,in=180] (8.97,0.28);
+		
+		% CIRCLE THE SLIDING BLOCKS
+		\draw[white,line width=1.5pt,opacity=0.6](10.24,3.52) circle (0.1);
+		\draw[redback2,line width=0.6pt](10.24,3.52) circle (0.1);
+		\draw[white,line width=1.5pt,opacity=0.6](0.28,3.525) circle (0.1);
+		\draw[redback2,line width=0.6pt](0.28,3.525) circle (0.1);
+	\end{tikzpicture}
+\end{document}
