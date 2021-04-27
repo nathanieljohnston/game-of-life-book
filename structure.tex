@@ -286,7 +286,7 @@
 {\;}% Punctuation after theorem head
 {0.25em}% Space after theorem head
 {\small\sffamily\color{ocre}\thmname{#1}\nobreakspace\thmnumber{\@ifnotempty{#1}{}\@upn{#2}}% Theorem text (e.g. Theorem 2.1)
-\thmnote{\nobreakspace\the\thm@notefont\sffamily\bfseries\color{black}---\nobreakspace#3.}} % Optional theorem note
+\thmnote{\nobreakspace\the\thm@notefont\sffamily\bfseries\color{black}---\nobreakspace#3\\[0.01cm]}} % Optional theorem note
 \renewcommand{\qedsymbol}{$\blacksquare$}% Optional qed square
 
 \newtheoremstyle{blacknumex}% Theorem style name
@@ -469,7 +469,7 @@ linewidth=4pt,
 innerbottommargin=5pt]{cBox}
 
 % Creates an environment for each type of theorem and assigns it a theorem text style from the "Theorem Styles" section above and a colored box from above
-\newenvironment{theorem}{\begin{cBox}\begin{theoremeT}}{\end{theoremeT}\end{cBox}}
+\newenvironment{theorem}{\begin{cBox}\begin{minipage}{\linewidth}\begin{theoremeT}}{\end{theoremeT}\end{minipage}\end{cBox}}	
 \newenvironment{exercise}{\begin{eBox}\begin{exerciseT}}{\hfill{\color{ocre}\tiny\ensuremath{\blacksquare}}\end{exerciseT}\end{eBox}}				  
 \newenvironment{definition}{\begin{dBox}\begin{definitionT}}{\end{definitionT}\end{dBox}}	
 \newenvironment{example}{\begin{exampleT}}{\hfill{\tiny\ensuremath{\blacksquare}}\end{exampleT}}		

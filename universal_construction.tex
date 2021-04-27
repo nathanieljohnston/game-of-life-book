@@ -65,9 +65,9 @@ We already saw gliders salvos that push or pull a sliding block back in Figure~\
 By using some Herschel circuitry to create these glider configurations, we can straightforwardly construct the \emph{construction arm}\index{construction arm} displayed in Figure~\ref{fig:construction_arm} that takes an input glider on one of four different lanes and performs the corresponding operation on the sliding block. This particular construction arm uses some slightly old conduits like the Callahan G-to-H\index{Callahan G-to-H} (refer back to Figure~\ref{fig:callahan_g_to_h}) rather than more recent conduits for two reasons:\smallskip
 
 \begin{itemize}
-	\item[1)] It will be useful for us to have this component built entirely out of pieces like blocks and eater~1s (and unlike Snarks) that are ``simple'' to synthesize.\smallskip
+	\item It will be useful for us to have this component built entirely out of pieces like blocks and eater~1s (and unlike Snarks) that are ``simple'' to synthesize.\smallskip
 	
-	\item[2)] The Gemini spaceship that we will construct out of this component was built before many of the more efficient conduits that we have explored. For example, the Gemini spaceship that we will soon present was built in 2010, whereas the Snark was found in 2013 and the syringe was found in 2015.\smallskip
+	\item The Gemini spaceship that we will construct out of this component was built before many of the more efficient conduits that we have explored. For example, the Gemini spaceship that we will soon present was built in 2010, whereas the Snark was found in 2013 and the syringe was found in 2015.\smallskip
 \end{itemize}
 
 \begin{figure}[!htb]
@@ -94,9 +94,9 @@ The pattern displayed in Figure~\ref{fig:mwss_universal_constructor} illustrates
 We can use arrangements of construction arms like the one in Figure~\ref{fig:mwss_universal_constructor} to construct anything that has a glider synthesis. In particular, because these construction arms are made up of such simple components (mostly blocks and eater~1s, with the most difficult piece to synthesize being a tub), they can even be used to synthesize copies of \emph{themselves}. Indeed, this is the key idea behind the Gemini spaceship: use an extremely long chain of gliders to have two construction arms build copies of themselves somewhere else in the plane. To turn this idea into a \emph{spaceship} though (i.e., to make the construction propagate from one location in the Life plane to another, without leaving anything behind itself), we need to make two additions:\smallskip
 
 \begin{itemize}
-	\item[1)] We need to destroy the original pair of construction arms after they have constructed the new ones. To do this, we simply use a third construction arm (which we will instead call the \emph{destruction arm}),\index{destruction arm} which is constructed alongside the original pair. After all three arms are constructed, the first two start construction again while the third one starts destroying the no-longer-needed circuitry from the spaceship's previous period. Since objects like blocks and eater~1s can easily be destroyed by a single glider each, it is straightforward to find a glider recipe that destroys these old circuits.\smallskip
+	\item We need to destroy the original pair of construction arms after they have constructed the new ones. To do this, we simply use a third construction arm (which we will instead call the \emph{destruction arm}),\index{destruction arm} which is constructed alongside the original pair. After all three arms are constructed, the first two start construction again while the third one starts destroying the no-longer-needed circuitry from the spaceship's previous period. Since objects like blocks and eater~1s can easily be destroyed by a single glider each, it is straightforward to find a glider recipe that destroys these old circuits.\smallskip
 	
-	\item[2)] We need to be able to re-use the glider recipes that store the construction and destruction recipes. Since we cannot use a static loop (we need the glider recipes to move along with the construction arms), we instead have the glider recipes bounce back and forth between \emph{two} copies of the entire three-arm circuit that we have described.\footnote{In fact, the two ends of the spaceship that we construct will be exactly identical. This is the reason for its name ``Gemini''---it is Latin for ``twins''.}\smallskip
+	\item We need to be able to re-use the glider recipes that store the construction and destruction recipes. Since we cannot use a static loop (we need the glider recipes to move along with the construction arms), we instead have the glider recipes bounce back and forth between \emph{two} copies of the entire three-arm circuit that we have described.\footnote{In fact, the two ends of the spaceship that we construct will be exactly identical. This is the reason for its name ``Gemini''---it is Latin for ``twins''.}\smallskip
 \end{itemize}
 
 After we put all of these ideas together, we get the Gemini spaceship that is displayed in Figure~\ref{fig:gemini}.\footnote{Constructed by Andrew J.~Wade in May 2010.} It builds a copy of itself displaced by $5{\thousep}120$ cells in one direction and $1{\thousep}024$ cells in the other direction every $33{\thousep}699{\thousep}586$ generations, making it the first spaceship that we have seen that does not travel orthogonally or diagonally at a slope of~$1$ (its slope is $5120/1024 = 5$).
@@ -112,18 +112,13 @@ After we put all of these ideas together, we get the Gemini spaceship that is di
 \subsection{Geminoids}\label{sec:geminoids}\index{geminoid}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The Gemini spaceship of Figure~\ref{fig:gemini} travels at a speed of $(1024,5120)c/33699586$, but it can be modified in numerous ways to produce closely-related spaceships, called \emph{Geminoids}, that have a wide variety of different speeds and directions. We now explore some of these alterations, and discuss what their theoretical limits are.
+The Gemini spaceship travels at a speed of $(1024,5120)c/33699586$, but it can be modified in numerous ways to produce closely-related spaceships, called \emph{Geminoids}, that have a wide variety of different speeds and directions. We now explore some of these alterations, and discuss what their theoretical limits are.
 
-The simplest way to change the speed of the Gemini is to change the distance between its two identical ends, without changing any of the glider recipes that bounce back and forth between them. Each additional cell (i.e., full diagonal) by which we separate the ends increases the travel time of each glider by $8$~generations per period ($4$~generations in each direction). Since this change does not affect how far the Gemini travels over the course of its period, this lets us build Geminoids that are arbitrarily slow, having any speed of the form $(1024,5120)c/(33699586 + 8k)$, where $k \geq 0$ is an integer.\footnote{We can also squeeze the ends of the Gemini closer together, which \emph{decreases} its period by $8$ generation per full diagonal, but only by a bit. The glider sequence still has to fit between the two ends---if we squeeze them too close together then gliders will try to use circuitry before it is constructed (see Exercise~\ref{exer:squeeze_gemini_how_far}).}
+The simplest way to change the speed of the Gemini is to change the distance between its two identical ends, without changing any of the glider recipes that bounce back and forth between them. Each additional cell (i.e., full diagonal) by which we separate the ends increases the travel time of each glider by $8$~generations per period ($4$~generations in each direction). Since this change does not affect how far the Gemini travels over the course of its period, this lets us build Geminoids that are arbitrarily slow, having any speed of the form $(1024,5120)c/(33699586 + 8k)$, where $k \geq 0$ is an integer.\footnote{For some values of $k$, we will have to adjust the spacing of the gliders along the track. This is because one of the construction arms at the Gemini's southeast end crosses over the $24$ glider lanes, which can lead to unwanted collisions if we are not careful. Any value of $k$ that is a multiple of $144$ is safe though, as that is the spacing between gliders on those lanes.} We can similarly squeeze the ends of the Gemini closer together, which \emph{decreases} its period by $8$ generation per full diagonal, but only by a bit. The glider sequence still has to fit between the two ends---if we squeeze them too close together then gliders will try to use circuitry before it is constructed (see Exercise~\ref{exer:squeeze_gemini_how_far}).
 
-We can also change the slope (i.e., the direction) that the Gemini travels at, just by changing how many \texttt{PUSH} operations are applied to the two construction elbows and the destruction elbow before they actually start constructing and destructing. If the northwest construction elbow (i.e., the aqua elbow, in the orientation and coloring scheme of the Gemini displayed in Figure~\ref{fig:gemini}) is pushed out $m$ cells before beginning construction, and the northeast construction elbow (i.e., the green one) is similarly pushed out $n$ cells,\footnote{The destruction elbow must be pushed out by the same amount as the northeast construction elbow: $n$ cells.} then the resulting displacement of the Geminoid will be $(m-n,m+n)$ cells per period.\footnote{When we talk about an elbow being pushed by $m$ or $n$ cells before constructing, we really just mean that the diagonal displacement of the Geminoid over the course of one period is $m$ full diagonals in the northwest direction and $n$ full diagonals in the northeast direction (i.e., we are working in a coordinate system that is rotated $45$~degrees from the usual one).}
+We can also change the slope (i.e., the direction) that the Gemini travels at, just by changing how many \texttt{PUSH} operations are applied to the northwest construction elbow (i.e., the aqua elbow, in the orientation and coloring scheme of the Gemini displayed in Figure~\ref{fig:gemini}) before it starts constructing. In particular, if it is pushed out $m$ cells before beginning construction, then the resulting displacement of the Geminoid will be $(m-2048,m+2048)$ cells per period.\footnote{When we talk about the northwest elbow being pushed by $m$ cells before constructing, we really just mean that the displacement of the Geminoid over the course of one period is $m$ full diagonals in the northwest direction (i.e., we are working in a coordinate system that is rotated $45$~degrees from the usual one).}
 
-The slope of this Geminoid spaceship will be $(m+n)/(m-n)$,\footnote{If $m = n$ then the Geminoid will travel straight up, orthogonally.} so any rational slope $p/q \neq 1$ (i.e., diagonal) is attainable:\footnote{Since $m+n > m-n$, this particular argument only gives Geminoids with rational slopes that are \emph{bigger} than $1$. To get slopes between $0$ and $1$, just rotate the Geminoid by $90$~degrees.} we can choose $m = p+q$ and $n = p-q$ to get
-\[
-	\frac{m+n}{m-n} = \frac{(p+q)+(p-q)}{(p+q)-(p-q)} = \frac{2p}{2q} = \frac{p}{q}.
-\]
-
-In the Gemini itself, the construction elbows are pushed out by $m = 3072$ and $n = 2048$ cells, respectively, for a displacement of $(m-n,m+n) = (1024,5120)$ cells per period, and a slope of $5120/1024 = 5$. We can change this into, for example, a knightship\index{knightship} (i.e., a spaceship with slope $2$) by increasing $m$ and/or $n$ so that $m+n = 2(m-n)$ (i.e., $m = 3n$). The easiest way to do this is to insert another $3072$ \texttt{PUSH} operations on the northwest construction elbow's path of the Gemini. This alteration produces the knightship Geminoid with $m = 3072 + 3072 = 6144$ and $n = 2048$ (i.e., a displacement of $(4096,8192)$ cells per period) that is displayed in Figure~\ref{fig:geminoid_knightship}.\footnote{This knightship was constructed by Dave Greene in June 2010.}
+In the Gemini itself, the northwest construction elbow is pushed out by $m = 3072$ cells, for a displacement of $(m-2048,m+2048) = (1024,5120)$ cells per period, and a slope of $5120/1024 = 5$. We can change this into, for example, a knightship\index{knightship} (i.e., a spaceship with slope $2$) by increasing $m$ so that $m+2048 = 2(m-2048)$ (i.e., $m = 6144$). The easiest way to do this is to insert another $3072$ \texttt{PUSH} operations on the northwest construction elbow's path of the Gemini. This alteration produces the knightship Geminoid with $m = 3072 + 3072 = 6144$ and $n = 2048$ (i.e., a displacement of $(4096,8192)$ cells per period) that is displayed in Figure~\ref{fig:geminoid_knightship}.\footnote{This knightship was constructed by Dave Greene in June 2010.}
 
 \begin{figure}[!htb]
 	\centering
@@ -131,22 +126,38 @@ In the Gemini itself, the construction elbows are pushed out by $m = 3072$ and $
 	\caption{The northwest corner of a (slope $2$) knightship Geminoid. It functions the exact same as the Gemini itself from Figure~\ref{fig:gemini}, except the construction elbow along the \bgbox{aquaback}{aqua} path is pushed an extra $3072$ full diagonals before beginning construction. It travels at a speed of $(4096,8192)c/35567490$.}\label{fig:geminoid_knightship}
 \end{figure}
 
-In addition to changing Gemini's slope, we can also use this method of inserting additional \texttt{PUSH} operations to increase its speed. For example, if we insert another $3072$ \texttt{PUSH} operations on the Gemini's northwest construction elbow's path,\footnote{This is the exact same number of additional \texttt{PUSH} operations that we added in the knightship Geminoid.} and another $2048$ \texttt{PUSH} operations on its northeast construction elbow's path, we get a Geminoid that travels exactly twice as far per period: $(2048,10240)$. The speed of this new Geminoid depends a bit on some fine details like how much space we leave between the new \texttt{PUSH}-triggering gliders, and how tightly we push the ends of the Geminoid together. If we optimize this Geminoid in both of these regards, its speed will be $(2048,10240)c/35461914 = (1024,5120)c/17730957$, which is roughly twice as fast as the original Gemini.
-% TODO: Double check the above speed. I used 575 in the calc, should it be 579?
+We can achieve an even wider variety of Geminoid slopes by similarly pushing the northeast construction elbow (i.e., the green one in Figures~\ref{fig:gemini} and~\ref{fig:geminoid_knightship}) farther out before construction begins. We have to be slightly more careful with this elbow, though, for two reasons:\smallskip
 
-By adding more and more \texttt{PUSH} operations to each of the construction elbows, we can construct Geminoids that travel faster and faster. However, this speed increase is limited by the speed at which we can perform \texttt{PUSH} operations. Since the Gemini's circuitry contains a Callahan G-to-H\index{Callahan G-to-H} (refer back to Figure~??), which has a repeat time of $575$ generations, any \texttt{PUSH}-triggering gliders that we add to the Gemini must be separated by at least that much. Furthermore, since each \texttt{PUSH} operation pushes the elbow $1$ full diagonal (i.e., $4$ generations) farther away, it takes $575+4 = 579$~generations to...
+\begin{itemize}
+	\item To keep the two halves of the Geminoid lined up properly, we cannot just push the northeast construction elbow away by $n$ cells---we also have to push the three rows of reflectors and glider duplicators on the northeast half of those ends away by $n/2$ cells.\footnote{And $n$ must therefore be even.}\smallskip
+	
+	\item The destruction elbow must be pushed out by the same amount as the northeast construction elbow: $n$ cells. Furthermore, the destruction recipe itself must be changed slightly to accommodate the fact that the circuits that it is destroying have been separated by $n/2$ cells (see the above bullet).\smallskip
+\end{itemize}
 
-% lead into asymptotic speed limit
-% When talking about lowering past 579 gens, mention lots of crossings to be careful of
-% How does inserting an additional glider for an additional PUSH operation in the gemini's path affect it's speed limit? this isn't discussed anywhere yet, I don't think.
+If we (carefully, taking into account the technicalities mentioned above) push out the northwest and northeast construction elbows by $m$ and $n$ cells, respectively, the resulting Geminoid will have a displacement of $(m-n,m+n)$ cells per period. Its slope will thus be $(m+n)/(m-n)$,\footnote{If $m = n$ then the Geminoid will travel straight up, orthogonally.} so any rational slope $p/q \neq 1$ (i.e., diagonal) is attainable: we can get any rational slope $p/q$ that is larger than $1$ by choosing $m = 2p+2q$ and $n = 2p-2q$, so that
+\[
+	\frac{m+n}{m-n} = \frac{(2p+2q)+(2p-2q)}{(2p+2q)-(2p-2q)} = \frac{4p}{4q} = \frac{p}{q},
+\]
+and we can achieve any rational slope that is between $0$ and $1$ by rotating one of these Geminoids by $90$~degrees.
 
-% DAVE SAYS: Meaning a slope of 3 in a 45-degree coordinate system? Can't we just call this a slope of 2? You should be able to produce a true (2x, x) Gemini knightship just by adding 3072 PUSH instructions to the westward construction arm, lengthening the distance between the two ends appropriately, and recompiling to avoid collisions in the glider-stream crossings in the upper part of the westward arm in the southeast replicator... I haven't looked at Andrew's code closely enough yet to find out if the (1024, 5120) offset is deeply buried in underlying assumptions in the collision-avoidance code, or if it's easy to change, or if anything will even need changing...!
+In addition to changing Gemini's slope, we can also use this method of inserting additional \texttt{PUSH} operations to increase its speed. For example, if we insert another $3072$ \texttt{PUSH} operations on the Gemini's northwest construction elbow's path, and another $2048$ \texttt{PUSH} operations on its northeast construction elbow's path (i.e., we increase the construction elbow displacements to $m = 6144$ and $n = 4096$), we get a Geminoid that travels exactly twice as far as the Gemini per period: $(2048,10240)$. The exact speed of this new Geminoid depends a bit on some fine details like how much space we leave between the new \texttt{PUSH}-triggering gliders, and how tightly we push the ends of the Geminoid together, but it will be a bit under twice as fast as the original Gemini.
 
+By adding more and more \texttt{PUSH} operations to each of the construction elbows, we can construct Geminoids that travel faster and faster. However, this speed increase is limited by the speed at which we can perform consecutive \texttt{PUSH} operations. Since the Gemini's circuitry contains a Callahan G-to-H\index{Callahan G-to-H} (refer back to Figure~??), which has a repeat time of $575$ generations, any \texttt{PUSH}-triggering gliders that we add to the Gemini must be separated by at least that much. Furthermore, since each \texttt{PUSH} operation pushes the elbow $1$ full diagonal farther away, it adds an extra $4$ generations to the Gemini's period, for a total of $575+4 = 579$~generations per \texttt{PUSH}. When we put all of these observations together, we arrive at the following theorem:
+
+\begin{theorem}[Geminoid Speed Limit]\label{thm:geminoid_speed_limit}
+	By changing the locations at which the Gemini spaceship constructs its circuitry (but without changing the components of that circuitry), we can construct Geminoid spaceships with any speed of the form $(x,y)c$, where $x, y < 1/579$ are rational numbers with $x \neq y$.
+\end{theorem}
+
+If we are willing to further tweak our Geminoids then we could make ones that are even faster, though the rebuilding effort would increase considerably. For example, we could replace the Callahan G-to-H that is used in the Gemini's construction arms with a Silver reflector, thus bringing its repeat time down to $497$~generations, and its asymptotic speed limit up to $c/(497+4) = c/501$.
+
+We could even go one step further and replace all reflectors that are used in the Gemini by Snarks, and all glider duplicators by syringe-based conduits (like the upcoming Scorbie splitter in Section~\ref{sec:scorbie_splitter}). The resulting circuitry's repeat time would then be $90$~generations, for an asymptotic speed limit of the Geminoid equal to $c/(90+4) = c/94$. However, a Geminoid with a speed anywhere close to this limit would have to be monstrously large due to the high number of \texttt{PUSH} operations used each period. Furthermore, it would require a complete rebuild of the Gemini, and extreme care would have to be taken to avoid unwanted collisions in the now more-tightly-packed crossing glider streams.\footnote{These crossing glider streams make it rather fiddly to even reduce the spacing between gliders from $576$~generations in the current Gemini to the theoretically possible $575$~generations.}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Single-Channel Glider Synthesis with a 90-Degree Elbow}\label{sec:single_channel_synth}\index{elbow}\index{90-degree elbow}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+While Geminoids let us construct spaceships that travel in any direction, they all travel quite slowly. We now switch gears and start developing the tools needed to construct a new type of spaceship that travels at any speed (but not any direction) of our choosing.
 
 Recall from Section~\ref{sec:slow_salvo} that slow salvo synthesis is a method of encoding the construction of a pattern in the positions of a sequence gliders, with their timing playing no role (except that the gap between consecutive gliders must be sufficiently large that each glider's collision must settle down before the next glider arrives). We now flip this idea around and instead show how to encode the construction of a pattern in the \emph{timing} of a sequence of gliders, with their \emph{position} playing no role. In particular, we show how to encode glider synthesis via gliders that are all coming from the same direction on the same lane.
 
@@ -155,7 +166,7 @@ Recall from Section~\ref{sec:slow_salvo} that slow salvo synthesis is a method o
 \subsection{Creating Slow Gliders}\label{sec:single_channel_create_perp_glider}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-As with many of our other universal constructions, we make use of a block that acts as an elbow in order to make these single-lane syntheses possible. In particular, we fire a stream of gliders at a block so as to first create a chaotic explosion (but turning the block into a pi-heptomino), and then clean up the resulting debris while creating a perpendicular glider. For example, Figure~\ref{fig:90_degree_first_example} displays a sequence of 13~gliders that, when it collides with a block, produces a single glider travelling in a different direction.
+As with many of our other universal constructions, we make use of a block that acts as an elbow in order to make these single-lane syntheses possible. In particular, we fire a stream of gliders at a block so as to first create a chaotic explosion (by turning the block into a pi-heptomino), and then clean up the resulting debris while creating a perpendicular glider. For example, Figure~\ref{fig:90_degree_first_example} displays a sequence of 13~gliders that, when it collides with a block, produces a single glider travelling in a different direction.
 
 \begin{figure}[!htb]
 	\centering
@@ -163,12 +174,12 @@ As with many of our other universal constructions, we make use of a block that a
 	\caption{A sequence of $13$ gliders travelling along the same lane that collide with a block so as to (a) produce a single perpendicular glider, and (b) recreate the target block along the same lane (but shifted northwest by 20 half-diagonals) so that it can be re-used by other single-channel recipes. The numbers on the left indicate the number of generations between consecutive gliders.}\label{fig:90_degree_first_example}
 \end{figure}
 
-Since all gliders in a single-channel sequence like this come from the same direction on the same lane, we can encode it simply via the number of generations between each consecutive pair of gliders. For example, the $13$-glider sequence from Figure~\ref{fig:90_degree_first_example} could be encoded by the following sequence of $12$~timing gaps:
+Since all gliders in a single-channel recipe like this come from the same direction on the same lane, we can encode it simply via the number of generations between each consecutive pair of gliders. For example, the $13$-glider recipe from Figure~\ref{fig:90_degree_first_example} could be encoded by the following sequence of $12$~timing gaps:
 \begin{center}
 	\texttt{109, 91, 94, 91, 91, 124, 91, 105, 90, 106, 112, 108}.
 \end{center}
 
-Computer searches have been carried out\footnote{Mostly by Simon Ekstr{\"o}m, with some optimizations by Dave Greene, in 2017.} to generate single-channel glider sequences that, when aimed at a block as in Figure~\ref{fig:90_degree_first_example} (i.e., so that the first glider triggers a block-to-pi-heptomino explosion), a single output glider is produced on some perpendicular lane. A summary of some reasonably short sequences of this type that produce gliders on a variety of different output lanes (and in either of the two perpendicular output directions) is provided in Table~\ref{tab:single_lane_90deg_glider_timings}.
+Computer searches have been carried out\footnote{Mostly by Simon Ekstr{\"o}m, with some optimizations by Dave Greene, in 2017.} to generate single-channel glider recipes that, when aimed at a block as in Figure~\ref{fig:90_degree_first_example} (i.e., so that the first glider triggers a block-to-pi-heptomino explosion), a single output glider is produced on some perpendicular lane. A summary of some reasonably short recipes of this type that produce gliders on a variety of different output lanes (and in either of the two perpendicular output directions) is provided in Table~\ref{tab:single_lane_90deg_glider_timings}.
 
 \newcolumntype{L}{>{\hspace*{-\tabcolsep}}r}
 \newcolumntype{R}{l<{\hspace*{-\tabcolsep}}}
@@ -194,23 +205,19 @@ Computer searches have been carried out\footnote{Mostly by Simon Ekstr{\"o}m, wi
 		\rowcolor{gray!20}\texttt{10x} & \texttt{11} & \footnotesize\texttt{109,91,94,91,91,92,90,119,90,90,109,91,94,91,91,92,90,143,90,91,158,{\color{gray}(90)}}\\
 		\bottomrule
 	\end{tabular}
-	\caption{Single-channel glider sequences that collide with a 90-degree elbow so as to produce a perpendicular output glider on a given lane. The first 8 rows give sequences that produce an ``\textbf{i}nternal'' glider (i.e., one that travels northeast when oriented as in Figure~\ref{fig:90_degree_first_example}) and the last 8 rows give sequences that produce an ``e\textbf{x}ternal'' glider (i.e., one that travels southwest). The ``move'' column indicates how many half-diagonals the elbow is moved forward or backward, and the ``timings'' column indicates the number of generations between consecutive gliders in the sequence. The final number in parentheses is the number of generations that must pass before it is safe to send subsequent glider sequences.}\label{tab:single_lane_90deg_glider_timings}
+	\caption{Single-channel glider recipes that collide with a 90-degree elbow so as to produce a perpendicular output glider on a given lane. The first 8 rows give recipes that produce an ``\textbf{i}nternal'' glider (i.e., one that travels northeast when oriented as in Figure~\ref{fig:90_degree_first_example}) and the last 8 rows give sequences that produce an ``e\textbf{x}ternal'' glider (i.e., one that travels southwest). The ``move'' column indicates how many half-diagonals the elbow is moved forward, and the ``timings'' column indicates the number of generations between consecutive gliders in the sequence. The final number in parentheses is the number of generations that must pass before it is safe to send subsequent glider recipes.}\label{tab:single_lane_90deg_glider_timings}
 \end{table}
 
-There are numerous points of clarification that we need to make about these sequences:\smallskip
+There are numerous points of clarification that we need to make about these recipes:\smallskip
 
 \begin{itemize}
 	\item The output lane number has either an ``\texttt{i}'' or ``\texttt{x}'' suffix, indicating in which of the two perpendicular directions the output glider travels. The suffixes stand for \textbf{i}nternal and e\textbf{x}ternal, which refer to the output glider travelling on the same side as the elbow block that the input glider sequence hits, or the opposite side, respectively.\smallskip 
 	
 	\item Some of these glider sequences, like the one with output on lane~2x, change the zero-degree elbow block into another small object like a boat, beehive, or pond. This is okay because those objects explode into a pi-heptomino when they are hit by a glider in the exact same way that a block does, and this is always the reaction that the first glider in these single-channel sequence triggers.\smallskip
 	
-	\item The ``move'' column of Table~\ref{tab:single_lane_90deg_glider_timings} specifies how many half-diagonals farther away the zero-degree elbow is moved by the glider sequence.\smallskip
+	\item The ``move'' column of Table~\ref{tab:single_lane_90deg_glider_timings} specifies how many half-diagonals farther away the zero-degree elbow is moved by the glider sequence. If this value is odd then the elbow is moved to the other side of the input glider stream. If this happens, the output lanes of all subsequent glider sequences are flipped from \texttt{i} to \texttt{x}, and vice-versa. For example, the sequence corresponding to lane~$2x$ has a ``move'' value of $3$, which is odd. Thus if we want to output gliders on lanes $2x$ and then $-12x$, we would have to send the sequences corresponding to lanes $2x$ and then $-15i$ (not $-15x$).\smallskip
 	
-	\item The value in the ``move'' column being odd means that the elbow was moved to the other side of the input glider stream. If this happens, the output lanes of all subsequent glider sequences are flipped from \texttt{i} to \texttt{x}, and vice-versa. For example, the sequence corresponding to lane~$2x$ has a ``move'' value of $3$, which is odd. Thus if we want to output gliders on lanes $2x$ and then $-12x$, we would have to send the sequences corresponding to lanes $2x$ and then $-15i$ (not $-15x$).\smallskip
-	
-	\item In most of these glider sequences, there are numerous gaps of 90 and 91~generations. The reason for this is that we want to be able to feed these single-channel glider recipes through standard components like Snarks and the easy-to-synthesize Lx200-assisted\index{Lx200} syringe\index{syringe} from Exercise~\ref{exer:syringe_Lx200} (which has a repeat time of~$90$ generations).\footnote{Single-channel glider sequences with large timing gaps are desirable since they can make use of circuitry that has a higher repeat time. We could use sequences with gaps no smaller than $153$~generations (such sequences are known to be able to emulate arbitrary glider syntheses), thus letting us feed these sequences through the syringe variant from Figure~\ref{fig:syringe_modified}, for example. However, as the minimum timing gap increases, so does the length of the resulting glider sequences, so we stick with a minimum timing gap of 90~generations.}
-	
-	Most of the gliders that have a timing of 90 or 91 generations could actually be moved much closer (i.e., the previous glider's collision settles down before they arrive) if we so desired. The reason that some gliders use a gap of $91$~generations instead of just $90$ is that their timing matters mod~$2$, due to p$2$ components like blinkers in an intermediate reaction.\smallskip
+	\item In most of these glider sequences, there are numerous gaps of 90 and 91~generations. The reason for this is that we want to be able to feed these single-channel glider recipes through standard components like Snarks and the easy-to-synthesize Lx200-assisted\index{Lx200} syringe\index{syringe} from Exercise~\ref{exer:syringe_Lx200} (which has a repeat time of~$90$ generations).\footnote{Single-channel glider sequences with large timing gaps are desirable since they can make use of circuitry that has a higher repeat time. We could use sequences with gaps no smaller than $153$~generations (such sequences are known to be able to emulate arbitrary glider syntheses), thus letting us feed these sequences through the syringe variant from Figure~\ref{fig:syringe_modified}, for example. However, as the minimum timing gap increases, so does the length of the resulting glider sequences, so we stick with a minimum timing gap of 90~generations.} Most of the gliders that have a timing of 90 or 91 generations could actually be moved much closer (i.e., the previous glider's collision settles down before they arrive), but only if they are used on conjunction with faster-recovering conduits. The reason that some gliders use a gap of $91$~generations instead of just $90$ is that their timing matters mod~$2$, due to p$2$ components like blinkers in an intermediate reaction.\smallskip
 \end{itemize}
 
 
@@ -218,7 +225,7 @@ There are numerous points of clarification that we need to make about these sequ
 \subsection{Moving the Elbow}\label{sec:single_channel_move_elbow}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The sequences given in Table~\ref{tab:single_lane_90deg_glider_timings} can only be used to fire gliders on a small selection of lanes (8 in each direction). Furthermore, these sequences move the elbow forward and backward by some amount that we do not control---an amount that is dictated by the output lane on which we wish to fire a glider. It is thus important to be able to move the elbow however far forward or backward we like, \emph{without} firing a glider, so that the glider-firing sequences then produce a glider where we actually want it. For example, the following pair of elbow-moving sequences, which are displayed in Figure~\ref{fig:0_degree_block_push_pull}, move the elbow forward by $8$~half diagonals or backward by $12$ half diagonals, respectively.
+The sequences given in Table~\ref{tab:single_lane_90deg_glider_timings} can only be used to fire gliders on a small selection of lanes (8 in each direction). Furthermore, these sequences move the elbow forward and backward by some amount that we do not control---it is dictated by the output lane on which we wish to fire a glider. It is thus important to be able to move the elbow however far forward or backward we like, \emph{without} firing a glider, so that the glider-firing sequences then produce a glider where we actually want it. For example, the following pair of elbow-moving sequences, which are displayed in Figure~\ref{fig:0_degree_block_push_pull}, move the elbow forward by $8$~half diagonals or backward by $12$ half diagonals, respectively.
 \begin{align*}
 & \text{\texttt{~push~8hd: \footnotesize 109, 91, 94, 91, 91, 92, 90, 119, 90, {\color{gray}(90)},}}\\
 & \text{\texttt{pull~12hd: \footnotesize 109, 91, 93, 91, 137, 91, 91, 125, 172, 108, 90, 109, 91, 101, 120, 90, {\color{gray}(90)}.}}
@@ -288,13 +295,13 @@ which is illustrated as the first transition in Figure~\ref{fig:90_degree_block_
 
 Since we can now use single-channel glider sequences and a $90$-degree elbow to create slow gliders on any lane, and we can also create a hand block for those gliders to collide with, we immediately see from Theorem~\ref{thm:p1_slow_salvo} that these types of glider syntheses are universal. That is, we have demonstrated the following result:
 
-\begin{theorem}\label{thm:single_channel_90_degree}
+\begin{theorem}[Universality of Single-Channel Synthesis]\label{thm:single_channel_90_degree}
 	Every pattern that can be constructed via glider synthesis can be constructed by a single-channel glider synthesis with a $90$-degree elbow.
 \end{theorem}
 
 To illustrate how to implement slow salvo synthesis via single-channel synthesis, consider the problem of moving the hand block after we create it. We can use any of the slow salvos from Figures~\ref{fig:block_movers} and~\ref{fig:p2_block_movers} to carry out this task---we will implement the $4$-glider $(11,0)$ block pull\index{(11,0) block pull} from Figure~\ref{fig:block_move_11_0}, which uses gliders on lanes (relative to the initial position of the elbow block) $-6i$, $-6i$, $6i$, and $0i$, in that order.
 
-To this end, we first use the hand-making sequence of gliders~\eqref{eq:make_hand_90_deg}, which moves the block to position~$17$. We can then fire the four slow gliders as follows:\smallskip
+To this end, we first use the hand-making sequence of gliders~\eqref{eq:make_hand_90_deg}, which moves the block to position~$17$. We then fire the four slow gliders as follows:\smallskip
 
 \begin{itemize}
 	\item We want to fire a glider $17 - (-6) = 23$ lanes behind the elbow. Since the hand-making sequence of gliders flipped the orientation of the elbow block, we thus want to fire the first glider on lane $-23x$ (not $-23i$). This can be achieved by a $-2$ half-diagonal elbow move (from Table~\ref{tab:single_lane_elbow_movers}) followed by firing a glider on lane $-21x$ (from Table~\ref{tab:single_lane_90deg_glider_timings}).\smallskip
@@ -340,7 +347,7 @@ When we put all of this together, we get the following single-lane sequence of 1
 \section{Single-Channel Glider Synthesis with a Zero-Degree Elbow}\label{sec:single_channel_synth_0}\index{zero-degree elbow}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-While the single-channel syntheses of the previous subsection are very useful, it is sometimes desirable to use single-channel glider sequences to build an object directly in front of them, rather than off to their side. For example, it will be useful for us to be able to use gliders from a single lane to construct a Snark that accepts gliders on that same lane as input. To make this possible, instead of using a 90-degree elbow we use a \emph{zero-degree elbow}:\index{zero-degree elbow} a small stable object (like a block) that several gliders are fired at on a particular lane so as to produce a single glider going in the \emph{same direction} but on a different lane.\footnote{Here, ``zero-degree'' refers to the fact that the input glider stream is being ``reflected'' by zero degrees (i.e., not reflected at all, but just shifted to a different lane).}
+While the single-channel syntheses of the previous subsection are very useful, it is sometimes desirable to use single-channel glider recipes to build an object directly in front of them, rather than off to their side. For example, it will be useful for us to be able to use gliders from a single lane to construct a Snark that accepts gliders on that same lane as input. To make this possible, instead of using a 90-degree elbow we use a \emph{zero-degree elbow}:\index{zero-degree elbow} a small stable object (like a block) that several gliders are fired at on a particular lane so as to produce a single glider going in the \emph{same direction} but on a different lane.\footnote{Here, ``zero-degree'' refers to the fact that the input glider stream is being ``reflected'' by zero degrees (i.e., not reflected at all, but just shifted to a different lane).}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -622,14 +629,14 @@ The single-channel recipe that this Demonoid uses consists of $14{\thousep}247$ 
 	\caption{A Snark and a Scorbie splitter (and pretty much any other object---see Exercise~\ref{exer:syringe_xwss_destroy}) can be destroyed by slow salvos of lightweight, middleweight, and heavyweight spaceships.}\label{fig:snark_scorbie_destroy}
 \end{figure}
 
-Altogether, this Demonoid has period $2^{21} = 2{\thousep}097{\thousep}152$ and speed $128c/2097152 = c/16384$, but those values can be improved slightly by moving its ends closer together---see Exercise~\ref{exer:slow_demonoid_adjust}. By adding some extra block-pushing recipes to it, so that the new Scorbie splitter and Snark are built more than $128$ cells away, its speed can be increased by a considerably larger amount, but never past $c/100$ or so---see Exercise~\ref{exer:44hd_elbow_push}.
+Altogether, this Demonoid has period $2^{21} = 2{\thousep}097{\thousep}152$ and speed $128c/2097152 = c/16384$, but those values can be improved slightly by moving its ends closer together---see Exercise~\ref{exer:slow_demonoid_adjust}. By adding some extra block-pushing recipes to it, so that the new Scorbie splitter and Snark are built more than $128$ cells away, we can increase its speed by a considerably larger amount, just like we can use additional \texttt{PUSH} operations to increase the speed of Geminoids. The fastest block-pushing reaction that we currently know lets us make Demonoids with speeds arbitrarily close to, but not equal to, $44c/6379 \approx 0.0069c$ (see Exercise~\ref{exer:44hd_elbow_push}).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{A Middling Demonoid}\label{sec:medium_demonoid}\index{Cordership}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In order to construct a Demonoid that is faster than $22c/2239$ (or even one that is close to that speed without being an order of magnitude larger than the Demonoid from Figure~\ref{fig:slow_demonoid}), we need a faster way of moving a construction elbow forward than we have seen so far. One technique that works well (over long distances, at least) is to use the elbow block to synthesize a spaceship that moves in the desired direction, and then use a recipe to shoot it down, turning it back into a construction elbow some time later. By letting the spaceship travel a longer and longer distance before shooting it down, we can move the elbow at speeds closer and closer to that of the spaceship.
+In order to construct a Demonoid that is faster than $44c/6379$ (or even one that is close to that speed without being an order of magnitude larger than the Demonoid from Figure~\ref{fig:slow_demonoid}), we need a faster way of moving a construction elbow forward than we have seen so far. One technique that works well (over long distances, at least) is to use the elbow block to synthesize a spaceship that moves in the desired direction, and then use a recipe to shoot it down, turning it back into a construction elbow some time later. By letting the spaceship travel a longer and longer distance before shooting it down, we can move the elbow at speeds closer and closer to that of the spaceship.
 
 Perhaps the simplest elbow-moving spaceships to implement this idea with are Corderships, thanks to how straightforward they are to synthesize (compared to most other spaceships, anyway). Indeed, we saw a seed for the $2$-engine Cordership back in Exercise~\ref{exer:2_engine_corder_seed}, and by adding a one-time splitter and some one-time turners\index{one-time turner} to it, we can trigger it via just a single glider from behind (see Figure~\ref{fig:2_engine_cordership_seed}). We can build this seed via a unidirectional slow salvo synthesis consisting of $112$ gliders, and that slow salvo synthesis can be emulated via a single-channel glider recipe made up of $2{\thousep}393$ gliders. We leave the exact timing gaps to Appendix~\ref{sec:appendix_cordership_maker}, and the slow salvo that they implement to Exercise~\ref{exer:cordership_slow_salvo_from_single_channel}.
 
@@ -661,7 +668,7 @@ We can now place these elbow-to-Cordership and Cordership-to-elbow recipes into 
 	\caption{A $c/256$ Demonoid spaceship that works by bouncing a (very long) single-channel glider recipe (highlighted in \bgbox{greenpastel}{green}) between two self-constructing ends. In the phase shown here, the recipe is about to construct a Cordership in the southeast corner (at the location circled in \bgbox{redback}{red}), which moves northeast along the path highlighted in \bgbox{aquaback}{aqua}. The single-channel glider recipe then destroys the Cordership (at the location similarly circled in the northwest corner) so as to leave behind a construction elbow. That elbow is then used to build the Snarks and Scorbie splitters necessary to repeat this process. Finally, a single glider is sent backwards as part of a Snarkbreaker, letting the single-channel glider recipe follow the path higlighted in \bgbox{magentaback}{magenta}, which is used to destroy old Snarks and Scorbie splitters that are no longer needed.}\label{fig:c256_demonoid}
 \end{figure}
 
-By waiting longer to shoot down the Cordership after it has been constructed, we can speed this Demonoid up considerably closer to the Cordership's speed of $c/12$. This design's speed limit is actually $c/14$ (not $c/12$) though, since the construction elbow must send back a backward glider as part of a Snarkbreaker once it is no longer needed, to switch the glider recipe over to the destruction elbow. That backward glider has to complete approximately half of its backward journey (i.e., it has to get back past the most-recently-constructed Scorbie splitter) before the next construction phase can begin. If the Cordership moved a total of $n$ cells before being shot down (over the course of $12n$ generations) then it will take that backward glider $4(n/2) = 2n$ generations to move backward the requisite $n/2$ cells. The total speed of the Demonoid is thus slower than $nc/(12n + 2n) = c/14$.\footnote{However, it is possible to slightly redesign this Cordership so as to avoid using a Snarkbreaker, thus pushing its not-quite-attainable speed limit up to $c/12$ from $c/14$---see the upcoming Section~\ref{sec:fast_demonoid} or Exercise~\ref{exer:slow_demonoid_no_snarkbreaker}.}
+By waiting longer to shoot down the Cordership after it has been constructed, we can speed this Demonoid up considerably closer to the Cordership's speed of $c/12$. This design's speed limit is actually $c/14$ (not $c/12$) though, since the construction elbow must send back a backward glider as part of a Snarkbreaker once it is no longer needed, to switch the glider recipe over to the destruction elbow. That backward glider has to complete approximately half of its backward journey (i.e., it has to get back past the most-recently-constructed Scorbie splitter) before the next construction phase can begin. If the Cordership moved a total of $n$ cells before being shot down (over the course of $12n$ generations) then it will take that backward glider $4(n/2) = 2n$ generations to move backward the requisite $n/2$ cells. The total speed of the Demonoid is thus slower than $nc/(12n + 2n) = c/14$.\footnote{However, it is possible to slightly redesign this Cordership so as to avoid using a Snarkbreaker, thus pushing its not-quite-attainable speed limit up to $c/12$ from $c/14$---see the upcoming Section~\ref{sec:fast_demonoid_faster_destruction}.}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -708,7 +715,7 @@ To shoot down this boatstretcher, we fire a glider at the end of the wick (i.e.,
 \subsection{A Faster Destruction Method}\label{sec:fast_demonoid_faster_destruction}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-By making use of this wickstretcher instead of a Cordership for long-distance elbow moves, we can now construct Demonoids with speeds approaching $c/6$. However, we cannot yet get speeds arbitrarily close to $c/4$, due to the return glider that is needed for the Snarkbreaker that we discussed earlier (i.e., the same reason that the Cordership-based Demonoid of Section~\ref{sec:medium_demonoid} can reach speeds close to $c/14$, but not $c/12$). To solve this problem, we introduce another method of destroying old, no-longer-needed circuitry: by placing other still lifes nearby that facilitate their destruction.\footnote{Another method of avoiding Snarkbreakers, thus increasing the Demonoid speed limit from $c/6$ to $c/4$, is presented in Exercise~\ref{exer:slow_demonoid_no_snarkbreaker}.}
+By making use of this wickstretcher instead of a Cordership for long-distance elbow moves, we can now construct Demonoids with speeds approaching $c/6$. However, we cannot yet get speeds arbitrarily close to $c/4$, due to the return glider that is needed for the Snarkbreaker that we discussed earlier (i.e., the same reason that the Cordership-based Demonoid of Section~\ref{sec:medium_demonoid} can reach speeds close to $c/14$, but not $c/12$). To solve this problem, we introduce another method of destroying old, no-longer-needed circuitry: by placing other still lifes nearby that facilitate their destruction.
 
 For example, Figure~\ref{fig:snark_scorbie_seeded_destroy} illustrates how still lifes can be placed around a Snark and Scorbie splitter so that they can each be destroyed by a single glider.\footnote{Still life configurations like this that aid the self-destruction of a given pattern can be found via Simon Ekstr\"{o}m's \emph{GoL-destroy}\index{GoL-destroy} program, which is available at \httpsurl{github.com/simeksgol/GoL_destroy}.} Importantly, these still life do not interfere with the usual function of the circuit (which is to either reflect or duplicate a glider). Furthermore, the circuit-destroying glider comes from the same direction (but on a different lane) as the usual input glider, so the destruction can be triggered straightforwardly via the single-lane glider recipe (without having to wait for a return glider from the other side, as in a Snarkbreaker).
 
@@ -1084,7 +1091,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	
 	
 	\begin{problemstar}\label{exer:44hd_elbow_push}
-		The following single-lane glider recipe (called the \emph{44hd elbow push}\index{44hd elbow push}) is the fastest-known elbow-pushing recipe---it moves the elbow block forward by $44$ half-diagonals in $2{\thousep}195$ generations, for a speed of $22c/2195$:
+		The following single-lane glider recipe (called the \emph{44hd elbow push}\index{44hd elbow push}) is the fastest-known elbow-pushing recipe---it moves the elbow block forward by $44$ half-diagonals in $2{\thousep}107$ generations:
 		\begin{align*}
 		& \text{\texttt{\footnotesize 109, 90, 93, 91, 90, 95, 91, 91, 138, 157,}} \\
 		& \text{\texttt{\footnotesize~96, 90, 120, 91, 97, 107, 90, 90, 93, {\color{gray}(188)}.}}
@@ -1092,30 +1099,26 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 		
 		\begin{center}
 			\centering
-			\embedlink{44hd_elbow_push}{\vcenteredhbox{\patternimg{0.123}{44hd_elbow_push_0}} \vcenteredhbox{\begin{tabular}{@{}c@{}}\color{black}{$\xrightarrow{\text{\clock{7}{17} 2195}}$} \\ \gliderarrow{20}\end{tabular}} \vcenteredhbox{\patternimg{0.123}{44hd_elbow_push_20}}}
+			\embedlink{44hd_elbow_push}{\vcenteredhbox{\patternimg{0.123}{44hd_elbow_push_0}} \vcenteredhbox{\begin{tabular}{@{}c@{}}\color{black}{$\xrightarrow{\text{\clock{7}{17} 2107}}$} \\ \gliderarrow{20}\end{tabular}} \vcenteredhbox{\patternimg{0.123}{44hd_elbow_push_20}}}
 		\end{center}
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item Insert copies of this elbow push into into the appropriate spots in the slow Demonoid from Figure~\ref{fig:slow_demonoid} so that it moves forward $172$~cells throughout its period, instead of just $128$~cells. What is the speed of this new, slightly faster Demonoid?
+			\item Insert copies of this elbow push into into the appropriate spots in the slow Demonoid from Figure~\ref{fig:slow_demonoid} so that it moves forward $194$~cells (i.e., full diagonals) throughout its period, instead of just $128$~cells. What is the speed of this new, slightly faster Demonoid?
 			
 			[Hint: You will also have to slightly adjust the Snarkbreaker timing, as well as the position of the elbow during the Demonoid's destruction phase.]
 			
-			\item Adding more and more of these 44hd elbow pushes makes the Demonoid faster and faster (but also larger and larger). Explain why it is not possible to reach the speed $22c/2239$ (or any faster), even though you might at first glance think that you could achieve speeds arbitrarily close to the speed of this elbow-push operation ($22c/2195$).
+			\item Adding more and more of these 44hd elbow pushes makes the Demonoid faster and faster (but also larger and larger). Explain why only $2/3$ of these block pushes contribute to the speed of the Demonoid. That is, explain why the speed limit is much closer to $(2/3)22c/2107$ than $22c/2107$.
+			
+			\item Explain why the exact speed limit of this Demonoid design is
+			\[
+				\frac{(2/3)22c}{2107 + (4/3)88} = \frac{44c}{6673}.
+			\]
+			
+			\noindent [Hint: The extra unexplained term in the denominator comes from the Snarkbreaker.]
+			
+			\item This 44hd block push can be overclocked\index{overclock} so that subsequent block pushes come in just $90$~generations later instead of $188$. Recompute the Demonoid's speed limit in light of this speed-up.
 		\end{enumerate}
 	\end{problemstar}
-
-
-	\mfilbreak
-	
-	
-	\begin{problem}\label{exer:slow_demonoid_no_snarkbreaker}
-		We can get around the slow Demonoid speed limit issue mentioned in Exercise~\ref{exer:44hd_elbow_push}(b) by having the construction arm create the next temporary Snark (in addition to the Scorbie splitter and Snark that it already creates), instead of creating it via a Snarkmaker.
-		
-		Create (with the help of slsparse) a Demonoid that uses this method of construction. Explain why this slightly different design can be used to construct Demonoids that are slightly faster than ones that use the original design of Figure~\ref{fig:slow_demonoid}.
-		% SOLUTION: Snarkbreaker not needed, can just destroy elbow block instead. So no backward glider that we have to wait for.
-		
-		\noindent [Side note: This method can also be used to increase the speed limit of Cordership-based Demonoids, like the one from Figure~\ref{fig:c256_demonoid}, from $c/14$ to $c/12$.]
-	\end{problem}
 	
 	
 	\mfilbreak
@@ -1166,6 +1169,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\begin{problem}\label{exer:slow_demonoid_via_seeds_of_destruct}
 		Rebuild the slow Demonoid from Figure~\ref{fig:slow_demonoid} so that the Snarks and Scorbie splitters are destroyed by the seeding technique of Figure~\ref{fig:snark_scorbie_seeded_destroy}, rather than via Snarkbreakers and slow xWSS salvos.
 	\end{problem}
+	% Maybe add part (b): what is the speed limit of this redesign?
 
 	
 	\mfilbreak
