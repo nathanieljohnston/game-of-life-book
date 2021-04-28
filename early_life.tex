@@ -40,7 +40,7 @@ After this point, if we apply the evolution rule again, nothing changes; each of
 
 As we saw in this example, there was no input on our part once the pattern started evolving: we just applied the game's rules and passively watched what happened from one generation to the next. Instead, the ``game'' in Life is the challenge of finding new and interesting patterns that evolve in unique and unexpected ways, and that is what this book is about. We will see patterns that move back and forth periodically between a finite number of different configurations, patterns that move through the Life grid over time, and patterns that create an infinitely-growing family of other patterns. We will collide patterns with each other to create more complicated patterns, which we will then erase with even more patterns. We will construct logical circuitry with Life objects that allow us to simulate arbitrary computation within the Life universe, and we will construct patterns that do remarkable things like list the prime numbers or print out the decimal digits of $\pi$. And all of this will work simply based the two simple life and death rules we described earlier.
 
-This all leads to a very natural question: why those rules? Why not have a dead cell come to life only in the case that it has exactly 4~live neighbors? Why not have a live cell stay alive if it has exactly 1, 2, 4, or 7 live neighbors? Indeed, there are $2^{18} = 262,144$ distinct rules that can be constructed simply by specifying different numbers of live and dead neighbors that lead to a cell staying alive or coming to life. However, the following three properties make Life special (but by no means unique):\smallskip
+This all leads to a very natural question: why those rules? Why not have a dead cell come to life only in the case that it has exactly 4~live neighbors? Why not have a live cell stay alive if it has exactly 1, 2, 4, or 7 live neighbors? Indeed, there are $2^{18} = 262{\thousep}144$ distinct rules that can be constructed simply by specifying different numbers of live and dead neighbors that lead to a cell staying alive or coming to life. However, the following three properties make Life special (but by no means unique):\smallskip
 
 \begin{itemize}
 	\item Its rules are \emph{simple}. For example, having a live cell stay alive if it has exactly 2 or 3 live neighbors is a more ``natural'' rule than having a live cell stay alive if it has exactly 1, 2, 4, or 7 live neighbors. This can be justified a bit by arguing that, to model something like a biological system, a cell should die of overcrowding if it has ``too many'' neighbors (e.g., since there won't be enough resources to support all of the live cells), and it should die of isolation if it has ``too few'' neighbors. The exact threshold for ``too many'' and ``too few'' is debatable, but pinned down at least somewhat by the next point.\smallskip
@@ -85,14 +85,14 @@ Option~(1) typically requires a fair bit of effort, as well as some knowledge of
 
 In the ash, we see the beehive that we were introduced to earlier, as well as three other still lifes (i.e., patterns that do not change from one generation to the next). We also see an object called the \emph{blinker}\index{blinker} that rotates itself by 90 degrees every generation. Patterns like this one, which cycle between finitely many different configurations, are called \emph{oscillators}\index{oscillator}, and the configurations that they take on in individual generations are called \emph{phases}\index{phase}. The most exotic object that we see in the ash is the one that is traveling by itself toward the top-right corner of the Life plane. An object that moves through the plane on its own is called a \emph{spaceship}\index{spaceship}, and this particular one is called the \emph{glider}\index{glider}.
 
-Of course, there is nothing remotely special about the particular random configuration that we started with; we could generate other random starting configurations and see what types of ash pop out of them as well. In fact, Life is so chaotic and unpredictable that we could just change a single cell of the first configuration that we used, and we will likely get a completely different set of ash. Indeed, Figure~\ref{fig:random_2} demonstrates the drastic change that can often be made by altering just one cell in a pattern: by just changing one cell from alive to dead, we have made a new pattern that takes almost 3,000 generations to stabilize and results in ash that has over 20 times as many live cells. This new ash also has three additional still lifes in it that were not present in the previous ash. A summary of the ash objects we have seen so far is given in Figure~\ref{fig:first_objects}.
+Of course, there is nothing remotely special about the particular random configuration that we started with; we could generate other random starting configurations and see what types of ash pop out of them as well. In fact, Life is so chaotic and unpredictable that we could just change a single cell of the first configuration that we used, and we will likely get a completely different set of ash. Indeed, Figure~\ref{fig:random_2} demonstrates the drastic change that can often be made by altering just one cell in a pattern: by just changing one cell from alive to dead, we have made a new pattern that takes almost $3{\thousep}000$ generations to stabilize and results in ash that has over 20 times as many live cells. This new ash also has three additional still lifes in it that were not present in the previous ash. A summary of the ash objects we have seen so far is given in Figure~\ref{fig:first_objects}.
 
 \begin{figure}[!ht]
 	\centering\embedlink{random_2}{\vcenteredhbox{\centering\vcenteredhbox{\begin{tikzpicture}[scale=1.2, every node/.style={transform shape}]%
-			\node[inner sep=0pt,anchor=south west] at (0,0) {\patternimg{0.1}{random_2}};
-			\draw[white,line width=3pt,opacity=0.5](1.314,0.965) circle (0.165);
-			\draw[redback2,line width=1pt](1.314,0.965) circle (0.165);
-			\end{tikzpicture}}} \vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{0}{21} 2901}}$}} \vcenteredhbox{\gridbox{0.5pt}{\patternimg{0.08}{random_2_evolved}}}}
+				\node[inner sep=0pt,anchor=south west] at (0,0) {\patternimg{0.1}{random_2}};
+				\draw[white,line width=3pt,opacity=0.5](1.314,0.965) circle (0.165);
+				\draw[redback2,line width=1pt](1.314,0.965) circle (0.165);
+				\end{tikzpicture}}} \vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{0}{21} 2901}}$}} \vcenteredhbox{\gridbox{0.5pt}{\patternimg{0.08}{random_2_evolved}}}}
 	\caption{Changing just a single cell (circled on the left in \bgbox{redback}{red}) from alive to dead in our random starting configuration causes its evolution to become completely different. It now takes over 25 times as long to stabilize and its ash contains three new types of still lifes (ponds, ships, and loaves).}\label{fig:random_2}
 \end{figure}
 
@@ -143,29 +143,29 @@ We have seen plenty of interesting patterns so far simply by looking at the resu
 \begin{figure}[!htb]
 	\centering
 	\embedlink{t_tetromino}{\vcenteredhboxfx{\patternimg{0.12}{t_tetromino_0}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{${}\!\!{}$\patternimg{0.12}{t_tetromino_1}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{\patternimg{0.1}{t_tetromino_2}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{${}\!\!\!\!{}$\patternimg{0.1}{t_tetromino_3}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{${}\!\!{}$\patternimg{0.1}{t_tetromino_4}} \vcenteredhboxfx{{} \ {}} \vcenteredhboxfx{{} \ {}}\\[0.1em]
-	\vcenteredhboxfx{{\color{black}${} \ \ \ \ \cdots$}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{\patternimg{0.1}{t_tetromino_5}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{\patternimg{0.1}{t_tetromino_6}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{\patternimg{0.1}{t_tetromino_7}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{\patternimg{0.085}{t_tetromino_8}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{\patternimg{0.085}{t_tetromino_9}}}
+		\vcenteredhboxfx{{\color{black}${} \ \ \ \ \cdots$}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{\patternimg{0.1}{t_tetromino_5}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{\patternimg{0.1}{t_tetromino_6}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{\patternimg{0.1}{t_tetromino_7}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{\patternimg{0.085}{t_tetromino_8}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{\patternimg{0.085}{t_tetromino_9}}}
 	\caption{A \emph{T-tetromino} (top-left) takes $9$ generations to evolve into an arrangement of four blinkers called a \emph{traffic light} (bottom-right).}\label{fig:t_tetromino}
 \end{figure}
 
 The T-tetromino also illustrates how symmetry spontaneously forms within Life patterns. While it starts off with only left-right symmetry, after four generations it develops top-bottom symmetry, and then after one more generation it also develops diagonal symmetry. Since Life's rules do not care about the orientation of patterns, symmetry can never be broken once it has formed, which explains why all of the later generations of the T-tetromino also have $8$-way symmetry, and why so many of the interesting and/or stable patterns that have been found in Life are symmetric.
 
-Another unstable object that behaves similarly is the one displayed in Figure~\ref{fig:pre_honeyfarm}, which explodes over the course of $17$~generations in order to create a commonly-occurring arrangement of $4$~beehives called a \emph{honey farm}\index{honey!farm}. Appropriately enough, the $7$-cell object that starts this evolution is called the \emph{pre-honey farm}\index{pre-honey farm} (as is any other small pattern that follows the same evolution). While only one honey farm appears in the ash in Figure~\ref{fig:random_2}, many other pre-honey farms appeared earlier (for example, at generations~$749$ and $1,159$) and were subsequently destroyed.
+Another unstable object that behaves similarly is the one displayed in Figure~\ref{fig:pre_honeyfarm}, which explodes over the course of $17$~generations in order to create a commonly-occurring arrangement of $4$~beehives called a \emph{honey farm}\index{honey!farm}. Appropriately enough, the $7$-cell object that starts this evolution is called the \emph{pre-honey farm}\index{pre-honey farm} (as is any other small pattern that follows the same evolution). While only one honey farm appears in the ash in Figure~\ref{fig:random_2}, many other pre-honey farms appeared earlier (for example, at generations~$749$ and $1{\thousep}159$) and were subsequently destroyed.
 
 \begin{figure}[!htb]
 	\centering
 	\embedlink{pre_honeyfarm}{\vcenteredhboxfx{${}\!\!\!\!\!\!{}$\patternimg{0.12}{pre_honeyfarm_0}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{${}\!\!\!\!\!\!\!\!\!\!\!{}$\patternimg{0.12}{pre_honeyfarm_1}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{${}\!\!\!\!\!\!\!\!\!\!\!{}$\patternimg{0.12}{pre_honeyfarm_2}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{${}\!\!\!\!\!\!\!\!\!\!{}$\patternimg{0.11}{pre_honeyfarm_3}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{${}\!\!\!\!\!\!\!\!\!{}$\patternimg{0.11}{pre_honeyfarm_4}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{${}\!\!\!\!\!\!\!\!\!\!{}$\patternimg{0.105}{pre_honeyfarm_5}} \\[0.1em]
-	\vcenteredhboxfx{{\color{black}${} \ \ \ \ \cdots$}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{${}\!\!\!\!\!\!\!\!{}$\patternimg{0.1}{pre_honeyfarm_6}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{${}\!\!\!\!\!\!\!\!{}$\patternimg{0.1}{pre_honeyfarm_7}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{${}\!\!\!\!\!\!\!{}$\patternimg{0.095}{pre_honeyfarm_8}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{${}\!\!\!\!\!\!{}$\patternimg{0.095}{pre_honeyfarm_9}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{${}\!\!\!\!\!\!{}$\patternimg{0.09}{pre_honeyfarm_10}} \\[0.2em]
-	\vcenteredhboxfx{{\color{black}$ \ \ \ \ \cdots$}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{${}\!\!\!\!\!{}$\patternimg{0.09}{pre_honeyfarm_11}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{${}\!\!\!{}$\patternimg{0.08}{pre_honeyfarm_12}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{${}\!\!\!{}$\patternimg{0.08}{pre_honeyfarm_13}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{${}\!\!{}$\patternimg{0.075}{pre_honeyfarm_14}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{${}\!\!{}$\patternimg{0.075}{pre_honeyfarm_15}} \\[0.3em]
-	\vcenteredhboxfx{{\color{black}$ \ \ \ \cdots$}} \vcenteredhboxfx{${}\!\!\!{}$\genarrow{1}} \vcenteredhboxfx{${}\!\!\!{}$\patternimg{0.075}{pre_honeyfarm_16}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{${}\!\!\!{}$\patternimg{0.075}{pre_honeyfarm_17}} \vcenteredhboxfx{\phantom{\genarrow{1}}} \vcenteredhboxfx{\phantom{\patternimg{0.08}{pre_honeyfarm_17}}} \vcenteredhboxfx{\phantom{\genarrow{1}}} \vcenteredhboxfx{\phantom{\patternimg{0.08}{pre_honeyfarm_17}}} \vcenteredhboxfx{\phantom{\genarrow{1}}} \vcenteredhboxfx{\phantom{\patternimg{0.08}{pre_honeyfarm_17}}}}
+		\vcenteredhboxfx{{\color{black}${} \ \ \ \ \cdots$}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{${}\!\!\!\!\!\!\!\!{}$\patternimg{0.1}{pre_honeyfarm_6}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{${}\!\!\!\!\!\!\!\!{}$\patternimg{0.1}{pre_honeyfarm_7}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{${}\!\!\!\!\!\!\!{}$\patternimg{0.095}{pre_honeyfarm_8}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{${}\!\!\!\!\!\!{}$\patternimg{0.095}{pre_honeyfarm_9}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{${}\!\!\!\!\!\!{}$\patternimg{0.09}{pre_honeyfarm_10}} \\[0.2em]
+		\vcenteredhboxfx{{\color{black}$ \ \ \ \ \cdots$}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{${}\!\!\!\!\!{}$\patternimg{0.09}{pre_honeyfarm_11}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{${}\!\!\!{}$\patternimg{0.08}{pre_honeyfarm_12}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{${}\!\!\!{}$\patternimg{0.08}{pre_honeyfarm_13}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{${}\!\!{}$\patternimg{0.075}{pre_honeyfarm_14}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{${}\!\!{}$\patternimg{0.075}{pre_honeyfarm_15}} \\[0.3em]
+		\vcenteredhboxfx{{\color{black}$ \ \ \ \cdots$}} \vcenteredhboxfx{${}\!\!\!{}$\genarrow{1}} \vcenteredhboxfx{${}\!\!\!{}$\patternimg{0.075}{pre_honeyfarm_16}} \vcenteredhboxfx{\genarrow{1}} \vcenteredhboxfx{${}\!\!\!{}$\patternimg{0.075}{pre_honeyfarm_17}} \vcenteredhboxfx{\phantom{\genarrow{1}}} \vcenteredhboxfx{\phantom{\patternimg{0.08}{pre_honeyfarm_17}}} \vcenteredhboxfx{\phantom{\genarrow{1}}} \vcenteredhboxfx{\phantom{\patternimg{0.08}{pre_honeyfarm_17}}} \vcenteredhboxfx{\phantom{\genarrow{1}}} \vcenteredhboxfx{\phantom{\patternimg{0.08}{pre_honeyfarm_17}}}}
 	\caption{A \emph{pre-honey farm} (top-left) takes $17$ generations to evolve into an arrangement of four beehives called a \emph{honey farm} (bottom-right).}\label{fig:pre_honeyfarm}
 \end{figure}
 
-A slightly messier explosion that is sometimes useful is the one that begins with the \emph{stairstep hexomino}\index{stairstep hexomino} displayed in Figure~\ref{fig:stairstep_hexomino}. This object takes $63$~generations to stabilize into an arrangement of four blocks called the \emph{blockade}\index{blockade}. However, since the blockade is somewhat larger than the traffic light and the honey farm, and it also takes much longer to form, it is less commonly seen in ash. For example, the stairstep hexomino can be seen at generation~$1,005$ of the evolution of the soup in Figure~\ref{fig:random_2}, but it is interfered with before the blockade can form.
+A slightly messier explosion that is sometimes useful is the one that begins with the \emph{stairstep hexomino}\index{stairstep hexomino} displayed in Figure~\ref{fig:stairstep_hexomino}. This object takes $63$~generations to stabilize into an arrangement of four blocks called the \emph{blockade}\index{blockade}. However, since the blockade is somewhat larger than the traffic light and the honey farm, and it also takes much longer to form, it is less commonly seen in ash. For example, the stairstep hexomino can be seen at generation~$1{\thousep}005$ of the evolution of the soup in Figure~\ref{fig:random_2}, but it is interfered with before the blockade can form.
 
 \begin{figure}[!htb]
 	\centering
 	\embedlink{stairstep_hexomino}{\vcenteredhbox{\patternimg{0.12}{stairstep_hexomino_0}} \vcenteredhbox{\genarrow{3}}
-	\vcenteredhbox{\patternimg{0.12}{stairstep_hexomino_3}} \vcenteredhbox{\genarrow{60}} \vcenteredhbox{\patternimg{0.12}{stairstep_hexomino_63}}}
+		\vcenteredhbox{\patternimg{0.12}{stairstep_hexomino_3}} \vcenteredhbox{\genarrow{60}} \vcenteredhbox{\patternimg{0.12}{stairstep_hexomino_63}}}
 	\caption{The \emph{stairstep hexomino} (left) evolves into an arrangement of four blocks called the \emph{blockade} in $63$~generations. This evolution, and any of the intermediate patterns, are often called \emph{lumps of muck}.}\label{fig:stairstep_hexomino}
 \end{figure}
 
@@ -176,7 +176,7 @@ As one final example, consider the extremely common and extremely messy \emph{pi
 \begin{figure}[!htb]
 	\centering
 	\embedlink{pi_heptomino}{\vcenteredhbox{\patternimg{0.125}{pi_heptomino_0}} \vcenteredhbox{\genarrow{1}}
-	\vcenteredhbox{\patternimg{0.125}{pi_heptomino_1}} \vcenteredhbox{\genarrow{30}} \vcenteredhbox{\patternimg{0.1}{pi_heptomino_31}} \vcenteredhbox{\genarrow{142}} \vcenteredhbox{\patternimg{0.08}{pi_heptomino_173}}}
+		\vcenteredhbox{\patternimg{0.125}{pi_heptomino_1}} \vcenteredhbox{\genarrow{30}} \vcenteredhbox{\patternimg{0.1}{pi_heptomino_31}} \vcenteredhbox{\genarrow{142}} \vcenteredhbox{\patternimg{0.08}{pi_heptomino_173}}}
 	\caption{The \emph{pi-heptomino} is a commonly-occurring unstable object that moves forward by $9$~cells after $30$~generations (compare the middle two patterns), but leaves behind debris that prevents it from moving ahead another $9$~cells.}\label{fig:pi_heptomino}
 \end{figure}
 
@@ -186,7 +186,7 @@ As one final example, consider the extremely common and extremely messy \emph{pi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The Queen Bee}\label{sec:queen_bee}\index{queen bee}
 
-Sometimes, it is possible to ``fix'' unstable evolutionary patterns by tweaking them in some simple way, thus creating interesting objects that do not often appear naturally by themselves. Perhaps the most useful example of such a pattern is the \emph{queen bee}, which is a commonly-occurring object\footnote{For example, it appears in generation~1,185 of the soup in Figure~\ref{fig:random_2}.} that reflects itself after $15$~generations, but leaves behind a beehive in the process. It follows that after 30~generations, the queen bee is back where it started, but with an additional beehive on either side of it (see Figure~\ref{fig:queen_bee}). Shortly after 30~generations, the queen bee collides with the first beehive that it created, resulting in its self-destruction.
+Sometimes, it is possible to ``fix'' unstable evolutionary patterns by tweaking them in some simple way, thus creating interesting objects that do not often appear naturally by themselves. Perhaps the most useful example of such a pattern is the \emph{queen bee}, which is a commonly-occurring object\footnote{For example, it appears in generation~$1{\thousep}185$ of the soup in Figure~\ref{fig:random_2}.} that reflects itself after $15$~generations, but leaves behind a beehive in the process. It follows that after 30~generations, the queen bee is back where it started, but with an additional beehive on either side of it (see Figure~\ref{fig:queen_bee}). Shortly after 30~generations, the queen bee collides with the first beehive that it created, resulting in its self-destruction.
 
 \begin{figure}[!htb]
 	\centering\embedlink{queen_bee}{\vcenteredhbox{\patternimg{0.1}{queen_bee_0}} \vcenteredhbox{\genarrow{15}} \vcenteredhbox{\patternimg{0.1}{queen_bee_15}} \vcenteredhbox{\genarrow{15}} \vcenteredhbox{\patternimg{0.1}{queen_bee_30}}}
@@ -198,7 +198,7 @@ In order to prevent this self-destruction and turn the queen bee into something 
 \begin{figure}[!htb]
 	\centering
 	\embedlink{beehive_block}{\vcenteredhbox{\phantom{$\cdots$ \genarrow{1}}} \vcenteredhbox{\patternimg{0.1}{beehive_block_0}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.1}{beehive_block_1}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.1}{beehive_block_2}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.1}{beehive_block_3}} \vcenteredhbox{\phantom{\genarrow{1}}} \vcenteredhbox{\phantom{\patternimg{0.1}{beehive_block_3}}} \\[0.7em]
-	\vcenteredhbox{\phantom{\genarrow{1}}} \vcenteredhbox{\phantom{\patternimg{0.1}{beehive_block_3}}} \vcenteredhbox{$\cdots$ \genarrow{1}} \vcenteredhbox{\patternimg{0.1}{beehive_block_4}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.1}{beehive_block_5}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.1}{beehive_block_6}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.1}{beehive_block_7}}}
+		\vcenteredhbox{\phantom{\genarrow{1}}} \vcenteredhbox{\phantom{\patternimg{0.1}{beehive_block_3}}} \vcenteredhbox{$\cdots$ \genarrow{1}} \vcenteredhbox{\patternimg{0.1}{beehive_block_4}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.1}{beehive_block_5}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.1}{beehive_block_6}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.1}{beehive_block_7}}}
 	\caption{Placing a block next to a beehive destroys the beehive in 7~generations, without permanently damaging the block.}\label{fig:beehive_block}
 \end{figure}
 
@@ -274,7 +274,7 @@ One final commonly-occurring unstable pattern that is worth introducing at this 
 
 \begin{figure}[!htb]
 	\centering\embedlink{switch_engine}{\vcenteredhbox{\patternimg{0.1}{switch_engine_0}} \vcenteredhbox{\genarrow{48}} \vcenteredhbox{\patternimg{0.1}{switch_engine_48}} \vcenteredhbox{\genarrow{48}} \vcenteredhbox{\patternimg{0.1}{switch_engine_96}}}
-	\caption{A \emph{switch engine} (outlined in \bgbox{aquaback}{aqua}) moves and reflects itself across the diagonal every 48 generations, but leaves behind some chaotic junk in the process. After 96 generations, the switch engine is back in its original orientation, but 8 cells northeast of where it started. The switch engine appears for the last time in generation 1,152, after repeating this entire process 12 times. The chaotic junk then finally collides with the switch engine and destroys it.}\label{fig:switch_engine}
+	\caption{A \emph{switch engine} (outlined in \bgbox{aquaback}{aqua}) moves and reflects itself across the diagonal every 48 generations, but leaves behind some chaotic junk in the process. After 96 generations, the switch engine is back in its original orientation, but 8 cells northeast of where it started. The switch engine appears for the last time in generation $1{\thousep}152$, after repeating this entire process 12 times. The chaotic junk then finally collides with the switch engine and destroys it.}\label{fig:switch_engine}
 \end{figure}
 
 As with several other patterns that we have now explored, the switch engine will be destroyed by its debris if we do not stabilize it somehow. Because of the continued movement of the switch engine, we don't expect to be able to convert it into a stationary object like an oscillator or glider gun, like we did with the queen bee or twin bees from the previous sections, but rather we hope to turn it into some sort of ``useful'' moving object like a spaceship.
@@ -316,7 +316,7 @@ On the other hand, using a moving object to stabilize another moving object (or 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methuselahs and Stability}\label{sec:methuselah}\index{methuselah}
 
-Some of the patterns that we have investigated are extremely chaotic and take a long time to stabilize,\footnote{We will see shortly that properly defining what it means for a pattern to ``stabilize'' is very troublesome, but for now it just means that the pattern has broken down into non-interacting still lifes, oscillators, and spaceships.} such as the B-heptomino and the random configuration depicted in Figure~\ref{fig:random_2}, which take $148$ and 2,901 generations to stabilize, respectively. More extreme than either of these examples is the $8$-cell switch engine, which takes 3,911 generations to stabilize---considerably longer than most other patterns with $8$ or fewer cells. It seems somewhat natural to ask how far these examples can be pushed---that is, how long can a pattern of a given size take to stabilize? A pattern that takes exceptionally long to stabilize, relative to other similarly-sized patterns, is called a \emph{methuselah}.\footnote{Named after the Biblical man Methuselah who reportedly lived the longest of any human---969 years.}
+Some of the patterns that we have investigated are extremely chaotic and take a long time to stabilize,\footnote{We will see shortly that properly defining what it means for a pattern to ``stabilize'' is very troublesome, but for now it just means that the pattern has broken down into non-interacting still lifes, oscillators, and spaceships.} such as the B-heptomino and the random configuration depicted in Figure~\ref{fig:random_2}, which take $148$ and $2{\thousep}901$ generations to stabilize, respectively. More extreme than either of these examples is the $8$-cell switch engine, which takes $3{\thousep}911$ generations to stabilize---considerably longer than most other patterns with $8$ or fewer cells. It seems somewhat natural to ask how far these examples can be pushed---that is, how long can a pattern of a given size take to stabilize? A pattern that takes exceptionally long to stabilize, relative to other similarly-sized patterns, is called a \emph{methuselah}.\footnote{Named after the Biblical man Methuselah who reportedly lived the longest of any human---969 years.}
 
 Before looking at more specific examples of methuselahs, we make it very clear up front that this definition is very imprecise: there is no completely objective way to say that some patterns are methuselahs while other patterns aren't. Instead, the classification usually takes place simply by comparing the lifespan of the pattern with the longest known lifespan of similarly-sized patterns. Here, ``size'' may refer to either the number of live cells in the pattern, or to the area of its \emph{bounding box}\index{bounding box}, which is the smallest rectangle that contains it.
 
@@ -324,7 +324,7 @@ No good search methods are known for finding methuselahs, so all of them have be
 
 \begin{figure}[!htb]
 	\centering\embedlink{r_pentomino}{\vcenteredhbox{\patternimg{0.1}{r_pentomino}} \vcenteredhbox{\genarrow{28}} \vcenteredhbox{\patternimg{0.1}{r_pentomino_28}} \vcenteredhbox{\genarrow{20}} \vcenteredhbox{\patternimg{0.1}{r_pentomino_48}} \vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{5}{35} 1055}}$}} \vcenteredhbox{\gridbox{0.5pt}{\includegraphics[scale=0.1]{early_life/r_pentomino_evolved}}}}
-	\caption{An R-pentomino takes 1,103 generations to stabilize---much longer than any other polyomino with 5 or fewer cells. Along the way, it produces numerous other important patterns such as the \emph{B-heptaplet} highlighted in \bgbox{aquaback}{aqua} and the \emph{Herschel} highlighted in \bgbox{magentaback}{magenta}.}\label{fig:r_pentomino}
+	\caption{An R-pentomino takes $1{\thousep}103$ generations to stabilize---much longer than any other polyomino with 5 or fewer cells. Along the way, it produces numerous other important patterns such as the \emph{B-heptaplet} highlighted in \bgbox{aquaback}{aqua} and the \emph{Herschel} highlighted in \bgbox{magentaback}{magenta}.}\label{fig:r_pentomino}
 \end{figure}
 
 We could similarly ask what the longest-lived pattern with $n$ cells for $n = 6, 7, 8, \ldots$ are. The longest-lived such patterns that are known are summarized in Table~\ref{tab:small_methuselahs}, as long as we restrict our attention only to patterns with reasonably small bounding boxes (which of course is subjective). However, these patterns are only known to be optimal for $n \leq 9$;\footnote{Exhaustive computer searches for methuselahs with $n \leq 9$ cells were carried out by Paul Callahan in 1997, Tomas Rokicki in 2005, and Nick Gotts in 2019.} the longest-lasting known $10$-cell methuselah in a small bounding box was not found until 2019.
@@ -334,92 +334,92 @@ We could similarly ask what the longest-lived pattern with $n$ cells for $n = 6,
 		\begin{tabular}{Sc Sc Sl Sc}
 			\toprule
 			Cells & Methuselah & Name & Lifespan \\\midrule
-			\specialcell{5} & \specialcell{\patternimglink{0.1}{5_cell_methuselahs}} & \specialcell{R-pentomino grandparents} & \specialcell{1,105} \\
-
-			\rowcolor{gray!20} \specialcell{6} & \specialcell{\patternimglink{0.1}{6_cell_methuselahs}} & \specialcell{R-pentomino great-great-great grandparents} & \specialcell{1,108} \\
+			\specialcell{5} & \specialcell{\patternimglink{0.1}{5_cell_methuselahs}} & \specialcell{R-pentomino grandparents} & \specialcell{$1{\thousep}105$} \\
 			
-			\specialcell{7} & \specialcell{\patternimglink{0.1}{acorn}} & \specialcell{acorn\index{acorn}} & \specialcell{5,206} \\
-
-			\rowcolor{gray!20} \specialcell{8} & \specialcell{\patternimglink{0.1}{7468M}} & -- & \specialcell{7,468} \\
+			\rowcolor{gray!20} \specialcell{6} & \specialcell{\patternimglink{0.1}{6_cell_methuselahs}} & \specialcell{R-pentomino great-great-great grandparents} & \specialcell{$1{\thousep}108$} \\
 			
-			\specialcell{9} & \specialcell{\patternimglink{0.1}{bunnies}} & \specialcell{bunnies 9\index{bunnies!9}} & \specialcell{17,410} \\ % bunnies 9
+			\specialcell{7} & \specialcell{\patternimglink{0.1}{acorn}} & \specialcell{acorn\index{acorn}} & \specialcell{$5{\thousep}206$} \\
 			
-			\rowcolor{gray!20} \specialcell{10} & \specialcell{\patternimglink{0.1}{bunnies_10b}} & \specialcell{bunnies 10b\index{bunnies!10b}} & \specialcell{17,431} \\ % bunnies 10b
-
-			\specialcell{11} & \specialcell{\patternimglink{0.1}{23334M}} & -- & \specialcell{23,334} \\
+			\rowcolor{gray!20} \specialcell{8} & \specialcell{\patternimglink{0.1}{7468M}} & -- & \specialcell{$7{\thousep}468$} \\
 			
-			\rowcolor{gray!20} \specialcell{12} & \specialcell{\patternimglink{0.1}{methuselah_12}} & -- & \specialcell{23,801} \\
+			\specialcell{9} & \specialcell{\patternimglink{0.1}{bunnies}} & \specialcell{bunnies 9\index{bunnies!9}} & \specialcell{$17{\thousep}410$} \\ % bunnies 9
 			
-			\specialcell{13} & \specialcell{\patternimglink{0.1}{lidka}} & \specialcell{Lidka\index{Lidka}} & \specialcell{29,126} \\\bottomrule
+			\rowcolor{gray!20} \specialcell{10} & \specialcell{\patternimglink{0.1}{bunnies_10b}} & \specialcell{bunnies 10b\index{bunnies!10b}} & \specialcell{$17{\thousep}431$} \\ % bunnies 10b
+			
+			\specialcell{11} & \specialcell{\patternimglink{0.1}{23334M}} & -- & \specialcell{$23{\thousep}334$} \\
+			
+			\rowcolor{gray!20} \specialcell{12} & \specialcell{\patternimglink{0.1}{methuselah_12}} & -- & \specialcell{$23{\thousep}801$} \\
+			
+			\specialcell{13} & \specialcell{\patternimglink{0.1}{lidka}} & \specialcell{Lidka\index{Lidka}} & \specialcell{$29{\thousep}126$} \\\bottomrule
 		\end{tabular}
 		\caption{The longest-lived known methuselahs with 5--13 cells. The methuselahs with 7 or fewer cells were all known by no later than 1971: the R-pentomino relatives were fairly well-known, so their exact discoverer is difficult to pin down, but the acorn was found by Charles Corderman. The methuselah with 8 cells was found by Tomas Rokicki in 2005, bunnies~9 was found by Paul Callahan in 1997, bunnies 10b was found by Nick Gotts in November 2019, and the 11-, 12-, and 13-cell methuselahs were found by Simon Ekström in May 2016, February 2017, and March 2017, respectively.}\label{tab:small_methuselahs}
 	\end{center}
 \end{table}
 
-To highlight the difficulty of defining methuselahs in a rigorous way, note that there are 8- and 9-cell patterns that can be made to have lifespans as long as we like, since we can just aim a glider at a far away blinker or a block. However, these somewhat trivial examples can be avoided by requiring that a methuselah have a suitably small bounding box (which also rules out $8$-cell methuselahs like the one displayed in Exercise~\ref{exer:8cell_methuselah}). If we go this route and focus on the bounding box of a pattern, rather than its number of cells, then we find patterns like the one displayed in Figure~\ref{fig:47575m},\footnote{Found by Adam P.~Goucher in February 2019.} which fits within a $16 \times 16$ bounding box and has a lifespan of 47,575 generations, which is longer than any other known pattern of this size.
+To highlight the difficulty of defining methuselahs in a rigorous way, note that there are 8- and 9-cell patterns that can be made to have lifespans as long as we like, since we can just aim a glider at a far away blinker or a block. However, these somewhat trivial examples can be avoided by requiring that a methuselah have a suitably small bounding box (which also rules out $8$-cell methuselahs like the one displayed in Exercise~\ref{exer:8cell_methuselah}). If we go this route and focus on the bounding box of a pattern, rather than its number of cells, then we find patterns like the one displayed in Figure~\ref{fig:47575m},\footnote{Found by Adam P.~Goucher in February 2019.} which fits within a $16 \times 16$ bounding box and has a lifespan of $47{\thousep}575$ generations, which is longer than any other known pattern of this size.
 
-Another potential problem that arises when discussing methuselahs and stability comes from the fact that we already saw patterns with just 12 cells that grow indefinitely: the block-laying and glider-producing switch engines\footnote{This can easily be reduced to 11 cells by removing one of the cells in the block in either pattern.} of Section~\ref{sec:switch_engine}. This is not too difficult to take care of: even though these patterns grow forever, they do so in a regular and predictable way. For example, to know what a block-laying switch engine looks like in generation 5,000,000, we don't actually need to evolve it 5,000,000 times: we could simply move the switch engine the correct number of spaces to the northeast and paste a trail of blocks behind it. We could thus say, for example, that the block-laying switch engine stabilizes once it enters the periodic portion of its evolution where it repeatedly lays $8$ blocks every $288$ generations.
+Another potential problem that arises when discussing methuselahs and stability comes from the fact that we already saw patterns with just 12 cells that grow indefinitely: the block-laying and glider-producing switch engines\footnote{This can easily be reduced to 11 cells by removing one of the cells in the block in either pattern.} of Section~\ref{sec:switch_engine}. This is not too difficult to take care of: even though these patterns grow forever, they do so in a regular and predictable way. For example, to know what a block-laying switch engine looks like in generation $5{\thousep}000{\thousep}000$, we don't actually need to evolve it $5{\thousep}000{\thousep}000$ times: we could simply move the switch engine the correct number of spaces to the northeast and paste a trail of blocks behind it. We could thus say, for example, that the block-laying switch engine stabilizes once it enters the periodic portion of its evolution where it repeatedly lays $8$ blocks every $288$ generations.
 
-These problems might seem simple enough to overcome by tweaking our definitions carefully, but they are just the tip of the iceberg when it comes to what can go wrong when trying to rigorously define methuselahs and what it means for a pattern to stabilize. As yet another example, consider the remarkable 16-cell pattern\footnote{Found by Nick Gotts in 2005.} depicted in Figure~\ref{fig:ark_736692}, which takes 736,692 generations to stabilize.
+These problems might seem simple enough to overcome by tweaking our definitions carefully, but they are just the tip of the iceberg when it comes to what can go wrong when trying to rigorously define methuselahs and what it means for a pattern to stabilize. As yet another example, consider the remarkable 16-cell pattern\footnote{Found by Nick Gotts in 2005.} depicted in Figure~\ref{fig:ark_736692}, which takes $736{\thousep}692$ generations to stabilize.
 
 \begin{figure}[!htb]
 	\centering
 	\begin{minipage}[b]{0.4\textwidth}
 		\centering\patternimglink{0.11}{47575m}
-		\caption{A methuselah that fits within a $16 \times 16$ bounding box and takes 47,575 generations to stabilize.}\label{fig:47575m}
+		\caption{A methuselah that fits within a $16 \times 16$ bounding box and takes $47{\thousep}575$ generations to stabilize.}\label{fig:47575m}
 	\end{minipage}\hfill
 	\begin{minipage}[b]{0.56\textwidth}
 		\centering\patternimglink{0.09}{ark_736692}
-		\caption{A 16-cell pattern that takes a whopping 736,692 generations to stabilize. The $8$-cell objects at the top-right and bottom-left individually are just predecessors of the switch engine, so this pattern is an ark.}\label{fig:ark_736692}
+		\caption{A 16-cell pattern that takes a whopping $736{\thousep}692$ generations to stabilize. The $8$-cell objects at the top-right and bottom-left individually are just predecessors of the switch engine, so this pattern is an ark.}\label{fig:ark_736692}
 	\end{minipage}
 \end{figure}
 
-The ``problem'' with this pattern is that its non-stabilization is rather artificial; it evolves into adjacent block-laying and glider-producing switch engines, which interact in such a way as to fire a glider backward toward some debris every 2,304 generations. Every time this backward glider hits the debris, it transforms it into something slightly different and unpredictable. This process repeats more than 250 times before it breaks down and a glider destroys the debris enough that future gliders pass right through without touching it at all. However, by this point the pattern has been growing for over 700,000 generations into the huge mess shown in Figure~\ref{fig:ark_736692_stabilized}.
+The ``problem'' with this pattern is that its non-stabilization is rather artificial; it evolves into adjacent block-laying and glider-producing switch engines, which interact in such a way as to fire a glider backward toward some debris every $2{\thousep}304$ generations. Every time this backward glider hits the debris, it transforms it into something slightly different and unpredictable. This process repeats more than 250 times before it breaks down and a glider destroys the debris enough that future gliders pass right through without touching it at all. However, by this point the pattern has been growing for over $700{\thousep}000$ generations into the huge mess shown in Figure~\ref{fig:ark_736692_stabilized}.
 
 \begin{figure}[!htb]
 	\centering\begin{tikzpicture}%
-		\node[inner sep=0pt,anchor=south west] (zoom1) at (-1,1) {\includegraphics[width=2.8cm]{early_life/ark_736692_1.png}};
-		\draw[gridgray,line width=0.75pt] (-1,1) rectangle (1.8,6.147);
-		
-		% ZOOM BOX 1
-		\path[draw,gridgray,line width=0.5pt] (1.653,3.803) -- (11.9,8.1) -- cycle;
-		\path[draw,gridgray,line width=0.5pt] (1.653,3.55) -- (11.9,0) -- cycle;
-
-		\path[fill,white,opacity=0.85,line width=0pt] (1.4,3.55) -- (3.8,0) -- (11.9,0) -- (11.9,8.1) -- (3.8,8.1) -- (1.4,3.803) -- (1.653,3.803) -- (1.653,3.55) -- cycle;
-		\draw[gridgray,line width=0.5pt] (1.4,3.55) rectangle (1.653,3.803);
+	\node[inner sep=0pt,anchor=south west] (zoom1) at (-1,1) {\includegraphics[width=2.8cm]{early_life/ark_736692_1.png}};
+	\draw[gridgray,line width=0.75pt] (-1,1) rectangle (1.8,6.147);
 	
-		\path[draw,gridgray,line width=0.5pt] (1.4,3.803) -- (3.8,8.1) -- cycle;
-		\path[draw,gridgray,line width=0.5pt] (1.4,3.55) -- (3.8,0) -- cycle;
-		
-		\node[inner sep=0pt] (zoom1_32x) at (2.8,3.7) {\includegraphics[width=0.3cm]{mag.png} 32x};
-		% END ZOOM BOX 1
-		
-		\node[inner sep=0pt,anchor=south west] (zoom2) at (3.8,0) {\includegraphics[width=8.1cm]{early_life/ark_736692_2.png}};
-		\draw[gridgray,line width=0.75pt] (3.8,0) rectangle (11.9,8.1);
-		
-		% ZOOM BOX 2
-		\path[draw,gridgray,line width=0.5pt] (11.51,0.14) -- (2,-9) -- cycle;
-		
-		\path[fill,white,opacity=0.85,line width=0pt] (11.51,0.367) -- (2,-1.75) -- (2,-9) -- (10.53,-9) -- (11.777,0.14) -- (11.51,0.14) -- cycle;
-		\draw[gridgray,line width=0.5pt] (11.51,0.14) rectangle (11.777,0.367);
-		
-		\path[draw,gridgray,line width=0.5pt] (11.51,0.367) -- (2,-1.75) -- cycle;
-		\path[draw,gridgray,line width=0.5pt] (11.777,0.367) -- (10.53,-1.75) -- cycle;
-		\path[draw,gridgray,line width=0.5pt] (11.777,0.14) -- (10.53,-9) -- cycle;
-		
-		\node[inner sep=0pt] (zoom1_32x) at (9,-1) {\includegraphics[width=0.3cm]{mag.png} 32x};
-		% END ZOOM BOX 2
-
-		\node[inner sep=0pt,anchor=south west] (zoom3) at (2,-9) {\includegraphics[width=8.53cm]{early_life/ark_736692_3.png}};
-		\draw[gridgray,line width=0.75pt] (2,-9) rectangle (10.53,-1.75);
+	% ZOOM BOX 1
+	\path[draw,gridgray,line width=0.5pt] (1.653,3.803) -- (11.9,8.1) -- cycle;
+	\path[draw,gridgray,line width=0.5pt] (1.653,3.55) -- (11.9,0) -- cycle;
+	
+	\path[fill,white,opacity=0.85,line width=0pt] (1.4,3.55) -- (3.8,0) -- (11.9,0) -- (11.9,8.1) -- (3.8,8.1) -- (1.4,3.803) -- (1.653,3.803) -- (1.653,3.55) -- cycle;
+	\draw[gridgray,line width=0.5pt] (1.4,3.55) rectangle (1.653,3.803);
+	
+	\path[draw,gridgray,line width=0.5pt] (1.4,3.803) -- (3.8,8.1) -- cycle;
+	\path[draw,gridgray,line width=0.5pt] (1.4,3.55) -- (3.8,0) -- cycle;
+	
+	\node[inner sep=0pt] (zoom1_32x) at (2.8,3.7) {\includegraphics[width=0.3cm]{mag.png} 32x};
+	% END ZOOM BOX 1
+	
+	\node[inner sep=0pt,anchor=south west] (zoom2) at (3.8,0) {\includegraphics[width=8.1cm]{early_life/ark_736692_2.png}};
+	\draw[gridgray,line width=0.75pt] (3.8,0) rectangle (11.9,8.1);
+	
+	% ZOOM BOX 2
+	\path[draw,gridgray,line width=0.5pt] (11.51,0.14) -- (2,-9) -- cycle;
+	
+	\path[fill,white,opacity=0.85,line width=0pt] (11.51,0.367) -- (2,-1.75) -- (2,-9) -- (10.53,-9) -- (11.777,0.14) -- (11.51,0.14) -- cycle;
+	\draw[gridgray,line width=0.5pt] (11.51,0.14) rectangle (11.777,0.367);
+	
+	\path[draw,gridgray,line width=0.5pt] (11.51,0.367) -- (2,-1.75) -- cycle;
+	\path[draw,gridgray,line width=0.5pt] (11.777,0.367) -- (10.53,-1.75) -- cycle;
+	\path[draw,gridgray,line width=0.5pt] (11.777,0.14) -- (10.53,-9) -- cycle;
+	
+	\node[inner sep=0pt] (zoom1_32x) at (9,-1) {\includegraphics[width=0.3cm]{mag.png} 32x};
+	% END ZOOM BOX 2
+	
+	\node[inner sep=0pt,anchor=south west] (zoom3) at (2,-9) {\includegraphics[width=8.53cm]{early_life/ark_736692_3.png}};
+	\draw[gridgray,line width=0.75pt] (2,-9) rectangle (10.53,-1.75);
 	\end{tikzpicture}
-		
-	\caption{The pattern from Figure~\ref{fig:ark_736692} leaves behind this absolutely massive ash after 736,692 generations. We have zoomed in by a factor of $32 \times 32 = 1,024$ on the corner of the ash that the pattern started growing from, which is also the corner that contains the debris that gliders are fired at throughout its extensive lifespan. The \bgbox{orangeback2}{orange} line on the bottom-right depicts the southeastward path taken by gliders that now (just barely) miss hitting the debris.}\label{fig:ark_736692_stabilized}
+	
+	\caption{The pattern from Figure~\ref{fig:ark_736692} leaves behind this absolutely massive ash after $736{\thousep}692$ generations. We have zoomed in by a factor of $32 \times 32 = 1{\thousep}024$ on the corner of the ash that the pattern started growing from, which is also the corner that contains the debris that gliders are fired at throughout its extensive lifespan. The \bgbox{orangeback2}{orange} line on the bottom-right depicts the southeastward path taken by gliders that now (just barely) miss hitting the debris.}\label{fig:ark_736692_stabilized}
 \end{figure}
 
 While patterns like this one are certainly interesting, they are not quite in the spirit of what we want from methuselahs---even though the previous pattern did not completely stabilize for hundreds of thousands of generations, it was ``mostly'' stable for the vast majority of that time. Rather, we would like methuselahs to take a long time to stabilize based primarily on chaos that we cannot completely break down into simple reactions like gliders repeatedly hitting some debris. We will not try to make this precise, but rather just leave it as a phenomenon that we know when we see.
 
-To briefly suggest some even more extreme examples of the weirdness that happens with stability, note that we will learn in Chapter~\ref{chp:periodic_circuitry} how to construct a pattern that computes the prime numbers. Should such a pattern be considered stable? Perhaps even more striking than this, in Section~\ref{sec:unknown_growth} we will then create a pattern whose long-term behavior we do not understand: it might continue to grow in a reasonably regular fashion indefinitely, or it might stabilize into a finite pattern. What we do know is that it continues to grow for at least its first $10^{2,500,000,000}$ generations, so if it does eventually stabilize and remain finite, it must do so after that point (and we have no hope of actually simulating the pattern long enough to find out the answer).
+To briefly suggest some even more extreme examples of the weirdness that happens with stability, note that we will learn in Chapter~\ref{chp:periodic_circuitry} how to construct a pattern that computes the prime numbers. Should such a pattern be considered stable? Perhaps even more striking than this, in Section~\ref{sec:unknown_growth} we will then create a pattern whose long-term behavior we do not understand: it might continue to grow in a reasonably regular fashion indefinitely, or it might stabilize into a finite pattern. What we do know is that it continues to grow for at least its first $10^{2{\thousep}500{\thousep}000{\thousep}000}$ generations, so if it does eventually stabilize and remain finite, it must do so after that point (and we have no hope of actually simulating the pattern long enough to find out the answer).
 
 Even worse than this, in Chapter~\ref{chp:universal_computation} we will show that there exist patterns for which it is not \emph{possible} to know, even in principle, whether or not they stabilize. In other words, there exist patterns with the unsettling property that, no matter how long we run them, and no matter how clever we are, there is absolutely no mathematical way to know if they will eventually stabilize.
 
@@ -441,7 +441,7 @@ Other patterns, such as the clock\index{clock}, have relatively few parents and 
 
 The rough idea of why Gardens of Eden must exist is that some patterns (such as blocks) have lots of parents, so there are not enough parents left over for all other patterns. To prove this explicitly, we will barely need to use anything more than the fact that blocks and pre-blocks both evolve into the same thing.\footnote{We could instead use two other objects that evolve into the same thing in the proof: we just use blocks and pre-blocks because they are so simple.}	
 
-\begin{theorem}\label{thm:garden_of_eden_exists}
+\begin{theorem}[Existence of Gardens of Eden]\label{thm:garden_of_eden_exists}
 	There exist Gardens of Eden in Conway's Game of Life.
 \end{theorem}
 
@@ -452,7 +452,7 @@ The rough idea of why Gardens of Eden must exist is that some patterns (such as 
 		\centering\patternimg{0.1}{goe_theorem_tiles}
 		\caption{Two $6 \times 6$ tiles that evolve the same way no matter what is placed outside of the tiles.}\label{fig:goe_theorem_tiles}
 	\end{figure}
-		
+	
 	To this end, partition the $6n \times 6n$ square into $n^2$ tiles, each of size $6 \times 6$. Each tile contains $36$ cells, each of which can be alive or dead, so there are $2^{36}$ different tiles. However, the two tiles displayed in Figure~\ref{fig:goe_theorem_tiles} evolve in the same way regardless of what other tiles are placed around them. We thus conclude that in any pattern that uses the first tile, we could replace it by the second tile without changing the evolution of the overall pattern (see Figure~\ref{fig:goe_theorem_tiles_example}). It follows that if we want to catalog all possible patterns that can be present in generation~$1$, we only need to consider patterns made up of one of $2^{36} - 1$ (not $2^{36}$) different tiles in generation~$0$.
 	
 	\begin{figure}[!htb]
@@ -472,12 +472,12 @@ Our method of construction is to build a Garden of Eden one cell at a time, repe
 \begin{itemize}
 	\item We consider the two possible states of a single cell. Out of the $2^9 = 512$ possible configurations of the $3 \times 3$ square centered at this cell, $372$ lead to the central cell being dead and $140$ lead to it being alive. Thus we make that central cell alive, so as to have fewer parents.\smallskip
 	
-	\item We then consider the two possible states of a cell that is adjacent to the starting (alive) cell. Out of the $140 \times 2^3 = 1,120$ possible configurations of the $4 \times 3$ rectangle centered at those two cells that lead to the first cell being alive, $703$ lead to the second cell being dead and $417$ lead to it being alive. We thus make the second cell alive, so as to have fewer parents.\smallskip
+	\item We then consider the two possible states of a cell that is adjacent to the starting (alive) cell. Out of the $140 \times 2^3 = 1{\thousep}120$ possible configurations of the $4 \times 3$ rectangle centered at those two cells that lead to the first cell being alive, $703$ lead to the second cell being dead and $417$ lead to it being alive. We thus make the second cell alive, so as to have fewer parents.\smallskip
 	
 	\item We continue in this way in a clockwise spiral around the initial cell, deciding whether each new cell will be alive or dead based on which of the two possibilities results in a pattern with fewer parents.\medskip
 \end{itemize}
 
-While this method might seem not to yield anything useful at first---after 40 cells, each of them has been chosen to be alive, and the number of parents has exploded to 4,624,592---the number of parents does eventually start to dwindle, and after 266 cells the pattern has no parents at all (and is thus a Garden of Eden).\footnote{In step 262 there is a tie between the number of parents if the cell is chosen to be alive or dead. We (arbitrarily) chose the cell to be alive.} This Garden of Eden is displayed in Figure~\ref{fig:goe_1}.
+While this method might seem not to yield anything useful at first---after 40 cells, each of them has been chosen to be alive, and the number of parents has exploded to $4{\thousep}624{\thousep}592$---the number of parents does eventually start to dwindle, and after 266 cells the pattern has no parents at all (and is thus a Garden of Eden).\footnote{In step 262 there is a tie between the number of parents if the cell is chosen to be alive or dead. We (arbitrarily) chose the cell to be alive.} This Garden of Eden is displayed in Figure~\ref{fig:goe_1}.
 
 \begin{figure}[!htb]
 	\centering\begin{tikzpicture}%
@@ -491,7 +491,7 @@ While this method might seem not to yield anything useful at first---after 40 ce
 \end{figure}
 
 The pattern that we have constructed is interesting in that it is not only a Garden of Eden, but it remains a Garden of Eden regardless of what live and dead cells we place outside of the central 266-cell spiral. Patterns like this one that cannot be \emph{any} part of the evolution of another pattern (equivalently, they are still a Garden of Eden no matter what other cells are placed around them) are called \emph{orphans}\index{orphan}.\footnote{This term was coined by Conway. Also, the proof of Theorem~\ref{thm:garden_of_eden_exists} actually demonstrates the existence of orphans, not just Gardens of Eden.} Every pattern containing an orphan is (by definition) a Garden of Eden, but it is currently unknown whether or not there exists a Garden of Eden that does not contain an orphan.
-	
+
 Now that we know that small Gardens of Eden (and orphans) exist, we would like to know how small and simple they can be. A complete answer to this problem is still open (and perhaps is currently one of the most actively-researched problems in Life), but many partial results are known. The smallest known orphans and Gardens of Eden (in terms of number of cells and bounding box size) are presented in Figure~\ref{fig:goe_records}.\footnote{These patterns can be verified to be orphans via a computer program called \emph{JavaLifeSearch}---see \httpsurl{conwaylife.com/wiki/JavaLifeSearch} and Exercise~\ref{exer:goe_jls}.}\index{JavaLifeSearch}
 
 \begin{figure}[!htb]
@@ -519,7 +519,7 @@ Now that we know that small Gardens of Eden (and orphans) exist, we would like t
 
 On the other hand, there are also results that show that orphans cannot be ``too'' small. For example, exhaustive computer searches have shown that there does not exist an orphan that fits within a $6 \times 7$ bounding box.\footnote{This computation was carried out independently by Steven Eker and Marijn Heule in 2016.} In a similar vein, we now show that there does not exist a Garden of Eden that has a bounding box with height one.\footnote{This theorem was originally proved by Jean Hardouin--Duparc in 1974 \cite{Har74}.}
 
-\begin{theorem}\label{thm:1_row_goe}
+\begin{theorem}[No Thin Gardens of Eden]\label{thm:1_row_goe}
 	In Conway's Game of Life, every pattern that fits within a bounding box of height~$1$ has a parent. In other words, there do not exist Gardens of Eden with height~$1$.
 \end{theorem}
 
@@ -532,15 +532,15 @@ On the other hand, there are also results that show that orphans cannot be ``too
 	\end{figure}
 	
 	To complete the proof, we just need to find a way to fill that $3 \times n$ box in such a way that it evolves into any $1 \times (n-2)$ pattern that we desire. One simple method that \emph{almost} works is to put the desired pattern itself in the central row of the $3 \times n$ box, and its negation (i.e., flip all alive cells to dead and vice-versa) in the top and bottom rows of the $3 \times n$ box. It is straightforward to check that the cells in the top and bottom rows of the $3 \times n$ box will always be overpopulated, and thus those two rows will always be dead in the next generation. Furthermore, the central row evolves in the correct way in 7 out of every 8 possible configurations of three adjacent alive/dead cells (see Figure~\ref{fig:1_row_3x3}).
-
+	
 	\begin{figure}[!htb]
 		\centering
 		\begin{minipage}[b]{0.64\textwidth}
 			\centering\begin{tikzpicture}[scale=1.1, every node/.style={transform shape}]%
-				\fill[color=redback] (2.2,0.95) rectangle (3.25,-1.35);
-				\node[inner sep=0pt,anchor=south west] at (0,0) {\patternimg{0.102}{1_row_3x3}};
-				\node[inner sep=0pt,anchor=south west] at (0.3,-0.52) {$\downarrow \qquad \ \ \downarrow \qquad \ \ \downarrow \qquad \ \ \downarrow \qquad \ \ \downarrow \qquad \ \ \downarrow \qquad \ \ \downarrow \qquad \ \ \downarrow$};
-				\node[inner sep=0pt,anchor=south west] at (0.23,-1.1) {\patternimg{0.102}{1_row_3x3_evolved}};
+			\fill[color=redback] (2.2,0.95) rectangle (3.25,-1.35);
+			\node[inner sep=0pt,anchor=south west] at (0,0) {\patternimg{0.102}{1_row_3x3}};
+			\node[inner sep=0pt,anchor=south west] at (0.3,-0.52) {$\downarrow \qquad \ \ \downarrow \qquad \ \ \downarrow \qquad \ \ \downarrow \qquad \ \ \downarrow \qquad \ \ \downarrow \qquad \ \ \downarrow \qquad \ \ \downarrow$};
+			\node[inner sep=0pt,anchor=south west] at (0.23,-1.1) {\patternimg{0.102}{1_row_3x3_evolved}};
 			\end{tikzpicture}
 			\caption{All except for one of the $8$~different $3 \times 3$ squares in which the top and bottom rows are the negation of the middle row evolve so that the top and bottom rows die and the middle cell stays the same.}\label{fig:1_row_3x3}
 		\end{minipage}\hfill\begin{minipage}[b]{0.32\textwidth}
@@ -563,11 +563,11 @@ On the other hand, there are also results that show that orphans cannot be ``too
 The method used in the proof of Theorem~\ref{thm:1_row_goe} is illustrated in Figure~\ref{fig:goe_1_row_eg}, where we start with a (randomly-chosen) pattern with height~$1$ and explicitly construct a parent of it.
 \begin{figure}[!ht]
 	\centering\begin{tikzpicture}[scale=1.25, every node/.style={transform shape}]%
-		\node[inner sep=0pt,anchor=west] at (0,0) {\embedlink{1_row_eg}{\patternimg{0.1}{1_row_eg_1}}};
-		\draw [->,rounded corners=0.25cm] (7.75,-0.4) -- (8.25,-0.4) -- (8.25,-0.9);
-		\node[inner sep=0pt,anchor=west] at (2.3,-2.1) {\patternlink{1_row_eg}{\patternimg{0.1}{1_row_eg_2}}};
-		\draw [->,rounded corners=0.25cm] (10.05,-2.5) -- (10.55,-2.5) -- (10.55,-3.0);
-		\node[inner sep=0pt,anchor=west] at (4.6,-4.2) {\patternlink{1_row_eg}{\patternimg{0.1}{1_row_eg_3}}};
+	\node[inner sep=0pt,anchor=west] at (0,0) {\embedlink{1_row_eg}{\patternimg{0.1}{1_row_eg_1}}};
+	\draw [->,rounded corners=0.25cm] (7.75,-0.4) -- (8.25,-0.4) -- (8.25,-0.9);
+	\node[inner sep=0pt,anchor=west] at (2.3,-2.1) {\patternlink{1_row_eg}{\patternimg{0.1}{1_row_eg_2}}};
+	\draw [->,rounded corners=0.25cm] (10.05,-2.5) -- (10.55,-2.5) -- (10.55,-3.0);
+	\node[inner sep=0pt,anchor=west] at (4.6,-4.2) {\patternlink{1_row_eg}{\patternimg{0.1}{1_row_eg_3}}};
 	\end{tikzpicture}
 	\caption{How to use the proof of Theorem~\ref{thm:1_row_goe} to construct a parent (at the bottom) of a pattern with height~$1$ (at the top). First, we place the border around the pattern (displayed in \bgbox{redback2!25!redback}{dark red} in the middle image) and place the pattern's negation in the top and bottom rows of the box (displayed in \bgbox{greenback}{dark green} in the middle image). We then adjust the bottom row slightly (highlighted in \bgbox{greenpastel}{light green} in the bottom image) whenever we see the troublesome configuration from Figure~\ref{fig:goe_row_1_proof}.}\label{fig:goe_1_row_eg}
 \end{figure}
@@ -585,7 +585,7 @@ More sophisticated techniques have been used to prove that there similarly do no
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{A Pattern with no Grandparent}\label{sec:no_grandparent}
 
-There are many very difficult follow-up questions that can be asked about Gardens of Eden or patterns with properties related to those of Gardens of Eden. For example, does there exist a pattern that has a parent but no grandparent? In other words, does there exist a pattern with the property that all of its parents are Gardens of Eden? Although there is no known non-constructive argument like the one used in the proof of Theorem~\ref{thm:garden_of_eden_exists} that shows the existence of such patterns, it turns out that the answer to this question is ``yes'', and an example of such a pattern is presented in Figure~\ref{fig:grandparentless}. This pattern has the remarkable property that it has 17,920 distinct parents, every single one of which is a Garden of Eden---one of these parents is displayed in Figure~\ref{fig:grandparentless_parent}.\footnote{Whether or not such a pattern exists was originally asked by Conway in October 1972. It was not resolved until May 2016, when the pattern displayed in Figure~\ref{fig:grandparentless} was found by user ``mtve'' on the ConwayLife.com forums. Later that month, they even found a pattern that has a grandparent but no great-grandparent and a pattern with a great-grandparent but no great-great-grandparent, though the question remains open of whether or not, for every integer $n \geq 1$, there exists a pattern with a great$^n$-grandparent but no great$^{n+1}$-grandparent.}
+There are many very difficult follow-up questions that can be asked about Gardens of Eden or patterns with properties related to those of Gardens of Eden. For example, does there exist a pattern that has a parent but no grandparent? In other words, does there exist a pattern with the property that all of its parents are Gardens of Eden? Although there is no known non-constructive argument like the one used in the proof of Theorem~\ref{thm:garden_of_eden_exists} that shows the existence of such patterns, it turns out that the answer to this question is ``yes'', and an example of such a pattern is presented in Figure~\ref{fig:grandparentless}. This pattern has the remarkable property that it has $17{\thousep}920$ distinct parents, every single one of which is a Garden of Eden---one of these parents is displayed in Figure~\ref{fig:grandparentless_parent}.\footnote{Whether or not such a pattern exists was originally asked by Conway in October 1972. It was not resolved until May 2016, when the pattern displayed in Figure~\ref{fig:grandparentless} was found by user ``mtve'' on the ConwayLife.com forums. Later that month, they even found a pattern that has a grandparent but no great-grandparent and a pattern with a great-grandparent but no great-great-grandparent, though the question remains open of whether or not, for every integer $n \geq 1$, there exists a pattern with a great$^n$-grandparent but no great$^{n+1}$-grandparent.}
 
 \begin{figure}[!htb]
 	\centering
@@ -645,13 +645,13 @@ Solomon W. Golomb invented the term "polyomino" in 1953, and Martin Gardner wrot
 	\caption{The nonomino~(a) evolves in the same way as the switch engine~(b) after $2$ generations.}\label{fig:switch_engine_nonomino}
 \end{figure}
 
-Building upon this idea of finding objects by evolving random starting configurations, Achim Flammenkamp ran an automated computer search in 1994 that repeatedly generated random soups and evolved them, keeping a list of all objects that it found in the resulting ash. This search ran until it had accumulated $5 \times 10^9$ (non-distinct) ash objects, which contained a total of $48$ distinct oscillators \cite{Fla94}. He then performed this search again in 2004, this time accumulating $5 \times 10^{10}$ ash objects, and found over 3,500 distinct still lifes and over 80 different oscillators \cite{Fla04}.
+Building upon this idea of finding objects by evolving random starting configurations, Achim Flammenkamp ran an automated computer search in 1994 that repeatedly generated random soups and evolved them, keeping a list of all objects that it found in the resulting ash. This search ran until it had accumulated $5 \times 10^9$ (non-distinct) ash objects, which contained a total of $48$ distinct oscillators \cite{Fla94}. He then performed this search again in 2004, this time accumulating $5 \times 10^{10}$ ash objects, and found over $3{\thousep}500$ distinct still lifes and over 80 different oscillators \cite{Fla04}.
 
-Andrzej Okrasinski created a similar program that acted as a screensaver in November~2003. Over the subsequent 5~years, this screensaver catalogued over $4.7 \times 10^{11}$ ash objects, including over 8,000 distinct still lifes and about 180 oscillators, but still the only spaceships that turned up were the four that we have already seen (the glider, LWSS, MWSS, and HWSS) \cite{Okr03}. The screensaver also kept track of how long each starting configuration took to stabilize, and found some new methuselahs in the process, including a 15-cell version of Lidka, which was presented in Table~\ref{tab:small_methuselahs} (it was improved to a 13-cell version by David Bell and then to the more compact 13-cell version presented in that table by Simon Ekström).
+Andrzej Okrasinski created a similar program that acted as a screensaver in November~2003. Over the subsequent 5~years, this screensaver catalogued over $4.7 \times 10^{11}$ ash objects, including over $8{\thousep}000$ distinct still lifes and about 180 oscillators, but still the only spaceships that turned up were the four that we have already seen (the glider, LWSS, MWSS, and HWSS) \cite{Okr03}. The screensaver also kept track of how long each starting configuration took to stabilize, and found some new methuselahs in the process, including a 15-cell version of Lidka, which was presented in Table~\ref{tab:small_methuselahs} (it was improved to a 13-cell version by David Bell and then to the more compact 13-cell version presented in that table by Simon Ekström).
 
 In 2009, Nathaniel Johnston created a distributed online search to continue in this vein, called \emph{The Online Life-Like CA Soup Search} (or \emph{TOLLCASS}\index{TOLLCASS} for short). This script had the advantage that multiple people could run it simultaneously on different computers, and their results were automatically uploaded to a central server that organized them. TOLLCASS also worked not just with Conway's Game of Life, but also with a handful of other Life-like cellular automata. The major downside of this script was that it was quite slow, and over the two years that it was active, it catalogued only about one third as many objects as Okrasinski's earlier search.
 
-Finally, Adam P. Goucher launched another distributed online search in 2014 called \emph{apgsearch}\index{apgsearch},\footnote{Officially, the ``apg'' in apgsearch are not its author's initials, but rather stand for \textbf{a}sh \textbf{p}attern \textbf{g}enerator.} which is still active today\footnote{It is available at \httpsurl{catagolue.appspot.com}.} and is the current state-of-the-art when it comes to soup searching. Like TOLLCASS, it can be used with several different Life-like CA, but with the main advantage of being extremely fast. In the six years since it began, it has catalogued more than 1,000 times as many ash objects as all of the previous searches combined (and this number will likely become out of date very quickly). A summary of these various soup searches that have taken place over the years is provided by Table~\ref{tab:ash_searches}.
+Finally, Adam P. Goucher launched another distributed online search in 2014 called \emph{apgsearch}\index{apgsearch},\footnote{Officially, the ``apg'' in apgsearch are not its author's initials, but rather stand for \textbf{a}sh \textbf{p}attern \textbf{g}enerator.} which is still active today\footnote{It is available at \httpsurl{catagolue.appspot.com}.} and is the current state-of-the-art when it comes to soup searching. Like TOLLCASS, it can be used with several different Life-like CA, but with the main advantage of being extremely fast. In the six years since it began, it has catalogued more than $1{\thousep}000$ times as many ash objects as all of the previous searches combined (and this number will likely become out of date very quickly). A summary of these various soup searches that have taken place over the years is provided by Table~\ref{tab:ash_searches}.
 
 \begin{table}[!htb]\vspace*{0.05in}
 	\begin{center}		
@@ -678,351 +678,351 @@ Finally, Adam P. Goucher launched another distributed online search in 2014 call
 \label{sec:early_life_exercises}
 \addcontentsline{toc}{section}{Exercises}
 \vspace*{-0.4cm}\hrulefill\vspace*{-0.3cm}\footnotesize\begin{multicols}{2}\vspace*{-0.4cm}\raggedcolumns\interlinepenalty=10000
-\setlength{\parskip}{0pt}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{problemstar}\label{exer:natural_switch_engine}
-	Evolve each of the following randomly-generated $20 \times 20$ soups and describe the most unusual object that forms.\vspace*{-0.25cm}
+	\setlength{\parskip}{0pt}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
-	\begin{multicols}{2}
-		\begin{enumerate}
-			\item[\bf\color{ocre}(a)] \raisebox{-\height+\ht\strutbox}{\patternimglink{0.1}{exercise_random_3}}
+	\begin{problemstar}\label{exer:natural_switch_engine}
+		Evolve each of the following randomly-generated $20 \times 20$ soups and describe the most unusual object that forms.\vspace*{-0.25cm}
+		
+		\begin{multicols}{2}
+			\begin{enumerate}
+				\item[\bf\color{ocre}(a)] \raisebox{-\height+\ht\strutbox}{\patternimglink{0.1}{exercise_random_3}}
+				
+				\item[\bf\color{ocre}(c)] \raisebox{-\height+\ht\strutbox}{\patternimglink{0.1}{exercise_random_4}}
+				
+				\item[\bf\color{ocre}(b)] \raisebox{-\height+\ht\strutbox}{\patternimglink{0.1}{exercise_random_1}}
+				
+				\item[\bf\color{ocre}(d)] \raisebox{-\height+\ht\strutbox}{\patternimglink{0.1}{exercise_random_2}}
+			\end{enumerate}
+		\end{multicols}
+	\end{problemstar}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:4_cell_methuselahs}
+		What is the longest lifespan of a pattern with:\smallskip
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item $1$ or $2$ live cells?
+			% SOLUTION: 1
 			
-			\item[\bf\color{ocre}(c)] \raisebox{-\height+\ht\strutbox}{\patternimglink{0.1}{exercise_random_4}}
+			\item $3$ live cells?
 			
-			\item[\bf\color{ocre}(b)] \raisebox{-\height+\ht\strutbox}{\patternimglink{0.1}{exercise_random_1}}
-			
-			\item[\bf\color{ocre}(d)] \raisebox{-\height+\ht\strutbox}{\patternimglink{0.1}{exercise_random_2}}
+			\item $4$ live cells? [Hint: You could try writing a computer program to help you.]
 		\end{enumerate}
-	\end{multicols}
-\end{problemstar}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:4_cell_methuselahs}
-What is the longest lifespan of a pattern with:\smallskip
-
-\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-	\item $1$ or $2$ live cells?
-	% SOLUTION: 1
+	\end{problem}
 	
-	\item $3$ live cells?
 	
-	\item $4$ live cells? [Hint: You could try writing a computer program to help you.]
-\end{enumerate}
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:pentominoes}
-All 12 different pentominoes are displayed below. What are their lifespans?
-
-\begin{center}
-	\patternimglink{0.1}{exercise_pentominoes}
-\end{center}
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:twin_bees_stabilize}
-In this exercise, we will find some alternate stabilizations of the twin bees shuttle from Figure~\ref{fig:twin_bees_shuttle}.\smallskip
-
-\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-	\item Try removing some of the blocks from the twin bees shuttle. Which combinations of blocks can you remove while preserving it as a period~46 oscillator?
-	% Can remove up to one block from each side
+	\mfilbreak
 	
-	\item The still life below is called a \emph{hat}\index{hat}. Use a hat to stabilize one side of the twin bees shuttle.
-	\begin{center}
-		\patternimglink{0.1}{hat}
-	\end{center}
+	
+	\begin{problem}\label{exer:pentominoes}
+		All 12 different pentominoes are displayed below. What are their lifespans?
+		
+		\begin{center}
+			\patternimglink{0.1}{exercise_pentominoes}
+		\end{center}
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:twin_bees_stabilize}
+		In this exercise, we will find some alternate stabilizations of the twin bees shuttle from Figure~\ref{fig:twin_bees_shuttle}.\smallskip
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Try removing some of the blocks from the twin bees shuttle. Which combinations of blocks can you remove while preserving it as a period~46 oscillator?
+			% Can remove up to one block from each side
+			
+			\item The still life below is called a \emph{hat}\index{hat}. Use a hat to stabilize one side of the twin bees shuttle.
+			\begin{center}
+				\patternimglink{0.1}{hat}
+			\end{center}
+			% SOLUTION:
+			% x = 29, y = 11, rule = B3/S23
+			% 17bo$2o15b2o$2o16b2o$13b2o2b2o6bo$25b3o$28bo$25b3o$13b2o2b2o6bo$2o16b2o$2o15b2o$17bo!
+		\end{enumerate}
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:find_unstable}
+		Find a specific generation at which each of the following unstable objects appears in the evolution of the R-pentomino.\smallskip
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item A T-tetromino.
+			
+			\item A pre-honey farm.
+			
+			\item A pi-heptomino.
+			
+			\item A queen bee.
+			
+			\item Lumps of muck (in particular, generation~$3$ of the stairstep hexomino).
+		\end{enumerate}
+	\end{problemstar}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:double_gosper_gun}
+		Use two blocks and three queen bees to create a ``double'' Gosper glider gun: a gun that emits two streams of gliders.
+	\end{problem}
 	% SOLUTION:
-	% x = 29, y = 11, rule = B3/S23
-	% 17bo$2o15b2o$2o16b2o$13b2o2b2o6bo$25b3o$28bo$25b3o$13b2o2b2o6bo$2o16b2o$2o15b2o$17bo!
-\end{enumerate}
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problemstar}\label{exer:find_unstable}
-Find a specific generation at which each of the following unstable objects appears in the evolution of the R-pentomino.\smallskip
-
-\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-	\item A T-tetromino.
+	% x = 50, y = 13, rule = B3/S23
+	%36b2o$38bo$25b2o12bo8b2o$25b2o4bo7bo8b2o$11bo10b2o5b2o8bo$11bobo7b3o5b
+	%o2b2o4bo$2o12b2o6b2o6b5ob2o$2o12b2o9b2o4bo$14b2o9b2o$11bobo$11bo11bo
+	%15bo$21bobo16bo$22b2o14b3o!
 	
-	\item A pre-honey farm.
 	
-	\item A pi-heptomino.
+	\mfilbreak
 	
-	\item A queen bee.
 	
-	\item Lumps of muck (in particular, generation~$3$ of the stairstep hexomino).
-\end{enumerate}
-\end{problemstar}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:double_gosper_gun}
-Use two blocks and three queen bees to create a ``double'' Gosper glider gun: a gun that emits two streams of gliders.
-\end{problem}
-% SOLUTION:
-% x = 50, y = 13, rule = B3/S23
-%36b2o$38bo$25b2o12bo8b2o$25b2o4bo7bo8b2o$11bo10b2o5b2o8bo$11bobo7b3o5b
-%o2b2o4bo$2o12b2o6b2o6b5ob2o$2o12b2o9b2o4bo$14b2o9b2o$11bobo$11bo11bo
-%15bo$21bobo16bo$22b2o14b3o!
-
-
-\mfilbreak
-
-
-\begin{problemstar}\label{exer:random_symmetric}
-	Because so many interesting Life objects display some form of symmetry, it is often fruitful to investigate random starting configurations that are also symmetric. Evolve each of the following randomly-generated symmetric soups and describe the most unusual object that forms.\smallskip
-	
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item \raisebox{-\height+\ht\strutbox}{\patternimglink{0.1}{exercise_random_sym_1}}
+	\begin{problemstar}\label{exer:random_symmetric}
+		Because so many interesting Life objects display some form of symmetry, it is often fruitful to investigate random starting configurations that are also symmetric. Evolve each of the following randomly-generated symmetric soups and describe the most unusual object that forms.\smallskip
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item \raisebox{-\height+\ht\strutbox}{\patternimglink{0.1}{exercise_random_sym_1}}
 			
-		\item \raisebox{-\height+\ht\strutbox}{\patternimglink{0.1}{exercise_random_sym_4}}
-		
-		\item \raisebox{-\height+\ht\strutbox}{\patternimglink{0.1}{exercise_random_sym_2}}
+			\item \raisebox{-\height+\ht\strutbox}{\patternimglink{0.1}{exercise_random_sym_4}}
 			
-		\item \raisebox{-\height+\ht\strutbox}{\patternimglink{0.1}{exercise_random_sym_3}}
-	\end{enumerate}
-\end{problemstar}
-
-
-\mfilbreak
-
-
-\begin{problemstar}\label{exer:familiar_fours}
-There are $5$ formations of $4$ simple objects that commonly occur in ash: the traffic light\index{traffic light}, honey farm\index{honey!farm}, and blockade\index{blockade} that we saw in Section~\ref{sec:evolution}, and the \emph{fleet}\index{fleet} and \emph{bakery}\index{bakery} displayed below on the left and right, respectively. These arrangements are collectively called the \emph{familiar fours}\index{familiar four}.
-
-\begin{center}\captionsetup[subfigure]{labelformat=empty}
-	\begin{minipage}{.4\linewidth}
-		\centering \patternimglink{0.1}{exercise_fleet}
-	\end{minipage} \quad %
-	\begin{minipage}{.4\linewidth}
-		\centering \patternimglink{0.1}{exercise_bakery}
-	\end{minipage}
-\end{center}
-
-\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-	\item Evolve Lidka\index{Lidka} until you see a fleet, and use this evolution to find a $7$-cell predecessor of the fleet.
+			\item \raisebox{-\height+\ht\strutbox}{\patternimglink{0.1}{exercise_random_sym_2}}
+			
+			\item \raisebox{-\height+\ht\strutbox}{\patternimglink{0.1}{exercise_random_sym_3}}
+		\end{enumerate}
+	\end{problemstar}
 	
-	\item There are at least two different $8$-cell objects that evolve into a bakery. Find one of them. [Hint: Try evolving random soups until you find a bakery, or write a computer program that evolves many different $8$-cell objects.]
-\end{enumerate}
-\end{problemstar}
-
-
-\mfilbreak
-
-
-\begin{problemstar}\label{exer:beehive_pair}
-	This problem concerns the configuration of two beehives displayed below.
 	
-	\begin{center}
-		\patternimglink{0.1}{beehive_pair}
-	\end{center}
-
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]\vspace*{-0.25cm}
-		\item Evolve the pattern until it stabilizes. What happens to the beehives?
-		% SOLUTION: They destroy each other.
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:familiar_fours}
+		There are $5$ formations of $4$ simple objects that commonly occur in ash: the traffic light\index{traffic light}, honey farm\index{honey!farm}, and blockade\index{blockade} that we saw in Section~\ref{sec:evolution}, and the \emph{fleet}\index{fleet} and \emph{bakery}\index{bakery} displayed below on the left and right, respectively. These arrangements are collectively called the \emph{familiar fours}\index{familiar four}.
 		
-		\item Create a period~30 oscillator that uses this reaction to stabilize two queen bees that are rotated 90 degrees from each other.
-		% SOLUTION:
-		% x = 25, y = 21, rule = B3/S23
-		% 14bo$14bobo$17b2o4b2o$17b2o4b2o$17b2o$14bobo$2b3o9bo2$2bobo$b5o$2o3b2o
-		% 13b2o$2o3b2o13b2o3$3bo$b2o2$o2$bo2bo$3b2o!
-	\end{enumerate}
-\end{problemstar}
-
-
-\mfilbreak
-
-
-\begin{problemstar}\label{exer:queen_bee_eater_1}
-	This problem concerns the pattern displayed below. The top-left object is a pre-beehive\index{pre-beehive}, while the bottom-right object is called \emph{eater~1}\index{eater!1}.
-	\begin{center}
-		\patternimglink{0.1}{beehive_eater_1}
-	\end{center}
-	
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item Evolve the pattern until it stabilizes. What happens to the pre-beehive and eater~1?
+		\begin{center}\captionsetup[subfigure]{labelformat=empty}
+			\begin{minipage}{.4\linewidth}
+				\centering \patternimglink{0.1}{exercise_fleet}
+			\end{minipage} \quad %
+			\begin{minipage}{.4\linewidth}
+				\centering \patternimglink{0.1}{exercise_bakery}
+			\end{minipage}
+		\end{center}
 		
-		\item Evolve the pre-beehive and eater~1 individually (i.e., not next to each other). Describe what happens to them.
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Evolve Lidka\index{Lidka} until you see a fleet, and use this evolution to find a $7$-cell predecessor of the fleet.
+			
+			\item There are at least two different $8$-cell objects that evolve into a bakery. Find one of them. [Hint: Try evolving random soups until you find a bakery, or write a computer program that evolves many different $8$-cell objects.]
+		\end{enumerate}
+	\end{problemstar}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:beehive_pair}
+		This problem concerns the configuration of two beehives displayed below.
 		
-		\item Evolve a queen bee until you find a pre-beehive that it leaves behind.
+		\begin{center}
+			\patternimglink{0.1}{beehive_pair}
+		\end{center}
 		
-		\item Use an eater~1 (instead of a block) to stabilize one side of the queen bee shuttle.
-	\end{enumerate}
-\end{problemstar}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:bunnies}
-The $9$-cell methuselah displayed below is called \emph{bunnies}\index{bunnies}.\footnote{Its $1$-generation successor, which is called \emph{rabbits}\index{rabbits}, was found by Andrew Trevorrow in 1986. This version was subsequently found independently by Robert Wainwright and Andrew Trevorrow.}
-
-\begin{center}
-	\patternimglink{0.1}{exercise_bunnies}
-\end{center}
-
-\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-	\item What is its lifespan?
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]\vspace*{-0.25cm}
+			\item Evolve the pattern until it stabilizes. What happens to the beehives?
+			% SOLUTION: They destroy each other.
+			
+			\item Create a period~30 oscillator that uses this reaction to stabilize two queen bees that are rotated 90 degrees from each other.
+			% SOLUTION:
+			% x = 25, y = 21, rule = B3/S23
+			% 14bo$14bobo$17b2o4b2o$17b2o4b2o$17b2o$14bobo$2b3o9bo2$2bobo$b5o$2o3b2o
+			% 13b2o$2o3b2o13b2o3$3bo$b2o2$o2$bo2bo$3b2o!
+		\end{enumerate}
+	\end{problemstar}
 	
-	\item It eventually evolves in the same way as each of bunnies~9 and bunnies~10b from Table~\ref{tab:small_methuselahs}. Find the first generation of each object's evolution where they match.
-\end{enumerate}
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:edna}\index{Edna}
-The methuselah displayed below is named \emph{Edna}.\footnote{Found by Erik de Neve in January 2010.}
-
-\begin{center}
-	\patternimglink{0.08}{edna}
-\end{center}
-
-\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-	\item What is its lifespan?
-	% SOLUTION: 31192
 	
-	\item What objects can be found in its ash after this pattern stabilizes? Are there any objects that we did not give names to in this chapter?
-\end{enumerate}
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:noahs_ark}
-	An ark called \emph{Noah's ark}\index{Noah's ark} is displayed below.\footnote{This ark was found in 1971 by Charles Corderman, and was the first-discovered ark. Its name refers to the fact that the debris it leaves behind contains pairs of many different objects. The general term ``ark'' is derived from the name of this pattern.} What is the period of this pattern, and what objects does it leave behind as it moves?
+	\mfilbreak
 	
-	\begin{center}
-		\patternimglink{0.1}{exercise_noahs_ark}
-	\end{center}
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problemstar}\label{exer:goe_theorem}
-In the proof of Theorem~\ref{thm:garden_of_eden_exists}, we claimed that the inequality $(2^{36}-1)^{n^2} < 2^{(6n-2)^2}$ holds whenever $n$ is large enough.\smallskip
-
-\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-	\item Find a formula for the smallest value of $n$ for which this inequality holds, and then use computer software to compute its exact value.
-	% ceil(2/(6-sqrt(log_2(2^36-1)))) = 1143185077171
 	
-	\item We can get slightly smaller values of $n$ that lead to Gardens of Eden by considering more tiles that evolve in the same way. Instead of just using the two $6 \times 6$ tiles that we presented in the proof of Theorem~\ref{thm:garden_of_eden_exists}, we could have used the set of \emph{five} tiles displayed below without changing the method of proof significantly. What is the relevant inequality that we need to check? What is the smallest value of $n$ for which this new inequality holds?
-	
-	\begin{center}
-		\patternimg{0.087}{goe_theorem_tiles_more}\\[1em]
-	\end{center}
-	
-	\item Alternatively, we can get smaller values of $n$ leading to Gardens of Eden by using $5 \times 5$ tiles. If we re-do the proof of Theorem~\ref{thm:garden_of_eden_exists} using the $5 \times 5$ tiles displayed below, what is the relevant inequality that we need to check? What is the smallest value of $n$ for which this new inequality holds?
-	
-	\begin{center}
-		\patternimg{0.08}{goe_theorem_tiles_5x5}
-	\end{center}
-	
-	\item Why can't we replace the $6 \times 6$ or $5 \times 5$ tiles by the $4 \times 4$ tiles displayed below? What part of the proof breaks down?
-	
-	\begin{center}
-		\patternimg{0.08}{goe_theorem_tiles_4x4}
-	\end{center}
-\end{enumerate}
-\end{problemstar}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:8cell_methuselah}
-An $8$-cell methuselah with a longer lifespan than the $8$-cell methuselah from Table~\ref{tab:small_methuselahs} (but with a significantly larger bounding box) is displayed below.\footnote{Found by Nick Gotts in 2019.} What is its lifespan?
-
-\begin{center}
-	\patternimglink{0.1}{exercise_8cell_meth}
-\end{center}
-\end{problem}
-% 14321
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:goe_height_1_exercise}
-	Find a parent of the following $1$-cell-thick pattern: \\[0.04em]
-	
-	\begin{center}
-		\vspace*{-1em}\patternimglink{0.09}{goe_height_1_exercise}
-	\end{center}
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problemstar}\label{exer:ark}
-	The 19-cell pattern displayed below consists of two switch engine predecessors and a blinker,\footnote{This pattern was found by Nick Gotts in February 2005.} and takes a staggering 6,526,589 generations to stabilize.
-	
-	\begin{center}
-		\patternimglink{0.1}{exercise_ark}
-	\end{center}
-	
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item Evolve the pattern to see how it behaves. What effect does the blinker have that makes it live so much longer than the ark in Figure~\ref{fig:ark_736692}?
-		% Creates another switch engine that shoots gliders backward on the right, so there are two simultaneously doing it now.
+	\begin{problemstar}\label{exer:queen_bee_eater_1}
+		This problem concerns the pattern displayed below. The top-left object is a pre-beehive\index{pre-beehive}, while the bottom-right object is called \emph{eater~1}\index{eater!1}.
+		\begin{center}
+			\patternimglink{0.1}{beehive_eater_1}
+		\end{center}
 		
-		\item What causes this ark to stabilize? [Hint: Compare the evolution of this ark with the evolution presented in Figure~\ref{fig:ark_736692_stabilized}, which shows the stabilization happening as a result of a path being cleared for the backward-flying gliders.]
-		% A glider hits the front switch engines, turning them into block-laying ones rather than ones that shoot gliders backward.
-	\end{enumerate}
-\end{problemstar}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:goe_theorem_limit}
-	In the proof of Theorem~\ref{thm:garden_of_eden_exists}, we claimed that the inequality $(2^{36}-1)^{n^2} < 2^{(6n-2)^2}$ holds whenever $n$ is large enough. Prove the stronger statement that
-	\[
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Evolve the pattern until it stabilizes. What happens to the pre-beehive and eater~1?
+			
+			\item Evolve the pre-beehive and eater~1 individually (i.e., not next to each other). Describe what happens to them.
+			
+			\item Evolve a queen bee until you find a pre-beehive that it leaves behind.
+			
+			\item Use an eater~1 (instead of a block) to stabilize one side of the queen bee shuttle.
+		\end{enumerate}
+	\end{problemstar}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:bunnies}
+		The $9$-cell methuselah displayed below is called \emph{bunnies}\index{bunnies}.\footnote{Its $1$-generation successor, which is called \emph{rabbits}\index{rabbits}, was found by Andrew Trevorrow in 1986. This version was subsequently found independently by Robert Wainwright and Andrew Trevorrow.}
+		
+		\begin{center}
+			\patternimglink{0.1}{exercise_bunnies}
+		\end{center}
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item What is its lifespan?
+			
+			\item It eventually evolves in the same way as each of bunnies~9 and bunnies~10b from Table~\ref{tab:small_methuselahs}. Find the first generation of each object's evolution where they match.
+		\end{enumerate}
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:edna}\index{Edna}
+		The methuselah displayed below is named \emph{Edna}.\footnote{Found by Erik de Neve in January 2010.}
+		
+		\begin{center}
+			\patternimglink{0.08}{edna}
+		\end{center}
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item What is its lifespan?
+			% SOLUTION: 31192
+			
+			\item What objects can be found in its ash after this pattern stabilizes? Are there any objects that we did not give names to in this chapter?
+		\end{enumerate}
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:noahs_ark}
+		An ark called \emph{Noah's ark}\index{Noah's ark} is displayed below.\footnote{This ark was found in 1971 by Charles Corderman, and was the first-discovered ark. Its name refers to the fact that the debris it leaves behind contains pairs of many different objects. The general term ``ark'' is derived from the name of this pattern.} What is the period of this pattern, and what objects does it leave behind as it moves?
+		
+		\begin{center}
+			\patternimglink{0.1}{exercise_noahs_ark}
+		\end{center}
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:goe_theorem}
+		In the proof of Theorem~\ref{thm:garden_of_eden_exists}, we claimed that the inequality $(2^{36}-1)^{n^2} < 2^{(6n-2)^2}$ holds whenever $n$ is large enough.\smallskip
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Find a formula for the smallest value of $n$ for which this inequality holds, and then use computer software to compute its exact value.
+			% ceil(2/(6-sqrt(log_2(2^36-1)))) = 1143185077171
+			
+			\item We can get slightly smaller values of $n$ that lead to Gardens of Eden by considering more tiles that evolve in the same way. Instead of just using the two $6 \times 6$ tiles that we presented in the proof of Theorem~\ref{thm:garden_of_eden_exists}, we could have used the set of \emph{five} tiles displayed below without changing the method of proof significantly. What is the relevant inequality that we need to check? What is the smallest value of $n$ for which this new inequality holds?
+			
+			\begin{center}
+				\patternimg{0.087}{goe_theorem_tiles_more}\\[1em]
+			\end{center}
+			
+			\item Alternatively, we can get smaller values of $n$ leading to Gardens of Eden by using $5 \times 5$ tiles. If we re-do the proof of Theorem~\ref{thm:garden_of_eden_exists} using the $5 \times 5$ tiles displayed below, what is the relevant inequality that we need to check? What is the smallest value of $n$ for which this new inequality holds?
+			
+			\begin{center}
+				\patternimg{0.08}{goe_theorem_tiles_5x5}
+			\end{center}
+			
+			\item Why can't we replace the $6 \times 6$ or $5 \times 5$ tiles by the $4 \times 4$ tiles displayed below? What part of the proof breaks down?
+			
+			\begin{center}
+				\patternimg{0.08}{goe_theorem_tiles_4x4}
+			\end{center}
+		\end{enumerate}
+	\end{problemstar}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:8cell_methuselah}
+		An $8$-cell methuselah with a longer lifespan than the $8$-cell methuselah from Table~\ref{tab:small_methuselahs} (but with a significantly larger bounding box) is displayed below.\footnote{Found by Nick Gotts in 2019.} What is its lifespan?
+		
+		\begin{center}
+			\patternimglink{0.1}{exercise_8cell_meth}
+		\end{center}
+	\end{problem}
+	% 14321
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:goe_height_1_exercise}
+		Find a parent of the following $1$-cell-thick pattern: \\[0.04em]
+		
+		\begin{center}
+			\vspace*{-1em}\patternimglink{0.09}{goe_height_1_exercise}
+		\end{center}
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:ark}
+		The 19-cell pattern displayed below consists of two switch engine predecessors and a blinker,\footnote{This pattern was found by Nick Gotts in February 2005.} and takes a staggering $6{\thousep}526{\thousep}589$ generations to stabilize.
+		
+		\begin{center}
+			\patternimglink{0.1}{exercise_ark}
+		\end{center}
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Evolve the pattern to see how it behaves. What effect does the blinker have that makes it live so much longer than the ark in Figure~\ref{fig:ark_736692}?
+			% Creates another switch engine that shoots gliders backward on the right, so there are two simultaneously doing it now.
+			
+			\item What causes this ark to stabilize? [Hint: Compare the evolution of this ark with the evolution presented in Figure~\ref{fig:ark_736692_stabilized}, which shows the stabilization happening as a result of a path being cleared for the backward-flying gliders.]
+			% A glider hits the front switch engines, turning them into block-laying ones rather than ones that shoot gliders backward.
+		\end{enumerate}
+	\end{problemstar}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:goe_theorem_limit}
+		In the proof of Theorem~\ref{thm:garden_of_eden_exists}, we claimed that the inequality $(2^{36}-1)^{n^2} < 2^{(6n-2)^2}$ holds whenever $n$ is large enough. Prove the stronger statement that
+		\[
 		\lim_{n\rightarrow\infty}\frac{(2^{36}-1)^{n^2}}{2^{(6n-2)^2}} = 0,
-	\]
-	and hence the vast majority of large patterns are Gardens of Eden. [Hint: Use the fact that $a^b = 2^{b\log_2(a)}$.]
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:goe_jls}
-A computer program called \emph{JavaLifeSearch}\index{JavaLifeSearch}\footnote{Created by Karel Suhajda, based on earlier programs by David Bell, Dean Hickerson, and Jason Summers.} can be used to find predecessors of Life patterns (or show that none exist). Usage instructions and download links can be found at \httpsurl{conwaylife.com/wiki/JavaLifeSearch}.\smallskip
-
-\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-	\item Use JavaLifeSearch to find a predecessor of the following pattern:
+		\]
+		and hence the vast majority of large patterns are Gardens of Eden. [Hint: Use the fact that $a^b = 2^{b\log_2(a)}$.]
+	\end{problem}
 	
-	\begin{center}
-		\patternimg{0.1}{exercise_goe_jls}
-	\end{center}
 	
-	\item Use JavaLifeSearch to verify that the patterns from Figure~\ref{fig:goe_records} really are orphans.
+	\mfilbreak
 	
-	\item Use JavaLifeSearch to verify that the pattern from Figure~\ref{fig:grandparentless} really does not have any grandparents.
-\end{enumerate}
-\end{problem}
-
-%% EXERCISE END COMMANDS
+	
+	\begin{problem}\label{exer:goe_jls}
+		A computer program called \emph{JavaLifeSearch}\index{JavaLifeSearch}\footnote{Created by Karel Suhajda, based on earlier programs by David Bell, Dean Hickerson, and Jason Summers.} can be used to find predecessors of Life patterns (or show that none exist). Usage instructions and download links can be found at \httpsurl{conwaylife.com/wiki/JavaLifeSearch}.\smallskip
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Use JavaLifeSearch to find a predecessor of the following pattern:
+			
+			\begin{center}
+				\patternimg{0.1}{exercise_goe_jls}
+			\end{center}
+			
+			\item Use JavaLifeSearch to verify that the patterns from Figure~\ref{fig:goe_records} really are orphans.
+			
+			\item Use JavaLifeSearch to verify that the pattern from Figure~\ref{fig:grandparentless} really does not have any grandparents.
+		\end{enumerate}
+	\end{problem}
+	
+	%% EXERCISE END COMMANDS
 \end{multicols}
 \normalsize\vspace*{0.01cm}
 %% DONE EXERCISE END COMMANDS

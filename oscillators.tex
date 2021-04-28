@@ -76,7 +76,7 @@ One of the oldest and simplest methods for creating oscillators by hand is to co
 	\caption{A $4 \times 3$ box that we would like to turn into an oscillator. The red cells in~(a) have 3 live neighbors and thus will be alive in the next generation, unless we crowd them with induction coils. One way of crowding them is shown in~(b).}\label{fig:billiard_table_start}
 \end{figure}
 
-Since there are only $2^{4 \times 3} = 4,096$ different configurations of alive and dead cells that can be placed in a $4 \times 3$ box, if we can carry out both of the tasks outlined above then we will necessarily have an oscillator with period no larger than $4,096$ (this period is of course much higher than we expect to actually attain, since it would be a great shock if the inner box actually looped through all possible configurations).
+Since there are only $2^{4 \times 3} = 4{\thousep}096$ different configurations of alive and dead cells that can be placed in a $4 \times 3$ box, if we can carry out both of the tasks outlined above then we will necessarily have an oscillator with period no larger than $4{\thousep}096$ (this period is of course much higher than we expect to actually attain, since it would be a great shock if the inner box actually looped through all possible configurations).
 
 Task~(1) above is typically straightforward to take care of: we can just place induction coils\index{induction coil} around the edges of the pattern to crowd the dead cells that currently have 3 live neighbors (cells in red in Figure~\ref{fig:billiard_table_start_1}), just like we did to create still lifes in Section~\ref{sec:still_life_grammar}. There are typically numerous ways to do this, and they are usually not difficult to find, even by hand. An example is given in Figure~\ref{fig:billiard_table_start_2}, where the outside of the $4 \times 3$ box is stabilized by two blocks and two snakes.
 
@@ -97,7 +97,7 @@ Task~(1) above is typically straightforward to take care of: we can just place i
 	\caption{Two billiard table oscillators based on a $4 \times 3$ box. Both of these oscillators were found by John Conway's research group by no later than 1971.}\label{fig:hertz_negen}
 \end{figure}
 
-Task~(2) above is a bit more difficult to take care of, but since there are only $4,096$ possible configurations, many of which we clearly do not need to consider (such as the configuration with all cells alive), and the $4 \times 3$ box has four-fold symmetry, it actually does not take long to find oscillators by hand (and a computer program could easily be written to check all possibilities). For example, Figure~\ref{fig:hertz_negen} gives two oscillators that can be found in this way.
+Task~(2) above is a bit more difficult to take care of, but since there are only $4{\thousep}096$ possible configurations, many of which we clearly do not need to consider (such as the configuration with all cells alive), and the $4 \times 3$ box has four-fold symmetry, it actually does not take long to find oscillators by hand (and a computer program could easily be written to check all possibilities). For example, Figure~\ref{fig:hertz_negen} gives two oscillators that can be found in this way.
 
 However, not all boxes are as fruitful as the $4 \times 3$ one was. For example, if we repeat the above procedure with a $5 \times 3$ box, it is still not difficult to stabilize the outside of the box, but there is no way to fill in its center to turn it into an oscillator (see Exercise~\ref{exer:billiard_table_5x3}). For this reason, somewhat more exotic regions than rectangular boxes are often used when constructing billiard tables, some examples of which are given in Figure~\ref{fig:billiard_tables}. Note that these oscillators all use the same stabilization techniques that we learned in Section~\ref{sec:still_life_grammar}: blocks, tubs, and snakes are used as induction coils, and pre-blocks\index{pre-block} and tails\index{tail} are used to stabilize ``corners'' of objects (as at the top of the burloaferimeter in Figure~\ref{fig:burloaferimeter}, on the left and right of the cauldron in Figure~\ref{fig:cauldron}, and on the left and right of the no-name p$10$ in Figure~\ref{fig:p10_billiard_table}).
 
@@ -390,10 +390,10 @@ The other most commonly-occurring spark is the one that consists of just a singl
 				\caption{\emph{Superfountain}\index{superfountain} (p4)}
 				\label{fig:superfountain}
 		\end{subfigure}} & \multirow{2}{*}{\begin{subfigure}{.32\textwidth}
-			\centering\vspace*{-0.49cm}
-			\patternimglink{0.081538461538}{middleweight_supervolcano}
-			\caption{\emph{MW supervolcano}\index{middleweight!supervolcano} (p5)}
-			\label{fig:mw_supervolcano}\index{middleweight!supervolcano}
+				\centering\vspace*{-0.49cm}
+				\patternimglink{0.081538461538}{middleweight_supervolcano}
+				\caption{\emph{MW supervolcano}\index{middleweight!supervolcano} (p5)}
+				\label{fig:mw_supervolcano}\index{middleweight!supervolcano}
 		\end{subfigure}} & \begin{subfigure}{.3\textwidth}
 			\centering\vspace*{0.33cm}
 			\patternimglink{0.1}{middleweight_emulator}
@@ -629,7 +629,7 @@ We have already seen that queen bees and twin bees can be used to construct peri
 \begin{figure}[!htb]
 	\centering
 	\embedlink{t_tetromino_hassle_1}{\vcenteredhbox{\patternimg{0.1}{t_tetromino_hassle_1_0}} \vcenteredhbox{\genarrow{5}}
-	\vcenteredhbox{\patternimg{0.1}{t_tetromino_hassle_1_5}} \vcenteredhbox{\genarrow{6}} \vcenteredhbox{\patternimg{0.1}{t_tetromino_hassle_1_11}}}
+		\vcenteredhbox{\patternimg{0.1}{t_tetromino_hassle_1_5}} \vcenteredhbox{\genarrow{6}} \vcenteredhbox{\patternimg{0.1}{t_tetromino_hassle_1_11}}}
 	\caption{A dot spark (highlighted in \bgbox{orangeback}{orange}) can be used to hassle a T-tetromino, moving it to the left by $2$ cells and mirroring it over the course of $11$~generations.}\label{fig:t_tetromino_hassle_1}
 \end{figure}
 
@@ -881,7 +881,7 @@ To help us make Herschel tracks of different sizes, and thus solve problem~(2) a
 
 It turns out that we can use these two Herschel conduits to create oscillators of any period $61$ or greater. To give an idea of how we will construct these oscillators, let's first construct a simple loop that uses four copies of R64 and two copies of Fx77 on each side (see Figure~\ref{fig:herschel_track_1}). A Herschel moves around this track in
 \[
-	{\color{gray}\underbrace{\color{black}4 \times 64}_\text{R64 time}} \ + \ {\color{gray}\underbrace{\color{black}8\times 77}_\text{Fx77 time}} = 872 \text{ generations,}
+{\color{gray}\underbrace{\color{black}4 \times 64}_\text{R64 time}} \ + \ {\color{gray}\underbrace{\color{black}8\times 77}_\text{Fx77 time}} = 872 \text{ generations,}
 \]
 so we can place a single Herschel on this track in order to create a period~872 oscillator. However, since $872 = 2 \times 436$, we can also use this track to construct a period~436 oscillator by placing 2 Herschels at opposite ends of the track. Similarly, we can construct oscillators with period $872/4 = 218$ and $872/8 = 109$ by placing $4$ and $8$ equally-spaced Herschels along the track, as demonstrated in Figure~\ref{fig:herschel_track_1_109}.
 
@@ -942,7 +942,7 @@ Fortunately, we can construct oscillators to fill in the missing periods (i.e., 
 
 We can think of the track in Figure~\ref{fig:herschel_track_2} as coming from ``folding in'' the top-right and bottom-left corners of the square track that has four copies of Fx77 on each side. When we fold in the corners of the track like this, we replace two corner R64 conduits and eight of the Fx77 conduits (two on each side adjacent to each R64) with six R64 and four Fx77 conduits, which has the effect of decreasing the time that it takes the Herschel to traverse the track by
 \[
-	(2 \times 64 + 8 \times 77) - (6 \times 64 + 4 \times 77) = 52 \text{ generations.}
+(2 \times 64 + 8 \times 77) - (6 \times 64 + 4 \times 77) = 52 \text{ generations.}
 \]
 We could similarly fold in the corners of larger square Herschel tracks, potentially multiple times, reducing the length of the track by $52$ generations each time.
 
@@ -1071,7 +1071,7 @@ Now that we know that all phoenices evolve into oscillators, we are left with th
 	\begin{figure}[!htb]
 		\centering\gridbox{1.5pt}{\begin{tikzpicture}[scale=0.6, every node/.style={transform shape}]%
 			\node[inner sep=0pt,anchor=south west] (glider_loop) at (0.5,0.5) {\includegraphics[width=5cm]{oscillators/phoenix_proof_2.png}};
-
+			
 			\letternode{3}{3}{A}
 			\letternode{2}{2}{J}
 			\letternode{3}{2}{K}
@@ -1145,7 +1145,7 @@ However, oscillators also have great practical use, since sparkers in particular
 
 Many of the small billiard table oscillators that are known were found by David Buckingham, who discovered dozens of them throughout the 1970s and 1980s. Herschel tracks were also primarily his invention---he spent several years cataloguing patterns that moved B-heptominoes and Herschels from one place to another, and by October 1996 he had a complete toolkit capable of constructing oscillators and gliders guns with any period at least $61$.
 
-Almost immediately, Paul Callahan used Herschel tracks to construct the first explicit stable glider reflector~\cite{BC98},\footnote{Although it had been known since at least 1982 that stable reflectors must exist in Life \cite{BCG82}, no specific examples had been found prior to Callahan's construction.} which had a repeat time of 4,840 generations. It didn't take long for him to make some optimizations, resulting in a stable reflector with repeat time of 894 generations. Various optimizations were then made with the help of Dean Hickerson, getting the repeat time down to 747 in November 1996, followed by David Buckingham reducing the repeat time to 672 in May 1997, Stephen Silver reducing it to 623 in October 1997, Paul Callahan reducing it to 575 in November 1998, and finally Stephen Silver reducing it to 497 (as in the Silver reflector of Figure~\ref{fig:silver_reflector}) a few days later.
+Almost immediately, Paul Callahan used Herschel tracks to construct the first explicit stable glider reflector~\cite{BC98},\footnote{Although it had been known since at least 1982 that stable reflectors must exist in Life \cite{BCG82}, no specific examples had been found prior to Callahan's construction.} which had a repeat time of $4{\thousep}840$ generations. It didn't take long for him to make some optimizations, resulting in a stable reflector with repeat time of 894 generations. Various optimizations were then made with the help of Dean Hickerson, getting the repeat time down to 747 in November 1996, followed by David Buckingham reducing the repeat time to 672 in May 1997, Stephen Silver reducing it to 623 in October 1997, Paul Callahan reducing it to 575 in November 1998, and finally Stephen Silver reducing it to 497 (as in the Silver reflector of Figure~\ref{fig:silver_reflector}) a few days later.
 
 \begin{figure}[!htb]
 	\centering\patternimglink{0.12}{period_56_herschel}
@@ -1167,409 +1167,409 @@ Herschel tracks remain one of the pinnacles of Life technology to this day, alth
 \label{sec:oscillators_exercises}
 \addcontentsline{toc}{section}{Exercises}
 \vspace*{-0.4cm}\hrulefill\vspace*{-0.3cm}\footnotesize\begin{multicols}{2}\vspace*{-0.4cm}\raggedcolumns\interlinepenalty=10000
-\setlength{\parskip}{0pt}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{problemstar}\label{exer:billiard_tables}
-	For each of the following boxes, use induction coils to crowd the red cells and then find something that you can put in the green cells so as to make a billiard table oscillator.\vspace*{-0.25cm}
+	\setlength{\parskip}{0pt}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
-	\begin{multicols}{2}
-		\begin{enumerate}
-			\item[\bf\color{ocre}(a)] \raisebox{-\height+0.5em}{\patternimg{0.1}{exercise_billiard_table_3x3}}
-			
-			\item[\bf\color{ocre}(c)] \raisebox{-\height+0.5em}{\patternimg{0.1}{exercise_billiard_table_4x4}}
-			
-			\item[\bf\color{ocre}(b)] \raisebox{-\height+0.5em}{\patternimg{0.1}{exercise_billiard_table_skew}}
-		\end{enumerate}
-	\end{multicols}
-\end{problemstar}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:billiard_table_5x3}
-	Consider the $5 \times 3$ box displayed below as a potential starting point for constructing a billiard table oscillator.
+	\begin{problemstar}\label{exer:billiard_tables}
+		For each of the following boxes, use induction coils to crowd the red cells and then find something that you can put in the green cells so as to make a billiard table oscillator.\vspace*{-0.25cm}
+		
+		\begin{multicols}{2}
+			\begin{enumerate}
+				\item[\bf\color{ocre}(a)] \raisebox{-\height+0.5em}{\patternimg{0.1}{exercise_billiard_table_3x3}}
+				
+				\item[\bf\color{ocre}(c)] \raisebox{-\height+0.5em}{\patternimg{0.1}{exercise_billiard_table_4x4}}
+				
+				\item[\bf\color{ocre}(b)] \raisebox{-\height+0.5em}{\patternimg{0.1}{exercise_billiard_table_skew}}
+			\end{enumerate}
+		\end{multicols}
+	\end{problemstar}
 	
-	\begin{center}
-		\patternimglink{0.1}{billiard_table_5x3}
-	\end{center}
-
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item Find a stable way to crowd the red cells, just like we used two blocks and two snakes to crowd the outside of a $4 \times 3$ box in Section~\ref{sec:billiard_tables}.
-		
-		\item Show that there is no way to fill in the green cells so as to make this pattern an oscillator (try writing a computer program to help you).
-	\end{enumerate}
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:eater_1_replace_eater_2_osc}
-	Replace the eater~1s with eater~2s in the oscillators from the following figures, without destroying the oscillator or altering its period:
-
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item Figure~\ref{fig:roteightor},
-		
-		\item Figure~\ref{fig:period_22},
-		
-		\item Figure~\ref{fig:worker_bee},
-		
-		\item Figure~\ref{fig:period_52}, and
-		
-		\item Figure~\ref{fig:honey_thieves} (you can only replace two of the eater~1s). 
-	\end{enumerate}
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:extend_snacker}
-	The period~$9$ snacker\index{snacker} oscillator from Figure~\ref{fig:snacker} can be stabilized on one side in ways other than using two eater~1s. Use the method shown below to extend this oscillator to one that makes use of at least 5 interacting pentadecathlons.
 	
-	\begin{center}
-		\patternimglink{0.1}{exercise_extend_snacker}
-	\end{center}
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problemstar}\label{exer:t_sparkers}
-	Use the sparks from either the T-nosed~p$4$ or the T-nosed~p$6$ (displayed below) and another oscillator of your choice to create non-trivial oscillators with...
+	\mfilbreak
 	
-	\begin{center}
-		\patternimglink{0.1}{t_nosed_p6}
-	\end{center}
 	
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item period~$12$,
-			
-		\item period~$20$, and
-			
-		\item period~$24$.
-	\end{enumerate}
-\end{problemstar}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:pipsquirter_reflectors}
-	One of the primary uses of pipsquirters\index{pipsquirter} is their ability to reflect a glider when a boat, block, and eater~1 are placed nearby as shown below.
-	
-	\begin{center}
-		\patternimglink{0.1}{pipsquirter_reflector}
-	\end{center}
-
-	The reflector above has period~$6$. Use this same reaction to create a glider reflector with...\smallskip
-	
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item period~$7$, and
-		
-		\item period~$8$.
-	\end{enumerate}
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:volcanoes}
-	Several period~$4$ and~$5$ lightweight, middleweight, and heavyweight supervolcanoes\index{supervolcano}\index{lightweight!supervolcano}\index{middleweight!supervolcano}\index{heavyweight!supervolcano} are displayed below,\footnote{The p$4$ LW supervolcano was found by Noam Elkies in 2010, the p$5$ MW supervolcano was found by Dongook Lee in 2019, the p$5$ HW supervolcano was found by Karel Suhajda 2004, and the rest were found by Matthias Merzenich in 2010.} and they are particularly useful due to how far they push away their sparks.
-	
-	\begin{center}
-		\patternimglink{0.07}{supervolcanoes}
-	\end{center}
-
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item Use the sparks from two supervolcanoes to construct a period~$20$ oscillator.
-		
-		\item Use a supervolcano and a thumb sparker to create a non-trivial period~$20$ oscillator.
-		
-		\item Use a supervolcano to help you construct a T-tetromino shuttle.
-	\end{enumerate}
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problemstar}\label{exer:pi_hassle}
-	A domino spark can be used to rotate a pi-heptomino\index{pi-heptomino} by 90 degrees in $8$~generations, as shown below. Use this reaction to create a period~$32$ oscillator. [Hint: The spark from a figure eight does not quite work. Try some other domino sparkers---you may need to weld them together in order to make them fit together closely enough.]
-	\begin{center}
-		\patternlink{exercise_pi_hassle}{\vcenteredhbox{\patternimg{0.1}{exercise_pi_hassle_0}} \vcenteredhbox{\genarrow{2}} \vcenteredhbox{\patternimg{0.1}{exercise_pi_hassle_2}} \vcenteredhbox{\genarrow{6}} \vcenteredhbox{\patternimg{0.1}{exercise_pi_hassle_8}}}
-	\end{center}
-\end{problemstar}
-
-
-\mfilbreak
-
-
-\begin{problemstar}\label{exer:p32_pi_hassler_eaters}
-	Show how the snakes can be replaced by eater~1s in the period~$32$ ``gourmet''\index{gourmet} oscillator from Figure~\ref{fig:p32_pi_hassler}.
-\end{problemstar}
-
-
-\mfilbreak
-
-
-\begin{problemstar}\label{exer:high_period_sparkers}
-	This exercise introduces some sparkers with higher period than we saw in Section~\ref{sec:sparkers}. For each of them, determine their period, find an accessible spark that they emit (the spark might only be present in one of its phases not displayed below), and use that spark to construct a non-trivial oscillator with higher period.
-	\begin{multicols}{2}
-		\begin{enumerate}
-			\item[\bf\color{ocre}(a)] \raisebox{-\height+0.5em}{\patternimglink{0.1}{exercise_high_period_sparker_13}}
-			
-			\item[\bf\color{ocre}(c)] \raisebox{-\height+0.5em}{\patternimglink{0.1}{exercise_high_period_sparker_32}}
-			
-			\item[\bf\color{ocre}(b)] \raisebox{-\height+0.5em}{\patternimglink{0.1}{exercise_high_period_sparker_31}}
-		\end{enumerate}
-	\end{multicols}
-\end{problemstar}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:b_heptomino_hassle}
-	A dot spark and an eater~2 can be used to reflect a B-heptomino\index{B-heptomino} in $11$~generations, as shown below. Use this reaction to create a period~$22$ oscillator.
-	\begin{center}
-		\patternlink{b_heptomino_hassle}{\vcenteredhbox{\patternimg{0.1}{b_heptomino_hassle_0}} \vcenteredhbox{\genarrow{5}} \vcenteredhbox{\patternimg{0.1}{b_heptomino_hassle_5}} \vcenteredhbox{\genarrow{6}} \vcenteredhbox{\patternimg{0.1}{b_heptomino_hassle_11}}}
-	\end{center}
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:pond_block_hasslers}
-	Use the hassling reaction from Figure~\ref{fig:p27_hassler} to create an oscillator with...
-	
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item period~$24$, and% blocker works
-		
-		\item period~$21$, using the following p$7$ duoplet sparker:
+	\begin{problem}\label{exer:billiard_table_5x3}
+		Consider the $5 \times 3$ box displayed below as a potential starting point for constructing a billiard table oscillator.
 		
 		\begin{center}
-			\patternimglink{0.1}{p7_duoplet_sparker}
+			\patternimglink{0.1}{billiard_table_5x3}
 		\end{center}
-	\end{enumerate}
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:pentadecathlon_relay_180}
-	Use two pentadecathlons to construct a glider loop oscillator with period 180.
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:snark_relay_180}
-	Use four Snarks to construct an oscillator with period 180.
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problemstar}\label{exer:six_snark_relay}
-	Create a glider loop (of any period) that makes use of exactly six Snarks.
-\end{problemstar}
-
-
-\mfilbreak
-
-\begin{problemstar}\label{exer:snark_weld}
-	Sometimes it is useful to weld together reflectors, just like we welded together eaters in the previous chapter.
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item Weld together the following two partial Snarks (modify only the light gray cells), thus creating a single still life that can reflect gliders from two different sides.
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Find a stable way to crowd the red cells, just like we used two blocks and two snakes to crowd the outside of a $4 \times 3$ box in Section~\ref{sec:billiard_tables}.
+			
+			\item Show that there is no way to fill in the green cells so as to make this pattern an oscillator (try writing a computer program to help you).
+		\end{enumerate}
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:eater_1_replace_eater_2_osc}
+		Replace the eater~1s with eater~2s in the oscillators from the following figures, without destroying the oscillator or altering its period:
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Figure~\ref{fig:roteightor},
+			
+			\item Figure~\ref{fig:period_22},
+			
+			\item Figure~\ref{fig:worker_bee},
+			
+			\item Figure~\ref{fig:period_52}, and
+			
+			\item Figure~\ref{fig:honey_thieves} (you can only replace two of the eater~1s). 
+		\end{enumerate}
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:extend_snacker}
+		The period~$9$ snacker\index{snacker} oscillator from Figure~\ref{fig:snacker} can be stabilized on one side in ways other than using two eater~1s. Use the method shown below to extend this oscillator to one that makes use of at least 5 interacting pentadecathlons.
+		
 		\begin{center}
-			\patternimglink{0.1}{exercise_fused_snarks}
+			\patternimglink{0.1}{exercise_extend_snacker}
 		\end{center}
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:t_sparkers}
+		Use the sparks from either the T-nosed~p$4$ or the T-nosed~p$6$ (displayed below) and another oscillator of your choice to create non-trivial oscillators with...
+		
+		\begin{center}
+			\patternimglink{0.1}{t_nosed_p6}
+		\end{center}
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item period~$12$,
 			
-		\item Modify the reflector from part~(a) to create a single reflector that can reflect gliders coming from four different sides.
-	\end{enumerate}
-\end{problemstar}
-
-
-\mfilbreak
-
-
-\begin{problemstar}\label{exer:snark_creates_honeyfarm}
-	The Snark\index{Snark} reflector works by converting the input glider into another object that we have seen before, and then converting that object into the output glider. What is the name of the intermediate object?
-\end{problemstar}
-
-
-\mfilbreak
-
-
-\begin{problemstar}\label{exer:almost_snark}
-	The pattern displayed below might be called an ``almost Snark'',\footnote{Found by Tanner Jacobi in 2015.} since it can \emph{almost} be used as a $90$-degree glider reflector. Describe what goes wrong and why it cannot reflect more than one glider.
-	
-	\begin{center}
-		\patternimglink{0.1}{almost_snark}
-	\end{center}
-\end{problemstar}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:buckaroo_loop}
-	Create a glider loop that uses at least one buckaroo and at least one twin bees shuttle. What is the smallest possible period of such an oscillator? %lcm(30,46) = 690
-\end{problem}
-
-
-\mfilbreak
-
-\begin{problem}\label{exer:new_reflectors}
-	For each of the following 180$^\circ$~stable reflectors, construct an oscillator that works by using two copies of the reflector to bounce a glider back and forth, and determine what the possible periods of such oscillators are.
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item Boojum reflector:\index{boojum reflector} \\ \raisebox{-\height+0.5em}{\patternimg{0.1}{boojum_reflector}}\\[0.5em]
+			\item period~$20$, and
 			
-		\item Rectifier:\index{rectifier} \\ \raisebox{-\height+0.5em}{\patternimg{0.1}{rectifier}}
-	\end{enumerate}
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:machine_gun}
-	Recall the 64-generation 90-degree Herschel conduit in Figure~\ref{fig:herschel_64}.
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item Use four copies of the conduit to create a gun that shoots 4 gliders every 256 generations.
-		
-		\item Modify the pattern from part~(a) to create a period 256 oscillator. % just add eaters on the outside
-		
-		\item Can you add additional Herschels to this track to make an oscillator with period~128 or~64? Either explicitly construct an example or explain the problem that arises. % No, can't do this: the gliders that the Herschels emit interfere with the previous Herschels on the track.
-	\end{enumerate}
-\end{problem}
-
-\mfilbreak
-
-\begin{problemstar}\label{exer:traffic_jam}
-	Two reactions that move traffic lights and T-tetrominoes are displayed below (the top one is called a \emph{traffic jam}\index{traffic jam}):
+			\item period~$24$.
+		\end{enumerate}
+	\end{problemstar}
 	
-	\noindent\begin{center}
-		\patternlink{traffic_jam}{\vcenteredhbox{\patternimg{0.1}{traffic_jam_0}} \vcenteredhbox{\genarrow{25}} \vcenteredhbox{\patternimg{0.1}{traffic_jam_25}}}
-	\end{center}\vspace*{-0.35cm}
 	
-	\noindent\begin{center}
-		\patternlink{t_tetromino_hassle_3}{\vcenteredhbox{\patternimg{0.1}{t_tetromino_hassle_3_0}} \vcenteredhbox{\genarrow{3}} \vcenteredhbox{\patternimg{0.1}{t_tetromino_hassle_3_3}} \vcenteredhbox{\genarrow{4}} \vcenteredhbox{\patternimg{0.1}{t_tetromino_hassle_3_7}} \vcenteredhbox{\genarrow{4}} \vcenteredhbox{\patternimg{0.1}{t_tetromino_hassle_3_11}}}
-	\end{center}
-
-	\noindent Use these reactions (and optionally any of the other T-tetromino hassling reactions we have seen) to create an oscillator.
-\end{problemstar}
-
-		
-\mfilbreak
-
-
-\begin{problemstar}\label{exer:traffic_jam_reflect}
-	What type of sparks does the traffic jam reaction from the top of Exercise~\ref{exer:traffic_jam} produce? Use this spark and the oscillator constructed in Exercise~\ref{exer:traffic_jam} to create a periodic glider reflector.
-\end{problemstar}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:herschel_track_1}
-	Use the R64 and Fx77 conduits to construct Herschel track oscillators or guns with the following periods.
+	\mfilbreak
 	
-	\noindent [Hint: Mimic our construction in Figure~\ref{fig:herschel_track_oscillators}.]
 	
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item Period~$218$ oscillator.
+	\begin{problem}\label{exer:pipsquirter_reflectors}
+		One of the primary uses of pipsquirters\index{pipsquirter} is their ability to reflect a glider when a boat, block, and eater~1 are placed nearby as shown below.
 		
-		\item Period~$62$ oscillator.
+		\begin{center}
+			\patternimglink{0.1}{pipsquirter_reflector}
+		\end{center}
 		
-		\item Period~$62$ glider gun.
+		The reflector above has period~$6$. Use this same reaction to create a glider reflector with...\smallskip
 		
-		\item Period~$61$ oscillator.
-		
-		\item Period~$63$ glider gun.
-	\end{enumerate}
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:herschel_track_2_what_periods}
-	By placing different numbers of Herschels on the track from Figure~\ref{fig:herschel_track_2}, oscillators of which periods can be created?
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:herschel_track_L112}
-	Consider the Herschel conduit displayed below, which rotates a Herschel counter-clockwise in 112 generations and has a repeat time of 58 generations. This conduit is called \emph{L112}\index{L112}.
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item period~$7$, and
+			
+			\item period~$8$.
+		\end{enumerate}
+	\end{problem}
 	
-	\begin{center}
-		\patternimglink{0.1}{L112}
-	\end{center}
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:volcanoes}
+		Several period~$4$ and~$5$ lightweight, middleweight, and heavyweight supervolcanoes\index{supervolcano}\index{lightweight!supervolcano}\index{middleweight!supervolcano}\index{heavyweight!supervolcano} are displayed below,\footnote{The p$4$ LW supervolcano was found by Noam Elkies in 2010, the p$5$ MW supervolcano was found by Dongook Lee in 2019, the p$5$ HW supervolcano was found by Karel Suhajda 2004, and the rest were found by Matthias Merzenich in 2010.} and they are particularly useful due to how far they push away their sparks.
 		
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item Construct a period~109 oscillator by using only the L112 and Fx77 conduits (and possibly some eaters to destroy stray gliders).
+		\begin{center}
+			\patternimglink{0.07}{supervolcanoes}
+		\end{center}
 		
-		\item The L112 conduit has a slightly faster repeat time than the R64 conduit (58 generations instead of 61). Use the L112 and Fx77 conduits to create an oscillator with period~58, 59, or 60.
-	\end{enumerate}
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:period_57_herschel}
-	Consider the (oscillating!) Herschel conduit displayed below, which rotates a Herschel counter-clockwise and flips it in 65 generations, and has a repeat time of 57 generations. Construct a period~57 oscillator by using this new conduit and the Fx77 conduit (and possibly some eaters to destroy stray gliders).
-	\begin{center}
-		\patternimglink{0.1}{period_57_herschel}
-	\end{center}
-\end{problem}
-
-\mfilbreak
-
-\begin{problem}\label{exer:period_56_herschel}
-	Consider the period~56 Herschel track oscillator depicted in Figure~\ref{fig:period_56_herschel}. Break this oscillator down into its individual conduits, and for each conduit state (a) how many generations it takes a Herschel to traverse the conduit, and (b) what the conduit's repeat time is. Also break down each conduit into still lifes, oscillators, and eaters that we have seen earlier.
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problemstar}\label{exer:p4_oscillator}
-	Prove that there is no period~4 oscillator with exactly one cell that oscillates at the full period. % SOLUTION: Every cell must oscillator at p2 or p4. Suppose the one cell is ON in generation 0. Then generations 1 and 3 are identical, so generation 2 must be identical to generation 0, a contradiction.
-\end{problemstar}
-
-
-\mfilbreak
-
-
-\begin{problemstar}\label{exer:period_3_volatile}
-	The period~3 oscillator presented in Figure~\ref{fig:period_3_volatile} was constructed by putting together the various period~3 ``pieces'' displayed below. Use these same pieces to construct a larger period~3 oscillator with at least 200 live cells in one of its phases.
-	\begin{center}
-		\patternimglink{0.075}{period_3_volatile_pieces}
-	\end{center}
-\end{problemstar}
-
-
-\mfilbreak
-
-
-\begin{problemstar}\label{exer:phoenix_bb}
-	Based on the phoenix oscillator shown in Figure~\ref{fig:phoenix}, we might be tempted to guess that Theorem~\ref{thm:phoenix_oscillate} can be improved to show that no phoenix can ever leave its original bounding box at all. Show that this conjecture is false. That is, find a phoenix that does in fact leave its original bounding box.
-\end{problemstar}
-
-%% EXERCISE END COMMANDS
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Use the sparks from two supervolcanoes to construct a period~$20$ oscillator.
+			
+			\item Use a supervolcano and a thumb sparker to create a non-trivial period~$20$ oscillator.
+			
+			\item Use a supervolcano to help you construct a T-tetromino shuttle.
+		\end{enumerate}
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:pi_hassle}
+		A domino spark can be used to rotate a pi-heptomino\index{pi-heptomino} by 90 degrees in $8$~generations, as shown below. Use this reaction to create a period~$32$ oscillator. [Hint: The spark from a figure eight does not quite work. Try some other domino sparkers---you may need to weld them together in order to make them fit together closely enough.]
+		\begin{center}
+			\patternlink{exercise_pi_hassle}{\vcenteredhbox{\patternimg{0.1}{exercise_pi_hassle_0}} \vcenteredhbox{\genarrow{2}} \vcenteredhbox{\patternimg{0.1}{exercise_pi_hassle_2}} \vcenteredhbox{\genarrow{6}} \vcenteredhbox{\patternimg{0.1}{exercise_pi_hassle_8}}}
+		\end{center}
+	\end{problemstar}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:p32_pi_hassler_eaters}
+		Show how the snakes can be replaced by eater~1s in the period~$32$ ``gourmet''\index{gourmet} oscillator from Figure~\ref{fig:p32_pi_hassler}.
+	\end{problemstar}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:high_period_sparkers}
+		This exercise introduces some sparkers with higher period than we saw in Section~\ref{sec:sparkers}. For each of them, determine their period, find an accessible spark that they emit (the spark might only be present in one of its phases not displayed below), and use that spark to construct a non-trivial oscillator with higher period.
+		\begin{multicols}{2}
+			\begin{enumerate}
+				\item[\bf\color{ocre}(a)] \raisebox{-\height+0.5em}{\patternimglink{0.1}{exercise_high_period_sparker_13}}
+				
+				\item[\bf\color{ocre}(c)] \raisebox{-\height+0.5em}{\patternimglink{0.1}{exercise_high_period_sparker_32}}
+				
+				\item[\bf\color{ocre}(b)] \raisebox{-\height+0.5em}{\patternimglink{0.1}{exercise_high_period_sparker_31}}
+			\end{enumerate}
+		\end{multicols}
+	\end{problemstar}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:b_heptomino_hassle}
+		A dot spark and an eater~2 can be used to reflect a B-heptomino\index{B-heptomino} in $11$~generations, as shown below. Use this reaction to create a period~$22$ oscillator.
+		\begin{center}
+			\patternlink{b_heptomino_hassle}{\vcenteredhbox{\patternimg{0.1}{b_heptomino_hassle_0}} \vcenteredhbox{\genarrow{5}} \vcenteredhbox{\patternimg{0.1}{b_heptomino_hassle_5}} \vcenteredhbox{\genarrow{6}} \vcenteredhbox{\patternimg{0.1}{b_heptomino_hassle_11}}}
+		\end{center}
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:pond_block_hasslers}
+		Use the hassling reaction from Figure~\ref{fig:p27_hassler} to create an oscillator with...
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item period~$24$, and% blocker works
+			
+			\item period~$21$, using the following p$7$ duoplet sparker:
+			
+			\begin{center}
+				\patternimglink{0.1}{p7_duoplet_sparker}
+			\end{center}
+		\end{enumerate}
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:pentadecathlon_relay_180}
+		Use two pentadecathlons to construct a glider loop oscillator with period 180.
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:snark_relay_180}
+		Use four Snarks to construct an oscillator with period 180.
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:six_snark_relay}
+		Create a glider loop (of any period) that makes use of exactly six Snarks.
+	\end{problemstar}
+	
+	
+	\mfilbreak
+	
+	\begin{problemstar}\label{exer:snark_weld}
+		Sometimes it is useful to weld together reflectors, just like we welded together eaters in the previous chapter.
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Weld together the following two partial Snarks (modify only the light gray cells), thus creating a single still life that can reflect gliders from two different sides.
+			\begin{center}
+				\patternimglink{0.1}{exercise_fused_snarks}
+			\end{center}
+			
+			\item Modify the reflector from part~(a) to create a single reflector that can reflect gliders coming from four different sides.
+		\end{enumerate}
+	\end{problemstar}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:snark_creates_honeyfarm}
+		The Snark\index{Snark} reflector works by converting the input glider into another object that we have seen before, and then converting that object into the output glider. What is the name of the intermediate object?
+	\end{problemstar}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:almost_snark}
+		The pattern displayed below might be called an ``almost Snark'',\footnote{Found by Tanner Jacobi in 2015.} since it can \emph{almost} be used as a $90$-degree glider reflector. Describe what goes wrong and why it cannot reflect more than one glider.
+		
+		\begin{center}
+			\patternimglink{0.1}{almost_snark}
+		\end{center}
+	\end{problemstar}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:buckaroo_loop}
+		Create a glider loop that uses at least one buckaroo and at least one twin bees shuttle. What is the smallest possible period of such an oscillator? %lcm(30,46) = 690
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	\begin{problem}\label{exer:new_reflectors}
+		For each of the following 180$^\circ$~stable reflectors, construct an oscillator that works by using two copies of the reflector to bounce a glider back and forth, and determine what the possible periods of such oscillators are.
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Boojum reflector:\index{boojum reflector} \\ \raisebox{-\height+0.5em}{\patternimg{0.1}{boojum_reflector}}\\[0.5em]
+			
+			\item Rectifier:\index{rectifier} \\ \raisebox{-\height+0.5em}{\patternimg{0.1}{rectifier}}
+		\end{enumerate}
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:machine_gun}
+		Recall the 64-generation 90-degree Herschel conduit in Figure~\ref{fig:herschel_64}.
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Use four copies of the conduit to create a gun that shoots 4 gliders every 256 generations.
+			
+			\item Modify the pattern from part~(a) to create a period 256 oscillator. % just add eaters on the outside
+			
+			\item Can you add additional Herschels to this track to make an oscillator with period~128 or~64? Either explicitly construct an example or explain the problem that arises. % No, can't do this: the gliders that the Herschels emit interfere with the previous Herschels on the track.
+		\end{enumerate}
+	\end{problem}
+	
+	\mfilbreak
+	
+	\begin{problemstar}\label{exer:traffic_jam}
+		Two reactions that move traffic lights and T-tetrominoes are displayed below (the top one is called a \emph{traffic jam}\index{traffic jam}):
+		
+		\noindent\begin{center}
+			\patternlink{traffic_jam}{\vcenteredhbox{\patternimg{0.1}{traffic_jam_0}} \vcenteredhbox{\genarrow{25}} \vcenteredhbox{\patternimg{0.1}{traffic_jam_25}}}
+		\end{center}\vspace*{-0.35cm}
+		
+		\noindent\begin{center}
+			\patternlink{t_tetromino_hassle_3}{\vcenteredhbox{\patternimg{0.1}{t_tetromino_hassle_3_0}} \vcenteredhbox{\genarrow{3}} \vcenteredhbox{\patternimg{0.1}{t_tetromino_hassle_3_3}} \vcenteredhbox{\genarrow{4}} \vcenteredhbox{\patternimg{0.1}{t_tetromino_hassle_3_7}} \vcenteredhbox{\genarrow{4}} \vcenteredhbox{\patternimg{0.1}{t_tetromino_hassle_3_11}}}
+		\end{center}
+		
+		\noindent Use these reactions (and optionally any of the other T-tetromino hassling reactions we have seen) to create an oscillator.
+	\end{problemstar}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:traffic_jam_reflect}
+		What type of sparks does the traffic jam reaction from the top of Exercise~\ref{exer:traffic_jam} produce? Use this spark and the oscillator constructed in Exercise~\ref{exer:traffic_jam} to create a periodic glider reflector.
+	\end{problemstar}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:herschel_track_1}
+		Use the R64 and Fx77 conduits to construct Herschel track oscillators or guns with the following periods.
+		
+		\noindent [Hint: Mimic our construction in Figure~\ref{fig:herschel_track_oscillators}.]
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Period~$218$ oscillator.
+			
+			\item Period~$62$ oscillator.
+			
+			\item Period~$62$ glider gun.
+			
+			\item Period~$61$ oscillator.
+			
+			\item Period~$63$ glider gun.
+		\end{enumerate}
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:herschel_track_2_what_periods}
+		By placing different numbers of Herschels on the track from Figure~\ref{fig:herschel_track_2}, oscillators of which periods can be created?
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:herschel_track_L112}
+		Consider the Herschel conduit displayed below, which rotates a Herschel counter-clockwise in 112 generations and has a repeat time of 58 generations. This conduit is called \emph{L112}\index{L112}.
+		
+		\begin{center}
+			\patternimglink{0.1}{L112}
+		\end{center}
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Construct a period~109 oscillator by using only the L112 and Fx77 conduits (and possibly some eaters to destroy stray gliders).
+			
+			\item The L112 conduit has a slightly faster repeat time than the R64 conduit (58 generations instead of 61). Use the L112 and Fx77 conduits to create an oscillator with period~58, 59, or 60.
+		\end{enumerate}
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:period_57_herschel}
+		Consider the (oscillating!) Herschel conduit displayed below, which rotates a Herschel counter-clockwise and flips it in 65 generations, and has a repeat time of 57 generations. Construct a period~57 oscillator by using this new conduit and the Fx77 conduit (and possibly some eaters to destroy stray gliders).
+		\begin{center}
+			\patternimglink{0.1}{period_57_herschel}
+		\end{center}
+	\end{problem}
+	
+	\mfilbreak
+	
+	\begin{problem}\label{exer:period_56_herschel}
+		Consider the period~56 Herschel track oscillator depicted in Figure~\ref{fig:period_56_herschel}. Break this oscillator down into its individual conduits, and for each conduit state (a) how many generations it takes a Herschel to traverse the conduit, and (b) what the conduit's repeat time is. Also break down each conduit into still lifes, oscillators, and eaters that we have seen earlier.
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:p4_oscillator}
+		Prove that there is no period~4 oscillator with exactly one cell that oscillates at the full period. % SOLUTION: Every cell must oscillator at p2 or p4. Suppose the one cell is ON in generation 0. Then generations 1 and 3 are identical, so generation 2 must be identical to generation 0, a contradiction.
+	\end{problemstar}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:period_3_volatile}
+		The period~3 oscillator presented in Figure~\ref{fig:period_3_volatile} was constructed by putting together the various period~3 ``pieces'' displayed below. Use these same pieces to construct a larger period~3 oscillator with at least 200 live cells in one of its phases.
+		\begin{center}
+			\patternimglink{0.075}{period_3_volatile_pieces}
+		\end{center}
+	\end{problemstar}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:phoenix_bb}
+		Based on the phoenix oscillator shown in Figure~\ref{fig:phoenix}, we might be tempted to guess that Theorem~\ref{thm:phoenix_oscillate} can be improved to show that no phoenix can ever leave its original bounding box at all. Show that this conjecture is false. That is, find a phoenix that does in fact leave its original bounding box.
+	\end{problemstar}
+	
+	%% EXERCISE END COMMANDS
 \end{multicols}
 \normalsize\vspace*{0.01cm}
 %% DONE EXERCISE END COMMANDS
