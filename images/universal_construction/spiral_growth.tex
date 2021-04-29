@@ -1,0 +1,22 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\begin{document}
+	\begin{tikzpicture}%
+		\node[inner sep=0pt,anchor=south west] (sd) at (0,0) {\includegraphics[width=11cm]{spiral_growth.png}};
+
+		% BORDER
+		\draw[gridgray] (0,0) rectangle (11,11);
+		\clip (0,0) rectangle (11,11);
+		
+		% CIRCLE THE SLIDING BLOCK
+		\draw[white,line width=1.5pt,opacity=0.6](11.87,5.13) circle (0.1);
+		\draw[redback2,line width=0.6pt](11.87,5.13) circle (0.1);
+		
+		% GLIDER PATH ARROWS
+		\draw[color=gray,-stealth] (8.12,2.2) -- (8.62,2.7);
+		\draw[color=gray,-stealth] (8.5,7.85) -- (8,8.35);
+		\draw[color=gray,-stealth] (2.5,8.4) -- (2,7.9);
+		\draw[color=gray,-stealth] (2.5,3.2) -- (3,2.7);
+ 	\end{tikzpicture}
+\end{document}

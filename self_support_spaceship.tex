@@ -117,7 +117,7 @@ The last remaining question before we can piece together all of these reactions 
 		\centering
 		\embedlink{hwss_toad_beehive}{\begin{tikzpicture}[rotate=-90,transform shape]%
 			\node[inner sep=0pt,anchor=south west] (dg) at (0,0) {\vcenteredhbox{\patternimg{0.093}{hwss_toad_beehive_0}} \vcenteredhbox{{\color{black}$\xrightarrow{\scriptsize\rotatebox[origin=c]{90}{\text{\clock{2}{40} 160}}}$}} \vcenteredhbox{\patternimg{0.093}{hwss_toad_beehive_160}}};
-		\end{tikzpicture}}
+			\end{tikzpicture}}
 		\caption{A way of colliding two gliders with an HWSS so as to make a beehive and a toad away from the HWSS stream, and without affecting the HWSS.}\label{fig:hwss_toad_beehive}
 	\end{subfigure} \ \	\ \ \begin{subfigure}[b]{0.69\textwidth}
 		\centering
@@ -169,7 +169,7 @@ In order to reduce the number of rephasers needed, and thus reduce the spaceship
 
 In order to help us keep track of where each of these rakes emits a glider, we name them according to what mod~$31$ lane they fire a glider on (relative to the original forward rake that we saw in Figure~\ref{fig:31c_240_forward_rake}, which we say fires on lane~$0$) and the number of Herschels that are used on each block track. Specifically, their names have the form
 \[
-	\text{\texttt{R<number of Herschels>L<lane number>}},
+\text{\texttt{R<number of Herschels>L<lane number>}},
 \]
 so that the original rake from Figure~\ref{fig:31c_240_forward_rake}, for example, is called \texttt{R1L0} (it uses a single Herschel on each block track and produces a glider on lane~0).\footnote{The ``\texttt{R}'' in this naming scheme stands for the fact that the rake has approximately the same length as this number of \textbf{r}ephasers, and the ``\texttt{L}'' stands for ``\textbf{l}ane''.}
 
@@ -232,7 +232,7 @@ We now proceed with construction of the silverfish. At the front of the spaceshi
 
 The remainder of the silverfish is made up of forward rakes that synthesize the stream of heavyweight spaceship pairs, using the mechanisms of Figures~\ref{fig:31c_240_double_gun_at_hwss} and~\ref{fig:hwss_from_toad_beehive}. Indeed, after using the double gun from Figure~\ref{fig:31c_240_double_gun} to create a beehive and toad, we want to create $13$~gliders on the following sequence of lanes, as indicated by Figure~\ref{fig:hwss_from_toad_beehive}:\footnote{We actually have some flexibility in which lanes we use here---see Exercise~\ref{exer:silverfish_list_of_lanes}.}\label{page:silverfish_lanes}
 \[
-	\text{\texttt{0, 11, 8, 7, 29, 13, 1, 19, 8, 0, 14, 22, 2}.}
+\text{\texttt{0, 11, 8, 7, 29, 13, 1, 19, 8, 0, 14, 22, 2}.}
 \]
 We can place gliders on these lanes by repeatedly using Table~\ref{tab:silverfish_forward_rakes} and keeping track of what lane the block tracks are currently synchronized to. After the two-glider rake from Figure~\ref{fig:31c_240_double_gun}, the block tracks are synchronized to lane~7. We then place $13$ more rakes as follows:\smallskip
 
@@ -251,7 +251,7 @@ If we continue in this way, we quickly arrive at the following sequence of rakes
 	\text{\texttt{4 rephasers, R2L25, 3 rephasers, R2L25, 1 rephaser, R6L6, R2L25.}}
 \end{gather*}
 
-If we use two copies of this entire sequence of rakes and rephasers (since we need to synthesize two heavyweight spaceships on each side of the block track), we finally get a complete $31c/240$ orthogonal spaceship,\footnote{Created by Chris Cain, Dave Greene, and Adam P. Goucher in May 2020.} which is displayed in Figure~\ref{fig:silverfish}. Despite its massive size of $215,338$ live cells and $11,970 \times 48,047$ bounding box, it is the smallest known $31c/240$ spaceship.\footnote{Actually, there are some modifications of it that can reduce its size a bit---see Exercise~\ref{exer:silverfish_backward_glider_destroy}.}
+If we use two copies of this entire sequence of rakes and rephasers (since we need to synthesize two heavyweight spaceships on each side of the block track), we finally get a complete $31c/240$ orthogonal spaceship,\footnote{Created by Chris Cain, Dave Greene, and Adam P. Goucher in May 2020.} which is displayed in Figure~\ref{fig:silverfish}. Despite its massive size of $215{\thousep}338$ live cells and $11{\thousep}970 \times 48{\thousep}047$ bounding box, it is the smallest known $31c/240$ spaceship.\footnote{Actually, there are some modifications of it that can reduce its size a bit---see Exercise~\ref{exer:silverfish_backward_glider_destroy}.}
 
 \begin{figure}[!htbp]
 	\centering
@@ -309,6 +309,7 @@ Despite its monstrous size, the silverfish displayed in Figure~\ref{fig:silverfi
 
 % 3c/10 reaction (ref figure in chapter 1), why it hasn't worked yet. See Dave's write-up at https://www.conwaylife.com/forums/viewtopic.php?f=15&t=3427
 
+% 2014-present: self-supporting spaceships (half-baked knightship, waterbear, Centipede, Caterloopillar). The name "Caterloopillar" is something of a tribute to Douglas Hofstadter's "strange loop" concept. It's a deeply weird Life spaceship design where each half of the spaceship builds the other half as the whole thing is flying along, reminiscent of Escher's "Drawing Hands" lithograph.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -316,128 +317,128 @@ Despite its monstrous size, the silverfish displayed in Figure~\ref{fig:silverfi
 \label{sec:solutions_self_support_spaceships}
 \addcontentsline{toc}{section}{Exercises}
 \vspace*{-0.4cm}\hrulefill\vspace*{-0.3cm}\footnotesize\begin{multicols}{2}\vspace*{-0.4cm}\raggedcolumns\interlinepenalty=10000
-\setlength{\parskip}{0pt}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\begin{problem}\label{exer:self_support_spaceships_track_layer_rephaser}
-	There are some non-highlighted cells near the center of the block-laying pattern displayed in Figure~\ref{fig:31c_240_track_builder}. What is their purpose?
-\end{problem}
-% SOLUTION: They are a rephaser (really they are there since we will turn them into a forward rake in the completed silverfish, but for this exercise it's fine to just say that they adjust the lanes of the gliders so that the proper kickback/synthesis reactions happen).
-
-
-\mfilbreak
-
-
-\begin{problemstar}\label{exer:self_support_spaceships_r4l1}\index{double kickback}
-	One way of creating rakes for Herschel crawlers (used by the silverfish) that output gliders on different lanes is to use a \emph{double kickback} reaction: the two-glider kickback reaction twice. For example, the\texttt{R6L17} rake from Figure~\ref{fig:R6L17} uses two double kickback reactions.
+	\setlength{\parskip}{0pt}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item Modify the rake from Figure~\ref{fig:R6L17} so as to use just \emph{one} double kickback reaction.
-		
-		\item What is the name (in the \texttt{R\#L\#} format) of the rake that you created in part~(a)?
-		
-		\item Explain why the rake that you constructed in part~(a) is not useful when constructing the silverfish.
-	\end{enumerate}
-\end{problemstar}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:self_support_spaceships_r6l21}
-	Another forward rake that crawls along $6$~block tracks and could be used in the construction of the silverfish is displayed below.
-	\begin{center}
-		\gridbox{0.5pt}{\patternimglink{0.063}{R6L21}}
-	\end{center}
 	
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item What is the name (in the \texttt{R\#L\#} format) of this rake?
-		% R6L21
-		
-		\item Explain why this rake is not useful when constructing the silverfish.
-		% L21 is more efficiently reached by R2L25 + 3.
-	\end{enumerate}
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problemstar}\label{exer:self_support_spaceships_r2l16}
-	In this exercise, we create another rake that crawls along $6$~block tracks and could be used in the construction of the silverfish.
+	\begin{problem}\label{exer:self_support_spaceships_track_layer_rephaser}
+		There are some non-highlighted cells near the center of the block-laying pattern displayed in Figure~\ref{fig:31c_240_track_builder}. What is their purpose?
+	\end{problem}
+	% SOLUTION: They are a rephaser (really they are there since we will turn them into a forward rake in the completed silverfish, but for this exercise it's fine to just say that they adjust the lanes of the gliders so that the proper kickback/synthesis reactions happen).
 	
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item Adjust the positions of the two outermost Herschels in the rephaser from Figure~\ref{fig:31c_240_rephaser} so that the gliders on the outside of the tracks do not annihilate each other. Doing so should create a forward-and-backward rake.
-		
-		\item Place the forward rake \texttt{R1L0} behind the double rake that you created in part~(a) so as to eliminate its backward gliders.
-		
-		\item What is the name (in the \texttt{R\#L\#} format) of the rake that you created in part~(b)?
-		%R2L16
-		
-		\item Explain why the rake that you constructed in part~(b) is not useful when constructing the silverfish.
-		
-		[Hint: Be careful. The answer is slightly different than it was in Exercises~\ref{exer:self_support_spaceships_r4l1} and~\ref{exer:self_support_spaceships_r6l21}.]
-	\end{enumerate}
-\end{problemstar}
-
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:self_support_spaceships_r3l28}
-	Another forward rake that crawls along $6$~block tracks and could be used in the construction of the silverfish is displayed below.
-	\begin{center}
-		\gridbox{0.5pt}{\patternimglink{0.11}{R3L28}}
-	\end{center}
 	
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item What is the name (in the \texttt{R\#L\#} format) of this rake?
-		% R3L28
-		
-		\item Create an updated version of Table~\ref{tab:silverfish_forward_rakes} that takes this rake into account. Which rake from Figure~\ref{fig:31c_240_forerakes} is no longer useful in the construction of the silverfish?
-		% Table: https://www.conwaylife.com/forums/viewtopic.php?f=2&t=1274&start=375#p98852
-		% R6L6
-		
-		\item On page~\pageref{page:silverfish_rake_seq}, we gave a sequence of rakes that would fire 13 gliders as efficiently as possible using the rakes we had at that time. Update this sequence now that we have this new rake.
-		% Also https://www.conwaylife.com/forums/viewtopic.php?f=2&t=1274&start=375#p98852
-		
-		\item Reconstruct the silverfish according to the sequence of rakes that you compiled in part~(c).
-		
-		[Hint: Most of the silverfish from Figure~\ref{fig:silverfish} can be left as-is. All that needs to be changed is which rakes crawl along its central block tracks.]
-	\end{enumerate}
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:silverfish_list_of_lanes}
-	On page~\pageref{page:silverfish_lanes} we listed a sequence of mod~$31$ lane numbers for implementing the slow salvo synthesis from Figure~\ref{fig:hwss_from_toad_beehive}. The list of lanes that can be used is actually much more flexible than indicated there. For example, we can fire the first two gliders on lanes $0$ and $11$ in either order, since the first two gliders in that slow salvo do not interact with each other.
+	\mfilbreak
 	
-	Provide a complete description of all possible sequences of mod~$31$ lane numbers that implement the synthesis from Figure~\ref{fig:hwss_from_toad_beehive}.
-\end{problem}
-% Solution: (0 and 11 in either order), 8, 7, (29 and 13 in either order), 1, (15 or 16 or 19 or 26), 8, 0, 14, 22, (1 or 2 or 3 or 4 or 5 or 6)
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:silverfish_backward_glider_destroy}
-	Two of the gliders from the slow salvo synthesis of Figure~\ref{fig:hwss_from_toad_beehive} are just used to destroy a beehive and a block.
 	
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item Adjust the synthesis so that those two gliders come from the northwest instead of the northeast.
+	\begin{problemstar}\label{exer:self_support_spaceships_r4l1}\index{double kickback}
+		One way of creating rakes for Herschel crawlers (used by the silverfish) that output gliders on different lanes is to use a \emph{double kickback} reaction: the two-glider kickback reaction twice. For example, the\texttt{R6L17} rake from Figure~\ref{fig:R6L17} uses two double kickback reactions.
 		
-		\item Construct a silverfish that is at least 100 rows shorter than the one from Figure~\ref{fig:silverfish} by using a backrake to produce one or both of the gliders that were repositioned in part~(a).
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Modify the rake from Figure~\ref{fig:R6L17} so as to use just \emph{one} double kickback reaction.
+			
+			\item What is the name (in the \texttt{R\#L\#} format) of the rake that you created in part~(a)?
+			
+			\item Explain why the rake that you constructed in part~(a) is not useful when constructing the silverfish.
+		\end{enumerate}
+	\end{problemstar}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:self_support_spaceships_r6l21}
+		Another forward rake that crawls along $6$~block tracks and could be used in the construction of the silverfish is displayed below.
+		\begin{center}
+			\gridbox{0.5pt}{\patternimglink{0.063}{R6L21}}
+		\end{center}
 		
-		[Hint: A rephaser from near the front of the silverfish can be turned into a backrake whose stream crosses that of the forward rakes.]
-	\end{enumerate}
-\end{problem}
-% SOLUTION: https://www.conwaylife.com/forums/viewtopic.php?f=2&t=1274&start=375#p98847
-
-%% EXERCISE END COMMANDS
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item What is the name (in the \texttt{R\#L\#} format) of this rake?
+			% R6L21
+			
+			\item Explain why this rake is not useful when constructing the silverfish.
+			% L21 is more efficiently reached by R2L25 + 3.
+		\end{enumerate}
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:self_support_spaceships_r2l16}
+		In this exercise, we create another rake that crawls along $6$~block tracks and could be used in the construction of the silverfish.
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Adjust the positions of the two outermost Herschels in the rephaser from Figure~\ref{fig:31c_240_rephaser} so that the gliders on the outside of the tracks do not annihilate each other. Doing so should create a forward-and-backward rake.
+			
+			\item Place the forward rake \texttt{R1L0} behind the double rake that you created in part~(a) so as to eliminate its backward gliders.
+			
+			\item What is the name (in the \texttt{R\#L\#} format) of the rake that you created in part~(b)?
+			%R2L16
+			
+			\item Explain why the rake that you constructed in part~(b) is not useful when constructing the silverfish.
+			
+			[Hint: Be careful. The answer is slightly different than it was in Exercises~\ref{exer:self_support_spaceships_r4l1} and~\ref{exer:self_support_spaceships_r6l21}.]
+		\end{enumerate}
+	\end{problemstar}
+	
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:self_support_spaceships_r3l28}
+		Another forward rake that crawls along $6$~block tracks and could be used in the construction of the silverfish is displayed below.
+		\begin{center}
+			\gridbox{0.5pt}{\patternimglink{0.11}{R3L28}}
+		\end{center}
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item What is the name (in the \texttt{R\#L\#} format) of this rake?
+			% R3L28
+			
+			\item Create an updated version of Table~\ref{tab:silverfish_forward_rakes} that takes this rake into account. Which rake from Figure~\ref{fig:31c_240_forerakes} is no longer useful in the construction of the silverfish?
+			% Table: https://www.conwaylife.com/forums/viewtopic.php?f=2&t=1274&start=375#p98852
+			% R6L6
+			
+			\item On page~\pageref{page:silverfish_rake_seq}, we gave a sequence of rakes that would fire 13 gliders as efficiently as possible using the rakes we had at that time. Update this sequence now that we have this new rake.
+			% Also https://www.conwaylife.com/forums/viewtopic.php?f=2&t=1274&start=375#p98852
+			
+			\item Reconstruct the silverfish according to the sequence of rakes that you compiled in part~(c).
+			
+			[Hint: Most of the silverfish from Figure~\ref{fig:silverfish} can be left as-is. All that needs to be changed is which rakes crawl along its central block tracks.]
+		\end{enumerate}
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:silverfish_list_of_lanes}
+		On page~\pageref{page:silverfish_lanes} we listed a sequence of mod~$31$ lane numbers for implementing the slow salvo synthesis from Figure~\ref{fig:hwss_from_toad_beehive}. The list of lanes that can be used is actually much more flexible than indicated there. For example, we can fire the first two gliders on lanes $0$ and $11$ in either order, since the first two gliders in that slow salvo do not interact with each other.
+		
+		Provide a complete description of all possible sequences of mod~$31$ lane numbers that implement the synthesis from Figure~\ref{fig:hwss_from_toad_beehive}.
+	\end{problem}
+	% Solution: (0 and 11 in either order), 8, 7, (29 and 13 in either order), 1, (15 or 16 or 19 or 26), 8, 0, 14, 22, (1 or 2 or 3 or 4 or 5 or 6)
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:silverfish_backward_glider_destroy}
+		Two of the gliders from the slow salvo synthesis of Figure~\ref{fig:hwss_from_toad_beehive} are just used to destroy a beehive and a block.
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Adjust the synthesis so that those two gliders come from the northwest instead of the northeast.
+			
+			\item Construct a silverfish that is at least 100 rows shorter than the one from Figure~\ref{fig:silverfish} by using a backrake to produce one or both of the gliders that were repositioned in part~(a).
+			
+			[Hint: A rephaser from near the front of the silverfish can be turned into a backrake whose stream crosses that of the forward rakes.]
+		\end{enumerate}
+	\end{problem}
+	% SOLUTION: https://www.conwaylife.com/forums/viewtopic.php?f=2&t=1274&start=375#p98847
+	
+	%% EXERCISE END COMMANDS
 \end{multicols}
 \normalsize\vspace*{0.01cm}
 %% DONE EXERCISE END COMMANDS

@@ -24,7 +24,7 @@ For this reason, stable circuitry typically focuses not just on manipulating gli
 
 There are numerous Herschel conduits other than the R64 and Fx77 conduits that we saw back in Figure~\ref{fig:herschel_conduits}. Although those two conduits suffice to create oscillators and guns of any sufficiently large period, certain periods are quite unwieldy. For example, the smallest period~$67$ oscillator or gun that can be created using just these two conduits requires $4$~R64 conduits and $28$~Fx77 conduits to make a track of length
 \[
-	{\color{gray}\underbrace{\color{black}4 \times 64}_\text{R64 time}} \ + \ {\color{gray}\underbrace{\color{black}28\times 77}_\text{Fx77 time}} = 2,412 = 36 \times 67 \text{ generations,}
+{\color{gray}\underbrace{\color{black}4 \times 64}_\text{R64 time}} \ + \ {\color{gray}\underbrace{\color{black}28\times 77}_\text{Fx77 time}} = 2{\thousep}412 = 36 \times 67 \text{ generations,}
 \]
 (which we place $36$ equally-spaced Herschels on). However, if we extend our collection of conduits a little bit, then we can construct a Herschel-based period~$67$ gun that uses just $8$ Herschels on an $8 \times 67 = 536$-generation track made up of $4$ conduits, as in Figure~\ref{fig:p67_with_conduits}.\footnote{We saw one of these extra conduits, L112, way back in Exercise~\ref{exer:herschel_track_L112}.}
 
@@ -38,10 +38,10 @@ There are numerous Herschel conduits other than the R64 and Fx77 conduits that w
 			\label{fig:l112_conduit}
 		\end{subfigure} &
 		\multirow{2}{*}{\renewcommand{\thesubfigure}{(c)}\begin{subfigure}{.59\textwidth}
-			\centering\vspace*{-1.8cm}
-			\patternimglink{0.183}{p67_gun}
-			\caption{a p$67$ glider gun}
-			\label{fig:p67_gun}
+				\centering\vspace*{-1.8cm}
+				\patternimglink{0.183}{p67_gun}
+				\caption{a p$67$ glider gun}
+				\label{fig:p67_gun}
 		\end{subfigure}} \\[1.3cm]
 		\renewcommand{\thesubfigure}{(b)}\begin{subfigure}{.37\textwidth}
 			\centering\vspace*{0.2cm}
@@ -64,16 +64,16 @@ Thus the L112 and L156 conduits are named for the fact that they rotate a Hersch
 
 \begin{figure}[!htb]
 	\centering\begin{tikzpicture}[scale=0.8, every node/.style={transform shape}]%
-		\node[inner sep=0pt,anchor=south west] at (0,0) {\patternimglink{0.12}{herschel_orientations}};
-		
-		\colorletternode{gray}{1.9}{1.42}{F}
-		\colorletternode{gray}{3.49}{1.42}{Fx}
-		\colorletternode{gray}{4.81}{1.34}{R}
-		\colorletternode{gray}{6.59}{1.34}{Rx}
-		\colorletternode{gray}{8.05}{1.42}{B}
-		\colorletternode{gray}{9.63}{1.42}{Bx}
-		\colorletternode{gray}{10.84}{1.34}{L}
-		\colorletternode{gray}{12.66}{1.34}{Lx}
+	\node[inner sep=0pt,anchor=south west] at (0,0) {\patternimglink{0.12}{herschel_orientations}};
+	
+	\colorletternode{gray}{1.9}{1.42}{F}
+	\colorletternode{gray}{3.49}{1.42}{Fx}
+	\colorletternode{gray}{4.81}{1.34}{R}
+	\colorletternode{gray}{6.59}{1.34}{Rx}
+	\colorletternode{gray}{8.05}{1.42}{B}
+	\colorletternode{gray}{9.63}{1.42}{Bx}
+	\colorletternode{gray}{10.84}{1.34}{L}
+	\colorletternode{gray}{12.66}{1.34}{Lx}
 	\end{tikzpicture}
 	\caption{Herschels can be oriented in one of $8$ ways, which we label here relative to the (arbitrarily-chosen) canonical input orientation displayed on the left in \bgbox{greenback}{green}.}\label{fig:herschel_orientations}
 \end{figure}
@@ -573,15 +573,15 @@ To finish off this section, we note that it is sometimes also convenient to be a
 
 \begin{figure}[!ht]
 	\centering\begin{tikzpicture}[scale=0.8, every node/.style={transform shape}]%
-		\node[inner sep=0pt,anchor=south west] at (0,0) {\patternimg{0.12}{convert_object_codes}};
-		
-		\colorletternode{gray}{0.25}{1.46}{G}
-		\colorletternode{gray}{1.51}{1.54}{L}
-		\colorletternode{gray}{3.49}{1.62}{M}
-		\colorletternode{gray}{5.45}{1.54}{H}
-		\colorletternode{gray}{6.85}{1.54}{B}
-		\colorletternode{gray}{8.29}{1.46}{R}
-		\colorletternode{gray}{9.7}{1.46}{P}
+	\node[inner sep=0pt,anchor=south west] at (0,0) {\patternimg{0.12}{convert_object_codes}};
+	
+	\colorletternode{gray}{0.25}{1.46}{G}
+	\colorletternode{gray}{1.51}{1.54}{L}
+	\colorletternode{gray}{3.49}{1.62}{M}
+	\colorletternode{gray}{5.45}{1.54}{H}
+	\colorletternode{gray}{6.85}{1.54}{B}
+	\colorletternode{gray}{8.29}{1.46}{R}
+	\colorletternode{gray}{9.7}{1.46}{P}
 	\end{tikzpicture}
 	\caption{For brevity, when manipulating small common objects as signals, we typically use the single-letter abbreviations G (glider), L (lightweight spaceship), M (middleweight spaceship), H (Herschel), B (B-heptomino), R (R-pentomino), and P (pi-heptomino). It is sometimes useful (for example, when naming conduits that convert between these types of objects) to be able to refer to a canonical phase and orientation of these objects, and those are what are displayed here.}\label{fig:convert_object_codes}
 \end{figure}
@@ -736,7 +736,7 @@ Since a boat can be used as a one-time turner\index{one-time turner} (refer back
 			\caption{Demultiplexer}\label{fig:demultiplexer}
 		\end{subfigure}
 	\end{tabular}
-	 \qquad \qquad 
+	\qquad \qquad 
 	\caption{Some edgy Herschel-to-boat factories that can be used to reflect gliders. In (b), the input glider follows one of the two paths highlighted in \bgbox{yellowback2}{yellow}: it is reflected if the boat is present, and it passes straight through the factory otherwise.}
 	\label{fig:H_to_boat_and_demult}
 \end{figure}
@@ -854,514 +854,514 @@ Alternatively, prior to the discovery of the syringe, there were some stable con
 \label{sec:stable_exercises}
 \addcontentsline{toc}{section}{Exercises}
 \vspace*{-0.4cm}\hrulefill\vspace*{-0.3cm}\footnotesize\begin{multicols}{2}\vspace*{-0.4cm}\raggedcolumns\interlinepenalty=10000
-\setlength{\parskip}{0pt}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Part (d) of this exercise is L200, which is referenced in the text. Do not re-order or re-label!
-\begin{problem}\label{exer:name_conduit}
-	Give the name (using the naming scheme of Table~\ref{tab:herschel_conduits}) for each of the following Herschel conduits, as well as their repeat time.\vspace*{-0.25cm}
+	\setlength{\parskip}{0pt}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	% Part (d) of this exercise is L200, which is referenced in the text. Do not re-order or re-label!
+	\begin{problem}\label{exer:name_conduit}
+		Give the name (using the naming scheme of Table~\ref{tab:herschel_conduits}) for each of the following Herschel conduits, as well as their repeat time.\vspace*{-0.25cm}
 		
-	\begin{multicols}{2}
-		\begin{enumerate}
-			\item[\bf\color{ocre}(a)] \raisebox{-\height+0.5em}{\patternimglink{0.1}{exercise_name_conduit_1}}
+		\begin{multicols}{2}
+			\begin{enumerate}
+				\item[\bf\color{ocre}(a)] \raisebox{-\height+0.5em}{\patternimglink{0.1}{exercise_name_conduit_1}}
 				
-			\item[\bf\color{ocre}(c)] \raisebox{-\height+0.5em}{\patternimglink{0.11}{exercise_name_conduit_3}}
+				\item[\bf\color{ocre}(c)] \raisebox{-\height+0.5em}{\patternimglink{0.11}{exercise_name_conduit_3}}
 				
-			\item[\bf\color{ocre}(b)] \raisebox{-\height+0.5em}{\patternimglink{0.1}{exercise_name_conduit_2}}
+				\item[\bf\color{ocre}(b)] \raisebox{-\height+0.5em}{\patternimglink{0.1}{exercise_name_conduit_2}}
 				
-			\item[\bf\color{ocre}(d)] \raisebox{-\height+0.5em}{\patternimglink{0.1}{exercise_name_conduit_4}}
+				\item[\bf\color{ocre}(d)] \raisebox{-\height+0.5em}{\patternimglink{0.1}{exercise_name_conduit_4}}
+			\end{enumerate}
+		\end{multicols}
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:eat_herschel}
+		Construct a stable pattern that eats a Herschel.
+		
+		\noindent [Hint: If you cannot find a ``direct'' way to do this, convert a Herschel into something that you already know how to eat.]
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:two_transparent_lanes}
+		Modify the conduit from Figure~\ref{fig:transparent_lane} so that it has two side-by-side transparent lanes instead of just one.
+		
+		\noindent [Hint: There are other ways to eat a glider.]
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:H_to_G_transparent_better}
+		A conduit that is very similar to the HNE5T-4 conduit from Figure~\ref{fig:transparent_lane} is presented below. Explain why this conduit might be more useful than HNE5T-4 in some situations.
+		
+		\begin{center}
+			\patternimglink{0.1}{H_to_G_transparent_better}
+		\end{center}
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:syringe_creates_pi}
+		The syringe\index{syringe} works by converting the input glider into an intermediate object that we have seen before, and then converting that object into a B-heptomino, which creates a glider (which is eaten) and the output Herschel. What is the name of the intermediate object?
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:syringe_compact}
+		A slightly more compact version of the syringe can be constructed by modifying its large unnamed still life. Complete the partial syringe on the left below by filling in the light gray cells appropriately (make sure that the resulting pattern can eat the glider that the output Herschel emits).
+		
+		\begin{center}
+			\belowbaseline[0pt]{\patternimglink{0.1}{exercise_syringe_compact}}~\quad~\belowbaseline[0pt]{\patternimglink{0.1}{eater_5_modification}}
+		\end{center}
+		
+		\noindent [Hint: Make use of the modification of eater~5\index{eater!5} that is displayed below on the right.]
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:syringe_glider_synth}
+		Construct a glider synthesis of the large version of the syringe displayed in Figure~\ref{fig:syringe_modified}.
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:syringe_Lx200}\index{F166}\index{Lx200}
+		The right half of the large version of the syringe from Figure~\ref{fig:syringe_modified} is a conduit that is called F166 (displayed below on the left). Create another large version of the syringe by replacing F166 with Lx200 (displayed below on the right). What is the repeat time of this new version of the syringe?
+		
+		\begin{center}
+			\patternimglink{0.098}{F166}~\quad~\patternimglink{0.095565217391}{Lx200}
+		\end{center}
+		
+		\noindent [Hint: You might have to fiddle with the orientation of some eaters so that Lx200 does not collide with the other half of the syringe.]
+		
+		\noindent [Side note: In both of these conduits, the input is a great-grandparent of a Herschel. The reason that these two conduits can be attached to the syringe is that the input Herschel's first natural glider is suppressed by the initial collision with the block.]
+	\end{problemstar}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:convert_more_gliders}
+		Make a stable conduit that converts one glider into exactly...\smallskip
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item $4$ gliders.
+			
+			\item $5$ gliders.
+			
+			\item $10$ gliders.
 		\end{enumerate}
-	\end{multicols}
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:eat_herschel}
-	Construct a stable pattern that eats a Herschel.
-	
-	\noindent [Hint: If you cannot find a ``direct'' way to do this, convert a Herschel into something that you already know how to eat.]
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:two_transparent_lanes}
-	Modify the conduit from Figure~\ref{fig:transparent_lane} so that it has two side-by-side transparent lanes instead of just one.
-	
-	\noindent [Hint: There are other ways to eat a glider.]
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:H_to_G_transparent_better}
-	A conduit that is very similar to the HNE5T-4 conduit from Figure~\ref{fig:transparent_lane} is presented below. Explain why this conduit might be more useful than HNE5T-4 in some situations.
-
-	\begin{center}
-		\patternimglink{0.1}{H_to_G_transparent_better}
-	\end{center}
-\end{problem}
-
-
-\mfilbreak
+	\end{problem}
 	
 	
-\begin{problem}\label{exer:syringe_creates_pi}
-	The syringe\index{syringe} works by converting the input glider into an intermediate object that we have seen before, and then converting that object into a B-heptomino, which creates a glider (which is eaten) and the output Herschel. What is the name of the intermediate object?
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:syringe_compact}
-	A slightly more compact version of the syringe can be constructed by modifying its large unnamed still life. Complete the partial syringe on the left below by filling in the light gray cells appropriately (make sure that the resulting pattern can eat the glider that the output Herschel emits).
-	
-	\begin{center}
-		\belowbaseline[0pt]{\patternimglink{0.1}{exercise_syringe_compact}}~\quad~\belowbaseline[0pt]{\patternimglink{0.1}{eater_5_modification}}
-	\end{center}
-
-	\noindent [Hint: Make use of the modification of eater~5\index{eater!5} that is displayed below on the right.]
-\end{problem}
+	\mfilbreak
 	
 	
-\mfilbreak
+	\begin{problem}\label{exer:glider_to_lwss_weird_sl}
+		One of the still lifes near the eastern edge of the glider-to-LWSS circuit in Figure~\ref{fig:glider_to_lwss_big} is displayed in red. Why is it singled out like this---what makes it different from the other still lifes in that circuit?
+	\end{problem}
 	
-
-\begin{problem}\label{exer:syringe_glider_synth}
-	Construct a glider synthesis of the large version of the syringe displayed in Figure~\ref{fig:syringe_modified}.
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problemstar}\label{exer:syringe_Lx200}\index{F166}\index{Lx200}
-	The right half of the large version of the syringe from Figure~\ref{fig:syringe_modified} is a conduit that is called F166 (displayed below on the left). Create another large version of the syringe by replacing F166 with Lx200 (displayed below on the right). What is the repeat time of this new version of the syringe?
 	
-	\begin{center}
-		\patternimglink{0.098}{F166}~\quad~\patternimglink{0.095565217391}{Lx200}
-	\end{center}
-
-	\noindent [Hint: You might have to fiddle with the orientation of some eaters so that Lx200 does not collide with the other half of the syringe.]
-
-	\noindent [Side note: In both of these conduits, the input is a great-grandparent of a Herschel. The reason that these two conduits can be attached to the syringe is that the input Herschel's first natural glider is suppressed by the initial collision with the block.]
-\end{problemstar}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:convert_more_gliders}
-	Make a stable conduit that converts one glider into exactly...\smallskip
+	\mfilbreak
+	
+	% To add: what is the repeat time of the G-to-(2-engine Cordership)... 556, but a painfully advanced exercise could be how to reduce the repeat time to 458 (probably giving the alternate three-sided recipe from http://conwaylife.com/forums/viewtopic.php?p=63282#p63282 -- or possibly just the recipe for the switch engine with the alternate kickback). Also, make a gun out of it? Trivial, but not done elsewhere yet.
+	
+	% NJ: Still working on this exercise.
+	\begin{problem}\label{exer:convert_stable_g_to_spaceships}
+		Use the glider syntheses provided below (or any other glider syntheses of your choosing) to construct a stable circuit that converts a glider into the following objects.\smallskip
 		
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item $4$ gliders.
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item A middleweight spaceship.
 			
-		\item $5$ gliders.
+			\item A heavyweight spaceship.
 			
-		\item $10$ gliders.
-	\end{enumerate}
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:glider_to_lwss_weird_sl}
-	One of the still lifes near the eastern edge of the glider-to-LWSS circuit in Figure~\ref{fig:glider_to_lwss_big} is displayed in red. Why is it singled out like this---what makes it different from the other still lifes in that circuit?
-\end{problem}
-
-
-\mfilbreak
-
-% To add: what is the repeat time of the G-to-(2-engine Cordership)... 556, but a painfully advanced exercise could be how to reduce the repeat time to 458 (probably giving the alternate three-sided recipe from http://conwaylife.com/forums/viewtopic.php?p=63282#p63282 -- or possibly just the recipe for the switch engine with the alternate kickback). Also, make a gun out of it? Trivial, but not done elsewhere yet.
-
-% NJ: Still working on this exercise.
-\begin{problem}\label{exer:convert_stable_g_to_spaceships}
-	Use the glider syntheses provided below (or any other glider syntheses of your choosing) to construct a stable circuit that converts a glider into the following objects.\smallskip
-	
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item A middleweight spaceship.
-		
-		\item A heavyweight spaceship.
-		
-		\item A Schick engine. % provide synthesis
-		% Coe ship, loafer, space rake, ecologist, etc.
-	\end{enumerate}
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{fig:g_to_2engine_why_10_gliders}
-	The $2$-direction glider synthesis of the $2$-engine Cordership from Exercise~\ref{exer:2_engine_cordership_synthesis}(b) consists of 11~gliders, but when we used it to start our construction of the glider-to-($2$-engine Cordership) circuit in Figure~\ref{fig:g_to_2engine_V}, we only needed $10$ input gliders. Explain this discrepancy---what happened to the $11$th glider?
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:stable_thin_out_gliders}
-	In Figure~\ref{fig:block_18_gliders_repeatable}, we saw a stable circuit that destroys all except for $1$ out of every $19$ input gliders. Construct a similar circuit that destroys all except for $1$ out of every...\smallskip
-	
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item $32$ gliders.
-		
-		\item $6$ gliders.
-		
-		\item $47$ gliders.
-	\end{enumerate}
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:tremi_snark}
-	The following pattern is called a \emph{tremi-Snark},\index{tremi-Snark}\footnote{Found by Tanner Jacobi in September 2017.} since it only produces a single output glider for every three input gliders that it receives.
-	
-	\begin{center}
-		\patternimglink{0.1}{tremi_snark}
-	\end{center}
-	
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item What is the repeat time of the tremi-Snark?% 43
-		
-		\item Is it color-changing or color-preserving?% CP
-		
-		\item Use tremi-Snarks to make a glider gun with period~$3^{50}$.
-	\end{enumerate}
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:quadri_snark}
-	The following pattern is called a \emph{quadri-Snark},\index{quadri-Snark}\footnote{Found by Tanner Jacobi in October 2017.} since it only produces a single output glider for every four input gliders that it receives.
-	
-	\begin{center}
-		\patternimglink{0.1}{quadri_snark}
-	\end{center}
-	
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item What is its repeat time?% 48
-		
-		\item The quadri-Snark is color-preserving. Construct a similar stable circuit for reflecting one out of every four input gliders, but is color-changing.% CP semi-Snark + CC semi-Snark + Snark
-		
-		\item Use quadri-Snarks to make a glider gun with period~$2^{100}$ that fits in a smaller bounding box than the one from Figure~\ref{fig:p_2_100_gun}.
-	\end{enumerate}
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:quinti_snark}
-	The following pattern is called a \emph{quinti-Snark},\index{quinti-Snark}\footnote{Found by Tanner Jacobi in October 2018. Some other periodic quinti-Snarks are also known, but this is the most useful one for the reason explained in part~(c) of this exercise.} since it only produces a single output glider for every five input gliders that it receives.
-	
-	\begin{center}
-		\patternimglink{0.1}{quinti_snark}
-	\end{center}
-	
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item Is it color-changing or color-preserving?% CC
-		
-		\item What is its repeat time?
-		
-		\item The quinti-Snark is not stable---it contains a p$5$ heavyweight volcano as one of its pieces. Explain why, in spite of this, it can be used with any glider stream of period at least its repeat time (not just glider streams whose period is a multiple of $5$).
-	\end{enumerate}
-\end{problem}
-
-	
-\mfilbreak
-
-
-\begin{problem}\label{exer:p1703_gun_why_semisnark}
-	The semi-Snark in the mechanism from Figure~\ref{fig:p1703_gun} serves to increase the period of that gun by $616$~generations. Explain why it is there---why can we not remove it and rearrange the other components so as to create a gun with period $616+471 = 1\, 087$?
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:p1703_gun}
-	We claimed that the method of Figure~\ref{fig:p1703_gun} can be used to add $1\, 087$ or more generations to the period of the $p616$ adjustable glider gun. Explain why the cut-off is $1\, 087$ generations.
-	
-	\noindent [Hint: Try to add $1\, 086$ generations to the period of the p$616$ gun---what goes wrong?]
-\end{problem}
-% Collision in trombone slide due to changing reflector. TODO: make sure this reflector is one of the ones from earlier Table so that this question is actually answerable
-
-
-\mfilbreak
+			\item A Schick engine. % provide synthesis
+			% Coe ship, loafer, space rake, ecologist, etc.
+		\end{enumerate}
+	\end{problem}
 	
 	
-\begin{problem}\label{exer:mwss_to_g}
-	Show how the LWSS-to-glider converter from Table~\ref{tab:converters} can also function as an MWSS-to-glider converter.
-\end{problem}
-% Just put MWSS in the exact same spot (front ends aligned)
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:simkin_glider_gun}
-	Use two copies of the B60 Herschel conduit to make a glider gun (the resulting gun is called the \emph{Simkin glider gun}\index{Simkin glider gun}).\footnote{It is named for discoverer, Michael Simkin, who found it in April 2015.} What is its period, and how could you determine that period based only on the name of this conduit?
-\end{problem}
-% p120 simkin glider gun
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:RFx36R_osc}
-	Use two copies of the RFx36R conduit to make an oscillator. What is its period, and how could you determine that period based only on the name of this conduit?
-\end{problem}
-% 72
-
-
-\mfilbreak
-
-
-% Solution: Converts to a pi first, then pi to 2G. HF95P
-\begin{problem}\label{exer:H_to_4G}
-	The conduit displayed below converts a Herschel into 4 gliders, all traveling in different directions. Break this conduit up into elementary conduits (i.e., conduits that convert named objects into each other and cannot be broken down any further).
+	\mfilbreak
 	
-	\begin{center}
-		\patternimglink{0.1}{exercise_H_to_4G}
-	\end{center}
 	
-	\noindent [Hint: We saw one of these conduits in Table~\ref{tab:converters}---which one?]
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:HFx58B_modify}
-	The conduit below on the left is called BR146H\index{BR146H} and the one on the right is a variant of the HFx58B\index{HFx58B} conduit from Table~\ref{tab:converters}.
+	\begin{problem}\label{fig:g_to_2engine_why_10_gliders}
+		The $2$-direction glider synthesis of the $2$-engine Cordership from Exercise~\ref{exer:2_engine_cordership_synthesis}(b) consists of 11~gliders, but when we used it to start our construction of the glider-to-($2$-engine Cordership) circuit in Figure~\ref{fig:g_to_2engine_V}, we only needed $10$ input gliders. Explain this discrepancy---what happened to the $11$th glider?
+	\end{problem}
 	
-	\begin{center}
-		\patternimglink{0.1}{BR146H} \qquad \patternimglink{0.1}{HFx58Bb}
-	\end{center}
-
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item Explain why the original HFx58B conduit cannot be used as an input to BR146H.
 	
-		\item Attach the variant of HFx58B to both the input and output ends of BR146H. What is the name of this composite conduit?
-	\end{enumerate}
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:herschel_variants}
-	Here are some variants of the BFx59H conduit from Table~\ref{tab:converters}:
-	\begin{center}
-		\patternimglink{0.093}{BFx59H_variants}
-	\end{center}
-	Use the conduits HFx58B, BLx19R, RF28B, and BFx59H (including their variants, if necessary---see Exercise~\ref{exer:HFx58B_modify} for a HFx58B variant) to move the Herschel highlighted below in green to the position marked in orange $58+19+28+59=164$ generations later, while avoiding the blocks.	
-	\begin{center}
-		\patternimglink{0.1}{exercise_herschel_variants}
-	\end{center}
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:l156_break_apart}\index{L156}
-	The L156 conduit from Figure~\ref{fig:p67_with_conduits}(b) is made up of $3$ conduits that convert the input Herschel into other well-known named objects before converting it back into a Herschel. What are the intermediate objects that the Herschel is converted into, and what are the names of those $3$ conduits?
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:composite_converters}
-	String together conduits that we have seen so as to create a stable conduit that converts...\smallskip
+	\mfilbreak
 	
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item a glider into a pi-heptomino,
-		
-		\item a glider into an R-pentomino,
-		
-		\item a lightweight spaceship into a Herschel, and
-		
-		\item a middleweight spaceship into a B-heptomino.
-	\end{enumerate}
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:h_to_g6}
-	An H-to-G6 conduit other than the one at the top-left corner of Figure~\ref{fig:herschel_transceiver} is presented below.\footnote{This conduit was found by Matthias Merzenich in December 2011.}
 	
-	\begin{center}
-		\patternimglink{0.1}{h_to_G6}
-	\end{center}
-
-	\noindent Use two copies of this conduit, together with two copies of the Herschel receiver from the bottom-right corner of Figure~\ref{fig:herschel_transceiver}, to create a glider gun. Place $6$ signals (i.e., Herschels and/or tandem glider pairs) on the track and separate the components so that the gun has period~$127$.
-	% SOLUTION:
-	%x = 99, y = 69, rule = B3/S23
-%		33b2o$33b2o3$31b2o$31b2o$18b2o65bo$19bo64bobo$19bobo7b2o53bobo$20b2o6b
-%		o3bo35bo13b3ob2o$16b2o11b2obo35b3o10bo$16b2o9b3o2b2o37bo10b3ob2o9b2o$
-%		27b3o40b2o12bob2o9bo$27bob5o3b2o56bobo$34bo2b2o56b2o$29bob5o25b3o$35bo
-%		24b5o$30b2o2b3o22b5obo25bo$29bo5bo21b2o2b3ob2o22b2ob2o$29bobob2o22b2ob
-%		o2b3o23b2o$22b2o5bobobo22b2o6bo26b3o$21bo2bo8bo23bo2bo36bo$22b2o34b3o
-%		35b2o$14bo34bo$14b2o32bobo$13bobo32b2o$57b2o$57bo19b2o$58bo17bobo$57b
-%		2o17bo$22b2o51b2o$12b2o8b2o$13b2o81b2o$12bo83b2o2$b2o83bo$b2o81b2o$75b
-%		2o8b2o$22b2o51b2o$22bo17b2o$20bobo17bo$20b2o19bo$40b2o$49b2o32bobo$48b
-%		obo32b2o$49bo34bo$b2o35b3o34b2o$bo36bo2bo23bo8bo2bo$5b3o26bo6b2o22bobo
-%		bo5b2o$8b2o23b3o2bob2o22b2obobo$5b2ob2o22b2ob3o2b2o21bo5bo$7bo25bob5o
-%		22b3o2b2o$34b5o24bo$35b3o25b5obo$2b2o56b2o2bo$bobo56b2o3b5obo$bo9b2obo
-%		54b3o$2o9b2ob3o48b2o2b3o9b2o$17bo48bob2o11b2o$11b2ob3o49bo3bo6b2o$12bo
-%		bo53b2o7bobo$12bobo64bo$13bo65b2o$66b2o$66b2o2$39bo$40bo23b2o$38b3o23b
-%		2o!
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:p62_gun_problem}
-	Recall that the period~$93$ glider gun in Figure~\ref{fig:p93_gun} has $16$ Herschels on a track that each take $16 \times 93 = 1488$ generations to traverse it.\smallskip
+	\begin{problem}\label{exer:stable_thin_out_gliders}
+		In Figure~\ref{fig:block_18_gliders_repeatable}, we saw a stable circuit that destroys all except for $1$ out of every $19$ input gliders. Construct a similar circuit that destroys all except for $1$ out of every...\smallskip
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item $32$ gliders.
+			
+			\item $6$ gliders.
+			
+			\item $47$ gliders.
+		\end{enumerate}
+	\end{problem}
 	
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item Adjust the number of Herschels on the track so as to create a period~$124$ glider gun.
-		
-		\item Explain why this does not become a period~$62$ glider gun if we place $1488/62 = 24$ Herschels on the track. % without the eater 2, the FNG collides with the next Herschel
-		
-		\item Create a true-period~$62$ glider gun by making a Herschel loop that uses the L156 circuit for the corners instead of R64 conduits (still use Fx77 conduits for the sides).
-	\end{enumerate}
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:p80_adjustable_manipulate}
-	Recall the period~$80$ adjustable true period glider gun from Figure~\ref{fig:p80_adjustable_gun}.\smallskip
 	
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item Adjust the gun to have period $97$.
-		
-		\item Adjust the gun to have period $78$.
-		
-		\item Try to adjust the gun to have period $76$ or $77$ and explain why it does not work.
-		
-		\item Adjust the gun to have period $74$ or $75$.
-		
-		\item Try to adjust the gun to have period $73$. Explain the two independent reasons why it does not work.
-	\end{enumerate}
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:p144_gun_from_achim}
-	The sparky oscillators below are called \emph{Wainwright's p72}\index{Wainwright's p72} (or sometimes \emph{two blockers hassling R-pentomino}\index{two blockers hassling R-pentomino|see {Wainwright's p72}}) and \emph{Achim's p144}\index{Achim's p144}.\footnote{Found by Robert Wainwright in 1990 and Achim Flammenkamp in 1994, respectively.}
-	\begin{center}
-		\patternimglink{0.095}{wainwright_p72} \quad \patternimglink{0.095}{achims_p144}
-	\end{center}
+	\mfilbreak
 	
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item Removing the block from one of the corners of Achim's p$144$ turns it into a block factory. Place Wainwright's p$72$ near the block that the factory produces so that its sparks delete that block and create a glider (and thus a p$144$ glider gun).\footnote{First constructed by Bill Gosper in July 1994.}
-		
-		\item Construct a slightly smaller p$144$ glider gun by using Rich's p$16$ instead of two blockers hassling R-pentomino.\footnote{First constructed by Chris Cain in 2016.}
-	\end{enumerate}
-\end{problem}
-% (a) SOLUTION:
-%#N New gun 2
-%#O Bill Gosper
-%#C A true period 144 glider gun that consists of a block factory whose output is converted into gliders by a period 72 oscillator.
-%#C www.conwaylife.com/wiki/index.php?title=New_gun_2
-%x = 51, y = 24, rule = B3/S23
-%23b2o24b2o$23b2o24b2o$41b2o8b$40bo2bo7b$41b2o8b2$36b3o12b$36bobo12b$9b
-%2o25b3o12b$9b2o25b2o13b$8bo2bo23b3o13b$8bo2bob2o20bobo13b$8bo4b2o20b3o
-%13b$10b2ob2o36b$31b2o18b$21b2o7bo2bo17b$21b2o8b2o18b$49b2o$49b2o2$4b2o
-%18bo26b$2o4b4o10b2o2b2ob3o21b$2o2b2ob3o10b2o4b4o21b$4bo19b2o!
-% (b) SOLUTION:
-%#N p144gun.rle
-%#O Chris Cain, 2016
-%#C http://conwaylife.com/wiki/Period-144_glider_gun
-%#C http://www.conwaylife.com/patterns/p144gun.rle
-%x = 35, y = 33, rule = B3/S23
-%$26b2o$25bo2bo$24bo2bo$24bo6bo$23bo2bo3bobo$24b3o3b2o2$24b3o3b2o$23bo
-%2bo3bobo$24bo6bo$24bo2bo$25bo2bo$26b2o$b2o$b2o$7bo$5b2o$6b2o$7bo$10b2o
-%$10bo$10bo2bo$11b2o4b2o$16bo2bo$19bo$18b2o$22bo$22b2o10bo$23b2o7bobo$
-%22bo10b2o$b2o24b2o$b2o24b2o!
-
-% Exercise: Alternate transmitter for G4 tranceiver. What is its advantage? Produces Herschel output as well. Make something neat with it? Guns with the flexible G4 transceiver of various periods?
-
-% Exercise involving stream crosser (important! Used/referenced in next chapter.):
-%x = 15, y = 17, rule = B3/S23
-%2$4bo$5b2o$4b2o3$11b2o$11b2o3$4b2o$5b2o$4bo!
-
-% L200 conduit with low repeat time (59). Use in exercise. Needed and referenced in chapter 8. Maybe "make a small p61 oscillator with this". Also "break down into conduits that convert to other objects" (H->B->R->B->H).
-% Adjust this in light of this conduit appearing in 1(d).
-%x = 46, y = 34, rule = B3/S23
-%34b2o$34b2o2$25b2obo$25bob2o$43b2o$43bo$41bobo$41b2o$29b2o$29bo$4b2o
-%24bo$5bo13b2o6b3o$5bobo11b2o6bo16bo$6b2o35bobo$44bo6$6bo$6bobo$6b3o31b
-%2o$8bo25b2o4bobo$34b2o5b2o2$38b2o$7b2o30bo$3bo3b2o6b2o3b2o14b3o$2bobo
-%11bo3bo15bo$bobo9b3o5b3o$bo11bo9bo$2o!
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:block_factory_is_tripler}
-	This exercise concerns the leftmost Herschel-to-block factory from Figure~\ref{fig:H_to_block}.\smallskip
 	
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item What happens if you send a second Herschel into this conduit without cleaning up the block that the first Herschel made?
+	\begin{problem}\label{exer:tremi_snark}
+		The following pattern is called a \emph{tremi-Snark},\index{tremi-Snark}\footnote{Found by Tanner Jacobi in September 2017.} since it only produces a single output glider for every three input gliders that it receives.
 		
-		\item What happens if you then send a third Herschel into this conduit?
+		\begin{center}
+			\patternimglink{0.1}{tremi_snark}
+		\end{center}
 		
-		\item Use a syringe and this conduit to turn a Gosper glider gun into a period~$90$ gun.
-	\end{enumerate}
-\end{problem}
-% SOLUTION: (a) it moves the block and produces a glider, (b) it destroys the extra block, returning it to its original state, so it's really a period tripler.
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:block_factory_block_gliders}
-	The block that is created by the center-left Herschel-to-block factory from Figure~\ref{fig:H_to_block} can be used to cleanly destroy (and be destroyed by) a glider coming from the northwest or from the southeast.
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item What is the repeat time of the tremi-Snark?% 43
+			
+			\item Is it color-changing or color-preserving?% CP
+			
+			\item Use tremi-Snarks to make a glider gun with period~$3^{50}$.
+		\end{enumerate}
+	\end{problem}
 	
-	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item How many adjacent lanes can a glider coming from the northwest be placed on so as to cleanly destroy the block?
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:quadri_snark}
+		The following pattern is called a \emph{quadri-Snark},\index{quadri-Snark}\footnote{Found by Tanner Jacobi in October 2017.} since it only produces a single output glider for every four input gliders that it receives.
 		
-		\item How many adjacent lanes can a glider coming from the southeast be placed on so as to cleanly destroy the block? Why is this answer different from that of part~(a)?
-	\end{enumerate}
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:highway_robber_repeat}
-	Calculate the repeat time of the highway robber from Figure~\ref{fig:highway_robber}.
-\end{problem}
-% SOLUTION: 951
-
-
-% EXERCISE: make HWSS heisenburp https://www.conwaylife.com/forums/viewtopic.php?f=2&t=315&start=175#p99744
-% EXCERCISE: https://www.conwaylife.com/wiki/4g-to-5g_reaction (make a gun like the one at the bottom out of the reaction)
-
-
-%% EXERCISE END COMMANDS
+		\begin{center}
+			\patternimglink{0.1}{quadri_snark}
+		\end{center}
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item What is its repeat time?% 48
+			
+			\item The quadri-Snark is color-preserving. Construct a similar stable circuit for reflecting one out of every four input gliders, but is color-changing.% CP semi-Snark + CC semi-Snark + Snark
+			
+			\item Use quadri-Snarks to make a glider gun with period~$2^{100}$ that fits in a smaller bounding box than the one from Figure~\ref{fig:p_2_100_gun}.
+		\end{enumerate}
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:quinti_snark}
+		The following pattern is called a \emph{quinti-Snark},\index{quinti-Snark}\footnote{Found by Tanner Jacobi in October 2018. Some other periodic quinti-Snarks are also known, but this is the most useful one for the reason explained in part~(c) of this exercise.} since it only produces a single output glider for every five input gliders that it receives.
+		
+		\begin{center}
+			\patternimglink{0.1}{quinti_snark}
+		\end{center}
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Is it color-changing or color-preserving?% CC
+			
+			\item What is its repeat time?
+			
+			\item The quinti-Snark is not stable---it contains a p$5$ heavyweight volcano as one of its pieces. Explain why, in spite of this, it can be used with any glider stream of period at least its repeat time (not just glider streams whose period is a multiple of $5$).
+		\end{enumerate}
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:p1703_gun_why_semisnark}
+		The semi-Snark in the mechanism from Figure~\ref{fig:p1703_gun} serves to increase the period of that gun by $616$~generations. Explain why it is there---why can we not remove it and rearrange the other components so as to create a gun with period $616+471 = 1\, 087$?
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:p1703_gun}
+		We claimed that the method of Figure~\ref{fig:p1703_gun} can be used to add $1\, 087$ or more generations to the period of the $p616$ adjustable glider gun. Explain why the cut-off is $1\, 087$ generations.
+		
+		\noindent [Hint: Try to add $1\, 086$ generations to the period of the p$616$ gun---what goes wrong?]
+	\end{problem}
+	% Collision in trombone slide due to changing reflector. TODO: make sure this reflector is one of the ones from earlier Table so that this question is actually answerable
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:mwss_to_g}
+		Show how the LWSS-to-glider converter from Table~\ref{tab:converters} can also function as an MWSS-to-glider converter.
+	\end{problem}
+	% Just put MWSS in the exact same spot (front ends aligned)
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:simkin_glider_gun}
+		Use two copies of the B60 Herschel conduit to make a glider gun (the resulting gun is called the \emph{Simkin glider gun}\index{Simkin glider gun}).\footnote{It is named for discoverer, Michael Simkin, who found it in April 2015.} What is its period, and how could you determine that period based only on the name of this conduit?
+	\end{problem}
+	% p120 simkin glider gun
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:RFx36R_osc}
+		Use two copies of the RFx36R conduit to make an oscillator. What is its period, and how could you determine that period based only on the name of this conduit?
+	\end{problem}
+	% 72
+	
+	
+	\mfilbreak
+	
+	
+	% Solution: Converts to a pi first, then pi to 2G. HF95P
+	\begin{problem}\label{exer:H_to_4G}
+		The conduit displayed below converts a Herschel into 4 gliders, all traveling in different directions. Break this conduit up into elementary conduits (i.e., conduits that convert named objects into each other and cannot be broken down any further).
+		
+		\begin{center}
+			\patternimglink{0.1}{exercise_H_to_4G}
+		\end{center}
+		
+		\noindent [Hint: We saw one of these conduits in Table~\ref{tab:converters}---which one?]
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:HFx58B_modify}
+		The conduit below on the left is called BR146H\index{BR146H} and the one on the right is a variant of the HFx58B\index{HFx58B} conduit from Table~\ref{tab:converters}.
+		
+		\begin{center}
+			\patternimglink{0.1}{BR146H} \qquad \patternimglink{0.1}{HFx58Bb}
+		\end{center}
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Explain why the original HFx58B conduit cannot be used as an input to BR146H.
+			
+			\item Attach the variant of HFx58B to both the input and output ends of BR146H. What is the name of this composite conduit?
+		\end{enumerate}
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:herschel_variants}
+		Here are some variants of the BFx59H conduit from Table~\ref{tab:converters}:
+		\begin{center}
+			\patternimglink{0.093}{BFx59H_variants}
+		\end{center}
+		Use the conduits HFx58B, BLx19R, RF28B, and BFx59H (including their variants, if necessary---see Exercise~\ref{exer:HFx58B_modify} for a HFx58B variant) to move the Herschel highlighted below in green to the position marked in orange $58+19+28+59=164$ generations later, while avoiding the blocks.	
+		\begin{center}
+			\patternimglink{0.1}{exercise_herschel_variants}
+		\end{center}
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:l156_break_apart}\index{L156}
+		The L156 conduit from Figure~\ref{fig:p67_with_conduits}(b) is made up of $3$ conduits that convert the input Herschel into other well-known named objects before converting it back into a Herschel. What are the intermediate objects that the Herschel is converted into, and what are the names of those $3$ conduits?
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:composite_converters}
+		String together conduits that we have seen so as to create a stable conduit that converts...\smallskip
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item a glider into a pi-heptomino,
+			
+			\item a glider into an R-pentomino,
+			
+			\item a lightweight spaceship into a Herschel, and
+			
+			\item a middleweight spaceship into a B-heptomino.
+		\end{enumerate}
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:h_to_g6}
+		An H-to-G6 conduit other than the one at the top-left corner of Figure~\ref{fig:herschel_transceiver} is presented below.\footnote{This conduit was found by Matthias Merzenich in December 2011.}
+		
+		\begin{center}
+			\patternimglink{0.1}{h_to_G6}
+		\end{center}
+		
+		\noindent Use two copies of this conduit, together with two copies of the Herschel receiver from the bottom-right corner of Figure~\ref{fig:herschel_transceiver}, to create a glider gun. Place $6$ signals (i.e., Herschels and/or tandem glider pairs) on the track and separate the components so that the gun has period~$127$.
+		% SOLUTION:
+		%x = 99, y = 69, rule = B3/S23
+		%		33b2o$33b2o3$31b2o$31b2o$18b2o65bo$19bo64bobo$19bobo7b2o53bobo$20b2o6b
+		%		o3bo35bo13b3ob2o$16b2o11b2obo35b3o10bo$16b2o9b3o2b2o37bo10b3ob2o9b2o$
+		%		27b3o40b2o12bob2o9bo$27bob5o3b2o56bobo$34bo2b2o56b2o$29bob5o25b3o$35bo
+		%		24b5o$30b2o2b3o22b5obo25bo$29bo5bo21b2o2b3ob2o22b2ob2o$29bobob2o22b2ob
+		%		o2b3o23b2o$22b2o5bobobo22b2o6bo26b3o$21bo2bo8bo23bo2bo36bo$22b2o34b3o
+		%		35b2o$14bo34bo$14b2o32bobo$13bobo32b2o$57b2o$57bo19b2o$58bo17bobo$57b
+		%		2o17bo$22b2o51b2o$12b2o8b2o$13b2o81b2o$12bo83b2o2$b2o83bo$b2o81b2o$75b
+		%		2o8b2o$22b2o51b2o$22bo17b2o$20bobo17bo$20b2o19bo$40b2o$49b2o32bobo$48b
+		%		obo32b2o$49bo34bo$b2o35b3o34b2o$bo36bo2bo23bo8bo2bo$5b3o26bo6b2o22bobo
+		%		bo5b2o$8b2o23b3o2bob2o22b2obobo$5b2ob2o22b2ob3o2b2o21bo5bo$7bo25bob5o
+		%		22b3o2b2o$34b5o24bo$35b3o25b5obo$2b2o56b2o2bo$bobo56b2o3b5obo$bo9b2obo
+		%		54b3o$2o9b2ob3o48b2o2b3o9b2o$17bo48bob2o11b2o$11b2ob3o49bo3bo6b2o$12bo
+		%		bo53b2o7bobo$12bobo64bo$13bo65b2o$66b2o$66b2o2$39bo$40bo23b2o$38b3o23b
+		%		2o!
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:p62_gun_problem}
+		Recall that the period~$93$ glider gun in Figure~\ref{fig:p93_gun} has $16$ Herschels on a track that each take $16 \times 93 = 1488$ generations to traverse it.\smallskip
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Adjust the number of Herschels on the track so as to create a period~$124$ glider gun.
+			
+			\item Explain why this does not become a period~$62$ glider gun if we place $1488/62 = 24$ Herschels on the track. % without the eater 2, the FNG collides with the next Herschel
+			
+			\item Create a true-period~$62$ glider gun by making a Herschel loop that uses the L156 circuit for the corners instead of R64 conduits (still use Fx77 conduits for the sides).
+		\end{enumerate}
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:p80_adjustable_manipulate}
+		Recall the period~$80$ adjustable true period glider gun from Figure~\ref{fig:p80_adjustable_gun}.\smallskip
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Adjust the gun to have period $97$.
+			
+			\item Adjust the gun to have period $78$.
+			
+			\item Try to adjust the gun to have period $76$ or $77$ and explain why it does not work.
+			
+			\item Adjust the gun to have period $74$ or $75$.
+			
+			\item Try to adjust the gun to have period $73$. Explain the two independent reasons why it does not work.
+		\end{enumerate}
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:p144_gun_from_achim}
+		The sparky oscillators below are called \emph{Wainwright's p72}\index{Wainwright's p72} (or sometimes \emph{two blockers hassling R-pentomino}\index{two blockers hassling R-pentomino|see {Wainwright's p72}}) and \emph{Achim's p144}\index{Achim's p144}.\footnote{Found by Robert Wainwright in 1990 and Achim Flammenkamp in 1994, respectively.}
+		\begin{center}
+			\patternimglink{0.095}{wainwright_p72} \quad \patternimglink{0.095}{achims_p144}
+		\end{center}
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Removing the block from one of the corners of Achim's p$144$ turns it into a block factory. Place Wainwright's p$72$ near the block that the factory produces so that its sparks delete that block and create a glider (and thus a p$144$ glider gun).\footnote{First constructed by Bill Gosper in July 1994.}
+			
+			\item Construct a slightly smaller p$144$ glider gun by using Rich's p$16$ instead of two blockers hassling R-pentomino.\footnote{First constructed by Chris Cain in 2016.}
+		\end{enumerate}
+	\end{problem}
+	% (a) SOLUTION:
+	%#N New gun 2
+	%#O Bill Gosper
+	%#C A true period 144 glider gun that consists of a block factory whose output is converted into gliders by a period 72 oscillator.
+	%#C www.conwaylife.com/wiki/index.php?title=New_gun_2
+	%x = 51, y = 24, rule = B3/S23
+	%23b2o24b2o$23b2o24b2o$41b2o8b$40bo2bo7b$41b2o8b2$36b3o12b$36bobo12b$9b
+	%2o25b3o12b$9b2o25b2o13b$8bo2bo23b3o13b$8bo2bob2o20bobo13b$8bo4b2o20b3o
+	%13b$10b2ob2o36b$31b2o18b$21b2o7bo2bo17b$21b2o8b2o18b$49b2o$49b2o2$4b2o
+	%18bo26b$2o4b4o10b2o2b2ob3o21b$2o2b2ob3o10b2o4b4o21b$4bo19b2o!
+	% (b) SOLUTION:
+	%#N p144gun.rle
+	%#O Chris Cain, 2016
+	%#C http://conwaylife.com/wiki/Period-144_glider_gun
+	%#C http://www.conwaylife.com/patterns/p144gun.rle
+	%x = 35, y = 33, rule = B3/S23
+	%$26b2o$25bo2bo$24bo2bo$24bo6bo$23bo2bo3bobo$24b3o3b2o2$24b3o3b2o$23bo
+	%2bo3bobo$24bo6bo$24bo2bo$25bo2bo$26b2o$b2o$b2o$7bo$5b2o$6b2o$7bo$10b2o
+	%$10bo$10bo2bo$11b2o4b2o$16bo2bo$19bo$18b2o$22bo$22b2o10bo$23b2o7bobo$
+	%22bo10b2o$b2o24b2o$b2o24b2o!
+	
+	% Exercise: Alternate transmitter for G4 tranceiver. What is its advantage? Produces Herschel output as well. Make something neat with it? Guns with the flexible G4 transceiver of various periods?
+	
+	% Exercise involving stream crosser (important! Used/referenced in next chapter.):
+	%x = 15, y = 17, rule = B3/S23
+	%2$4bo$5b2o$4b2o3$11b2o$11b2o3$4b2o$5b2o$4bo!
+	
+	% L200 conduit with low repeat time (59). Use in exercise. Needed and referenced in chapter 8. Maybe "make a small p61 oscillator with this". Also "break down into conduits that convert to other objects" (H->B->R->B->H).
+	% Adjust this in light of this conduit appearing in 1(d).
+	%x = 46, y = 34, rule = B3/S23
+	%34b2o$34b2o2$25b2obo$25bob2o$43b2o$43bo$41bobo$41b2o$29b2o$29bo$4b2o
+	%24bo$5bo13b2o6b3o$5bobo11b2o6bo16bo$6b2o35bobo$44bo6$6bo$6bobo$6b3o31b
+	%2o$8bo25b2o4bobo$34b2o5b2o2$38b2o$7b2o30bo$3bo3b2o6b2o3b2o14b3o$2bobo
+	%11bo3bo15bo$bobo9b3o5b3o$bo11bo9bo$2o!
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:block_factory_is_tripler}
+		This exercise concerns the leftmost Herschel-to-block factory from Figure~\ref{fig:H_to_block}.\smallskip
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item What happens if you send a second Herschel into this conduit without cleaning up the block that the first Herschel made?
+			
+			\item What happens if you then send a third Herschel into this conduit?
+			
+			\item Use a syringe and this conduit to turn a Gosper glider gun into a period~$90$ gun.
+		\end{enumerate}
+	\end{problem}
+	% SOLUTION: (a) it moves the block and produces a glider, (b) it destroys the extra block, returning it to its original state, so it's really a period tripler.
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:block_factory_block_gliders}
+		The block that is created by the center-left Herschel-to-block factory from Figure~\ref{fig:H_to_block} can be used to cleanly destroy (and be destroyed by) a glider coming from the northwest or from the southeast.
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item How many adjacent lanes can a glider coming from the northwest be placed on so as to cleanly destroy the block?
+			
+			\item How many adjacent lanes can a glider coming from the southeast be placed on so as to cleanly destroy the block? Why is this answer different from that of part~(a)?
+		\end{enumerate}
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:highway_robber_repeat}
+		Calculate the repeat time of the highway robber from Figure~\ref{fig:highway_robber}.
+	\end{problem}
+	% SOLUTION: 951
+	
+	
+	% EXERCISE: make HWSS heisenburp https://www.conwaylife.com/forums/viewtopic.php?f=2&t=315&start=175#p99744
+	% EXCERCISE: https://www.conwaylife.com/wiki/4g-to-5g_reaction (make a gun like the one at the bottom out of the reaction)
+	
+	
+	%% EXERCISE END COMMANDS
 \end{multicols}
 \normalsize\vspace*{0.01cm}
 %% DONE EXERCISE END COMMANDS

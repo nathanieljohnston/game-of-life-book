@@ -802,36 +802,50 @@ This procedure works in general, and shows that Speed Demonoids can be adjusted 
 
 While universal construction has been known to be possible since the early days of Life (it was proved to be possible in 1982 \cite{BCG82}), it took almost 40 more years of work for the Life community to streamline it to the point that it is actually small and fast enough to watch in action.
 
-Paul Chapman and Dave Greene built the first universal constructor in 2004, and it made use of the exact same construction arm that we saw in Figure~\ref{fig:construction_arm}. However, instead of encoding the \texttt{PULL}, \texttt{PUSH}, \texttt{FIRE WHITE}, and \texttt{FIRE BLACK} commands directly in the input stream of gliders (as was done with the Gemini spaceship of Figure~\ref{fig:gemini}), they were stored in unary via sequences of one, two, three, or four boats (which we separated by blocks). This resulting in an average of three bits of static storage being used to encode two bits' worth of information---very inefficient, but it was only intended as an initial prototype.
+Paul Chapman and Dave Greene built the first universal constructor in 2004 (see Figure~\ref{fig:chapman_greene_constructor}), and it made use of the exact same construction arm that we saw in Figure~\ref{fig:construction_arm}. However, instead of encoding the \texttt{PULL}, \texttt{PUSH}, \texttt{FIRE WHITE}, and \texttt{FIRE BLACK} commands directly in the input stream of gliders (as was done with the Gemini spaceship of Figure~\ref{fig:gemini}), they were stored in unary as boats that were separated via sequences of zero, one, two, or three blocks. This resulted in an average of two and a half bits of static storage being used to encode two bits' worth of information---rather inefficient, but it was only intended as an initial prototype.
 
-% Chapman and Green constructor: https://comp.theory.cell-automata.narkive.com/Z17teVRa/a-prototype-programmable-universal-constructor-for-conway-s-life
-% Insert FIGURE of it?
+% https://comp.theory.cell-automata.narkive.com/Z17teVRa/a-prototype-programmable-universal-constructor-for-conway-s-life
+\begin{figure}[!htbp]
+	\centering
+	\embedlink{chapman_greene_constructor}{\includegraphics[width=\textwidth]{universal_construction/chapman_greene_constructor.pdf}}
+	\caption{A universal constructor that was built by Paul Chapman and Dave Greene in 2004. The conduit highlighted in \bgbox{greenpastel}{green} fires $10$-glider salvos toward the memory tape that is highlighted in \bgbox{orangeback2}{orange}. Those salvos read the memory tape by either detecting a boat and sending a glider back, or detecting a block and sending nothing back. If a boat was detected, the returned glider is fed into the \bgbox{magentaback}{magenta} conduit, which keeps track of how many generations passed between receiving input gliders (i.e., how many blocks there were between boats on the memory tape). That generation gap determines which of four lanes is used to feed into the constructor arm that is highlighted in \bgbox{aquaback}{aqua}, and thus which of the four construction arm operations is performed.}\label{fig:chapman_greene_constructor}
+\end{figure}
 
-The next major development in this area came in 2009 with Adam P.~Goucher's universal computer-constructor. While we have not explicitly explored the ``constructor'' part of this device, it uses the same construction arm that we have already seen, in conjunction with the binary register that we saw in Section~\ref{sec:binary_register}. This binary storage is much more efficient than the unary storage of the Chapman--Greene prototype, and the fact that it comes as part of a programmable computer makes it more straightforward to actually make use of.
+The next major development in this area came in 2009 with Adam P.~Goucher's universal computer-constructor. While we have not explicitly explored the ``constructor'' part of this device, it uses the same construction arm that we have already seen, in conjunction with the binary register from Section~\ref{sec:binary_register} for storing the construction instructions. This binary storage is more efficient than the unary storage of the Chapman--Greene prototype, and the fact that it comes as part of a programmable computer makes it more straightforward to actually make use of.
 
-Both the Chapman--Greene constructor prototype, as well as the Goucher constructor, produced their output unidirectional slow glider salvos by reading a static tape consisting of still lifes that represented 0s and 1s. The idea of encoding information in this way was deeply ingrained in the Life community at the time, likely as a result of how information is similarly stored in actual computers. However, the sudden appearance of the Gemini in 2010 showed that this method of storing data was just silly. Obviously (with hindsight), if you want to build some kind of memory storage system for a bunch of spacings between gliders, you just store a bunch of moving gliders at the spacing you want---there is no need to encode anything at all.
+Both the Chapman--Greene constructor prototype, as well as the Goucher constructor, produced their output unidirectional slow glider salvos by reading a tape consisting of still lifes that represented 0s and 1s. The idea of encoding information via static objects like this was deeply ingrained in the Life community at the time, likely as a result of how information is similarly stored in actual computers. However, the sudden appearance of the Gemini in 2010 showed that this method of storing data was just silly. Obviously (with hindsight), if you want to build some kind of memory storage system for a bunch of spacings between gliders, you just store a bunch of moving gliders at the spacing you want---there is no need to encode anything at all.
 
-That one insight allowed a newcomer to the Life community, Andrew J.~Wade, to build the first ever oblique and/or self-constructing spaceship, even using extraordinarily sub-optimal components. The Chapman--Greene prototype universal constructor was a first proof of concept, not really intended to be used anywhere since it could straightforwardly be made so much smaller. But Wade wasn't a stable circuitry expert, so he just used what was available: the Gemini spaceship included not just one, but three complete copies of the prototype construction arm, almost completely unmodified. All he did was throw away the hopelessly inefficient static binary storage system and substitute something better.
+That one insight allowed Andrew J.~Wade, who was a complete newcomer to the Life community, to build the first ever oblique and/or self-constructing spaceship, even using extraordinarily sub-optimal components. The Chapman--Greene prototype universal constructor was a first proof of concept, not really intended to be used anywhere since it could straightforwardly be made so much smaller. But Wade wasn't a stable circuitry expert, so he just used what was available: the Gemini spaceship included not just one, but three complete copies of the prototype construction arm, almost completely unmodified. All he did was throw away the hopelessly inefficient static binary storage system and substitute something better.
 
-The Gemini's completion, and its accompanying philosophy of storing information in glider streams instead of sequences of still lifes, marked the start of a new era of Life construction. In addition to the Geminoids and Demonoids that we saw in this chapter, numerous other self-constructing spaceships were built in the 2010s.
-% TODO: Starting cleanup/working here (and earlier figure of Chapman-Greene prototype)
-% How many similar Demonoids, orthogonoids, etc, made since then?
+The Gemini's completion, and its accompanying philosophy of storing information in glider streams instead of sequences of still lifes, marked the start of a new era of Life construction. In addition to the Geminoids and Demonoids that we saw in this chapter, a flood of other self-constructing spaceships and bizarre patterns based on universal construction were built in the 2010s. Some of the more notable examples include:\smallskip
 
-The development of single-channel glider synthesis mostly took place in 2017, when another relative newcomer, Simon Ekstr{\"o}m, cavalierly disregarded accumulated prejudices from the previous decade, tried a search, and found that it worked.\footnote{This is not unlike Wade's construction of the Gemini in 2010, or when ConwayLife.com forums user ``zdr'' found the copperhead spaceship in 2016. In all of these cases, a newcomer simply looked where the members of the Life community thought there wasn't anything to find.} It was already known in 2015 how to emulate arbitrary glider synthesis via gliders on a single lane, and that technique was used by Chris Cain and Dave Greene to construct an earlier Demonoid than the ones we presented in this chapter, called the \emph{0hd Demonoid}\index{0hd Demonoid} that year.\footnote{The ``0hd'' in the name of this Demonoid refers to the fact that there are zero half-diagonals separating its gliders.} However, Ekstr{\"o}m was the first to show that it is possible even when the gliders are far enough apart from each other that they can be fed through components like Snarks and syringes.
-% In notes and history: Mention at-most c/5 (c/9 with cleanup?) demonoid that was constructed via this same method. Actually just the puffer was made
-% There are also Orthogonoid spaceships... (put in footenote? Mention in notes and history?)
+\begin{itemize}
+	\item In October 2010, Paul Tooke constructed numerous \emph{pianola breeders}:\index{pianola breeders} breeders that work by using universal constructors to synthesize objects that then synthesize other objects.\index{breeder} Because of the flexibility of universal construction, these breeders could be configured to behave in extremely unusual ways. For example, one of the breeders consists of a stationary object (a pair of universal constructors) that synthesizes stationary objects (slide guns), which then synthesize more stationary objects (lines of beehives).\footnote{See \httpsurl{conwaylife.com/wiki/Pianola_breeder}, and contrast this with the other breeders that we have seen, which all require some of the synthesized objects to move.}\smallskip
+	
+	\item In November 2013, Dave Greene built a pattern called a \emph{linear propagator}\footnote{See \httpsurl{conwaylife.com/wiki/Linear_propagator}.}\index{linear propagator} that repeatedly makes copies of itself---something that had been known to exist since 1982, but had eluded construction for the intervening 31 years.\smallskip
+	
+	\item In August 2014, Dave Greene constructed a pattern that grows outward in a spiral fashion by laying ever-expanding tracks around itself. The original version of this pattern had a bounding box with side length of approximately $1.6$~million cells, but has since between reduced to approximately $2{\thousep}000$ cells (see Figure~\ref{fig:spiral_growth} and Exercise~\ref{exer:snark_spiral_weld}).\smallskip
+	
+	\item In November 2015, Chris Cain and Dave Greene completed the first Demonoid, which used somewhat more complicated circuitry than the Demonoids that we investigated in this chapter. Most notably, it used pairs of gliders separated by $10$hd to implement slow glider syntheses instead of single-channel glider recipes, which doubled the amount of circuitry that had to be constructed at each end.\smallskip
+	
+	\item In June 2017, Dave Greene constructed an \emph{Orthogonoid}\index{Orthogonoid} spaceship,\footnote{See \httpsurl{conwaylife.com/wiki/Orthogonoid}.} which works similarly to Demonoids, except uses middleweight spaceships (instead of gliders) to achieve a slow orthogonal (instead of diagonal) speed of travel. Adam P.~Goucher then helped build faster Orthogonoids with speeds up to $65536c/951573 \approx 0.06887c$ in October 2018.\smallskip
+	
+	\item In November 2018, Dave Greene constructed \emph{volatility~1 oscillators}\footnote{See \httpsurl{conwaylife.com/wiki/Volatility}}. of arbitrarily large sizes:\index{volatility} oscillator in which all cells oscillate at the full period. These oscillators work by using single-channel glider recipes to destroy and then reconstruct their own circuitry.\smallskip 
+\end{itemize}
 
-% single channel make xWSS: https://conwaylife.com/forums/viewtopic.php?f=2&t=2660&start=50#p43737
-% Exercise: give slow salvo for eater 1 (for example) and ask reader to build it via single-channel 90-degree and then single-channel 0-degree
-
-% TODO: When finishing this chapter, have Dave look it over for attributions etc that I missed
-% Mention Pianola breeders? https://www.conwaylife.com/forums/viewtopic.php?t=&p=3525#p3525
+The development of single-channel glider synthesis mostly took place in 2017, when another relative newcomer, Simon Ekstr{\"o}m, cavalierly disregarded accumulated prejudices from the previous decade, tried a search, and found that it worked.\footnote{This is not unlike Wade's construction of the Gemini in 2010, or when ConwayLife.com forums user ``zdr'' found the copperhead spaceship in 2016. In all of these cases, a newcomer simply looked where the members of the Life community thought there wasn't anything to find.} It was already known in 2015 how to emulate arbitrary glider synthesis via gliders on a single lane, but Ekstr{\"o}m was the first to show that it is possible even when the gliders are far enough apart from each other that they can be fed through standard components like Snarks and syringes.
 
 
-% EXERCISE: How many 44hd block pushes to make slow demonoid faster than SPEED? Similar with other demonoids and gemini.
-% exercise with the chirality-swapping 0-degree sequence?
-% Exercise based on spiral growth? Or include somewhere? https://www.conwaylife.com/forums/viewtopic.php?f=&p=44792#p44792
-% BUILD A GEMINI WITH DIFFERENT PERIOD/SLOPE/WHATEVER
+\clearpage % Put "Exercises" header at the top of the next page instead of the bottom of this page
+
+
+% Putting figure down here to foce exercises header onto same page as it
+\begin{figure}[!htb]
+	\centering
+	\embedlink{spiral_growth}{\includegraphics[width=\textwidth]{universal_construction/spiral_growth.pdf}}
+	\caption{A spiral growth pattern that was constructed by Dave Greene in June 2017. A single-channel recipe that is primarily made up of a Snarkmaker bounces around the diamond-shaped track highlighted track in \bgbox{orangeback2}{orange}, creating Snarks that extend the track as indicated in \bgbox{aquaback}{aqua}.}\label{fig:spiral_growth}
+\end{figure}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Exercises \hfill \normalfont\textsf{\small solutions to starred exercises on \hyperlink{solutions_universal_construction}{page \pageref{solutions_universal_construction}}}}
 \label{sec:universal_construction_exercises}
@@ -947,6 +961,55 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 		The slope-$2$ Geminoid from Figure~\ref{fig:gemini_knightship} was created by just adding additional \texttt{PUSH} operations to the northwest construction elbow (i.e., we increased the value that we called ``$m$'' in that section, while leaving ``$n$'' fixed at $n = 2{\thousep}048$). What Geminoid slopes are attainable by making this type of change to Gemini? That is, what slopes can be attained by increasing $m$, but not changing $n$?
 	\end{problemstar}
 
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:gemini_slope_3}
+		Recall that the Gemini itself travels at slope $5$, and the Geminoid knightship travels at slope $2$.
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item To create a Geminoid that travels at a slope of $3$, how many \texttt{PUSH} operations should we add to the path of the northwest construction elbow?
+			% SOLUTION: 1024, which gives a displacement in that direction of m = 4096 instead of 3072.
+			
+			\item Construct a Geminoid that travels at a slope of $3$.
+		\end{enumerate} Gemini)
+	\end{problem}
+
+
+	\mfilbreak
+	
+	
+	% TODO: Give solution? Easy one to give solutions to.
+	\begin{problem}\label{exer:move_single_channel_elbow}
+		String together multiple elbow-moving single-channel glider recipes from Table~\ref{tab:single_lane_elbow_movers} so as to make a recipe that moves the elbow forward by exactly...
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item $11$ half diagonals,
+			
+			\item $-25$ half diagonals, and
+			
+			\item $38$ half diagonals.
+		\end{enumerate}
+	\end{problem}
+
+
+	\mfilbreak
+	
+	
+	% TODO: Give solution? Easy one to give solutions to.
+	\begin{problem}\label{exer:single_channel_90_degree_fire}
+		String together multiple single-channel glider recipes from Tables~\ref{tab:single_lane_90deg_glider_timings} and~\ref{tab:single_lane_elbow_movers} so as to fire a single glider on output lane...
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item $3x$,
+			
+			\item $0i$, and
+			
+			\item $15x$.
+		\end{enumerate}
+	\end{problem}
+
 	
 	\mfilbreak
 	
@@ -1058,6 +1121,16 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\end{problemstar}
 
 
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:gemini_why_any_slope_demonoid_fixed}
+		Recall that the Gemini can be modified to travel in essentially any rational direction, whereas Demonoids can only travel diagonally with slope~1. Explain why---what key aspect of their designs differs?
+	\end{problem}
+	% Solution: because gemini's ends are exact copies of each other, whereas demonoid ends are glide-reflections.
+
+
 	\mfilbreak
 	
 	
@@ -1142,7 +1215,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 			\patternimg{0.113}{exercise_demonoid_ss_via_snarkmakers}
 		\end{center}
 		
-		Explain why this method might be preferable or easier than, for example, just using a zero-degree elbow and no Snarkmakers to synthesize it via gliders coming from the northwest.
+		\noindent Explain why this method might be preferable or easier than, for example, just using a zero-degree elbow and no Snarkmakers to synthesize it via gliders coming from the northwest.
 	\end{problemstar}
 
 
@@ -1228,7 +1301,40 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	
 	
 	\begin{problem}\label{exer:3c14_speed_demonoid}
-		Construct a Speed Demonoid that has a trigger separation of $n = 1{\thousep}767{\thousep}216$~generations and a separation between its two halves of $m = 294{\thousep}536$ full diagonals (we explained in the text that such a Speed Demonoid would have speed $3c/14$).
+		Construct a Speed Demonoid that has a trigger separation of $n = 1{\thousep}767{\thousep}216$~generations and a separation between its two halves of $m = 294{\thousep}536$ full diagonals.
+		
+		\noindent [Side note: we explained in the text that such a Speed Demonoid would have speed $3c/14$.]
+	\end{problem}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:chapman_constructor_why_unhighlighted}
+		The universal constructor displayed in Figure~\ref{fig:chapman_greene_constructor} has a dozen or so unhighlighted still lifes scattered around. What purpose do they serve?
+	\end{problem}
+	% SOLUTION: one-time turners and splitters used to help start and stop the constructor.
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:chapman_constructor_make_hwss}
+		Program the universal constructor displayed in Figure~\ref{fig:chapman_greene_constructor} to synthesize a heavyweight spaceship (instead of an eater~1) via the slow salvo synthesis provided in Exercise~\ref{exer:exercise_hwss_slow_salvo}.
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:snark_spiral_weld}
+		The spiral growth pattern of Figure~\ref{fig:spiral_growth} packs gliders in its central diamond together with $27$hd spacing. Rebuild a smaller version of that pattern by using this Snark weld that allows for $23$hd spacing:
+		
+		\noindent\begin{center}
+			\patternimglink{0.09}{exercise_snark_spiral_weld}
+		\end{center}
+	
+		\noindent [Hint: The glider recipe itself does not need to change at all. Just extract it from the existing spiral growth pattern, reconstruct the plus-sign-shaped arrangement of Snarks, and then feed the glider recipe back in.]
 	\end{problem}
 
 	%% EXERCISE END COMMANDS

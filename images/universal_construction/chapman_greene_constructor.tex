@@ -1,0 +1,61 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\begin{document}
+	\begin{tikzpicture}%
+		\node[inner sep=0pt,anchor=south west] (sd) at (0,0) {\includegraphics[width=12cm]{chapman_greene_constructor.png}};
+
+		% BORDER
+		\draw[gridgray] (0,0) rectangle (12,7.89641618497);
+		\clip (0,0) rectangle (12,7.89641618497);
+		
+		% MEMORY TAPE
+		\draw[color=gray] (3.9,5.03) node[rotate=-45] {\tiny \texttt{memory tape}};
+		\draw[color=gray,dashed] (0.69,7.78) -- (0.81,7.9) -- (5.36,3.35) -- (5.24,3.23) -- cycle;
+		
+		% CIRCLE THE SLIDING BLOCK
+		\draw[white,line width=1.5pt,opacity=0.6](11.87,5.13) circle (0.1);
+		\draw[redback2,line width=0.6pt](11.87,5.13) circle (0.1);
+		
+		% GLIDER PATH ARROWS
+		\draw[color=gray,-stealth] (5.95,1.1) -- (5.45,1.6);
+		\draw[color=gray,-stealth] (0.95,6.1) -- (0.45,6.6);
+		\draw[color=gray,-stealth] (0.15,7.25) -- (0.6,7.7);
+		\draw[color=gray,-stealth] (5.76,2.95) -- (6.22,3.41);
+		\draw[color=gray,-stealth] (10.2,3.24) -- (10.7,3.74);
+
+		% ZOOM TAPE
+			\newcommand\smlx{0.77}
+			\newcommand\smrx{\smlx+0.47}
+			\newcommand\smby{7.36}
+			\newcommand\smty{\smby+0.47}
+			
+			\newcommand\bglx{0.25}
+			\newcommand\bgrx{\bglx+3.75}
+			\newcommand\bgty{4}
+			\newcommand\bgby{\bgty-3.75}
+			
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
+			
+			\node[inner sep=0pt,anchor=north west] (zoom1) at (\bglx,\bgty) {\includegraphics[width=3.75cm]{chapman_greene_zoom.png}};
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (\smrx,\smty) -- (\bgrx,\bgty) -- (\bglx,\bgty) -- (\smlx,\smty) -- (\smlx,\smby) -- (\smrx,\smby) -- cycle;
+			
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\smlx,\smty) rectangle (\smrx,\smby);
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
+			
+			% labels on zoom
+			\draw[color=gray,decorate,decoration={brace,amplitude=3pt}] (0.45,3.93) -- (1.15,3.23) node[midway,rotate=-45,shift={(0.025,0.25)}] {\tiny \texttt{START}};
+			\draw[color=gray] (1.53,3.153) node[rotate=45] {\tiny \texttt{PUSH}};
+			\draw[color=gray] (1.79,2.9) node[rotate=45] {\tiny \texttt{PUSH}};
+			\draw[color=gray] (2.83,2.29) node[rotate=45] {\tiny \texttt{FIRE WHITE}};
+			\draw[color=gray] (3.64,1.45) node[rotate=45] {\tiny \texttt{FIRE WHITE}};
+			\draw[color=gray] (3.7,0.99) node[rotate=45] {\tiny \texttt{PUSH}};
+			\draw[color=gray] (3.83,0.81) node[rotate=45] {\tiny \texttt{$\vdots$}};
+		% END ZOOM TAPE
+ 	\end{tikzpicture}
+\end{document}

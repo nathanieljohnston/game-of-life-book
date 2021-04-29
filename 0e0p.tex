@@ -55,15 +55,15 @@ the eight surrounding cells. Building a metacell that directly emulates Life
 would be highly nontrivial for several reasons:
 
 \begin{itemize}
-\item \textbf{Quantity of neighbours}: each metacell would need to be able to
-construct a copy of itself in up to eight different positions. If both the
-north and east neighbours are present, it may be difficult to manoeuvre a
-construction arm to build the north-east neighbour.
-\item \textbf{Survival}: a cell can live for multiple generations, so its
-logic circuitry would need to be reusable. Reusable circuitry is considerably
-more expensive than single-use circuitry: compare, for instance, the size of
-a boat and a Snark --- the smallest known single-use and reusable stable
-reflector, respectively.
+	\item \textbf{Quantity of neighbours}: each metacell would need to be able to
+	construct a copy of itself in up to eight different positions. If both the
+	north and east neighbours are present, it may be difficult to manoeuvre a
+	construction arm to build the north-east neighbour.
+	\item \textbf{Survival}: a cell can live for multiple generations, so its
+	logic circuitry would need to be reusable. Reusable circuitry is considerably
+	more expensive than single-use circuitry: compare, for instance, the size of
+	a boat and a Snark --- the smallest known single-use and reusable stable
+	reflector, respectively.
 \end{itemize}
 
 One of the main ideas behind the 0E0P metacell is that we can emulate any
@@ -133,12 +133,12 @@ generation of the 2-state 9-neighbour rule (in the usual orientation).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{figure}[htb]
-    \centering
-    \includegraphics[width=\textwidth]{0e0p/0e0p_schematic.pdf}
-    \caption{A schematic for the 0E0P metacell. The symmetrical outer
-    \textbf{shell} is highlighted in pastel green, and the \textbf{nucleus}
-    is highlighted in yellow. The unhighlighted region between them is the
-    \textbf{kernel}.}\label{fig:0e0p_schematic}
+	\centering
+	\includegraphics[width=\textwidth]{0e0p/0e0p_schematic.pdf}
+	\caption{A schematic for the 0E0P metacell. The symmetrical outer
+		\textbf{shell} is highlighted in pastel green, and the \textbf{nucleus}
+		is highlighted in yellow. The unhighlighted region between them is the
+		\textbf{kernel}.}\label{fig:0e0p_schematic}
 \end{figure}
 
 The large-scale structure of the metacell is tripartite, and each of the
@@ -198,10 +198,10 @@ Many metacells---patterns of size larger than $1 \times 1$ that emulate the beha
 \begin{figure}[!htb]
 	\centering
 	\begin{tikzpicture}
-		\node[inner sep=0pt,anchor=south west] at (0,0) {\embedlink{p5760_metacell}{\patternimg{0.15}{p5760_metacell}}};
-		
-		\draw[white,line width=2.5pt,opacity=0.6](2.63,8.15) circle (0.2);
-		\draw[redback2,line width=1pt](2.63,8.15) circle (0.2);
+	\node[inner sep=0pt,anchor=south west] at (0,0) {\embedlink{p5760_metacell}{\patternimg{0.15}{p5760_metacell}}};
+	
+	\draw[white,line width=2.5pt,opacity=0.6](2.63,8.15) circle (0.2);
+	\draw[redback2,line width=1pt](2.63,8.15) circle (0.2);
 	\end{tikzpicture}
 	\caption{The \emph{p$5760$~metacell}. Whether the cell is considered ``alive'' or ``dead'' is determined by the presence or absence of a glider at the location circled in \bgbox{redback}{red}. That glider, if present, is duplicated $8$ times and sent to its neighbors along the $8$ output paths highlighted in \bgbox{aquaback}{aqua}, signaling to them that it is alive. Similarly, neighboring alive cells send their signals to this one along the input paths highlighted in \bgbox{magentaback}{magenta}.}\label{fig:p5760_metacell}
 \end{figure}
@@ -214,18 +214,18 @@ Many metacells---patterns of size larger than $1 \times 1$ that emulate the beha
 	\item[3)] ``Dead'' cells must be placed on the Life plane, which means that, for example, spaceships cannot be emulated by this metacell unless the pattern is infinitely large.\smallskip
 \end{itemize}
 
-The first two of these problems were solved by the \emph{OTCA metapixel},\index{OTCA metapixel} which was constructed by Brice Due from late 2005 to mid-2006. While this metacell is a bit larger and slower than the first metacell (it is $2048 \times 2048$ and has period 35,328), it can be used to emulate any of the $2^{18}$ different outer-totalistic Life-like cellular automata. Indeed, built into its circuitry is an easily-adjustable array of eaters that determine how many live neighboring OTCA metapixels should lead to the birth or survival of the current metapixel (see Figure~\ref{fig:otca_metapixel}). 
+The first two of these problems were solved by the \emph{OTCA metapixel},\index{OTCA metapixel} which was constructed by Brice Due from late 2005 to mid-2006. While this metacell is a bit larger and slower than the first metacell (it is $2048 \times 2048$ and has period $35{\thousep}328$), it can be used to emulate any of the $2^{18}$ different outer-totalistic Life-like cellular automata. Indeed, built into its circuitry is an easily-adjustable array of eaters that determine how many live neighboring OTCA metapixels should lead to the birth or survival of the current metapixel (see Figure~\ref{fig:otca_metapixel}). 
 % Introduce Life-like CA, since no introduction earlier
 % mention out of the blue/honey bit/demultiplexer?
 
 % FIGURE HERE, SHOWING PIXEL AND RULE ENCODINGS
 
-The OTCA metapixel also has the remarkable feature that its alive and dead states look, from a distance, like alive and dead cells. This feature is achieved by the ``alive'' version of the cell releasing $43$ pairs of perpendicular lightweight spaceship streams that mutually annihilate each other, thus partially filling in the otherwise empty center of the metacell. For example, arranging a $1 \times 3$ row of ``alive'' metapixels (and a suitably large ``dead'' array of metapixels around its edges) results in a pattern that looks and evolves like a blinker, but 2,048 times as long and wide and 35,328 times as slow (see Figure~\ref{fig:metablinker}).
+The OTCA metapixel also has the remarkable feature that its alive and dead states look, from a distance, like alive and dead cells. This feature is achieved by the ``alive'' version of the cell releasing $43$ pairs of perpendicular lightweight spaceship streams that mutually annihilate each other, thus partially filling in the otherwise empty center of the metacell. For example, arranging a $1 \times 3$ row of ``alive'' metapixels (and a suitably large ``dead'' array of metapixels around its edges) results in a pattern that looks and evolves like a blinker, but $2{\thousep}048$ times as long and wide and $35{\thousep}328$ times as slow (see Figure~\ref{fig:metablinker}).
 
 \begin{figure}[!htb]
 	\centering
-	\embedlink{metablinker}{\vcenteredhbox{\patternimg{0.104}{metablinker_0}} \vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{5}{46} 35,328}}$}} \vcenteredhbox{\patternimg{0.104}{metablinker_35328}}}
-	\caption{A \emph{meta-blinker}: an arrangement of OTCA metapixels that emulates a blinker, but with period $2 \times 35,328$.}\label{fig:metablinker}\index{meta-blinker}
+	\embedlink{metablinker}{\vcenteredhbox{\patternimg{0.104}{metablinker_0}} \vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{5}{46} 35328}}$}} \vcenteredhbox{\patternimg{0.104}{metablinker_35328}}}
+	\caption{A \emph{meta-blinker}: an arrangement of OTCA metapixels that emulates a blinker, but with period $2 \times 35{\thousep}328$.}\label{fig:metablinker}\index{meta-blinker}
 \end{figure}
 
 The next notable metacell to be constructed was the \emph{p1 megacell},\index{p1 megacell} by Adam P.~Goucher in 2008. This metacell was, again, larger and slower than the metacells that came before it, with a bounding box of $2^{15} \times 2^{15}$ and a period of $2^{24}$. The new features this time that warranted the extra size and delay were twofold:\smallskip
@@ -249,24 +249,24 @@ Finally, Adam P.~Goucher spent 2014--2018 constructing the 0E0P metapixel, which
 \label{sec:solutions_0e0p}
 \addcontentsline{toc}{section}{Exercises}
 \vspace*{-0.4cm}\hrulefill\vspace*{-0.3cm}\footnotesize\begin{multicols}{2}\vspace*{-0.4cm}\raggedcolumns\interlinepenalty=10000
-\setlength{\parskip}{0pt}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\begin{problem}\label{exer:0e0p_ex1}
-	An exercise could be placed here.
-\end{problem}
-
-
-\mfilbreak
-
-
-\begin{problem}\label{exer:0e0p_ex2}
-	Another exercise could be placed here.
-\end{problem}
-
-
-%% EXERCISE END COMMANDS
+	\setlength{\parskip}{0pt}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	
+	\begin{problem}\label{exer:0e0p_ex1}
+		An exercise could be placed here.
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:0e0p_ex2}
+		Another exercise could be placed here.
+	\end{problem}
+	
+	
+	%% EXERCISE END COMMANDS
 \end{multicols}
 \normalsize\vspace*{0.01cm}
 %% DONE EXERCISE END COMMANDS
