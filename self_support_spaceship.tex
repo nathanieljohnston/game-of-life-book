@@ -262,7 +262,7 @@ If we use two copies of this entire sequence of rakes and rephasers (since we ne
 
 % Nivasch article: http://www.gabrielnivasch.org/fun/life/caterpillar
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{The Caterpillar}\label{sec:caterpillar}
+\section{The Caterpillar}\label{sec:caterpillar}\index{caterpillar}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 We saw another reaction that can be used to construct a self-supporting spaceship way back in Figure~\ref{fig:17c45_reaction}: a blinker can be used to move a pi-heptomino forward by $17$~cells over the course of $45$~generations (while just repositioning, not destroying, the blinker). By placing a row of blinkers with a spacing of $17$~cells as in Figure~\ref{fig:reburnable_blinker_wick}, we thus get a reburnable blinker wick that a pi-heptomino can burn through.
@@ -282,13 +282,25 @@ To this end, we need a way of constructing the blinkers in front of the pi-hepto
 Most of the details of this construction are quite similar to what they were for the $31c/240$ silverfish, so we omit many of the details. Instead, we just focus on two parts of the construction where the details do change considerably.
 
 
-\subsection{Pi Crawler Rakes}\label{sec:caterpillar_pi_rakes}
+\subsection{Pi Crawler Rakes}\label{sec:caterpillar_pi_rakes}\index{pi crawler}
 
 The first key difference between the Herschel crawler of Figure~\ref{fig:31c_240_herschel_pair} and the pi crawler that we are now using is that the pi crawler does not emit any gliders on its own. Fortunately, it does create a large spark, and we can collide two of those sparks without much effort so as to create a backward rake, as in Figure~??. A forward rake...
 
 % FIGURE
 
 % Have a section on helices here. Note that they are required when the reaction moves faster than c/4 (like here, but unlike Silverfish)
+
+
+\subsection{Helices}\label{sec:caterpillar_helices}\index{helix}
+
+Stuff.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Caterloopillars}\label{sec:caterloopillar}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Stuff.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -303,9 +315,25 @@ Provide the key reactions here. Maybe one quick section for each.
 \section{Notes and Historical Remarks}\label{sec:self_support_history}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Despite its monstrous size, the silverfish displayed in Figure~\ref{fig:silverfish} is currently the smallest $31c/240$ orthogonal spaceship known in Life. About six years prior to its construction---in September 2014---two other spaceships of this same speed were built using most of the same reactions. These spaceships, called the centipede\footnote{Constructed by Chris Cain.}\index{centipede} and the shield bug,\footnote{Constructed by Dave Greene.}\index{shield bug} are displayed in Figure~\ref{fig:centipede_shield_bug}. When measuring size according to number of live cells, they are roughly $3$ and $16$ times as large as the silverfish, respectively.
+Despite its monstrous size, the silverfish displayed in Figure~\ref{fig:silverfish} is currently the smallest $31c/240$ orthogonal spaceship known in Life. About six years prior to its construction, two other spaceships of this same speed were built using most of the same reactions. These spaceships, called the shield bug\index{shield bug} and the centipede,\footnote{The shield bug and centipede were completed on the same day---September 4, 2014---by Dave Greene and Chris Cain, respectively, with help from Kiho Park, Chris Cain, Ivan Fomichev and Adam P.~Goucher.}\index{centipede} are displayed in Figure~\ref{fig:centipede_shield_bug}. When measuring size according to number of live cells, they are roughly $16$ and $3$ times as large as the silverfish, respectively.
 
-% FIGURE
+\begin{figure}[!htbp]
+	\centering
+	\begin{tabular}{@{}cc@{}}
+		\begin{subfigure}{0.5333\textwidth}
+			\embedlink{shield_bug}{\includegraphics[width=\textwidth]{self_support_spaceships/shield_bug.pdf}}
+			\caption{The \emph{shield bug}, travelling to the left.}\label{fig:shield_bug}
+			\label{fig:shield_bug}
+		\end{subfigure} &
+		\begin{subfigure}{0.4267\textwidth}
+			\centering
+			\embedlink{centipede}{\includegraphics[width=\textwidth]{self_support_spaceships/centipede.pdf}}
+			\caption{The \emph{centipede}, travelling up.}\label{fig:centipede}
+		\end{subfigure}
+	\end{tabular}
+	\caption{A pair of (huge) $31c/240$ spaceships based on the same Herschel-crawling reaction as the silverfish. They each use six block tracks that carry Herschel-based rakes down their center, and the same double-HWSS slow salvo synthesis on their sides to stabilize the front end.}
+	\label{fig:centipede_shield_bug}
+\end{figure}
 
 % 3c/10 reaction (ref figure in chapter 1), why it hasn't worked yet. See Dave's write-up at https://www.conwaylife.com/forums/viewtopic.php?f=15&t=3427
 

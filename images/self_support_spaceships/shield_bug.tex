@@ -1,0 +1,84 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\begin{document}
+	\begin{tikzpicture}%
+		\node[inner sep=0pt,anchor=south west] (rp) at (0,0) {\includegraphics[width=4.5cm]{shield_bug.png}};
+		
+		% BORDER
+		\draw[gridgray] (-0.5,0) rectangle (4.5,13.9659);
+		\clip (-0.5,0) rectangle (4.5,13.9659);
+			
+		% ZOOM BOX
+			\newcommand\smlx{3.1}
+			\newcommand\smrx{\smlx+0.1}
+			\newcommand\smby{6.93}
+			\newcommand\smty{\smby+0.1}
+			
+			\newcommand\bglx{2}
+			\newcommand\bgrx{\bglx+2.25}
+			\newcommand\bgty{13.7159}
+			\newcommand\bgby{\bgty-2.25}
+			
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
+			
+			\node[inner sep=0pt,anchor=north west] (zoom1) at (\bglx,\bgty) {\includegraphics[width=2.25cm]{shield_bug_zoom.png}};
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (\smrx,\smty) -- (\smlx,\smty) -- (\smlx,\smby) -- (\bglx,\bgby) -- (\bgrx,\bgby) -- (\smrx,\smby) -- cycle;
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\smlx,\smty) rectangle (\smrx,\smby);
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
+		% END ZOOM BOX
+		
+		% ZOOM BOX FRONT
+			\renewcommand\smlx{1.83}
+			\renewcommand\smrx{\smlx+0.075}
+			\renewcommand\smby{6.93}
+			\renewcommand\smty{\smby+0.1}
+			
+			\renewcommand\bglx{-0.25}
+			\renewcommand\bgrx{\bglx+1.5}
+			\renewcommand\bgty{8}
+			\renewcommand\bgby{\bgty-2}
+			
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
+			
+			\node[inner sep=0pt,anchor=north west] (zoom2) at (\bglx,\bgty) {\includegraphics[width=1.5cm]{shield_bug_zoom2.png}};
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (\smrx,\smty) -- (\smlx,\smty) -- (\smlx,\smby) -- (\smrx,\smby) -- (\bgrx,\bgby) -- (\bgrx,\bgty) -- cycle;
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\smlx,\smty) rectangle (\smrx,\smby);
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
+		% END ZOOM BOX FRONT
+		
+		% ZOOM BOX HWSS
+			\renewcommand\smlx{0.4}
+			\renewcommand\smrx{\smlx+0.1}
+			\renewcommand\smby{0.03}
+			\renewcommand\smty{\smby+0.1}
+			
+			\renewcommand\bglx{2}
+			\renewcommand\bgrx{\bglx+2.25}
+			\renewcommand\bgty{2.5}
+			\renewcommand\bgby{\bgty-2.25}
+			
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
+			
+			\node[inner sep=0pt,anchor=north west] (zoom3) at (\bglx,\bgty) {\includegraphics[width=2.25cm]{shield_bug_zoom3.png}};
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (\smrx,\smty) -- (\smlx,\smty) -- (\bglx,\bgty) -- (\bglx,\bgby) -- (\bgrx,\bgby) -- (\smrx,\smby) -- cycle;
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\smlx,\smty) rectangle (\smrx,\smby);
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
+		% END ZOOM BOX HWSS
+	\end{tikzpicture}
+\end{document}

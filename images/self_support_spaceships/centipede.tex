@@ -1,0 +1,84 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\begin{document}
+	\begin{tikzpicture}%
+		\node[inner sep=0pt,anchor=south west] (rp) at (3.12303093327,0) {\includegraphics[width=1.37696906673cm]{centipede.png}};
+		
+		% BORDER
+		\draw[gridgray] (0.5,0) rectangle (4.5,13.9659);
+		\clip (0.5,0) rectangle (4.5,13.9659);
+		
+		% ZOOM BOX FRONT
+			\newcommand\smlx{3.765}
+			\newcommand\smrx{\smlx+0.1}
+			\newcommand\smby{13.72}
+			\newcommand\smty{\smby+0.1}
+			
+			\newcommand\bglx{0.75}
+			\newcommand\bgrx{\bglx+2.25}
+			\newcommand\bgty{13.7159}
+			\newcommand\bgby{\bgty-2.25}
+			
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
+			
+			\node[inner sep=0pt,anchor=north west] (zoom2) at (\bglx,\bgty) {\includegraphics[width=2.25cm]{centipede_zoom2.png}};
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (\smrx,\smby) -- (\smlx,\smby) -- (\smlx,\smty) -- (\bglx,\bgty) -- (\bgrx,\bgty) -- (\bgrx,\bgby) -- cycle;
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\smlx,\smty) rectangle (\smrx,\smby);
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
+		% END ZOOM BOX FRONT
+			
+		% ZOOM BOX 1
+			\renewcommand\smlx{3.765}
+			\renewcommand\smrx{\smlx+0.1}
+			\renewcommand\smby{6.79}
+			\renewcommand\smty{\smby+0.1}
+			
+			\renewcommand\bglx{0.75}
+			\renewcommand\bgrx{\bglx+2.25}
+			\renewcommand\bgty{7.9}
+			\renewcommand\bgby{\bgty-2.25}
+			
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
+			
+			\node[inner sep=0pt,anchor=north west] (zoom1) at (\bglx,\bgty) {\includegraphics[width=2.25cm]{centipede_zoom1.png}};
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (\smrx,\smty) -- (\smlx,\smty) -- (\smlx,\smby) -- (\smrx,\smby) -- (\bgrx,\bgby) -- (\bgrx,\bgty) -- cycle;
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\smlx,\smty) rectangle (\smrx,\smby);
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
+		% END ZOOM BOX 1
+		
+		% ZOOM BOX BOTTOM
+			\renewcommand\smlx{3.14}
+			\renewcommand\smrx{\smlx+0.1}
+			\renewcommand\smby{2.98}
+			\renewcommand\smty{\smby+0.1}
+			
+			\renewcommand\bglx{0.75}
+			\renewcommand\bgrx{\bglx+2.25}
+			\renewcommand\bgty{2.5}
+			\renewcommand\bgby{\bgty-2.25}
+			
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
+			
+			\node[inner sep=0pt,anchor=north west] (zoom1) at (\bglx,\bgty) {\includegraphics[width=2.25cm]{centipede_zoom3.png}};
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (\smlx,\smty) -- (\smlx,\smby) -- (\smrx,\smby) -- (\bgrx,\bgby) -- (\bgrx,\bgty) -- (\bglx,\bgty) -- cycle;
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\smlx,\smty) rectangle (\smrx,\smby);
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
+		% END ZOOM BOX BOTTOM
+	\end{tikzpicture}
+\end{document}
