@@ -282,25 +282,50 @@ To this end, we need a way of constructing the blinkers in front of the pi-hepto
 Most of the details of this construction are quite similar to what they were for the $31c/240$ silverfish, so we omit many of the details. Instead, we just focus on two parts of the construction where the details do change considerably.
 
 
-\subsection{Pi Crawler Rakes}\label{sec:caterpillar_pi_rakes}\index{pi crawler}
+\subsection{Pi-Crawler Rakes}\label{sec:caterpillar_pi_rakes}\index{pi crawler}
 
-The first key difference between the Herschel crawler of Figure~\ref{fig:31c_240_herschel_pair} and the pi crawler that we are now using is that the pi crawler does not emit any gliders on its own. Fortunately, it does create a large spark, and we can collide two of those sparks without much effort so as to create a backward rake, as in Figure~??. A forward rake...
+The first key difference between the Herschel crawler of Figure~\ref{fig:31c_240_herschel_pair} and the pi crawler that we are now using is that the pi crawler does not emit any gliders on its own. Fortunately, it does create a large spark, and we can collide two of those sparks without much effort so as to create a backward rake, as illustrated in Figure~\ref{fig:pi_backward_rake}. Creating a forward rake that travels along this same pair of blinker tracks is a bit trickier, but can be done via six pi crawlers (three per track), as in Figure~\ref{fig:pi_forward_rake}.
 
-% FIGURE
+\begin{figure}[!htbp]
+	\centering
+	\begin{tabular}{@{}cc@{}}
+		\begin{subfigure}{0.44\textwidth}
+			\patternimglink{0.099}{pi_backward_rake}
+			\caption{A backward pi-crawler rake.}\label{fig:pi_backward_rake}
+		\end{subfigure} &
+		\begin{subfigure}{0.535\textwidth}
+			\patternimglink{0.099}{pi_forward_rake}
+			\caption{A forward pi-crawler rake.}\label{fig:pi_forward_rake}
+		\end{subfigure}
+	\end{tabular}
+	\caption{A pair of p$45$ (a) backward and (b) forward rakes that crawl along a pair of blinker tracks that are separated by $32$~cells.}\label{fig:pi_rakes}
+\end{figure}
 
-% Have a section on helices here. Note that they are required when the reaction moves faster than c/4 (like here, but unlike Silverfish)
+While the blinker tracks that these rakes use have the same spacing as each other ($32$ cells), the relative phases of those blinker tracks are different. As a result, it is not possible to place a forward rake directly behind a backward rake, or vice-versa, unless we rephase one of the tracks. Fortunately, we can always properly rephase the tracks by simply inserting additional pi crawlers on one of them, since $\mathrm{gcd}(11,34) = 1$.\footnote{This is directly analogous to how we could always properly rephase the six-block track in the silverfish since $\mathrm{gcd}(9,31) = 1$.}
+
+With that technicality out of the way, we can then place a forward rake on the same pair of tracks behind a backward rate so that their gliders collide and synthesize other objects. For example, we can use these rakes to synthesize and/or destroy additional blinker tracks, as illustrated in Figure~\ref{fig:blinker_trail_synth}. We can then use those additional blinker tracks to help us synthesize more complicated objects, like xWSSes, which is just as important here as it was for the silverfish.
+
+\begin{figure}[!htbp]
+	\centering
+	\patternimglink{0.11}{blinker_trail_synth}
+	\caption{A backward rake (highlighted in \bgbox{aquaback}{aqua}) followed by fourteen rephaser pis (highlighted in \bgbox{yellowback2}{yellow}) that allow a forward rake (highlighted in \bgbox{greenpastel}{green}) to use the same pair of blinker tracks. Those two rakes synthesize a parallel blinker track, which is then destroyed by a third rake (highlighted in \bgbox{magentaback}{magenta}).}\label{fig:blinker_trail_synth}
+\end{figure}
+
+% A few more and they can destroy their own back-ends.
+
+% Uses 40 blinker tracks, but only first 2 are hard to make (just like silverfish)
+
+% Exercise: tweak this track-laying configuration to move blinker trail (x lanes) to the side
+% Exercise: tweak this track-laying configuration to make something like eater 1 instead of blinker (make sure it's synthable via two gliders from same side, not antiparallel)
+% Exercise: synth a pi behind the block trail so that it crawls on it
+% Exercise: synth a row of ships (solution: inc synth starting with blinkers)
 
 
 \subsection{Helices}\label{sec:caterpillar_helices}\index{helix}
 
 Stuff.
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Caterloopillars}\label{sec:caterloopillar}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Stuff.
+% Have a section on helices here. Note that they are required when the reaction moves faster than c/4 (like here, but unlike Silverfish)
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -308,6 +333,15 @@ Stuff.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Provide the key reactions here. Maybe one quick section for each.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Caterloopillars}\label{sec:caterloopillar}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Stuff.
+% Script is here: https://www.conwaylife.com/forums/viewtopic.php?p=30104#p30089
+% Display the 98c/2156 = c/22 one.
 
 
 
@@ -323,7 +357,6 @@ Despite its monstrous size, the silverfish displayed in Figure~\ref{fig:silverfi
 		\begin{subfigure}{0.5333\textwidth}
 			\embedlink{shield_bug}{\includegraphics[width=\textwidth]{self_support_spaceships/shield_bug.pdf}}
 			\caption{The \emph{shield bug}, travelling to the left.}\label{fig:shield_bug}
-			\label{fig:shield_bug}
 		\end{subfigure} &
 		\begin{subfigure}{0.4267\textwidth}
 			\centering
@@ -465,6 +498,14 @@ Despite its monstrous size, the silverfish displayed in Figure~\ref{fig:silverfi
 		\end{enumerate}
 	\end{problem}
 	% SOLUTION: https://www.conwaylife.com/forums/viewtopic.php?f=2&t=1274&start=375#p98847
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:pi_forward_rake_break_apart}
+		Break down the forward rake from Figure~\ref{fig:pi_forward_rake}, which is made up of six pi crawlers, into separate non-interacting pieces that each consist of fewer pi crawlers.
+	\end{problem}
 	
 	%% EXERCISE END COMMANDS
 \end{multicols}
