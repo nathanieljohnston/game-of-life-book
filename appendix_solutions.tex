@@ -964,6 +964,17 @@
 			
 			\item Even though this rake is more efficient than the equivalent one given in Table~\ref{tab:silverfish_forward_rakes} (8 rephasers followed by \texttt{R6L6}), we do not ever use a lane~16 rake building silverfish. Furthermore, lane~16 is the \emph{only} one improved by \texttt{R2L16} -- all other lanes can be fired on more efficiently by \texttt{R2L25}.\\
 		\end{enumerate}
+	
+
+		\item[\bf\color{ocre}\sffamily\ref{exer:two_pi_tracks_synth_spacing}] \begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+			\item $17$.
+			
+			\item $23$ (plus any non-negative integer multiple of $17$, depending on the spacing specifics of the reader's construction, so other possible answers include $40$, and $57$, and so on).
+			
+			\item Repeating the method of part~(a) $x$ times lets us synthesize a blinker track that is $17x$ cells farther away than the track from Figure~\ref{fig:blinker_trail_synth}, and repeating the method of part~(b) $y$ times lets us synthesize a blinker track that is $23y$ cells farther away. The number of cells between these two blinker tracks is $17x - 23y$. Since $\mathrm{gcd}(17,23) = 1$, we know from B\'ezout's identity (Theorem~\ref{thm:linear_diophantine}) that for any spacing $c$ of our choosing, we can find positive integers $x$ and $y$ so that $17x - 23y = c$.
+			
+			\item Use two copies of configuration from Figure~\ref{fig:blinker_trail_synth} on the same pair of blinker tracks. In one of them, move the forward rake back by $13\times 34$ generations, which makes the synthesized blinker trail $13 \times 17 = 221$ cells farther away. In the other one, insert $11 \times 2$ extra rephasers on each track, which makes the synthesized blinker trail $11 \times 23 = 253$ cells farther away. The spacing between these tracks is $253 - 221 = 32$ cells, as desired.\\
+		\end{enumerate}
 	\end{itemize}
 \end{multicols}
 
