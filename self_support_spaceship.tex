@@ -320,10 +320,82 @@ Just as was the case with the silverfish, synthesizing the front of the track is
 
 The way around this problem is to use a \emph{helix}, which...
 
+% introduce idea here of burning from end of xWSS streams, instead of firing something at them to extract a glider
+
+\begin{figure}[!htb]
+	\centering
+	\begin{subfigure}[b]{0.475\textwidth}
+		\centering
+		\embedlink{helix_operations}{\vcenteredhbox{\patternimg{0.12}{helix_shift_0}} \vcenteredhbox{\genarrow{20}} \vcenteredhbox{\patternimg{0.12}{helix_shift_20}}}
+		\caption{Shifting a glider by $(10,13)$ in $20$ generations.}\label{fig:helix_shift}
+	\end{subfigure} \quad \ \ \begin{subfigure}[b]{0.475\textwidth}
+		\centering
+		\patternlink{helix_operations}{\vcenteredhbox{\patternimg{0.134}{helix_reflect_0}} \vcenteredhbox{\genarrow{23}} \vcenteredhbox{\patternimg{0.134}{helix_reflect_23}}}
+		\caption{Reflecting a glider in $23$ generations.}\label{fig:helix_reflect}
+	\end{subfigure}\\[0.3cm]
+	\begin{subfigure}[b]{\textwidth}
+		\centering
+		\patternlink{helix_operations}{\vcenteredhbox{\patternimg{0.1}{helix_duplicate_0}} \vcenteredhbox{\genarrow{8}} \vcenteredhbox{\patternimg{0.1}{helix_duplicate_8}} \vcenteredhbox{\genarrow{38}} \vcenteredhbox{\patternimg{0.1}{helix_duplicate_46}}}
+		\caption{Reflecting a glider in $46$ generations, while duplicating it. Delaying the final pair of xWSSes delays the output gliders by the same amount, without affecting their position.}\label{fig:helix_duplicate}
+	\end{subfigure}
+	\caption{Some methods of colliding a glider with xWSS flotillae so as to (a) move the glider, (b) reflect it, and (c) duplicate it. Sparks displayed in \bgbox{redback}{red} die off shortly.}\label{fig:helix_operations}
+\end{figure}
+
 % Because of the massive number of xWSSes that need to be synthesized in this helix, the caterpillar ends be being absolutely monstrously large, even compared to the already-huge silverfish. 
 % Silverfish only needed 2xWSSes on each side. Caterpillar needs how many? Then figure.
 
 % Uses 40 blinker tracks, but only first 2 are hard to make (just like silverfish)
+% The period of the helix is 270 = 6*45, which is the reason for the 6x logic and the fact that the caterpillar is p270 instead of p45
+
+\begin{theorem}[Universality of Orthogonal Helices]\label{thm:universality_orthogonal_helices}
+	The three reactions from Figure~\ref{fig:helix_operations} can be used to create an orthogonal helix, which fires gliders forward on one side, with any rational speed slower than $c/2$.
+\end{theorem}
+
+\begin{proof}
+	Consider a helix, like the one displayed in Figure~??, that uses the reflection flotilla (from Figure~\ref{fig:helix_reflect}) on one side, the reflection-and-duplication flotilla (from Figure~\ref{fig:helix_duplicate}) on the other side, and $n$ glider-shifting flotillae (from Figure~\ref{fig:helix_shift}) in each direction in between these sides (so $n = 4$ in the helix that we have already seen).
+	
+	Suppose we also let the glider travel on its own a total of $m$ cells in each direction of the helix, undisturbed by those three xWSS-based reactions. Finally, delay the final xWSS pair in the reflection-and-duplication flotilla by $\ell$ generations from what is shown in Figure~\ref{fig:helix_duplicate}, so that it takes $46 + \ell$ generations for the output gliders to reach the indicated positions.
+	
+	% Draw figure/schematic?
+	
+	The resulting helix moves the glider forward orthogonally by $20n + 2m + 12$ cells over the course of $40n + 8m + \ell + 69$ generations:\smallskip
+	
+	\begin{itemize}
+		\item The sides, taken together, move the glider forward by $12$~cells over the course of $23 + (46 + \ell) = 69 + \ell$ generations.\smallskip
+		
+		\item The central glider-shifting flotillae each move the glider forward by $10$ cells over the course of $20$ generations. Since there are $2n$ such flotillae ($n$ in each direction), they move the glider forward by $20n$~cells over the course of $40n$ generations.\smallskip
+		
+		\item Each of the $m$ cells that the glider moves outside of flotillae reactions in each direction (so $2m$ cells orthogonally in total) takes $4$~generations to traverse, for a total of $8m$~generations.\smallskip
+	\end{itemize}
+
+	This helix thus travels at a speed of
+	\[
+		\frac{(20n + 2m + 12)c}{40n + 8m + \ell + 69}.
+	\]
+	To create such a helix with speed $(p/q)c$, where $p$ and $q$ are arbitrary positive integers with $p/q < 1/2$, we define
+	\[
+		\ell = 80(q - 2p) - 61, \qquad m = 4, \qquad \text{and} \qquad n = 4p - 1.
+	\]
+	% Put footnote back in
+	
+	The fact that $\ell$, $m$, and $n$ are non-negative integers when $p/q < 1/2$ (i.e., $q - 2p \geq 1$) is clear. It is also straightforward (albeit somewhat tedious) to verify that
+	\begin{align*}
+		\frac{20n + 2m + 12}{40n + 8m + \ell + 69} & = \frac{20(4p - 1) + 8 + 12}{40(4p - 1) + 32 + (80(q - 2p) - 61) + 69} \\
+		& = \frac{80p}{80q} = \frac{p}{q}, \\
+	\end{align*}
+	which completes the proof.
+	% TODO: Bake m right into the reflectors on the edges!! Add 2 extra cells of movement to each of them. If you do this, add footnote earlier that they can be squeezed tighter, but this makes a calculation simpler later.
+	
+	% Can be made close to c/2 by using more shifters, close to c/4 by using more regular glider travel time
+	% Can get speeds closer than c/4 by increasing s a lot.
+	% Footnote that existence can be shown via Bezout's identity too
+\end{proof}
+
+% Note that this theorem uses s = 19 and other big numbers, but can often get away with much smaller values. For example, caterpillar uses s = 1, m = 4, and n = 6.
+
+% Note that we can create oblique helices too (will see one with the waterbear, for example). Can we make all oblique velocities?
+% Exercise: there is another unused two-part helix reflector at http://www.gabrielnivasch.org/fun/life/caterpillar   Do something with it? And maybe waterbear helices?
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
