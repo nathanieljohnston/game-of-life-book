@@ -316,85 +316,82 @@ We can thus use a single pair of blinker tracks to create as many additional pai
 
 \subsection{Helices}\label{sec:caterpillar_helices}\index{helix}
 
-Just as was the case with the silverfish, synthesizing the front of the track is the most complicated part of the caterpillar. Our goal is to use rakes on blinker track pairs to synthesize xWSSes that reach out in front of the blinker tracks so as to then synthesize the blinker track pairs at the front. However, there is one additional wrinkle here that was not present in the silverfish: because the $17c/45$ reaction that we are using travels faster than $c/4$,\footnote{Unlike the $31c/240$ reaction at the heart of the silverfish, which is slower than $c/4$.} we cannot fire gliders forward at those xWSSes to change their direction (we used this trick from Figure~\ref{fig:g_2h_to_m} at the top-right corner of the silverfish in Figure~\ref{fig:silverfish}).
+Just as was the case with the silverfish, synthesizing the front of the track is the trickiest part of the caterpillar. Our goal is to use rakes on blinker track pairs to synthesize xWSSes that reach out in front so as to then synthesize the front of the first pair of blinker tracks. However, there is one additional wrinkle here that was not present in the silverfish: because the $17c/45$ reaction that we are using travels faster than $c/4$,\footnote{Unlike the $31c/240$ reaction at the heart of the silverfish, which is slower than $c/4$.} we cannot fire gliders forward at those xWSSes to change their direction (we used this trick from Figure~\ref{fig:g_2h_to_m} at the top-right corner of the silverfish in Figure~\ref{fig:silverfish}).
 
-The way around this problem is to use a \emph{helix}, which...
-
-% introduce idea here of burning from end of xWSS streams, instead of firing something at them to extract a glider
+The way around this problem is to use a \emph{helix}:\footnote{The name ``helix'' comes from the helical shape that these patterns often end up having---see the upcoming Figure~\ref{fig:caterpillar_helix}.} a configuration of xWSSes that has a burning front end that causes it to (a) travel at a speed slower than $c/2$ (in our case, we want a speed of $17c/45$), and (b) fire gliders off to at least one side. One way to make a helix is to have a glider do the burning---the three reactions displayed in Figure~\ref{fig:helix_operations} show how a glider can destroy and be repositioned (and possibly duplicated) by small xWSS flotillae.\footnote{These reactions were found by Paul Callahan's \emph{gencols} search program---see \httpsurl{conwaylife.com/wiki/LifeWiki:Life_links\#Downloadable_Computation_and/or_Search_Software}.}\index{gencols}
 
 \begin{figure}[!htb]
 	\centering
 	\begin{subfigure}[b]{0.475\textwidth}
 		\centering
-		\embedlink{helix_operations}{\vcenteredhbox{\patternimg{0.12}{helix_shift_0}} \vcenteredhbox{\genarrow{20}} \vcenteredhbox{\patternimg{0.12}{helix_shift_20}}}
+		\embedlink{helix_operations}{\vcenteredhbox{\patternimg{0.125}{helix_shift_0}} \vcenteredhbox{\genarrow{20}} \vcenteredhbox{\patternimg{0.125}{helix_shift_20}}}
 		\caption{Shifting a glider by $(10,13)$ in $20$ generations.}\label{fig:helix_shift}
-	\end{subfigure} \quad \ \ \begin{subfigure}[b]{0.475\textwidth}
+	\end{subfigure} \quad \ \ \ \begin{subfigure}[b]{0.475\textwidth}
 		\centering
-		\patternlink{helix_operations}{\vcenteredhbox{\patternimg{0.134}{helix_reflect_0}} \vcenteredhbox{\genarrow{23}} \vcenteredhbox{\patternimg{0.134}{helix_reflect_23}}}
-		\caption{Reflecting a glider in $23$ generations.}\label{fig:helix_reflect}
+		\patternlink{helix_operations}{\vcenteredhbox{\patternimg{0.11316568047}{helix_reflect_0}} \vcenteredhbox{\genarrow{39}} \vcenteredhbox{\patternimg{0.11316568047}{helix_reflect_39}}}
+		\caption{Reflecting a glider in $39$ generations.}\label{fig:helix_reflect}
 	\end{subfigure}\\[0.3cm]
 	\begin{subfigure}[b]{\textwidth}
 		\centering
-		\patternlink{helix_operations}{\vcenteredhbox{\patternimg{0.1}{helix_duplicate_0}} \vcenteredhbox{\genarrow{8}} \vcenteredhbox{\patternimg{0.1}{helix_duplicate_8}} \vcenteredhbox{\genarrow{38}} \vcenteredhbox{\patternimg{0.1}{helix_duplicate_46}}}
-		\caption{Reflecting a glider in $46$ generations, while duplicating it. Delaying the final pair of xWSSes delays the output gliders by the same amount, without affecting their position.}\label{fig:helix_duplicate}
+		\patternlink{helix_operations}{\vcenteredhbox{\patternimg{0.1}{helix_duplicate_0}} \vcenteredhbox{\genarrow{8}} \vcenteredhbox{\patternimg{0.1}{helix_duplicate_8}} \vcenteredhbox{\genarrow{54}} \vcenteredhbox{\patternimg{0.1}{helix_duplicate_62}}}
+		\caption{Reflecting a glider in $62$ generations, while duplicating it. Delaying the final pair of xWSSes delays the output gliders by the same amount, without affecting their position.}\label{fig:helix_duplicate}
 	\end{subfigure}
-	\caption{Some methods of colliding a glider with xWSS flotillae so as to (a) move the glider, (b) reflect it, and (c) duplicate it. Sparks displayed in \bgbox{redback}{red} die off shortly.}\label{fig:helix_operations}
+	\caption{Some methods of colliding a glider with xWSS flotillae so as to (a) move the glider, (b) reflect it, and (c) duplicate it. The spark displayed in \bgbox{redback}{red} dies off in another 9~generations.}\label{fig:helix_operations}
 \end{figure}
 
-% Because of the massive number of xWSSes that need to be synthesized in this helix, the caterpillar ends be being absolutely monstrously large, even compared to the already-huge silverfish. 
-% Silverfish only needed 2xWSSes on each side. Caterpillar needs how many? Then figure.
+By stringing these reactions together, we can create helices that a glider burns through at any speed of our choosing. For example, the helix displayed in Figure~\ref{fig:caterpillar_helix} takes $270$~generations to push a glider forward orthogonally by $102$~cells, giving it a speed of $102c/270 = 17c/45$---exactly the speed that we need for the caterpillar spaceship.
 
-% Uses 40 blinker tracks, but only first 2 are hard to make (just like silverfish)
-% The period of the helix is 270 = 6*45, which is the reason for the 6x logic and the fact that the caterpillar is p270 instead of p45
+\begin{figure}[!htb]
+	\centering
+	\embedlink{caterpillar_helix}{\includegraphics[width=\textwidth]{self_support_spaceships/caterpillar_helix.pdf}}
+	\caption{A $102c/270 = 17c/45$ helix that is used by the caterpillar spaceship. Four of the glider-shifting flotillae (highlighted in \bgbox{yellowback2}{yellow}) move the glider south, the flotilla highlighted in \bgbox{greenpastel}{green} reflects it and produces an extra glider to the southeast, four more of the glider-shifting flotillae (highlighted in \bgbox{orangeback2}{orange}) move the glider back north, and then the flotilla highlighted in \bgbox{aquaback}{aqua} reflects it back to the south. This sequence of 21 xWSSes then repeats indefinitely.}\label{fig:caterpillar_helix}
+\end{figure}
+
+It was not just a lucky coincidence that we were able to create a helix of the desired $17c/45$ speed via these three reactions---we can use them to make an orthogonal helix with the same basic shape as the one from Figure~\ref{fig:caterpillar_helix} that travels at any rational speed slower than $c/2$. To see this, suppose we delay the final xWSS pair in the reflection-and-duplication flotilla by $n$~generations from what is shown in Figure~\ref{fig:helix_duplicate}, so that it takes $62 + n$ generations for the output gliders to reach the indicated positions, and we use $m$ of the glider-shifting flotillae in each direction (so that $m = 4$ in Figure~\ref{fig:caterpillar_helix}). The resulting helix moves the glider forward orthogonally by $20m + 20$ cells over the course of $40m + n + 101$ generations:\smallskip
+
+\begin{itemize}
+	\item The top and bottom sides, taken together, move the glider forward by $20$~cells over the course of $39 + (62 + n) = 101 + n$ generations.\smallskip
+	
+	\item The central glider-shifting flotillae each move the glider forward by $10$ cells over the course of $20$ generations. Since there are $2m$ such flotillae ($m$ in each direction), they move the glider forward by $20m$~cells over the course of $40m$ generations.\smallskip
+\end{itemize}
+
+This helix thus travels at a speed of
+\[
+	\frac{(20m + 20)c}{40m + n + 101}.
+\]
+To create such a helix with speed $(p/q)c$, where $p$ and $q$ are arbitrary positive integers with $p/q < 1/2$, we can simply choose
+\begin{align}\label{eq:orth_helix_parameters}
+	m = 4p - 1 \qquad \text{and} \qquad n = 80(q - 2p) - 61.
+\end{align}
+The fact that $m$ is a non-negative integer is clear, and $n$ being a non-negative integer follows from the fact that $p/q < 1/2$, so $q - 2p \geq 1$.\footnote{The inequality $p/q < 1/2$ is equivalent to $q - 2p > 0$. To get the (seemingly) stronger inequality $q - 2p \geq 1$, recall that $p$ and $q$ are integers.} Some mildly ugly algebra also reveals that
+\begin{align*}
+	\frac{20m + 20}{40m + n + 101} & = \frac{20(4p - 1) + 20}{40(4p - 1) + (80(q - 2p) - 61) + 101} \\
+	& = \frac{80p - 20 + 20}{160p - 40 + 80q - 160p - 61 + 101} = \frac{80p}{80q} = \frac{p}{q},
+\end{align*}
+as desired. For emphasis, we state what we have just demonstrated as a theorem:
 
 \begin{theorem}[Universality of Orthogonal Helices]\label{thm:universality_orthogonal_helices}
 	The three reactions from Figure~\ref{fig:helix_operations} can be used to create an orthogonal helix, which fires gliders forward on one side, with any rational speed slower than $c/2$.
 \end{theorem}
 
-\begin{proof}
-	Consider a helix, like the one displayed in Figure~??, that uses the reflection flotilla (from Figure~\ref{fig:helix_reflect}) on one side, the reflection-and-duplication flotilla (from Figure~\ref{fig:helix_duplicate}) on the other side, and $n$ glider-shifting flotillae (from Figure~\ref{fig:helix_shift}) in each direction in between these sides (so $n = 4$ in the helix that we have already seen).
-	
-	Suppose we also let the glider travel on its own a total of $m$ cells in each direction of the helix, undisturbed by those three xWSS-based reactions. Finally, delay the final xWSS pair in the reflection-and-duplication flotilla by $\ell$ generations from what is shown in Figure~\ref{fig:helix_duplicate}, so that it takes $46 + \ell$ generations for the output gliders to reach the indicated positions.
-	
-	% Draw figure/schematic?
-	
-	The resulting helix moves the glider forward orthogonally by $20n + 2m + 12$ cells over the course of $40n + 8m + \ell + 69$ generations:\smallskip
-	
-	\begin{itemize}
-		\item The sides, taken together, move the glider forward by $12$~cells over the course of $23 + (46 + \ell) = 69 + \ell$ generations.\smallskip
-		
-		\item The central glider-shifting flotillae each move the glider forward by $10$ cells over the course of $20$ generations. Since there are $2n$ such flotillae ($n$ in each direction), they move the glider forward by $20n$~cells over the course of $40n$ generations.\smallskip
-		
-		\item Each of the $m$ cells that the glider moves outside of flotillae reactions in each direction (so $2m$ cells orthogonally in total) takes $4$~generations to traverse, for a total of $8m$~generations.\smallskip
-	\end{itemize}
+It is worth noting that the values of $m$ and $n$ given by Equation~\eqref{eq:orth_helix_parameters} are typically much larger than necessary---we chose those \emph{formulas} for $m$ and $n$ to be simple, but much smaller \emph{values} of $m$ and $n$ can typically be found. For example, if $p = 17$ and $q = 45$ then those formulas give $m = 67$ and $n = 819$, which would result in a monstrously large helix consisting of $273$ xWSSes. However, the smaller values $m = 16$ and $n = 159$ give a helix of the same speed consisting of ``only`` $69$ xWSSes.
 
-	This helix thus travels at a speed of
-	\[
-		\frac{(20n + 2m + 12)c}{40n + 8m + \ell + 69}.
-	\]
-	To create such a helix with speed $(p/q)c$, where $p$ and $q$ are arbitrary positive integers with $p/q < 1/2$, we define
-	\[
-		\ell = 80(q - 2p) - 61, \qquad m = 4, \qquad \text{and} \qquad n = 4p - 1.
-	\]
-	% Put footnote back in
-	
-	The fact that $\ell$, $m$, and $n$ are non-negative integers when $p/q < 1/2$ (i.e., $q - 2p \geq 1$) is clear. It is also straightforward (albeit somewhat tedious) to verify that
-	\begin{align*}
-		\frac{20n + 2m + 12}{40n + 8m + \ell + 69} & = \frac{20(4p - 1) + 8 + 12}{40(4p - 1) + 32 + (80(q - 2p) - 61) + 69} \\
-		& = \frac{80p}{80q} = \frac{p}{q}, \\
-	\end{align*}
-	which completes the proof.
-	% TODO: Bake m right into the reflectors on the edges!! Add 2 extra cells of movement to each of them. If you do this, add footnote earlier that they can be squeezed tighter, but this makes a calculation simpler later.
-	
-	% Can be made close to c/2 by using more shifters, close to c/4 by using more regular glider travel time
-	% Can get speeds closer than c/4 by increasing s a lot.
-	% Footnote that existence can be shown via Bezout's identity too
-\end{proof}
+To decrease these values even further, simply notice that we can add\footnote{Or subtract---some uninterrupted output glider travel time can be removed from the reactions in Figures~\ref{fig:helix_reflect} and~\ref{fig:helix_duplicate}.} some uninterrupted glider travel time to the helix. If we let the glider travel, unaffected by xWSSes, for $\ell$ additional cells in each direction of the helix, then the helix's displacement is increased by $2\ell$~cells, while its period is increased by $4(2\ell) = 8\ell$~generations. The speed of this new helix would then be
+\[
+	\frac{(20m + 2\ell + 20)c}{40m + 8\ell + n + 101},
+\]
+and strategic choices of $\ell$ can lead to smaller helices. For example, picking $\ell = 1$, $m = 4$, and $n = 1$ gives us exactly the $17c/45$ helix from Figure~\ref{fig:caterpillar_helix} that consists of $21$~xWSSes.
 
-% Note that this theorem uses s = 19 and other big numbers, but can often get away with much smaller values. For example, caterpillar uses s = 1, m = 4, and n = 6.
 
-% Note that we can create oblique helices too (will see one with the waterbear, for example). Can we make all oblique velocities?
-% Exercise: there is another unused two-part helix reflector at http://www.gabrielnivasch.org/fun/life/caterpillar   Do something with it? And maybe waterbear helices?
+\subsection{The Caterpillar Itself}\label{sec:caterpillar_itself}
+
+Stuff.
+
+% Because of the massive number of xWSSes that need to be synthesized in this helix, the caterpillar ends be being absolutely monstrously large, even compared to the already-huge silverfish. 
+% Silverfish only needed 2xWSSes on each side. Caterpillar needs how many? Then figure.
+
+% Uses 40 blinker tracks, but only first 2 are hard to make (just like silverfish)
+
 
 
 
@@ -403,6 +400,45 @@ The way around this problem is to use a \emph{helix}, which...
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Provide the key reactions here. Maybe one quick section for each.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The Waterbear}\label{sec:waterbear}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Stuff.
+
+Remarkably, this is not a problem---the exact same reactions that we used in Section~\ref{sec:caterpillar_helices} to create orthogonal helices can in fact be used to create \emph{oblique} helices that travel at the same speed and angle as any spaceship.\footnote{We know from Exercise~\ref{exer:general_speed_limit} that a spaceship that displaces itself by $(x,y)$ over the course of its period must have speed no larger than $(x,y)c/(2x+2y)$.} For example, Figure~?? illustrates how these reactions can be used to make a helix that travels at... (SOME OBLIQUE SPEED).
+
+% introduce backward-firing component, phrase theorem in terms of it instead. Leave forward version of oblique to exercises.
+
+\begin{theorem}[Universality of Oblique Helices]\label{thm:universality_oblique_helices}
+	For any integers $x,y > 0$, the three reactions from Figure~\ref{fig:helix_operations} can be used to create an oblique helix, which fires gliders forward on one side, with any rational speed that is no faster than $(x,y)c/(2x + 2y)$. In particular, such helices exist that travel at the same speed and direction as any oblique spaceship.
+\end{theorem}
+
+\begin{proof}
+	We proceed mostly as in the proof of the corresponding result for orthogonal helices (Theorem~\ref{thm:universality_orthogonal_helices})---the main difference is that instead of using $m$ of the glider-shifting flotillae in each direction of the helix, we use $k$ of them in one direction and $m$ of them in the other (so, for example, $k = ??$ and $m = ??$ in the oblique helix from Figure~??). This helix travels at a speed of
+	\[
+		\frac{(10k + 10m + 20, 13k - 13m)c}{20k + 20m + n + 101}.
+	\]
+	% NEED TO FIX SOEMTHING HERE RE: POSITIVITY
+	To create such a helix with speed $(x,y)c/q$, where $x$, $y$, and $q$ are arbitrary positive integers with $x/q, y/q < 1/2$,\footnote{This is actually a stronger result than in the statement of the theorem. These helices can travel diagonally at a speed of $c/2$, for example, despite the $c/4$ diagonal spaceship speed limit. The reason for this apparent discrepancy is that the glider is not travelling through empty space in one of the directions---it is burning through xWSSes.} we can simply choose
+	\begin{align}\label{eq:oblique_helix_parameters}
+		k = 10y - 13x + 1, \qquad m = 10y + 13x - 1, \qquad \text{and} \qquad n = 260r - 520x - 61.
+	\end{align}
+	The fact that $m$ is a non-negative integer is clear, and $n$ being a non-negative integer follows from the fact that $p/q < 1/2$, so $q - 2p \geq 1$. Some mildly ugly algebra also reveals that
+	\begin{align*}
+		\frac{20m + 20}{40m + n + 101} & = \frac{20(4p - 1) + 20}{40(4p - 1) + (80(q - 2p) - 61) + 101} \\
+		& = \frac{80p - 20 + 20}{160p - 40 + 80q - 160p - 61 + 101} = \frac{80p}{80q} = \frac{p}{q},
+	\end{align*}
+\end{proof}
+
+% Note that we can actually REACH oblique speed limit, whereas we can only approach orthogonal speed limit. This is because we can burn through non-empty space in the oblique direction (we can actually EXCEED the speed limit in that direction)
+
+% Exercise: there is another unused two-part helix reflector at http://www.gabrielnivasch.org/fun/life/caterpillar   Do something with it? And maybe waterbear helices?
+% Exercise: make helix with (speed)
+% Exercise: remove (something) from helix, what is new speed?
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -719,8 +755,16 @@ Despite its monstrous size, the silverfish displayed in Figure~\ref{fig:silverfi
 \end{problemstar}
 
 
+\mfilbreak
 
 
+\begin{problemstar}\label{exer:caterpillar_helix_when_minimal}
+	Recall that the values of $m$ and $n$ from Equation~\eqref{eq:orth_helix_parameters} are typically not the smallest positive integers for which
+	\[
+		\frac{(20m + 20)c}{40m + n + 101} = \frac{p}{q}.
+	\]
+	However, they are \emph{sometimes} the smallest such positive integers. Give an example (i.e., particular positive integers $p$ and $q$ with $p/q < 1/2$) for which these values of $m$ and $n$ are minimal.
+\end{problemstar}
 	
 	%% EXERCISE END COMMANDS
 \end{multicols}
