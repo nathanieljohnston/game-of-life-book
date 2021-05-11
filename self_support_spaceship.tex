@@ -318,7 +318,7 @@ We can thus use a single pair of blinker tracks to create as many additional pai
 
 Just as was the case with the silverfish, synthesizing the front of the track is the trickiest part of the caterpillar. Our goal is to use rakes on blinker track pairs to synthesize xWSSes that reach out in front so as to then synthesize the front of the first pair of blinker tracks. However, there is one additional wrinkle here that was not present in the silverfish: because the $17c/45$ reaction that we are using travels faster than $c/4$,\footnote{Unlike the $31c/240$ reaction at the heart of the silverfish, which is slower than $c/4$.} we cannot fire gliders forward at those xWSSes to change their direction (we used this trick from Figure~\ref{fig:g_2h_to_m} at the top-right corner of the silverfish in Figure~\ref{fig:silverfish}).
 
-The way around this problem is to use a \emph{helix}:\footnote{The name ``helix'' comes from the helical shape that these patterns often end up having---see the upcoming Figure~\ref{fig:caterpillar_helix}.} a configuration of xWSSes that has a burning front end that causes it to (a) travel at a speed slower than $c/2$ (in our case, we want a speed of $17c/45$), and (b) fire gliders off to at least one side. One way to make a helix is to have a glider do the burning---the three reactions displayed in Figure~\ref{fig:helix_operations} show how a glider can destroy and be repositioned (and possibly duplicated) by small xWSS flotillae.\footnote{These reactions were found by Paul Callahan's \emph{gencols} search program---see \httpsurl{conwaylife.com/wiki/LifeWiki:Life_links\#Downloadable_Computation_and/or_Search_Software}.}\index{gencols}
+The way around this problem is to use a \emph{helix}:\footnote{The name ``helix'' comes from the helical shape that these patterns often end up having---see the upcoming Figure~\ref{fig:caterpillar_helix}.} a configuration of xWSSes that has a burning front end that causes it to (a) travel at a speed slower than $c/2$ (in our case, we want a speed of $17c/45$), and (b) periodically fire gliders off to at least one side. One way to make a helix is to have a glider do the burning---the three reactions displayed in Figure~\ref{fig:helix_operations} show how a glider can destroy and be repositioned (and possibly duplicated) by small xWSS flotillae.\footnote{These reactions were found by Paul Callahan's \emph{gencols} search program---see \httpsurl{conwaylife.com/wiki/LifeWiki:Life_links\#Downloadable_Computation_and/or_Search_Software}.}\index{gencols}
 
 \begin{figure}[!htb]
 	\centering
@@ -341,12 +341,6 @@ The way around this problem is to use a \emph{helix}:\footnote{The name ``helix'
 
 By stringing these reactions together, we can create helices that a glider burns through at any speed of our choosing. For example, the helix displayed in Figure~\ref{fig:caterpillar_helix} takes $270$~generations to push a glider forward orthogonally by $102$~cells, giving it a speed of $102c/270 = 17c/45$---exactly the speed that we need for the caterpillar spaceship.
 
-\begin{figure}[!htb]
-	\centering
-	\embedlink{caterpillar_helix}{\includegraphics[width=\textwidth]{self_support_spaceships/caterpillar_helix.pdf}}
-	\caption{A $102c/270 = 17c/45$ helix that is used by the caterpillar spaceship. Four of the glider-shifting flotillae (highlighted in \bgbox{yellowback2}{yellow}) move the glider south, the flotilla highlighted in \bgbox{greenpastel}{green} reflects it and produces an extra glider to the southeast, four more of the glider-shifting flotillae (highlighted in \bgbox{orangeback2}{orange}) move the glider back north, and then the flotilla highlighted in \bgbox{aquaback}{aqua} reflects it back to the south. This sequence of 21 xWSSes then repeats indefinitely.}\label{fig:caterpillar_helix}
-\end{figure}
-
 It was not just a lucky coincidence that we were able to create a helix of the desired $17c/45$ speed via these three reactions---we can use them to make an orthogonal helix with the same basic shape as the one from Figure~\ref{fig:caterpillar_helix} that travels at any rational speed slower than $c/2$. To see this, suppose we delay the final xWSS pair in the reflection-and-duplication flotilla by $n$~generations from what is shown in Figure~\ref{fig:helix_duplicate}, so that it takes $62 + n$ generations for the output gliders to reach the indicated positions, and we use $m$ of the glider-shifting flotillae in each direction (so that $m = 4$ in Figure~\ref{fig:caterpillar_helix}). The resulting helix moves the glider forward orthogonally by $20m + 20$ cells over the course of $40m + n + 101$ generations:\smallskip
 
 \begin{itemize}
@@ -354,6 +348,13 @@ It was not just a lucky coincidence that we were able to create a helix of the d
 	
 	\item The central glider-shifting flotillae each move the glider forward by $10$ cells over the course of $20$ generations. Since there are $2m$ such flotillae ($m$ in each direction), they move the glider forward by $20m$~cells over the course of $40m$ generations.\smallskip
 \end{itemize}
+
+% This figure can be moved to before "It was..." paragraph if it leads to better spacing. Here now to avoid two consecutive figures.
+\begin{figure}[!htb]
+\centering
+\embedlink{caterpillar_helix}{\includegraphics[width=\textwidth]{self_support_spaceships/caterpillar_helix.pdf}}
+\caption{A $102c/270 = 17c/45$ helix that is used by the caterpillar spaceship. Four of the glider-shifting flotillae (highlighted in \bgbox{yellowback2}{yellow}) move the glider south, the flotilla highlighted in \bgbox{greenpastel}{green} reflects it and produces an extra glider to the southeast, four more of the glider-shifting flotillae (highlighted in \bgbox{orangeback2}{orange}) move the glider back north, and then the flotilla highlighted in \bgbox{aquaback}{aqua} reflects it back to the south. This sequence of 21 xWSSes then repeats indefinitely.}\label{fig:caterpillar_helix}
+\end{figure}
 
 This helix thus travels at a speed of
 \[
@@ -376,7 +377,7 @@ as desired. For emphasis, we state what we have just demonstrated as a theorem:
 
 It is worth noting that the values of $m$ and $n$ given by Equation~\eqref{eq:orth_helix_parameters} are typically much larger than necessary---we chose those \emph{formulas} for $m$ and $n$ to be simple, but much smaller \emph{values} of $m$ and $n$ can typically be found. For example, if $p = 17$ and $q = 45$ then those formulas give $m = 67$ and $n = 819$, which would result in a monstrously large helix consisting of $273$ xWSSes. However, the smaller values $m = 16$ and $n = 159$ give a helix of the same speed consisting of ``only`` $69$ xWSSes.
 
-To decrease these values even further, simply notice that we can add\footnote{Or subtract---some uninterrupted output glider travel time can be removed from the reactions in Figures~\ref{fig:helix_reflect} and~\ref{fig:helix_duplicate}.} some uninterrupted glider travel time to the helix. If we let the glider travel, unaffected by xWSSes, for $\ell$ additional cells in each direction of the helix, then the helix's displacement is increased by $2\ell$~cells, while its period is increased by $4(2\ell) = 8\ell$~generations. The speed of this new helix would then be
+To decrease these values even further, simply notice that we can add\footnote{Or subtract---some uninterrupted travel time can be removed from the output gliders in the reactions from Figures~\ref{fig:helix_reflect} and~\ref{fig:helix_duplicate}.} some uninterrupted glider travel time to the helix. If we let the glider travel, unaffected by xWSSes, for $\ell$ additional cells in each direction of the helix, then the helix's displacement is increased by $2\ell$~cells, while its period is increased by $4(2\ell) = 8\ell$~generations. The speed of this new helix would then be
 \[
 	\frac{(20m + 2\ell + 20)c}{40m + 8\ell + n + 101},
 \]
@@ -385,14 +386,15 @@ and strategic choices of $\ell$ can lead to smaller helices. For example, pickin
 
 \subsection{The Caterpillar Itself}\label{sec:caterpillar_itself}
 
-Stuff.
+Putting all of these ideas together finally gives us the caterpillar spaceship,\footnote{The components used in the caterpillar were found by Gabriel Nivasch, David Bell, and Jason Summers, and construction was completed in December 2004 by a computer program written by Nivasch (see \httpurl{gabrielnivasch.org/fun/life/caterpillar}).} displayed in Figure~\ref{fig:caterpillar}, which has a very similar shape and basic structure to that of the silverfish. However, it is absolutely gargantuan, even compared to the silverfish---it is over $7$ times as long and has over $50$ times as many live cells. The primary reason for this drastic increase in size is that it has to synthesize the $21$-xWSS helix from Figure~\ref{fig:caterpillar_helix} on its side, whereas the silverfish just needed to synthesize the $2$-HWSS flotilla from Figure~\ref{fig:g_2h_to_m}.
 
-% Because of the massive number of xWSSes that need to be synthesized in this helix, the caterpillar ends be being absolutely monstrously large, even compared to the already-huge silverfish. 
-% Silverfish only needed 2xWSSes on each side. Caterpillar needs how many? Then figure.
+\begin{figure}[!htbp]
+	\centering
+	\embedlink{caterpillar}{\includegraphics[width=\textwidth]{self_support_spaceships/caterpillar.pdf}}
+	\caption{The $17c/45$ orthogonal \emph{caterpillar} spaceship, travelling up. The helix along its right side (highlighted in \bgbox{aquaback}{aqua}) periodically fires a glider that hits numerous glider duplicators (highlighted in \bgbox{yellowback2}{yellow}) so as to synthesize the frontmost pair of blinker tracks (highlighted in \bgbox{magentaback}{magenta}). Those two blinker tracks then synthesize $38$ more blinker tracks so that numerous pi-crawler rakes can travel on them and synthesize the afore-mentioned helix and glider duplicators.}\label{fig:caterpillar}
+\end{figure}
 
-% Uses 40 blinker tracks, but only first 2 are hard to make (just like silverfish)
-
-
+Actually, it's worse than this---because the caterpillar's helix has period $102 = 6 \times 17$, it seems like we should need $12$ copies of this helix on each side ($6$ on each side for each of the $2$ blinker tracks that they need to synthesize). However, the caterpillar uses some glider-duplication tricks so that it ``only'' needs an extra 30 or so xWSSes on each side (see Exercise~\ref{exer:caterpillar_glider_duplicate}). To synthesize this extreme number of xWSSes on its sides a bit more efficiently, the caterpillar uses several columns of rakes on parallel tracks to implement non-slow synthesis, whereas the silverfish used just a single column of rakes down its center to implement slow salvo synthesis.\footnote{Also, slow salvo synthesis was not as fully developed when the caterpillar was constructed, so non-slow synthesis was the only realistic option at the time.}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -437,7 +439,7 @@ Remarkably, this is not a problem---the exact same reactions that we used in Sec
 
 % Exercise: there is another unused two-part helix reflector at http://www.gabrielnivasch.org/fun/life/caterpillar   Do something with it? And maybe waterbear helices?
 % Exercise: make helix with (speed)
-% Exercise: remove (something) from helix, what is new speed?
+% Exercise: remove (something) from helix, what is new speed? Give both an orthogonal and an oblique version
 
 
 
@@ -765,6 +767,24 @@ Despite its monstrous size, the silverfish displayed in Figure~\ref{fig:silverfi
 	\]
 	However, they are \emph{sometimes} the smallest such positive integers. Give an example (i.e., particular positive integers $p$ and $q$ with $p/q < 1/2$) for which these values of $m$ and $n$ are minimal.
 \end{problemstar}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:caterpillar_glider_slopes}
+	Compute the slopes of the lines of forward and backward gliders in the caterpillar (i.e., in Figure~\ref{fig:caterpillar}). Do not just read the slopes off of that figure -- explain where they come from.
+\end{problem}
+% SOLUTION: backward: 113/45 (since in 180 gens, x = 45, y = 4*17 + 45 = 113), forward: 23/45 (since in 180 gens, x = 45, y = 4*17 - 45 = 23)
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:caterpillar_glider_duplicate}
+	In Figure~\ref{fig:caterpillar}, we highlighted in yellow a two-MWSS flotilla that can be used to duplicate a glider. Find at least 2 other xWSS flotillae that are used to duplicate gliders in the caterpillar, and explain why it is useful to have so many different flotillae that seem to perform the same task.
+\end{problem}
+% Solution: different timing/positioning of the output gliders.
 	
 	%% EXERCISE END COMMANDS
 \end{multicols}
