@@ -1,0 +1,70 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\begin{document}
+	\begin{tikzpicture}%
+		\node[inner sep=0pt,anchor=south west] (wb) at (0,0) {\includegraphics[width=12cm]{waterbear.png}};
+		
+		% BORDER
+		\draw[gridgray] (0,-0.75) rectangle (12,6.5);
+		\clip (0,-0.75) rectangle (12,6.5);
+		
+		% DIRECTION
+		\newcommand\dirx{4.7}
+		\newcommand\diry{6.4}
+		\draw[gray] (\dirx,\diry) node[rotate=-12.26477,shift={(1.1,-0.75)}] {\tiny \texttt{direction of travel}};
+		\draw[color=gray,-stealth,rotate=-12.26477] (\dirx-1.4,\diry) -- (\dirx+0.75,\diry);
+
+		% ZOOM BOX 1
+			\newcommand\smlx{11.78}
+			\newcommand\smrx{\smlx+0.2}
+			\newcommand\smby{3.55}
+			\newcommand\smty{\smby+0.2}
+			
+			\newcommand\bglx{8.75}
+			\newcommand\bgrx{\bglx+3}
+			\newcommand\bgty{2.5}
+			\newcommand\bgby{\bgty-3}
+			
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
+			
+			\node[inner sep=0pt,anchor=north west] (zoom1) at (\bglx,\bgty) {\includegraphics[width=3cm]{waterbear_zoom1.png}};
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (\smlx,\smty) -- (\smlx,\smby) -- (\smrx,\smby) -- (\bgrx,\bgby) -- (\bgrx,\bgty) -- (\bglx,\bgty) -- cycle;
+			
+			%\node[inner sep=0pt] (zoom1_3x) at (3.35,7.95) {\includegraphics[width=0.21cm]{../mag.png} \footnotesize 8x};
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\smlx,\smty) rectangle (\smrx,\smby);
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
+		% END ZOOM BOX 1
+		
+		% ZOOM BOX 2
+			\renewcommand\smlx{1.3}
+			\renewcommand\smrx{\smlx+0.2}
+			\renewcommand\smby{2.83}
+			\renewcommand\smty{\smby+0.2}
+			
+			\renewcommand\bglx{0.25}
+			\renewcommand\bgrx{\bglx+3}
+			\renewcommand\bgty{6.25}
+			\renewcommand\bgby{\bgty-3}
+			
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
+			
+			\node[inner sep=0pt,anchor=north west] (zoom2) at (\bglx,\bgty) {\includegraphics[width=3cm]{waterbear_zoom2.png}};
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (\smrx,\smby) --(\smrx,\smty) --(\smlx,\smty) -- (\smlx,\smby) -- (\bglx,\bgby) -- (\bgrx,\bgby) -- cycle;
+			
+			%\node[inner sep=0pt] (zoom1_3x) at (3.35,7.95) {\includegraphics[width=0.21cm]{../mag.png} \footnotesize 8x};
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\smlx,\smty) rectangle (\smrx,\smby);
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
+		% END ZOOM BOX 2
+	\end{tikzpicture}
+\end{document}

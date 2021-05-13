@@ -272,7 +272,7 @@ We saw another reaction that can be used to construct a self-supporting spaceshi
 \begin{figure}[!htb]
 	\centering
 	\patternimglink{0.075}{reburnable_wick}
-	\caption{A reburnable blinker wick, along which a pi-heptomino fuse (highlighted in \bgbox{greenpastel}{green}) can move at a speed of $17c/45$. The cells highlighted in \bgbox{redback}{red} make up a large spark that simply dies without affecting anything else.}\label{fig:reburnable_blinker_wick}
+	\caption{A reburnable blinker wick, along which a pi-heptomino fuse (highlighted in \bgbox{greenpastel}{green}) can move at a speed of $17c/45$. The cells displayed in \bgbox{redback}{red} make up a large spark that simply dies without affecting anything else.}\label{fig:reburnable_blinker_wick}
 \end{figure}
 
 A single pi-heptomino shifts the blinker wick backward by $6$~cells and rephases it,\footnote{Since the blinker wick is infinitely long, it is perhaps better to think of the pi-heptomino as shifting the wick forward by $11$~cells and \emph{not} rephasing it.} so if we were to place 34 pi-heptominoes on this reburnable wick then it would be moved back by $6 \times 34 = 204$ cells, which, due to the spacing of the blinkers, leaves them all exactly where they would be if no pi-heptominoes burned through them at all.\footnote{If we used just $17$ pi-heptominoes instead, the blinkers would return to their original positions, but in the opposite phases.} This gives us an infinitely-long pattern that moves at a speed of $17c/45$. Our goal is to turn this into a finite configuration (i.e., a spaceship) called the \emph{caterpillar} that moves at the same speed, just like we turned the Herschel-crawling reaction of Figure~\ref{fig:31c_240_herschel_pair} into the $31c/240$ silverfish spaceship.
@@ -394,52 +394,70 @@ Putting all of these ideas together finally gives us the caterpillar spaceship,\
 	\caption{The $17c/45$ orthogonal \emph{caterpillar} spaceship, travelling up. The helix along its right side (highlighted in \bgbox{aquaback}{aqua}) periodically fires a glider that hits numerous glider duplicators (highlighted in \bgbox{yellowback2}{yellow}) so as to synthesize the frontmost pair of blinker tracks (highlighted in \bgbox{magentaback}{magenta}). Those two blinker tracks then synthesize $38$ more blinker tracks so that numerous pi-crawler rakes can travel on them and synthesize the afore-mentioned helix and glider duplicators.}\label{fig:caterpillar}
 \end{figure}
 
-Actually, it's worse than this---because the caterpillar's helix has period $102 = 6 \times 17$, it seems like we should need $12$ copies of this helix on each side ($6$ on each side for each of the $2$ blinker tracks that they need to synthesize). However, the caterpillar uses some glider-duplication tricks so that it ``only'' needs an extra 30 or so xWSSes on each side (see Exercise~\ref{exer:caterpillar_glider_duplicate}). To synthesize this extreme number of xWSSes on its sides a bit more efficiently, the caterpillar uses several columns of rakes on parallel tracks to implement non-slow synthesis, whereas the silverfish used just a single column of rakes down its center to implement slow salvo synthesis.\footnote{Also, slow salvo synthesis was not as fully developed when the caterpillar was constructed, so non-slow synthesis was the only realistic option at the time.}
+Actually, it's worse than this---because the caterpillar's helix has period $102 = 6 \times 17$, it seems like we should need $24$ copies of this helix ($6$ on each side for each of the $2$ blinker tracks that they need to synthesize). However, the caterpillar uses some glider-duplication tricks so that it ``only'' needs an extra 30 or so xWSSes on each side (see Exercise~\ref{exer:caterpillar_glider_duplicate}). To synthesize this extreme number of xWSSes on its sides a bit more efficiently, the caterpillar uses several columns of rakes on parallel tracks to implement non-slow synthesis, whereas the silverfish used just a single column of rakes down its center to implement slow salvo synthesis.\footnote{Also, slow salvo synthesis was not as fully developed when the caterpillar was constructed, so non-slow synthesis was the only realistic option at the time.}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Other Self-Supporting Spaceships}\label{sec:other_self_support}
+\section{The Waterbear}\label{sec:waterbear}\index{waterbear}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Provide the key reactions here. Maybe one quick section for each.
+Another self-supporting spaceship that works in much the same way as the silverfish and caterpillar is the \emph{waterbear}. The reaction\index{(23,5)/79 reaction} at the heart of this spaceship is displayed in Figure~\ref{fig:23_5c_79_reaction}, and consists of a Herschel colliding with a glider so as to displace itself by $(23,5)$ over the course of $79$ generations while duplicating the glider.
 
+\begin{figure}[!htb]
+	\centering
+	\patternimglink{0.0768}{23_5c_79_reaction}
+	\caption{The \emph{$(23,5)c/79$ reaction}, in which a Herschel (displayed in \bgbox{greenpastel}{green}) moves obliquely along a glider track while duplicating that track. The cells displayed in \bgbox{redback}{red} simply die off in two more generations.}\label{fig:23_5c_79_reaction}
+\end{figure}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{The Waterbear}\label{sec:waterbear}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Much like the $31c/240$ reaction from Figure~\ref{fig:31c_240_reaction} and the $17c/45$ reaction from Figure~\ref{fig:reburnable_blinker_wick}, this $(23,5)c/79$ reaction is a prime candidate for the central spine of a self-supporting spaceship. We ``just'' need to find a way to use its output gliders to synthesize the necessary input gliders from the front. We do not explore most of the techniques that make this possible---instead, we leave some of the ideas to Exercises~??--??. However, we do note that, since this reaction moves faster than a glider (i.e., $c/4$), we again need to use the backward gliders to synthesize a helix that travels to the front of the spaceship.
 
-Stuff.
-
-Remarkably, this is not a problem---the exact same reactions that we used in Section~\ref{sec:caterpillar_helices} to create orthogonal helices can in fact be used to create \emph{oblique} helices that travel at the same speed and angle as any spaceship.\footnote{We know from Exercise~\ref{exer:general_speed_limit} that a spaceship that displaces itself by $(x,y)$ over the course of its period must have speed no larger than $(x,y)c/(2x+2y)$.} For example, Figure~?? illustrates how these reactions can be used to make a helix that travels at... (SOME OBLIQUE SPEED).
-
-% introduce backward-firing component, phrase theorem in terms of it instead. Leave forward version of oblique to exercises.
+Constructing a helix that travels at the correct speed might seem problematic, since xWSSes all move orthogonally, whereas we need the helix to move obliquely at $(23,5)c/79$. Remarkably, this is not actually a problem---the exact same reactions that we used in Section~\ref{sec:caterpillar_helices} to create orthogonal helices can in fact be used to create \emph{oblique} helices that travel at the same speed and angle as any spaceship.\footnote{We know from Exercise~\ref{exer:general_speed_limit} that a spaceship that displaces itself by $(x,y)$ over the course of its period must have speed no larger than $(x,y)c/(2x+2y)$.}
 
 \begin{theorem}[Universality of Oblique Helices]\label{thm:universality_oblique_helices}
-	For any integers $x,y > 0$, the three reactions from Figure~\ref{fig:helix_operations} can be used to create an oblique helix, which fires gliders forward on one side, with any rational speed that is no faster than $(x,y)c/(2x + 2y)$. In particular, such helices exist that travel at the same speed and direction as any oblique spaceship.
+	For any integers $x \geq y > 0$, the three reactions from Figure~\ref{fig:helix_operations} can be used to create an oblique helix, which fires gliders forward on one side, with any rational speed that is no faster than $(x,y)c/(2x + 2y)$. In particular, such helices exist that travel at the same speed and direction as any oblique spaceship.
 \end{theorem}
 
-\begin{proof}
-	We proceed mostly as in the proof of the corresponding result for orthogonal helices (Theorem~\ref{thm:universality_orthogonal_helices})---the main difference is that instead of using $m$ of the glider-shifting flotillae in each direction of the helix, we use $k$ of them in one direction and $m$ of them in the other (so, for example, $k = ??$ and $m = ??$ in the oblique helix from Figure~??). This helix travels at a speed of
+Indeed, the only modification that we have to make to our orthogonal method of constructing helices is to use fewer glider-shifting flotillae on one half of the helix than on the other. For example, the helix displayed in Figure~\ref{fig:50_13c_161_helix} uses two copies of that flotilla in one direction, but only one copy of it in the other, and ends up travelling obliquely at a speed of $(50,13)c/161$.
+
+\begin{figure}[!htb]
+	\centering
+	\embedlink{50_13c_161_helix}{\includegraphics[width=\textwidth]{self_support_spaceships/50_13c_161_helix.pdf}}
+	\caption{A $(50,13)c/161$ helix that is oblique since it uses fewer of the glider-shifting flotillae to move the glider south (highlighted in \bgbox{yellowback2}{yellow}) than it does to move the glider back north (highlighted in \bgbox{orangeback2}{orange}).}\label{fig:50_13c_161_helix}
+\end{figure}
+
+We should also note that, for oblique helices, there are two different ``forward'' directions (and two different ``backward'' directions) that a glider can be fired in. That direction it determined by which side of the helix has the glider-duplicating flotilla on it. For example, interchanging the green and aqua flotillae in Figure~\ref{fig:50_13c_161_helix} results in a helix that travels at the same speed and slope, but fires forward gliders at a different angle.
+
+\begin{proof}[Proof of Theorem~\ref{thm:universality_oblique_helices}.]
+	We proceed mostly as in the proof of the corresponding result for orthogonal helices (Theorem~\ref{thm:universality_orthogonal_helices})---the main difference is that instead of using $m$ of the glider-shifting flotillae in each direction of the helix, we use $k$ of them in one direction and $m$ of them in the other (so, for example, $k = 2$ and $m = 1$ in the oblique helix from Figure~\ref{fig:50_13c_161_helix}). This helix travels at a speed of
 	\[
-		\frac{(10k + 10m + 20, 13k - 13m)c}{20k + 20m + n + 101}.
+		\frac{(10k + 10m + 20, 13k - 13m)c}{20k + 20m + n + 101},
 	\]
-	% NEED TO FIX SOEMTHING HERE RE: POSITIVITY
-	To create such a helix with speed $(x,y)c/q$, where $x$, $y$, and $q$ are arbitrary positive integers with $x/q, y/q < 1/2$,\footnote{This is actually a stronger result than in the statement of the theorem. These helices can travel diagonally at a speed of $c/2$, for example, despite the $c/4$ diagonal spaceship speed limit. The reason for this apparent discrepancy is that the glider is not travelling through empty space in one of the directions---it is burning through xWSSes.} we can simply choose
-	\begin{align}\label{eq:oblique_helix_parameters}
-		k = 10y - 13x + 1, \qquad m = 10y + 13x - 1, \qquad \text{and} \qquad n = 260r - 520x - 61.
-	\end{align}
-	The fact that $m$ is a non-negative integer is clear, and $n$ being a non-negative integer follows from the fact that $p/q < 1/2$, so $q - 2p \geq 1$. Some mildly ugly algebra also reveals that
+	where $n$ is again the number of generations that the final xWSS pair is delayed in the glider duplicator from Figure~\ref{fig:helix_duplicate}.\footnote{For example, if $k = 2$, $m = 1$, and $n = 0$ then we get a helix with speed $(20 + 10 + 20, 26 - 13)c/(40 + 20 + 101) = (50,13)c/161$, as in Figure~\ref{fig:50_13c_161_helix}.}
+	
+	To create such a helix with speed $(x,y)c/q$, where $x$, $y$, and $q$ are arbitrary positive integers with $y/q \leq x/q < 1/2$,\footnote{This is actually a stronger result than in the statement of the theorem. These helices can travel diagonally at speeds arbitrarily close to $c/2$, for example, despite the $c/4$ diagonal spaceship speed limit. The reason that this does not contradict Theorem~\ref{thm:speed_limits} is that the glider is not travelling through empty space---it is burning through xWSSes.} we can simply choose
 	\begin{align*}
-		\frac{20m + 20}{40m + n + 101} & = \frac{20(4p - 1) + 20}{40(4p - 1) + (80(q - 2p) - 61) + 101} \\
-		& = \frac{80p - 20 + 20}{160p - 40 + 80q - 160p - 61 + 101} = \frac{80p}{80q} = \frac{p}{q},
+		k = 13x + 10y - 1, \qquad m = 13x - 10y - 1, \qquad \text{and} \qquad n = 260(q - 2x) - 61.
 	\end{align*}
+
+	The fact that $k$ is a non-negative integer is clear, $m$ being a non-negative integer follows from the fact that $x \geq y \geq 1$, so $m = 13x - 10y - 1 \geq 3x - 1 \geq 2$, and $n$ being a positive integer follows from the fact that $x/q < 1/2$ implies $q - 2x \geq 1$. Finally, direct (and more-than-mildly ugly) calculation reveals that
+	\begin{align*}
+		& \frac{(10k + 10m + 20, 13k - 13m)c}{20k + 20m + n + 101} \\
+		& \qquad = \frac{\big(10(13x + 10y - 1) + 10(13x - 10y - 1) + 20, 13(13x + 10y - 1) - 13(13x - 10y - 1)\big)c}{20(13x + 10y - 1) + 20(13x - 10y - 1) + (260(q - 2x) - 61) + 101} \\
+		& \qquad = \frac{(130x + 100y - 10 + 130x - 100y - 10 + 20, 169x + 130y - 13 - 169x + 130y + 13)c}{260x + 200y - 20 + 260x - 200y - 20 + 260q - 520x - 61 + 101} \\
+		& \qquad = \frac{(260x, 260y)c}{260q} = \frac{(x,y)c}{q},
+	\end{align*}
+	as desired.
 \end{proof}
 
-% Note that we can actually REACH oblique speed limit, whereas we can only approach orthogonal speed limit. This is because we can burn through non-empty space in the oblique direction (we can actually EXCEED the speed limit in that direction)
+The waterbear's helix makes use of slightly different components than the ones we introduced for use in the caterpillar (see Exercise~\ref{exer:waterbear_one_more_helix_component}), so as to reduce its size down to just $6$ xWSSes, and also so that it fires gliders backwards instead of forwards.\footnote{Again, for oblique helices there are two different ``backwards'' directions that gliders can be fired in.} Fortunately, we can construct backwards-firing helices that travel at any speed and slope, just as we could with forwards-firing helices (see Exercise~\ref{exer:backward_helix_universal}).
 
-% Exercise: there is another unused two-part helix reflector at http://www.gabrielnivasch.org/fun/life/caterpillar   Do something with it? And maybe waterbear helices?
-% Exercise: make helix with (speed)
-% Exercise: remove (something) from helix, what is new speed? Give both an orthogonal and an oblique version
+The waterbear itself is displayed in Figure~\ref{fig:waterbear}.\footnote{Constructed (by hand---not a computer program!) by Brett Berger in December 2014, based on numerous reactions (such as the helix) that were found by Ivan Fomichev.} Unlike the caterpillar, in which the primary $17c/45$ reaction moved parallel to the helix, the waterbear's $(23,5)c/79$ reaction runs at a different angle than the helix. The result of this change is that, instead of being long and thin like the caterpillar, the simplest waterbear to construct would be triangular, with the helix along one side of the triangle and the $(23,5)c/79$ reaction along another. To keep its size down a bit, the $(23,5)/79$ Herschel-and-glider track on one of the sides is ``reset'' at two points, so that the resulting waterbear looks like it is made up of $3$ much smaller triangles instead. As a result, it has $197{\thousep}896$ live cells and fits in a $13{\thousep}295 \times 28{\thousep}010$ bounding box, making it comparable in size to the silverfish.
+
+\begin{figure}[!htbp]
+	\centering
+	\embedlink{waterbear}{\includegraphics[width=\textwidth]{self_support_spaceships/waterbear.pdf}}
+	\caption{The $(23,5)c/79$ oblique \emph{waterbear} spaceship. The helix along its southeast side (highlighted in \bgbox{aquaback}{aqua}) periodically fires a backward glider that supports a Herschel via the $(23,5)c/79$ reaction on its northeast side (highlighted in \bgbox{magentaback}{magenta}). The output gliders from that reaction are then used to synthesize additional tracks and the afore-mentioned helix.}\label{fig:waterbear}
+\end{figure}
 
 
 
@@ -479,6 +497,12 @@ Despite its monstrous size, the silverfish displayed in Figure~\ref{fig:silverfi
 % 3c/10 reaction (ref figure in chapter 1), why it hasn't worked yet. See Dave's write-up at https://www.conwaylife.com/forums/viewtopic.php?f=15&t=3427
 
 % 2014-present: self-supporting spaceships (half-baked knightship, waterbear, Centipede, Caterloopillar). The name "Caterloopillar" is something of a tribute to Douglas Hofstadter's "strange loop" concept. It's a deeply weird Life spaceship design where each half of the spaceship builds the other half as the whole thing is flying along, reminiscent of Escher's "Drawing Hands" lithograph.
+
+% Gabriel's caterpillar page has another potential reaction. Any others? Maybe list a bunch.
+% Maybe mention the HBKs here too? Seems hard to fit them into the main text. Yep, do this. Put reaction along with the unused ones
+% Another incomplete reaction: p69 c/3
+%x = 9, y = 14, rule = S23/B3
+%7boo$7boo10$bbo$b3o$oobbo!
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -772,6 +796,22 @@ Despite its monstrous size, the silverfish displayed in Figure~\ref{fig:silverfi
 \mfilbreak
 
 
+\begin{problem}\label{exer:construct_orthogonal_helix}
+	Construct an orthogonal helix that fires gliders forward on one side and travels at...
+	
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item $120c/301$,% SOLUTION: m = 5, n = 0, ell = 0
+		
+		\item $12c/31$, and% SOLUTION: m = 5, n = 9, ell = 0
+		
+		\item $124c/323$.% SOLUTION: m = 5, n = 6, ell = 2
+	\end{enumerate}
+\end{problem}
+
+
+\mfilbreak
+
+
 \begin{problem}\label{exer:caterpillar_glider_slopes}
 	Compute the slopes of the lines of forward and backward gliders in the caterpillar (i.e., in Figure~\ref{fig:caterpillar}). Do not just read the slopes off of that figure -- explain where they come from.
 \end{problem}
@@ -785,6 +825,81 @@ Despite its monstrous size, the silverfish displayed in Figure~\ref{fig:silverfi
 	In Figure~\ref{fig:caterpillar}, we highlighted in yellow a two-MWSS flotilla that can be used to duplicate a glider. Find at least 2 other xWSS flotillae that are used to duplicate gliders in the caterpillar, and explain why it is useful to have so many different flotillae that seem to perform the same task.
 \end{problem}
 % Solution: different timing/positioning of the output gliders.
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:construct_oblique_helix}
+	Construct an oblique helix that fires gliders forward on one side and travels at...
+	
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item $(70,13)c/201$,% SOLUTION: k = 3, m = 2, n = 0
+		
+		\item $(40,13)c/111$, and% SOLUTION: k = 4, m = 2, n = 1
+		
+		\item $(13,2)c/35$.% SOLUTION: k = 4, m = 3, n = 0, ell = 1 in the same direction as k, but ell = 0 in other direction (we didn't talk about ell explicitly in main text, but it again is just diagonal free fly cells for gliders)
+	\end{enumerate}
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:backward_helix}
+	Two additional helix components are displayed below---the one on the left is a reflector, while the one on the right is a duplicator that fires a glider backwards.
+	
+	\noindent\begin{center}
+		\patternimglink{0.1}{exercise_helix_components}
+	\end{center}
+	
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item What useful feature does the reflector have that makes it more useful in some situations than the reflector from Figure~\ref{fig:helix_reflect}?
+		% SOLUTION: It is adjustable. First xWSS turns glider into a SL, second turns it back into a glider.
+		
+		\item Create a helix, of any speed of your choosing, that makes use of both of these components.
+	\end{enumerate}
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:backward_helix_universal}
+	Consider the two helix components from Exercise~\ref{exer:backward_helix} and the glider-shifting component from Figure~\ref{fig:helix_shift}.\smallskip
+	
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item Show that these three components can be used to construct orthogonal helices, which fire gliders backward on one side, with any rational speed slower than $c/2$.
+		
+		\item Show that these three components can be used to construct oblique helices, which fire gliders backward on one side, that travel at the same speed and direction as any oblique spaceship.
+	\end{enumerate}
+\end{problem}
+% Solution key idea: reflector is adjustable this time instead of the forward-firing component
+
+
+\mfilbreak
+
+
+\begin{problemstar}\label{exer:waterbear_what_slope}
+	In the waterbear, what is the slope of the line of Herschels and gliders along its northeast edge (i.e., what is the slope of the magenta line in Figure~\ref{fig:waterbear}). In particular, explain why the slope is \emph{not} $5/23$.
+\end{problemstar}
+
+
+\mfilbreak
+
+
+\begin{problemstar}\label{exer:waterbear_one_more_helix_component}
+	The helix used by the waterbear contains a $3$-xWSS reflector. Find that reflector, and explain why it is used instead of either of the $2$-xWSS reflectors that we saw in Figure~\ref{fig:helix_reflect} and Exercise~\ref{exer:backward_helix}.
+\end{problemstar}
+
+
+\mfilbreak
+
+
+\begin{problemstar}\label{exer:waterbear_why_loaf}
+	Directly beside its $6$-xWSS helix, the waterbear has a pair of xWSSes that convert the helix's backward glider into a backwards glider and a loaf. Explain why---what purpose does this loaf serve?
+\end{problemstar}
+
 	
 	%% EXERCISE END COMMANDS
 \end{multicols}
