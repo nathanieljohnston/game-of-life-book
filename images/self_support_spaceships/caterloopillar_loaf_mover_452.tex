@@ -1,0 +1,15 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\begin{document}
+	\begin{tikzpicture}%
+		\node[inner sep=0pt,anchor=south west] (ch) at (0,0) {\includegraphics[width=9cm]{caterloopillar_loaf_mover_450.png}};% yes, 450 (not 452) is right here (filename really should be _452 not _450 but it doesn't affect the front end of the book at all)
+		
+		\draw[white,line width=1.5pt,opacity=0.6,rounded corners=3.9](4.69,0.61) -- (4.97,0.63) -- (5.07,0.09) -- (4.79,0.07) -- cycle;
+		\draw[redback2,line width=0.6pt,rounded corners=3.9](4.69,0.61) -- (4.97,0.63) -- (5.07,0.09) -- (4.79,0.07) -- cycle;
+		
+		% BORDER
+		\draw[gridgray] (0,0) rectangle (9,1.18781725888);
+		\clip (0,0) rectangle (9,1.18781725888);
+	\end{tikzpicture}
+\end{document}

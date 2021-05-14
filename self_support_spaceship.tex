@@ -449,25 +449,45 @@ We should also note that, for oblique helices, there are two different ``forward
 	as desired.
 \end{proof}
 
-The waterbear's helix makes use of slightly different components than the ones we introduced for use in the caterpillar (see Exercise~\ref{exer:waterbear_one_more_helix_component}), so as to reduce its size down to just $6$ xWSSes, and also so that it fires gliders backwards instead of forwards.\footnote{Again, for oblique helices there are two different ``backwards'' directions that gliders can be fired in.} Fortunately, we can construct backwards-firing helices that travel at any speed and slope, just as we could with forwards-firing helices (see Exercise~\ref{exer:backward_helix_universal}).
-
-The waterbear itself is displayed in Figure~\ref{fig:waterbear}.\footnote{Constructed (by hand---not a computer program!) by Brett Berger in December 2014, based on numerous reactions (such as the helix) that were found by Ivan Fomichev.} Unlike the caterpillar, in which the primary $17c/45$ reaction moved parallel to the helix, the waterbear's $(23,5)c/79$ reaction runs at a different angle than the helix. The result of this change is that, instead of being long and thin like the caterpillar, the simplest waterbear to construct would be triangular, with the helix along one side of the triangle and the $(23,5)c/79$ reaction along another. To keep its size down a bit, the $(23,5)/79$ Herschel-and-glider track on one of the sides is ``reset'' at two points, so that the resulting waterbear looks like it is made up of $3$ much smaller triangles instead. As a result, it has $197{\thousep}896$ live cells and fits in a $13{\thousep}295 \times 28{\thousep}010$ bounding box, making it comparable in size to the silverfish.
+The waterbear's helix makes use of slightly different components than the ones we introduced for use in the caterpillar (see Exercise~\ref{exer:waterbear_one_more_helix_component} and Figure~\ref{fig:waterbear}), so as to reduce its size down to just $6$ xWSSes, and also so that it fires gliders backwards instead of forwards.\footnote{Again, for oblique helices there are two different ``backwards'' directions that gliders can be fired in.} Fortunately, we can construct backwards-firing helices that travel at any speed and slope, just as we could with forwards-firing helices (see Exercise~\ref{exer:backward_helix_universal}).
 
 \begin{figure}[!htbp]
 	\centering
 	\embedlink{waterbear}{\includegraphics[width=\textwidth]{self_support_spaceships/waterbear.pdf}}
-	\caption{The $(23,5)c/79$ oblique \emph{waterbear} spaceship. The helix along its southeast side (highlighted in \bgbox{aquaback}{aqua}) periodically fires a backward glider that supports a Herschel via the $(23,5)c/79$ reaction on its northeast side (highlighted in \bgbox{magentaback}{magenta}). The output gliders from that reaction are then used to synthesize additional tracks and the afore-mentioned helix.}\label{fig:waterbear}
+	\caption{The $(23,5)c/79$ oblique \emph{waterbear} spaceship. The helix along its southeast side (highlighted in \bgbox{aquaback}{aqua}) periodically fires a backward glider that supports a Herschel via the $(23,5)c/79$ reaction on its northeast side (highlighted in \bgbox{magentaback}{magenta}). The output gliders from that reaction are then used to synthesize additional tracks and the afore-mentioned helix. Constructed by Brett Berger in December 2014, based on numerous reactions (such as the helix) that were found by Ivan Fomichev.}\label{fig:waterbear}
 \end{figure}
 
+Unlike the caterpillar, in which the primary $17c/45$ reaction moved parallel to the helix, the waterbear's $(23,5)c/79$ reaction runs at a different angle than the helix. The result of this change is that, instead of being long and thin like the caterpillar, the simplest waterbear to construct would be triangular, with the helix along one side of the triangle and the $(23,5)c/79$ reaction along another. To keep its size down a bit, the $(23,5)/79$ Herschel-and-glider track on one of the sides is ``reset'' at two points, so that the resulting waterbear looks like it is made up of $3$ much smaller triangles instead. As a result, it has $197{\thousep}896$ live cells and fits in a $13{\thousep}295 \times 28{\thousep}010$ bounding box, making it comparable in size to the silverfish.
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Caterloopillars}\label{sec:caterloopillar}
+\section{Caterloopillars}\label{sec:caterloopillar}\index{caterloopillar}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Stuff.
+The final family of self-supporting spaceships that we will look at are called \emph{caterloopillars}. The basic idea behind these spaceships is the same as it was for the silverfish, caterpillar, and waterbear: many copies of a central moving reaction are used to produce gliders that collaborate so as to send signals forward and build their own support structures ahead of themselves. However, the we now flip this idea on its head---what if instead of using an infinite trail of stable objects like blocks or blinkers to support a naturally-moving object like a Herschel or pi-heptomino, we use an infinite trail of spaceships to move a stable object?\footnote{This basic idea for the construction of a caterloopillar spaceship was originally proposed by David Bell in October 2006. It wasn't until April 2016 that slow-salvo technology had advanced to the point that it was actually constructed.}
+
+For such a reaction to actually be usable at the core of a self-supporting spaceship, it also needs to produce some sort of output (ideally a glider) that can then be used to synthesize the spaceships that pull the stable object. One such reaction, which uses three xWSS flotillae to move a loaf forward while also generating a glider, is displayed in Figure~\ref{fig:caterloopillar_loaf_mover}.
+
+
+\begin{figure}[!htb]
+	\centering
+	\embedlink{caterloopillar_loaf_mover}{\vcenteredhbox{\phantom{$\cdots$ \genarrow{224}}} \vcenteredhbox{\includegraphics[width=0.883\textwidth]{self_support_spaceships/caterloopillar_loaf_mover_0.pdf}}} \\[1em]
+	
+	\patternlink{caterloopillar_loaf_mover}{\vcenteredhbox{$\cdots$ \genarrow{224}} \vcenteredhbox{\includegraphics[width=0.883\textwidth]{self_support_spaceships/caterloopillar_loaf_mover_224.pdf}}} \\[1em]
+	
+	\patternlink{caterloopillar_loaf_mover}{\vcenteredhbox{$\cdots$ \genarrow{164}} \vcenteredhbox{\includegraphics[width=0.883\textwidth]{self_support_spaceships/caterloopillar_loaf_mover_388.pdf}}} \\[1em]
+	
+	\patternlink{caterloopillar_loaf_mover}{\vcenteredhbox{${} \ \cdots$ \genarrow{64}} \vcenteredhbox{\includegraphics[width=0.883\textwidth]{self_support_spaceships/caterloopillar_loaf_mover_452.pdf}}}
+	
+	\caption{An arrangment of three xWSS flotillae that move a loaf forward by $46$~cells and simultaneously create a glider. The first $4$-xWSS flotilla (highlighted in \bgbox{magentaback}{magenta}) turns the loaf into a glider, the next $3$-MWSS flotilla (highlighted in \bgbox{aquaback}{aqua}) reflects that glider, and finally the $2$-xWSS flotilla (highlighted in \bgbox{greenpastel}{green}) creates a loaf from that glider (without destroying it). Moving the aqua flotilla northwest by $n$~cells and the green flotilla west by $2n$~cells results in the loaf being moved forward by $46 + 2n$~cells.}\label{fig:caterloopillar_loaf_mover}
+\end{figure}
+
+% Talk about adjustability here
+% Footnote that these 3 reactions do NOT destroy the xwss's, in contrast with helix reactions we saw earlier
+%And instead of a fixed speed, a pile of still lifes, and associated fleet of spaceships, can be designed that will move at any rational speed (and theoretically but not practically yet, in any rational direction) inside a wide range.
 % Script is here: https://www.conwaylife.com/forums/viewtopic.php?p=30104#p30089
-% Display the 98c/2156 = c/22 one.
+% Display the c/24 one?
 
 
 
@@ -503,6 +523,8 @@ Despite its monstrous size, the silverfish displayed in Figure~\ref{fig:silverfi
 % Another incomplete reaction: p69 c/3
 %x = 9, y = 14, rule = S23/B3
 %7boo$7boo10$bbo$b3o$oobbo!
+
+% TODO: Chris Cain built a camelship. Probably worth a brief mention in history section of Ch11?
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
