@@ -1,0 +1,56 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+\definecolor{darkorangeback}{RGB}{128,54,0}
+\definecolor{darkgreenback}{RGB}{0,96,0}
+
+\begin{document}
+	\begin{tikzpicture}%
+%		% DIRECTION
+%		\newcommand\dirx{6}
+%		\newcommand\diry{4}
+%		\draw[color=gray,-stealth] (\dirx-1.4,\diry) --node[shift={(-0.05,0.1)}] {\tiny \texttt{direction of travel}} (\dirx+0.75,\diry);
+	
+		% TOP LOAF TRACK
+		\newcommand\xsep{1.3}
+		\node[inner sep=0pt] at (4.9+\xsep,3) {\includegraphics[scale=0.03]{loaf_small.png}};
+		\node[inner sep=0pt] at (5.5+\xsep,3) {\includegraphics[scale=0.03]{loaf_small.png}};
+		\node[inner sep=0pt] at (6.2+\xsep,2.85) {\includegraphics[scale=0.03]{loaf_flotilla_left.png}};
+		\node[inner sep=0pt] at (7.1+\xsep,3) {\includegraphics[scale=0.03]{loaf_small.png}};
+		\node[inner sep=0pt] at (7.7+\xsep,3) {\includegraphics[scale=0.03]{loaf_small.png}};
+		\node[inner sep=0pt] at (8.3+\xsep,3) {\includegraphics[scale=0.03]{loaf_small.png}};
+		\node[inner sep=0pt] at (9.1+\xsep,3) {\includegraphics[scale=0.03]{loaf_small.png}};
+		\draw[color=darkgreenback,-stealth] (6.8+\xsep,3.2) --node[anchor=south,shift={(-0.05,-0.07)}] {\tiny \texttt{loaf-pushing flotillae}} (9.2+\xsep,3.2);
+		\node[inner sep=0pt] at (6.7+\xsep,2.8) {\includegraphics[scale=0.03]{glider_small.png}};
+		\draw[color=darkorangeback,-stealth] (6.8+\xsep,2.7) -- (7.5+\xsep,2);
+		
+		\node[color=darkorangeback] at (7.5+\xsep,1.66) {\tiny \texttt{synthesize loaf-pulling flotillae}};
+		\draw[darkorangeback,dashed] (7.5+\xsep-1.7,1.66-0.24) rectangle (7.5+\xsep+1.7,1.66+0.24);
+		\draw[color=darkorangeback,-stealth] (7.5+\xsep-1.7,1.66) -- (7.5+\xsep-2.3,1.66);
+		
+		\node[color=gray,align=center] at (11.2,3.2) {\tiny \texttt{destroy}\\[-0.2cm]\tiny\texttt{flotillae}};
+		\draw[gray,dashed] (11.2-0.55,3.2-0.3) rectangle (11.2+0.55,3.2+0.3);
+		
+		% BOTTOM LOAF TRACK
+		\node[inner sep=0pt] at (5.1,2) {\includegraphics[scale=0.03]{loafb_small.png}};
+		\node[inner sep=0pt] at (4.5,2) {\includegraphics[scale=0.03]{loafb_small.png}};
+		\node[inner sep=0pt] at (3.7,1.85) {\includegraphics[scale=0.03]{loaf_flotilla_right.png}};
+		\node[inner sep=0pt] at (2.9,2) {\includegraphics[scale=0.03]{loafb_small.png}};
+		\node[inner sep=0pt] at (2.2,2) {\includegraphics[scale=0.03]{loafb_small.png}};
+		\node[inner sep=0pt] at (1.6,2) {\includegraphics[scale=0.03]{loafb_small.png}};
+		\node[inner sep=0pt] at (1,2) {\includegraphics[scale=0.03]{loafb_small.png}};
+		\draw[color=darkgreenback,-stealth] (3.3,1.8) --node[anchor=north,shift={(0.05,0.05)}] {\tiny \texttt{loaf-pulling flotillae}} (0.9,1.8);
+		\node[inner sep=0pt] at (3.2,2.4) {\includegraphics[scale=0.03]{gliderb_small.png}};
+		\draw[color=darkorangeback,-stealth] (3.1,2.5) -- (2.6,3);
+		
+		\node[color=darkorangeback] at (2.6,3.32) {\tiny \texttt{synthesize loaf-pushing flotillae}};
+		\draw[darkorangeback,dashed] (2.6-1.7,3.32-0.24) rectangle (2.6+1.7,3.32+0.24);
+		\draw[color=darkorangeback,-stealth] (2.6+1.7,3.32) -- (2.6+2.3,3.32);
+		
+		\node[color=gray,align=center] at (0.2,1.85) {\tiny \texttt{destroy}\\[-0.2cm]\tiny\texttt{flotillae}};
+		\draw[gray,dashed] (0.2-0.55,1.85-0.3) rectangle (0.2+0.55,1.85+0.3);
+		
+		% BORDER
+		\draw[gridgray] (-0.5,1.2) rectangle (11.95,3.75);
+		\clip (-0.5,1.2) rectangle (11.95,3.75);
+	\end{tikzpicture}
+\end{document}
