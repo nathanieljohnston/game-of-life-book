@@ -527,14 +527,14 @@ While this reaction does not pull the loaf by the same number of cells that the 
 
 To take care of task (2) above---destroying the xWSS flotillae after they are done pushing and pulling the loaf tracks---we can place a constellation of still lifes at the ends of the tracks. The tricky part is moving that constellation down the track at the same speed as the loaves.
 
-To solve this problem, we instead use a \emph{single} still life along with additional xWSS flotillae. Those extra flotillae are arranged to convert the still life into a glider that then (a) reconstructs a copy of that single still life farther down the track, and (b) builds a constellation of still lifes that destroys the loaf-moving flotillae. A bit more specifically, we use additional xWSS flotillae that transform the still life as follows:
+To solve this problem, we instead use a \emph{single} still life along with additional xWSS flotillae. Those extra flotillae are arranged so as to convert the still life into a glider that then (a) reconstructs a copy of that single still life farther down the track, and (b) builds a constellation of still lifes that destroys the loaf-moving flotillae. A bit more specifically, we use additional xWSS flotillae that transform the still life as follows:
 
 \noindent\begin{center}
 	\centering
 	\includegraphics[scale=1]{self_support_spaceships/caterloopillar_front_back_idea.pdf}
 \end{center}
 
-Unlike the loaf-moving flotillae, we need the xWSSes in these flotillae to be destroyed as they manipulate the still life and gliders. However, this does not make it any harder to find flotillae that get the job done (in fact, we already saw many one-time glider manipulating flotillae when we investigated helices in Section~\ref{sec:caterpillar_helices}). Particular flotillae that can be used at the front and back of the caterloopillar, to destroy the loaf-pusher and loaf-puller that we have already seen, are displayed in Figure~\ref{fig:caterloopillar_front_back}.
+Unlike the loaf-moving flotillae, we need the xWSSes in these flotillae to be destroyed as they manipulate the still life and gliders. However, this does not make it any harder to find flotillae that get the job done (in fact, we already saw many one-time glider manipulating flotillae like this when we investigated helices in Section~\ref{sec:caterpillar_helices}). Particular flotillae that can be used at the front and back of the caterloopillar, to destroy the loaf-pusher and loaf-puller that we have already seen, are displayed in Figure~\ref{fig:caterloopillar_front_back}.\footnote{The flotilla from Figure~\ref{fig:caterloopillar_front_end} that destroys the loaf-pusher also releases a backwards glider---see Exercise~\ref{exer:caterloopillar_front_end_glider}.}
 
 \begin{figure}[!htb]
 	\centering
@@ -551,23 +551,56 @@ Unlike the loaf-moving flotillae, we need the xWSSes in these flotillae to be de
 	\caption{Some xWSS flotillae and still lifes that can be placed in front of the loaf-moving flotillae so as to destroy them. When adjusting these flotillae, also adjust the loaf-pushing and loaf-pulling flotillae as indicated in the captions of Figures~\ref{fig:caterloopillar_loaf_pusher} and~\ref{fig:caterloopillar_loaf_puller}, respectively.}\label{fig:caterloopillar_front_back}
 \end{figure}
 
-% FOrward destroyer also needs to make glider for seed (leave as footnote or exercise?)
-% First backward seed is made by a single extra XWSS going in that direction that is hit by a glider
-% Exercise: in the front and back-end flotillae of the caterloopillar, there are two 2-xWSS flotillae that can reflect a glider while firing one backward. Explain why the 3-xWSS component that does this from [OTHER EXER] would often be preferable (solution: 3-xWSS component reflects near its front and can thus be used to make helices that are much faster (without using the c/2 helix component)). To make the 2-xWSS components fast, we need to add lots of other xWSSes to speed it up.
-
 
 \subsection{Putting It All Together}\label{sec:caterloopillar_itself}
 
-All that is left now is task (3)...
+All that is left now to complete the caterloopillar is task (3)---coming up with a unidirectional slow-salvo glider synthesis of the xWSS flotillae from Figure~\ref{fig:caterloopillar_front_back} that will travel antiparallel to each other. In fact, we even need this glider synthesis to be \emph{monochromatic}---consisting entirely of gliders of just one color.\index{monochromatic} Indeed, the locations from which gliders are fired is determined by the spacing of the loaves on the loaf track, and that spacing is orthogonal (i.e., the loaves and hence gliders in the slow salvo are sepearated by full diagonals, not half diagonals).
 
-% Talk about what speeds are achievable here. All?
+Such a glider synthesis will consist of hundreds of steps, so actually coming up with it is best left to a computer script.\footnote{Such a script, which was made by Michael Simkin and used to construct the first caterloopillars, is available at \httpsurl{conwaylife.com/forums/viewtopic.php?p=30104\#p30089}.} Once we have that glider synthesis though, we are done, and get a completed caterloopillar like the one displayed in Figure~\ref{fig:caterloopillar}.
+
+% FIGURE caterloopillar
+
+This particular caterloopillar pushes and pulls the loaf track by $98$~cells per period, and the forward-travelling xWSS flotillae are separated by $1{\thousep}078$~cells, for a speed of $98c/(2(1078 + 98)) = 98c/2352 = c/24$.\footnote{The speed is $98c/(2(1078 + 98))$ instead of just $98c/(2 \cdot 1078)$ because of a ``doppler effect'': the flotillae do not have to travel just $1{\thousep}078$ cells per period, but also the extra $98$ cells that the still lifes were pushed.}\index{doppler effect} Caterloopillars of many other speeds can be straightforwardly created from this one, though. For example, we could straightforwardly (though tediously!) move some or all of the flotillae, loaves, and synthesis seeds farther apart, even by hand, resulting in larger caterloopillars that travel as slowly as we like.
+
+Similarly, we can also squeeze the flotillae closer together, resulting in slightly smaller and faster caterloopillars, but we are much more limited in this direction. For example, the forward flotillae used by this caterloopillar must be separated by at least $352$ cells, so these by-hand adjustments cannot possibly produce caterloopillars that are any faster than $98c/(2(352 + 98)) = 49c/450$.
+
+To create even faster caterloopillars, we have to increase how far the flotillae from Figure~\ref{fig:caterloopillar_front_back} push and pull their still lifes, which requires us to adjust the slow salvo syntheses that is used to construct those flotillae. We thus have to rebuild the caterloopillar almost entirely from scratch (or, rather, the computer script has to rebuild it from scratch). If we are willing to put in this extra bit of effort, then we can construct caterloopillars that travel at any rational speed slower than $c/4$:\footnote{This $c/4$ speed limit should be fairly intuitive---as we increase the amount that the caterloopillar displaces its still lifes per period, more and more of its travel time is spent as a ($c/4$) glider bouncing between the components of the flotillae from Figure~\ref{fig:caterloopillar_front_back}.}
+
+\begin{theorem}[Caterloopillar Speeds]
+	Caterloopillar spaceships can be constructed that travel at any rational speed slower than $c/4$.
+\end{theorem}
+
+\begin{proof}
+	For any integers $m,n \geq 0$, if the flotilla from Figure~\ref{fig:caterloopillar_front_end} is configured to push the loaf and honey farm forward by $100 + 2n$ cells, then we can separate subsequent copies of this flotilla by $400 + 2n + 2m$ cells.\footnote{That is, we can separate copies of these flotillae by any even number of cells that is at least as large as $400 + 2n$. Even though the width of that flotillae is actually $682 + 4n$ cells, they can ``overlap'' considerably, with one copy of the loaf pusher being nestled underneath the previous loaf-pusher-destroyer.} Similarly, if the flotilla from Figure~\ref{fig:caterloopillar_back_end} is configured to pull the loaf and beehive backward by $100 + 2n$ cells, then we can separate separate copies of it by $600 + 6n + 2m$ cells.
+	
+	It follows that the speed of the resulting caterloopillar is
+	\[
+		\frac{(100 + 2n)c}{2\big((400 + 2n + 2m) + (100 + 2n)\big)} = \frac{(50 + n)c}{500 + 4n + 2m}.\footnote{If we calculated this speed based on the loaf-\emph{pulling} flotillae instead of the loaf-\emph{pushing} ones, we would get the same answer: $(100 + 2n)c/\big(2((600 + 6n + 2m) - (100 + 2n))\big) = (50 + n)c/(500 + 4n + 2m)$.}
+	\]
+	
+	To create a caterloopillar with speed $(p/q)c$, where $p,q > 0$ are integers with $p/q < 1/4$, it suffices to choose
+	\[
+		n = 300p - 50 \qquad \text{and} \qquad m = 150(q - 4p) - 150.
+	\]
+	These are both non-negative integers, and straightforward algebra shows that
+	\[
+		\frac{50 + n}{500 + 4n + 2m} = \frac{50 + (300p - 50)}{500 + 4(300p - 50) + 2(150(q - 4p) - 150)} = \frac{300p}{300q} = \frac{p}{q},
+	\]
+	as claimed.
+\end{proof}
+% Note not optimal, caterloopillar we showed above overclocks its glider to make flotillae shorter
+
+% EXERCISE: Adjust (by hand) caterloopillar by hand to be faster/slower than ??.
+% Footnote that certain speeds not attainable by scripts, but easily reached by hand
+
 % Exercise: we saw glider-reflecting flotillae in Chap 4. Why do they not apply here?
-% Mention we can't do arbitrary unidirectional slow synthesis since gliders, but only monochromatic, and explain why (can't move a loaf by half a cell).
 %And instead of a fixed speed, a pile of still lifes, and associated fleet of spaceships, can be designed that will move at any rational speed (and theoretically but not practically yet, in any rational direction) inside a wide range.
-% Script is here: https://www.conwaylife.com/forums/viewtopic.php?p=30104#p30089
-% Display the c/24 one?
 % As speed increases, spacing between flotillae doesn't just increase, but number of steps in slow salvo synth also increases
 
+% backward 1274 separation. Exercise: compute backward sep from forward and displacement?
+% script does not construct all speeds, but that is OK since we can adjust by hand
+% TODO: Come back to doppler effect in Chap 11 when discussing gemini and other speed limits?
+% Exercise: Use script to make a c/21 caterloopillar. Follow-up exercise: adjust by hand to make a c/22 caterloopillar (just separate components a bit or move one end farther away?)
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1016,6 +1049,39 @@ Despite its monstrous size, the silverfish displayed in Figure~\ref{fig:silverfi
 		\item Adjust the loaf-puller so that it pulls the loaf backward by $60$ cells.
 	\end{enumerate}
 \end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:loaf_move_and_destroy_adjust}
+	Recall the xWSS flotillae from Figure~\ref{fig:caterloopillar_front_back} that push or pull a loaf and then self-destruct with the help of another still life.\smallskip
+	
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item Adjust the flotilla from Figure~\ref{fig:caterloopillar_front_end} so that it pushes the loaf and honey farm forward by $100$ cells.
+		
+		\item Adjust the flotilla from Figure~\ref{fig:caterloopillar_back_end} so that it pulls the loaf and beehive backward by $100$ cells.
+	\end{enumerate}
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problemstar}\label{exer:caterloopillar_front_end_glider}
+	The flotilla from Figure~\ref{fig:caterloopillar_front_end} that destroys the loaf-pusher also releases a backward glider, whereas the flotilla from Figure~\ref{fig:caterloopillar_front_end} that destroys the loaf-puller does not. Explain why.
+	
+	\noindent [Hint: Look at the front and back ends of the caterloopillar from Figure~\ref{fig:caterloopillar}.]
+\end{problemstar}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:helix_components_from_caterloopillar}
+	The xWSS flotillae displayed in Figure~\ref{fig:caterloopillar_front_back} contain two different 2-xWSS flotillae that can reflect a glider while firing one backward. Explain why the 3-xWSS component from Exercise~\ref{exer:backward_helix} that performs this same task would often be preferable when building a backward-firing helix.
+\end{problem}
+% SOLUTION: 3-xWSS component reflects near its front and can thus be used to make helices that are much faster (without using the c/2 helix component)). To make the 2-xWSS components fast, we need to add lots of other xWSSes to speed it up.
 
 	
 	%% EXERCISE END COMMANDS
