@@ -467,24 +467,27 @@ Unlike the caterpillar, in which the primary $17c/45$ reaction moved parallel to
 
 The final family of self-supporting spaceships that we look at are called \emph{caterloopillars}. The basic idea behind these spaceships is the same as it was for the silverfish, caterpillar, and waterbear: many copies of a central moving reaction are used to produce gliders that collaborate so as to send signals forward and build their own support structures ahead of themselves. However, the we now flip this idea on its head---what if instead of using an infinite trail of stable objects like blocks or blinkers to support a naturally-moving object like a Herschel or pi-heptomino, we use an infinite trail of spaceships to move a stable object?\footnote{This basic idea for the construction of a caterloopillar spaceship was originally proposed by David Bell in October 2006. It wasn't until April 2016 that slow-salvo technology had advanced to the point that it was actually constructed.}
 
-For such a reaction to actually be usable at the core of a self-supporting spaceship, it also needs to produce some sort of output (ideally a glider) that can then be used to synthesize the spaceships that pull the stable object. One such reaction, which uses three xWSS flotillae to push a loaf forward while also generating a glider, is displayed in Figure~\ref{fig:caterloopillar_loaf_pusher}.
+
+\subsection{Loaf Tracks}\label{sec:caterloopillar_loaf_track}
+
+For a still-life-moving reaction to actually be usable at the core of a self-supporting spaceship, it also needs to produce some sort of output (ideally a glider) that can then be used to synthesize the spaceships that pull the stable object. One such reaction, which uses three xWSS flotillae to push a loaf forward while also generating a glider, is displayed in Figure~\ref{fig:caterloopillar_loaf_pusher}.\footnote{In contrast with the glider-manipulating flotillae that are used in helices (refer back to Section~\ref{sec:caterpillar_helices}), these flotillae are \emph{not} destroyed by the glider.}
 
 \begin{figure}[!htb]
 	\centering
-	\embedlink{caterloopillar_loaf_pusher}{\vcenteredhbox{\phantom{$\cdots$ \genarrow{224}}} \vcenteredhbox{\includegraphics[width=0.883\textwidth]{self_support_spaceships/caterloopillar_loaf_mover_0.pdf}}} \\[1em]
+	\embedlink{caterloopillar_loaf_pusher}{\vcenteredhbox{\phantom{\genarrow{224}}} \vcenteredhbox{\includegraphics[width=0.918\textwidth]{self_support_spaceships/caterloopillar_loaf_mover_0.pdf}}} \\[1em]
 	
-	\patternlink{caterloopillar_loaf_pusher}{\vcenteredhbox{$\cdots$ \genarrow{224}} \vcenteredhbox{\includegraphics[width=0.883\textwidth]{self_support_spaceships/caterloopillar_loaf_mover_224.pdf}}} \\[1em]
+	\patternlink{caterloopillar_loaf_pusher}{\vcenteredhbox{\genarrow{224}} \vcenteredhbox{\includegraphics[width=0.918\textwidth]{self_support_spaceships/caterloopillar_loaf_mover_224.pdf}}} \\[1em]
 	
-	\patternlink{caterloopillar_loaf_pusher}{\vcenteredhbox{$\cdots$ \genarrow{164}} \vcenteredhbox{\includegraphics[width=0.883\textwidth]{self_support_spaceships/caterloopillar_loaf_mover_388.pdf}}} \\[1em]
+	\patternlink{caterloopillar_loaf_pusher}{\vcenteredhbox{\genarrow{164}} \vcenteredhbox{\includegraphics[width=0.918\textwidth]{self_support_spaceships/caterloopillar_loaf_mover_388.pdf}}} \\[1em]
 	
-	\patternlink{caterloopillar_loaf_pusher}{\vcenteredhbox{${} \ \cdots$ \genarrow{64}} \vcenteredhbox{\includegraphics[width=0.883\textwidth]{self_support_spaceships/caterloopillar_loaf_mover_452.pdf}}}
+	\patternlink{caterloopillar_loaf_pusher}{\vcenteredhbox{${} \, {}$ \genarrow{64}} \vcenteredhbox{\includegraphics[width=0.918\textwidth]{self_support_spaceships/caterloopillar_loaf_mover_452.pdf}}}
 	
-	\caption{An arrangment of three xWSS flotillae that push a loaf forward by $46$~cells and simultaneously create a glider. The first $4$-xWSS flotilla (highlighted in \bgbox{magentaback}{magenta}) turns the loaf into a glider, the next $3$-MWSS flotilla (highlighted in \bgbox{aquaback}{aqua}) reflects that glider, and finally the $2$-xWSS flotilla (highlighted in \bgbox{greenpastel}{green}) creates a loaf from that glider (without destroying it). Moving the aqua flotilla northwest by $n$~cells and the green flotilla west by $2n$~cells results in the loaf being pushed forward by $46 + 2n$~cells.}\label{fig:caterloopillar_loaf_pusher}
+	\caption{An arrangement of three xWSS flotillae that push a loaf forward by $46$~cells and simultaneously create a glider. The first $4$-xWSS flotilla (highlighted in \bgbox{magentaback}{magenta}) turns the loaf into a glider, the next $3$-MWSS flotilla (highlighted in \bgbox{aquaback}{aqua}) reflects that glider, and finally the $2$-xWSS flotilla (highlighted in \bgbox{greenpastel}{green}) creates a loaf from that glider (without destroying it). Moving the aqua flotilla northwest by $n$~cells and the green flotilla west by $2n$~cells results in the loaf being pushed forward by $46 + 2n$~cells.}\label{fig:caterloopillar_loaf_pusher}
 \end{figure}
 
 We will thus use a track of loaves as the central spine of a self-supporting spaceship, with this 9-xWSS flotilla being used to push it forward. As the flotilla pushes the loaves, it also releases gliders that can be used to synthesize supporting mechanisms via unidirectional slow salvo synthesis (in almost exactly the same way as the silverfish used unidirectional slow salvo synthesis to synthesize two HWSSes on each side).
 
-Perhaps the simplest supporting mechanism to synthesize is an xWSS flotillae travelling in the opposite direction that \emph{pulls} a second loaf track by the same amount that the first loaf track is \emph{pushed}. By arranging these two flotillae so that they run on parallel tracks in opposite directions, we can have the loaf-pulling and loaf-pulling flotillae synthesize each other, as illustrated in Figure~\ref{fig:caterloopillar_schematic}. This gets us most of the way to a working caterloopillar.\footnote{The fact that these two flotillae synthesize each other is what gives caterloopillars their name (besides the obvious analogy with the caterpillar)---the xWSSes form a long loop that seems to be synthesizing itself.}
+Perhaps the simplest supporting mechanism to synthesize is an xWSS flotillae travelling in the opposite direction that \emph{pulls} a second loaf track by the same amount that the first loaf track is \emph{pushed}. By arranging these two flotillae so that they run on parallel tracks in opposite directions, we can have the loaf-pulling and loaf-pulling flotillae synthesize each other, as illustrated in Figure~\ref{fig:caterloopillar_schematic}.\footnote{The fact that these two flotillae synthesize each other is what gives caterloopillars their name (besides the obvious analogy with the caterpillar)---the xWSSes form a long loop that seems to be synthesizing itself.}
 
 \begin{figure}[!htbp]
 	\centering
@@ -492,29 +495,78 @@ Perhaps the simplest supporting mechanism to synthesize is an xWSS flotillae tra
 	\caption{A schematic for a caterloopillar spaceship that travels to the right. Some loaf-pushing flotillae travel along a loaf track that encodes a unidirectional slow-salvo synthesis of a loaf-pulling flotilla. Those loaf-pulling flotillae travel backwards along a parallel loaf track that encodes a unidirectional slow-salvo synthesis of the loaf-pushing flotilla.}\label{fig:caterloopillar_schematic}
 \end{figure}
 
-As with the loaf-pushing flotilla that we saw in Figure~\ref{fig:caterloopillar_loaf_pusher}, a loaf-pulling flotilla can be built out of smaller flotillae that turn the loaf into a glider, reflect that glider, and then turn the glider back into a loaf (along with a extra glider being produced at some point in that process). The particular loaf-pushing flotilla that we will used is displayed in Figure~\ref{fig:caterloopillar_loaf_puller}.
+We just have three tasks that remain in order to actually construct a caterloopillar spaceship with this shape:\smallskip
+
+\begin{itemize}
+	\item[1)] Build the loaf-pulling xWSS flotilla.\smallskip
+	
+	\item[2)] Build mechanisms for destroying the flotillae at the front and back of the spaceship.\smallskip
+	
+	\item[3)] Come up with unidirectional slow salvo syntheses for these flotillae, and encode them in the spacing between loaves.\smallskip
+\end{itemize}
+
+We tackle these three issues one at a time. For (1), we proceed much like we did with the loaf-pushing flotilla that we saw in Figure~\ref{fig:caterloopillar_loaf_pusher}: a loaf-\emph{pulling} flotilla can be built out of smaller flotillae that turn the loaf into a glider, and then rebuild the loaf while duplicating the glider. The particular loaf-pushing flotilla that we used is displayed in Figure~\ref{fig:caterloopillar_loaf_puller}.
 
 \begin{figure}[!htb]
 	\centering
-	\embedlink{caterloopillar_loaf_puller}{\vcenteredhbox{\phantom{$\cdots$ \genarrow{224}}} \vcenteredhbox{\includegraphics[width=0.883\textwidth]{self_support_spaceships/caterloopillar_loaf_puller_0.pdf}}} \\[1em]
+	\embedlink{caterloopillar_loaf_puller}{\vcenteredhbox{\phantom{\genarrow{224}}} \vcenteredhbox{\includegraphics[width=0.918\textwidth]{self_support_spaceships/caterloopillar_loaf_puller_0.pdf}}} \\[1em]
 	
-	\patternlink{caterloopillar_loaf_puller}{\vcenteredhbox{$\cdots$ \genarrow{156}} \vcenteredhbox{\includegraphics[width=0.883\textwidth]{self_support_spaceships/caterloopillar_loaf_puller_156.pdf}}} \\[1em]
+	\patternlink{caterloopillar_loaf_puller}{\vcenteredhbox{\genarrow{156}} \vcenteredhbox{\includegraphics[width=0.918\textwidth]{self_support_spaceships/caterloopillar_loaf_puller_156.pdf}}} \\[1em]
 	
-	\patternlink{caterloopillar_loaf_puller}{\vcenteredhbox{$\cdots$ \genarrow{232}} \vcenteredhbox{\includegraphics[width=0.883\textwidth]{self_support_spaceships/caterloopillar_loaf_puller_388.pdf}}} \\[1em]
+	\patternlink{caterloopillar_loaf_puller}{\vcenteredhbox{\genarrow{232}} \vcenteredhbox{\includegraphics[width=0.918\textwidth]{self_support_spaceships/caterloopillar_loaf_puller_388.pdf}}} \\[1em]
 	
-	\patternlink{caterloopillar_loaf_puller}{\vcenteredhbox{${} \ \ \cdots$ \genarrow{8}} \vcenteredhbox{\includegraphics[width=0.883\textwidth]{self_support_spaceships/caterloopillar_loaf_puller_396.pdf}}}
+	\patternlink{caterloopillar_loaf_puller}{\vcenteredhbox{${} \ \ {}$ \genarrow{8}} \vcenteredhbox{\includegraphics[width=0.918\textwidth]{self_support_spaceships/caterloopillar_loaf_puller_396.pdf}}}
 	
-	\caption{An arrangment of three xWSS flotillae that pull a loaf backward by $54$~cells and simultaneously create a glider. The first $4$-xWSS flotilla (highlighted in \bgbox{magentaback}{magenta}) turns the loaf into a pair of gliders, the next $3$-LWSS flotilla (highlighted in \bgbox{aquaback}{aqua}) reflects one of those gliders, and the final LWSS (highlighted in \bgbox{greenpastel}{green}) turns that glider back into a loaf. Moving the aqua flotilla south by $n$~cells and west by $3n$~cells, and the green flotilla west by $6n$~cells, results in the loaf being pulled backward by $54 + 2n$~cells.}\label{fig:caterloopillar_loaf_puller}
+	\caption{An arrangement of three xWSS flotillae that pull a loaf backward by $54$~cells and simultaneously create a glider. The first $4$-xWSS flotilla (highlighted in \bgbox{magentaback}{magenta}) turns the loaf into a pair of gliders, the next $3$-LWSS flotilla (highlighted in \bgbox{aquaback}{aqua}) reflects one of those gliders, and the final LWSS (highlighted in \bgbox{greenpastel}{green}) turns that glider back into a loaf. Moving the aqua flotilla south by $n$~cells and west by $3n$~cells, and the green flotilla west by $6n$~cells, results in the loaf being pulled backward by $54 + 2n$~cells.}\label{fig:caterloopillar_loaf_puller}
 \end{figure}
 
-While these reactions do not push and pull a loaf by the same amount, the spacing between the component flotillae that make them up can easily be adjusted so as to fix this problem. In particular, ...
+While this reaction does not pull the loaf by the same number of cells that the reaction from Figure~\ref{fig:caterloopillar_loaf_pusher} pushes it, the spacing between the component flotillae that make up these reactions can easily be adjusted so as to fix this problem. In particular, for every integers $m,n \geq 0$, we can adjust the loaf-pushing and loaf-pulling flotillae to move the loaf by $46 + 2m$ and $54 + 2n$ cells, respectively. Choosing $m = n + 4$ results in both flotillae moving the loaf track by $54 + 2n$ cells.
 
+
+\subsection{The Front and Back Ends}\label{sec:caterloopillar_front_and_back}
+
+To take care of task (2) above---destroying the xWSS flotillae after they are done pushing and pulling the loaf tracks---we can place a constellation of still lifes at the ends of the tracks. The tricky part is moving that constellation down the track at the same speed as the loaves.
+
+To solve this problem, we instead use a \emph{single} still life along with additional xWSS flotillae. Those extra flotillae are arranged to convert the still life into a glider that then (a) reconstructs a copy of that single still life farther down the track, and (b) builds a constellation of still lifes that destroys the loaf-moving flotillae. A bit more specifically, we use additional xWSS flotillae that transform the still life as follows:
+
+\noindent\begin{center}
+	\centering
+	\includegraphics[scale=1]{self_support_spaceships/caterloopillar_front_back_idea.pdf}
+\end{center}
+
+Unlike the loaf-moving flotillae, we need the xWSSes in these flotillae to be destroyed as they manipulate the still life and gliders. However, this does not make it any harder to find flotillae that get the job done (in fact, we already saw many one-time glider manipulating flotillae when we investigated helices in Section~\ref{sec:caterpillar_helices}). Particular flotillae that can be used at the front and back of the caterloopillar, to destroy the loaf-pusher and loaf-puller that we have already seen, are displayed in Figure~\ref{fig:caterloopillar_front_back}.
+
+\begin{figure}[!htb]
+	\centering
+	\begin{subfigure}[b]{\textwidth}
+		\centering
+		\patternimglink{0.0995}{caterloopillar_front_end}
+		\caption{A honey farm and 9-xWSS flotilla that can be placed in front of the loaf-pushing flotilla from Figure~\ref{fig:caterloopillar_loaf_pusher} (highlighted in \bgbox{aquaback}{aqua}) so as to destroy it. With the spacing displayed here, the loaf and honeyfarm are each pushed forward by $62$ cells. To increase that displacement to $62 + 2n$ cells, move the top-center MWSS (highlighted in \bgbox{greenpastel}{green}) west by $2n$~cells, the next five xWSSes (highlighted in \bgbox{magentaback}{magenta}) southwest by $n$~cells, and the next two MWSSes (highlighted in \bgbox{yellowback2}{yellow}) and loaf-pusher southwest by $2n$~cells.}\label{fig:caterloopillar_front_end}
+	\end{subfigure}\\[0.3cm]
+	\begin{subfigure}[b]{\textwidth}
+		\centering
+		\patternimglink{0.066}{caterloopillar_back_end}
+		\caption{A beehive and 10-xWSS flotilla that can be placed in front of the loaf-pulling flotilla from Figure~\ref{fig:caterloopillar_loaf_puller} (highlighted in \bgbox{aquaback}{aqua}) so as to destroy it. With the spacing displayed here, the loaf and beehive are each pulled backward by $94$ cells. To increase that displacement to $94 + 2n$ cells, move the bottom-center MWSS (highlighted in \bgbox{greenpastel}{green}) west by $6n$~cells, the next five xWSSes (highlighted in \bgbox{magentaback}{magenta}) north by $n$~cells and west by $3n$~cells, and the next three xWSSes (highlighted in \bgbox{yellowback2}{yellow}) and loaf-pusher north by $2n$~cells and west by $4n$~cells.}\label{fig:caterloopillar_back_end}
+	\end{subfigure}
+	\caption{Some xWSS flotillae and still lifes that can be placed in front of the loaf-moving flotillae so as to destroy them. When adjusting these flotillae, also adjust the loaf-pushing and loaf-pulling flotillae as indicated in the captions of Figures~\ref{fig:caterloopillar_loaf_pusher} and~\ref{fig:caterloopillar_loaf_puller}, respectively.}\label{fig:caterloopillar_front_back}
+\end{figure}
+
+% FOrward destroyer also needs to make glider for seed (leave as footnote or exercise?)
+% First backward seed is made by a single extra XWSS going in that direction that is hit by a glider
+% Exercise: in the front and back-end flotillae of the caterloopillar, there are two 2-xWSS flotillae that can reflect a glider while firing one backward. Explain why the 3-xWSS component that does this from [OTHER EXER] would often be preferable (solution: 3-xWSS component reflects near its front and can thus be used to make helices that are much faster (without using the c/2 helix component)). To make the 2-xWSS components fast, we need to add lots of other xWSSes to speed it up.
+
+
+\subsection{Putting It All Together}\label{sec:caterloopillar_itself}
+
+All that is left now is task (3)...
+
+% Talk about what speeds are achievable here. All?
+% Exercise: we saw glider-reflecting flotillae in Chap 4. Why do they not apply here?
 % Mention we can't do arbitrary unidirectional slow synthesis since gliders, but only monochromatic, and explain why (can't move a loaf by half a cell).
-% Talk about adjustability here (or instead after introducing second loaf-move reaction?)
-% Footnote that these 3 reactions do NOT destroy the xwss's, in contrast with helix reactions we saw earlier
 %And instead of a fixed speed, a pile of still lifes, and associated fleet of spaceships, can be designed that will move at any rational speed (and theoretically but not practically yet, in any rational direction) inside a wide range.
 % Script is here: https://www.conwaylife.com/forums/viewtopic.php?p=30104#p30089
 % Display the c/24 one?
+% As speed increases, spacing between flotillae doesn't just increase, but number of steps in slow salvo synth also increases
 
 
 
@@ -552,6 +604,8 @@ Despite its monstrous size, the silverfish displayed in Figure~\ref{fig:silverfi
 %7boo$7boo10$bbo$b3o$oobbo!
 
 % TODO: Chris Cain built a camelship. Probably worth a brief mention in history section of Ch11?
+
+% Talk about how caterloopillar blurs the line between self-supporting and universal construction?
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -948,6 +1002,20 @@ Despite its monstrous size, the silverfish displayed in Figure~\ref{fig:silverfi
 \begin{problemstar}\label{exer:waterbear_why_loaf}
 	Directly beside its $6$-xWSS helix, the waterbear has a pair of xWSSes that convert the helix's backward glider into a backwards glider and a loaf. Explain why---what purpose does this loaf serve?
 \end{problemstar}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:loaf_move_adjust}
+	Recall the loaf-moving xWSS flotillae from Figures~\ref{fig:caterloopillar_loaf_pusher} and~\ref{fig:caterloopillar_loaf_puller}.\smallskip
+	
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item Adjust the loaf-pusher so that it pushes the loaf forward by $60$ cells.
+		
+		\item Adjust the loaf-puller so that it pulls the loaf backward by $60$ cells.
+	\end{enumerate}
+\end{problem}
 
 	
 	%% EXERCISE END COMMANDS
