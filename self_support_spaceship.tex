@@ -398,7 +398,7 @@ Actually, it's worse than this---because the caterpillar's helix has period $102
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{The Waterbear}\label{sec:waterbear}\index{waterbear}
+\section{Oblique Helices and the Waterbear}\label{sec:waterbear}\index{waterbear}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Another self-supporting spaceship that works in much the same way as the silverfish and caterpillar is the \emph{waterbear}. The reaction\index{(23,5)/79 reaction} at the heart of this spaceship is displayed in Figure~\ref{fig:23_5c_79_reaction}, and consists of a Herschel colliding with a glider so as to displace itself by $(23,5)$ over the course of $79$ generations while duplicating the glider.
@@ -487,7 +487,7 @@ For a still-life-moving reaction to actually be usable at the core of a self-sup
 
 We will thus use a track of loaves as the central spine of a self-supporting spaceship, with this 9-xWSS flotilla being used to push it forward. As the flotilla pushes the loaves, it also releases gliders that can be used to synthesize supporting mechanisms via unidirectional slow salvo synthesis (in almost exactly the same way as the silverfish used unidirectional slow salvo synthesis to synthesize two HWSSes on each side).
 
-Perhaps the simplest supporting mechanism to synthesize is an xWSS flotillae travelling in the opposite direction that \emph{pulls} a second loaf track by the same amount that the first loaf track is \emph{pushed}. By arranging these two flotillae so that they run on parallel tracks in opposite directions, we can have the loaf-pulling and loaf-pulling flotillae synthesize each other, as illustrated in Figure~\ref{fig:caterloopillar_schematic}.\footnote{The fact that these two flotillae synthesize each other is what gives caterloopillars their name (besides the obvious analogy with the caterpillar)---the xWSSes form a long loop that seems to be synthesizing itself.}
+Perhaps the simplest supporting mechanism to synthesize is an xWSS flotillae travelling in the opposite direction that \emph{pulls} a second loaf track by the same amount that the first loaf track is \emph{pushed}. By arranging these two flotillae so that they run on parallel tracks in opposite directions, we can have the loaf-pulling and loaf-pulling flotillae synthesize each other, as illustrated in Figure~\ref{fig:caterloopillar_schematic}.\footnote{The fact that these two flotillae synthesize each other is what gives caterloopillars their name (besides the obvious analogy with the caterpillar)---the xWSSes form a long loop that seems to be synthesizing itself. The name is also a reference to the term ``strange loop'', a concept explored in Douglas Hofstadter's famous book \emph{Gödel, Escher, Bach}.}\index{strange loop}
 
 \begin{figure}[!htbp]
 	\centering
@@ -556,17 +556,21 @@ Unlike the loaf-moving flotillae, we need the xWSSes in these flotillae to be de
 
 All that is left now to complete the caterloopillar is task (3)---coming up with a unidirectional slow-salvo glider synthesis of the xWSS flotillae from Figure~\ref{fig:caterloopillar_front_back} that will travel antiparallel to each other. In fact, we even need this glider synthesis to be \emph{monochromatic}---consisting entirely of gliders of just one color.\index{monochromatic} Indeed, the locations from which gliders are fired is determined by the spacing of the loaves on the loaf track, and that spacing is orthogonal (i.e., the loaves and hence gliders in the slow salvo are sepearated by full diagonals, not half diagonals).
 
-Such a glider synthesis will consist of hundreds of steps, so actually coming up with it is best left to a computer script.\footnote{Such a script, which was made by Michael Simkin and used to construct the first caterloopillars, is available at \httpsurl{conwaylife.com/forums/viewtopic.php?p=30104\#p30089}.} Once we have that glider synthesis though, we are done, and get a completed caterloopillar like the one displayed in Figure~\ref{fig:caterloopillar}.
+Such a glider synthesis will consist of hundreds of steps, so actually coming up with it is best left to a computer script.\footnote{Such a script, which was made by Michael Simkin and used to construct the first caterloopillars in April 2016, is available at \httpsurl{conwaylife.com/forums/viewtopic.php?p=30104\#p30089}.} Once we have that glider synthesis though, we are done, and get a completed caterloopillar like the one displayed in Figure~\ref{fig:caterloopillar}.
 
-% FIGURE caterloopillar
+\begin{figure}[!htbp]
+	\centering
+	\embedlink{caterloopillar}{\includegraphics[width=\textwidth]{self_support_spaceships/caterloopillar.pdf}}
+	\caption{A $c/24$ orthogonal \emph{caterloopillar} spaceship, travelling up. At the top, the loaf-pushing flotillae (highlighted in \bgbox{aquaback}{aqua}) and their destroyers (highlighted in \bgbox{greenpastel}{green}) begin synthesizing the loaf-pulling flotillae (highlighted in \bgbox{yellowback2}{yellow}) and their destroyers (highlighted in \bgbox{magentaback}{magenta}). At the bottom, the loaf-pullers begin synthesizing the loaf-pushers. In the middle, these flotillae simply pass by each other.}\label{fig:caterloopillar}
+\end{figure}
 
-This particular caterloopillar pushes and pulls the loaf track by $98$~cells per period, and the forward-travelling xWSS flotillae are separated by $1{\thousep}078$~cells, for a speed of $98c/(2(1078 + 98)) = 98c/2352 = c/24$.\footnote{The speed is $98c/(2(1078 + 98))$ instead of just $98c/(2 \cdot 1078)$ because of a ``doppler effect'': the flotillae do not have to travel just $1{\thousep}078$ cells per period, but also the extra $98$ cells that the still lifes were pushed.}\index{doppler effect} Caterloopillars of many other speeds can be straightforwardly created from this one, though. For example, we could straightforwardly (though tediously!) move some or all of the flotillae, loaves, and synthesis seeds farther apart, even by hand, resulting in larger caterloopillars that travel as slowly as we like.
+This particular caterloopillar pushes and pulls the loaf track by $98$~cells per period, and the forward-travelling xWSS flotillae are separated by $1{\thousep}078$~cells, for a speed of $98c/(2(1078 + 98)) = 98c/2352 = c/24$.\footnote{The speed is $98c/(2(1078 + 98))$ instead of just $98c/(2 \cdot 1078)$ because of a ``doppler effect'': the flotillae do not have to travel just $1{\thousep}078$ cells per period, but also the extra $98$ cells that the still lifes were pushed.}\index{doppler effect} Caterloopillars of many other speeds can be straightforwardly created from this one, though. For example, we could straightforwardly (though tediously!) move the flotillae farther apart, resulting in larger caterloopillars that travel much more slowly.
 
-Similarly, we can also squeeze the flotillae closer together, resulting in slightly smaller and faster caterloopillars, but we are much more limited in this direction. For example, the forward flotillae used by this caterloopillar must be separated by at least $352$ cells, so these by-hand adjustments cannot possibly produce caterloopillars that are any faster than $98c/(2(352 + 98)) = 49c/450$.
+Similarly, we can also squeeze the flotillae closer together, resulting in slightly smaller and faster caterloopillars, but we are much more limited in this direction. For example, the forward flotillae used by this caterloopillar must be separated by at least $352$ cells, so these simple adjustments cannot possibly produce caterloopillars that are any faster than $98c/(2(352 + 98)) = 49c/450$.
 
-To create even faster caterloopillars, we have to increase how far the flotillae from Figure~\ref{fig:caterloopillar_front_back} push and pull their still lifes, which requires us to adjust the slow salvo syntheses that is used to construct those flotillae. We thus have to rebuild the caterloopillar almost entirely from scratch (or, rather, the computer script has to rebuild it from scratch). If we are willing to put in this extra bit of effort, then we can construct caterloopillars that travel at any rational speed slower than $c/4$:\footnote{This $c/4$ speed limit should be fairly intuitive---as we increase the amount that the caterloopillar displaces its still lifes per period, more and more of its travel time is spent as a ($c/4$) glider bouncing between the components of the flotillae from Figure~\ref{fig:caterloopillar_front_back}.}
+To create even faster caterloopillars, we have to increase how far the flotillae from Figure~\ref{fig:caterloopillar_front_back} push and pull their still lifes, which requires us to adjust the slow salvo syntheses that is used to construct those flotillae. We thus have to rebuild the caterloopillar almost entirely from scratch (or, rather, the computer script has to rebuild it from scratch). If we are willing to put in this extra bit of effort, then we can construct caterloopillars that travel at any rational speed slower than $c/4$:\footnote{This $c/4$ speed limit should be fairly intuitive---as we increase the amount that the caterloopillar displaces its still lifes per period, more and more of its travel time is spent as a ($c/4$) glider bouncing between the components of the flotillae from Figure~\ref{fig:caterloopillar_front_back}. Reaching the theoretical speed limit of $c/2$ would require a major redesign.}
 
-\begin{theorem}[Caterloopillar Speeds]
+\begin{theorem}[Caterloopillar Speeds]\label{thm:caterloopillar_speeds}
 	Caterloopillar spaceships can be constructed that travel at any rational speed slower than $c/4$.
 \end{theorem}
 
@@ -575,7 +579,7 @@ To create even faster caterloopillars, we have to increase how far the flotillae
 	
 	It follows that the speed of the resulting caterloopillar is
 	\[
-		\frac{(100 + 2n)c}{2\big((400 + 2n + 2m) + (100 + 2n)\big)} = \frac{(50 + n)c}{500 + 4n + 2m}.\footnote{If we calculated this speed based on the loaf-\emph{pulling} flotillae instead of the loaf-\emph{pushing} ones, we would get the same answer: $(100 + 2n)c/\big(2((600 + 6n + 2m) - (100 + 2n))\big) = (50 + n)c/(500 + 4n + 2m)$.}
+		\frac{(100 + 2n)c}{2\big((400 + 2n + 2m) + (100 + 2n)\big)} = \frac{(50 + n)c}{500 + 4n + 2m}.\footnote{We calculated this speed based on the loaf-pulling flotillae. If we instead calculated it based on the loaf-\emph{pulling} flotillae, we would get the same answer: $(100 + 2n)c/\big(2((600 + 6n + 2m) - (100 + 2n))\big) = (50 + n)c/(500 + 4n + 2m)$.}
 	\]
 	
 	To create a caterloopillar with speed $(p/q)c$, where $p,q > 0$ are integers with $p/q < 1/4$, it suffices to choose
@@ -588,26 +592,19 @@ To create even faster caterloopillars, we have to increase how far the flotillae
 	\]
 	as claimed.
 \end{proof}
-% Note not optimal, caterloopillar we showed above overclocks its glider to make flotillae shorter
 
-% EXERCISE: Adjust (by hand) caterloopillar by hand to be faster/slower than ??.
-% Footnote that certain speeds not attainable by scripts, but easily reached by hand
+It is worth noting that faster caterloopillars are typically larger than slower ones, not just because their component flotillae become more spaced out, but also because the glider syntheses used to construct those flotillae require more steps. \emph{Roughly} the same synthesis recipes can be used in all caterloopillars, but additional seed-moving steps are required if the xWSSes that make up the loaf-moving flotillae are separated by large distances.
 
-% Exercise: we saw glider-reflecting flotillae in Chap 4. Why do they not apply here?
-%And instead of a fixed speed, a pile of still lifes, and associated fleet of spaceships, can be designed that will move at any rational speed (and theoretically but not practically yet, in any rational direction) inside a wide range.
-% As speed increases, spacing between flotillae doesn't just increase, but number of steps in slow salvo synth also increases
+Because of some ugliness involving these unidirectional slow-salvo glider syntheses, caterloopillars have only been explicitly constructed for speeds of the form $(p/q)c$ (where $p/q$ is in lowest terms and $p/q < 1/4$) when $q \not\equiv 2 \pmod{4}$. For example, no one has constructed a caterloopillar with speed $c/18$ or $5c/18$, but caterloopillars have been constructed with speeds $c/15$, $c/16$, $c/17$, and $2c/18 = c/9$. Regardless of this limitation, caterloopillars of these troublesome speeds still \emph{exist}, thanks to Theorem~\ref{thm:caterloopillar_speeds}.
 
-% backward 1274 separation. Exercise: compute backward sep from forward and displacement?
-% script does not construct all speeds, but that is OK since we can adjust by hand
-% TODO: Come back to doppler effect in Chap 11 when discussing gemini and other speed limits?
-% Exercise: Use script to make a c/21 caterloopillar. Follow-up exercise: adjust by hand to make a c/22 caterloopillar (just separate components a bit or move one end farther away?)
+The fastest caterloopillar that has been explicitly constructed so far has speed $19c/80$. It is approximately $10$ times as long and wide as the $c/24$ caterloopillar from Figure~\ref{fig:caterloopillar}, and also has about $10$ times as many live cells.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Notes and Historical Remarks}\label{sec:self_support_history}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Despite its monstrous size, the silverfish displayed in Figure~\ref{fig:silverfish} is currently the smallest $31c/240$ orthogonal spaceship known in Life. About six years prior to its construction, two other spaceships of this same speed were built using most of the same reactions. These spaceships, called the shield bug\index{shield bug} and the centipede,\footnote{The shield bug and centipede were completed on the same day---September 4, 2014---by Dave Greene and Chris Cain, respectively, with help from Kiho Park, Chris Cain, Ivan Fomichev and Adam P.~Goucher.}\index{centipede} are displayed in Figure~\ref{fig:centipede_shield_bug}. When measuring size according to number of live cells, they are roughly $16$ and $3$ times as large as the silverfish, respectively.
+Despite its monstrous size, the silverfish displayed in Figure~\ref{fig:silverfish} is currently the smallest $31c/240$ orthogonal spaceship known in Life. About six years prior to its construction, two other spaceships of this same speed were built using most of the same reactions. These spaceships, called the shield bug\index{shield bug} and the centipede,\footnote{The shield bug and centipede were completed on the same day---September 4, 2014---by Dave Greene and Chris Cain, respectively, with help from Kiho Park, Chris Cain, Ivan Fomichev and Adam P.~Goucher.}\index{centipede} are displayed in Figure~\ref{fig:centipede_shield_bug}.
 
 \begin{figure}[!htbp]
 	\centering
@@ -626,17 +623,24 @@ Despite its monstrous size, the silverfish displayed in Figure~\ref{fig:silverfi
 	\label{fig:centipede_shield_bug}
 \end{figure}
 
+When measuring size according to number of live cells, these spaceships are roughly $16$ and $3$ times as large as the silverfish, respectively. The reason that the silverfish could be so much smaller that it uses a new front end (which was found by Chris Cain just 16 days after he completed the centipede) that is supported by just two heavyweight spaceships on each side instead of six.
+
+There are numerous other reactions that could potentially be used to build self-supporting spaceships other than the ones that we have seen.
+
+% https://www.conwaylife.com/wiki/Crawler
+% (27,1)c/72: https://www.conwaylife.com/forums/viewtopic.php?f=2&t=2130
+% (13,1)c/31: https://www.conwaylife.com/forums/viewtopic.php?f=2&t=1182
+% (34,7)c/156: https://www.conwaylife.com/forums/viewtopic.php?f=2&t=2286
+
+% lots of exercises here: make helix that matches speed of (reaction given above). Find trail based on those reactions that produces forward/backward glide (by placing 2 next to each other), etc.
+
 % 3c/10 reaction (ref figure in chapter 1), why it hasn't worked yet. See Dave's write-up at https://www.conwaylife.com/forums/viewtopic.php?f=15&t=3427
 
-% 2014-present: self-supporting spaceships (half-baked knightship, waterbear, Centipede, Caterloopillar). The name "Caterloopillar" is something of a tribute to Douglas Hofstadter's "strange loop" concept. It's a deeply weird Life spaceship design where each half of the spaceship builds the other half as the whole thing is flying along, reminiscent of Escher's "Drawing Hands" lithograph.
-
-% Gabriel's caterpillar page has another potential reaction. Any others? Maybe list a bunch.
+% Gabriel's caterpillar page has another potential reaction (it's the (13,1)c/31 from above). Any others? Maybe list a bunch.
 % Maybe mention the HBKs here too? Seems hard to fit them into the main text. Yep, do this. Put reaction along with the unused ones
 % Another incomplete reaction: p69 c/3
 %x = 9, y = 14, rule = S23/B3
 %7boo$7boo10$bbo$b3o$oobbo!
-
-% TODO: Chris Cain built a camelship. Probably worth a brief mention in history section of Ch11?
 
 % Talk about how caterloopillar blurs the line between self-supporting and universal construction?
 
@@ -660,7 +664,7 @@ Despite its monstrous size, the silverfish displayed in Figure~\ref{fig:silverfi
 	
 	
 	\begin{problemstar}\label{exer:self_support_spaceships_r4l1}\index{double kickback}
-		One way of creating rakes for Herschel crawlers (used by the silverfish) that output gliders on different lanes is to use a \emph{double kickback} reaction: the two-glider kickback reaction twice. For example, the\texttt{R6L17} rake from Figure~\ref{fig:R6L17} uses two double kickback reactions.
+		One way of creating rakes for Herschel crawlers (used by the silverfish) that output gliders on different lanes is to use a \emph{double kickback} reaction: the two-glider kickback reaction twice. For example, the \texttt{R6L17} rake from Figure~\ref{fig:R6L17} uses two double kickback reactions.
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item Modify the rake from Figure~\ref{fig:R6L17} so as to use just \emph{one} double kickback reaction.
@@ -1083,7 +1087,48 @@ Despite its monstrous size, the silverfish displayed in Figure~\ref{fig:silverfi
 \end{problem}
 % SOLUTION: 3-xWSS component reflects near its front and can thus be used to make helices that are much faster (without using the c/2 helix component)). To make the 2-xWSS components fast, we need to add lots of other xWSSes to speed it up.
 
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:caterloopillar_lonely_lwss}
+	In the zoomed-in middle section of caterloopillar in Figure~\ref{fig:caterloopillar}, there is a single LWSS that is not highlighted (i.e., it is not part of either of the loaf-moving flotillae). What is its purpose?
+\end{problem}
+% Solution: It creates a seed for back half of caterloop (to construct forward-moving ships).
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:caterloopillar_adjust_one_flotilla}
+	What happens to the caterloopillar from Figure~\ref{fig:caterloopillar} if you adjust one or two of the flotillae at its front so that they are slightly closer together? In particular, does its speed increase, decrease, or stay the same?
+\end{problem}
+% SOLUTION: Its speed stays the same -- the spacehsip "corrects" itself after one period and undoes the change.
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:caterloopillar_calc_flotillae_spacing}
+	In a caterloopillar spaceship, the displacement per period, separation of the loaf-pushing flotillae, and separation of the loaf-pulling flotillae are not independent of each other: given two of these quantities, we can compute the third.\smallskip
 	
+	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+		\item If a caterloopillar pushes itself forward by $400$ cells per period, and its loaf-pushing flotillae are separated by $2{\thousep}000$ cells, how many cells must the loaf-pulling flotillae be separated by?
+		% SOLUTION: 2800
+		
+		\item If a caterloopillar's loaf-pushing flotillae are separated by $1{\thousep}800$ cells, and its loaf-pulling flotillae are separated by $2{\thousep}400$ cells, what is the displacement of the caterloopillar per period?
+		% SOLUTION: 300 (average of 1800 and 2400)
+	\end{enumerate}
+\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:caterloopillar_make_via_script}
+	Use the computer script from \httpsurl{conwaylife.com/forums/viewtopic.php?p=30104\#p30089} to create a $c/21$ caterloopillar spaceship.
+\end{problem}
+
 	%% EXERCISE END COMMANDS
 \end{multicols}
 \normalsize\vspace*{0.01cm}

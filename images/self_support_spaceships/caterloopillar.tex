@@ -1,0 +1,88 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\begin{document}
+	\begin{tikzpicture}%
+		\node[inner sep=0pt,anchor=south west] (cp) at (0,0) {\includegraphics[height=17.5cm]{caterloopillar.png}};
+		
+		% BORDER
+		%\draw[gridgray] (0,0) rectangle (12,17.7);
+		%\clip (0,0) rectangle (12,17.7);
+		
+		% Want total width to be 11.5 or so
+		
+		\newcommand\zmwid{4.5}
+		
+		% ZOOM BOX TOP
+			\newcommand\smlx{-0.011}
+			\newcommand\smrx{\smlx+0.15}
+			\newcommand\smby{17.25}
+			\newcommand\smty{\smby+0.15*1.90528634361}
+			
+			\newcommand\bglx{-5.85}
+			\newcommand\bgrx{\bglx+\zmwid}
+			\newcommand\bgty{17.7}
+			\newcommand\bgby{\bgty-\zmwid*1.90528634361}
+			
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
+			
+			\node[inner sep=0pt,anchor=north west] (cptop) at (\bglx,\bgty) {\includegraphics[width=\zmwid cm]{caterloopillar_zoom_top.png}};
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (\smrx,\smty) -- (\smlx,\smty) -- (\smlx,\smby) -- (\smrx,\smby) -- (\bgrx,\bgby) -- (\bgrx,\bgty) -- cycle;
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\smlx,\smty) rectangle (\smrx,\smby);
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
+		% END ZOOM BOX TOP
+		
+		% ZOOM BOX BOTTOM
+			\renewcommand\smlx{-0.011}
+			\renewcommand\smrx{\smlx+0.15}
+			\renewcommand\smby{-0.05}
+			\renewcommand\smty{\smby+0.15*1.90528634361}
+			
+			\renewcommand\bglx{-5.85}
+			\renewcommand\bgrx{\bglx+\zmwid}
+			\renewcommand\bgty{-0.15+\zmwid*1.90528634361}
+			\renewcommand\bgby{\bgty-\zmwid*1.90528634361}
+			
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
+			
+			\node[inner sep=0pt,anchor=north west] (cpbottom) at (\bglx,\bgty) {\includegraphics[width=\zmwid cm]{caterloopillar_zoom_bottom.png}};
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (\smrx,\smty) -- (\smlx,\smty) -- (\smlx,\smby) -- (\smrx,\smby) -- (\bgrx,\bgby) -- (\bgrx,\bgty) -- cycle;
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\smlx,\smty) rectangle (\smrx,\smby);
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
+		% END ZOOM BOX BOTTOM
+		
+		% ZOOM BOX MIDDLE
+			\renewcommand\smlx{-0.011}
+			\renewcommand\smrx{\smlx+0.15}
+			\renewcommand\smby{8.85}
+			\renewcommand\smty{\smby+0.15*1.90528634361}
+			
+			\renewcommand\bglx{1.5}
+			\renewcommand\bgrx{\bglx+\zmwid}
+			\renewcommand\bgty{8.75 + 0.5*\zmwid*1.90528634361}
+			\renewcommand\bgby{\bgty-\zmwid*1.90528634361}
+			
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
+			
+			\node[inner sep=0pt,anchor=north west] (cpmiddle) at (\bglx,\bgty) {\includegraphics[width=\zmwid cm]{caterloopillar_zoom_middle.png}};
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (\smrx,\smty) -- (\smlx,\smty) -- (\bglx,\bgty) -- (\bglx,\bgby) -- (\smlx,\smby)-- (\smrx,\smby) -- cycle;
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\smlx,\smty) rectangle (\smrx,\smby);
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
+		% END ZOOM BOX MIDDLE
+	\end{tikzpicture}
+\end{document}
