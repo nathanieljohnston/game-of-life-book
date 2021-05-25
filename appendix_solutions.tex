@@ -965,6 +965,9 @@
 			\item Even though this rake is more efficient than the equivalent one given in Table~\ref{tab:silverfish_forward_rakes} (8 rephasers followed by \texttt{R6L6}), we do not ever use a lane~16 rake building silverfish. Furthermore, lane~16 is the \emph{only} one improved by \texttt{R2L16} -- all other lanes can be fired on more efficiently by \texttt{R2L25}.\\
 		\end{enumerate}
 	
+	
+		\item[\bf\color{ocre}\sffamily\ref{exer:silverfish_list_of_lanes}] (0 and 11 in either order), 8, 7, (29 and 13 in either order), 1, (15, 16, 19, or 26), 8, 0, 14, 22, (1, 2, 3, 4, 5, or 6).\\
+	
 
 		\item[\bf\color{ocre}\sffamily\ref{exer:two_pi_tracks_synth_spacing}] \begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
 			\item $17$.
@@ -980,6 +983,11 @@
 		\item[\bf\color{ocre}\sffamily\ref{exer:caterpillar_helix_when_minimal}] $p = 3$, $q = 7$ works. The smallest positive integers in this case are $m = 11$ and $n = 19$, which is what Equation~\eqref{eq:orth_helix_parameters} gives. The trick is to realize that the values of $m$ and $n$ are pushed up when $p/q$ is close to the $1/2$ speed limit---in particular, when $q - 2p = 1$.\\
 		
 		
+		\item[\bf\color{ocre}\sffamily\ref{exer:caterpillar_glider_slopes}] Backward gliders: $113/45$ (since over the course of 180 generations, the pi-heptominoes and glider separate by $45$ cells in the $x$-direction and $4 \times 17 + 45 = 113$ cells in the $y$-direction.
+		
+		Forward gliders: $23/45$ by the same calculation, but with the $y$-displacement being $4 \times 17 - 45 = 23$ cells.\\
+		
+		
 		\item[\bf\color{ocre}\sffamily\ref{exer:waterbear_what_slope}] $56/95$. The slope is the slope between the input and output gliders of the $(23,5)c/79$ reaction, not the slope that the Herschel moves at.\\
 		
 		
@@ -992,15 +1000,38 @@
 		\item[\bf\color{ocre}\sffamily\ref{exer:caterloopillar_front_end_glider}] The backward glider is used at the front end of the caterloopillar to synthesize the unidirectional glider synthesis seed. Since the loaf-pulling and loaf-pushing flotillae themselves only release forward gliders, they need help to form the seed that they collide into.\\
 		
 		
+		\item[\bf\color{ocre}\sffamily\ref{exer:helix_components_from_caterloopillar}] The 3-xWSS component from Exercise~\ref{exer:backward_helix} reflects near its front and thus can be used to create much faster helices than the 2-xWSS component from Figure~\ref{fig:caterloopillar_front_back}. Helices made from that slower component can be sped up by adding additional copies of the 2-xWSS glider shifter from Figure~\ref{fig:helix_shift}, but doing so typically makes the helix much larger (and thus more expensive to construct).\\
+		
+		
+		\item[\bf\color{ocre}\sffamily\ref{exer:caterloopillar_lonely_lwss}] It creates a seed for back half of caterloopillar (which is then used to construct the forward-moving loaf-pushing ships).\\
+		
+		
 		\item[\bf\color{ocre}\sffamily\ref{exer:34_7c_156_with_blocks}] \begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
 			\item \raisebox{-\height+0.5em}{\patternimglink{0.087}{34_7c_156_herschel_climber_block}}\\
 			
-			\item The block-based Herschel climber might be easier to use since the blocks can be synthesized at essentially any time, whereas the gliders in the glider-based Herschel climber have to show up at exactly the right time. However, the glider-based Herschel climber might be easier to use since it just requires one glider per period (i.e., $156$ generations) instead of two to synthesize the block.
+			\item The block-based Herschel climber might be easier to use since the blocks can be synthesized at essentially any time, whereas the gliders in the glider-based Herschel climber have to show up at exactly the right time. Also, the Herschel travelling on a block trails gives two output gliders that can be used for syntheses rather than just one. However, the glider-based Herschel climber might be easier to use since it just requires one glider per period (i.e., $156$ generations) instead of two to synthesize the block.
 			
 			Overall, it is probably easier to build a spaceship from the block-based track, as the timing constraint probably requires extra kickbacks reactions and/or other circuitry to get around that would be more expensive than the single extra glider needed to synthesize a block.\\
 		\end{enumerate}
 	
 		\item[\bf\color{ocre}\sffamily\ref{exer:make_self_support_need_helix}] The $(13,1)c/31$ and $(27,1)c/72$ crawlers from Figures~\ref{fig:13_1c_31_b_heptomino_climber} and~\ref{fig:27_1c_72_herschel_climber} require helices, since they travel faster than $c/4$ in one of the orthogonal directions. The $(34,7)c/156$ crawler fro Figure~\ref{fig:34_7c_156_herschel_climber} does not require a helix since it travels slower than $c/4$ in both directions, so the front-end of a self-supporting spaceship based on it can be supported more easily by forward gliders.\\
+		
+		
+		\item[\bf\color{ocre}\sffamily\ref{exer:13_1c_31_helix_large}] \begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
+			\item We want the helix to travel at a speed of at least $13c/31$ in one of the directions. In the notation of the speed~\eqref{eq:oblique_speed_helix}, this means that we want
+			\[
+				\frac{10k + 10m + 20}{20k + 20m + 101} \geq 13/31.
+			\]
+			Solving for $k+m$ gives $k + m \geq \lceil 693/50 \rceil = 14$, so at least $2 \times 14 + 2 + 3 = 33$ xWSSes are needed to build this helix ($2 \times 14 = 28$ xWSSes for the glider-shifting components, and $2 + 3 = 5$ for the two reflecting ends).%This is valid because the 10/20 mover is the fastest component, so helix is made fastest by repeating it (not repeating ends, for example).
+			
+			\item Suppose that $k + m = 14$, as suggested in part~(a). We can adjust its speed by adding $\ell$ cells of free glider travel time, and by delaying the glider duplicator by $n$ generations. In one of the directions, the helix then has a speed of $(10 \times 14 + \ell + 20)c/(20 \times 14 + n + 4\ell + 101) = 13c/31$. However, this equation has no positive integer solutions (it is equivalent to $21\ell + 13n = 7$), so no helix of this speed exists.
+			
+			\item To construct such a helix with $61$~xWSSes, we can set $k = m = n = 14$, and have a glider travel $\ell = 25$ cells uninterrupted in one of the directions (but $0$ cells uninterrupted in the other direction). The resulting helix has speed
+			\begin{align*}
+				\frac{(10k + 10m + \ell + 20, 13k - 13m + \ell)c}{20k + 20m + n + 4\ell + 101} = \frac{(13,1)c}{31},
+			\end{align*}
+			as desired.
+		\end{enumerate}
 	\end{itemize}
 \end{multicols}
 

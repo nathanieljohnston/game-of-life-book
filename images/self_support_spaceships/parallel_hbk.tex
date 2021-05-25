@@ -1,0 +1,100 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\begin{document}
+	\begin{tikzpicture}%
+		\node[inner sep=0pt,anchor=south west] (phbk) at (0,0) {\includegraphics[width=12cm]{parallel_hbk.png}};
+		
+		% BORDER
+		\draw[gridgray] (0,0) rectangle (12,11.2884705882);
+		\clip (0,0) rectangle (12,11.2884705882);
+		
+		% DIRECTION
+		\newcommand\dirx{10.3}
+		\newcommand\diry{6.3}
+		\draw[gray] (\dirx,\diry) node[rotate=-26.57,shift={(-0.03,0.12)}] {\tiny \texttt{direction of travel}};
+		\draw[color=gray,-stealth] (\dirx-1,\diry+0.5) -- (\dirx+1,\diry-0.5);
+
+		% ZOOM BOX 1
+			\newcommand\smlx{5.43}
+			\newcommand\smrx{\smlx+0.2}
+			\newcommand\smby{4.78}
+			\newcommand\smty{\smby+0.2}
+			
+			\newcommand\bglx{7.5}
+			\newcommand\bgrx{\bglx+4}
+			\newcommand\bgty{4.5}
+			\newcommand\bgby{\bgty-4}
+			
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
+			
+			\node[inner sep=0pt,anchor=north west] (zoom1) at (\bglx,\bgty) {\includegraphics[width=4cm]{parallel_hbk_zoom1.png}};
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (\smrx,\smty) -- (\smrx,\smby) -- (\smlx,\smby) -- (\bglx,\bgby) -- (\bglx,\bgty) -- (\bgrx,\bgty) -- cycle;
+			
+			%\node[inner sep=0pt] (zoom1_3x) at (3.35,7.95) {\includegraphics[width=0.21cm]{../mag.png} \footnotesize 8x};
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\smlx,\smty) rectangle (\smrx,\smby);
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
+		% END ZOOM BOX 1
+		
+		% ZOOM BOX 2
+			\renewcommand\smlx{5.16}
+			\renewcommand\smrx{\smlx+0.2}
+			\renewcommand\smby{4.9}
+			\renewcommand\smty{\smby+0.2}
+			
+			\renewcommand\bglx{0.5}
+			\renewcommand\bgrx{\bglx+4}
+			\renewcommand\bgty{8.75}
+			\renewcommand\bgby{\bgty-4}
+			
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
+			
+			\node[inner sep=0pt,anchor=north west] (zoom2) at (\bglx,\bgty) {\includegraphics[width=4cm]{parallel_hbk_zoom2.png}};
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (\smrx,\smby) -- (\smlx,\smby) -- (\smlx,\smty) -- (\smrx,\smty) -- (\bgrx,\bgty) -- (\bgrx,\bgby) -- cycle;
+			
+			%\node[inner sep=0pt] (zoom1_3x) at (3.35,7.95) {\includegraphics[width=0.21cm]{../mag.png} \footnotesize 8x};
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\smlx,\smty) rectangle (\smrx,\smby);
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
+			
+			% Circle the four gliders
+			\draw[white,line width=1.5pt,opacity=0.6,rounded corners=3.9] (1.5,5) -- (2,5.5) -- (2.5,4.5) -- (2,4) -- cycle;
+			\draw[redback2,line width=0.6pt,rounded corners=3.9] (0.7,5.72) -- (1,6.25) -- (1.8,6.08) -- (1.15,5.3) -- cycle;
+		% END ZOOM BOX 2
+		
+		% ZOOM BOX 3
+			\renewcommand\smlx{11.45}
+			\renewcommand\smrx{\smlx+0.2}
+			\renewcommand\smby{10.8}
+			\renewcommand\smty{\smby+0.2}
+			
+			\renewcommand\bglx{4.9}
+			\renewcommand\bgrx{\bglx+3}
+			\renewcommand\bgty{10.7884705882}
+			\renewcommand\bgby{\bgty-3}
+			
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
+			
+			\node[inner sep=0pt,anchor=north west] (zoom3) at (\bglx,\bgty) {\includegraphics[width=3cm]{parallel_hbk_zoom3.png}};
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (\smrx,\smby) -- (\smlx,\smby) -- (\smlx,\smty) -- (\bglx,\bgty) -- (\bgrx,\bgty) -- (\bgrx,\bgby) -- cycle;
+			
+			%\node[inner sep=0pt] (zoom1_3x) at (3.35,7.95) {\includegraphics[width=0.21cm]{../mag.png} \footnotesize 8x};
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\smlx,\smty) rectangle (\smrx,\smby);
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
+		% END ZOOM BOX 3
+	\end{tikzpicture}
+\end{document}

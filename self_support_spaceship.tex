@@ -14,7 +14,7 @@
 
 \noindent Universal computation, covered in the previous chapter, is the first of two major types of universality that often show up in discussions of Conway's Game of Life, and cellular automata in general. The second type of universality is universal construction. Whereas universal computation is the ability to ``compute anything that can be computed'', universal construction could be loosely summarized as the ability to ``construct anything that can be constructed''.
 
-We will cover this topic in much more depth in Chapter~\ref{chp:universal_construction}, but this chapter provides a good preview of the general idea. Indeed, in this chapter we will build spaceships that work by reaching out into a region of empty space and constructing something there. More specifically, self-supporting spaceships (the topic of this chapter) work by manipulating a reaction that moves along a track so as to construct the track in front of itself.
+We will cover this topic in much more depth in Chapter~\ref{chp:universal_construction}, but this chapter provides a good preview of the general idea. Indeed, in this chapter we will build spaceships that work by reaching out into a region of empty space in front of themselves and constructing something there. More specifically, self-supporting spaceships (the topic of this chapter) work by manipulating a reaction that moves along a track so as to construct the track in front of itself.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -655,9 +655,13 @@ Besides the $31c/240$, $17c/45$, and $(23,5)c/79$ reactions that we saw in this 
 
 Of these crawlers, the $(3,6)$ half-bakery reaction\index{half-bakery} from Figure~\ref{fig:half_bakery_reaction} is by far the easiest to work with, since half-bakery is stable and thus the timing of the gliders is almost completely irrelevant. Indeed, this reaction has actually been used to create another self-supporting spaceship (essentially the only self-supporting spaceship other than the ones that we saw earlier in this chapter). Spaceships based on this reaction are called \emph{half-baked knightships},\index{half-baked knightship} and the one displayed in Figure~\ref{fig:parallel_hbk}, which was constructed by Chris Cain in July 2014,\footnote{The first half-baked knightship was built by Adam P.~Goucher just $5$ days earlier, and was roughly $10$ times as long, wide, and populous. Dave Greene and Ivan Fomichev helped come up with some of the component reactions and syntheses used in each of these knightships.} is called the \emph{parallel half-baked knightship}\index{parallel half-baked knightship} (or \emph{parallel HBK}\index{parallel HBK|see {parallel half-baked knightship}} for short).
 
-% FIGURE
+\begin{figure}[!htb]
+	\centering
+	\embedlink{parallel_hbk}{\includegraphics[width=\textwidth]{self_support_spaceships/parallel_hbk.pdf}}
+	\caption{The \emph{parallel half-baked knightship}. Its sides are tracks of half-bakeries that a total of $7$ gliders follow along ($4$ on the northwest tracks, circled in \bgbox{redback}{red}, and $3$ on the southeast tracks). Those gliders move the half-bakeries by $(3,6)$ per period via the reaction of Figure~\ref{fig:half_bakery_reaction}, and are strategically placed next to each other so that sparks from that reaction combine to make perpendicular gliders, as shown in the leftmost zoomed-in area. Those perpendicular gliders then collide in a tee reaction (highlighted in \bgbox{greenpastel}{green}) that sends the gliders back to the start of the half-bakery tracks, which re-synthesize the original $7$ gliders via a seed highlighted in \bgbox{aquaback}{aqua}.}\label{fig:parallel_hbk}
+\end{figure}
 
-The way it works is that...
+The way it works is based on the fact that two copies of this half-bakery reaction can be placed next to each other so as to produce a perpendicular glider (much like we placed two copies of the pi-crawler next to each other to create output gliders back in Figure~\ref{fig:pi_backward_rake}). We can thus use two gliders on a pair of half-bakery tracks to output sequences of gliders. By using a few more parallel copies of these reactions, we can have the triples of output gliders collide with each other in one of the tee\index{tee} reactions from Table~\ref{tab:3_glider_synth}, thus sending gliders back to the start of the half-bakery trails. Those gliders then use slow salvo synthesis to recreate the gliders that follow the half-bakery trails.\footnote{In other words, the parallel HBK uses a handful of gliders to implement armless construction (as introduced in Section~\ref{sec:armless}) of that handful of gliders.}
 
 The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} have not yet been turned into self-supporting spaceships. One of the main reasons for this is simply that constructing a self-supporting spaceship is a monumental task. However, they are also all slightly more difficult to work with than, for example, the $(23,5)c/79$ reaction from Figure~\ref{fig:23_5c_79_reaction} at the core of the waterbear:\smallskip
 
@@ -666,14 +670,8 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 	
 	\item The $(27,1)c/72$ Herschel-pair crawler from Figure~\ref{fig:27_1c_72_herschel_climber} does not produce an extra output glider that can be used to synthesize other components---only a pair of gliders that can be used by subsequent Herschel pairs. This problem can be fixed by placing multiple copies of this crawler next to each other (just like we did with pi~crawlers in Section~\ref{sec:caterpillar_pi_rakes}),\footnote{This same problem also applies to the $(13,1)c/31$ B-heptomino crawler from Figure~\ref{fig:13_1c_31_b_heptomino_climber}, but the solution is less expensive in that case since its base trail only involves a single glider.} but since it already runs on a two-glider track, these rakes quickly become very expensive and complicated to construct.\smallskip
 	
-	\item The $(34,7)c/156$ Herschel crawler from Figure~\ref{fig:34_7c_156_herschel_climber} produces some junk behind itself every period (two blocks and a beehive) that needs to be cleaned up. Fortunately, it also produces an extra output glider that can be used to do that cleanup (much like we did with $31c/240$ Herschel pairs in Figure~\ref{fig:31c_240_herschel_pair}). However, this again increases the complexity of the glider tracks (especially since it seems to require $4$ tracks instead of just $2$ to do all of the required cleanup), making the resulting spaceship much larger and more difficult to construct.\smallskip
+	\item The $(34,7)c/156$ Herschel crawler from Figure~\ref{fig:34_7c_156_herschel_climber} produces some junk behind itself every period (two blocks and a beehive) that needs to be cleaned up. Fortunately, it also produces an extra output glider that can be used to do that cleanup (much like we did with $31c/240$ Herschel pairs in Figure~\ref{fig:31c_240_herschel_pair}). However, this again increases the complexity of the glider tracks (especially since it seems to require $4$ tracks instead of just $2$ to do all of the required cleanup), making the resulting spaceship much larger and more difficult to construct.
 \end{itemize}
-
-% lots of exercises here: Find trail based on those reactions that produces forward/backward glide (by placing 2 next to each other), etc.
-
-% Talk about how caterloopillar blurs the line between self-supporting and universal construction? Or at the start of next chapter instead?
-
-% EXERCISE: put (13,1)c/31 on a block track too: https://conwaylife.com/forums/viewtopic.php?f=2&t=1065#p7750  This is less useful since the B-hep still makes an output glider, not block (in contrast with (34,7)c/156 crawler exercise)
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -754,7 +752,7 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 	\begin{problem}\label{exer:self_support_spaceships_r3l28}
 		Another forward rake that crawls along $6$~block tracks and could be used in the construction of the silverfish is displayed below.
 		\begin{center}
-			\gridbox{0.5pt}{\patternimglink{0.11}{R3L28}}
+			\gridbox{0.5pt}{\patternimglink{0.135}{R3L28}}
 		\end{center}
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
@@ -778,12 +776,11 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:silverfish_list_of_lanes}
+	\begin{problemstar}\label{exer:silverfish_list_of_lanes}
 		On page~\pageref{page:silverfish_lanes} we listed a sequence of mod~$31$ lane numbers for implementing the slow salvo synthesis from Figure~\ref{fig:hwss_from_toad_beehive}. The list of lanes that can be used is actually much more flexible than indicated there. For example, we can fire the first two gliders on lanes $0$ and $11$ in either order, since the first two gliders in that slow salvo do not interact with each other.
 		
 		Provide a complete description of all possible sequences of mod~$31$ lane numbers that implement the synthesis from Figure~\ref{fig:hwss_from_toad_beehive}.
-	\end{problem}
-	% Solution: (0 and 11 in either order), 8, 7, (29 and 13 in either order), 1, (15 or 16 or 19 or 26), 8, 0, 14, 22, (1 or 2 or 3 or 4 or 5 or 6)
+	\end{problemstar}
 	
 	
 	\mfilbreak
@@ -983,10 +980,9 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 \mfilbreak
 
 
-\begin{problem}\label{exer:caterpillar_glider_slopes}
+\begin{problemstar}\label{exer:caterpillar_glider_slopes}
 	Compute the slopes of the lines of forward and backward gliders in the caterpillar (i.e., in Figure~\ref{fig:caterpillar}). Do not just read the slopes off of that figure -- explain where they come from.
-\end{problem}
-% SOLUTION: backward: 113/45 (since in 180 gens, x = 45, y = 4*17 + 45 = 113), forward: 23/45 (since in 180 gens, x = 45, y = 4*17 - 45 = 23)
+\end{problemstar}
 
 
 \mfilbreak
@@ -1113,19 +1109,17 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 \mfilbreak
 
 
-\begin{problem}\label{exer:helix_components_from_caterloopillar}
+\begin{problemstar}\label{exer:helix_components_from_caterloopillar}
 	The xWSS flotillae displayed in Figure~\ref{fig:caterloopillar_front_back} contain two different 2-xWSS flotillae that can reflect a glider while firing one backward. Explain why the 3-xWSS component from Exercise~\ref{exer:backward_helix} that performs this same task would often be preferable when building a backward-firing helix.
-\end{problem}
-% SOLUTION: 3-xWSS component reflects near its front and can thus be used to make helices that are much faster (without using the c/2 helix component)). To make the 2-xWSS components fast, we need to add lots of other xWSSes to speed it up.
+\end{problemstar}
 
 
 \mfilbreak
 
 
-\begin{problem}\label{exer:caterloopillar_lonely_lwss}
+\begin{problemstar}\label{exer:caterloopillar_lonely_lwss}
 	In the zoomed-in middle section of caterloopillar in Figure~\ref{fig:caterloopillar}, there is a single LWSS that is not highlighted (i.e., it is not part of either of the loaf-moving flotillae). What is its purpose?
-\end{problem}
-% Solution: It creates a seed for back half of caterloop (to construct forward-moving ships).
+\end{problemstar}
 
 
 \mfilbreak
@@ -1187,6 +1181,27 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 \mfilbreak
 
 
+\begin{problem}\label{exer:34_7c_156_cleanup}
+	In Figure~\ref{fig:31c_240_herschel_pair}, we placed two $31c/240$~Herschel crawlers next to each other so as to clean up their extra leftover debris (i.e., blocks). Now similarly place multiple $(34,7)c/156$ Herschel crawlers (on block tracks, as in Exercise~\ref{exer:34_7c_156_with_blocks}) next to each other so as to clean up their extra leftover debris (i.e., blocks and beehives).
+\end{problem}
+% SOLUTION: https://www.conwaylife.com/forums/viewtopic.php?f=2&t=1299&p=13114#p13114
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:27_1c_72_rakes}
+	In Section~\ref{sec:caterpillar_pi_rakes}, we constructed forward and backward rakes out of pi crawlers by placing them next to each other so that their sparks synthesized gliders. Now similarly construct forward and backward rakes out of multiple copies of the $(27,1)c/72$ Herschel-pair crawler from Figure~\ref{fig:27_1c_72_herschel_climber}.
+\end{problem}
+% SOLUTION:
+% Forward rake: https://www.conwaylife.com/forums/viewtopic.php?f=2&t=2130#p29579
+% Backward rake: https://www.conwaylife.com/forums/viewtopic.php?f=2&t=2130#p29605
+% On a common set of tracks: https://www.conwaylife.com/forums/viewtopic.php?f=2&t=2130#p29613
+
+
+\mfilbreak
+
+
 \begin{problemstar}\label{exer:make_self_support_need_helix}
 	Suppose you were to create a self-supporting spaceship from the three crawlers displayed in Figures~\ref{fig:self_support_climbers}(a--c). Which of those spaceships would require a helix?
 \end{problemstar}
@@ -1195,7 +1210,7 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 \mfilbreak
 
 
-\begin{problem}\label{exer:13_1c_31_helix_large}
+\begin{problemstar}\label{exer:13_1c_31_helix_large}
 	Consider the problem of constructing a helix that travels at $(13,1)c/31$ (i.e., the same speed as the B-heptomino crawler from Figure~\ref{fig:13_1c_31_b_heptomino_climber}).\smallskip
 	
 	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
@@ -1204,22 +1219,14 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 		\noindent [Side note: No other known helix components, like the ones from Exercise~\ref{exer:backward_helix}, can be used to bring this number down.]
 		
 		\noindent [Hint: What value of $k+m$ is required for the speed~\eqref{eq:oblique_speed_helix} to be at least as fast as $(13,1)c/31$?]
-		% SOLUTION: k + m >= ceil(693/50) = 14, so at least 28 + 2 + 3 = 33 xWSSes. This is valid because the 10/20 mover is the fastest component, so helix is made fastest by repeating it (not repeating ends, for example).
 		
 		\item Show that any such helix consisting only of those three components must actually contain at least 35 xWSSes.
-		% SOLUTION: Suppose that k + m = 14, as suggested in part (a). Then looking at speed in one direction gives (140 + y + 20)/(20*8 + 20*6 + x + 4*y + 101) = 13/31, which has no positive integer solutions (it is equivalent to 13x + 21y = 7).
 		
 		\item Construct such a helix consisting only of those three components that contains fewer than 75 xWSSes.
 		
 		[Hint: There is one that consists of $61$ xWSSes.]
-		% SOLUTION:
-		% k = 14
-		% m = 14
-		% a (free glider cells in k direction): 25
-		% b (same in m direction): 0
-		% n = 14
 	\end{enumerate}
-\end{problem}
+\end{problemstar}
 % 40-xWSS helix making use of different ends: https://www.conwaylife.com/forums/viewtopic.php?f=2&t=1182&start=25#p128599
 
 
@@ -1227,10 +1234,11 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 
 
 \begin{problem}\label{exer:construct_oblique_helix_for_crawlers}
-	In Exercise~\ref{exer:13_1c_31_helix_large}, we constructed a helix that fires gliders forward on one side and travels at the same speed as the $(13,1)c/31$ B-heptomino crawler from Figure~\ref{fig:13_1c_31_b_heptomino_climber}. Now construct such a helix that travels at the same speed as...
+	In Exercise~\ref{exer:13_1c_31_helix_large}, we constructed a helix that fires gliders forward on one side and travels at the same speed as the $(13,1)c/31$ B-heptomino crawler from Figure~\ref{fig:13_1c_31_b_heptomino_climber}. Now construct such a helix that travels at the same speed as...\smallskip
 	
 	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 		\item the $(27,1)c/72$ Herschel-pair crawler from Figure~\ref{fig:27_1c_72_herschel_climber}, and
+		% SOLUTION: https://www.conwaylife.com/forums/viewtopic.php?f=2&t=2130#p29603
 		
 		\item the $(34,7)c/156$ Herschel crawler from Figure~\ref{fig:34_7c_156_herschel_climber}.
 	\end{enumerate}

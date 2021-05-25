@@ -116,7 +116,7 @@ On the other hand, being unable to catalog all of these three-glider collisions 
 	\end{center}
 \end{table}
 
-Although the $3$-glider syntheses of a single glider from Table~\ref{tab:3_glider_synth} (which are called \emph{tees}\index{tee}) might seem somewhat silly at first glance, they have the useful property that the synthesized glider travels perpendicular to each of the input gliders\footnote{In fact, both of these syntheses work by colliding two of the gliders so as to create a banana spark\index{banana spark}, which then reflects the third glider as in Figure~\ref{fig:spark_glider_reflect}.}---a property that is not shared by any of its $2$-glider syntheses. For this reason, these syntheses are actually quite useful when trying to manipulate glider positions or reduce the number of directions used in glider syntheses of more complicated objects (see Exercise~\ref{exer:glider_synth_tee}, for example).
+Although the $3$-glider syntheses of a single glider from Table~\ref{tab:3_glider_synth} (which are called \emph{tees}\index{tee}) might seem somewhat silly at first glance, they have the useful property that the synthesized glider travels perpendicular to each of the input gliders\footnote{The first two of these syntheses work by colliding two of the gliders so as to create a banana spark\index{banana spark}, which then reflects the third glider as in Figure~\ref{fig:spark_glider_reflect}.}---a property that is not shared by any of its $2$-glider syntheses. For this reason, these syntheses are actually quite useful when trying to manipulate glider positions or reduce the number of directions used in glider syntheses of more complicated objects (see Exercise~\ref{exer:glider_synth_tee}, for example).
 
 The three-glider collision that creates a glider-producing switch engine is quite exciting, as it is our first example of a synthesis of an infinitely-growing pattern. Being able to synthesize queen bees is similarly exciting, since a Gosper glider gun is made up of nothing more than two blocks and two queen bees, all of which we now know how to synthesize. By simply synthesizing all of these objects in the correct positions and phases, we are now able to use gliders to synthesize a pattern that creates additional gliders (see Figure~\ref{fig:gosper_glider_synth}),\footnote{Synthesizing the Gosper glider gun ``piece-by-piece'' like this is the quite straightforward, and requires 10 gliders. However, slightly smaller syntheses of the Gosper glider gun are known, requiring as few as 8 gliders.} and we could conceivably use rakes to create Gosper glider guns that in turn create other patterns.
 
@@ -902,7 +902,7 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	
 	
 	\begin{problemstar}\label{exer:glider_synth_tee}
-		By using the $3$-glider \emph{tee}\index{tee} collision from Table~\ref{tab:3_glider_synth}, which produces a glider perpendicular to each of the input gliders, we can modify many glider syntheses so that all input gliders come from two directions that are opposite each other. Use this technique to create glider syntheses of each of the following patterns, with the property that all gliders come from two opposing directions.
+		By using one of the $3$-glider \emph{tee}\index{tee} collisions from Table~\ref{tab:3_glider_synth}, which produce a glider perpendicular to each of the input gliders, we can modify many glider syntheses so that all input gliders come from two directions that are opposite each other. Use this technique to create glider syntheses of each of the following patterns, with the property that all gliders come from two opposing directions.
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item A switch engine.
 			
@@ -1154,7 +1154,7 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	\begin{problemstar}\label{exer:other_inserters}
 		Many reactions can be used as inserters other than the clock inserter from Figure~\ref{fig:clock_inserter} (however, none are quite as good as the clock inserter itself).
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item Use the ``tee''\index{tee} $3$-glider collision from Table~\ref{tab:3_glider_synth} to insert a glider $15$~generations in front of another glider.
+			\item Use one of the ``tee''\index{tee} $3$-glider collisions from Table~\ref{tab:3_glider_synth} to insert a glider $15$~generations in front of another glider.
 			
 			\item Use an eater~1 to insert a glider $15$~generations in front of another glider.
 			
