@@ -166,7 +166,7 @@ Recall from Section~\ref{sec:slow_salvo} that slow salvo synthesis is a method o
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Creating Slow Gliders}\label{sec:single_channel_create_perp_glider}
+\subsection{Creating Slow 90-Degree Gliders}\label{sec:single_channel_create_perp_glider}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 As with many of our other universal constructions, we make use of a block that acts as an elbow in order to make these single-lane syntheses possible. In particular, we fire a stream of gliders at a block so as to first create a chaotic explosion (by turning the block into a pi-heptomino), and then clean up the resulting debris while creating a perpendicular glider. For example, Figure~\ref{fig:90_degree_first_example} displays a sequence of 13~gliders that, when it collides with a block, produces a single glider travelling in a different direction.
@@ -354,7 +354,7 @@ While the single-channel syntheses of the previous subsection are very useful, i
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Creating Slow Gliders}\label{sec:single_channel_zero_make_slow}
+\subsection{Creating Slow Zero-Degree Gliders}\label{sec:single_channel_zero_make_slow}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 To illustrate how a zero-degree elbow works, consider the sequence of $14$~gliders displayed in Figure~\ref{fig:lane_8_0degree} that, when it collides with a block, produces a single glider going in the same direction, but shifted by $8$ lanes.
@@ -650,7 +650,7 @@ Perhaps the simplest elbow-moving spaceships to implement this idea with are Cor
 	\caption{A seed that, when hit by a single glider, produces a $2$-engine Cordership travelling in the same direction. It uses a one-time splitter (displayed in \bgbox{greenback}{green}) and some one-time turners (displayed in \bgbox{redback}{red}) to convert the input glider into a pair of synchronized gliders that each synthesize a switch engine.}\label{fig:2_engine_cordership_seed}
 \end{figure}
 
-After the Cordership has been synthesized and travelled however far we would like it to move, it is comparatively straightforward to turn it back into an elbow block via a single-channel recipe. As illustrated in Figure~\ref{fig:cordership_shoot_down}, a single glider can be used to stop the Cordership, leaving behind just a few simple ash objects. A few more slow gliders can then be used to clean up that ash, leaving just an elbow block behind. Finally, that slow salvo can be converted in a single-channel recipe that uses a zero-degree elbow as usual, such as the following $306$-glider recipe (specified by $305$ timing gaps):\footnote{This recipe can be downloaded in RLE format from \httpsurl{conwaylife.com/book}. Alternatively, if you are reading this book electronically in a PDF viewer then you can \embedlink{cordership_shoot_down_recipe}{click here}.}\\[-0.1cm]
+After the Cordership has been synthesized and travelled however far we would like it to move, it is comparatively straightforward to turn it back into an elbow block via a single-channel recipe. As illustrated in Figure~\ref{fig:cordership_shoot_down}, a single glider can be used to stop the Cordership, leaving behind just a few simple ash objects. A few more slow gliders can then be used to clean up that ash, leaving just an elbow block behind. Finally, that slow salvo can be converted into a single-channel recipe that uses a zero-degree elbow as usual, such as the following $306$-glider recipe (specified by $305$ timing gaps):\footnote{This recipe can be downloaded in RLE format from \httpsurl{conwaylife.com/book}. Alternatively, if you are reading this book electronically in a PDF viewer then you can \embedlink{cordership_shoot_down_recipe}{click here}.}\\[-0.1cm]
 
 \begin{sloppypar}
 	\noindent\texttt{\footnotesize 109, 91, 93, 90, 140, 150, 108, 91, 90, 111, 91, 91, 194, 98, 90, 169, 90, 109, 91, 94, 91, 91, 93, 90, 125, 90, 170, 90, 90, 90, 169, 179, 91, 160, 91, 91, 90, 132, 91, 131, 90, 90, 124, 126, 90, 94, 90, 126, 128, 140, 115, 121, 142, 103, 91, 119, 214, 118, 91, 112, 170, 90, 90, 90, 91, 91, 91, 109, 91, 94, 91, 91, 179, 91, 90, 94, 91, 114, 90, 166, 90, 90, 90, 91, 117, 90, 96, 90, 90, 95, 91, 91, 109, 91, 93, 91, 123, 90, 129, 91, 90, 104, 157, 90, 171, 91, 90, 90, 90, 90, 164, 94, 109, 91, 93, 91, 115, 107, 90, 90, 90, 90, 90, 90, 90, 103, 99, 118, 91, 130, 91, 109, 91, 94, 91, 91, 95, 91, 90, 93, 218, 172, 90, 90, 90, 116, 112, 341, 107, 106, 90, 163, 91, 91, 109, 91, 93, 90, 140, 150, 142, 91, 90, 111, 91, 91, 193, 97, 91, 91, 155, 90, 98, 90, 90, 93, 91, 151, 90, 139, 180, 103, 115, 167, 91, 120, 139, 135, 91, 91, 170, 109, 91, 94, 91, 91, 92, 90, 169, 90, 90, 90, 107, 90, 90, 91, 90, 95, 91, 90, 109, 91, 93, 91, 92, 90, 162, 90, 129, 91, 91, 91, 90, 137, 99, 90, 90, 111, 91, 153, 90, 90, 91, 109, 91, 95, 125, 128, 90, 90, 90, 172, 90, 90, 90, 119, 91, 113, 247, 90, 144, 90, 140, 90, 109, 91, 93, 91, 92, 90, 97, 91, 116, 91, 145, 90, 91, 98, 90, 90, 188, 91, 91, 91, 90, 115, 91, 109, 91, 95, 125, 128, 90, 90, 90, 172, 90, 90, 90, 119, 91, 113, 247, 90, 144, 90, 140, 90, 109, 90, 93, 91, 90, 90, 90.}
@@ -720,7 +720,9 @@ To shoot down this boatstretcher, we fire a glider at the end of the wick (i.e.,
 
 By making use of this wickstretcher instead of a Cordership for long-distance elbow moves, we can now construct Demonoids with speeds approaching $c/6$. However, we cannot yet get speeds arbitrarily close to $c/4$, due to the return glider that is needed for the Snarkbreaker that we discussed earlier (i.e., the same reason that the Cordership-based Demonoid of Section~\ref{sec:medium_demonoid} can reach speeds close to $c/14$, but not $c/12$). To solve this problem, we introduce another method of destroying old, no-longer-needed circuitry: by placing other still lifes nearby that facilitate their destruction.
 
-For example, Figure~\ref{fig:snark_scorbie_seeded_destroy} illustrates how still lifes can be placed around a Snark and Scorbie splitter so that they can each be destroyed by a single glider.\footnote{Still life configurations like this that aid the self-destruction of a given pattern can be found via Simon Ekstr\"{o}m's \emph{GoL-destroy}\index{GoL-destroy} program, which is available at \httpsurl{github.com/simeksgol/GoL_destroy}.} Importantly, these still life do not interfere with the usual function of the circuit (which is to either reflect or duplicate a glider). Furthermore, the circuit-destroying glider comes from the same direction (but on a different lane) as the usual input glider, so the destruction can be triggered straightforwardly via the single-lane glider recipe (without having to wait for a return glider from the other side, as in a Snarkbreaker).
+For example, Figure~\ref{fig:snark_scorbie_seeded_destroy} illustrates how still lifes can be placed around a Snark and Scorbie splitter so that they can each be destroyed by a single glider.\footnote{Still life configurations like this that aid the self-destruction of a given pattern can be found via Simon Ekstr\"{o}m's \emph{GoL-destroy}\index{GoL-destroy} program, which is available at \httpsurl{github.com/simeksgol/GoL_destroy}.} Importantly, these still lifes do not interfere with the usual function of the circuit (which is to either reflect or duplicate a glider).
+
+The circuit-destroying glider comes from the same direction as the usual input glider, but on a different lane. When destruction is complete, a glider is released, aimed at the next piece of circuitry that is due to be destroyed, with exactly the correct timing relative to the final recipe gliders. This allows circuit destruction to be triggered immediately, without having to wait for a return glider from far away as in a Snarkbreaker.
 
 \begin{figure}[!htb]
 	\centering
@@ -736,10 +738,10 @@ For example, Figure~\ref{fig:snark_scorbie_seeded_destroy} illustrates how still
 		\caption{A Scorbie splitter, seeded with 8 extra still lifes, being destroyed by a single glider.}
 		\label{fig:scorbie_splitter_seeded_destroy}
 	\end{subfigure}
-	\caption{Additional still lifes (displayed in \bgbox{redback}{red}) can be placed near a circuit so as to make it simpler to destroy, without affecting its functionality. Here we use (a) 3 extra still lifes to turn a Snark into a one-time turner, and (b) 8 extra still lifes to turn a Scorbie splitter into a one-time-splitter.}\label{fig:snark_scorbie_seeded_destroy}
+	\caption{Additional still lifes (displayed in \bgbox{redback}{red}) can be placed near a circuit so as to make it simpler to destroy, without affecting its functionality. Here we use (a) 3 extra still lifes to turn a Snark into a one-time turner, and (b) 8 extra still lifes to turn a Scorbie splitter into a one-time splitter.}\label{fig:snark_scorbie_seeded_destroy}
 \end{figure}
 
-In fact, since these destruction recipes produce output gliders, we don't even need to generate the destruction-triggering gliders via single-channel recipes at all. Instead, we can just use a single glider that follows along behind (but slightly offset from) the single-channel recipe to clean up every single piece of circuitry in the Demonoid once it is no longer needed. After one piece of circuitry is cleaned up, it is reflected toward the next piece of circuitry that needs cleaning up, and so on.
+It's important to notice that these destruction recipes produce output gliders, so we don't need to generate the destruction-triggering gliders via single-channel recipes at all. Instead, we can just use a single glider that follows along behind (but slightly offset from) the single-channel recipe. This cleanup glider triggers the destruction of every single piece of circuitry in the Demonoid once it is no longer needed, in a continuous chain reaction. After one piece of circuitry is cleaned up, the glider is reflected toward the next piece of circuitry that needs cleaning up, and so on. Again, the timing has to be carefully controlled so that the cleanup glider neither catches up to the recipe nor falls behind it.
 
 
 
@@ -747,7 +749,7 @@ In fact, since these destruction recipes produce output gliders, we don't even n
 \subsection{The Speed Demonoid Itself}\label{sec:speed_demonoid}\index{Speed Demonoid}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Now that we have faster elbow-moving and circuit-destroying techniques, we can build a much faster Demonoid, appropriately named the \emph{Speed Demonoid}.\footnote{Constructed by Pavel Grankovskiy and Dave Greene in September 2020.} The general layout of this Demonoid is very similar to that of the other Demonoids that we have seen---it is mostly made up of its single-channel glider recipe, which creates Snarks and Scorbie splitters that it zig-zags back and forth between.
+Now that we have faster elbow-moving and circuit-destroying techniques, we can build a much faster Demonoid, appropriately named the \emph{Speed Demonoid}.\footnote{Constructed by Pavel Grankovskiy in September 2020.} The general layout of this Demonoid is very similar to that of the other Demonoids that we have seen---it is mostly made up of its single-channel glider recipe, which creates Snarks and Scorbie splitters that it zig-zags back and forth between.
 
 The only additional wrinkle that we add to this Demonoid design is that we use the crab as a \emph{double} boatstretcher instead of just as a single boatstretcher. That is, we will have the crab create and stretch two boat wicks, as illustrated in Figure~\ref{fig:double_boatstretcher_shoot_down}. The reason for making this change is that we want to use the crab to create two construction elbows, not just one---an elbow for making the next Scorbie splitter, and another elbow for making the next Snark. The two boat wicks can be burned independently so as to create those elbow blocks whenever we like (though we must be careful that the crab is only destroyed by the second fuse, not the first).
 
@@ -758,9 +760,9 @@ The only additional wrinkle that we add to this Demonoid design is that we use t
 	\caption{A double boatstretcher that can have its two wicks ignited independently, allowing the crab two carry two construction elbows instead of just one. Here, the first fuse (highlighted in \bgbox{aquaback}{aqua}) creates a small explosion, without hurting the crab, that the nearby glider helps turn into the first elbow. The second fuse (highlighted in \bgbox{magentaback}{magenta}) then destroys the crab, and the nearby glider helps turn it into the second elbow, as in Figure~\ref{fig:boatstretcher_shoot_down}.}\label{fig:double_boatstretcher_shoot_down}
 \end{figure}
 
-We similarly needed to make two construction elbows in each of our previous Demonoids. In the slow Demonoid from Figure~\ref{fig:slow_demonoid}, we first pushed the construction elbow to the correct location to build the next Scorbie splitter, and then once it was built we pushed the construction elbow forward again to the correct location to build the next Snark. In the $c/256$ Demonoid from Figure~\ref{fig:c256_demonoid}, the Cordership was shot down into an elbow at the location of the next Snark, and then a backward glider was shot back to create an elbow at the location of the next Scorbie splitter (alternatively, we could have used two Corderships). We could use similar tricks in this Speed Demonoid, but a single double boatstretcher is a bit faster and more elegant.
+We similarly needed to make two construction elbows in each of our previous Demonoids. In the slow Demonoid from Figure~\ref{fig:slow_demonoid}, we first pushed the construction elbow to the correct location to build the next Scorbie splitter, and then once it was built we pushed the construction elbow forward again to the correct location to build the next Snark. In the $c/256$ Demonoid from Figure~\ref{fig:c256_demonoid}, the Cordership was shot down into an elbow at the location of the next Snark, and then a backward glider was shot back to create an elbow at the location of the next Scorbie splitter (alternatively, we could have used two Corderships). We could use similar tricks in this Speed Demonoid, but a double boatstretcher is a bit faster and more elegant than two single boatstretchers.
 
-Rather than using zero-degree recipes to build the gliders that ignite the boat $c/3$ boat fuses, it will be slightly more efficient to place two isolated gliders on the correct lanes, outside of the single-channel recipe, so as trigger the ignitions. We can redirect these gliders, which we refer to as \texttt{TRIGGER1} and \texttt{TRIGGER2},\index{TRIGGER1}\index{TRIGGER2} around the same path as the single-channel recipe via one-time turners and one-time splitters (rather than Snarks and Scorbie splitters). Furthermore, since the Snark and Scorbie splitter destruction technique of Figure~\ref{fig:snark_scorbie_seeded_destroy} turns those circuits into one-time-turners and splitters, respectively, the \texttt{TRIGGER2} glider can naturally serve a secondary role as the one that destroys no-longer-needed Snarks and Scorbie splitters.
+Rather than using zero-degree recipes to build the gliders that ignite the boat $c/3$ boat fuses, it will be slightly more efficient to place two isolated gliders on their own lanes, away from the single-channel recipe, so as trigger the ignitions. We can redirect these gliders, which we refer to as \texttt{TRIGGER1} and \texttt{TRIGGER2},\index{TRIGGER1}\index{TRIGGER2} around the same path as the single-channel recipe via one-time turners and one-time splitters (rather than Snarks and Scorbie splitters). Furthermore, since the Snark and Scorbie splitter destruction technique of Figure~\ref{fig:snark_scorbie_seeded_destroy} turns those circuits into one-time-turners and splitters, respectively, the \texttt{TRIGGER2} glider can naturally serve a secondary role as the one that destroys no-longer-needed Snarks and Scorbie splitters.
 
 Putting all of this together finally gives us a completed Speed Demonoid, which is displayed in Figure~\ref{fig:speed_demonoid}.
 
@@ -816,35 +818,32 @@ Paul Chapman and Dave Greene built the first universal constructor in 2004 (see 
 
 The next major development in this area came in 2009 with Adam P.~Goucher's universal computer-constructor. While we have not explicitly explored the ``constructor'' part of this device, it uses the same construction arm that we have already seen, in conjunction with the binary register from Section~\ref{sec:binary_register} for storing the construction instructions. This binary storage is more efficient than the unary storage of the Chapman--Greene prototype, and the fact that it comes as part of a programmable computer makes it more straightforward to actually make use of.
 
-Both the Chapman--Greene constructor prototype, as well as the Goucher constructor, produced their output unidirectional slow glider salvos by reading a tape consisting of still lifes that represented a sequence of glider-firing operations. The idea of encoding information via static objects like this was deeply ingrained in the Life community at the time, likely as a result of how information is similarly stored in actual computers. However, the sudden appearance of the Gemini in 2010 showed that this method of storing data was just silly. Obviously (with hindsight), if you want to build some kind of memory storage system for a bunch of spacings between gliders, you just store a bunch of moving gliders at the spacing you want---there is no need to encode anything at all.
+Both the Chapman--Greene constructor prototype, as well as the Goucher constructor, produced their output unidirectional slow glider salvos by reading a tape consisting of still lifes that represented 0s and 1s. The idea of encoding information via static objects like this was deeply ingrained in the Life community at the time, likely as a result of how information is similarly stored in actual computers. However, the sudden appearance of the Gemini in 2010 showed that this method of storing data was just silly. Obviously (with hindsight), if you want to build some kind of memory storage system for a bunch of spacings between gliders, you just store a bunch of moving gliders at the spacing you want---there is no need to encode anything at all.
 
-That one insight allowed Andrew J.~Wade, who was a complete newcomer to the Life community, to build the first ever oblique and/or self-constructing spaceship, even using extraordinarily sub-optimal components. The Chapman--Greene prototype universal constructor was a first proof of concept, not really intended to be used anywhere since it could straightforwardly be made so much smaller. But Wade wasn't a stable circuitry expert, so he just used what was available: the Gemini spaceship included not just one, but three complete copies of the prototype construction arm, almost completely unmodified. All he did was throw away the hopelessly inefficient static storage system and substitute something better.
+That one insight allowed Andrew J.~Wade, who was a complete newcomer to the Life community, to build the first ever oblique and/or self-constructing spaceship, even using extraordinarily sub-optimal components. The Chapman--Greene prototype universal constructor was a first proof of concept, not really intended to be used anywhere since it could straightforwardly be made so much smaller. But Wade wasn't a stable circuitry expert, so he just used what was available: the Gemini spaceship included not just one, but three complete copies of the prototype construction arm, almost completely unmodified. All he did was throw away the hopelessly inefficient static binary storage system and substitute something better.
 
 The Gemini's completion, and its accompanying philosophy of storing information in glider streams instead of sequences of still lifes, marked the start of a new era of Life construction. In addition to the Geminoids and Demonoids that we saw in this chapter, a flood of other self-constructing spaceships and bizarre patterns based on universal construction were built in the 2010s. Some of the more notable examples include:\smallskip
 
 \begin{itemize}
-	\item In October 2010, Paul Tooke constructed numerous \emph{pianola breeders}:\index{pianola breeders} breeders that work by using universal constructors to synthesize objects that then synthesize other objects.\index{breeder} Because of the flexibility of universal construction, these breeders could be configured to behave in extremely unusual ways. For example, one of these breeders consists of a stationary object (a pair of universal constructors) that synthesizes stationary objects (slide guns), which then synthesize more stationary objects (lines of beehives).\footnote{See \httpsurl{conwaylife.com/wiki/Pianola_breeder}, and contrast this with the other breeders that we have seen, which all require some of the synthesized objects to move.}\smallskip
+	\item In October 2010, Paul Tooke constructed numerous \emph{pianola breeders}:\index{pianola breeders} breeders that work by using universal constructors to synthesize objects that then synthesize other objects.\index{breeder} Because of the flexibility of universal construction, these breeders could be configured to behave in extremely unusual ways. For example, one of the breeders consists of a stationary object (a pair of universal constructors) that synthesizes stationary objects (slide guns), which then synthesize more stationary objects (lines of beehives).\footnote{See \httpsurl{conwaylife.com/wiki/Pianola_breeder}, and contrast this with the other breeders that we have seen, which all require some of the synthesized objects to move.}\smallskip
 	
-	\item In November 2013, Dave Greene built a pattern called a \emph{linear propagator}\footnote{See \httpsurl{conwaylife.com/wiki/Linear_propagator}.}\index{linear propagator} that repeatedly makes copies of itself---something that had been known to exist since the early 1970s, but had eluded construction for the intervening 40 years.\smallskip
+	\item In November 2013, Dave Greene built a pattern called a \emph{linear propagator}\footnote{See \httpsurl{conwaylife.com/wiki/Linear_propagator}.}\index{linear propagator} that repeatedly makes copies of itself---something that had been known to be possible since the early 1970s, but had eluded construction for the intervening four decades.\smallskip
 	
-	\item In August 2014, Dave Greene constructed a pattern that grows outward in a spiral fashion by laying ever-expanding tracks around itself. The original version of this pattern had a bounding box with side length of approximately $1.6$~million cells, but has since between reduced to about $2{\thousep}000$ cells (see Figure~\ref{fig:spiral_growth} and Exercise~\ref{exer:snark_spiral_weld}).\smallskip
+	\item In August 2014, Dave Greene constructed a pattern that grows outward in a spiral fashion by laying ever-expanding tracks around itself. The original version of this pattern had a bounding box with side length of approximately $1.6$~million cells, but has since between reduced to approximately $2{\thousep}000$ cells (see Figure~\ref{fig:spiral_growth} and Exercise~\ref{exer:snark_spiral_weld}).\smallskip
 	
 	\item In November 2015, Chris Cain and Dave Greene completed the first Demonoid, which used somewhat more complicated circuitry than the Demonoids that we investigated in this chapter. Most notably, it used pairs of gliders separated by $10$hd to implement slow glider syntheses instead of single-channel glider recipes, which doubled the amount of circuitry that had to be constructed at each end.\smallskip
 	
 	\item In June 2017, Dave Greene constructed an \emph{Orthogonoid}\index{Orthogonoid} spaceship,\footnote{See \httpsurl{conwaylife.com/wiki/Orthogonoid}.} which works similarly to Demonoids, except uses middleweight spaceships (instead of gliders) to achieve a slow orthogonal (instead of diagonal) speed of travel. Adam P.~Goucher then helped build faster Orthogonoids with speeds up to $65536c/951573 \approx 0.06887c$ in October 2018.\smallskip
 	
-	\item In November 2018, Dave Greene constructed \emph{volatility~1 oscillators}\footnote{See \httpsurl{conwaylife.com/wiki/Volatility}} of arbitrarily large sizes:\index{volatility} oscillator in which all cells oscillate at the full period. These oscillators work by using single-channel glider recipes to destroy and then reconstruct their own circuitry.\smallskip 
+	\item In December 2018, Chris Cain completed a \emph{camelship}\footnote{See \httpsurl{conwaylife.com/wiki/Camelship}.} by modifying an earlier \emph{volatility~1 oscillator}\footnote{See \httpsurl{conwaylife.com/wiki/Volatility}.} design. The oscillator ensures that all its cells oscillate at the pattern's full period, by using single-channel glider recipes to destroy then rebuild its own circuitry. The camelship consists of a very similar single-channel signal loop, but the circuit reconstruction happens at a (3,1) offset.
 \end{itemize}
 
 The development of single-channel glider synthesis mostly took place in 2017, when another relative newcomer, Simon Ekstr{\"o}m, cavalierly disregarded accumulated prejudices from the previous decade, tried a search, and found that it worked.\footnote{This is not unlike Wade's construction of the Gemini in 2010, or when ConwayLife.com forums user ``zdr'' found the copperhead spaceship in 2016. In all of these cases, a newcomer simply looked where the members of the Life community thought there wasn't anything to find.} It was already known in 2015 how to emulate arbitrary glider synthesis via gliders on a single lane, but Ekstr{\"o}m was the first to show that it is possible even when the gliders are far enough apart from each other that they can be fed through standard components like Snarks and syringes.
 
-% TODO: Chris Cain built a camelship. Probably worth a brief mention in history section of Ch11?
-
-
 \clearpage % Put "Exercises" header at the top of the next page instead of the bottom of this page
 
 
-% Putting figure down here to foce exercises header onto same page as it
+% Putting figure down here to force exercises header onto same page as it
 \begin{figure}[!htb]
 	\centering
 	\embedlink{spiral_growth}{\includegraphics[width=\textwidth]{universal_construction/spiral_growth.pdf}}
@@ -1036,7 +1035,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:push_elbow_longer} \probdiff{2}
+	\begin{problem}\label{exer:push_elbow_longer}
 		The following single-lane glider recipe moves the elbow block:
 		\begin{align*}
 		& \text{\texttt{\footnotesize 109, 91, 93, 91, 145, 215, 106, 90, 90,}} \\
@@ -1057,7 +1056,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:0degree_hand_move} \probdiff{1}
+	\begin{problemstar}\label{exer:0degree_hand_move}
 		What is the ``move'' value of the zero-degree hand-making glider sequence from Figure~\ref{fig:0degree_hand} (i.e., how many half-diagonals is the elbow block moved)?
 	\end{problemstar}
 	
@@ -1065,7 +1064,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:exercise_hwss_slow_salvo} \probdiff{3}
+	\begin{problem}\label{exer:exercise_hwss_slow_salvo}
 		An 8-glider unidirectional slow salvo that synthesizes a heavyweight spaceship\footnote{Found by Adam P.~Goucher in December 2016.} is displayed below:
 		
 		\noindent\begin{center}
@@ -1083,7 +1082,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:snark_slow_salvo_pieces} \probdiff{2}
+	\begin{problem}\label{exer:snark_slow_salvo_pieces}
 		The $95$-glider slow salvo synthesis of a Snark from Figure~\ref{fig:snark_slow_salvo} is an incremental synthesis. Break it down into steps like we did with the $94$-glider synthesis from Figure~\ref{fig:17_cell_synthesis}.
 	\end{problem}
 	
@@ -1091,7 +1090,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:cordership_slow_salvo_from_single_channel} \probdiff{3}
+	\begin{problem}\label{exer:cordership_slow_salvo_from_single_channel}
 		Extract a $112$-glider unidirectional slow-salvo synthesis of a $2$-engine Cordership from the $2{\thousep}393$-glider single-channel recipe that is provided in Appendix~\ref{sec:appendix_cordership_maker}.
 	\end{problem}
 
@@ -1099,7 +1098,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:scorbie_splitter_slow_salvo} \probdiff{3}
+	\begin{problemstar}\label{exer:scorbie_splitter_slow_salvo}
 		Extract a unidirectional slow-salvo synthesis of a Scorbie splitter from the $4{\thousep}006$-glider single-channel recipe that is provided in Appendix~\ref{sec:appendix_scorbie_splitter_maker}. How many gliders does this slow salvo have?
 	\end{problemstar}
 	
@@ -1107,7 +1106,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:scorbie_splitter_zero_degree} \probdiff{3}
+	\begin{problem}\label{exer:scorbie_splitter_zero_degree}
 		Use slsparse (\httpsurl{conwaylife.com/wiki/Slsparse}) to create a single-channel glider recipe that synthesizes a Scorbie splitter in the following orientation, starting with a zero-degree elbow block in the location indicated at the top-center:
 		
 		\noindent\begin{center}
@@ -1119,7 +1118,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:slow_demonoid_adjust} \probdiff{2}
+	\begin{problemstar}\label{exer:slow_demonoid_adjust}
 		The bounding box of the slow Demonoid from Figure~\ref{fig:slow_demonoid} can be decreased considerably just by moving its two stabilizing ends closer together, and doing so also reduces its period and increases its speed.
 		
 		Adjust that Demonoid so that the longest side of its bounding box is no more than $200{\thousep}000$ cells long. What are its period and speed after you make this adjustment?
@@ -1130,7 +1129,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:gemini_why_any_slope_demonoid_fixed} \probdiff{2}
+	\begin{problem}\label{exer:gemini_why_any_slope_demonoid_fixed}
 		Recall that the Gemini can be modified to travel in essentially any rational direction, whereas Demonoids can only travel diagonally with slope~1. Explain why---what key aspect of their designs differs?
 	\end{problem}
 	% Solution: because gemini's ends are exact copies of each other, whereas demonoid ends are glide-reflections.
@@ -1139,7 +1138,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:snark_scorbie_splitter_xwss_destroy} \probdiff{3}
+	\begin{problem}\label{exer:snark_scorbie_splitter_xwss_destroy}
 		Recall the $461$-glider single-channel recipe from Appendix~\ref{sec:appendix_scorbie_splitter_destroyer} that produces the $6$-xWSS slow salvo of Figure~\ref{fig:scorbie_splitter_xwss_destroy} for destroying a Scorbie splitter.
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
@@ -1154,7 +1153,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:syringe_xwss_destroy} \probdiff{3}
+	\begin{problem}\label{exer:syringe_xwss_destroy}
 		The fact that Snarks and Scorbie splitters can be destroyed by xWSS slow salvos is not surprising---most objects can be similarly destroyed.
 				
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
@@ -1170,7 +1169,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:demonoid_turn_into_puffer} \probdiff{3}
+	\begin{problem}\label{exer:demonoid_turn_into_puffer}
 		Demonoid spaceships can be turned into Demonoid puffers simply by removing the destruction portion of their glider recipe. Use this technique to turn the slow Demonoid spaceship from Figure~\ref{fig:slow_demonoid} into a puffer that leaves behind Snarks and Scorbie splitters.
 	\end{problem}
 	
@@ -1178,7 +1177,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:44hd_elbow_push} \probdiff{4}
+	\begin{problemstar}\label{exer:44hd_elbow_push}
 		The following single-lane glider recipe (called the \emph{44hd elbow push}\index{44hd elbow push}) is the fastest-known elbow-pushing recipe---it moves the elbow block forward by $44$ half-diagonals in $2{\thousep}107$ generations:
 		\begin{align*}
 		& \text{\texttt{\footnotesize 109, 90, 93, 91, 90, 95, 91, 91, 138, 157,}} \\
@@ -1213,7 +1212,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	
 	
 	% Eh, there are easier ways, so maybe remove/rephrase this exercise? It's kinda just a byproduct of slsparse
-	\begin{problemstar}\label{exer:why_scorbie_splitter_snarkmakers} \probdiff{3}
+	\begin{problemstar}\label{exer:why_scorbie_splitter_snarkmakers}
 		When the $c/256$ Demonoid from Figure~\ref{fig:c256_demonoid} synthesizes its Scorbie splitters, it uses two Snarkmakers and a 90-degree elbow to perform the synthesis via gliders coming from the northeast:
 		
 		\noindent\begin{center}
@@ -1227,7 +1226,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:middling_demonoid_faster} \probdiff{4}
+	\begin{problem}\label{exer:middling_demonoid_faster}
 		By separating the Cordership-creation and Cordership-destruction portions of the single-channel glider recipe, make a version of the $c/256$ Demonoid from Figure~\ref{fig:c256_demonoid} that advances by at least $2^{15}$ cells per period, instead of just $2^{14}$. What is the speed of this new, faster Demonoid?
 		
 		\noindent [Hint: You will have to adjust the timing of Corderships in both the construction and destruction portions of the recipe, and also the timing of some backward glider collisions (e.g., for a Snarkbreaker).]
@@ -1237,7 +1236,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:boatstretcher_seed_slow_cleanup} \probdiff{2}
+	\begin{problem}\label{exer:boatstretcher_seed_slow_cleanup}
 		Show how some additional slow gliders coming from the southwest can be used to clean up the ash objects (i.e., the blinkers, blocks, and loaf) left behind by the boatstretcher seed from Figure~\ref{fig:boatstretcher_seed}.
 	\end{problem}
 
@@ -1245,7 +1244,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:boatstretcher_seed_identify} \probdiff{1}
+	\begin{problem}\label{exer:boatstretcher_seed_identify}
 		Determine which of the still lifes in the boatstretcher seed from Figure~\ref{fig:boatstretcher_seed} are (a) one-time splitters, and (b) one-time turners. How many synchronized gliders do the one-time splitters produce, and what is their role (i.e., what object(s) do they help synthesize)?
 	\end{problem}
 	% SOLUTION: 6 synchronized gliders (4: make crab, 1: append boat wick, 1: make the trailing glider)
@@ -1254,7 +1253,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:slow_demonoid_via_seeds_of_destruct} \probdiff{5}
+	\begin{problem}\label{exer:slow_demonoid_via_seeds_of_destruct}
 		Rebuild the slow Demonoid from Figure~\ref{fig:slow_demonoid} so that the Snarks and Scorbie splitters are destroyed by the seeding technique of Figure~\ref{fig:snark_scorbie_seeded_destroy}, rather than via Snarkbreakers and slow xWSS salvos.
 	\end{problem}
 	% Maybe add part (b): what is the speed limit of this redesign?
@@ -1263,8 +1262,8 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:boatstretcher_2c3_fuse}\index{fuse} \probdiff{2}
-		Recall the boat wick that was created by the one-glider seed in Figure~\ref{fig:boatstretcher_seed}.\smallskip
+	\begin{problem}\label{exer:boatstretcher_2c3_fuse}\index{fuse}
+		Recall the boat wick that was created by the one-glider seed in Figure~\ref{fig:boatstretcher_seed}.
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item Find a $2c/3$ fuse that burns through this wick.
@@ -1280,7 +1279,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:use_gol_destroy}\index{GoL-destroy} \probdiff{4}
+	\begin{problem}\label{exer:use_gol_destroy}\index{GoL-destroy}
 		Use GoL-destroy (\httpsurl{github.com/simeksgol/GoL_destroy}) to find an arrangement of still lifes that can be placed around the color-changing reflector from Figure~\ref{fig:color_change_stable} so that it can be destroyed by a single glider.
 	\end{problem}
 
@@ -1289,7 +1288,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	
 	
 	% TODO: Give solution? Easy one to give solutions to.
-	\begin{problem}\label{exer:speed_demonoid_parameters} \probdiff{2}
+	\begin{problem}\label{exer:speed_demonoid_parameters}
 		Find values of the separation parameters $n$ and $m$ that lead to a Speed Demonoid having speed...
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
@@ -1305,7 +1304,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:3c14_speed_demonoid} \probdiff{3}
+	\begin{problem}\label{exer:3c14_speed_demonoid}
 		Construct a Speed Demonoid that has a trigger separation of $n = 1{\thousep}767{\thousep}216$~generations and a separation between its two halves of $m = 294{\thousep}536$ full diagonals.
 		
 		\noindent [Side note: we explained in the text that such a Speed Demonoid would have speed $3c/14$.]
@@ -1315,7 +1314,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:chapman_constructor_why_unhighlighted} \probdiff{2}
+	\begin{problem}\label{exer:chapman_constructor_why_unhighlighted}
 		The universal constructor displayed in Figure~\ref{fig:chapman_greene_constructor} has a dozen or so unhighlighted still lifes scattered around. What purpose do they serve?
 	\end{problem}
 	% SOLUTION: one-time turners and splitters used to help start and stop the constructor.
@@ -1324,7 +1323,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:chapman_constructor_make_hwss} \probdiff{3}
+	\begin{problem}\label{exer:chapman_constructor_make_hwss}
 		Program the universal constructor displayed in Figure~\ref{fig:chapman_greene_constructor} to synthesize a heavyweight spaceship (instead of an eater~1) via the slow salvo synthesis provided in Exercise~\ref{exer:exercise_hwss_slow_salvo}.
 	\end{problem}
 	
@@ -1332,7 +1331,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:snark_spiral_weld} \probdiff{3}
+	\begin{problem}\label{exer:snark_spiral_weld}
 		The spiral growth pattern of Figure~\ref{fig:spiral_growth} packs gliders in its central diamond together with $27$hd spacing. Rebuild a smaller version of that pattern by using this Snark weld that allows for $23$hd spacing:
 		
 		\noindent\begin{center}
