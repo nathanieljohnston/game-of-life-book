@@ -57,7 +57,7 @@ It is worth emphasizing two potential points of confusion regarding glider color
 	\end{minipage} \hfill %
 	\begin{minipage}[b]{.66\textwidth}
 		\centering
-		\patternimglink{0.1}{glider_color}
+		\patternimglink{0.11}{glider_color}
 		\caption{A collection of $16$ gliders that all have the same color as each other. If any of these gliders were moved to the left, right, up, or down by $1$ cell then their color would change.}\label{fig:glider_color}
 	\end{minipage}
 \end{figure}
@@ -68,7 +68,7 @@ To illustrate why a glider's color is important, consider the task of reflecting
 	\centering
 	\begin{minipage}[b]{.41\textwidth}
 		\centering
-		\patternimglink{0.12}{reflect_glider_change}
+		\patternimglink{0.13}{reflect_glider_change}
 		\caption{A path along which we would like to reflect a glider. Notice that the reflected glider has the opposite color of the original glider.}\label{fig:reflect_glider_change}
 	\end{minipage} \hfill %
 	\begin{minipage}[b]{.55\textwidth}
@@ -302,7 +302,7 @@ While we have seen infinitely-growing patterns before (such as the Gosper glider
 
 \section{The Light, Middle, and Heavyweight Spaceships}\label{sec:lwss_mwss_hwss}
 
-Although the glider is the easiest spaceship to create and manipulate, the light, middle, and heavyweight spaceships are often better at manipulating other objects. The reason that they can interact with so many other patterns in such a wide variety of ways is that they emit such accessible sparks so frequently. Every second generation, the LWSS emits a dot spark and a thumb spark\index{dot spark}\index{thumb spark}, the MWSS emits two dot sparks and a thumb spark, and the HWSS emits a dot spark, a domino spark\index{domino spark}, and a thumb spark (see Figure~\ref{fig:lwss_mwss_hwssb}).
+Although the glider is the easiest spaceship to create and manipulate, the light, middle, and heavyweight spaceships are often better at manipulating \emph{other} objects. The reason that they can interact with so many other patterns in such a wide variety of ways is that they emit such accessible sparks so frequently. Every second generation, the LWSS emits a dot spark and a thumb spark\index{dot spark}\index{thumb spark}, the MWSS emits two dot sparks and a thumb spark, and the HWSS emits a dot spark, a domino spark\index{domino spark}, and a thumb spark (see Figure~\ref{fig:lwss_mwss_hwssb}).
 
 \begin{figure}[!htb]
 	\centering \patternimglink{0.1}{lwss_mwss_hwss}
@@ -371,9 +371,9 @@ Just like we distinguished between strict still lifes and pseudo still lifes in 
 	\caption{There are three ways of placing a LWSS, MWSS, and/or HWSS next to each other so as to create a pseudo spaceship. In all three of these cases, the component spaceships evolve in the exact same way as they would individually, yet in some of their phases the flotilla overpopulates some cells (highlighted in \bgbox{redback}{red}) that the spaceships individually do not.}\label{fig:lwss_hwss_pseudo}
 \end{figure}
 
-It is also possible for the sparks of two light, middle, and heavyweight spaceships to interact with each other as they move, similar to how we used the sparks of two oscillators to interact with each other in Section~\ref{sec:composite_periods}. Objects created from multiple smaller interacting spaceships like this are called \emph{flotillas}\index{flotilla}, and some examples involving a lightweight spaceship and a middleweight spaceship are presented in Figure~\ref{fig:lwss_mwss_flotillae}.
+It is also possible for the sparks of two light, middle, and heavyweight spaceships to interact with each other as they move, similar to how we used the sparks of two oscillators to interact with each other in Section~\ref{sec:composite_periods}. Objects created from multiple smaller interacting spaceships like this are called \emph{flotillas}\index{flotilla}, and some examples involving a lightweight spaceship and a middleweight spaceship are presented in Figure~\ref{fig:lwss_mwss_flotillae}. Since flotillae can be made up of multiple copies of any of these three standard $c/2$ orthogonal spaceships--LWSS, MWSS, or HWSS--it is often convenient to refer to them as an \emph{xWSS}.\index{xWSS} This term comes from the idea of ``x'' being an unknown, which can be replaced by one of the other letters, ``L'', ``M'', or ``H''.
 
-Although there are numerous\footnote{To be explicit, the number of flotillas involving two LWSS/MWSS/HWSS are: 1 LWSS on LWSS (pseudo), 3 LWSS on MWSS, 8 LWSS on HWSS ($1$ is pseudo), 5 MWSS on MWSS, 15 MWSS on HWSS, and 10 HWSS on HWSS ($1$ is pseudo).} ways of creating flotillas, they are a bit less satisfying than what we got when we combined oscillator sparks in Section~\ref{sec:composite_periods}. The main reason these flotillas do not really get us too much that is genuinely ``new'' is that each of the light, middle, and heavyweight spaceships have the same period and speed, so every flotilla constructed from them will also have the same period and speed.
+Although there are numerous\footnote{To be explicit, the number of flotillas involving two xWSSes are: 1 LWSS on LWSS (pseudo), 3 LWSS on MWSS, 8 LWSS on HWSS ($1$ is pseudo), 5 MWSS on MWSS, 15 MWSS on HWSS, and 10 HWSS on HWSS ($1$ is pseudo).} ways of creating flotillas, they are a bit less satisfying than what we got when we combined oscillator sparks in Section~\ref{sec:composite_periods}. The main reason these flotillas do not really get us too much that is genuinely ``new'' is that each of the light, middle, and heavyweight spaceships have the same period and speed, so every flotilla constructed from them will also have the same period and speed.
 
 \begin{figure}[!htb]
 	\centering
@@ -414,7 +414,7 @@ However, we can use sparks from light, middle, and heavyweight spaceships to pre
 
 \section{Corderships}\label{sec:corderships}
 
-Up to this point, we have not seen any spaceships that travel at a speed other than that of the ``standard'' spaceships---$c/4$ diagonally (e.g., the glider, crab, or orion~2) or $c/2$ orthogonally (e.g., the LWSS, MWSS, HWSS, sidecar, or hivenudger). Our first foray into the realm of other speeds is via the switch engine,\index{switch engine} which is the chaotic object that we introduced in Section~\ref{sec:switch_engine} that travels at a speed of $c/12$ diagonally.
+Up to this point, we have not seen any spaceships that travel at a speed other than that of the ``standard'' spaceships---$c/4$ diagonally (e.g., the glider, crab, or orion~2) or $c/2$ orthogonally (e.g., xWSSes, the sidecar, or hivenudger). Our first foray into the realm of other speeds is via the switch engine,\index{switch engine} which is the chaotic object that we introduced in Section~\ref{sec:switch_engine} that travels at a speed of $c/12$ diagonally.
 
 We already saw several methods for using switch engines to stabilize each other so as to create puffers\index{puffer} that left behind predictable debris (recall that a puffer created in this way was called an ark\index{ark}). However, using switch engines to stabilize each other and erase their debris entirely (thus creating a spaceship) is much more difficult.\footnote{The first ark was found in 1971, whereas the first spaceship based on switch engines was not found until 1991.} Spaceships constructed in this way are called \emph{Corderships},\index{Cordership}\footnote{Named after Charles Corderman, who discovered the switch engine and most of the simple puffers based on it in 1971.} and the main ingredient in the construction of most of them is the reaction between two switch engines displayed in Figure~\ref{fig:switch_engine_48}.
 
@@ -425,14 +425,14 @@ We already saw several methods for using switch engines to stabilize each other 
 
 In this reaction, the debris from two switch engines causes overcrowding that destroys both sets of debris, while leaving both switch engines intact. However, this only works for the first 48~generations of the switch engines' evolution (where the switch engines start close to each other and move father apart). For the next 48~generations (where the switch engines start far apart and move closer together), the pieces of debris from the switch engines are too far apart from each other to interact, and thus survive to cause problems later on.
 
-One potential way to fix this problem (i.e., to suppress the debris that forms between generations~$48$ and $96$) would be to place even more switch engines next to each other, so that each switch engine alternates between which of its neighbors it uses to suppress its debris every $48$ generations, as in Figure~\ref{fig:switch_engine_infinite}. The problem with this technique is that the object it creates must be infinitely long to actually be stable, which we don't want---we are only interested in spaceships of finite size.
+One potential way of fixing this problem (i.e., suppressing the debris that forms between generations~$48$ and $96$) would be to place even more switch engines next to each other, so that each switch engine alternates between which of its neighbors it uses to suppress its debris every $48$ generations, as in Figure~\ref{fig:switch_engine_infinite}.
 
 \begin{figure}[!htb]
 	\centering\embedlink{switch_engine_infinite}{\vcenteredhbox{\patternimg{0.083}{switch_engine_infinite_0}} \vcenteredhbox{\genarrow{48}} \vcenteredhbox{\patternimg{0.083}{switch_engine_infinite_48}} \vcenteredhbox{\genarrow{48}} \vcenteredhbox{\patternimg{0.083}{switch_engine_infinite_96}}}
 	\caption{An infinitely-long wave of switch engines (highlighted in \bgbox{aquaback}{aqua}) forever bounce off of each other and suppress each other's debris, creating an object that moves at a speed of $c/12$ diagonally.}\label{fig:switch_engine_infinite}
 \end{figure}
 
-One method of stabilizing the edges of this pattern is to observe that the debris created by the switch engines on the far edges of this arrangement (i.e., the debris that causes problems and eventually leads to the destruction of the switch engines) temporarily creates a block, as shown in Figure~\ref{fig:switch_engine_blocks}. If we could destroy the remaining debris sometime between when the block is created and when the debris destroys the pattern, we would then have a very orderly puffer that creates a single-file trail of blocks on both of its ends.
+The problem with this technique is that the object it creates must be infinitely long to actually be stable, which we don't want---we are only interested in spaceships of finite size. One method of stabilizing the edges of this pattern is to observe that the debris created by the switch engines on the far edges of this arrangement (i.e., the debris that causes problems and eventually leads to the destruction of the switch engines) temporarily creates a block, as shown in Figure~\ref{fig:switch_engine_blocks}. If we could destroy the remaining debris sometime between when the block is created and when the debris destroys the pattern, we would then have a very orderly puffer that creates a single-file trail of blocks on both of its ends.
 
 \begin{figure}[!htb]
 	\centering\embedlink{switch_engines_blocks}{\vcenteredhbox{\patternimg{0.1}{switch_engine_blocks_0}} \vcenteredhbox{\genarrow{96}} \vcenteredhbox{\patternimg{0.1}{switch_engine_blocks_96}}}
@@ -565,7 +565,7 @@ We can build another family of $c/2$ puffers and rakes by using an object called
 	\caption{The \emph{Coe ship} is a $c/2$ orthogonal period~16 spaceship that consists of some pulsating debris trailing behind a lightweight spaceship and a deformed heavyweight spaceship.}\label{fig:coe_ship}
 \end{figure}
 
-Most notably, we can add some light, middle, and heavyweight spaceships behind the Coe ship in order to cause its spark to spawn an endless wave of gliders, just like we did when we created the space rake from the ecologist. In particular, by placing two heavyweight spaceships as in Figure~\ref{fig:coe_ship_back_rake}, we can create a period~$16$ backward rake. To turn this backward rake into a forward rake, we can place two additional heavyweight spaceships in such a way that they reflect the backward-moving glider so that it becomes a forward-moving glider, as in Figure~\ref{fig:coe_ship_forward_rake}.\footnote{This configuration of two heavyweight spaceships works to turn any $c/2$ backward rake with period at least $16$ into a forward rake. For example, this gives us another way to turn the period~20 and period~60 backward space rakes into forward space rakes (see Exercise~\ref{exer:back_to_forward_space_rake}).}
+Most notably, we can add some xWSSes behind the Coe ship in order to cause its spark to spawn an endless wave of gliders, just like we did when we created the space rake from the ecologist. In particular, by placing two heavyweight spaceships as in Figure~\ref{fig:coe_ship_back_rake}, we can create a period~$16$ backward rake. To turn this backward rake into a forward rake, we can place two additional heavyweight spaceships in such a way that they reflect the backward-moving glider so that it becomes a forward-moving glider, as in Figure~\ref{fig:coe_ship_forward_rake}.\footnote{This configuration of two heavyweight spaceships works to turn any $c/2$ backward rake with period at least $16$ into a forward rake. For example, this gives us another way to turn the period~20 and period~60 backward space rakes into forward space rakes (see Exercise~\ref{exer:back_to_forward_space_rake}).}
 
 \begin{figure}[!htb]
 	\centering
@@ -616,7 +616,7 @@ We can also repeat this exact same procedure with a period~60 space rake rather 
 
 \section{Speed Limits}\label{sec:speed_limits}
 
-We now consider the problem of determining which speeds spaceships can attain. We have seen numerous examples of diagonal spaceships that move at $c/4$ (with the glider being the prototypical example) and also several orthogonal spaceship that move at $c/2$ (such as the LWSS, MWSS, and HWSS). We have also seen a few slower spaceships, such as the diagonal $c/12$ Corderships. However, we have not seen any spaceships that are faster than the ``basic'' spaceships that we are already familiar with. The following theorem shows that there is a reason for this: no faster spaceships exist.\footnote{This theorem was originally proved by Conway himself, very shortly after introducing the Game of Life.}
+We now consider the problem of determining which speeds spaceships can attain. We have seen numerous examples of diagonal spaceships that move at $c/4$ (with the glider being the prototypical example) and also several orthogonal spaceship that move at $c/2$ (such as xWSSes). We have also seen a few slower spaceships, such as the diagonal $c/12$ Corderships. However, we have not seen any spaceships that are faster than the ``basic'' spaceships that we are already familiar with. The following theorem shows that there is a reason for this: no faster spaceships exist.\footnote{This theorem was originally proved by Conway himself, very shortly after introducing the Game of Life.}
 
 \begin{theorem}\label{thm:speed_limits}
 	The maximum diagonal and orthogonal speeds that a finite object (e.g., a spaceship, puffer, or rake) can travel through empty space are $c/4$ and $c/2$, respectively.
@@ -927,7 +927,7 @@ Figure~\ref{fig:speed_catalog} provides a collection of the smallest known ortho
 
 The Life community has had slightly less luck finding elementary diagonal spaceships of different speeds, primarily due to the diagonal speed limit being slower than the orthogonal speed limit. Indeed, slow spaceships typically need to have a higher period than fast spaceships (e.g., a spaceship with speed $c/n$ must have period at least $n$), and the search space for high-period objects is much larger than it is for low-period objects,\footnote{This is the same reason that computer searches have been so effective at finding oscillators with period below $19$, but not above.} so the effectiveness of computer searches drops off quickly.
 
-Nonetheless, $3$ new diagonal spaceships, each travelling at a speed that we have not yet seen, are displayed in Figure~\ref{fig:diagonal_speed_catalog}. Together with the $c/4$ and $c/12$ spaceships that we are already familiar with, these spaceships represent the only $5$ diagonal speeds that have been attained by elementary spaceships.
+Nonetheless, three new diagonal spaceships, each travelling at a speed that we have not yet seen, are displayed in Figure~\ref{fig:diagonal_speed_catalog}. Together with the $c/4$ and $c/12$ spaceships that we are already familiar with, these spaceships represent the only $5$ diagonal speeds that have been attained by elementary spaceships.
 
 \begin{figure}[!htb]
 	\centering
@@ -955,7 +955,7 @@ Nonetheless, $3$ new diagonal spaceships, each travelling at a speed that we hav
 	\label{fig:diagonal_speed_catalog}
 \end{figure}
 
-Even though all of the spaceships that we have seen so far travel either orthogonally or diagonally, other directions of travel (i.e., diagonally at slopes other than $\pm 1$) are indeed possible. We call a spaceship that travels in one of these non-standard directions an \emph{oblique spaceship},\index{oblique spaceship} and we say that its speed is $(x,y)c/n$ if it travels a distance of $x$ cells horizontally and $y$ cells vertically over the course of $n$~generations. Since oblique spaceships all have speed no greater than $(2,1)c/6$ and period equal to at least~$6$ (see Exercise~\ref{exer:general_speed_limit}), they are quite difficult to find via computer search. However, one elementary oblique spaceship is indeed known, and is displayed in Figure~\ref{fig:sir_robin}.\footnote{Ships like this one, which travel $2$ cells horizontally for every $1$ cell that they travel vertically, are called \emph{knightships}, in reference to the knight from chess that moves in the same way.\index{knightship} This particular knightship is called \emph{Sir Robin}, after a knight from Monty Python.}
+Even though all of the spaceships that we have seen so far travel either orthogonally or diagonally, other directions of travel (i.e., diagonally at slopes other than $\pm 1$) are indeed possible. We call a spaceship that travels in one of these non-standard directions an \emph{oblique spaceship},\index{oblique spaceship} and we say that its speed is $(x,y)c/n$ if it travels a distance of $x$ cells horizontally and $y$ cells vertically over the course of $n$~generations. Since oblique spaceships all have speed no greater than $(2,1)c/6$ and period equal to at least~$6$ (see Exercise~\ref{exer:general_speed_limit}), they are quite difficult to find via computer search. However, some elementary oblique spaceships are indeed known, and the first one to be found is displayed in Figure~\ref{fig:sir_robin}.\footnote{Ships like this one, which travel $2$ cells horizontally for every $1$ cell that they travel vertically, are called \emph{knightships}, in reference to the knight from chess that moves in the same way.\index{knightship} This particular knightship is called \emph{Sir Robin}, after a knight from Monty Python.}
 
 \begin{figure}[!htb]
 	\centering
@@ -968,7 +968,6 @@ Although only a handful of speeds have been realized by elementary spaceships, t
 
 While we are not yet in a position to discuss the specifics of how these engineered spaceships are pieced together, we will return to this problem in Chapters~\ref{chp:self_support_spaceships} and~\ref{chp:universal_construction}. For now, we simply list in Table~\ref{tab:spaceship_speeds} a summary of what spaceship speeds are attainable by which methods.
 
-% TODO: We can tweak the lower rows of this table if we like, specifically mentioning spaceships that we'll see in the later chapters. NJ wants to keep the 3 "all speeds <" rows, but I'm not fussy on which other engineered spaceship rows we include.
 \begin{table}[!htb]
 	\begin{center}		
 		\begin{tabular}{r c l}
@@ -984,24 +983,26 @@ While we are not yet in a position to discuss the specifics of how these enginee
 			\rowcolor{gray!20} $2c/7$ & orthogonal & weekender \\
 			$3c/7$ & orthogonal & spaghetti monster \\
 			\rowcolor{gray!20} $c/10$ & orthogonal & copperhead \\
-			$17c/45$ & orthogonal & ``caterpillar''\index{caterpillar} engineered spaceship \\
-			\rowcolor{gray!20} $31c/240$ & orthogonal & ``silverfish''\index{silverfish} engineered spaceship \\
-			all speeds $< c/4$ & orthogonal & ``caterloopillar''\index{caterloopillar} engineered spaceships \\
+			$17c/45$ & orthogonal & ``caterpillar''\index{caterpillar} engineered spaceship (Section~\ref{sec:caterpillar}) \\
+			\rowcolor{gray!20} $31c/240$ & orthogonal & ``silverfish''\index{silverfish} engineered spaceship (Section~\ref{sec:silverfish}) \\
+			all speeds $< c/4$ & orthogonal & ``caterloopillar''\index{caterloopillar} engineered spaceships (Section~\ref{sec:caterloopillar}) \\
 			\rowcolor{gray!20} $c/4$ & diagonal & glider \\
 			$c/5$ & diagonal & Figure~\ref{fig:c5_diagonal} \\
 			\rowcolor{gray!20} $c/6$ & diagonal & Figure~\ref{fig:c6_diagonal} \\
 			$c/7$ & diagonal & lobster \\
 			\rowcolor{gray!20} $c/12$ & diagonal & Corderships\index{Cordership} \\
-			all speeds $< c/4$ & diagonal & ``Demonoid'' engineered spaceships\index{Demonoid}\protect\footnotemark \\
+			all speeds $< c/4$ & diagonal & ``Demonoid'' engineered spaceships\index{Demonoid} (Section~\ref{sec:fast_demonoid}) \\
 			\rowcolor{gray!20} $(2,1)c/6$ & slope $2$ & Sir Robin \\
-			all speeds $< (1,1)c/579$ & all slopes ${} \neq 1$ & ``Geminoid''\index{Geminoid} engineered spaceships\protect\footnotemark \\\bottomrule
+			$(23,5)/79$ & slope $23/5$ & ``waterbear''\index{waterbear} engineered spaceship (Section~\ref{sec:waterbear}) \\
+			\rowcolor{gray!20} all speeds $< (1,1)c/579$ & all slopes ${} \neq 1$ & ``Geminoid''\index{Geminoid} engineered spaceships (Section~\ref{sec:geminoids}) \\\bottomrule
 		\end{tabular}
 		\caption{A summary of the different spaceship speeds that are known to be attainable. Many of these speeds are only attained by engineered spaceships, which we will not discuss in detail until Chapters~\ref{chp:self_support_spaceships} and~\ref{chp:universal_construction}. When this table says things like ``all speeds'' or ``all slopes'', it should be understood that it means all \emph{rational} speeds or slopes, as it is not possible for a spaceship to have irrational speed or slope.}\label{tab:spaceship_speeds}
 	\end{center}
 \end{table}
-\addtocounter{footnote}{-2} % the number of footnotes in previous table (also the number of \footnotetexts coming up)
-\stepcounter{footnote}\footnotetext{All rational diagonal speeds slower than $c/4$ are attainable using a ``Speed Demonoid'' construction, which we will discuss in Section~\ref{sec:fast_demonoid}. There is even a computer script that quickly builds such a spaceship of any desired speed.}
-\stepcounter{footnote}\footnotetext{While essentially any direction and sufficiently slow speed can be attained by a Geminoid spaceship, most speeds that have been explicitly constructed in this way are in the ballpark of $c/10000$.}
+% NJ adjusted the above table and removed these footnotes from the table. Commenting out the footnotes here.
+%\addtocounter{footnote}{-2} % the number of footnotes in previous table (also the number of \footnotetexts coming up)
+%\stepcounter{footnote}\footnotetext{All rational diagonal speeds slower than $c/4$ are attainable using a ``Speed Demonoid'' construction, which we will discuss in Section~\ref{sec:fast_demonoid}. There is even a computer script that quickly builds such a spaceship of any desired speed.}
+%\stepcounter{footnote}\footnotetext{While essentially any direction and sufficiently slow speed can be attained by a Geminoid spaceship, most speeds that have been explicitly constructed in this way are in the ballpark of $c/10000$.}
 
 It is worth noting that methods for constructing engineered spaceships demonstrate the existence of spaceships that travel arbitrarily slowly, so there cannot possibly be a variant of Theorem~\ref{thm:speed_limits} that provides a lower bound on the speed of spaceships. In fact, at least in the orthogonal direction we know how to construct about half of all possible speeds, since the caterloopillar construction can produce spaceships of any rational speed below $c/4$, leaving only the interval of speeds between $c/4$ and $c/2$ unsolved. Since we already know explicit examples of $c/3$, $2c/5$, $2c/7$, and $3c/7$ orthogonal spaceships, we are left with $3c/8$ as the simplest (i.e., smallest potential period) orthogonal speed for which no spaceship is known. Similarly, the simplest unknown diagonal speed is $c/8$, for which there could potentially exist a period~$8$ spaceship, whereas all other unknown speeds would necessarily have at least period~$9$.
 
@@ -1101,7 +1102,7 @@ The small size of the loafer and copperhead demonstrate just how limited our sea
 
 Diagonal spaceships are somewhat more difficult to search for than orthogonal spaceships due to their lower speed limit and thus higher periods (see Exercise~\ref{exer:general_speed_limit}), with search techniques not producing the first new diagonal speeds of $c/5$, $c/6$, and $c/7$ until 2000 (by Jason Summers), 2005 (by Nicolay Beluchenko), and 2011 (by Matthias Merzenich), respectively.
 
-Oblique spaceships are even more difficult to find, with the first one (Sir Robin) not being found until 2018 (by Adam P. Goucher and Tomas Rokicki), despite considerable effort having been put into finding one over the preceding 20 years. Indeed, there was a remarkably close call in March 2004, when Eugene Langvagen found the small pattern displayed in Figure~\ref{fig:almost_knightship}. This pattern is roughly $1/4$ of the size of Sir Robin and is \emph{almost} an elementary knightship---after $6$ generations it has moved by $2$ cells horizontally and $1$ cell vertically, except with the state of just $2$ of its cells incorrect.
+Oblique spaceships are even more difficult to find, with the first elementary one (Sir Robin) not being found until 2018 (by Adam P. Goucher and Tomas Rokicki), despite considerable effort having been put into finding one over the preceding 20 years. Indeed, there was a remarkably close call in March 2004, when Eugene Langvagen found the small pattern displayed in Figure~\ref{fig:almost_knightship}. This pattern is roughly $1/4$ of the size of Sir Robin and is \emph{almost} an elementary knightship---after $6$ generations it has moved by $2$ cells horizontally and $1$ cell vertically, except with the state of just $2$ of its cells incorrect.
 
 \begin{figure}[!htb]
 	\centering
@@ -1111,7 +1112,7 @@ Oblique spaceships are even more difficult to find, with the first one (Sir Robi
 
 No other spaceship speeds or directions have been found via computer search, but a lot of success has been had by stitching together multiple copies of simple reactions in clever ways. The first spaceship that was found in this way was the 13-engine Cordership, which was found in 1991 by Dean Hickerson, who also found most of the other early Corderships. The next spaceship to be found via construction was the caterpillar\index{caterpillar}, which is a $17c/45$ orthogonal spaceship based on the reaction displayed in Figure~\ref{fig:17c45_reaction}.
 
-Even though this reaction by itself is unstable, it can be chained together with itself and other reactions to create a true spaceship. However, the details of how these reactions fit together are considerably more complicated than they were for Corderships, and had to be carried out by a computer program written by Gabriel Nivasch (with help by David Bell and Jason Summers) in 2004. The completed caterpillar spaceship has over $11.8$~million live cells, and was the largest interesting Life pattern (by live cell count) until being surpassed in 2018 by the 0E0P \index{0E0P} metacell with $18.6$~million live cells (see Chapter~\ref{chp:0e0p}).
+Even though this reaction by itself is unstable, it can be chained together with itself and other reactions to create a true spaceship (see Section\ref{sec:caterpillar}). However, the details of how these reactions fit together are considerably more complicated than they were for Corderships, and had to be carried out by a computer program written by Gabriel Nivasch (with help by David Bell and Jason Summers) in 2004. The completed caterpillar spaceship has over $11.8$~million live cells, and was the largest interesting Life pattern by live cell count until being surpassed in 2018 by the 0E0P \index{0E0P} metacell with $18.6$~million live cells (see Chapter~\ref{chp:0e0p}).
 
 \begin{figure}[!htb]
 	\centering
@@ -1122,6 +1123,10 @@ Even though this reaction by itself is unstable, it can be chained together with
 The next engineered spaceship to be constructed was \emph{Gemini}\index{Gemini}, which was created by Andrew J. Wade in 2010. The original form of this spaceship had speed $(1024,5120)c/33699586$ and was the first known oblique spaceship. Furthermore, its construction can be altered in a rather systematic way to create spaceships of any direction and arbitrarily-slow speeds.\footnote{The existence of oblique spaceships and arbitrarily-slow spaceships was already known in the early 1970s \cite{Wain74,BCG82}, but Gemini was the first explicit construction. Despite having over $800{\thousep}000$ live cells, it was orders of magnitude smaller and faster than such a spaceship was expected to be.} Several other types of massive engineered spaceships have been constructed since the Gemini, and we will investigate them in depth in Chapters~\ref{chp:self_support_spaceships} and~\ref{chp:universal_construction}.
 
 Interest in wires has dwindled in recent years, simply because signals on wires are more difficult to manipulate than signals (gliders in particular) in a vacuum. Indeed, if we want to send a signal from one location in the Life plane to another, it is typically simpler to just point a glider in the right direction rather than requiring that a particular wire stretches all the way between those two locations. Furthermore, we have a lot of machinery for repositioning and re-timing gliders, but hardly any such machinery for signals (we do not know of a single ``efficient'' signal elbow, for example). Dean Hickerson wrote a computer program to search for such a signal elbow, with the intention of then creating a fast signal loop that solved the omniperiodicity problem. While that computer search was unsuccessful, it did lead to many of the known billiard table oscillators.
+
+
+
+\clearpage % push exercises header to next page, so that it does not dangle at the bottom of this page
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1313,7 +1318,7 @@ Interest in wires has dwindled in recent years, simply because signals on wires 
 			
 			\item Create a hivenudger that uses a Coe ship as one of its rear corners.
 			
-			\item How many different hivenudgers can be constructed by using light, middle, and heavyweight spaceships at its four corners? [Hint: The answer is not $3^4 = 81$. Try either listing all possibilities or looking up a mathematical result called Burnside's lemma, which can be used to compute the answer.] % 45. Burnside's lemma gives (1/2) * (81 + 9) = 45.
+			\item How many different hivenudgers can be constructed by using xWSSes at its four corners? [Hint: The answer is not $3^4 = 81$. Try either listing all possibilities or looking up a mathematical result called Burnside's lemma, which can be used to compute the answer.] % 45. Burnside's lemma gives (1/2) * (81 + 9) = 45.
 		\end{enumerate}
 	\end{problem}
 	
@@ -1327,7 +1332,7 @@ Interest in wires has dwindled in recent years, simply because signals on wires 
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item Explain why it is \emph{not} necessary to consider the color of a loafer\index{loafer} that we reflect around a track.
 			
-			\item Explain why it \emph{is} useful to consider the color of a light, middle, or heavyweight spaceship that we reflect around a track. Why are we more restricted when reflecting these spaceships than when reflecting loafers?
+			\item Explain why it \emph{is} useful to consider the color of an xWSS that we reflect around a track. Why are we more restricted when reflecting these spaceships than when reflecting loafers?
 		\end{enumerate}
 	\end{problem}
 	
