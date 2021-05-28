@@ -172,12 +172,10 @@ By reflecting the inverted stream and using an eater to destroy the non-inverted
 
 \begin{figure}[!htb]
 	\centering
-	\embedlink{glider_duplicator}{\vcenteredhbox{\patternimg{0.125}{glider_duplicator_0}} \vcenteredhbox{\genarrow{30}} \vcenteredhbox{\patternimg{0.125}{glider_duplicator_30}} \vcenteredhbox{\genarrow{60}} \vcenteredhbox{\patternimg{0.125}{glider_duplicator_90}}}
+	\embedlink{glider_duplicator}{\vcenteredhbox{\patternimg{0.128}{glider_duplicator_0}} \vcenteredhbox{\genarrow{30}} \vcenteredhbox{\patternimg{0.128}{glider_duplicator_30}} \vcenteredhbox{\genarrow{60}} \vcenteredhbox{\patternimg{0.128}{glider_duplicator_90}}}
 	\caption{A glider duplicator that makes use of the inline inverter and the reaction from Figure~\ref{fig:stream_inverter}. The input glider from the northwest (highlighted in \bgbox{greenback}{green}) is copied to the southeast and destroys the corresponding glider going southwest. The southern inline inverter then creates a glider going southwest (highlighted in \bgbox{orangeback}{orange}), thus duplicating the original glider.}\label{fig:glider_duplicator}
 \end{figure}
 
-
-% NJ is here in the clean-up process
 
 \subsection{Miscellaneous Period~30 Circuits}\label{sec:p30_misc_circuits}
 
@@ -187,99 +185,105 @@ Two other simple reactions that make use of the debris and sparks left behind by
 
 \begin{figure}
 	\centering
-	\begin{minipage}{0.31\textwidth}
+	\begin{minipage}{0.27\textwidth}
 		\centering
 		\patternimglink{0.075}{glider_pusher}
 		\caption{A \emph{glider pusher} pushes a glider away by one lane.}\label{fig:glider_pusher_main}
 	\end{minipage}\quad
-	\begin{minipage}{0.31\textwidth}
-		\centering\vspace*{1.13cm}
-		\patternimglink{0.105}{glider_to_lwss}
+	\begin{minipage}{0.4\textwidth}
+		\centering\vspace*{-0.1cm}
+		\patternimglink{0.095}{glider_to_lwss}
 		\caption{Two queen bees can convert a glider into an LWSS.}\label{fig:glider_to_lwss}
 	\end{minipage}\quad
-	\begin{minipage}{0.31\textwidth}
-		\centering\vspace*{0.58cm}
-		\patternimglink{0.1}{lwss_to_glider}
+	\begin{minipage}{0.27\textwidth}
+		\centering\vspace*{0.05cm}
+		\patternimglink{0.11}{lwss_to_glider}
 		\caption{Pentadecathlons can convert an LWSS into a glider.}\label{fig:lwss_to_glider}
 	\end{minipage}
 \end{figure}
 
 It is worth comparing the the LWSS-to-glider converter of Figure~\ref{fig:lwss_to_glider} to the pentadecathlon-based reflectors of Figures~\ref{fig:p30_180_reflect} and~\ref{fig:p30_90_reflect_penta}. In all three cases, the reaction is made up of two pentadecathlons, the first of which converts the input object (either an LWSS or a glider) into a block and the second of which converts that block into the output glider.
 
-One final piece of machinery that is a bit more heavy-duty than the other period~$30$ reactions that we have illustrated is the \emph{toggle}\index{toggle},\footnote{Found by Dean Hickerson in April 1996.} which is a glider gun that can be switched on and off by firing a single glider into it (contrast this with the inline inverter, which is a glider gun that can be toggled on and off by firing a \emph{constant stream} of gliders into it). The toggle works by exploiting the fact that a glider can strike a particular phase of an LWSS in a way that destroys the LWSS and creates a perpendicular output glider---but if the incoming glider is delayed by $30$~generations then both are simply destroyed.
+One final piece of machinery that is a bit more heavy-duty than the other period~$30$ reactions that we have illustrated is the \emph{toggle}\index{toggle},\footnote{Constructed by Dean Hickerson in April 1996.} which is a glider gun that can be switched on and off by firing a single glider into it (contrast this with the inline inverter, which is a glider gun that can be switched off by firing a \emph{constant stream} of gliders into it). The toggle works by exploiting the fact that a glider can strike a particular phase of an LWSS in a way that destroys the LWSS and creates a perpendicular output glider---but if the incoming glider is delayed by $30$~generations then both are simply destroyed.
 
 \begin{figure}[!htb]
 	\centering
-	\patternimglink{0.12}{toggle}
-	\caption{A \emph{toggle} that bounces gliders from a Gosper glider gun (highlighted in \bgbox{yellowback2}{yellow}) off of a stream of lightweight spaceships (highlighted in \bgbox{aquaback}{aqua}). The first incoming glider (on the \bgbox{magentaback}{magenta} stream) turns off the output stream of gliders (highlighted in \bgbox{greenpastel}{green}) until another glider comes in behind it to turn the stream back on.}
+	\patternimglink{0.135}{toggle}
+	\caption{A \emph{toggle} that bounces gliders from a Gosper glider gun (highlighted in \bgbox{yellowback2}{yellow}) off of a stream of lightweight spaceships (highlighted in \bgbox{aquaback}{aqua}). The first incoming glider on the \bgbox{greenpastel}{green} stream from the northwest turns off the output stream of gliders (highlighted in \bgbox{orangeback2}{orange}) until another glider comes in behind it to turn the stream back on.}
 	\label{fig:toggle}
 \end{figure}
 
 
 \section{Primer}\label{sec:primer}
 
-We now have enough circuitry and tools at our disposal that we can start to construct some really unusual and interesting patterns. To illustrate how to put these pieces together in non-trivial ways, we now construct a pattern that computes prime numbers.\index{prime number} More specifically, we build a pattern that emits a stream of lightweight spaceships with the property that the $n$-th spaceship in the stream is present if and only if $n$ is prime. That is, we construct a pattern that emits a stream of lightweight spaceships with spacing as in Figure~\ref{fig:prime_lwss_stream}. We call patterns of this type \emph{primers}.\index{primer}\footnote{The first primer was constructed by Dean Hickerson in November 1991. It used the same techniques that we will demonstrate here, but some of the component reactions were slightly different (e.g., instead of the inline inverter, it used a stream inversion reaction that we will see in Section~\ref{sec:stream_inversion}).}
+We now have enough circuitry and tools at our disposal that we can start to construct some really unusual and interesting patterns. To illustrate how to put these pieces together in non-trivial ways, we now construct a pattern that computes prime numbers.\index{prime number} More specifically, we build a pattern that emits a stream of lightweight spaceships with the property that the $n$-th spaceship in the stream is present if and only if $n$ is prime. That is, we construct a gun that emits a stream of lightweight spaceships with spacing as in Figure~\ref{fig:prime_lwss_stream}. We call guns of this type \emph{primers}.\index{primer}\footnote{The first primer was constructed by Dean Hickerson in November 1991. It used the same techniques that we will demonstrate here, but some of the component reactions were slightly different (e.g., instead of the inline inverter, it used a stream inversion reaction that we will see in Section~\ref{sec:stream_inversion}).}
 
-\begin{figure}[!ht]
-	\centering\begin{tikzpicture}[scale=0.9, every node/.style={transform shape}]%
-	\node[inner sep=0pt,anchor=south west] at (0,0) {\patternimglink{0.1}{prime_lwss_stream}};
-	
-	\sizecolorletternode{gray}{0.72}{0.57}{1}{9.5}
-	\sizecolorletternode{green}{1.57}{0.57}{2}{9.5}
-	\sizecolorletternode{green}{2.42}{0.57}{3}{9.5}
-	\sizecolorletternode{gray}{3.26}{0.57}{4}{9.5}
-	\sizecolorletternode{green}{4.11}{0.57}{5}{9.5}
-	\sizecolorletternode{gray}{4.96}{0.57}{6}{9.5}
-	\sizecolorletternode{green}{5.81}{0.57}{7}{9.5}
-	\sizecolorletternode{gray}{6.66}{0.57}{8}{9.5}
-	\sizecolorletternode{gray}{7.51}{0.57}{9}{9.5}
-	\sizecolorletternode{gray}{8.31}{0.57}{10}{9.5}
-	\sizecolorletternode{green}{9.18}{0.57}{11}{9.5}
-	\sizecolorletternode{gray}{10.01}{0.57}{12}{9.5}
-	\sizecolorletternode{green}{10.86}{0.57}{13}{9.5}
-	\sizecolorletternode{gray}{11.71}{0.57}{14}{9.5}
-	\sizecolorletternode{gray}{12.56}{0.57}{15}{9.5}
-	\sizecolorletternode{gray}{13.41}{0.57}{16}{9.5}
-	\sizecolorletternode{green}{14.25}{0.57}{17}{9.5}
-	\sizecolorletternode{gray}{15.1}{0.57}{18}{9.5}
-	\sizecolorletternode{green}{15.95}{0.57}{19}{9.5}
+\begin{figure}[!htb]
+	\centering\begin{tikzpicture}[scale=0.93, every node/.style={transform shape}]%
+		\node[inner sep=0pt,anchor=south west] at (0,0) {\patternimglink{0.1}{prime_lwss_stream}};
+		
+		\sizecolorletternode{gray}{0.72}{0.57}{1}{9.5}
+		\sizecolorletternode{green}{1.57}{0.57}{2}{9.5}
+		\sizecolorletternode{green}{2.42}{0.57}{3}{9.5}
+		\sizecolorletternode{gray}{3.26}{0.57}{4}{9.5}
+		\sizecolorletternode{green}{4.11}{0.57}{5}{9.5}
+		\sizecolorletternode{gray}{4.96}{0.57}{6}{9.5}
+		\sizecolorletternode{green}{5.81}{0.57}{7}{9.5}
+		\sizecolorletternode{gray}{6.66}{0.57}{8}{9.5}
+		\sizecolorletternode{gray}{7.51}{0.57}{9}{9.5}
+		\sizecolorletternode{gray}{8.31}{0.57}{10}{9.5}
+		\sizecolorletternode{green}{9.18}{0.57}{11}{9.5}
+		\sizecolorletternode{gray}{10.01}{0.57}{12}{9.5}
+		\sizecolorletternode{green}{10.86}{0.57}{13}{9.5}
+		\sizecolorletternode{gray}{11.71}{0.57}{14}{9.5}
+		\sizecolorletternode{gray}{12.56}{0.57}{15}{9.5}
+		\sizecolorletternode{gray}{13.41}{0.57}{16}{9.5}
+		\sizecolorletternode{green}{14.25}{0.57}{17}{9.5}
+		\sizecolorletternode{gray}{15.1}{0.57}{18}{9.5}
+		\sizecolorletternode{green}{15.95}{0.57}{19}{9.5}
 	\end{tikzpicture}
 	\caption{A stream of lightweight spaceships in which only the prime-indexed spaceships are present.}\label{fig:prime_lwss_stream}
 \end{figure}
 
 
+
 \subsection{A LWSS Gun with an Irregular Stream}\label{sec:primer_irregular_stream}
 
-Before building the desired primer itself, let's start by constructing a (much simpler) pattern that emits a stream of lightweight spaceships with the property that the $n$-th spaceship in the stream is present if and only if $n$ is not a multiple of $2$ or $3$. Since we do not have any methods
-\begin{wrapfigure}{r}{0.28\textwidth}
-	\centering
-	\embedlink{glider_lwss_destroy}{\vcenteredhbox{\patternimg{0.12}{glider_lwss_destroy}} \vcenteredhbox{\genarrow{8}} \vcenteredhbox{\patternimg{0.12}{glider_lwss_destroy_8}}}
-	\caption{A glider and an LWSS destroying each other.}\label{fig:glider_lwss_destroy}
-\end{wrapfigure}
-for creating streams of spaceships with irregular spacing directly, we will instead create a stream of lightweight spaceships and strategically destroy the unwanted spaceships in it (i.e., we destroy all lightweight spaceships corresponding to multiples of $2$ or multiples of $3$). Figure~\ref{fig:glider_lwss_destroy} shows how we can fire a glider at a lightweight spaceship so as to destroy them both.\footnote{Reactions like this one, where two small objects are used to destroy each other, can easily be found by hand. Just try a few collisions with slightly different positioning and timing, and one of them will likely work.} Thanks to this reaction, we can create the desired stream of lightweight spaceships simply by aiming two glider guns at a stream of lightweight spaceships: one with double the period of the LWSS stream (to eliminate the multiples of $2$) and one with triple its period (to eliminate the multiples of $3$). A schematic for such a pattern is presented in Figure~\ref{fig:period_not_2_3_lwss_gun_schematic}. 
+Before building the desired primer itself, let's first construct a (much simpler) pattern that emits a stream of lightweight spaceships with the property that the $n$-th spaceship in the stream is present if and only if $n$ is not a multiple of $2$ or $3$. Since we do not have any methods for creating streams of spaceships with irregular spacing directly, we will instead create a regular stream of lightweight spaceships, and then strategically destroy the unwanted spaceships in it (i.e., we destroy all lightweight spaceships corresponding to multiples of $2$ or multiples of $3$).
+
+Figure~\ref{fig:glider_lwss_destroy} shows how we can fire a glider at a lightweight spaceship so as to destroy them both.\footnote{Reactions like this one, where two small objects are used to destroy each other, can easily be found by hand. Just try a few collisions with slightly different positioning and timing, and one of them will likely work.} Thanks to this reaction, we can create the desired stream of lightweight spaceships simply by aiming two glider guns at a stream of lightweight spaceships: one with double the period of the LWSS stream (to eliminate the multiples of $2$) and one with triple its period (to eliminate the multiples of $3$). A schematic for such a pattern is presented in Figure~\ref{fig:period_not_2_3_lwss_gun_schematic}. 
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[width=0.6\textwidth]{periodic_circuitry/period_not_2_3_lwss_gun_schematic.pdf}
-	\caption{A schematic for a LWSS gun that fires an irregular stream of spaceships with the property that the $n$-th spaceship in the stream is present if and only if $n$ is not a multiple of $2$ or $3$. Gliders are used to delete every second and every third spaceship in the LWSS stream.}
-	\label{fig:period_not_2_3_lwss_gun_schematic}
+	\begin{minipage}{0.28\textwidth}
+		\centering\vspace*{0.86cm}
+		\embedlink{glider_lwss_destroy}{\vcenteredhbox{\patternimg{0.15}{glider_lwss_destroy}} \vcenteredhbox{\genarrow{8}} \vcenteredhbox{\patternimg{0.15}{glider_lwss_destroy_8}}}
+		\caption{A glider and a lightweight spaceship destroying each other.}\label{fig:glider_lwss_destroy}
+	\end{minipage}\quad
+	\begin{minipage}{0.69\textwidth}
+		\centering
+		\includegraphics[width=0.95\textwidth]{periodic_circuitry/period_not_2_3_lwss_gun_schematic.pdf}
+		\caption{A schematic for an LWSS gun that fires an irregular stream of spaceships with the property that the $n$-th spaceship in the stream is present if and only if $n$ is not a multiple of $2$ or $3$. Gliders are used to delete every second and every third spaceship in the LWSS stream.}
+		\label{fig:period_not_2_3_lwss_gun_schematic}
+	\end{minipage}
 \end{figure}
 
-To actually construct such a pattern, we make use of the period~$30$ circuitry that we have seen so far. If the period of the LWSS gun that we use is $p$, then we need glider guns with periods~$2p$ and~$3p$ as well. Since we do not yet know how to construct guns with periods~$60$ or~$90$ (we will learn how to do so in Section~\ref{sec:glider_deletion}), it seems natural to use the period~$120n$ guns based on the inline inverter that we introduced in Figure~\ref{fig:inline_inverter_p120_gun}. In particular, we arrange three period~$120$ guns so as to synthesize the LWSS and then aim period~$240$ and~$360$ guns at the resulting LWSS stream in order to thin it out. The final pattern is displayed in Figure~\ref{fig:period_not_2_3_lwss_gun}.
+To actually construct such a pattern, we make use of the period~$30$ circuitry that we have seen so far. If the period of the LWSS gun that we use is $p$, then we need glider guns with periods~$2p$ and~$3p$ as well. Since we do not yet know how to construct guns with periods~$60$ or~$90$ (we will learn how to do so in Section~\ref{sec:glider_deletion}), it seems natural to use the period~$120n$ guns based on the inline inverter that we introduced in Figure~\ref{fig:inline_inverter_p120_gun}. In particular, we arrange three period~$120$ guns so as to synthesize a lightweight spaceship, and then aim period~$240$ and~$360$ guns at the resulting LWSS stream in order to thin it out. The final pattern is displayed in Figure~\ref{fig:period_not_2_3_lwss_gun}.
 
 \begin{figure}[!htb]
 	\centering
-	\patternimglink{0.111}{period_not_2_3_lwss_gun}
-	\caption{A gun that shoots an irregularly-spaced stream of lightweight spaceships. In particular, the period~$120$ inline inverter gun makes use of the glider-to-LWSS reaction from Figure~\ref{fig:glider_to_lwss} (highlighted in \bgbox{greenpastel}{green}) to create a period~$120$ stream of lightweight spaceships (highlighted in \bgbox{magentaback}{magenta}). Period~$240$ and period~$360$ inline inverter guns (highlighted in \bgbox{yellowback2}{yellow} and \bgbox{aquaback}{aqua}, respectively) then destroy every LWSS with a position in the stream that is a multiple of $2$ or $3$, respectively.}
+	\patternimglink{0.1152}{period_not_2_3_lwss_gun}
+	\caption{A gun that shoots an irregularly-spaced stream of lightweight spaceships. In particular, the period~$120$ inline inverter gun makes use of the glider-to-LWSS reaction from Figure~\ref{fig:glider_to_lwss} (highlighted in \bgbox{magentaback}{magenta}) to create a period~$120$ stream of lightweight spaceships (highlighted in \bgbox{greenpastel}{green}). Period~$240$ and period~$360$ inline inverter guns (highlighted in \bgbox{yellowback2}{yellow} and \bgbox{aquaback}{aqua}, respectively) then destroy every LWSS with a position in the stream that is a multiple of $2$ or $3$, respectively.}
 	\label{fig:period_not_2_3_lwss_gun}
 \end{figure}
 
 
+
 \subsection{The Prime-Generating Gun Itself}\label{sec:primer_itself}
 
-The gun that we just constructed contains the key idea used in our prime-generating gun---we create a period~$p$ ($p = 120$) stream of lightweight spaceships and then aim glider guns with periods~$2p$, $3p$, $4p$, $5p$, and so on at the gun to delete any lightweight spaceships whose position in the stream is a multiple of $2$, $3$, $4$, $5$, $\ldots$, respectively.
+The gun that we just constructed contains the key idea used in our prime-generating gun---we create a period~$p = 120$ stream of lightweight spaceships and then aim glider guns with periods~$2p$, $3p$, $4p$, $5p$, and so on at the gun to delete any lightweight spaceships whose position in the stream is a multiple of $2$, $3$, $4$, $5$, $\ldots$, respectively.
 
-The tricky part is that we now have to find a way to construct infinitely many glider guns (like the breeder) with ever-increasing periods (\emph{unlike} the breeder). Fortunately, the period~$120n$ guns based on the inline inverter are perfect candidates for this task, since their periods are determined solely by how far apart the two Gosper glider guns at their ends are. Thus one way to construct glider guns with ever-increasing periods is to send one set of rakes north to synthesize Gosper glider guns and another set of rakes east to do the same. The diagonal distance (along which a single glider will travel) between these endpoint Gosper glider guns will increase without bound, giving us glider guns of larger and larger periods. We thus arrive at the schematic presented in Figure~\ref{fig:primer_schematic} for synthesizing these high-period glider guns and thus our primer.
+The tricky part is that we now have to find a way to construct infinitely many glider guns (like the breeder) with ever-increasing periods (unlike the breeder). Fortunately, the period~$120n$ guns based on the inline inverter are perfect candidates for this task, since their periods are determined solely by how far apart the two Gosper glider guns at their ends are. Thus one way of constructing glider guns with ever-increasing periods is to send one set of rakes north to synthesize Gosper glider guns and another set of rakes east to do the same. The diagonal distance between these endpoint Gosper glider guns, along which a single glider will travel, increases without bound, giving us glider guns of larger and larger periods. We thus arrive at the schematic presented in Figure~\ref{fig:primer_schematic} for synthesizing these high-period glider guns and thus our primer.
 
 \begin{figure}[!htb]
 	\centering
@@ -288,11 +292,11 @@ The tricky part is that we now have to find a way to construct infinitely many g
 	\label{fig:primer_schematic}
 \end{figure}
 
-This is by far our biggest construction to date---the breeder from Section~\ref{sec:gosper_breeder} was already quite large, and it just laid one row of Gosper glider guns, while this construction requires us to lay \emph{three} rows of Gosper glider guns (two going eastward and one going northward). It is thus worthwhile to present a more compact Gosper glider gun breeder that we can use as a component in our primer---see Figure~\ref{fig:breeder_compact}. Although this breeder looks quite different from our original one of the surface, it functions in more or less the same way by making use of several period~$60$ space rakes to gradually build the Gosper glider guns up piece-by-piece.
+This is by far our biggest construction to date---the breeder from Section~\ref{sec:gosper_breeder} was already quite large, and it just laid one row of Gosper glider guns, while this construction requires us to lay \emph{three} rows of Gosper glider guns (two going eastward and one going northward). It is thus worthwhile to present a more compact Gosper glider gun breeder that we can use as a component in our primer---see Figure~\ref{fig:breeder_compact}. Although this breeder looks quite different from our original one of the surface, it functions in more or less the same way by making use of several period~$60$ space rakes to gradually build the Gosper glider guns piece-by-piece.
 
 \begin{figure}[!htb]
 	\centering
-	\embedlink{breeder_compact}{\vcenteredhbox{\patternimg{0.123}{breeder_compact}} \vcenteredhbox{\genarrow{360}} \vcenteredhbox{\patternimg{0.123}{breeder_compact_360}}}
+	\embedlink{breeder_compact}{\vcenteredhbox{\patternimg{0.128}{breeder_compact}} \vcenteredhbox{\genarrow{360}} \vcenteredhbox{\patternimg{0.128}{breeder_compact_360}}}
 	\caption{A compact breeder that uses $6$ period~$60$ space rakes to carry out an incremental synthesis of a Gosper glider gun. It gets away with fewer space rakes than our original breeder from Figure~\ref{fig:breeder_done} (which used $12$) since it cleverly manipulates the debris behind the two frontmost space rakes to create a ship, which is the most difficult part of the Gosper glider gun's incremental synthesis to create.}
 	\label{fig:breeder_compact}
 \end{figure}
@@ -300,37 +304,39 @@ This is by far our biggest construction to date---the breeder from Section~\ref{
 Unfortunately, there are actually quite a few subtle problems with the previous schematic that prevent us from building it as-is:\smallskip
 
 \begin{enumerate}
-	\item[1)] The only Gosper glider gun breeder that we know how to build so far has period~$60$, which results in Gosper glider guns that are separated by $30$~cells and thus inline inverter guns with periods that increase by $240$ (not $120$).
+	\item[1)] The only Gosper glider gun breeders that we know how to build so far have period~$60$, which results in Gosper glider guns that are separated by $30$~cells, and thus inline inverter guns with periods that increase by $240$ (not $120$). In order to solve this problem, our first instinct might be to create a period~$240$ stream of lightweight spaceships instead of a period~$p = 120$ stream. However, we do not yet know how to do this.
 	
-	In order to solve this problem, our first instinct might be to create a period~$240$ stream of lightweight spaceships instead of a period~$120$ stream. However, since we do not yet know how to do this, we instead use the breeders to create glider guns with periods~$3p$, $5p$, $7p$, $9p$, $\ldots$ to delete any lightweight spaceships whose position in the stream is a multiple of $3$, $5$, $7$, $9$, $\ldots$, respectively, and then manually place a single glider gun of period~$2p$ to delete the leftover lightweight spaceships whose positions in the stream are a multiple of $2$.\smallskip
+	As an alternate solution, we use the breeders to create glider guns with periods~$3p$, $5p$, $7p$, $9p$, $\ldots$ (instead of $2p$, $3p$, $4p$, $5p$, $\ldots$) to delete any lightweight spaceships whose position in the stream is a multiple of $3$, $5$, $7$, $9$, $\ldots$, respectively. We then manually place a single glider gun of period~$2p$ to delete the leftover lightweight spaceships whose positions in the stream are a multiple of $2$.\smallskip
 	
 	\item[2)] With the Gosper glider guns just $30$~cells apart, we cannot fire gliders back and forth between them diagonally---the bouncing gliders would collide with the blocks that stabilize the glider guns.
 	
-	In order to solve this problem, we do the same thing that we did in Figure~\ref{fig:inline_inverter_p120_gun} to squeeze Gosper glider guns closer together---we replace one of the stabilizing blocks by an eater~1 (as in the buckaroo of Figure~\ref{fig:buckaroo_reflect}). To create a row of these modified Gosper glider guns, we can use the breeder in Figure~\ref{fig:breeder_ggg_eater_1_stabilize}, which is just a slight modification of the breeders that we have already seen.\footnote{We already constructed a (much larger) breeder for this modification of the Gosper glider gun back in Exercise~\ref{exer:ggg_eater_side_breeder}.}\bigskip
-	
-	\noindent\begin{minipage}{\linewidth}
+	In order to solve this problem, we do the same thing that we did in Figure~\ref{fig:inline_inverter_p120_gun} to squeeze Gosper glider guns closer together---we replace one of the stabilizing blocks by an eater~1 (as in the buckaroo of Figure~\ref{fig:buckaroo_reflect}). To create a row of these modified Gosper glider guns, we can use the breeder displayed in Figure~\ref{fig:breeder_ggg_eater_1_stabilize}, which is just a slight modification of the breeders that we have already seen.\footnote{We already constructed a (much larger) breeder for this modification of the Gosper glider gun back in Exercise~\ref{exer:ggg_eater_side_breeder}.}\smallskip
+
+	\begin{figure}[!htb]
 		\centering
-		\patternimglink{0.089}{breeder_ggg_eater_1_stabilize}
-		\captionof{figure}{A Gosper glider gun breeder that is stabilized on one side by an eater~1 instead of a block. The bottom half (highlighted in \bgbox{greenpastel}{green}) is the same as the bottom half of of the compact breeder from Figure~\ref{fig:breeder_compact}. The bottom-right space rake (highlighted in \bgbox{yellowback2}{yellow}) turns one of the blinkers from the blinker puffer (highlighted in \bgbox{magentaback}{magenta} and introduced in Exercise~\ref{exer:schick_engine_blinker_puffer}) into a ship via the incremental synthesis that we saw in Table~\ref{tab:sequential_synth}. The rightmost space rake (highlighted in \bgbox{orangeback}{orange}) synthesizes the top ship into a queen bee, while the remaining three space rakes (highlighted in \bgbox{aquaback}{aqua}) synthesize the eater~1.}\label{fig:breeder_ggg_eater_1_stabilize}\bigskip
-	\end{minipage}
+		\patternimglink{0.0984}{breeder_ggg_eater_1_stabilize}
+		\captionof{figure}{A Gosper glider gun breeder that is stabilized on one side by an eater~1 instead of a block. The bottom half (highlighted in \bgbox{greenpastel}{green}) is the same as the bottom half of of the compact breeder from Figure~\ref{fig:breeder_compact}. The bottom-right space rake (highlighted in \bgbox{yellowback2}{yellow}) turns one of the blinkers from the blinker puffer (highlighted in \bgbox{magentaback}{magenta} and introduced in Exercise~\ref{exer:schick_engine_blinker_puffer}) into a ship via the incremental synthesis that we saw in Table~\ref{tab:sequential_synth}. The rightmost space rake (highlighted in \bgbox{orangeback2}{orange}) synthesizes the top ship into a queen bee, while the remaining three space rakes (highlighted in \bgbox{aquaback}{aqua}) synthesize the eater~1.}\label{fig:breeder_ggg_eater_1_stabilize}
+	\end{figure}
 	
-	\item[3)] When constructing the two east--west rows of Gosper glider guns, if their construction is not synchronized perfectly then the bottom row will release some gliders in the time between when it is constructed and when gliders from the top row are fed into it. This problem can be solved by using a fixed-length row of middleweight (or heavyweight) spaceships below those guns to destroy the excess gliders as in Figure~\ref{fig:orthogonal_destroy}.\smallskip
+	\item[3)] When the eastward breeders construct their two rows of Gosper glider guns, if their construction is not synchronized perfectly then the bottom row will release some gliders in the time between when it is constructed and when gliders from the top row are fed into it. This problem can be solved by using a fixed-length row of middleweight (or heavyweight) spaceships below those guns to destroy the excess gliders as in Figure~\ref{fig:orthogonal_destroy}.\smallskip
 	
-	\item[4)] A period $3p$ gun (for example) will erase all lightweight spaceships whose position in the stream is a multiple of $3$, \emph{including $3$ itself}, while we only want it to erase the multiples of $3$ greater than $3$. To solve this final problem, we can place a single block below each inline inverter gun in such a way that it destroys (and is destroyed by) the first glider released from the gun. This row of blocks can simply be synthesized by two space rakes.\smallskip
+	\item[4)] A period $3p$ gun (for example) will erase all lightweight spaceships whose position in the stream is a multiple of $3$, \emph{including $3$ itself}, while we only want it to erase the multiples of $3$ greater than $3$. To solve this final problem, we can place a single block below each inline inverter gun in such a way that it destroys (and is destroyed by) the first glider released from the gun, thus preventing that first LWSS from being destroyed.\smallskip
 \end{enumerate}
 
-After putting all of these pieces together, we arrive at our completed primer in Figure~\ref{fig:primer}. We emphasize that static pictures really cannot do this pattern justice, so the reader is strongly encouraged to interact with and explore this pattern in Life-viewing software.
-
-% Footnote above about Golly?
-
-% EXERCISE to add: move stuff at the right to the left a bit to make MWSS line shorter and breeder smaller. Advanced exercise to rewind it as much as possible
+After putting all of these pieces together, we arrive at our completed primer in Figure~\ref{fig:primer}. We emphasize that static pictures really cannot do this pattern justice, so the reader is strongly encouraged to interact with and explore this pattern in Life-viewing software.\footnote{Like Golly: \httpurl{golly.sourceforge.net}.}
 
 \begin{figure}[!htb]
 	\centering
-	\patternimglink{0.108}{primer}
-	\caption{The completed primer. The period~$120$ stream of lightweight spaceships (highlighted in \bgbox{magentaback}{magenta} and synthesized by $3$ space rakes as in Exercise~\ref{exer:p60_lwss_backrake}) moves to the left and is thinned out by the inline inverter guns (highlighted in \bgbox{aquaback}{aqua}). The leftmost inline inverter gun has period~$240$ and has a different shape from the others (which have periods~$360$, $600$, $840$, and in general $360 + 240n$ for $n \geq 0$). The rows of Gosper glider guns are laid by two copies of the compact breeder from Figure~\ref{fig:breeder_compact} (highlighted in \bgbox{greenpastel}{green}) and the row of Gosper glider guns that are stabilized by eater~1s instead of blocks are laid by the breeder that we presented in Figure~\ref{fig:breeder_ggg_eater_1_stabilize} (highlighted in \bgbox{yellowback2}{yellow}). A single space rake going north (also highlighted in \bgbox{yellowback2}{yellow}) produces the gliders that bounce along the long diagonal of the inline inverter guns, and the remaining pairs of space rakes (highlighted in \bgbox{orangeback}{orange}) simply synthesize rows of block and eater~1s.}
+	\patternimglink{0.1115}{primer}
+	\caption{The completed primer. The period~$120$ stream of lightweight spaceships (highlighted in \bgbox{magentaback}{magenta} and synthesized by $3$ space rakes as in Exercise~\ref{exer:p60_lwss_backrake}) moves to the left and is thinned out by the inline inverter guns (highlighted in \bgbox{aquaback}{aqua}). The leftmost inline inverter gun has period~$240$ and has a different shape from the others (which have periods~$360$, $600$, $840$, and in general $360 + 240n$ for $n \geq 0$). The rows of Gosper glider guns are laid by two copies of the compact breeder from Figure~\ref{fig:breeder_compact} (highlighted in \bgbox{greenpastel}{green}) and the row of Gosper glider guns that are stabilized by eater~1s instead of blocks are laid by the breeder that we presented in Figure~\ref{fig:breeder_ggg_eater_1_stabilize} (highlighted in \bgbox{yellowback2}{yellow}). A single space rake going north (also highlighted in \bgbox{yellowback2}{yellow}) produces the gliders that bounce along the long diagonal of the inline inverter guns, and the remaining pairs of space rakes (highlighted in \bgbox{orangeback2}{orange}) simply synthesize rows of block and eater~1s.}
 	\label{fig:primer}
 \end{figure}
+
+
+
+% NJ is here in the clean-up process.
+
+% EXERCISE to add: move stuff at the right to the left a bit to make MWSS line shorter and breeder smaller. Advanced exercise to rewind it as much as possible
 
 
 \section{Period~46 Circuitry}\label{sec:p46}
@@ -885,19 +891,20 @@ The advantage of the new circuitry and constructions that we have available to u
 \label{sec:periodic_exercises}
 \addcontentsline{toc}{section}{Exercises}
 \vspace*{-0.4cm}\hrulefill\vspace*{-0.3cm}\footnotesize\begin{multicols}{2}\vspace*{-0.4cm}\raggedcolumns\interlinepenalty=10000
-	\setlength{\parskip}{0pt}
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\parskip}{0pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	
-	\begin{problem}\label{exer:inline_inverter_gun_why_buckaroo}
+	\begin{problem}\label{exer:inline_inverter_gun_why_buckaroo} \probdiff{1}
 		In the glider gun in Figure~\ref{fig:inline_inverter_p120_gun}, we used eater~1s instead of blocks to stabilize some of the Gosper glider guns (as in the buckaroo of Figure~\ref{fig:buckaroo}). Explain why.
 	\end{problem}
+% SOLUTION: Blocks get in the way of the green glider track.
 	
 	
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:inline_inverter_gun_high_period}
+	\begin{problem}\label{exer:inline_inverter_gun_high_period} \probdiff{1}
 		Construct a glider gun based on the inline inverter with...\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
@@ -911,16 +918,16 @@ The advantage of the new circuitry and constructions that we have available to u
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:inline_inverter_advancer}
+	\begin{problem}\label{exer:inline_inverter_advancer} \probdiff{2}
 		Use two inline inverters to create a pattern that advances a stream of gliders by $20$ generations, similar to how the fast forward force field\index{fast forward force field} of Figure~\ref{fig:fast_forward_force_field} advances a stream of lightweight spaceships.
 	\end{problem}
-	% Signal-circuitry/advancer.rle uses 6 inline inverters to advance gliders quicker than c/4
+	% SOLUTION: Signal-circuitry/advancer.rle uses 6 inline inverters to advance gliders quicker than c/4
 	
 	
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:inline_inverter_lwss_gun}
+	\begin{problem}\label{exer:inline_inverter_lwss_gun} \probdiff{2}
 		Construct a period~$240$ lightweight spaceship gun...\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
@@ -934,7 +941,7 @@ The advantage of the new circuitry and constructions that we have available to u
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:make_inline_inverter_with_weird_period}
+	\begin{problem}\label{exer:make_inline_inverter_with_weird_period} \probdiff{3}
 		Use the reaction from Figure~\ref{fig:stream_inverter}, together with reflectors and eaters as necessary, to create an inline inverter with for a glider stream with...\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
@@ -950,7 +957,7 @@ The advantage of the new circuitry and constructions that we have available to u
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:twin_prime_gun}
+	\begin{problem}\label{exer:twin_prime_gun} \probdiff{3}
 		A pair of positive integers $(p,p+2)$ is called a \emph{twin prime pair} if they are both prime. Find a way of aiming a p$240$ glider gun at the output LWSS stream of the primer from Figure~\ref{fig:primer} so that the resulting LWSS stream now corresponds to twin prime pairs, rather than all prime numbers.
 		
 		\noindent [Hint: Position the glider gun so that the glider destroys an LWSS, creating a small still life that then blocks the next glider (and lets the next LWSS, if present, pass). Do not worry about the first two twin prime pairs ($(3,5)$ and $(5,7)$ are the only twin prime pairs that overlap), and do not worry about whether the gun outputs the lower or upper number in each twin prime pair.]
@@ -960,8 +967,8 @@ The advantage of the new circuitry and constructions that we have available to u
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:glider_to_hwss_to_glider}
-		The periodic circuits displayed below can be used to convert two gliders into an HWSS and an HWSS back into a glider.\footnote{These reactions were found and simplified by a combination of David Buckingham, Bill Gosper, Dieter Leithner, and Peter Rott.}
+	\begin{problem}\label{exer:glider_to_hwss_to_glider} \probdiff{2}
+		The periodic circuits displayed below can be used to convert two gliders into an HWSS and an HWSS back into a glider.\footnote{These reactions were found and simplified by David Buckingham, Bill Gosper, Dieter Leithner, and Peter Rott.}
 		\begin{center}
 			\patternimglink{0.1}{glider_to_hwss_to_glider}
 		\end{center}
