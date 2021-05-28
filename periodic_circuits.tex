@@ -334,73 +334,70 @@ After putting all of these pieces together, we arrive at our completed primer in
 
 
 
-% NJ is here in the clean-up process.
-
-% EXERCISE to add: move stuff at the right to the left a bit to make MWSS line shorter and breeder smaller. Advanced exercise to rewind it as much as possible
-
-
 \section{Period~46 Circuitry}\label{sec:p46}
 
-Just like we can use the queen bee shuttle and Gosper glider gun as the basis of a set of period~$30$ circuitry, we can also use the twin bees shuttle (Figure~\ref{fig:twin_bees_shuttle}) and the related twin bees gun (Figure~\ref{fig:twin_bees_gun}) to build up a set of period~$46$ circuitry. For example, the twin bees shuttle can be used to reflect gliders (by either 90~degrees or 180~degrees\footnote{The 180~degree reflection takes 92~generations to complete, since the twin bees shuttle first converts the incoming glider into a block and then converts that block into the output glider. It was found by Dean Hickerson.}) and lightweight spaceships, and even convert gliders \emph{into} lightweight spaceships, and vice-versa, as displayed in Figure~\ref{fig:twin_bees_reflect}.
+Just like we can use the queen bee shuttle and Gosper glider gun as the basis of a set of period~$30$ circuitry, we can also use the twin bees shuttle (Figure~\ref{fig:twin_bees_shuttle}) and the related twin bees gun (Figure~\ref{fig:twin_bees_gun}) to build up a set of period~$46$ circuitry. For example, the twin bees shuttle can be used to reflect gliders and lightweight spaceships, and even convert gliders and lightweight spaceships \emph{into} each other, as displayed in Figure~\ref{fig:twin_bees_reflect}.\footnote{The 180~degree glider reflection takes 92~generations to complete, since the twin bees shuttle first converts the incoming glider into a block and then converts that block into the output glider. It was found by Dean Hickerson.}
 
-We saw one of these glider reflections way back in Section~\ref{sec:sparkers}---the twin bees shuttle creates a duoplet spark\index{duoplet spark} that does the reflection.\footnote{This reflection is the one highlighted in green in Figure~\ref{fig:twin_bees_reflect_a}.} The other reflections and the glider-to-LWSS-to-glider conversions all make use of the large spark produced by the form of the twin bees shuttle that is stabilized on one side by just a single block.
+We saw one of these glider reflections way back in Section~\ref{sec:sparkers}---the twin bees shuttle creates a duoplet spark\index{duoplet spark} that does the reflection.\footnote{This reflection is the one highlighted in green in Figure~\ref{fig:twin_bees_reflect_a}.} The other reflections and the glider-to-LWSS-to-glider conversions all make use of the large spark that is produced when one side of the twin bees shuttle is stabilized by just a single block.
 
 \begin{figure}[!htb]
 	\centering
-	\begin{tabular}{ccc}
-		\begin{subfigure}{.31\textwidth}
+	\begin{tabular}{@{}ccc@{}}
+		\begin{subfigure}{.28\textwidth}
 			\centering
-			\embedlink{twin_bees_reflect}{\patternimg{0.085}{twin_bees_reflect_a}}
+			\embedlink{twin_bees_reflect}{\patternimg{0.09}{twin_bees_reflect_a}}
 			\caption{three glider reflections}
 			\label{fig:twin_bees_reflect_a}
 		\end{subfigure} &
-		\begin{subfigure}{.31\textwidth}
+		\begin{subfigure}{.345\textwidth}
 			\centering
-			\embedlink{twin_bees_reflect}{\patternimg{0.085}{twin_bees_reflect_b}}
+			\embedlink{twin_bees_reflect}{\patternimg{0.09}{twin_bees_reflect_b}}
 			\caption{two more reflections}
 			\label{fig:twin_bees_reflect_b}
 		\end{subfigure} &
-		\begin{subfigure}{.31\textwidth}
+		\begin{subfigure}{.325\textwidth}
 			\centering
-			\embedlink{twin_bees_reflect}{\patternimg{0.085}{twin_bees_reflect_c}}
+			\embedlink{twin_bees_reflect}{\patternimg{0.09}{twin_bees_reflect_c}}
 			\caption{glider $\rightarrow$ LWSS and back}
 			\label{fig:twin_bees_reflect_c}
 		\end{subfigure}
 	\end{tabular}
-	\caption{The twin bees shuttle (highlighted in \bgbox{yellowback2}{yellow}) can be used to reflect a glider by 90~degrees in three different ways ((a)~\bgbox{greenpastel}{green}, (a)~\bgbox{magentaback}{magenta}, and (b)~\bgbox{magentaback}{magenta}), reflect a glider by 180~degrees ((a)~\bgbox{aquaback}{aqua}), reflect a lightweight spaceship by 90~degrees ((b)~\bgbox{aquaback}{aqua}), and turn a glider into a lightweight spaceship and back ((c)~\bgbox{magentaback}{magenta} and (c)~\bgbox{aquaback}{aqua}, respectively).}
+	\caption{The twin bees shuttle (highlighted in \bgbox{yellowback2}{yellow}) can be used to reflect a glider by 90~degrees in three different ways (highlighted in \bgbox{greenpastel}{green}), reflect a glider by 180~degrees (highlighted in \bgbox{aquaback}{aqua}), reflect a lightweight spaceship by 90~degrees (highlighted in \bgbox{magentaback}{magenta}), and turn a glider into a lightweight spaceship and back (highlighted in \bgbox{orangeback2}{orange}).}
 	\label{fig:twin_bees_reflect}
 \end{figure}
 
-One of the advantages of these new reflections over the old reflection based on the duoplet spark is that they happen near the corner of the shuttle, so they can be used to (for example) merge two period~$46$ glider streams into a single period~$23$ stream, as in the period~$23$ glider gun displayed in Figure~\ref{fig:twin_bees_p23_gun}.\footnote{We say that this is a \emph{pseudo}-period~$23$ gun since the gun itself operates at period~$46$. We discuss pseudo-period guns and true-period guns (which oscillate at the same period as the glider streams they produce) in depth in Chapter~\ref{chp:guns}.} Similarly, by making use of the glider-to-LWSS converter we can easily create period~$46$ glider guns without needing to synthesize them via three glider guns (see Figure~\ref{fig:twin_bees_p46_lwss_gun}). We can even use a careful arrangement of two twin bees shuttles to convert a lightweight spaceship into a middleweight one, and thus create small middleweight spaceship guns (see Figure~\ref{fig:twin_bees_lwss_to_mwss} and Exercise~\ref{exer:twin_bees_mwss_gun}).\footnote{By replacing the input LWSS by an MWSS, this LWSS-to-MWSS conversion can also be used to simply reflect a MWSS by 90~degrees.}
+One of the advantages of these new reflections over the old reflection based on the duoplet spark is that they happen near the corner of the shuttle, so they can be used to (for example) merge two period~$46$ glider streams into a single period~$23$ stream, as in the period~$23$ glider gun displayed in Figure~\ref{fig:twin_bees_p23_gun}. Similarly, by making use of the glider-to-LWSS converter we can easily create period~$46$ glider guns without needing to synthesize them via three glider guns (see Figure~\ref{fig:twin_bees_p46_lwss_gun}). We can even use a careful arrangement of two twin bees shuttles to convert a lightweight spaceship into a middleweight one, and thus create small middleweight spaceship guns (see Figure~\ref{fig:twin_bees_lwss_to_mwss} and Exercise~\ref{exer:twin_bees_mwss_gun}). By replacing the input LWSS by an MWSS, this final LWSS-to-MWSS converter can also be used to simply reflect a MWSS by 90~degrees.%\footnote{We say that this is a \emph{pseudo}-period~$23$ gun since the gun itself operates at period~$46$. We discuss pseudo-period guns and true-period guns (which oscillate at the same period as the glider streams they produce) in depth in Chapter~\ref{chp:guns}.}
 
 \begin{figure}[!htb]
 	\centering
-	\begin{tabular}{ccc}
-		\begin{subfigure}{.36\textwidth}
+	\begin{tabular}{@{}ccc@{}}
+		\begin{subfigure}{.37\textwidth}
 			\centering
-			\patternimglink{0.12}{twin_bees_p23_gun}
+			\patternimglink{0.124}{twin_bees_p23_gun}
 			\caption{a period~$23$ glider gun}
 			\label{fig:twin_bees_p23_gun}
 		\end{subfigure} & 
 		\begin{subfigure}{.28\textwidth}
 			\centering
-			\patternimglink{0.129}{twin_bees_p46_lwss_gun}
+			\patternimglink{0.13367804878}{twin_bees_p46_lwss_gun}
 			\caption{a period~$46$ LWSS gun}
 			\label{fig:twin_bees_p46_lwss_gun}
 		\end{subfigure} & 
-		\begin{subfigure}{.29\textwidth}
+		\begin{subfigure}{.3\textwidth}
 			\centering
-			\patternimglink{0.132}{twin_bees_lwss_to_mwss}
+			\patternimglink{0.13633830845}{twin_bees_lwss_to_mwss}
 			\caption{LWSS $\rightarrow$ MWSS}
 			\label{fig:twin_bees_lwss_to_mwss}
 		\end{subfigure}
 	\end{tabular}
-	\caption{The various reflection and conversion reactions involving twin bees can be used to create some useful guns. (a) is a period~$23$ glider gun constructed by reflecting one period~$46$ stream into the gaps in another period~$46$ stream, (b) is a lightweight spaceship gun that uses the glider-to-LWSS conversion from Figure~\ref{fig:twin_bees_reflect_c}, and (c) is an LWSS-to-MWSS conversion that (for example) allows for the construction of a small MWSS gun.}
+	\caption{Various reflection and conversion reactions involving twin bees that can be used to create some useful guns. (a) is a period~$23$ glider gun constructed by reflecting one period~$46$ stream into the gaps in another period~$46$ stream, (b) is a lightweight spaceship gun that uses the glider-to-LWSS conversion from Figure~\ref{fig:twin_bees_reflect_c}, and (c) is an LWSS-to-MWSS conversion that (for example) allows for the construction of a small MWSS gun.}
 	\label{fig:twin_bees_weird_guns}
 \end{figure}
 
-There are also a few other useful reactions involving the twin bees that can do things like emit two side-by-side streams of gliders (guns like this are called \emph{double-barreled guns}\index{double-barreled gun}), and explore some of these reactions in Exercise~\ref{exer:twin_bees_large_spark}.
+There are also a few other useful reactions involving the twin bees that can do things like emit two side-by-side streams of gliders (guns like this are called \emph{double-barreled guns}\index{double-barreled gun}). We explore some of these reactions in Exercise~\ref{exer:twin_bees_large_spark}.
 
+
+% NJ is here in the clean-up process.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%   SUBSECTION: TICKER TAPES and MEMORY CELLS
@@ -887,7 +884,7 @@ The advantage of the new circuitry and constructions that we have available to u
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Exercises \hfill \normalfont\textsf{\small solutions on \hyperlink{solutions_periodic_circuitry}{page \pageref{solutions_periodic_circuitry}}}}
+\section*{Exercises \hfill \normalfont\textsf{\small solutions to starred exercises on \hyperlink{solutions_periodic_circuitry}{page \pageref{solutions_periodic_circuitry}}}}
 \label{sec:periodic_exercises}
 \addcontentsline{toc}{section}{Exercises}
 \vspace*{-0.4cm}\hrulefill\vspace*{-0.3cm}\footnotesize\begin{multicols}{2}\vspace*{-0.4cm}\raggedcolumns\interlinepenalty=10000
@@ -895,10 +892,9 @@ The advantage of the new circuitry and constructions that we have available to u
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	
-	\begin{problem}\label{exer:inline_inverter_gun_why_buckaroo} \probdiff{1}
+	\begin{problemstar}\label{exer:inline_inverter_gun_why_buckaroo} \probdiff{1}
 		In the glider gun in Figure~\ref{fig:inline_inverter_p120_gun}, we used eater~1s instead of blocks to stabilize some of the Gosper glider guns (as in the buckaroo of Figure~\ref{fig:buckaroo}). Explain why.
-	\end{problem}
-% SOLUTION: Blocks get in the way of the green glider track.
+	\end{problemstar}
 	
 	
 	\mfilbreak
@@ -913,6 +909,7 @@ The advantage of the new circuitry and constructions that we have available to u
 			\item period~$360$.
 		\end{enumerate}
 	\end{problem}
+% SOLUTION: Some of these are given in primer.
 	
 	
 	\mfilbreak
@@ -942,7 +939,7 @@ The advantage of the new circuitry and constructions that we have available to u
 	
 	
 	\begin{problem}\label{exer:make_inline_inverter_with_weird_period} \probdiff{3}
-		Use the reaction from Figure~\ref{fig:stream_inverter}, together with reflectors and eaters as necessary, to create an inline inverter with for a glider stream with...\smallskip
+		Use the reaction from Figure~\ref{fig:stream_inverter}, together with reflectors and eaters as necessary, to create an inline inverter for a glider stream with...\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item period~$43$.
@@ -957,25 +954,15 @@ The advantage of the new circuitry and constructions that we have available to u
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:twin_prime_gun} \probdiff{3}
-		A pair of positive integers $(p,p+2)$ is called a \emph{twin prime pair} if they are both prime. Find a way of aiming a p$240$ glider gun at the output LWSS stream of the primer from Figure~\ref{fig:primer} so that the resulting LWSS stream now corresponds to twin prime pairs, rather than all prime numbers.
-		
-		\noindent [Hint: Position the glider gun so that the glider destroys an LWSS, creating a small still life that then blocks the next glider (and lets the next LWSS, if present, pass). Do not worry about the first two twin prime pairs ($(3,5)$ and $(5,7)$ are the only twin prime pairs that overlap), and do not worry about whether the gun outputs the lower or upper number in each twin prime pair.]
-	\end{problem}
-	
-	
-	\mfilbreak
-	
-	
-	\begin{problem}\label{exer:glider_to_hwss_to_glider} \probdiff{2}
+	\begin{problem}\label{exer:glider_to_hwss_to_glider}
 		The periodic circuits displayed below can be used to convert two gliders into an HWSS and an HWSS back into a glider.\footnote{These reactions were found and simplified by David Buckingham, Bill Gosper, Dieter Leithner, and Peter Rott.}
 		\begin{center}
-			\patternimglink{0.1}{glider_to_hwss_to_glider}
+			\patternimglink{0.12}{glider_to_hwss_to_glider}
 		\end{center}
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item Use the left reaction to create a period~$120$ HWSS gun.
+			\item \probdiff{2} Use the left reaction to create a period~$120$ HWSS gun.
 			
-			\item Create a glider loop that uses both of these reactions to convert the glider into an HWSS and back.
+			\item \probdiff{3} Create a glider loop that uses both of these reactions to convert a glider into an HWSS and back.
 		\end{enumerate}
 	\end{problem}
 	% (b) solution:
@@ -993,14 +980,14 @@ The advantage of the new circuitry and constructions that we have available to u
 	
 	
 	\begin{problem}\label{exer:any_wss_to_glider}
-		The arrangement of queen bees below can be used to convert any of the lightweight, middleweight, or heavyweight spaceships into gliders.
+		The arrangement of queen bees below can be used to convert any xWSS into a glider.
 		\begin{center}
 			\patternimglink{0.1}{any_wss_to_glider}
 		\end{center}
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item Use this reaction as well as one of the reactions from Exercise~\ref{exer:glider_to_hwss_to_glider} to create a glider loop that converts a glider into an HWSS and back.
+			\item \probdiff{3} Use this reaction as well as one of the reactions from Exercise~\ref{exer:glider_to_hwss_to_glider} to create a glider loop that converts a glider into an HWSS and back.
 			
-			\item Use this reaction to create a gun that emits a glider stream (rather than an LWSS stream as in Figure~\ref{fig:primer}) that is spaced according to the prime numbers.
+			\item \probdiff{1} Use this reaction to create a gun that emits a glider stream (rather than an LWSS stream as in Figure~\ref{fig:primer}) that is spaced according to the prime numbers.
 		\end{enumerate}
 	\end{problem}
 	
@@ -1008,9 +995,10 @@ The advantage of the new circuitry and constructions that we have available to u
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:glider_to_lwss_loop}
+	\begin{problem}\label{exer:glider_to_lwss_loop} \probdiff{2}
 		Construct an oscillator that makes use of the reactions in each of Figures~\ref{fig:glider_to_lwss} and~\ref{fig:lwss_to_glider} to send a glider around a track in such a way that it is converted into an LWSS and back during each loop.
 	\end{problem}
+	% SOLUTION:
 	%x = 73, y = 52, rule = B3/S23
 	%29b2o19b2o$30bo19bo$30bobo8bo6bobo$31b2o5b4o6b2o$37b4o$37bo2bo$37b4o$
 	%38b4o$41bo2$38bo$36bobo$37b2o5$21bo$21b2o$20bobo3$4b2o$2bo4bo$bo6bo$o
@@ -1023,7 +1011,7 @@ The advantage of the new circuitry and constructions that we have available to u
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:period_not_235_gun}
+	\begin{problem}\label{exer:period_not_235_gun} \probdiff{3}
 		Construct a pattern that emits a stream of lightweight spaceships with the property that the $n$-th spaceship in the stream is present if and only if $n$ is not a multiple of $2$, $3$, or $5$.
 	\end{problem}
 	
@@ -1031,29 +1019,29 @@ The advantage of the new circuitry and constructions that we have available to u
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:rewind_primer}
-		One method of making a pattern smaller is to change it into the form that it would have looked several generations earlier (this is called \emph{rewinding}\index{rewind} the pattern). Use this technique, along with moving its various components closer together, to reduce the size of the bounding box of the primer from Figure~\ref{fig:primer} from $951 \times 696 = 661{\thousep}896$ to $500{\thousep}000$ or less.
-	\end{problem}
-	
-	
-	\mfilbreak
-	
-	
-	\begin{problem}\label{exer:twin_primer}
-		The collision of a glider with an LWSS shown below is called a \emph{filter}\index{filter}. It results in a single block that destroys the next incoming glider, letting the next incoming LWSS pass by unharmed, thus doubling the period of the LWSS stream.
+	\begin{problem}\label{exer:twin_primer} \probdiff{3}
+		The collision of a glider with an LWSS shown below is called a \emph{filter}\index{filter}. It results in a single block that destroys the next incoming glider, letting the next incoming LWSS pass by unharmed, thus doubling the period of the LWSS stream.\smallskip
 		
-		Add this reaction (and potentially some guns and eaters, as necessary) to the primer to create a \emph{twin primer}\index{twin primer}---a pattern that creates a stream of lightweight spaceships for which the $n$-th LWSS in the stream is present if and only if $n-2$ and $n$ are both prime.
+		\noindent Add this reaction (and potentially some guns and eaters, as necessary) to the primer to create a \emph{twin primer}\index{twin primer}---a pattern that creates a stream of lightweight spaceships for which the $n$-th LWSS in the stream is present if and only if $n-2$ and $n$ are both prime.
 		
 		\begin{center}
 			\embedlink{exercise_lwss_filter}{\vcenteredhbox{\patternimg{0.1}{exercise_lwss_filter_0}} \vcenteredhbox{\genarrow{6}} \vcenteredhbox{\patternimg{0.1}{exercise_lwss_filter_6}}}
 		\end{center}
 	\end{problem}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:rewind_primer} \probdiff{4}
+		One method of making a pattern smaller is to change it into the form that it would have looked several generations earlier (this is called \emph{rewinding}\index{rewind} the pattern). Use this technique, along with moving its various components closer together, to reduce the area of the bounding box of the primer from Figure~\ref{fig:primer} from $951 \times 696 = 661{\thousep}896$ to $500{\thousep}000$ or less.
+	\end{problem}
 	
 	
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:twin_bees_loop}
+	\begin{problem}\label{exer:twin_bees_loop} \probdiff{2}
 		Use the patterns from Figure~\ref{fig:twin_bees_reflect} to create a loop oscillator in which a glider is converted into a lightweight spaceship and back at some point in the loop.
 	\end{problem}
 	
@@ -1061,7 +1049,7 @@ The advantage of the new circuitry and constructions that we have available to u
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:twin_bees_mwss_gun}
+	\begin{problem}\label{exer:twin_bees_mwss_gun} \probdiff{2}
 		Use the patterns from Figure~\ref{fig:twin_bees_weird_guns} to construct a period~$46$ middleweight spaceship gun.
 	\end{problem}
 	
@@ -1181,7 +1169,7 @@ The advantage of the new circuitry and constructions that we have available to u
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:bumper_high_period}
+	\begin{problemstar}\label{exer:bumper_high_period}
 		Construct a bumper reflector with...\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
@@ -1195,7 +1183,7 @@ The advantage of the new circuitry and constructions that we have available to u
 			
 			\item period~$4$, making use of the fountain\index{fountain} sparker. % UPDATE
 		\end{enumerate}
-	\end{problem}
+	\end{problemstar}
 	
 	
 	\mfilbreak
@@ -1209,7 +1197,7 @@ The advantage of the new circuitry and constructions that we have available to u
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:minimum_period_snark_loop}
+	\begin{problemstar}\label{exer:minimum_period_snark_loop}
 		The smallest-period single-glider Snark loop has period~$216$ and is displayed in Figure~\ref{fig:minimum_snark_loop}. Note that the still life in the center of this loop is the weld of four eater~1s from Exercise~\ref{exer:eater_weld}(c).\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
@@ -1229,19 +1217,19 @@ The advantage of the new circuitry and constructions that we have available to u
 				\captionof{figure}{\footnotesize A single-glider loop built from Snarks with the smallest possible period---$216$.}\label{fig:minimum_snark_loop}\medskip
 			\end{minipage}
 		\end{enumerate}
-	\end{problem}
+	\end{problemstar}
 	
 	
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:p29_pipsquirter}
+	\begin{problemstar}\label{exer:p29_pipsquirter}
 		Use the \emph{skewed p$29$ pre-pulsar shuttle}\index{pre-pulsar shuttle} displayed below to create a p$29$ bouncer reflector.\footnote{This reflector was originally found by Matthias Merzenich in August 2013.}
 		
 		\begin{center}
 			\patternimglink{0.1}{skewed_p29}
 		\end{center}
-	\end{problem}
+	\end{problemstar}
 	
 	
 	\mfilbreak
@@ -1263,7 +1251,7 @@ The advantage of the new circuitry and constructions that we have available to u
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:prng_gun}
+	\begin{problemstar}\label{exer:prng_gun}
 		Changing the number of gliders in the loop portion of the pseuro-random glider-generating gun from Figure~\ref{fig:prng_gun} can drastically change its period.\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
@@ -1273,7 +1261,7 @@ The advantage of the new circuitry and constructions that we have available to u
 			
 			\item Move the northwest portion of the loop northwest by an \emph{additional} $15$~cells (again, rephase reflectors as necessary). Determine the period of this gun. [Hint: Its period is now small enough that you \emph{may} be able to compute it by hand if you are clever.]
 		\end{enumerate}
-	\end{problem}
+	\end{problemstar}
 	
 	% Exercise with J Summers' gunless primer?
 	
