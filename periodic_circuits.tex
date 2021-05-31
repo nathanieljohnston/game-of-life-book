@@ -397,44 +397,47 @@ One of the advantages of these new reflections over the old reflection based on 
 There are also a few other useful reactions involving the twin bees that can do things like emit two side-by-side streams of gliders (guns like this are called \emph{double-barreled guns}\index{double-barreled gun}). We explore some of these reactions in Exercise~\ref{exer:twin_bees_large_spark}.
 
 
-% NJ is here in the clean-up process.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%   SUBSECTION: TICKER TAPES and MEMORY CELLS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Ticker Tapes and Memory Cells}\label{sec:p46_ticker_tape}
 
-\begin{wrapfigure}{R}{0.3\textwidth}
-	\centering
-	\patternimg{0.12}{twin_bees_duplicate_reflector}
-	\caption{A twin bees shuttle reflecting and duplicating a glider.}\label{fig:twin_bees_duplicate_reflector}
-\end{wrapfigure}
-One of the most useful reactions involving a twin bees shuttle that we have not yet seen is the one displayed in Figure~\ref{fig:twin_bees_duplicate_reflector} in which the shuttle reflects a glider by $90$~degrees and simultaneously duplicates it. This is somewhat smaller and simpler than the glider duplicator that we saw earlier in Figure~\ref{fig:glider_duplicator}, but of course it has the disadvantage of only working at period~$46$.
+One of the most useful reactions involving a twin bees shuttle that we have not yet seen is the one displayed in Figure~\ref{fig:twin_bees_duplicate_reflector} in which the shuttle reflects a glider by $90$~degrees while simultaneously duplicating it (similar to the p$30$ glider duplicator that we saw in Figure~\ref{fig:glider_duplicator}).
 
-One interesting thing that we can do with a glider duplicator is attach it to a glider loop so as to produce any (finite) irregular sequence of gliders of our choosing, simply by having that sequence of gliders in the loop itself. For example, the pattern displayed in Figure~\ref{fig:ticker_tape_gun} makes use of a loop in which one glider is present, then the next two are missing, then the next three are present, then four are missing, five are present, and six are missing, so as to create a gun that produces lightweight spaceships with that same spacing.\footnote{This gun produces lightweight spaceships via the glider-to-LWSS reaction of Figure~\ref{fig:twin_bees_reflect_c} instead of just gliders themselves just to make it easier to visualize the output.} Thus we can encode any message in binary and create a gun that emits that message if we interpret the presence of a spaceship as a ``1'' and the absence of a spaceship as a ``0''.
+One interesting thing that we can do with a glider duplicator is attach it to a glider loop so as to produce any (finite) irregular sequence of gliders of our choosing, simply by having that sequence of gliders in the loop itself. For example, the pattern displayed in Figure~\ref{fig:ticker_tape_gun} makes use of a loop in which one glider is present, then the next two are missing, then the next three are present, then four are missing, five are present, and six are missing, so as to create a gun that produces lightweight spaceships with that same spacing.\footnote{This gun produces lightweight spaceships (via the glider-to-LWSS reaction of Figure~\ref{fig:twin_bees_reflect_c}) instead of gliders just to make the output easier to visualize.} We can thus encode any message in binary and create a gun that emits that message if we interpret the presence of a spaceship as a ``1'' and the absence of a spaceship as a ``0''.
 
 \begin{figure}[!htb]
 	\centering
-	\patternimglink{0.12}{ticker_tape_gun}
-	\caption{A gun that produces an irregular lightweight spaceship stream corresponding to the bitstring 100111000011111000000 (i.e., one LWSS present, then two missing, then three present, and so on). This stream (highlighted in \bgbox{magentaback}{magenta}) is produced simply by duplicating the gliders in the loop (highlighted in \bgbox{aquaback}{aqua}) that have this same spacing and then performing a few basic reflections and a glider-to-LWSS conversion via twin bees shuttles (highlighted in \bgbox{yellowback2}{yellow}).}\label{fig:ticker_tape_gun}
+	\begin{tabular}{@{}cc@{}}
+		\begin{minipage}[t]{0.208\textwidth}
+			\centering
+			\patternimg{0.15830666666}{twin_bees_duplicate_reflector}
+			\caption{A twin bees shuttle reflecting and duplicating a glider.}\label{fig:twin_bees_duplicate_reflector}
+		\end{minipage} &
+		\begin{minipage}[t]{0.762\textwidth}
+			\centering
+			\patternimglink{0.093}{ticker_tape_gun}
+			\caption{A gun that produces an irregular lightweight spaceship stream corresponding to the bitstring 100111000011111000000 (i.e., one LWSS present, then two missing, then three present, and so on). This stream (highlighted in \bgbox{orangeback2}{orange}) is produced by duplicating the gliders in the loop (highlighted in \bgbox{aquaback}{aqua}) that have this same spacing and then performing a few reflections and a glider-to-LWSS conversion via twin bees shuttles (highlighted in \bgbox{yellowback2}{yellow}).}\label{fig:ticker_tape_gun}
+		\end{minipage}
+	\end{tabular}
 \end{figure}
 
-By placing several of these guns (with different sequences of gliders in their glider loops) near each other, we can even create \emph{ticker tape guns}\index{ticker tape gun}, which emit any \emph{visual} message of our choosing, rather than just encoding messages in binary. To do this, we think of lightweight spaceships as pixels, with the presence of a ship being black and the absence of a ship being white. Each of the loop-based guns emits the pixels (ships) in a single row of the image being produced, so we use $n$ of the guns with $m$ gliders each in the loops to create an $n \times m$ image. For example, Figure~\ref{fig:ticker_tape_hi_gun} illustrates a ticker tape gun that repeatedly produces an $8 \times 21$ array of lightweight spaceships that spells out ``HI!''.\footnote{Alan Hensel put together the first ticker tape gun in June 1994, which printed out the digits ``0123456789''. It was adapted by Brice Due and Dave Greene in 2005 and 2006 to print out the Golly logo, and has been used as the header of the Golly homepage (\httpurl{golly.sourceforge.net/}) ever since.}
+By placing several of these guns near each other (with different sequences of gliders in their glider loops), we can even create \emph{ticker tape guns}\index{ticker tape gun}, which emit any \emph{visual} message of our choosing, rather than just messages encoded in binary. To do this, we think of lightweight spaceships as pixels, with the presence of a ship being black and the absence of a ship being white. Each of the loop-based guns emits the pixels (ships) in a single row of the image being produced, so we use $n$ of the guns with $m$ gliders each in the loops to create an $n \times m$ image. For example, Figure~\ref{fig:ticker_tape_hi_gun} illustrates a ticker tape gun that repeatedly produces an $8 \times 21$ array of lightweight spaceships that spells out ``HI!''.\footnote{Alan Hensel put together the first ticker tape gun in June 1994, which printed out the digits ``0123456789''. It was adapted by Brice Due and Dave Greene in 2005 and 2006 to print out the Golly logo, and has been used as the header of the Golly homepage (\httpurl{golly.sourceforge.net/}) ever since.}
 
 \begin{figure}[!htb]
 	\centering
-	\patternimglink{0.095}{ticker_tape_hi_gun}
-	\caption{An arrangement of $8$ loop-based guns that produce an array of lightweight spaceships that spell out ``HI!'' (highlighted in \bgbox{magentaback}{magenta}). Each gun produces one row of the output image (highlighted in \bgbox{yellowback2}{yellow}, \bgbox{greenpastel}{green}, and \bgbox{aquaback}{aqua}), and the arrangement of gliders in each loop controls which lightweight spaceships are produced in their row.}\label{fig:ticker_tape_hi_gun}
+	\patternimglink{0.0985}{ticker_tape_hi_gun}
+	\caption{An arrangement of $8$ loop-based guns that produce an array of lightweight spaceships that spell out ``HI!'' (highlighted in \bgbox{orangeback2}{orange}). Each gun produces one row of the output image (highlighted in \bgbox{yellowback2}{yellow}, \bgbox{magentaback}{magenta}, \bgbox{greenpastel}{green}, and \bgbox{aquaback}{aqua}), and the arrangement of gliders in each loop determines which lightweight spaceships are produced in their row.}\label{fig:ticker_tape_hi_gun}
 \end{figure}
 
 Once we start talking about building things like computers in the Game of Life (which we will do in Chapter~\ref{chp:universal_computation}), loops like this will be quite useful since they can serve as pieces of memory for the computer to make use of (for example, the gun in Figure~\ref{fig:ticker_tape_gun} stores the bitstring ``100111000011111000000'', which we can read from memory by detecting the spaceships that are constantly emitted from the gun). To make loops like this truly useful for storing pieces of information though, we need to be able to easily alter the state of the memory (i.e., delete gliders from the loop and also insert new gliders into it).
 
-Deleting a glider from the loop is simple, since we can just fire another glider from elsewhere in the Life plane so as to collide with it, thus deleting them both. Furthermore, if we replace two of the reflectors in the loop with an inverter (such as the one that we used in Figure~\ref{fig:inverter_p120_gun}), we can then insert gliders into the loop simply by deleting gliders from its inverted portion. This completed pattern is called a \emph{memory cell}\index{memory cell}, and it is illustrated in Figure~\ref{fig:p46_memory_cell} along with the mechanisms for altering the contents of its memory.
+Deleting a glider from the loop is simple, since we can just fire another glider from elsewhere in the Life plane so as to collide with it, thus deleting them both. To turn this deletion operation into an \emph{insertion} operation, we can simply place two stream inverters along the loop and apply the deletion operation somewhere along its inverted portion. A pattern that makes use of these ideas is called a \emph{memory cell}\index{memory cell}, and one is illustrated in Figure~\ref{fig:p46_memory_cell} along with the mechanisms for altering the contents of its memory.
 
 \begin{figure}[!htb]
 	\centering
-	\embedlink{p46_memory_cell}{\vcenteredhbox{\patternimg{0.105}{p46_memory_cell_0}} \vcenteredhbox{\genarrow{552}} \vcenteredhbox{\patternimg{0.105}{p46_memory_cell_552}}}
-	\caption{A period $12 \times 46 = 552$ memory cell for which the $12$-bit string ``111010111011'' is encoded along its glider loop (highlighted in \bgbox{aquaback}{aqua}) and is thus repeatedly fired out as a stream of lightweight spaceships (highlighted in \bgbox{magentaback}{magenta}). Bits can be switched from $1$ to $0$ (i.e., gliders can be deleted) simply by sending in a glider from the northwest (highlighted in \bgbox{orangeback2}{orange}) to collide with the loop. Since the northeast side of the glider loop is inverted, bits can be switched from $0$ to $1$ (i.e., gliders can be inserted) by similarly sending in a glider from the northeast (highlighted in \bgbox{greenpastel}{green}) to collide with that side of the loop. As shown here, the $8$th and $10$th bits are flipped, thus changing the bitstring in memory to ``1110101\textbf{0}1\textbf{1}11''.}\label{fig:p46_memory_cell}
+	\embedlink{p46_memory_cell}{\vcenteredhbox{\patternimg{0.108}{p46_memory_cell_0}} \vcenteredhbox{\genarrow{552}} \vcenteredhbox{\patternimg{0.108}{p46_memory_cell_552}}}
+	\caption{A period $12 \times 46 = 552$ memory cell for which the $12$-bit string ``111010111011'' is encoded along its glider loop (highlighted in \bgbox{aquaback}{aqua}) and is thus repeatedly fired out as a stream of lightweight spaceships (highlighted in \bgbox{orangeback2}{orange}). Bits can be switched from $1$ to $0$ (i.e., gliders can be deleted) by sending in a glider from the northwest (highlighted in \bgbox{magentaback}{magenta}) to collide with the loop. Since the northeast side of the glider loop is inverted, bits can be switched from $0$ to $1$ (i.e., gliders can be inserted) by similarly sending in a glider from the northeast (highlighted in \bgbox{greenpastel}{green}) to collide with that side of the loop. As shown here, the $8$th and $10$th bits are flipped, thus changing the bitstring in memory to ``1110101\textbf{0}1\textbf{1}11''.}\label{fig:p46_memory_cell}
 \end{figure}
 
 
@@ -443,41 +446,35 @@ Deleting a glider from the loop is simple, since we can just fire another glider
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Tanner's p46}\label{sec:p46_tanner}
 
-One of the most useful tools for extending our period~$46$ toolset beyond just things that can be done with twin bees is an extremely sparky period~$46$ oscillator called \emph{Tanner's p46}\index{Tanner's p46},\footnote{Found by Tanner Jacobi in October 2017.} which is displayed
-%\begin{wrapfigure}{r}{0.3\textwidth}
-%	\centering
-%	\patternimg{0.1}{tanners_p46}
-%	\caption{\emph{Tanner's p46} is a very sparky period~$46$ oscillator.}\label{fig:tanners_p46}
-%\end{wrapfigure}
-in Figure~\ref{fig:tanners_p46}. It works by using some still lifes to hassle and stabilize a pi-heptomino on $3$ of its $4$ sides. In fact, the boat with tail and snake on its southern side are used to rotate the pi-heptomino in the exact same way as in the p$32$ ``gourmet''\index{gourmet} oscillator that we saw back in Figure~\ref{fig:p32_pi_hassler}.
+One of the most useful tools for extending our period~$46$ toolset beyond just things that can be done with twin bees is the extremely sparky period~$46$ oscillator called \emph{Tanner's p46}\index{Tanner's p46} that we saw back in Figure~\ref{fig:tanners_p46}. As is typical of extremely sparky oscillators, Tanner's p46 can be combined with other sparkers, or additional copies of itself, to create numerous useful objects. For example, it can be combined with half of a twin bees shuttle to create a new p$46$ glider gun (see Exercise~\ref{exer:tanners_p46_twin_bee_gun}), or it can be used to reflect a glider by 180~degrees (see Exercise~\ref{exer:tanners_p46_reflect}), but neither of these facts are too exciting since we already know how to construct p$46$ glider guns and reflectors of roughly the same size via twin bees.
 
-As is typical of extremely sparky oscillators, Tanner's p46 can be combined with other oscillators or additional copies of itself to create numerous useful objects. For example, it can be combined with a single twin bees to create a new p$46$ glider gun (see Exercise~\ref{exer:tanners_p46_twin_bee_gun}), or it can be used to reflect a glider by 180~degrees (see Exercise~\ref{exer:tanners_p46_reflect}), but neither of these facts are too exciting since we already know how to construct p$46$ glider guns and reflectors of roughly the same size via twin bees. However, by carefully placing two copies of itself next to each other, it can be used to construct an \emph{edge-shooting glider gun}\index{edge shooter}\footnote{Found by David Bell just three days after Tanner's p$46$ itself was found.} (see Figure~\ref{fig:tanners_p46_edge}). Edge shooters like this one are particularly useful when trying to line up streams of gliders in tight positions, since they can be positioned as close as we like to glider streams on one side (compare this with guns like the Gosper glider gun and twin bees guns, which produce the stream of gliders near their center and thus require some clearance on either side of the new glider stream).
+What is slightly more interesting is that we can carefully place two copies of Tanner's p46 next to each other so as to construct an \emph{edge-shooting glider gun},\footnote{Found by David Bell just three days after Tanner's p$46$ itself was found.}\index{edge shooter} as illustrated in Figure~\ref{fig:tanners_p46_edge}. Edge shooters like this one are particularly useful when trying to line up streams of gliders in tight positions, since they can be positioned as close as we like to existing glider streams on one side (compare this with guns like the Gosper glider gun and twin bees guns, which produce the stream of gliders near their center and thus require some clearance on either side of the other glider stream).
 
-Furthermore, this glider gun can act as a p$46$ inline inverter (see Figure~\ref{fig:tanners_p46_inline_inverter}) in the exact same way that the Gosper glider gun can act as a p$30$ inline inverter.\footnote{This inline inverter, just like the original p$30$ one, was found by David Bell.} Even more remarkably, two of these oscillators can be placed next to each other so as to create the p$46$ middleweight spaceship gun\footnote{Found by Matthias Merzenich just one day after Tanner's p$46$ was found.} displayed in Figure~\ref{fig:tanners_p46_mwss_gun}, which is currently the smallest known MWSS gun of any period and also the smallest known gliderless gun of any period.
+Furthermore, this glider gun can act as a p$46$ inline inverter (see Figure~\ref{fig:tanners_p46_inline_inverter}) just like the Gosper glider gun can act as a p$30$ inline inverter.\footnote{This inline inverter, just like the original p$30$ one, was found by David Bell.} Even more remarkably, two of these oscillators can be placed next to each other so as to create the p$46$ middleweight spaceship gun displayed in Figure~\ref{fig:tanners_p46_mwss_gun},\footnote{Found by Matthias Merzenich just one day after Tanner's p$46$ was found.} which is currently the smallest known MWSS gun of any period, and also the smallest known gliderless gun of any period.
 
 \begin{figure}[!htb]
 	\centering
-	\begin{tabular}{ccc}
-		\begin{subfigure}{.31\textwidth}
-			\centering\vspace*{0.32cm}
-			\patternimglink{0.08}{tanners_p46_edge}
+	\begin{tabular}{@{}ccc@{}}
+		\begin{subfigure}{.355\textwidth}
+			\centering
+			\patternimglink{0.10424012158}{tanners_p46_edge}
 			\caption{an edge-shooting glider gun}
 			\label{fig:tanners_p46_edge}
 		\end{subfigure} &
-		\begin{subfigure}{.31\textwidth}
+		\begin{subfigure}{.345\textwidth}
 			\centering
-			\patternimglink{0.08}{tanners_p46_inline_inverter}
+			\patternimglink{0.095}{tanners_p46_inline_inverter}
 			\caption{an inline inverter}
 			\label{fig:tanners_p46_inline_inverter}
 		\end{subfigure} &
-		\begin{subfigure}{.31\textwidth}
-			\centering\vspace*{1.0cm}
-			\patternimglink{0.08}{tanners_p46_mwss_gun}
+		\begin{subfigure}{.24\textwidth}
+			\centering
+			\patternimglink{0.0971529745}{tanners_p46_mwss_gun}
 			\caption{a small MWSS gun}
 			\label{fig:tanners_p46_mwss_gun}
 		\end{subfigure}	
 	\end{tabular}
-	\caption{Two guns formed by placing two copies of Tanner's p$46$ next to each other so that their sparks interact. The glider gun in (a) can be used as an inline inverter, as in (b), where the incoming glider (highlighted in \bgbox{magentaback}{magenta}) prevents a glider from being fired from the gun at that point in the stream. The gun in (c) is the smallest known MWSS gun.}
+	\caption{Two guns formed by placing two copies of Tanner's p$46$ next to each other so that their sparks interact. The glider gun from (a) can be used as an inline inverter, as in (b), where the incoming glider (highlighted in \bgbox{magentaback}{magenta}) prevents a glider from being fired from the gun at that point in the stream. The gun in (c) is the smallest known MWSS gun.}
 	\label{fig:tanners_p46_guns}
 \end{figure}
 
@@ -485,7 +482,7 @@ As an example of what can be done with the edge-shooting gun of Figure~\ref{fig:
 
 \begin{figure}[!htb]
 	\centering
-	\patternimglink{0.09}{p46_hwss_gun}
+	\patternimglink{0.08}{p46_hwss_gun}
 	\caption{A period~$46$ heavyweight spaceship gun that uses two copies of the edge shooter from Figure~\ref{fig:tanners_p46_edge} (highlighted in \bgbox{aquaback}{aqua} and \bgbox{magentaback}{magenta}) to place the required gliders in the HWSS synthesis close together.}
 	\label{fig:p46_hwss_gun}
 \end{figure}
@@ -496,38 +493,38 @@ As an example of what can be done with the edge-shooting gun of Figure~\ref{fig:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Heisenburps}\label{sec:p46_heisenburps}
 
-We saw back in Figure~\ref{fig:glider_duplicator} that it is possible to construct periodic circuits that duplicate gliders, though the timing and positioning of the output gliders typically do not match those of the input glider.\footnote{In fact, we saw that there are \emph{stationary} circuits that duplicate gliders way back in Figure~\ref{fig:894_reflector}, but these circuits are still a bit more mysterious.} We could of course use various other circuits to correct the positioning and timing of one of the output gliders, but remarkably there exist duplicators for which this is not necessary, as the input glider is not actually affected at all (even temporarily) by the duplication process.
+We saw back in Figure~\ref{fig:glider_duplicator} that it is possible to construct periodic circuits that duplicate gliders, though the timing and positioning of the output gliders typically do not match those of the input glider.\footnote{In fact, we saw that there are \emph{stationary} circuits that duplicate gliders way back in Figure~\ref{fig:894_reflector}, but these circuits will remain a bit more mysterious until Chapter~\ref{chp:stationary_circuitry}.} We could of course use various other circuits to correct the positioning and timing of one of the output gliders, but remarkably there exist duplicators for which this is not necessary, as the input glider is not actually affected at all (even temporarily) by the duplication process.
 
-Duplicators of this type are called \emph{Heisenburps}\index{Heisenburp}\footnote{Named for Heisenburg's uncertainty principle, which says that it is impossible to detect a particle without affecting it in some way. Heisenburps show that this principle does \emph{not} hold in Conway's Game of Life, since we can detect and duplicate a particle (glider) without affecting it at all.}, and by far the simplest one known\footnote{Found by Brice Due in January 2005.} is displayed in Figure~\ref{fig:p46_natural_heisenburp}. In this configuration, the spark from two perpendicular twin bees is suppressed slightly by a passing glider so that instead of dying off, the spark turns into another glider. Importantly, the passing glider itself is not affected at all in the process, but rather just serves to overpopulate other nearby cells (much like how we used induction coils to overpopulate and stabilize objects in Section~\ref{sec:still_life_grammar}).
+Duplicators of this type are called \emph{Heisenburps}\index{Heisenburp}\footnote{Named for Heisenberg's uncertainty principle, which says that it is impossible to detect a particle without affecting it in some way. Heisenburps show that this principle does \emph{not} hold in Conway's Game of Life, since we can detect and duplicate a particle (glider) without affecting it at all.}, and by far the simplest one known is displayed in Figure~\ref{fig:p46_natural_heisenburp}.\footnote{Found by Brice Due in January 2005.} In this configuration, the spark from two perpendicular twin bees is suppressed slightly by a passing glider so that instead of dying off, the spark turns into another glider. Importantly, the passing glider itself is not affected at all in the process, but rather just serves to overpopulate other nearby cells (much like how we used induction coils to overpopulate and stabilize objects in Section~\ref{sec:still_life_grammar}).
 
 \begin{figure}[!htb]
 	\centering
-	\embedlink{p46_natural_heisenburp}{\vcenteredhbox{\patternimg{0.12}{p46_natural_heisenburp_0}} \vcenteredhbox{\genarrow{46}} \vcenteredhbox{\patternimg{0.12}{p46_natural_heisenburp_46}} \vcenteredhbox{\genarrow{46}} \vcenteredhbox{\patternimg{0.12}{p46_natural_heisenburp_92}}}
-	\caption{A small period~$92$ Heisenburp that uses two twin bees shuttles (highlighted in \bgbox{yellowback2}{yellow}) to copy a glider (highlighted in \bgbox{aquaback}{aqua}) without affecting it. The first $46$ generations are used to create a block (highlighted in \bgbox{magentaback}{magenta}) from the glider and the twin bees spark and the next $46$ generations are used to turn the block into another glider.}\label{fig:p46_natural_heisenburp}
+	\embedlink{p46_natural_heisenburp}{\vcenteredhbox{\patternimg{0.133}{p46_natural_heisenburp_0}} \vcenteredhbox{\genarrow{46}} \vcenteredhbox{\patternimg{0.133}{p46_natural_heisenburp_46}} \vcenteredhbox{\genarrow{46}} \vcenteredhbox{\patternimg{0.133}{p46_natural_heisenburp_92}}}
+	\caption{A small period~$92$ Heisenburp that uses two twin bees shuttles (highlighted in \bgbox{yellowback2}{yellow}) to copy a glider (highlighted in \bgbox{aquaback}{aqua}) without affecting it. The first $46$ generations are used to create a block (highlighted in \bgbox{magentaback}{magenta}) from the glider, and the next $46$ generations are used to turn the block into another glider.}\label{fig:p46_natural_heisenburp}
 \end{figure}
 
-Heisenburps can also copy other spaceships or even use one type of passing spaceship to create a completely different kind of object---all that is needed is a spark whose evolution is changed sufficiently by the passing spaceship that it turns into something that moves out of the way. For example, the configuration of two twin bees shuttles in Figure~\ref{fig:mwss_out_of_the_blue}, called the \emph{MWSS out of the blue}\index{MWSS out of the blue},\footnote{Found by Peter Rott in November 1997.} detects a passing lightweight spaceship and releasing a middleweight spaceship traveling in the opposite direction in response.
+There are also Heisenburps that can copy other spaceships, or even use one type of passing spaceship to create a completely different kind of object---all that is needed is a spark whose evolution is changed sufficiently by the passing spaceship that it turns into something that moves out of the way. For example, the configuration of two twin bees shuttles in Figure~\ref{fig:mwss_out_of_the_blue}, called the \emph{MWSS out of the blue}\index{MWSS out of the blue},\footnote{Found by Peter Rott in November 1997.} detects a passing lightweight spaceship and releases a middleweight spaceship travelling in the opposite direction in response.
 
 \begin{figure}[!htb]
 	\centering
-	\embedlink{mwss_out_of_the_blue}{\vcenteredhbox{\patternimg{0.1}{mwss_out_of_the_blue_0}} \vcenteredhbox{\genarrow{46}} \vcenteredhbox{\patternimg{0.1}{mwss_out_of_the_blue_46}}}
+	\embedlink{mwss_out_of_the_blue}{\vcenteredhbox{\patternimg{0.11}{mwss_out_of_the_blue_0}} \vcenteredhbox{\genarrow{46}} \vcenteredhbox{\patternimg{0.11}{mwss_out_of_the_blue_46}}}
 	\caption{The \emph{MWSS out of the blue} is a reaction in which two twin bees shuttles are triggered to create a middleweight spaceship when a lightweight spaceship passes by. The LWSS is not affected at all by the reaction.}\label{fig:mwss_out_of_the_blue}
 \end{figure}
 
-There are also some reactions that can be used to \emph{construct} Heisenburps via other periodic circuitry that we have already seen. One of the simplest such reactions is the one displayed in Figure~\ref{fig:heisenburp_reaction_p35}, in which a middleweight and heavyweight spaceship collide with a glider in such a way that if another passing glider is present, then the three colliding spaceships cleanly destroy each other, but if that passing glider is absent then they produce a single glider. This reaction has a repeat time of $35$~generations and thus can be used to construct Heisenburps of any period~$35$ or greater.\footnote{Found by Jason Summers in June 1999, as was the first period~$46$ Heisenburp based on it.}
+There are also some reactions that can be used to construct Heisenburps via other periodic circuitry that we have already seen. One of the simplest such reactions is the one displayed in Figure~\ref{fig:heisenburp_reaction_p35},\footnote{Found by Jason Summers in June 1999, as was the first-known period~$46$ Heisenburp based on it.} in which a middleweight and heavyweight spaceship collide with a glider in such a way that if another passing glider is present, then the three colliding spaceships cleanly destroy each other, but if that passing glider is absent then they produce a single glider. This reaction has a repeat time of $35$~generations and thus can be used to construct Heisenburps of any period~$35$ or greater.
 
 \begin{figure}[!htb]
 	\centering
-	\begin{subfigure}{.48\textwidth}
+	\begin{subfigure}{.47\textwidth}
 		\centering
-		\embedlink{heisenburp_reaction_p35}{\vcenteredhbox{\patternimg{0.1}{heisenburp_reaction_p35_0_0}} \vcenteredhbox{\genarrow{19}} \vcenteredhbox{\patternimg{0.1}{heisenburp_reaction_p35_0_19}}}
+		\embedlink{heisenburp_reaction_p35}{\vcenteredhbox{\patternimg{0.12}{heisenburp_reaction_p35_0_0}} \vcenteredhbox{\genarrow{19}} \vcenteredhbox{\patternimg{0.12}{heisenburp_reaction_p35_0_19}}}
 		\caption{Mutual annihilation if a nearby glider is present.}
 		\label{fig:heisenburp_reaction_p35_0}
 	\end{subfigure} \ \ \ \ % 
-	\begin{subfigure}{.48\textwidth}
+	\begin{subfigure}{.5\textwidth}
 		\centering
-		\embedlink{heisenburp_reaction_p35}{\vcenteredhbox{\patternimg{0.1}{heisenburp_reaction_p35_1_0}} \vcenteredhbox{\genarrow{19}} \vcenteredhbox{\patternimg{0.1}{heisenburp_reaction_p35_1_19}}}
-		\caption{A single glider is produced if no nearby glider is present.}
+		\embedlink{heisenburp_reaction_p35}{\vcenteredhbox{\patternimg{0.12}{heisenburp_reaction_p35_1_0}} \vcenteredhbox{\genarrow{19}} \vcenteredhbox{\patternimg{0.12}{heisenburp_reaction_p35_1_19}}}
+		\caption{Production of a glider if no nearby glider is present.}
 		\label{fig:heisenburp_reaction_p35_1}
 	\end{subfigure}
 	\caption{A collision of a glider, lightweight spaceship, and heavyweight spaceship (highlighted in \bgbox{yellowback2}{yellow}) that results in (a) nothing if there is a nearby passing glider (highlighted in \bgbox{aquaback}{aqua}), and (b) a single glider (highlighted in \bgbox{magentaback}{magenta}) if there is not a nearby passing glider. Since the passing glider is unaffected by the collision, this reaction can be used as a basis for a Heisenburp.}\label{fig:heisenburp_reaction_p35}
@@ -537,11 +534,15 @@ To actually construct a Heisenburp from this reaction, we just combine reactions
 
 \begin{figure}[!htb]
 	\centering
-	\embedlink{p46_heisenburp_constructed}{\vcenteredhbox{\patternimg{0.085}{p46_heisenburp_constructed}} \vcenteredhbox{\genarrow{230}} \vcenteredhbox{\patternimg{0.085}{p46_heisenburp_constructed_230}}}
+	\embedlink{p46_heisenburp_constructed}{\vcenteredhbox{\patternimg{0.088}{p46_heisenburp_constructed}} \vcenteredhbox{\genarrow{230}} \vcenteredhbox{\patternimg{0.088}{p46_heisenburp_constructed_230}}}
 	\caption{A period~$46$ Heisenburp that uses the glider $+$ MWSS $+$ HWSS reaction from Figure~\ref{fig:heisenburp_reaction_p35}. These spaceships are all provided by guns that we have already seen---the MWSS gun (highlighted in \bgbox{greenpastel}{green}) and HWSS gun (highlighted in \bgbox{orangeback2}{orange}) were introduced in Figures~\ref{fig:tanners_p46_mwss_gun} and~\ref{fig:p46_hwss_gun}, respectively. The central three-spaceship collision produces a (non-highlighted) glider traveling northeast, which is destroyed by an inline inverter (highlighted in \bgbox{magentaback}{magenta} and originally introduced in Figure~\ref{fig:tanners_p46_inline_inverter}). However, if an input glider (highlighted in \bgbox{aquaback}{aqua}) is present then no glider is fed into the inline inverter, leading to the input glider's duplication.}\label{fig:p46_heisenburp_constructed}
 \end{figure}
 
-In fact, we can use these same ideas to even construct \emph{stationary} Heisenburps (i.e., Heisenburps made up entirely of still lifes rather than oscillators and guns) for spaceships that have accessible sparks, like the light/middle/heavyweight spaceships. However, a glider Heisenburp must have an oscillating component, as gliders have no accessible sparks that could be detected by still lifes.
+In fact, we can use these same ideas to even construct \emph{stationary} Heisenburps (i.e., Heisenburps made up entirely of still lifes, rather than oscillators and guns), as long as the spaceship that is being detected and duplicated has an accessible spark, like an xWSS. However, a glider Heisenburp must have an oscillating component, as gliders have no accessible sparks that could be detected by still lifes.
+
+% NJ is here in the clean-up process.
+
+% Exercise: Make p not-46 version of this Heisenburp?
 
 % Exercise: use (along with LWSS-turning reaction above) to create a gliderless MWSS gun
 % Follow-up exercise: use this device to them make a gliderless HWSS gun
@@ -1057,15 +1058,23 @@ The advantage of the new circuitry and constructions that we have available to u
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:ticker_tape_gun_store_different}
+	\begin{problem}\label{exer:ticker_tape_gun_store_different} \probdiff{1}
 		Modify the sequence of gliders in the loop of the gun from Figure~\ref{fig:ticker_tape_gun} so that it produces lightweight spaceships corresponding to the bitstring ``110111010011011101001''.
+	\end{problem}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:p30_ticker_tape_gun} \probdiff{3}
+		Rebuild the ticker tape gun from Figure~\ref{fig:ticker_tape_gun} so that it uses p$30$ circuitry instead of p$46$.
 	\end{problem}
 	
 	
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:ticker_tape_smiley_gun}
+	\begin{problem}\label{exer:ticker_tape_smiley_gun} \probdiff{3}
 		Using the techniques used in Figure~\ref{fig:ticker_tape_hi_gun}, create a ticker tape gun that produces smiley faces.
 	\end{problem}
 	
@@ -1073,7 +1082,7 @@ The advantage of the new circuitry and constructions that we have available to u
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:ticker_tape_gun_memory_alter}
+	\begin{problem}\label{exer:ticker_tape_gun_memory_alter} \probdiff{1}
 		Fire some gliders at the memory cell\index{memory cell} from Figure~\ref{fig:p46_memory_cell} so as to change the bitstring that it stores to ``101010101010''.
 	\end{problem}
 	
@@ -1081,8 +1090,10 @@ The advantage of the new circuitry and constructions that we have available to u
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:tanners_p46_twin_bee_gun}
-		Create a glider gun that makes use of a single copy of Tanner's p$46$ and twin bees that are stabilized only on one side. [Hint: You want the spark from these two objects to hit each other. This gun can be found by hand via trial error, or you could write a computer program to try lots of positionings.]
+	\begin{problem}\label{exer:tanners_p46_twin_bee_gun} \probdiff{3}
+		Create a glider gun that works by colliding the spark from Tanner's p$46$ with a twin bees shuttle that is stabilized only on one side.
+		
+		\noindent [Hint: This gun can be found by hand via trial and error, or you could write a computer program to try lots of positionings.]
 	\end{problem}
 	% NOTE: Found by David Bell
 	% SOLUTION:
@@ -1096,8 +1107,10 @@ The advantage of the new circuitry and constructions that we have available to u
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:tanners_p46_reflect}
-		Show how Tanner's p$46$ can be used to reflect a glider by 180~degrees. [Hint: The spark emitted by Tanner's p$46$ is quite similar to some of the sparks emitted by the pentadecathlon. Mimic the reflection from Figure~\ref{fig:p30_relay}.]
+	\begin{problem}\label{exer:tanners_p46_reflect} \probdiff{3}
+		Show how Tanner's p$46$ can be used to reflect a glider by 180~degrees.
+		
+		\noindent [Hint: The spark emitted by Tanner's p$46$ is quite similar to some of the sparks emitted by the pentadecathlon. Mimic the reflection from Figure~\ref{fig:p30_relay}.]
 	\end{problem}
 	% NOTE: Found by David Bell
 	% SOLUTION:
@@ -1110,7 +1123,7 @@ The advantage of the new circuitry and constructions that we have available to u
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:twin_bees_large_spark}
+	\begin{problem}\label{exer:twin_bees_large_spark} \probdiff{3}
 		An arrangement of two twin bees shuttles that is particularly useful due to the extremely large spark that it produces is displayed below.
 		
 		\begin{center}
@@ -1118,7 +1131,9 @@ The advantage of the new circuitry and constructions that we have available to u
 		\end{center}
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item Collide the spark from this object with that of Tanner's p$46$ to create a glider gun. [Hint: Writing a computer program might be helpful here.]
+			\item Collide the spark from this object with that of Tanner's p$46$ to create a glider gun.
+			
+			\noindent [Hint: Writing a computer program might be helpful here.]
 			
 			\item Collide the spark from this object with the following arrangement of twin bees and an eater~1 to create a double-barreled glider gun\index{double-barreled gun} (i.e., a gun that emits two side-by-side gliders per period).\footnote{This double-barreled gun was originally found by Dieter Leithner.}
 			
