@@ -328,7 +328,7 @@ After putting all of these pieces together, we arrive at our completed primer in
 \begin{figure}[!htb]
 	\centering
 	\patternimglink{0.1115}{primer}
-	\caption{The completed primer. The period~$120$ stream of lightweight spaceships (highlighted in \bgbox{magentaback}{magenta} and synthesized by $3$ space rakes as in Exercise~\ref{exer:p60_lwss_backrake}) moves to the left and is thinned out by the inline inverter guns (highlighted in \bgbox{aquaback}{aqua}). The leftmost inline inverter gun has period~$240$ and has a different shape from the others (which have periods~$360$, $600$, $840$, and in general $360 + 240n$ for $n \geq 0$). The rows of Gosper glider guns are laid by two copies of the compact breeder from Figure~\ref{fig:breeder_compact} (highlighted in \bgbox{greenpastel}{green}) and the row of Gosper glider guns that are stabilized by eater~1s instead of blocks are laid by the breeder that we presented in Figure~\ref{fig:breeder_ggg_eater_1_stabilize} (highlighted in \bgbox{yellowback2}{yellow}). A single space rake going north (also highlighted in \bgbox{yellowback2}{yellow}) produces the gliders that bounce along the long diagonal of the inline inverter guns, and the remaining pairs of space rakes (highlighted in \bgbox{orangeback2}{orange}) simply synthesize rows of block and eater~1s.}
+	\caption{The completed primer. The period~$120$ stream of lightweight spaceships (highlighted in \bgbox{orangeback2}{orange} and synthesized by $3$ space rakes as in Exercise~\ref{exer:p60_lwss_backrake}) moves to the left and is thinned out by the inline inverter guns (highlighted in \bgbox{aquaback}{aqua}). The leftmost inline inverter gun has period~$240$ and has a different shape from the others (which have periods~$360$, $600$, $840$, and in general $360 + 240n$ for $n \geq 0$). The rows of Gosper glider guns are laid by two copies of the compact breeder from Figure~\ref{fig:breeder_compact} (highlighted in \bgbox{greenpastel}{green}) and the row of Gosper glider guns that are stabilized by eater~1s instead of blocks are laid by the breeder that we presented in Figure~\ref{fig:breeder_ggg_eater_1_stabilize} (highlighted in \bgbox{yellowback2}{yellow}). A single space rake going north (also highlighted in \bgbox{yellowback2}{yellow}) produces the gliders that bounce along the long diagonal of the inline inverter guns, and the remaining pairs of space rakes (highlighted in \bgbox{magentaback}{magenta}) simply synthesize rows of block and eater~1s.}
 	\label{fig:primer}
 \end{figure}
 
@@ -446,7 +446,7 @@ Deleting a glider from the loop is simple, since we can just fire another glider
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Tanner's p46}\label{sec:p46_tanner}
 
-One of the most useful tools for extending our period~$46$ toolset beyond just things that can be done with twin bees is the extremely sparky period~$46$ oscillator called \emph{Tanner's p46}\index{Tanner's p46} that we saw back in Figure~\ref{fig:tanners_p46}. As is typical of extremely sparky oscillators, Tanner's p46 can be combined with other sparkers, or additional copies of itself, to create numerous useful objects. For example, it can be combined with half of a twin bees shuttle to create a new p$46$ glider gun (see Exercise~\ref{exer:tanners_p46_twin_bee_gun}), or it can be used to reflect a glider by 180~degrees (see Exercise~\ref{exer:tanners_p46_reflect}), but neither of these facts are too exciting since we already know how to construct p$46$ glider guns and reflectors of roughly the same size via twin bees.
+One of the most useful tools for extending our period~$46$ toolset beyond just things that can be done with twin bees is the extremely sparky period~$46$ oscillator called \emph{Tanner's p46}\index{Tanner's p46} that we saw back in Figure~\ref{fig:tanners_p46}. As is typical of extremely sparky oscillators, Tanner's p46 can be combined with other sparkers, or additional copies of itself, to create numerous useful objects. For example, it can be combined with a twin bees shuttle to create a new p$46$ glider gun (see Exercise~\ref{exer:tanners_p46_twin_bee_gun}), or it can be used to reflect a glider by 180~degrees (see Exercise~\ref{exer:tanners_p46_reflect}), but neither of these facts are too exciting since we already know how to construct p$46$ glider guns and reflectors of roughly the same size via twin bees.
 
 What is slightly more interesting is that we can carefully place two copies of Tanner's p46 next to each other so as to construct an \emph{edge-shooting glider gun},\footnote{Found by David Bell just three days after Tanner's p$46$ itself was found.}\index{edge shooter} as illustrated in Figure~\ref{fig:tanners_p46_edge}. Edge shooters like this one are particularly useful when trying to line up streams of gliders in tight positions, since they can be positioned as close as we like to existing glider streams on one side (compare this with guns like the Gosper glider gun and twin bees guns, which produce the stream of gliders near their center and thus require some clearance on either side of the other glider stream).
 
@@ -474,7 +474,7 @@ Furthermore, this glider gun can act as a p$46$ inline inverter (see Figure~\ref
 			\label{fig:tanners_p46_mwss_gun}
 		\end{subfigure}	
 	\end{tabular}
-	\caption{Two guns formed by placing two copies of Tanner's p$46$ next to each other so that their sparks interact. The glider gun from (a) can be used as an inline inverter, as in (b), where the incoming glider (highlighted in \bgbox{magentaback}{magenta}) prevents a glider from being fired from the gun at that point in the stream. The gun in (c) is the smallest known MWSS gun.}
+	\caption{Two guns formed by placing two copies of Tanner's p$46$ next to each other so that their sparks interact. The glider gun from (a) can be used as an inline inverter, as in (b), where the incoming glider (highlighted in \bgbox{greenpastel}{green}) prevents a glider from being fired from the gun at that point in the stream. The gun in (c) is the smallest known MWSS gun.}
 	\label{fig:tanners_p46_guns}
 \end{figure}
 
@@ -500,7 +500,7 @@ Duplicators of this type are called \emph{Heisenburps}\index{Heisenburp}\footnot
 \begin{figure}[!htb]
 	\centering
 	\embedlink{p46_natural_heisenburp}{\vcenteredhbox{\patternimg{0.133}{p46_natural_heisenburp_0}} \vcenteredhbox{\genarrow{46}} \vcenteredhbox{\patternimg{0.133}{p46_natural_heisenburp_46}} \vcenteredhbox{\genarrow{46}} \vcenteredhbox{\patternimg{0.133}{p46_natural_heisenburp_92}}}
-	\caption{A small period~$92$ Heisenburp that uses two twin bees shuttles (highlighted in \bgbox{yellowback2}{yellow}) to copy a glider (highlighted in \bgbox{aquaback}{aqua}) without affecting it. The first $46$ generations are used to create a block (highlighted in \bgbox{magentaback}{magenta}) from the glider, and the next $46$ generations are used to turn the block into another glider.}\label{fig:p46_natural_heisenburp}
+	\caption{A small period~$92$ Heisenburp that uses two twin bees shuttles (highlighted in \bgbox{yellowback2}{yellow}) to copy a glider (highlighted in \bgbox{greenpastel}{green}) without affecting it. The first $46$ generations are used to create a block (highlighted in \bgbox{orangeback2}{orange}) from the glider, and the next $46$ generations are used to turn the block into another glider.}\label{fig:p46_natural_heisenburp}
 \end{figure}
 
 There are also Heisenburps that can copy other spaceships, or even use one type of passing spaceship to create a completely different kind of object---all that is needed is a spark whose evolution is changed sufficiently by the passing spaceship that it turns into something that moves out of the way. For example, the configuration of two twin bees shuttles in Figure~\ref{fig:mwss_out_of_the_blue}, called the \emph{MWSS out of the blue}\index{MWSS out of the blue},\footnote{Found by Peter Rott in November 1997.} detects a passing lightweight spaceship and releases a middleweight spaceship travelling in the opposite direction in response.
@@ -527,7 +527,7 @@ There are also some reactions that can be used to construct Heisenburps via othe
 		\caption{Production of a glider if no nearby glider is present.}
 		\label{fig:heisenburp_reaction_p35_1}
 	\end{subfigure}
-	\caption{A collision of a glider, lightweight spaceship, and heavyweight spaceship (highlighted in \bgbox{yellowback2}{yellow}) that results in (a) nothing if there is a nearby passing glider (highlighted in \bgbox{aquaback}{aqua}), and (b) a single glider (highlighted in \bgbox{magentaback}{magenta}) if there is not a nearby passing glider. Since the passing glider is unaffected by the collision, this reaction can be used as a basis for a Heisenburp.}\label{fig:heisenburp_reaction_p35}
+	\caption{A collision of a glider, lightweight spaceship, and heavyweight spaceship (highlighted in \bgbox{yellowback2}{yellow}) that results in (a) nothing if there is a nearby passing glider (highlighted in \bgbox{greenpastel}{green}), and (b) a single glider (highlighted in \bgbox{orangeback2}{orange}) if there is not a nearby passing glider. Since the passing glider is unaffected by the collision, this reaction can be used as a basis for a Heisenburp.}\label{fig:heisenburp_reaction_p35}
 \end{figure}
 
 To actually construct a Heisenburp from this reaction, we just combine reactions that we saw earlier---we know how to create streams of gliders, middleweight spaceships, and heavyweight spaceships, so we have no problem creating the three objects needed to fuel the reaction, and then we can just use the stream inverter of our choice to ``fix'' the duplicated output stream (since the reaction creates a glider if and only if an input glider is \emph{not} present, which is the opposite of what we want). Figure~\ref{fig:p46_heisenburp_constructed} demonstrates one way to put these pieces together using period~$46$ circuitry, but any set of sufficiently-high period circuits work.
@@ -535,89 +535,38 @@ To actually construct a Heisenburp from this reaction, we just combine reactions
 \begin{figure}[!htb]
 	\centering
 	\embedlink{p46_heisenburp_constructed}{\vcenteredhbox{\patternimg{0.088}{p46_heisenburp_constructed}} \vcenteredhbox{\genarrow{230}} \vcenteredhbox{\patternimg{0.088}{p46_heisenburp_constructed_230}}}
-	\caption{A period~$46$ Heisenburp that uses the glider $+$ MWSS $+$ HWSS reaction from Figure~\ref{fig:heisenburp_reaction_p35}. These spaceships are all provided by guns that we have already seen---the MWSS gun (highlighted in \bgbox{greenpastel}{green}) and HWSS gun (highlighted in \bgbox{orangeback2}{orange}) were introduced in Figures~\ref{fig:tanners_p46_mwss_gun} and~\ref{fig:p46_hwss_gun}, respectively. The central three-spaceship collision produces a (non-highlighted) glider traveling northeast, which is destroyed by an inline inverter (highlighted in \bgbox{magentaback}{magenta} and originally introduced in Figure~\ref{fig:tanners_p46_inline_inverter}). However, if an input glider (highlighted in \bgbox{aquaback}{aqua}) is present then no glider is fed into the inline inverter, leading to the input glider's duplication.}\label{fig:p46_heisenburp_constructed}
+	\caption{A period~$46$ Heisenburp that uses the glider $+$ MWSS $+$ HWSS reaction from Figure~\ref{fig:heisenburp_reaction_p35}. These spaceships are all provided by guns that we have already seen---the MWSS gun (highlighted in \bgbox{aquaback}{aqua}) and HWSS gun (highlighted in \bgbox{magentaback}{magenta}) were introduced in Figures~\ref{fig:tanners_p46_mwss_gun} and~\ref{fig:p46_hwss_gun}, respectively. The central three-spaceship collision produces a (non-highlighted) glider traveling northeast, which is destroyed by an inline inverter (highlighted in \bgbox{orangeback2}{orange} and originally introduced in Figure~\ref{fig:tanners_p46_inline_inverter}). However, if an input glider (highlighted in \bgbox{greenpastel}{green}) is present then no glider is fed into the inline inverter, leading to the input glider's duplication.}\label{fig:p46_heisenburp_constructed}
 \end{figure}
 
 In fact, we can use these same ideas to even construct \emph{stationary} Heisenburps (i.e., Heisenburps made up entirely of still lifes, rather than oscillators and guns), as long as the spaceship that is being detected and duplicated has an accessible spark, like an xWSS. However, a glider Heisenburp must have an oscillating component, as gliders have no accessible sparks that could be detected by still lifes.
-
-% NJ is here in the clean-up process.
-
-% Exercise: Make p not-46 version of this Heisenburp?
-
-% Exercise: use (along with LWSS-turning reaction above) to create a gliderless MWSS gun
-% Follow-up exercise: use this device to them make a gliderless HWSS gun
-%x = 62, y = 92, rule = B3/S23
-%2$6b2o23b2o$6b2o23bo$17bo11bobo$15bo2bo10b2o$5b2o8b5o$5b2o8b3ob2o$16b
-%2obo$17b2o2$17b2o$16b2obo$5b2o8b3ob2o19b2o7b4o$5b2o8b5o19bo2bo6bo3bo$
-%15bo2bo19b2o2bo10bo$17bo21bo2bo4bob2obo$6b2o32bo6b3o$6b2o$40bo6b3o$39b
-%o2bo4bob2obo$38b2o2bo10bo$25b5o9bo2bo6bo3bo$24bo4b2o9b2o7b4o$29b2o$24b
-%2obobo$28bo6$7bo$5bo3bo$10bo$5bo4bo$6b5o3$26b3o$26bobo$25bo2bo$25b3o$
-%25b3o$27b2o24b2o$27bobo23b2o$28bo$35bob2o$34bo2b2o2b3o10b2o$21b2o11bo
-%6b2o11b2o$21b2o11b2o3b3o$36bo3bo2$36bo3bo$34b2o3b3o$34bo6b2o11b2o$18b
-%2o14bo2b2o2b3o10b2o$18b2o15bob2o2$53b2o$53b2o2$34bo5b2o$33b3o4b2o$32b
-%2ob2o2$18b3o3b3o4bobobobo$18bo2bobo2bo$18bo7bo5b2ob2o$32b2ob2o$19bo5bo
-%8bo$20b2ob2o8$32b2obo3bob2o$32bo2bo3bo2bo$33b3o3b3o2$18b2o5b2o$18b2o5b
-%2o2$29b2o13b2o$29b2o2b2o5b2o2b2o$33b2o5b2o!
-% And this one to create a gliderless LWSS gun:
-%#C Gliderless p46 HWSS-to-LWSS converter
-%x = 50, y = 66
-%29b2o$29bo$27bobo$18bo8b2o$b2o15b2o$b2o16b2o$14b2o2b2o2$47b2o$47b2o$
-%14b2o2b2o17b2o$b2o16b2o15bo$b2o15b2o15bo2b2o8b2o$18bo16bo2bo9b2o$35bob
-%o$36b2o2$36b2o$35bobo$35bo2bo9b2o$35bo2b2o8b2o$36bo$37b2o$47b2o$47b2o
-%6$6b2o$4bo4bo$10bo$4bo5bo$5b6o11$31b2o14b2o$30b2o15b2o$31b5o$32b4o$b2o
-%$b2o29b4o$31b5o$15b2o13b2o15b2o$2o12b2ob2o12b2o14b2o$2o13bo2bo$15bo2bo
-%$16b2o2$16b2o$15bo2bo$2o13bo2bo$2o12b2ob2o$15b2o7b2o$24bobo$b2o23bo$b
-%2o23b2o!
-%
-% EXERCISE: use MWSS out of the blue to double period of p46 LWSS gun (by Dean Hickerson APril 1998)
-%x = 170, y = 57, rule = B3/S23
-%153bo3bo$152bo5bo9b2o$135bo16bo15b2o$133bo2bo15b2o3bo$121b2o10b5o16b3o
-%$121b2o10b3ob2o$134b2obo16b3o$135b2o15b2o3bo$152bo15b2o$125b2o8b2o15bo
-%5bo9b2o$123bob3o6b2obo15bo3bo$121b3o4bo4b3ob2o$123bob3o5b5o$125b2o6bo
-%2bo$135bo17bo$154b2o$bo2bo88bo2bo42bo2bo10b2o13b2o$o91bo45bo23bo5b2o$o
-%3bo37bo49bo3bo41bo3bo18b3o$4o36bo3bo47b4o42b4o18bo3bo$45bo100b2o12b2ob
-%2o$40bo4bo98bo2bo$41b5o97b2o2bo13b3o$25b2o116bo2bo14b3o$14b3o8bob2o54b
-%2o8b3o34b2o11bobo$2o11bo4bo6bob2o53bo2bo6b2obo32b2ob2o$2o10bo5bo6bobo
-%53b2o2bo5bobobo32bo2bo11bo2bo$13bo9bob2o55bo2bo6bo35bo2bo11bo2bo$14b2o
-%7b2o8b2o48bo7bobo7b2o26b2o22b2o$33b2o66b2o41b2o7b2o8b2ob2o$14b2o67bo8b
-%o36b2o32b2ob2o$13bo8b2o58bo2bo4bo37bo2bo11bobo17b2ob2o$2o10bo5bo3b2o
-%44b2o11b2o2bo4b2o28b2o6bo2bo11bobo15bob2ob2obo$2o11bo4bo49b2o12bo2bo
-%34b2o6b2ob2o28b3o3b3o$14b3o66b2o45b2o30bo5bo4$146b3o3b3o$146bo2bobo2bo
-%$146bo7bo2$26b2o5b2o59b2o5b2o44bo5bo$26bob2ob2obo58bo2bo3bo2bo44b2ob2o
-%8b2o5b2o$27bobobobo60bo2bobo2bo58b2o5b2o$27bobobobo63bobo$26bo7bo60b3o
-%b3o$93b3o5b3o$93b2o7b2o$93b2o7b2o$28b2ob2o61bob2ob2obo$26bo2bobo2bo59b
-%3o3b3o$26b3o3b3o60bo5bo$27bo5bo2$26b2o5b2o59b2o5b2o43b2o5b2o$26b2o5b2o
-%59b2o5b2o43b2o5b2o!
-
-% Exercise: dirty heisenburp? e.g., heisenblinker?
-
-% Exercise: Use Summer's glider+LWSS+MWSS to make a p60 Heisenburp
 
 
 \section{Bumpers and Bouncers}\label{sec:bumper_bouncer}
 
 Some periodic circuitry works based only on the existence of certain sparks, and thus can be made to work at any period for which we know of oscillators that emit that spark. For example, the glider-reflecting reactions of Figure~\ref{fig:spark_glider_reflect} fall into this category, since any oscillator that produces the correct banana spark (such as a buckaroo) or duoplet spark (such as the twin bees shuttle) can be used to implement the reflection. However, most of the oscillators that emit these sparks have rather large period, so we now introduce two other spark-based glider reflectors that can make use of low-period oscillators.
 
-The first of these reactions is called the \emph{bumper}\index{bumper}\footnote{The p$3$ bumper was found in April 2018 by Arie Paap, but the reaction itself and most of the other bumpers were found in April 2016 by Tanner Jacobi.} (displayed in Figure~\ref{fig:bumper}), which consists of an eater~1, a loaf, and a spark\index{spark} of almost any type. This reflector is versatile enough that it can be used with a wide variety of sparkers, including some with period as low as~$3$ (see Figure~\ref{fig:bumper}).
+The first of these reactions is called the \emph{bumper}\index{bumper} (displayed in Figure~\ref{fig:bumper}),\footnote{The p$3$ bumper was found in April 2018 by Arie Paap, but the reaction itself and most of the other bumpers were found in April 2016 by Tanner Jacobi.} which consists of an eater~1, a loaf, and a spark\index{spark} of almost any type. This reflector is versatile enough that it can be used with a wide variety of sparkers, including some with period as low as~$3$ (see Figure~\ref{fig:bumper} for numerous examples). Since this reflector is color-preserving\index{glider!color}, just like the Snark, it perhaps does not seem too exciting at first glance (after all, stable reflectors work at \emph{any} period). However, there are at least three reasons why bumpers are still useful:\smallskip
+
+% NJ is here in the clean-up process.
 
 \begin{figure}[!htb]
 	\centering
-	\begin{tabular}{ccc}
+	\begin{tabular}{@{}ccc@{}}
 		\begin{subfigure}{.31\textwidth}
-			\centering\vspace*{0.4cm}
-			\patternimglink{0.11}{bumper}
-			\caption{The bumper itself. A spark must be present at the location marked in \bgbox{orangeback}{orange} $11$~generations after the phase shown here.}
+			\centering\vspace*{0.3cm}
+			\patternimglink{0.13}{bumper}
+			\caption{The bumper itself. A spark must be present at the location marked in \bgbox{redback}{red} $11$~generations after the input glider's phase shown here.}
 			\label{fig:bumper_raw}
 		\end{subfigure} &
 		\begin{subfigure}{.31\textwidth}
-			\centering\vspace*{-0.3cm}
-			\patternimglink{0.11}{p3_bumper_a}
+			\centering\vspace*{-0.4cm}
+			\patternimglink{0.11153846153}{p3_bumper_b}
 			\caption{A p$3$ bumper that uses a custom oscillator.}
 			\label{fig:p3_bumper_a}
 		\end{subfigure} &
-		\begin{subfigure}{.31\textwidth}
-			\centering\vspace*{-0.62cm}
-			\patternimglink{0.11}{p3_bumper_b}
+		\begin{subfigure}{.33\textwidth}
+			\centering\vspace*{-0.4cm}
+			\patternimglink{0.13}{p3_bumper_a}
 			\caption{Another p$3$ bumper that uses a custom oscillator.}
 			\label{fig:p3_bumper_b}
 		\end{subfigure} \\[2.2cm]
@@ -658,11 +607,9 @@ The first of these reactions is called the \emph{bumper}\index{bumper}\footnote{
 			\label{fig:p11_bumper}
 		\end{subfigure}
 	\end{tabular}
-	\caption{The bumper is a glider reflector that relies on a single spark. Because the spark is somewhat distant from the reflection reaction itself, it can be provided by a wide variety of different oscillators (outlined above in \bgbox{aquaback}{aqua}) and thus can work with many different periods. Note that the period~$4$ and~$11$ bumpers use a slightly different spark based on hassling a block. Some bumpers of other periods (including a very useful p$5$ bumper) are explored in Exercise~\ref{exer:bumper_high_period}.}
+	\caption{The bumper is a glider reflector that relies on a single spark. Because the spark is somewhat distant from the reflection reaction itself, it can be provided by a wide variety of different oscillators (outlined in \bgbox{aquaback}{aqua}) and can thus work with many different periods. Note that the period~$4$ and~$11$ bumpers use a slightly different spark based on hassling a block. Some bumpers of other periods (including a very useful p$5$ bumper) are explored in Exercise~\ref{exer:bumper_high_period}.}
 	\label{fig:bumper}
 \end{figure}
-
-Since this reflector is color-preserving\index{glider!color}, just like the Snark, it perhaps does not seem too exciting at first glance (after all, stable reflectors work at \emph{any} period). However, there are at least three reasons why this reflector is still useful:\smallskip
 
 \begin{enumerate}
 	\item[1)] It is considerably smaller (and, for many periods, easier to synthesize) than the Snark.\smallskip
@@ -939,22 +886,6 @@ The advantage of the new circuitry and constructions that we have available to u
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:make_inline_inverter_with_weird_period} \probdiff{3}
-		Use the reaction from Figure~\ref{fig:stream_inverter}, together with reflectors and eaters as necessary, to create an inline inverter for a glider stream with...\smallskip
-		
-		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item period~$43$.
-			
-			\item period~$36$.
-			
-			\item period~$25$.
-		\end{enumerate}
-	\end{problem}
-	
-	
-	\mfilbreak
-	
-	
 	\begin{problem}\label{exer:glider_to_hwss_to_glider}
 		The periodic circuits displayed below can be used to convert two gliders into an HWSS and an HWSS back into a glider.\footnote{These reactions were found and simplified by David Buckingham, Bill Gosper, Dieter Leithner, and Peter Rott.}
 		\begin{center}
@@ -1082,7 +1013,7 @@ The advantage of the new circuitry and constructions that we have available to u
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:ticker_tape_gun_memory_alter} \probdiff{1}
+	\begin{problem}\label{exer:ticker_tape_gun_memory_alter} \probdiff{2}
 		Fire some gliders at the memory cell\index{memory cell} from Figure~\ref{fig:p46_memory_cell} so as to change the bitstring that it stores to ``101010101010''.
 	\end{problem}
 	
@@ -1135,11 +1066,7 @@ The advantage of the new circuitry and constructions that we have available to u
 			
 			\noindent [Hint: Writing a computer program might be helpful here.]
 			
-			\item Collide the spark from this object with the following arrangement of twin bees and an eater~1 to create a double-barreled glider gun\index{double-barreled gun} (i.e., a gun that emits two side-by-side gliders per period).\footnote{This double-barreled gun was originally found by Dieter Leithner.}
-			
-			\begin{center}
-				\patternimglink{0.1}{twin_bees_partial_double_barrel}
-			\end{center}
+			\item Collide the spark from this object with the large-spark version of the twin bees shuttle from Figure~\ref{fig:twin_bees_reflect} so as to create a double-barreled glider gun\index{double-barreled gun} (i.e., a gun that emits two side-by-side gliders per period).\footnote{This double-barreled gun was originally found by Dieter Leithner.}
 		\end{enumerate}
 	\end{problem}
 	% Shows up in vaccuum gun and also p46 gliderless HWSS gun (twice)
@@ -1161,10 +1088,49 @@ The advantage of the new circuitry and constructions that we have available to u
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:2eng_corder_gun}
+	\begin{problem}\label{exer:2eng_corder_gun} \probdiff{3}
 		Use the $9$-glider synthesis from Exercise~\ref{exer:2_engine_cordership_synthesis} to construct a gun that fires $2$-engine Corderships.
+		
+		\noindent [Hint: Start off by choosing an appropriately large period. Corderships cannot follow behind each other at period~30 or~46, for example, so you need to use larger-period guns.]
 	\end{problem}
 	% Numerous possible solutions here: https://www.conwaylife.com/forums/viewtopic.php?t=&p=54750#p54750
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:mwss_out_of_blue_double_period} \probdiff{3}
+		Construct a p46 LWSS gun, and then apply an MWSS out of the blue to its output to turn it into a p92 LWSS gun.
+		
+		\noindent [Hint: The MWSS that the MWSS out of the blue reaction produces can collide with an LWSS so that they cleanly destroy each other.]
+	\end{problem}
+% SOLUTION (by Dean Hickerson April 1998):
+%x = 170, y = 57, rule = B3/S23
+%153bo3bo$152bo5bo9b2o$135bo16bo15b2o$133bo2bo15b2o3bo$121b2o10b5o16b3o
+%$121b2o10b3ob2o$134b2obo16b3o$135b2o15b2o3bo$152bo15b2o$125b2o8b2o15bo
+%5bo9b2o$123bob3o6b2obo15bo3bo$121b3o4bo4b3ob2o$123bob3o5b5o$125b2o6bo
+%2bo$135bo17bo$154b2o$bo2bo88bo2bo42bo2bo10b2o13b2o$o91bo45bo23bo5b2o$o
+%3bo37bo49bo3bo41bo3bo18b3o$4o36bo3bo47b4o42b4o18bo3bo$45bo100b2o12b2ob
+%2o$40bo4bo98bo2bo$41b5o97b2o2bo13b3o$25b2o116bo2bo14b3o$14b3o8bob2o54b
+%2o8b3o34b2o11bobo$2o11bo4bo6bob2o53bo2bo6b2obo32b2ob2o$2o10bo5bo6bobo
+%53b2o2bo5bobobo32bo2bo11bo2bo$13bo9bob2o55bo2bo6bo35bo2bo11bo2bo$14b2o
+%7b2o8b2o48bo7bobo7b2o26b2o22b2o$33b2o66b2o41b2o7b2o8b2ob2o$14b2o67bo8b
+%o36b2o32b2ob2o$13bo8b2o58bo2bo4bo37bo2bo11bobo17b2ob2o$2o10bo5bo3b2o
+%44b2o11b2o2bo4b2o28b2o6bo2bo11bobo15bob2ob2obo$2o11bo4bo49b2o12bo2bo
+%34b2o6b2ob2o28b3o3b3o$14b3o66b2o45b2o30bo5bo4$146b3o3b3o$146bo2bobo2bo
+%$146bo7bo2$26b2o5b2o59b2o5b2o44bo5bo$26bob2ob2obo58bo2bo3bo2bo44b2ob2o
+%8b2o5b2o$27bobobobo60bo2bobo2bo58b2o5b2o$27bobobobo63bobo$26bo7bo60b3o
+%b3o$93b3o5b3o$93b2o7b2o$93b2o7b2o$28b2ob2o61bob2ob2obo$26bo2bobo2bo59b
+%3o3b3o$26b3o3b3o60bo5bo$27bo5bo2$26b2o5b2o59b2o5b2o43b2o5b2o$26b2o5b2o
+%59b2o5b2o43b2o5b2o!
+	
+	
+	\mfilbreak
+	
+
+	\begin{problem}\label{exer:construct_p30_heisenburp} \probdiff{4}
+		Construct a version of the Heisenburp from Figure~\ref{fig:p46_heisenburp_constructed} that uses period~$30$ circuitry instead of period~$46$.
+	\end{problem}
 	
 	
 	\mfilbreak
@@ -1199,6 +1165,22 @@ The advantage of the new circuitry and constructions that we have available to u
 			\item period~$4$, making use of the fountain\index{fountain} sparker. % UPDATE
 		\end{enumerate}
 	\end{problemstar}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:make_inline_inverter_with_weird_period} \probdiff{3}
+		Use the reaction from Figure~\ref{fig:stream_inverter}, together with reflectors and eaters as necessary, to create a device that duplicates and inverts a glider stream with...\smallskip
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item period~$43$.
+			
+			\item period~$36$.
+			
+			\item period~$25$.
+		\end{enumerate}
+	\end{problem}
 	
 	
 	\mfilbreak
