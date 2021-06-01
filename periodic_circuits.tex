@@ -547,62 +547,60 @@ Some periodic circuitry works based only on the existence of certain sparks, and
 
 The first of these reactions is called the \emph{bumper}\index{bumper} (displayed in Figure~\ref{fig:bumper}),\footnote{The p$3$ bumper was found in April 2018 by Arie Paap, but the reaction itself and most of the other bumpers were found in April 2016 by Tanner Jacobi.} which consists of an eater~1, a loaf, and a spark\index{spark} of almost any type. This reflector is versatile enough that it can be used with a wide variety of sparkers, including some with period as low as~$3$ (see Figure~\ref{fig:bumper} for numerous examples). Since this reflector is color-preserving\index{glider!color}, just like the Snark, it perhaps does not seem too exciting at first glance (after all, stable reflectors work at \emph{any} period). However, there are at least three reasons why bumpers are still useful:\smallskip
 
-% NJ is here in the clean-up process.
-
 \begin{figure}[!htb]
 	\centering
 	\begin{tabular}{@{}ccc@{}}
-		\begin{subfigure}{.31\textwidth}
-			\centering\vspace*{0.3cm}
-			\patternimglink{0.13}{bumper}
+		\begin{subfigure}{.29\textwidth}
+			\centering\vspace*{0.15cm}
+			\patternimglink{0.145}{bumper}
 			\caption{The bumper itself. A spark must be present at the location marked in \bgbox{redback}{red} $11$~generations after the input glider's phase shown here.}
 			\label{fig:bumper_raw}
 		\end{subfigure} &
-		\begin{subfigure}{.31\textwidth}
-			\centering\vspace*{-0.4cm}
-			\patternimglink{0.11153846153}{p3_bumper_b}
+		\begin{subfigure}{.29\textwidth}
+			\centering\vspace*{-0.85cm}
+			\patternimglink{0.124408284}{p3_bumper_b}
 			\caption{A p$3$ bumper that uses a custom oscillator.}
 			\label{fig:p3_bumper_a}
 		\end{subfigure} &
-		\begin{subfigure}{.33\textwidth}
-			\centering\vspace*{-0.4cm}
-			\patternimglink{0.13}{p3_bumper_a}
+		\begin{subfigure}{.34\textwidth}
+			\centering\vspace*{-0.85cm}
+			\patternimglink{0.145}{p3_bumper_a}
 			\caption{Another p$3$ bumper that uses a custom oscillator.}
 			\label{fig:p3_bumper_b}
-		\end{subfigure} \\[2.2cm]
-		\begin{subfigure}{.31\textwidth}
-			\centering\vspace*{0.1cm}
-			\patternimglink{0.11}{p4_bumper}
+		\end{subfigure} \\[2.7cm]
+		\begin{subfigure}{.29\textwidth}
+			\centering
+			\patternimglink{0.12}{p4_bumper}
 			\caption{A p$4$ bumper that uses a custom oscillator.}
 			\label{fig:p4_bumper}
 		\end{subfigure} &
-		\begin{subfigure}{.31\textwidth}
-			\centering\vspace*{0.2cm}
-			\patternimglink{0.11}{p6_bumper}
+		\begin{subfigure}{.29\textwidth}
+			\centering
+			\patternimglink{0.12596273291}{p6_bumper}
 			\caption{A p$6$ bumper reflector that uses the unix sparker.\index{unix}}
 			\label{fig:p6_bumper}
 		\end{subfigure} &
-		\begin{subfigure}{.31\textwidth}
-			\centering\vspace*{0.4cm}
-			\patternimglink{0.11}{p7_bumper}
-			\caption[p7 bumper]{A p$7$ bumper that uses Beluchenko's p7 Figure~\ref{fig:sparky_p7}.}
+		\begin{subfigure}{.34\textwidth}
+			\centering
+			\patternimglink{0.13986206896}{p7_bumper}
+			\caption[p7 bumper]{A p$7$ bumper that uses Beluchenko's p7 from Figure~\ref{fig:sparky_p7}.}
 			\label{fig:p7_bumper}
-		\end{subfigure} \\[2.2cm]
-		\begin{subfigure}{.31\textwidth}
+		\end{subfigure} \\[2cm]
+		\begin{subfigure}{.29\textwidth}
 			\centering\vspace*{0.1cm}
-			\patternimglink{0.11}{p8_bumper}
+			\patternimglink{0.13}{p8_bumper}
 			\caption{A p$8$ bumper reflector that uses the blocker\index{blocker}.}
 			\label{fig:p8_bumper}
 		\end{subfigure} &
-		\begin{subfigure}{.31\textwidth}
+		\begin{subfigure}{.29\textwidth}
 			\centering\vspace*{0.1cm}
-			\patternimglink{0.11}{p9_bumper}
+			\patternimglink{0.13}{p9_bumper}
 			\caption{A p$9$ bumper reflector that uses the p$9$ thumb sparker\index{thumb spark}.}
 			\label{fig:p9_bumper}
 		\end{subfigure} &
-		\begin{subfigure}{.31\textwidth}
+		\begin{subfigure}{.34\textwidth}
 			\centering
-			\patternimglink{0.09}{p11_bumper}
+			\patternimglink{0.10124423963}{p11_bumper}
 			\caption{A p$11$ bumper reflector that uses a custom oscillator.}
 			\label{fig:p11_bumper}
 		\end{subfigure}
@@ -612,61 +610,63 @@ The first of these reactions is called the \emph{bumper}\index{bumper} (displaye
 \end{figure}
 
 \begin{enumerate}
-	\item[1)] It is considerably smaller (and, for many periods, easier to synthesize) than the Snark.\smallskip
+	\item[1)] It is smaller (and, for many periods, easier to synthesize) than the Snark.\smallskip
 	
-	\item[2)] The Snark has a repeat time of $43$~generations, whereas the bumper has a repeat time of just $34$~generations (though the input glider stream must be compatible with the period of the oscillator, so for example the p$3$, p$4$, and p$6$ bumpers actually have repeat time $36$ and the p$5$ and p$7$ bumpers have repeat time $35$).\smallskip
+	\item[2)] The Snark has a repeat time of $43$~generations, whereas the bumper has a repeat time of just $34$~generations. However, the input glider stream must be compatible with the period of the oscillator, so for example the p$3$, p$4$, and p$6$ bumpers actually have repeat time $36$, and the p$5$ and p$7$ bumpers actually have repeat time $35$.\smallskip
 	
 	\item[3)] Its reflected gliders have different timing than those reflected by the Snark. Specifically, a bumper produces a glider that has timing\index{glider!timing} exactly $5$~generations delayed from that of a glider reflected by a Snark. This is a useful feature when fine-tuning the positioning of gliders along glider tracks, as we can replace Snarks by bumpers to rephase the gliders (similar to how we used a wide variety of different one-time reflectors in Table~\ref{tab:180_degree_one_time_turners} to get precise glider timings).\smallskip
 \end{enumerate}
 
-Another closely-related reaction is called the \emph{bouncer}\index{bouncer}\footnote{The bouncer as well as most of the low-period pipsquirters that it can use were found by Noam Elkies in September 1998.} (displayed in Figure~\ref{fig:bouncer_reflector}), which consists of an eater~1, a boat, a block, and a domino spark that is typically provided by a pipsquirter\index{pipsquirter}. The bouncer is somewhat less versatile than the bumper since the domino spark is somewhat tricky to position correctly, but it also has the advantage of having a repeat time of just $22$~generations (versus the bumper's $34$ and the Snark's $43$). Furthermore, these reflectors are color-changing,\footnote{Their names are designed to help us remember which reaction is color-preserving and which one is color-changing---the bum\textbf{p}er is color-\textbf{p}reserving while the boun\textbf{c}er is color-\textbf{c}hanging.} which provides us with some extra flexibility that we did not yet have (recall that both the Snark and the bumper are color-preserving).
+There is another closely-related reaction called the \emph{bouncer}\index{bouncer} (displayed in Figure~\ref{fig:bouncer_reflector}),\footnote{The bouncer, as well as most of the low-period pipsquirters that it can use, were found by Noam Elkies in September 1998.} which consists of an eater~1, a boat, a block, and a domino spark that is typically provided by a pipsquirter\index{pipsquirter}. The bouncer is somewhat less versatile than the bumper since the domino spark is tricky to position correctly, but it also has the advantage of having a repeat time of just $22$~generations (versus the bumper's $34$ and the Snark's $43$). Furthermore, these reflectors are color-changing,\footnote{Their names are designed to help us remember which reaction is color-preserving and which one is color-changing---the bum\textbf{p}er is color-\textbf{p}reserving while the boun\textbf{c}er is color-\textbf{c}hanging.} which provides us with some extra flexibility that we did not yet have (recall that both the Snark and the bumper are color-preserving).\footnote{For a more complete and up-to-date collection of bumpers and bouncers, see \httpsurl{conwaylife.com/wiki/Bumper_and_bouncer_gallery}.}
 
-\begin{figure}[!htbp]
+\begin{figure}[!htb]
 	\centering
-	\begin{tabular}{ccc}
-		\begin{subfigure}{.31\textwidth}
-			\centering\vspace*{0.8cm}
-			\patternimg{0.12}{pipsquirter_raw_reflect}
-			\caption{The bouncer itself. A spark must be present at the \bgbox{orangeback}{orange} \emph{or} \bgbox{greenpastel}{green} location $3$~generations after this phase.}
+	\begin{tabular}{@{}ccc@{}}
+		\begin{subfigure}{.29\textwidth}
+			\centering\vspace*{0.2cm}
+			\patternimg{0.15}{pipsquirter_raw_reflect}
+			\caption{The bouncer itself. A spark must be present at the \bgbox{redback}{red} location, or one cell farther south, $14$~generations after the input glider's phase shown here.}
 			\label{fig:pipsquirter_raw_reflect}
 		\end{subfigure} &
-		\begin{subfigure}{.31\textwidth}
-			\centering\vspace*{-0.15cm}
-			\patternimglink{0.12}{p6_bouncer}
+		\begin{subfigure}{.33\textwidth}
+			\centering\vspace*{-1.1cm}
+			\patternimglink{0.13431372549}{p6_bouncer}
 			\caption{A p$6$ bouncer.}
 			\label{fig:p6_bouncer}
 		\end{subfigure} &
-		\begin{subfigure}{.31\textwidth}
-			\centering\vspace*{-0.8cm}
-			\patternimglink{0.1}{p7_bouncer}
+		\begin{subfigure}{.32\textwidth}
+			\centering\vspace*{-1.1cm}
+			\patternimglink{0.08526970954}{p7_bouncer}
 			\caption{A p$7$ bouncer.}
 			\label{fig:p7_bouncer}
-		\end{subfigure} \\[2.2cm]
-		\begin{subfigure}{.31\textwidth}
-			\centering\vspace*{0.5cm}
-			\patternimglink{0.11}{p8_bouncer}
+		\end{subfigure} \\[2.6cm]
+		\begin{subfigure}{.29\textwidth}
+			\centering
+			\patternimglink{0.11418918918}{p8_bouncer}
 			\caption{A p$8$ bouncer that uses a figure eight\index{figure eight}.}
 			\label{fig:p8_bouncer}
 		\end{subfigure} &
-		\begin{subfigure}{.31\textwidth}
-			\centering\vspace*{0.71cm}
-			\patternimglink{0.11}{p15_bouncer}
+		\begin{subfigure}{.33\textwidth}
+			\centering
+			\patternimglink{0.125}{p15_bouncer}
 			\caption{A p$15$ bouncer based on an oscillator called \emph{Karel's p15}\index{Karel's p15}.}
 			\label{fig:p15_bouncer}
 		\end{subfigure} &
-		\begin{subfigure}{.31\textwidth}
+		\begin{subfigure}{.32\textwidth}
 			\centering
-			\patternimglink{0.09}{p5_bouncer}
+			\patternimglink{0.07738095238}{p5_bouncer}
 			\caption{A closely-related p$5$ reflector that uses a dot sparker.}
 			\label{fig:p5_bouncer}
 		\end{subfigure}
 	\end{tabular}
-	\caption{Pipsquirters (as well as a handful of other domino sparkers) can be used to with the bouncer to reflect gliders. This allows for the creation of several new reflectors with quite a few periods.}
+	\caption{Pipsquirters (as well as a handful of other domino sparkers) can be used to with the bouncer to reflect gliders. This allows for the creation of several new reflectors with many periods.}
 	\label{fig:bouncer_reflector}
 \end{figure}
 
-While this family of reflectors only works directly with period of $6$ and greater, a very similar reaction can be made to work at period~$5$, thus giving us our very first period~$5$ reflector in Figure~\ref{fig:p5_bouncer}.\footnote{For a more complete and up-to-date collection of bumpers and bouncers, see \httpsurl{conwaylife.com/wiki/Bumper_and_bouncer_gallery}.} For a period~$5$ reflector based on the bumper, see Exercise~\ref{exer:bumper_high_period}.
+%While this family of reflectors only works directly with period of $6$ and greater, a very similar reaction can be made to work at period~$5$, thus giving us our very first period~$5$ reflector in Figure~\ref{fig:p5_bouncer}. For a period~$5$ reflector based on the bumper, see Exercise~\ref{exer:bumper_high_period}.
 
+
+% NJ is here in the clean-up process.
 
 \section{Glider Timing and Regulators}\label{sec:periodic_regulators}
 
