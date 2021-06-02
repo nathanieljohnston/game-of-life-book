@@ -70,22 +70,22 @@
 	}
 	\begin{tikzpicture}%
 		% LWSS GUN LEFT
-		\filldraw[color=darkorangeback,fill=orangeback2!50] (0,-1.2) -- (2,-1.2) -- (2,-2) -- (0,-2) -- cycle;
-		\draw[darkorangeback] (1,-2.13+0.5) node {\scriptsize LWSS gun};
-		\draw[thick,color=darkorangeback,-stealth] (2.5,-1.6) -- (3.5,-1.6);
+		\filldraw[color=darkmagentaback,fill=magentaback!50] (0,-1.2) -- (2,-1.2) -- (2,-2) -- (0,-2) -- cycle;
+		\draw[darkmagentaback] (1,-2.13+0.5) node {\scriptsize LWSS gun};
+		\draw[thick,color=darkmagentaback,-stealth] (2.5,-1.6) -- (3.5,-1.6);
 		\lwss{(2.5,-1.465)}{180}{0.08};
 		
 		% GLIDER GUN TOP RIGHT
-		\filldraw[color=darkyellowback,fill=yellowback2!50] (1.1,3.55) -- (2.6,3.55) -- (2.6,2.95) -- (1.1,2.95) -- cycle;
-		\draw[darkyellowback] (1.85,3.23) node {\scriptsize glider gun};
-		\draw[thick,color=darkyellowback,-stealth] (1.9,2.7) -- (5.6,-1) -- (3.7,-2.9);
-		\glider{(1.7,2.64)}{0}{0.08};
+		\filldraw[color=darkyellowback,fill=yellowback2!50] (3.8,0.85) rectangle (5.3,0.25);
+		\draw[darkyellowback] (4.55,0.53) node {\scriptsize glider gun};
+		\draw[thick,color=darkyellowback,-stealth] (4.6,0) -- (5.6,-1) -- (3.7,-2.9);
+		\glider{(4.4,-0.06)}{0}{0.08};
 		
 		% MWSS GUN TOP
-		\filldraw[color=darkgreenback,fill=greenpastel!50] (2.6,4.43) -- (4.6,4.43) -- (4.6,5.23) -- (2.6,5.23) -- cycle;
-		\draw[darkgreenback] (3.6,4.8) node {\scriptsize MWSS gun};
+		\filldraw[color=darkaquaback,fill=aquaback!50] (2.6,4.43) -- (4.6,4.43) -- (4.6,5.23) -- (2.6,5.23) -- cycle;
+		\draw[darkaquaback] (3.6,4.8) node {\scriptsize MWSS gun};
 		\draw[line width=2.4pt,color=white,-stealth] (3.625,3.85) -- (3.625,-0.8); % since this stream passes over another one
-		\draw[thick,color=darkgreenback,-stealth] (3.625,3.85) -- (3.625,-0.8);
+		\draw[thick,color=darkaquaback,-stealth] (3.625,3.85) -- (3.625,-0.8);
 		\mwss{(3.756,3.85)}{90}{0.08};
 
 		% BOAT-BIT
@@ -93,16 +93,16 @@
 		\draw[darkgray] (4.25,-1.3) node {\scriptsize boat-bit};
 
 		% LWSS GUN BOTTOM
-		\filldraw[color=darkgreenback,fill=greenpastel!50] (2.7,-3.9) -- (4.7,-3.9) -- (4.7,-4.7) -- (2.7,-4.7) -- cycle;
-		\draw[darkgreenback] (3.7,-4.83+0.5) node {\scriptsize LWSS gun};
-		\draw[thick,color=darkgreenback,-stealth] (3.625,-3.45) -- (3.625,-1.8);
+		\filldraw[color=darkaquaback,fill=aquaback!50] (2.7,-3.9) -- (4.7,-3.9) -- (4.7,-4.7) -- (2.7,-4.7) -- cycle;
+		\draw[darkaquaback] (3.7,-4.83+0.5) node {\scriptsize LWSS gun};
+		\draw[thick,color=darkaquaback,-stealth] (3.625,-3.45) -- (3.625,-1.8);
 		\lwss{(3.5,-3.4)}{270}{0.08};
 		
 		% GLIDER GUN BOTTOM
-		\filldraw[color=darkorangeback,fill=orangeback2!50] (5,-3.9) -- (6.5,-3.9) -- (6.5,-4.5) -- (5,-4.5) -- cycle;
-		\draw[darkorangeback] (5.75,-4.22) node {\scriptsize glider gun};
+		\filldraw[color=darkmagentaback,fill=magentaback!50] (5,-3.9) -- (6.5,-3.9) -- (6.5,-4.5) -- (5,-4.5) -- cycle;
+		\draw[darkmagentaback] (5.75,-4.22) node {\scriptsize glider gun};
 		\draw[line width=2.4pt,color=white,-stealth] (5.61,-3.65) -- (3.71,-1.75); % since this stream passes over another one
-		\draw[thick,color=darkorangeback,-stealth] (5.57,-3.61) -- (3.71,-1.75);
+		\draw[thick,color=darkmagentaback,-stealth] (5.57,-3.61) -- (3.71,-1.75);
 		\glider{(5.8,-3.58)}{180}{0.08};
 		
 		% GLIDER GUN BOTTOM RIGHT
@@ -112,13 +112,13 @@
 		\glider{(6.9,-0.18)}{180}{0.08};
 		
 		% OUTPUT GLIDER
-		\draw[thick,color=darkaquaback,-stealth] (5.08,-0.77) -- (7.6,1.75);
-		\draw[darkaquaback] (6.75,1.1) node[rotate=45] {\scriptsize output glider};
+		\draw[thick,color=darkorangeback,-stealth] (5.08,-0.77) -- (7.6,1.75);
+		\draw[darkorangeback] (6.75,1.1) node[rotate=45] {\scriptsize output glider};
 		\glider{(5.1,-1)}{90}{0.08};
 		
 		% INPUT GLIDER
-		\draw[thick,color=darkaquaback,-stealth] (0.2,2.05) -- (3.5,-1.25);
-		\draw[darkaquaback] (1.75,0.7) node[rotate=-45] {\scriptsize input glider};
+		\draw[thick,color=darkgreenback,-stealth] (0.2,2.05) -- (3.5,-1.25);
+		\draw[darkgreenback] (1.75,0.7) node[rotate=-45] {\scriptsize input glider};
 		\glider{(-0.049,2.04)}{0}{0.08};
 		
 		% BORDER

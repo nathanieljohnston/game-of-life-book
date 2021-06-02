@@ -666,103 +666,107 @@ There is another closely-related reaction called the \emph{bouncer}\index{bounce
 %While this family of reflectors only works directly with period of $6$ and greater, a very similar reaction can be made to work at period~$5$, thus giving us our very first period~$5$ reflector in Figure~\ref{fig:p5_bouncer}. For a period~$5$ reflector based on the bumper, see Exercise~\ref{exer:bumper_high_period}.
 
 
-% NJ is here in the clean-up process.
-
 \section{Glider Timing and Regulators}\label{sec:periodic_regulators}
 
-Oftentimes when trying to construct a large pattern, we know there will be a signal coming in from somewhere else in a mechanism---usually a glider arriving on some particular path. Once this input comes in, we want to perform a specific action, but it should only occur on a specific schedule. For example, we might want to send out a glider to be reflected back by a receding spaceship that has a known speed and position, but if the timing isn't exactly right then the reflection reaction won't work.
+Oftentimes when trying to construct a large pattern, we know there will be a signal coming in from somewhere else in a mechanism---usually a glider arriving on some particular path. Once this input comes in, we want to perform a specific action, but it should only occur on a specific schedule, so as to be compatible with some set of circuitry. For example, we might want to send out a glider to be reflected back by a receding spaceship that has a known speed and position, but if the timing isn't exactly right then the reflection reaction won't work.
 
-To illustrate how we can overcome this problem, suppose for now that we have a glider at some specific location, and we need to relocate it so that it appears at another pre-specified location with a certain timing. If the input glider is on some kind of schedule---say, it only has a possibility of showing up once every $30$~ticks, or more generally once every $N$~ticks for any reasonably high value of $N$---then this job is easy. We just line up a period~$N$ gun with an inline inverter of the same period (or another period~$N$ gun if necessary), adjust the phase of the period~$N$ gun so that it can safely trigger the desired action, and then find a way for the arriving glider to cleanly delete a glider from the stream that hits the inverter. The inverter then sends out a glider in response to the resulting hole in the stream, resulting in an output glider at the desired location and timing.
+To illustrate how we can overcome this problem, suppose for now that we have a glider at some specific location, and we need to relocate it so that it appears at another pre-specified location with a certain timing. If the input glider is on some kind of schedule---say, it only has a possibility of showing up once every $30$~ticks, or more generally once every $n$~ticks for any reasonably high value of $n$---then this job is easy. We just line up a period~$n$ gun with an inverter of the same period, and then find a way for the arriving glider to cleanly delete a glider from the stream that hits the inverter. The inverter then sends out a glider in response to the resulting hole in the stream, thus producing an output glider at the desired location and timing.
 
-The only somewhat tricky part here is getting the input glider to cleanly destroy a single glider in the inline inverter, since we do not have control over the inverter's position or timing (they are determined by where and when we want the output glider to appear). However, we can change the positioning and timing of the input glider in a variety of ways, the simplest of which is to add two reflectors to send the glider some distance in the opposite direction from the perpendicular stream (see Figure~\ref{fig:inverter_as_regulator}). Some trial-and-error is required here to produce a configuration of reflectors that results in the desired clean glider annihilation, but sooner rather than later, along the same lines as Exercises~\ref{exer:glider_cleanup}--\ref{exer:glider_block_collisions}, a workable two-glider collision will be found. As shown in Table~\ref{tab:2_glider_synth}, there are a lot of options that result in clean mutual annihilation---as long as we can make adjustments to change the collision timing, the odds are heavily in our favor that we will find one.
+The only somewhat tricky part here is getting the input glider to cleanly destroy a single glider in the stream that will be inverted, since we do not have control over the inverter's position or timing (they are determined by where and when we want the output glider to appear). However, we can change the positioning and timing of the input glider in a variety of ways, the simplest of which is to add some additional reflectors to the input glider's path (see Figure~\ref{fig:inverter_as_regulator}). Some trial-and-error is required here to produce a configuration of reflectors that results in the desired clean glider annihilation, but sooner rather than later, along the same lines as Exercises~\ref{exer:glider_cleanup}--\ref{exer:glider_block_collisions}, a workable two-glider collision will be found. As shown in Table~\ref{tab:2_glider_synth}, there are a lot of options that result in clean mutual annihilation---as long as we can make adjustments to change the collision timing, the odds are heavily in our favor that we will find one.
 
 \begin{figure}[!htb]
 	\centering
-	\begin{subfigure}{.48\textwidth}
+	\begin{subfigure}{.49\textwidth}
 		\centering
-		\embedlink{inverter_as_regulator_0}{\vcenteredhbox{\patternimg{0.08}{inverter_as_regulator_0_0}} \vcenteredhbox{\genarrow{120}} \vcenteredhbox{\patternimg{0.08}{inverter_as_regulator_0_120}}}
+		\embedlink{inverter_as_regulator_0}{\vcenteredhbox{\patternimg{0.086}{inverter_as_regulator_0_0}} \vcenteredhbox{\genarrow{120}} \vcenteredhbox{\patternimg{0.086}{inverter_as_regulator_0_120}}}
 		\caption{A glider (unfortunately) destroying $3$ gliders.}
 		\label{fig:inverter_as_regulator_0}
-	\end{subfigure} \ \ \ \ % 
+	\end{subfigure} \ \ \ % 
 	\begin{subfigure}{.48\textwidth}
 		\centering
-		\embedlink{inverter_as_regulator_1}{\vcenteredhbox{\patternimg{0.08}{inverter_as_regulator_1_0}} \vcenteredhbox{\genarrow{120}} \vcenteredhbox{\patternimg{0.08}{inverter_as_regulator_1_120}}}
+		\embedlink{inverter_as_regulator_1}{\vcenteredhbox{\patternimg{0.086}{inverter_as_regulator_1_0}} \vcenteredhbox{\genarrow{120}} \vcenteredhbox{\patternimg{0.086}{inverter_as_regulator_1_120}}}
 		\caption{Once re-timed, just one glider is destroyed.}
 		\label{fig:inverter_as_regulator_1}
 	\end{subfigure}
-	\caption{As positioned in (a), the input glider (highlighted in \bgbox{aquaback}{aqua}) destroys three of the gliders in the inline inverter (and thus three gliders are released to the northeast). We can ``correct'' this problem by using two buckaroos (highlighted in \bgbox{greenpastel}{green} in (b)) to reflect the glider twice and thus change the timing with which it hits the glider streem between the two Gosper glider guns. After some trial-and-error, we find the configuration in (b) where just a single glider is destroyed.}\label{fig:inverter_as_regulator}
+	\caption{An input glider (highlighted in \bgbox{greenpastel}{green}) being re-timed to fit with existing p$30$ circuitry by a Gosper glider gun firing into an inline inverter (highlighted in \bgbox{yellowback2}{yellow}). As positioned in (a), the input glider destroys three of the gliders in the stream, so three gliders are released to the northeast. We can correct this problem by using two buckaroos (highlighted in \bgbox{aquaback}{aqua} in (b)) to reflect the glider twice and thus change the timing with which it hits the glider streem between the two Gosper glider guns. After some trial-and-error, we find the configuration in (b) where just a single glider is destroyed.}\label{fig:inverter_as_regulator}
 \end{figure}
 
-What if $N$ (the period dictating when input gliders may appear) is low enough that we can't build a period~$N$ gun? For example, suppose that all we know about the input stream of gliders is that they are separated by generation gaps that are multiples of~$8$. We cannot build a period~$8$ gun to aim at an inline inverter (recall that the lowest-period glider stream possible is period~$14$), so instead we could reflect the glider with Snarks and period~$8$ bouncers and bumpers, which can be used to produce any possible output lane and timing (see Exercise~??).
+What if $n$ (the period to which the input and output gliders are aligned) is low enough that we can't build a period~$n$ gun? For example, suppose that all we know about the input stream of gliders is that they are separated by generation gaps that are multiples of~$8$. We cannot build a period~$8$ gun to aim at an inline inverter (recall that the lowest-period glider stream possible is period~$14$), but we could instead reflect the glider with Snarks and period~$8$ bouncers and bumpers, which can be used to produce any possible output lane and sufficiently slow timing (see Exercise~??).
 
-What if we go one step further and suppose that we do not know \emph{anything at all} about the input glider's timing, but we still want to be able to insert it into periodic circuitry? Unfortunately, neither of the previously-mentioned techniques work in this scenario:\smallskip
+What if we go one step further and suppose that we do not know \emph{anything at all} about the input glider's timing, but we still want to be able to insert it into periodic circuitry (i.e., we want to align that glider to some specific period)? Unfortunately, neither of the previously-mentioned techniques work in this scenario:\smallskip
 
 \begin{itemize}
-	\item We cannot simply have the input glider interrupt a stream from a glider gun (of any period) as in Figure~\ref{fig:inverter_as_regulator}. That method will work for some timings, but other timings will result in multiple gliders being deleted or even chaotic explosions.\smallskip
+	\item We cannot simply have the input glider interrupt a stream from a glider gun as in Figure~\ref{fig:inverter_as_regulator}. That method will work for some timings, but other timings will result in multiple gliders being deleted or even chaotic explosions.\smallskip
 	
-	\item We cannot simply reflect the input glider with Snarks, as we can only arrange the Snarks so as to get the first glider on the input stream to have the correct timing, but likely not subsequent gliders (e.g., if two gliders come in along the input stream with a separation of $58$ gliders, there is no way to use just Snarks so as to widen that gap to $60$ generations).\smallskip
+	\item We cannot simply reflect the input gliders to get whatever timing we want, as we can only arrange reflectors so as to get the first glider on the input stream to have the correct timing---not subsequent gliders (e.g., if two gliders come in along the input stream with a separation of $58$ gliders, there is no way to use just Snarks so as to widen that gap to $60$ generations).\smallskip
 \end{itemize}
 
-What we need instead is a reaction that always works the same way, producing an output aligned to a particular period, no matter what the precise timing of the input glider is. A mechanism that accomplishes this for a particular period is called a \emph{regulator}\index{regulator}, and a mechanism that can be adjusted to work at any period is known as a \emph{universal regulator}\index{universal regulator}.
+What we need instead is a reaction that always works the same way, producing an output glider aligned to a particular period, no matter what the precise timing of the input glider is (as long as the separation between consecutive input gliders is no smaller than the output period). A mechanism that accomplishes this for a particular output period is called a \emph{regulator}\index{regulator}, and a mechanism that can be adjusted to work at any period is known as a \emph{universal regulator}\index{universal regulator}.
 
 
 \subsection{A Universal Regulator}\label{sec:chapman_universal_regulator}
 
-We now describe how the first discovered universal regulator was built.\footnote{Found by Paul Chapman in March 2003.} The heart of this regulator is actually the boat bit\index{boat!bit} from way back in Section~\ref{sec:rocks_almost_eaters}. In particular, if we use an eater~1
-\begin{wrapfigure}{r}{0.38\textwidth}
-	\centering
-	\embedlink{boat_bit_into_glider}{\vcenteredhbox{\patternimg{0.09}{boat_bit_into_glider_0}} \vcenteredhbox{\genarrow{25}} \vcenteredhbox{\patternimg{0.09}{boat_bit_into_glider_25}}}
-	\caption{A duoplet spark turning a boat bit into a glider and beehive. If the boat is not present, nothing happens.}\label{fig:boat_bit_into_glider}
-\end{wrapfigure}
-(instead of a snake as in Figure~\ref{fig:boat_bit}), then a duoplet spark can be used to test whether or not the boat bit is present (i.e., whether or not the input glider has arrived yet). In particular, the duoplet spark does not come close enough to the eater~1 to affect it, but if the boat bit is present then the boat and eater are both destroyed, producing an output glider as in Figure~\ref{fig:boat_bit_into_glider} (a beehive is also created but this can easily be destroyed later).
-
-The reason that this reaction is so useful is that the output glider always has a precise known timing relative to the creation of the duoplet spark, rather than relative to the timing of the input glider. Thus if we create the duoplet spark on some periodic schedule then then output glider will necessarily follow the same schedule. We could use a known oscillator (like the twin bees shuttle, as in Figure~\ref{fig:twin_bees_shuttle_spark}) to create this spark, but the downside of doing so is that the regulator will then be tied to the period of that oscillator. Instead, we use a spaceship collision to create it, as we are then only restricted to periods for which we know how to create glider guns (which, as we will see in Chapter~\ref{chp:guns}, is not actually a restriction at all). One method of colliding a glider and an LWSS to create this spark is shown in Figure~\ref{fig:make_sync_glider}, as is the entire glider $\rightarrow$ boat bit $\rightarrow$ synchronized glider conversion process.
+We now describe how the first universal regulator was built.\footnote{By Paul Chapman in March 2003.} The heart of this regulator is actually the boat bit\index{boat!bit} from way back in Section~\ref{sec:rocks_almost_eaters}, which is displayed again in Figure~\ref{fig:boat_bit_ch6}. In particular, if we use an eater~1 (instead of a snake as in Figure~\ref{fig:boat_bit}), then a duoplet spark can be used to test whether or not the boat bit is present (i.e., whether or not the input glider has arrived yet). In particular, the duoplet spark does not come close enough to the eater~1 to affect it, but if the boat bit is present then the boat and eater are both destroyed, producing an output glider as in Figure~\ref{fig:boat_bit_into_glider}. A beehive is also created, but this can easily be destroyed later.
 
 \begin{figure}[!htb]
 	\centering
-	\embedlink{make_sync_glider}{\vcenteredhbox{\patternimg{0.12}{make_sync_glider_0_0}} \vcenteredhbox{\genarrow{29}} \vcenteredhbox{\patternimg{0.12}{make_sync_glider_0_29}} \qquad \vcenteredhbox{\patternimg{0.12}{make_sync_glider_1_0}} \vcenteredhbox{\genarrow{29}} \vcenteredhbox{\patternimg{0.12}{make_sync_glider_1_29}} \qquad \vcenteredhbox{\patternimg{0.12}{make_sync_glider_2_0}} \vcenteredhbox{\genarrow{29}} \vcenteredhbox{\patternimg{0.12}{make_sync_glider_2_29}} \\[0.5cm] \vcenteredhbox{\patternimg{0.12}{make_sync_glider_3_0}} \vcenteredhbox{\genarrow{29}} \vcenteredhbox{\patternimg{0.12}{make_sync_glider_3_29}} \qquad \vcenteredhbox{\patternimg{0.12}{make_sync_glider_4_0}} \vcenteredhbox{\genarrow{29}} \vcenteredhbox{\patternimg{0.12}{make_sync_glider_4_29}} \qquad \vcenteredhbox{\patternimg{0.12}{make_sync_glider_5_0}} \vcenteredhbox{\genarrow{29}} \vcenteredhbox{\patternimg{0.12}{make_sync_glider_5_29}}}
-	\caption{An input glider (highlighted in \bgbox{aquaback}{aqua}) with six different timings hitting an eater~1 so as to become a boat bit. The glider-and-LWSS collision (highlighted in \bgbox{orangeback2}{orange}) creates a duoplet spark that turns that boat bit into an output glider (as in Figure~\ref{fig:boat_bit_into_glider}). If the timing is such that the boat bit was already created before the collision occurs (as in the bottom three input timings), the output glider forms and its timing does not depend on that of the input glider. If the boat bit has not yet been formed (as in the top three input timings), nothing happens and the output glider will not be created until we repeat the glider-and-LWSS collision.}\label{fig:make_sync_glider}
+	\begin{tabular}{@{}cc@{}}
+		\begin{minipage}[t]{0.515\textwidth}
+			\centering
+			\embedlink{boat_bit}{\vcenteredhbox{\patternimg{0.1}{boat_bit_0}} \vcenteredhbox{\genarrow{12}} \vcenteredhbox{\patternimg{0.1}{boat_bit_12}} \vcenteredhbox{\genarrow{8}} \vcenteredhbox{\patternimg{0.1}{boat_bit_20}}}
+			\caption{A boat-bit using an eater~1. The first input glider creates a boat, and the second destroys it.}\label{fig:boat_bit_ch6}
+		\end{minipage} &
+		\begin{minipage}[t]{0.455\textwidth}
+			\centering
+			\embedlink{boat_bit_into_glider}{\vcenteredhbox{\patternimg{0.096330275229}{boat_bit_into_glider_0}} \vcenteredhbox{\genarrow{25}} \vcenteredhbox{\patternimg{0.096330275229}{boat_bit_into_glider_25}}}
+			\caption{A duoplet spark turning a boat bit into a glider and beehive.}\label{fig:boat_bit_into_glider}
+		\end{minipage}
+	\end{tabular}
 \end{figure}
 
-This collision of a glider and an LWSS has the additional advantage of destroying the beehive that was left behind by the duoplet spark in Figure~\ref{fig:boat_bit_into_glider}, so streams of these two spaceships clean up the mess from their own reaction.
-
-We now have almost everything that we need to construct a universal regulator. The only trick is that we need a way to reconstruct the eater~1 after it is destroyed by the reaction in Figure~\ref{fig:boat_bit_into_glider}. We have already seen that two gliders can be used to synthesize an eater~1, but for spacing reasons we will instead use a head-on LWSS-and-MWSS collision. However, we cannot \emph{always} fire these spaceships at each other, since if no input glider is present then they will collide with the eater~1 that has already been synthesized. This problem can be fixed by using streams of gliders to suppress the lightweight and middleweight spaceships, and then using the output glider to suppress one of those suppressing gliders (thus letting a single LWSS and MWSS through, so the eater~1 is rebuilt).
-
-A schematic for and period~$60$ implementation of this universal regulator are displayed in Figure~\ref{fig:universal_regulator_periodic}, but we emphasize that a universal regulator with any (sufficiently large) period can be constructed using these same reactions just by swapping out all of the period~$60$ machinery in this mechanism for reactions and guns that work with other periods. It is also worth noting that we have not yet explicitly seen some of the mechanisms that we use here to turn period~$30$ guns into period~$60$ guns---techniques like these will be covered in depth in Chapter~\ref{chp:guns}.
+The reason that this reaction is so useful is that the output glider always has a precise known timing relative to the creation of the duoplet spark, rather than relative to the timing of the input glider. Thus if we create the duoplet spark on some periodic schedule then then output glider will necessarily follow the same schedule. We could use a known oscillator (like the twin bees shuttle, as in Figure~\ref{fig:twin_bees_shuttle_spark}) to create this spark, but the downside of doing so is that the regulator will then be tied to the period of that oscillator. Instead, we use a spaceship collision to create it, as we are then only restricted to periods for which we know how to create glider guns (which, as we will see in Chapter~\ref{chp:guns}, is not actually a restriction at all). One method of colliding a glider and an LWSS to create this spark is shown in Figure~\ref{fig:make_sync_glider}, as is the entire glider $\rightarrow$ boat bit $\rightarrow$ synchronized glider conversion process. This glider-and-LWSS collision has the additional advantage of destroying the beehive that was left behind by the duoplet spark in Figure~\ref{fig:boat_bit_into_glider}, so streams of these two spaceships clean up the mess from their own reaction.
 
 \begin{figure}[!htb]
 	\centering
-	\begin{subfigure}{.48\textwidth}
-		\centering
-		\includegraphics[width=1.02\textwidth]{periodic_circuitry/regulator_schematic.pdf}
-		\caption{A schematic for the universal regulator.}
+	\embedlink{make_sync_glider}{\vcenteredhbox{\patternimg{0.133}{make_sync_glider_0_0}} \vcenteredhbox{\genarrow{29}} \vcenteredhbox{\patternimg{0.133}{make_sync_glider_0_29}} \qquad \vcenteredhbox{\patternimg{0.133}{make_sync_glider_1_0}} \vcenteredhbox{\genarrow{29}} \vcenteredhbox{\patternimg{0.133}{make_sync_glider_1_29}} \qquad \vcenteredhbox{\patternimg{0.133}{make_sync_glider_2_0}} \vcenteredhbox{\genarrow{29}} \vcenteredhbox{\patternimg{0.133}{make_sync_glider_2_29}} \\[0.5cm] \vcenteredhbox{\patternimg{0.133}{make_sync_glider_3_0}} \vcenteredhbox{\genarrow{29}} \vcenteredhbox{\patternimg{0.133}{make_sync_glider_3_29}} \qquad \vcenteredhbox{\patternimg{0.133}{make_sync_glider_4_0}} \vcenteredhbox{\genarrow{29}} \vcenteredhbox{\patternimg{0.133}{make_sync_glider_4_29}} \qquad \vcenteredhbox{\patternimg{0.133}{make_sync_glider_5_0}} \vcenteredhbox{\genarrow{29}} \vcenteredhbox{\patternimg{0.133}{make_sync_glider_5_29}}}
+	\caption{An input glider (highlighted in \bgbox{greenpastel}{green}) with six different timings hitting an eater~1 so as to become a boat bit. The glider-and-LWSS collision (highlighted in \bgbox{magentaback}{magenta}) creates a duoplet spark that turns that boat bit into an output glider (as in Figure~\ref{fig:boat_bit_into_glider}). If the timing is such that the boat bit was already created before the collision occurs, as in the bottom three input timings, an output glider is created (highlighted in \bgbox{orangeback2}{orange}), and its timing does not depend on that of the input glider. If the boat bit has not yet been formed, as in the top three input timings, nothing happens and the output glider will not be created until we repeat the glider-and-LWSS collision.}\label{fig:make_sync_glider}
+\end{figure}
+
+We now have almost everything that we need to construct a universal regulator. The only trick is that we need a way to reconstruct the eater~1 after it is destroyed by the reaction in Figure~\ref{fig:boat_bit_into_glider}. We have already seen that two gliders can be used to synthesize an eater~1, but for spacing reasons we will instead use a head-on LWSS-and-MWSS collision. However, if we just aim LWSS and MWSS guns at each other so as to implement this synthesis, we arrive at a problem: if no input glider is detected during a period, then the LWSS/MWSS pair will collide with an already-existing eater~1 instead of synthesizing it. This problem can be resolved by using streams of gliders to suppress the lightweight and middleweight spaceships, and then using the output glider to suppress one of those suppressing gliders (thus letting a single LWSS and MWSS through, so the eater~1 is rebuilt).
+
+A schematic for, and period~$60$ implementation of, this universal regulator are displayed in Figure~\ref{fig:universal_regulator_periodic}, but we emphasize that a universal regulator with any (sufficiently large) period can be constructed using these same reactions by swapping out all of the period~$60$ machinery for reactions and guns that work with other periods. It is also worth noting that we have not yet explicitly seen some of the mechanisms that we use here to turn period~$30$ guns into period~$60$ guns---techniques like these will be covered in depth in Chapter~\ref{chp:guns} (see Exercise~\ref{exer:p60_regulator_mwss_emulator} as well).
+
+\begin{figure}[!htb]
+	\centering
+	\begin{subfigure}{.485\textwidth}
+		\centering\hspace*{-0.42cm}
+		\includegraphics[width=1.062\textwidth]{periodic_circuitry/regulator_schematic.pdf}
+		\caption{A schematic for a universal regulator.}
 		\label{fig:universal_regulator_schematic}
-	\end{subfigure} \ \ \ \ % 
-	\begin{subfigure}{.48\textwidth}
-		\centering
-		\begin{tikzpicture}[scale=0.9]%
-		\draw (-0.29,5.69) node[anchor=north west]{\patternimglink{0.076}{universal_regulator_periodic}};
-		
-		% BORDER
-		\draw[gridgray] (-0.2,5.59) -- (7.8,5.59) -- (7.8,-5) -- (-0.2,-5) -- cycle;
-		\end{tikzpicture}
-		\caption{A period~$60$ implementation of the regulator.}
+	\end{subfigure} \ \ \ % 
+	\begin{subfigure}{.485\textwidth}
+		\centering\hspace*{-0.2cm}
+		\patternimglink{0.081}{universal_regulator_periodic}
+		\caption{A period~$60$ implementation of this regulator.}
 		\label{fig:universal_regulator_periodic_real}
 	\end{subfigure}
-	\caption{A universal regulator's (a) schematic and (b) period~$60$ implementation. This device takes in a glider with \emph{any} timing from the northwest input lane and produces an output glider along the northeast lane with timing that is synchronized to some period (both lanes are highlighted in \bgbox{aquaback}{aqua}). The left LWSS gun and bottom-right glider gun (highlighted in \bgbox{orangeback2}{orange}) are used to create the duoplet spark reaction from Figure~\ref{fig:make_sync_glider} that is at the heart of the regulator. The top MWSS gun and bottom LWSS gun (highlighted in \bgbox{greenpastel}{green}) then rebuild the central eater~1 (thus allowing more input gliders), but only if the output glider has destroyed a glider from each of the suppressing glider streams (highlighted in \bgbox{yellowback2}{yellow}). Note that the rightmost suppressing glider path in the final regulator (b) was adjusted for spacing reasons.}\label{fig:universal_regulator_periodic}
+	\caption{A universal regulator's (a) schematic and (b) period~$60$ implementation. This device takes in a glider with \emph{any} timing from the northwest input lane (highlighted in \bgbox{greenpastel}{green}) and produces an output glider along the northeast lane with timing that is synchronized to some period (highlighted in \bgbox{orangeback2}{orange}). The left LWSS gun and bottom-right glider gun (highlighted in \bgbox{magentaback}{magenta}) are used to create the duoplet spark reaction from Figure~\ref{fig:make_sync_glider} that is at the heart of the regulator. The top MWSS gun and bottom LWSS gun (highlighted in \bgbox{aquaback}{aqua}) then rebuild the central eater~1 (thus allowing more input gliders), but only if the output glider has destroyed a glider from each of the suppressing glider streams (highlighted in \bgbox{yellowback2}{yellow}). These suppressing glider paths in the regulator (b) were adjusted for spacing reasons.}\label{fig:universal_regulator_periodic}
 \end{figure}
-
-% Note repeat time 355 somewhere
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Notes and Historical Remarks}\label{sec:periodic_circuits_notes}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Because of their simplicity, many of the period~$30$ and period~$46$ mechanisms that we investigated in this chapter were discovered as early as the 1970s and '80s, so most of the earliest ``interesting'' patterns that were constructed in Conway's Game of Life make use of these components. Dean Hickerson built many of the most well-known of these constructions throughout the 1990's, including the first primer (which made use of essentially the same techniques, but slightly different components, as the one we constructed in Section~\ref{sec:primer}). Some other interesting constructions that he made mostly from these components include:\smallskip
+Because of their simplicity, many of the period~$30$ and period~$46$ mechanisms that we investigated in this chapter were discovered as early as the 1970s and '80s, so most of the earliest ``interesting'' patterns that were constructed in Conway's Game of Life make use of these components. Dean Hickerson built many of the most well-known of these constructions throughout the 1990s, including the first primer (which made use of essentially the same techniques, but slightly different components, as the one we constructed in Section~\ref{sec:primer}). Some other interesting constructions that he made mostly from these components include:\smallskip
 
 \begin{itemize}
-	\item A \emph{twin primer}\index{twin primer}---a gun that emits a stream of lightweight spaceships with the property that the $n$-th spaceship in the stream is present if and only if both $n-2$ and $n$ are prime (see Exercise~\ref{exer:twin_primer}). This pattern is particularly interesting since it is currently unknown whether or not there are infinitely many twin primes (in fact, this is one of the biggest open problems in number theory), so it is unknown whether or not it emits infinitely many lightweight spaceships.\smallskip
+	\item A \emph{twin primer}\index{twin primer}---a gun that emits a stream of lightweight spaceships with the property that the $n$-th spaceship in the stream is present if and only if both $n-2$ and $n$ are prime (see Exercise~\ref{exer:twin_primer}). This pattern is particularly interesting since it is currently unknown whether or not there are infinitely many twin primes (in fact, this is one of the biggest open problems in all of mathematics), so it is unknown whether or not it emits infinitely many lightweight spaceships.\smallskip
+	
+	% NJ is here. Don't forget to add snark/reflector timing exercise from earlier.
+	% Also mention easier any-period inversion method first!
+	% Exercise: Find repeat time and explain why it's not just 60, for example. (it is 355)
+	% Recolor stuff above. Modify exercise that calls the reflectors magenta.
 	
 	\item A pseudo-random glider generator based on using the toggle from Figure~\ref{fig:toggle} within a glider loop. If the output from a toggle is looped around and fed back into itself, the resulting stream of gliders ends up looking almost completely random as it turns itself off and on in increasingly erratic intervals. If we then place a glider duplicator somewhere on the loop, this random-looking stream of gliders can be emitted as an extremely high-period gun.
 	
@@ -952,13 +956,13 @@ The advantage of the new circuitry and constructions that we have available to u
 	
 	
 	\begin{problem}\label{exer:twin_primer} \probdiff{3}
-		The collision of a glider with an LWSS shown below is called a \emph{filter}\index{filter}. It results in a single block that destroys the next incoming glider, letting the next incoming LWSS pass by unharmed, thus doubling the period of the LWSS stream.\smallskip
-		
-		\noindent Add this reaction (and potentially some guns and eaters, as necessary) to the primer to create a \emph{twin primer}\index{twin primer}---a pattern that creates a stream of lightweight spaceships for which the $n$-th LWSS in the stream is present if and only if $n-2$ and $n$ are both prime.
+		The collision of a glider with an LWSS shown below is called a \emph{filter}\index{filter}. It results in a single block that destroys the next incoming glider, letting the next incoming LWSS pass by unharmed, thus doubling the period of an LWSS stream.
 		
 		\begin{center}
 			\embedlink{exercise_lwss_filter}{\vcenteredhbox{\patternimg{0.1}{exercise_lwss_filter_0}} \vcenteredhbox{\genarrow{6}} \vcenteredhbox{\patternimg{0.1}{exercise_lwss_filter_6}}}
 		\end{center}
+		
+		\noindent Add this reaction (and potentially some guns and eaters, as necessary) to the primer to create a \emph{twin primer}\index{twin primer}---a pattern that creates a stream of lightweight spaceships for which the $n$-th LWSS in the stream is present if and only if $n-2$ and $n$ are both prime.
 	\end{problem}
 
 
@@ -1136,7 +1140,7 @@ The advantage of the new circuitry and constructions that we have available to u
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:bumper_bouncer_wrong_color}
+	\begin{problem}\label{exer:bumper_bouncer_wrong_color} \probdiff{1}
 		Explain why it is not possible to construct glider loop oscillators consisting only of the following sets of reflectors, and experiment with them to convince yourself that they really are impossible.\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
@@ -1154,16 +1158,30 @@ The advantage of the new circuitry and constructions that we have available to u
 		Construct a bumper reflector with...\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item period~$16$.
+			\item \probdiff{1} period~$16$.
 			
-			\item period~$22$.
+			\item \probdiff{1} period~$22$.
 			
-			\item period~$15$. [Hint: Try using the sparker from Figure~\ref{fig:p15_bouncer}.]
+			\item \probdiff{1} period~$4$, making use of the fountain\index{fountain} sparker.
 			
-			\item period~$5$. [Hint: Try modifying the sparker from Figure~\ref{fig:p5_bouncer}.]
+			\item \probdiff{2} period~$15$.
 			
-			\item period~$4$, making use of the fountain\index{fountain} sparker. % UPDATE
+			\item \probdiff{3} period~$5$.
+			
+			\noindent [Hint: Modify the sparker from Figure~\ref{fig:p5_bouncer}.]
 		\end{enumerate}
+	\end{problemstar}
+
+
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:p29_pipsquirter} \probdiff{2}
+		Use the \emph{skewed p$29$ pre-pulsar shuttle}\index{pre-pulsar shuttle} displayed below to create a p$29$ bouncer reflector.\footnote{This reflector was originally found by Matthias Merzenich in August 2013.}
+		
+		\begin{center}
+			\patternimglink{0.1}{skewed_p29}
+		\end{center}
 	\end{problemstar}
 
 
@@ -1186,9 +1204,12 @@ The advantage of the new circuitry and constructions that we have available to u
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:p11_bumper_not_useful}
-		Explain why the period~$11$ bumper from Figure~\ref{fig:p11_bumper} is not useful for glider streams of period below $121$. [Hint: You can use smaller bumpers in place of it.]
+	\begin{problem}\label{exer:p11_bumper_not_useful} \probdiff{2}
+		Explain why the period~$11$ bumper from Figure~\ref{fig:p11_bumper} is not particularly useful for glider streams of period below $121$.
+		
+		\noindent [Hint: There are smaller reflectors that can be used in its place.]
 	\end{problem}
+	% SOLUTION: Minimum repeat time is 44 generations. For p44, 55, ..., 110, can use smaller p4, p5, p6, p7, p8, p9, and p5 bumpers instead.
 	
 	
 	\mfilbreak
@@ -1198,21 +1219,19 @@ The advantage of the new circuitry and constructions that we have available to u
 		The smallest-period single-glider Snark loop has period~$216$ and is displayed in Figure~\ref{fig:minimum_snark_loop}. Note that the still life in the center of this loop is the weld of four eater~1s from Exercise~\ref{exer:eater_weld}(c).\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item Move each of the Snarks outward by $1$~cell (e.g., move the northern Snark north by $1$ cell) and un-weld the central eater~$1$s. What is the period of the resulting glider loop? Explain how you could have determined this period without explicitly constructing this modified glider loop.
+			\item \probdiff{1} Move each of the Snarks outward by $1$~cell (e.g., move the northern Snark north by $1$ cell) and un-weld the central eater~$1$s. What is the period of the resulting glider loop? Explain how you could have determined this period without explicitly constructing this modified glider loop.
 			
-			\item Replace the Snarks in the glider loop from part~(a) by p$4$~bumpers in a way that keeps the glider on the same lanes. What is the period of the resulting glider loop? Explain how you could have determined this period without explicitly constructing this modified glider loop.
+			\item \probdiff{2} Replace the Snarks in the glider loop from part~(a) by p$4$~bumpers in a way that keeps the glider on the same lanes. What is the period of the resulting glider loop? Explain how you could have determined this period without explicitly constructing this modified glider loop.
 			
-			\item Replace one of the p$4$ bumpers in the glider loop from part~(b) with a p$6$ bumper.
+			\item \probdiff{1} Replace one of the p$4$ bumpers in the glider loop from part~(b) with a p$6$ bumper.
 			
-			\item If you replace one of the p$4$ bumpers in the glider loop from part~(b) with a p$5$ bumper, the loop stops working. Why?
+			\item \probdiff{1} If you replace one of the p$4$ bumpers in the glider loop from part~(b) with a p$5$ bumper, the loop stops working. Why?
 			
-			\item Move the bumpers in the glider loop from part~(b) closer together so as to alter the period of the loop. Once you have made a loop with a suitable period, replace one of the p$4$ bumpers by a p$5$ bumper.
+			\item \probdiff{2} Move some of the bumpers in the glider loop from part~(b) closer together so as to alter the period of the loop. Once you have made a loop with a suitable period, replace one of the p$4$ bumpers by a p$5$ bumper.
 			
-			\noindent\begin{minipage}{\linewidth}
-				\centering
-				\patternimglink{0.1}{minimum_snark_loop}
-				\captionof{figure}{\footnotesize A single-glider loop built from Snarks with the smallest possible period---$216$.}\label{fig:minimum_snark_loop}\medskip
-			\end{minipage}
+			\noindent\begin{center}
+				\patternimglink{0.08}{minimum_snark_loop}
+			\end{center}
 		\end{enumerate}
 	\end{problemstar}
 	
@@ -1220,27 +1239,16 @@ The advantage of the new circuitry and constructions that we have available to u
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:p29_pipsquirter}
-		Use the \emph{skewed p$29$ pre-pulsar shuttle}\index{pre-pulsar shuttle} displayed below to create a p$29$ bouncer reflector.\footnote{This reflector was originally found by Matthias Merzenich in August 2013.}
-		
-		\begin{center}
-			\patternimglink{0.1}{skewed_p29}
-		\end{center}
-	\end{problemstar}
-	
-	
-	\mfilbreak
-	
-	
-	\begin{problem}\label{exer:p60_regulator_mwss_emulator}
+	\begin{problem}\label{exer:p60_regulator_mwss_emulator} \probdiff{2}
 		The lightweight spaceship guns in Figure~\ref{fig:universal_regulator_periodic_real} each contain a middleweight emulator. Describe what role this oscillator plays in the gun.
 	\end{problem}
+	% SOLUTION: Filters the p30 LWSS stream to be p60
 	
 	
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:p60_regulator_reflectors}
+	\begin{problem}\label{exer:p60_regulator_reflectors} \probdiff{2}
 		Two reflectors are highlighted in magenta in Figure~\ref{fig:universal_regulator_periodic_real}. Identify these reflectors (we have discussed them each earlier).
 	\end{problem}
 	
@@ -1252,11 +1260,11 @@ The advantage of the new circuitry and constructions that we have available to u
 		Changing the number of gliders in the loop portion of the pseuro-random glider-generating gun from Figure~\ref{fig:prng_gun} can drastically change its period.\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item If you move the northwest portion of the loop northwest by an additional $15$~cells (and rephase reflectors as necessary), how many additional gliders fit in the loop?
+			\item \probdiff{1} If you move the northwest portion of the loop northwest by an additional $15$~cells (and rephase reflectors as necessary), how many additional gliders fit in the loop?
 			
-			\item Determine the period of the gun constructed in part~(a). [Hint: Computer software may be useful here---it is massive.]
+			\item \probdiff{3} Determine the period of the gun constructed in part~(a). [Hint: Computer software may be useful here---it is massive.]
 			
-			\item Move the northwest portion of the loop northwest by an \emph{additional} $15$~cells (again, rephase reflectors as necessary). Determine the period of this gun. [Hint: Its period is now small enough that you \emph{may} be able to compute it by hand if you are clever.]
+			\item \probdiff{2} Move the northwest portion of the loop northwest by an \emph{additional} $15$~cells (again, rephase reflectors as necessary). Determine the period of this gun. [Hint: Its period is now small enough that you \emph{may} be able to compute it by hand if you are clever.]
 		\end{enumerate}
 	\end{problemstar}
 	
