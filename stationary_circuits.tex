@@ -26,33 +26,35 @@ There are numerous Herschel conduits other than the R64 and Fx77 conduits that w
 \[
 {\color{gray}\underbrace{\color{black}4 \times 64}_\text{R64 time}} \ + \ {\color{gray}\underbrace{\color{black}28\times 77}_\text{Fx77 time}} = 2{\thousep}412 = 36 \times 67 \text{ generations,}
 \]
-(which we place $36$ equally-spaced Herschels on). However, if we extend our collection of conduits a little bit, then we can construct a Herschel-based period~$67$ gun that uses just $8$ Herschels on an $8 \times 67 = 536$-generation track made up of $4$ conduits, as in Figure~\ref{fig:p67_with_conduits}.\footnote{We saw one of these extra conduits, L112, way back in Exercise~\ref{exer:herschel_track_L112}.}
+which we place $36$ equally-spaced Herschels on. However, if we extend our collection of conduits a little bit, then we can construct a Herschel-based period~$67$ gun that uses just $8$ Herschels on an $8 \times 67 = 536$-generation track made up of $4$ conduits, as in Figure~\ref{fig:p67_with_conduits}.\footnote{We saw one of these extra conduits, L112, way back in Exercise~\ref{exer:herschel_track_L112}.}
 
 \begin{figure}[!htb]
 	\centering
 	\begin{tabular}{@{}cc@{}}
 		\begin{subfigure}{.37\textwidth}
 			\centering
-			\patternimglink{0.092}{l112}
+			\patternimglink{0.105}{l112}
 			\caption{the \emph{L112}\index{L112} conduit}
 			\label{fig:l112_conduit}
 		\end{subfigure} &
 		\multirow{2}{*}{\renewcommand{\thesubfigure}{(c)}\begin{subfigure}{.59\textwidth}
-				\centering\vspace*{-1.8cm}
-				\patternimglink{0.183}{p67_gun}
+				\centering\vspace*{-2cm}
+				\patternimglink{0.2045}{p67_gun}
 				\caption{a p$67$ glider gun}
 				\label{fig:p67_gun}
 		\end{subfigure}} \\[1.3cm]
 		\renewcommand{\thesubfigure}{(b)}\begin{subfigure}{.37\textwidth}
 			\centering\vspace*{0.2cm}
-			\patternimglink{0.078}{l156}
+			\patternimglink{0.08976190476}{l156}
 			\caption{the \emph{L156}\index{L156} conduit}
 			\label{fig:l156_conduit}
 		\end{subfigure}
 	\end{tabular}
-	\caption{A period~$67$ glider gun can be constructed from just four conduits. The track in (c) uses two copies of the L112 conduit from~(a) (highlighted in \bgbox{yellowback2}{yellow}) and two copies of the L156 conduit from~(b) (highlighted in \bgbox{aquaback}{aqua}). Both of these conduits rotate an input Herschel (displayed in \bgbox{greenback}{green}) counter-clockwise by 90~degrees into the output position (displayed in \bgbox{orangeback}{orange}), with L112 taking 112~generations to do so and L156 taking 156~generations. Eaters displayed in \bgbox{redback}{red} are used to delete escaping gliders, but are not required for the conduits to function.}
+	\caption{A period~$67$ glider gun can be constructed from just four Herschel conduits. The track (c) uses two copies of the L112 conduit from~(a) (highlighted in \bgbox{yellowback2}{yellow}) and two copies of the L156 conduit from~(b) (highlighted in \bgbox{aquaback}{aqua}). Both of these conduits rotate an input Herschel (displayed in \bgbox{greenback}{green}) counter-clockwise by 90~degrees into the output position (displayed in \bgbox{orangeback}{orange}), with L112 taking 112~generations to do so and L156 taking 156~generations. Eaters displayed in \bgbox{redback}{red} are used to delete escaping gliders, but are not required for the conduits to function.}
 	\label{fig:p67_with_conduits}
 \end{figure}
+
+% NJ is here in cleanup process
 
 The added flexibility of these additional conduits not only lets us greatly reduce the size of Herschel tracks, but also makes it much easier to position them in certain situations (if we want a Herschel to output a glider at a specific location or with a certain timing, for example). For this reason, it is useful to have a large list of Herschel conduits available to choose from. For ease of reference, conduits are named according to the orientation of the output Herschel relative to that of the input Herschel,\footnote{Be somewhat careful here---the naming does not care about the \emph{position} of the output Herschel relative to the input Herschel, only the change in its orientation.} together with the number of generations that it takes for the output Herschel to appear. For example, the R64 conduit is named that way because it turns the input Herschel to the \textbf{r}ight in \textbf{64} generations. More generally, the prefix used when naming conduits is one of:
 \begin{align*}
@@ -365,9 +367,8 @@ To demonstrate some even more extreme examples of how useful the syringe is, we 
 	\caption{Some conduits that use the syringe to duplicate (or just generally multiply) a glider. By extending the length of the track by inserting more copies of the Fx77 conduit, we can increase the number of emitted gliders.}\label{fig:glider_multipliers}
 \end{figure}
 
-Now that we know how to construct conduits that convert one glider into any number of gliders, we can use glider synthesis to create conduits that convert a single glider into any pattern that we know how to synthesize---all we have to do is first convert the glider into the number of gliders required for the synthesis, and then use Snarks (or other stable reflectors) to reposition and rephase those gliders so as to actually perform the synthesis. However, we run into the exact same problem that we ran into when using one-time turners to perform slow salvo synthesis in Section~\ref{sec:slow_salvo}: even though it is straightforward to reflect gliders into the correct \emph{positions}, having them all show up at the right \emph{time} is rather tricky. Fortunately, we can solve this problem in the same way that we did back then---we create a family of conduits that can either preserve or change the color of a glider, and can also give us any mod-$8$ timing of the output glider of our choosing. One such collection of conduits can be constructed by using a syringe to turn the input glider into a Herschel, followed by a Herschel-to-glider conduit to transform it back, possibly with one or more Herschel conduits placed in between to change the relative timing of the input and output gliders. One such collection of conduits is presented in Table~\ref{tab:conduit_phase_changers}.
+Now that we know how to construct conduits that convert one glider into any number of gliders, we can use glider synthesis to create conduits that convert a single glider into any pattern that we know how to synthesize---all we have to do is first convert the glider into the number of gliders required for the synthesis, and then use Snarks (or other stable reflectors) to reposition and rephase those gliders so as to actually perform the synthesis. However, we run into the exact same problem that we ran into when using one-time turners to perform slow salvo synthesis in Section~\ref{sec:slow_salvo}: even though it is straightforward to reflect gliders into the correct \emph{positions}, having them all show up at the right \emph{time} is rather tricky. Fortunately, we can solve this problem in the same way that we did back then---we create a family of conduits that can either preserve or change the color of a glider, and can also give us any mod-$8$ timing of the output glider of our choosing. One such collection of conduits can be constructed by using a syringe to turn the input glider into a Herschel, followed by a Herschel-to-glider conduit to transform it back, possibly with one or more Herschel conduits placed in between to change the relative timing of the input and output gliders. One such collection of conduits is presented in Table~\ref{tab:conduit_phase_changers}.\footnote{Compiled by Simon Ekstr\"{o}m in August 2015.}
 
-% NJ: Who put this collection together? Was it you, Dave, or should we credit someone?
 % Mention analogy with one-time turner method from Section{sec:slow_salvo_splitters}. It's the same method, just not one-time.
 
 \begin{table}[!ht]\vspace*{0.05in}
