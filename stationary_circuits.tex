@@ -54,15 +54,13 @@ which we place $36$ equally-spaced Herschels on. However, if we extend our colle
 	\label{fig:p67_with_conduits}
 \end{figure}
 
-% NJ is here in cleanup process
-
 The added flexibility of these additional conduits not only lets us greatly reduce the size of Herschel tracks, but also makes it much easier to position them in certain situations (if we want a Herschel to output a glider at a specific location or with a certain timing, for example). For this reason, it is useful to have a large list of Herschel conduits available to choose from. For ease of reference, conduits are named according to the orientation of the output Herschel relative to that of the input Herschel,\footnote{Be somewhat careful here---the naming does not care about the \emph{position} of the output Herschel relative to the input Herschel, only the change in its orientation.} together with the number of generations that it takes for the output Herschel to appear. For example, the R64 conduit is named that way because it turns the input Herschel to the \textbf{r}ight in \textbf{64} generations. More generally, the prefix used when naming conduits is one of:
 \begin{align*}
 	\text{\bf R:} & \ \text{right (clockwise) turn} & \text{\bf F:} & \ \text{forward (no turn)} \\
 	\text{\bf L:} & \ \text{left (counter-clockwise) turn} & \text{\bf B:} & \ \text{backward (180-degree turn)}
 \end{align*}
 
-Thus the L112 and L156 conduits are named for the fact that they rotate a Herschel left (counter-clockwise) in 112 and 156 generations, respectively. As one final piece of naming terminology, we insert an ``x'' between two parts of the conduit's name if it mirrors the Herschel (as in the Fx77 conduit from Figure~\ref{fig:Fx77}),\footnote{To make the ``x means mirror'' notation unambiguous, we need to specify the direction in which the mirroring is done, so we (arbitrarily) choose to mirror along the single side of the Herschel that is perpendicular to its other two sides (if you prefer, you can simply refer to Figure~\ref{fig:herschel_orientations} to see how the mirroring is done).} so a conduit can have one of $8$ possible prefixes (i.e., R, Rx, L, Lx, F, Fx, B, or Bx) corresponding to the $8$ possible orientations of the output Herschel that they produce, as indicated in Figure~\ref{fig:herschel_orientations}.
+For example, the L112 and L156 conduits are named for the fact that they rotate a Herschel left (i.e., counter-clockwise) over the course of 112 and 156 generations, respectively. We also insert an ``x'' between two parts of the conduit's name if it mirrors the Herschel (as in the Fx77 conduit from Figure~\ref{fig:Fx77}).\footnote{To make the ``x means mirror'' notation unambiguous, we need to specify the direction in which the mirroring is done, so we (arbitrarily) choose to mirror along the single side of the Herschel that is perpendicular to its other two sides (if you prefer, you can simply refer to Figure~\ref{fig:herschel_orientations} to see how the mirroring is done).} A conduit's name can thus have one of $8$ possible prefixes (i.e., R, Rx, L, Lx, F, Fx, B, or Bx) corresponding to the $8$ possible orientations of the output Herschel that they produce, as indicated in Figure~\ref{fig:herschel_orientations}.
 
 \begin{figure}[!htb]
 	\centering\begin{tikzpicture}[scale=0.8, every node/.style={transform shape}]%
@@ -80,27 +78,27 @@ Thus the L112 and L156 conduits are named for the fact that they rotate a Hersch
 	\caption{Herschels can be oriented in one of $8$ ways, which we label here relative to the (arbitrarily-chosen) canonical input orientation displayed on the left in \bgbox{greenback}{green}.}\label{fig:herschel_orientations}
 \end{figure}
 
-With this naming scheme out of the way, we now catalog some of the smallest, quickest, and most useful Herschel conduits that are known in Table~\ref{tab:herschel_conduits}. Keep in mind that this list is nowhere near complete---there are well over 100 known Herschel conduits made up of small still lifes.\footnote{For a reasonably complete collection of known small Herschel conduits, see \httpsurl{conwaylife.com/forums/viewtopic.php?f=2\&t=2347}} All of these conduits release at least one glider and thus can be used to construct guns, but of particular note is L156, which releases a glider from its corner in a somewhat different orientation than most of the others (we made use of this glider back in the period~$67$ gun from Figure~\ref{fig:p67_with_conduits}). It is also worth noting where the R64, Fx77, L112, and L156 conduits that we have already seen fit into this table.
+With this naming scheme out of the way, we now catalog some of the smallest, quickest, and most useful Herschel conduits that are known in Table~\ref{tab:herschel_conduits}. Keep in mind that this list is nowhere near complete---there are well over 100 known Herschel conduits made up of small still lifes.\footnote{For a reasonably complete collection of known small Herschel conduits, see \httpsurl{conwaylife.com/forums/viewtopic.php?f=2\&t=2347}} All of these conduits release at least one glider and can thus be used to construct guns, but of particular note is L156, which releases a glider from its corner in a somewhat different orientation than most of the others (we made use of this glider in the period~$67$ gun from Figure~\ref{fig:p67_with_conduits}). It is also worth finding the R64, Fx77, L112, and L156 conduits that we are already familiar with in this table, to see where they fit in with other Herschel conduits.
 
 \begin{table}[!htp]
 	\begin{center}
 		\begin{tabular}{Sc Sc Sc Sc Sc Sc}
 			\toprule
 			& \multicolumn{2}{c}{Rotating conduits} & & \multicolumn{2}{c}{Rotating and reflecting conduits} \\\midrule
-			\begin{minipage}[b]{0.02\textwidth}\centering F: \\ ${}$ \\ ${}$ \\ ${}$\end{minipage} & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.1}{f116} \\ F116\index{F116} (138)\end{minipage} & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.1}{f117} \\ F117\index{F117} (63)\end{minipage} & \specialcell{ } & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.12}{fx77} \\ Fx77\index{Fx77} (57)\end{minipage} & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.09}{fx119} \\ Fx119\index{Fx119} (231)\end{minipage} \\
+			\begin{minipage}[b]{0.02\textwidth}\centering F: \\ ${}$ \\ ${}$ \\ ${}$\end{minipage} & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.10957705395}{f116} \\ F116\index{F116} (138)\end{minipage} & \begin{minipage}[b]{0.22\textwidth}\centering\patternimglink{0.10417437697}{f117} \\ F117\index{F117} (63)\end{minipage} & \specialcell{ } & \begin{minipage}[b]{0.2\textwidth}\centering\patternimglink{0.1262745098}{fx77} \\ Fx77\index{Fx77} (57)\end{minipage} & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.1}{fx119} \\ Fx119\index{Fx119} (231)\end{minipage} \\
 			
-			\rowcolor{gray!20} \begin{minipage}[b]{0.02\textwidth}\centering R: \\ ${}$ \\ ${}$ \\ ${}$\end{minipage} & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.12}{r64} \\ R64\index{R64} (61)\end{minipage} & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.12}{r126} \\ R126\index{R126} (125)\end{minipage} & \specialcell{ } & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.08}{rx140} \\ Rx140\index{Rx140} (260)\end{minipage} & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.08}{rx164} \\ Rx164\index{Rx164} (65)\end{minipage} \\
+			\rowcolor{gray!20} \begin{minipage}[b]{0.02\textwidth}\centering R: \\ ${}$ \\ ${}$ \\ ${}$\end{minipage} & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.137}{r64} \\ R64\index{R64} (61)\end{minipage} & \begin{minipage}[b]{0.22\textwidth}\centering\patternimglink{0.14202752293}{r126} \\ R126\index{R126} (125)\end{minipage} & \specialcell{ } & \begin{minipage}[b]{0.2\textwidth}\centering\patternimglink{0.09133676091}{rx140} \\ Rx140\index{Rx140} (260)\end{minipage} & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.085}{rx164} \\ Rx164\index{Rx164} (65)\end{minipage} \\
 			
-			\begin{minipage}[b]{0.02\textwidth}\centering B: \\ ${}$ \\ ${}$ \\ ${}$\end{minipage} & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.12}{b60} \\ B60\index{B60} (43)\end{minipage} & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.08}{b245} \\ B245\index{B245} (278)\end{minipage} & \specialcell{ } & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.09}{bx106} \\ Bx106\index{Bx106} (134)\end{minipage} & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.08}{bx202} \\ Bx202\index{Bx202} (65)\end{minipage} \\
+			\begin{minipage}[b]{0.02\textwidth}\centering B: \\ ${}$ \\ ${}$ \\ ${}$\end{minipage} & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.14}{b60} \\ B60\index{B60} (43)\end{minipage} & \begin{minipage}[b]{0.22\textwidth}\centering\patternimglink{0.08820895522}{b245} \\ B245\index{B245} (278)\end{minipage} & \specialcell{ } & \begin{minipage}[b]{0.2\textwidth}\centering\patternimglink{0.1049112426}{bx106} \\ Bx106\index{Bx106} (134)\end{minipage} & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.09}{bx202} \\ Bx202\index{Bx202} (65)\end{minipage} \\
 			
-			\rowcolor{gray!20} \begin{minipage}[b]{0.02\textwidth}\centering L: \\ ${}$ \\ ${}$ \\ ${}$\end{minipage} & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.09}{l112_table} \\ L112\index{L112} (58)\end{minipage} & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.08}{l156_table} \\ L156\index{L156} (62)\end{minipage} & \specialcell{ } & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.12}{lx86} \\ Lx86\index{Lx86} (134)\end{minipage} & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.08}{lx163} \\ Lx163\index{Lx163} (60)\end{minipage} \\\bottomrule
+			\rowcolor{gray!20} \begin{minipage}[b]{0.02\textwidth}\centering L: \\ ${}$ \\ ${}$ \\ ${}$\end{minipage} & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.10904761904}{l112_table} \\ L112\index{L112} (58)\end{minipage} & \begin{minipage}[b]{0.22\textwidth}\centering\patternimglink{0.09325791855}{l156_table} \\ L156\index{L156} (62)\end{minipage} & \specialcell{ } & \begin{minipage}[b]{0.2\textwidth}\centering\patternimglink{0.13700371651}{lx86} \\ Lx86\index{Lx86} (134)\end{minipage} & \begin{minipage}[b]{0.19\textwidth}\centering\patternimglink{0.09}{lx163} \\ Lx163\index{Lx163} (60)\end{minipage} \\\bottomrule
 		\end{tabular}
 		\caption{A collection of small and fast Herschel conduits that can produce a Herschel in any orientation. The number in parentheses beside each conduit's name is its repeat time. Input Herschels are displayed in \bgbox{greenback}{green} and output Herschels are displayed in \bgbox{orangeback}{orange}. Eaters displayed in \bgbox{redback}{red} just destroy stray gliders (potentially reducing the conduit's repeat time) but are not required for the conduit to work.}\label{tab:herschel_conduits}
 	\end{center}
 \end{table}
 
 
-\subsection*{Conduit Variants and Tight Squeezes}
+\subsection{Conduit Variants and Tight Squeezes}
 
 Since the name of a conduit depends only on the orientation and timing of its output Herschel relative to the input one, there can be many different Herschel conduits with the same name. This feature is by design, as we typically do not care about what exactly happens in the intermediate steps of the conversion that a conduit implements. For this reason, we say that two conduits are \emph{variants}\index{variant} of each other if they both take the same input and produce the same output in the same spacetime location---no matter what happens along the way.
 
@@ -110,52 +108,52 @@ Conduit variants are sometimes useful for getting around tight spacing issues. F
 	\centering
 	\begin{subfigure}{.18\textwidth}
 		\centering
-		\patternimglink{0.1}{fx77a}
+		\patternimglink{0.115}{fx77a}
 		\caption{\emph{Fx77a}}
 		\label{fig:fx77_a}
 	\end{subfigure}\quad%
 	\begin{subfigure}{.18\textwidth}
 		\centering
-		\patternimglink{0.1}{fx77b}
+		\patternimglink{0.115}{fx77b}
 		\caption{\emph{Fx77b}}
 		\label{fig:fx77_b}
 	\end{subfigure}\quad%
 	\begin{subfigure}{.18\textwidth}
 		\centering
-		\patternimglink{0.1}{fx77c}
+		\patternimglink{0.115}{fx77c}
 		\caption{\emph{Fx77c}}
 		\label{fig:fx77_c}
 	\end{subfigure}\quad%
 	\begin{subfigure}{.18\textwidth}
 		\centering
-		\patternimglink{0.1}{fx77d}
+		\patternimglink{0.115}{fx77d}
 		\caption{\emph{Fx77d}}
 		\label{fig:fx77_d}
 	\end{subfigure}\quad%
 	\begin{subfigure}{.18\textwidth}
 		\centering
-		\patternimglink{0.1}{fx77e}
+		\patternimglink{0.115}{fx77e}
 		\caption{\emph{Fx77e}}
 		\label{fig:fx77_e}
 	\end{subfigure}
 	\caption{Five variants of the Fx77 Herschel conduit, along with eaters or welds (displayed in \bgbox{redback}{red}) that are capable of destroying the first block left behind by the output Herschel. The ``a'' variant is the one that we have used up until now (e.g., in Section~\ref{sec:herschel_track} and Table~\ref{tab:herschel_conduits}).}\label{fig:fx77_variants}
 \end{figure}
 
-To understand why it is useful to have so many variants of Fx77, notice that many Herschel conduits have an eater~1 in one of two standard positions directly above their input Herschel (if that input Herschel is in its canonical input orientation)\footnote{This block-eating eater~1 can be seen several times in Table~\ref{tab:herschel_conduits}: it is directly above the green input Herschel in each of F117, Fx77, R126, Rx164, B245, Bx106, Bx202, L112, L156, Lx86, and Lx163.}---this eater~1 is used to erase a block that is left behind early in the Herschel's evolution. The complicated-looking welded eaters in the ``c'', ``d'', and ``e'' variants of Fx77 are just the best known ways to save a row or two while still allowing for that eater to appear in one of those two standard eater positions in the following Herschel conduit.
+To understand why it is useful to have so many variants of Fx77, notice that many Herschel conduits have an eater~1 in one of two standard positions directly above their input Herschel (if that input Herschel is in its canonical input orientation). For example, such an eater~1 make numerous appearances in Table~\ref{tab:herschel_conduits}, and is present directly above the input Herschel in each of F117, Fx77, R126, Rx164, B245, Bx106, Bx202, L112, L156, Lx86, and Lx163. The purpose of this eater~1 is to erase a block that is left behind early in the Herschel's evolution. The complicated-looking welded eaters in the ``c'', ``d'', and ``e'' variants of Fx77 are just the best known ways to save a row or two while still allowing for that eater to appear in one of those two standard eater positions in the following Herschel conduit.
 
-For example, to save some space at the bottom of the Fx77 conduit when it is followed by an L112 conduit, we could use the ``c'' variant of Fx77, since its welded eater has the same orientation as the block-destroying eater in L112. However, to save some space at the bottom of the Fx77 conduit when it is followed by an L156 conduit (whose block-destroying eater has the opposite orientation as L112), we would instead have to use the ``d'' variant of Fx77, since its welded eater also has the opposite orientation (see Figure~\ref{fig:fx77_variants_with_l}). We note that the ``e'' variant of Fx77 can also be used in the same situations as the ``c'' variant, but not the ``d'' variant.
+For example, to save some space at the bottom of the Fx77 conduit when it is followed by an L112 conduit, we could use the ``c'' variant of Fx77, since its welded eater has the same orientation as the block-destroying eater in L112. However, to save some space at the bottom of the Fx77 conduit when it is followed by an L156 conduit (whose block-destroying eater has the opposite orientation as L112), we would instead have to use the ``d'' variant of Fx77, since its welded eater also has that opposite orientation (see Figure~\ref{fig:fx77_variants_with_l}). The ``e'' variant of Fx77 can also be used in the same situations as the ``c'' variant, but not the ``d'' variant.
 
 \begin{figure}[!htb]
 	\centering
-	\begin{subfigure}{.48\textwidth}
+	\begin{subfigure}{.5\textwidth}
 		\centering
-		\patternimglink{0.105}{fx77c_l112}
+		\patternimglink{0.11697612732}{fx77c_l112}
 		\caption{Fx77c (left) with L112 (right) attached to it output.}
 		\label{fig:fx77c_l112}
-	\end{subfigure}\quad%
-	\begin{subfigure}{.48\textwidth}
+	\end{subfigure}\ \ \ \ %
+	\begin{subfigure}{.47\textwidth}
 		\centering
-		\patternimglink{0.09}{fx77d_l156}
+		\patternimglink{0.1}{fx77d_l156}
 		\caption{Fx77d (left) with L156 (right) attached to it output.}
 		\label{fig:fx77d_l156}
 	\end{subfigure}
@@ -165,7 +163,11 @@ For example, to save some space at the bottom of the Fx77 conduit when it is fol
 
 \section{Gliders to Herschels and Back}\label{sec:glider_to_herschel}
 
-In order to be able to make better use of Herschel tracks and glider reflectors, it will be useful for us to be able to convert Herschels into gliders and vice-versa. Converting a Herschel into a glider is straightforward since it emits a natural glider after $21$~generations anyway, so we just need to destroy the rest of the Herschel after that time. For this reason, dozens of Herschel-to-glider converters are known, though we are primarily interested in ones that produce gliders traveling in directions or on lanes \emph{other} than that of the first natural glider.\footnote{We of course could use Snarks to reflect the natural glider into any direction of our choosing, but this is somewhat large and cumbersome compared to the conduits that produce these other-directional gliders directly.} Dozens of these types of conduits are also known, some of which even produce multiple gliders traveling in different directions and thus can be used to duplicate a signal (once combined with a glider-to-Herschel conduit that we will see shortly). In particular, the collection of simple conduits displayed in Figure~\ref{fig:herschel_to_glider} can be used to convert a Herschel into gliders traveling in any of the four desired output directions.\footnote{There are also some simple conduits that turn a Herschel into four gliders, all traveling in different directions---see Exercise~\ref{exer:H_to_4G}.}
+In order to be able to make better use of Herschel tracks and glider reflectors, it will be useful for us to be able to convert Herschels into gliders and vice-versa. Converting a Herschel into a glider is straightforward since it emits a natural glider after $21$~generations anyway, so we just need to destroy the rest of the Herschel after that time. For this reason, dozens of Herschel-to-glider converters are known, though we are primarily interested in ones that produce gliders traveling in directions or on lanes \emph{other} than that of the first natural glider. We of course could use Snarks to reflect the natural glider into any direction of our choosing, but this is somewhat large and cumbersome compared to the conduits that produce these other-directional gliders directly.
+
+Of the numerous known conduits of this type, many even produce \emph{multiple} gliders traveling in different directions, and thus can be used to duplicate a signal (once combined with a glider-to-Herschel conduit that we will see shortly). In particular, the collection of simple conduits displayed in Figure~\ref{fig:herschel_to_glider} can be used to convert a Herschel into one, two, or three gliders traveling in any of the four desired output directions. There are also some simple conduits that turn a Herschel into four gliders, all traveling in different directions---see Exercise~\ref{exer:H_to_4G}.
+
+% NJ is here in cleanup process
 
 \begin{figure}[!htb]
 	\centering
