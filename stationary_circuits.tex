@@ -322,30 +322,28 @@ However, we run into the exact same problem that we ran into when using one-time
 \end{table}
 
 
-% NJ is here in the cleanup process
-
 \section{Synthesizing Objects via Conduits}\label{sec:other_converters}
 
-Now that we can use stable conduits to reposition gliders however we like (via the Snark and the color-changing reflector of Figure~\ref{fig:color_change_stable}) \emph{and} adjust the timing of gliders however we like (via the collection of reflectors in Table~\ref{tab:conduit_phase_changers}), we can construct stable circuits that take in a single input glider and generate any object that we know how to construct via glider synthesis. To illustrate this procedure, we now construct a stable circuit that transforms a glider into a lightweight spaceship via the first $3$-glider synthesis displayed in Table~\ref{tab:3_glider_synth}:\medskip
+Now that we can use stable conduits to reposition gliders however we like (via the Snark and the color-changing reflectors of Figure~\ref{fig:color_change_stable} and~\ref{fig:bandersnatch}), \emph{and} adjust the timing of gliders however we like (via the collection of rephasers in Table~\ref{tab:conduit_phase_changers}), we can construct stable circuits that take in a single input glider and generate any object that we know how to construct via glider synthesis. To illustrate this procedure, we now construct a stable circuit that transforms a glider into a lightweight spaceship via the first $3$-glider synthesis displayed in Table~\ref{tab:3_glider_synth}:\smallskip
 
 \begin{itemize}
 	\item[1)] First, it will be easier to adjust the timing of gliders later if they are all traveling in the same direction, so we add Snarks at what will become the end of the circuit to reflect the three incoming gliders into the positions required for synthesis. This arrangement is located at the southeast corner of Figure~\ref{fig:glider_to_lwss_incomplete}, with all three input gliders coming from the northwest.\smallskip
 	
 	\item[2)] Next, we start working on what will become the start of the circuit---we use the glider tripler from Figure~\ref{fig:glider_tripler} to turn the input glider into three gliders. This glider tripler is located at the north end of Figure~\ref{fig:glider_to_lwss_incomplete}.\smallskip
 	
-	\item[3)] We then add reflectors to the output of the glider tripler so as to put the three gliders into the correct lanes to meet up with the component that we constructed in step~(1) above. Note that we use the color-changing reflector from Figure~\ref{fig:color_change_stable} for the northeast glider since its color after exiting the tripler did not match that of the lane we needed to put it in. At this point, we have constructed the pattern displayed in Figure~\ref{fig:glider_to_lwss_incomplete}---we have put the three gliders into the correct positions, but we still need to fix their timing.\smallskip
+	\item[3)] We then add reflectors to the output of the glider tripler so as to put the three gliders into the correct lanes to meet up with the component that we constructed in step~(1) above. Note that we use the color-changing reflector from Figure~\ref{fig:color_change_stable} for the northeast glider since its color after exiting the tripler does not match that of the lane that we need to put it on. At this point, we have constructed the pattern displayed in Figure~\ref{fig:glider_to_lwss_incomplete}---we have put the three gliders into the correct positions, but we still need to fix their timing.\smallskip
 	
 	\begin{figure}[!htb]
 		\centering
-		\begin{subfigure}{.43\textwidth}
+		\begin{subfigure}{.445\textwidth}
 			\centering
-			\patternimglink{0.134}{glider_to_lwss_incomplete}
+			\patternimglink{0.14911793611}{glider_to_lwss_incomplete}
 			\caption{An incomplete glider-to-LWSS circuit that puts three gliders into the correct positions to synthesize an LWSS, but with incorrect timings.}\label{fig:glider_to_lwss_incomplete}
-		\end{subfigure} \ \ \ \ % 
-		\begin{subfigure}{.53\textwidth}
+		\end{subfigure} \hfill % 
+		\begin{subfigure}{.52\textwidth}
 			\centering
-			\patternimglink{0.13}{glider_to_lwss_big}
-			\caption{A completed glider-to-LWSS circuit that uses the rephasers from Table~\ref{tab:conduit_phase_changers} and trombone slides to correct the glider timings.}
+			\patternimglink{0.137}{glider_to_lwss_big}
+			\caption{A completed glider-to-LWSS circuit that uses rephasers from Table~\ref{tab:conduit_phase_changers} and trombone slides to correct the glider timings.}
 			\label{fig:glider_to_lwss_big}
 		\end{subfigure}
 		\caption{A stable glider-to-LWSS conduit that works by using a glider tripler (highlighted in \bgbox{aquaback}{aqua}) to turn one glider into three, which are then repositioned and rephased so as to synthesize a lightweight spaceship. Snarks (highlighted in \bgbox{yellowback2}{yellow}) are color-preserving and are treated as ``free'' reflectors that do not alter the mod-$8$ timing of gliders. One color-changing reflector (highlighted in \bgbox{magentaback}{magenta}) is used on the northeast glider's path (the one shown in (b) delays the glider's mod-$8$ timing by $3$ more generations than the one shown in (a)), and in (b) we use a reflector that delays the middle glider's mod-$8$ timing by $4$ generations (highlighted in \bgbox{greenpastel}{green}).}\label{fig:glider_to_lwss_both}
@@ -353,69 +351,71 @@ Now that we can use stable conduits to reposition gliders however we like (via t
 	
 	\item[4)] To fix the mod-$8$ timing of the gliders, we choose one of the three gliders to have the ``right'' timing, and we synchronize the other gliders with it. It typically works best (e.g., results in less ``fiddling'' and a smaller circuit) if we choose the glider that gets to its intended position \emph{last} to be this reference glider, and in this case that is the southwestern glider. From left to right, we then want to delay the gliders by $0$, $252$, and $163$ generations, respectively, which (mod $8$) equal $0$, $4$, and $3$, respectively. We thus insert a delay-$4$ CP reflector (from Table~\ref{tab:conduit_phase_changers}) into the path of the middle glider, and we change the delay-$3$ CC reflector in the northeast path into the delay-$6$ CC reflector.\smallskip
 	
-	\item[5)] Now that all gliders have the correct mod-$8$ timing, we just need to adjust their timings by multiples of $8$~generations. This can be done simply by moving any $180$-degree reflection that a glider goes through closer or farther away, as in Figure~\ref{fig:trombone_slide} (if there is no $180$-degree reflection in a glider's path, we can simply insert two of them). After making these final timing adjustments, we have the completed glider-to-LWSS circuit displayed in Figure~\ref{fig:glider_to_lwss_big}.\footnote{Somewhat smaller stable glider-to-LWSS converters are known---see Exercise~\ref{exer:smaller_G_to_LWSS}.}\medskip
+	\item[5)] Now that all gliders have the correct mod-$8$ timing, we just need to adjust their timings by multiples of $8$~generations. This can be done simply by moving any $180$-degree reflection that a glider goes through closer or farther away, as in Figure~\ref{fig:trombone_slide} (if there is no $180$-degree reflection in a glider's path, we can simply insert two of them). After making these final timing adjustments, we have the completed glider-to-LWSS circuit displayed in\index{trombone slide} Figure~\ref{fig:glider_to_lwss_big}.\footnote{Somewhat smaller stable glider-to-LWSS converters are known---see Exercise~\ref{exer:smaller_G_to_LWSS}.}\medskip
 \end{itemize}
 
 \begin{figure}[!htb]
 	\centering
-	\begin{subfigure}{.48\textwidth}
+	\begin{subfigure}{.485\textwidth}
 		\centering
-		\patternimglink{0.09}{trombone_slide_276}
+		\patternimglink{0.102}{trombone_slide_276}
 		\caption{A path that takes $276$~generations.}\label{fig:trombone_slide_276}
-	\end{subfigure} \ \ \ \ % 
-	\begin{subfigure}{.48\textwidth}
+	\end{subfigure} \hfill % 
+	\begin{subfigure}{.485\textwidth}
 		\centering
-		\patternimglink{0.09}{trombone_slide_284}
+		\patternimglink{0.102}{trombone_slide_284}
 		\caption{A path that takes $284$~generations.}
 		\label{fig:trombone_slide_284}
 	\end{subfigure}
-	\caption{A \emph{trombone slide}\index{trombone slide} is a $180$-degree reflector can be freely moved closer or farther away along a glider's path, delaying the glider by $8$ generations for each cell that it is moved away. The only difference between (a) and (b) is that we moved the north and east Snarks (highlighted in \bgbox{yellowback2}{yellow}) northeast by 1 cell in (b), thus delaying the glider by $8$ generations. Note that placing the four Snarks along the glider's path in (a) in the first place delayed it by $144$~generations---this delay can be made up for (if necessary) by similarly delaying all other gliders that we are working with.}\label{fig:trombone_slide}
+	\caption{A \emph{trombone slide} is a $180$-degree reflector can be freely moved closer or farther away along a glider's path, delaying the glider by $8$ generations for each cell that it is moved away. The only difference between (a) and (b) is that we moved the north and east Snarks (highlighted in \bgbox{yellowback2}{yellow}) northeast by 1 cell in (b), thus delaying the glider by $8$ generations. Note that placing the four Snarks along a glider's path as in (a) delays it by $144$~generations---this delay can be made up for (if necessary) by similarly delaying all other gliders that we are working with.}\label{fig:trombone_slide}
 \end{figure}
 
-These ideas can be extended straightforwardly to let us construct circuits that convert a glider into any other object that we know how to synthesize, though the details become quite a bit more fiddly as the number of gliders increases. To illustrate how far we can push these methods, we now construct a stable circuit that converts a glider into the 2-engine Cordership that was introduced in Exercise~\ref{exer:2_engine_cordership}.
+These techniques can be extended straightforwardly to let us construct circuits that convert a glider into any other object that we know how to synthesize, though the details become quite a bit more fiddly as the number of gliders used in the synthesis increases. To illustrate how far we can push these methods, we now construct a stable circuit that converts a glider into the 2-engine Cordership that was introduced in Exercise~\ref{exer:2_engine_cordership}.
 
 As our starting point, we need a glider synthesis of the 2-engine Cordership to make use of, and for simplicity we use the 2-direction synthesis from Exercise~\ref{exer:2_engine_cordership_synthesis}(b). To space these gliders out a bit more and make them even easier to synchronize, we use Herschel edge-shooters to put the gliders in their correct places and reflect the input gliders so as to all come from the same direction (much like we did in the southeast corner of Figure~\ref{fig:glider_to_lwss_incomplete} when constructing the glider-to-LWSS circuit). This bottom portion of our circuit is displayed in Figure~\ref{fig:g_to_2engine_V}.
 
 \begin{figure}[!htb]
 	\centering
-	\patternimglink{0.1}{g_to_2engine_V}
+	\patternimglink{0.136}{g_to_2engine_V}
 	\caption{An arrangement of Herschel edge shooters (highlighted in \bgbox{aquaback}{aqua}) that places 10 gliders coming from the northwest (displayed in \bgbox{greenback}{green}) into the correct positions (displayed in \bgbox{orangeback}{orange}) $738$ generations later to synthesize to synthesize a $2$-engine Cordership.}\label{fig:g_to_2engine_V}
 \end{figure}
 
 Next, we need to turn one glider into $10$ gliders and synchronize them with the positions indicated in Figure~\ref{fig:g_to_2engine_V}. While it is possible to do this ``directly'', it is easier to instead just synchronize just 2 or 3 gliders at a time. For example, if we build a mechanism that splits one glider into the 3 leftmost synchronized gliders, then we will just need to synchronize 8 gliders instead of 10 (the 7 leftover gliders that we have not yet dealt with plus the 1 extra glider needed to produce the 3 leftmost gliders). One such mechanism, as well as mechanisms that synchronize the next $3$ gliders, the next $2$ gliders, and the final $2$ gliders, are presented in Figure~\ref{fig:2engine_synchronize}. Once we place all $4$ of these mechanisms, we just have to synchronize $4$ gliders instead of $10$---one for each of the mechanisms.
 
+We can then just iterate this procedure, building up the circuit in layers of gliders that synchronize $2$ gliders at a time, thus halving the number of gliders that need to be synchronized at each layer. The first layer reduced the number of gliders that we need to synchronize from $10$ to $4$, the next layer reduces it from $4$ to $2$, and the final layer reduces it from $2$ to $1$ (and thus completes the circuit). A completed circuit that turns a glider into a $2$-engine Cordership in this way is displayed in Figure~\ref{fig:glider_to_2engine_cordership}.
+
+% This figure can be moved 1 paragraph earlier. It is just here now because spacing worked out better this way.
 \begin{figure}[!htb]
 	\centering
 	\patternimglink{0.081}{2engine_synchronize_1} \ \ \patternimglink{0.081}{2engine_synchronize_2} \ \ \patternimglink{0.081}{2engine_synchronize_3} \ \ \patternimglink{0.081}{2engine_synchronize_4}
 	\caption{Four circuits that, from left to right, synchronize the $3$ leftmost input gliders in Figure~\ref{fig:g_to_2engine_V}, the next three gliders, the next two gliders, and the final two gliders, respectively. All four of these circuits can be constructed using the same methods that we used to build the glider-to-LWSS circuit in Figure~\ref{fig:glider_to_lwss_both}. Glider duplicators are highlighted in \bgbox{aquaback}{aqua}, Snarks are highlighted in \bgbox{yellowback2}{yellow}, and reflectors that change a glider's color and/or mod-$8$ timing are highlighted in \bgbox{magentaback}{magenta}.}\label{fig:2engine_synchronize}
 \end{figure}
 
-We can then just iterate this procedure, building up the circuit in layers of gliders that synchronize $2$ gliders at a time, thus halving the number of gliders that need to be synchronized at each layer. The first layer reduced the number of gliders that we need to synchronize from $10$ to $4$, the next layer reduces it from $4$ to $2$, and the final layer reduces it from $2$ to $1$ (and thus completes the circuit). A completed circuit that turns a glider into a $2$-engine Cordership in this way is displayed in Figure~\ref{fig:glider_to_2engine_cordership}.
+It is worth pointing out that there are other stable circuitry toolkits besides the one from Table~\ref{tab:conduit_phase_changers} for adjusting the relative timings and positions of gliders. For example, instead of always using the duplicators from Figure~\ref{fig:glider_multipliers} and then adjusting the timing of gliders via numerous different reflectors (as we have done so far), we could instead make use of numerous different glider duplicators to \emph{directly} put two gliders into any desired relative positioning (i.e., same or different color) and mod-$8$ timing of our choosing, and then only use Snarks for all reflections. However, introducing a second toolkit to do something that we already known how to do is perhaps overkill, so we do not present it here.\footnote{The interested reader can find this toolkit at \httpsurl{conwaylife.com/forums/viewtopic.php?f=&p=51934}.}
 
+% This figure can be moved 1 paragraph earlier. It is just here now because spacing worked out better this way.
 \begin{figure}[!htb]
 	\centering
-	\patternimglink{0.099}{glider_to_2engine_cordership}
+	\patternimglink{0.105}{glider_to_2engine_cordership}
 	\caption{A stable circuit that converts a single glider (displayed in \bgbox{greenback}{green} at the northwest) into a $2$-engine Cordership (which is synthesized by the $10$ gliders displayed in \bgbox{orangeback}{orange} at the southeast). Those $10$ gliders are synchronized, $2$ or $3$ gliders at a time, by the various mechanisms highlighted in \bgbox{greenpastel}{green} and \bgbox{magentaback}{magenta} (the four southernmost of which were displayed in Figure~\ref{fig:2engine_synchronize}) and fed into the arrangement of Herschel edge shooters (highlighted in \bgbox{aquaback}{aqua}) that we originally saw in Figure~\ref{fig:g_to_2engine_V}.}\label{fig:glider_to_2engine_cordership}
 \end{figure}
-
-It is worth pointing out that there are other stable circuitry toolkits besides the one from Table~\ref{tab:conduit_phase_changers} for adjusting the relative timings and positions of gliders. For example, instead of always using the duplicators from Figure~\ref{fig:glider_multipliers} and then adjusting the timing of gliders via numerous different reflectors (as we have done so far), we could instead make use of numerous different glider duplicators to \emph{directly} put two gliders into any desired relative positioning (i.e., same or different color) and mod-$8$ timing of our choosing and then only use Snarks for all reflections. We present one such toolkit in Appendix~??.
-
-% NJ: Maybe we could put Dave's new toolbox in the appendix, and display his reduced glider-to-(2engineC) as a demonstration of how it can reduce the size of these types of circuits?
 
 
 \section{Period Multipliers and Small High-Period Guns}\label{sec:large_glider_guns}
 
 Herschel tracks\index{Herschel!track} can be used to construct guns of any period at least $62$, via the techniques introduced in Section~\ref{sec:herschel_track} and revisited in Section~\ref{sec:conduits} (in fact, Herschel tracks give rise to guns somewhat more naturally than they give rise to oscillators---we just remove one or more of the eaters in a Herschel track oscillator to turn it into a gun).\footnote{Even though we could construct Herschel track oscillators of period~$61$, a period~$61$ Herschel track \emph{gun} is not so simple since the escaping gliders collide with subsequent Herschels if we remove an eater.} For example, a period~$93$ gun that works by using $16$ Herschels on the track that we originally constructed in Figure~\ref{fig:herschel_track_248}, and deleting one of the eater~2s, is displayed in Figure~\ref{fig:p93_gun}.\footnote{Unfortunately, this particular track cannot be used to make a period~$62$ gun, even though placing $24$ Herschels on the track makes a period $1488/24 = 62$ oscillator. See Exercise~\ref{exer:p62_gun_problem} for an explanation of the problem and a method of fixing it.}
 
-\begin{figure}[!ht]
+% NJ is here in the cleanup process.
+
+\begin{figure}[!htb]
 	\centering
 	\patternimglink{0.1}{p93_gun}
 	\caption{A period~$93$ glider gun consisting of the R64 and Fx77 conduits introduced in Section~\ref{sec:herschel_track}. This gun has $16$ Herschels on the track instead of $6$ as in the original track from Figure~\ref{fig:herschel_track_248}, making its period $1488/16 = 93$ instead of $1488/6 = 248$. We also deleted one of the eater~2s at the southeast corner to allow a single stream of gliders to escape, thus making it a gun instead of an oscillator.}\label{fig:p93_gun}
 \end{figure}
 
-However, now that we are familiar with the syringe\index{syringe}, there is a much smaller and simpler way to create glider guns of any period at least~$80$.\footnote{Actually, this same method works for periods $74$, $75$, $78$, and $79$ too---see Exercise~\ref{exer:p80_adjustable_manipulate}.} The pattern displayed in Figure~\ref{fig:p80_adjustable_gun} is made up of two identical halves that take in a glider, convert it to a Herschel (via a syringe) and then convert it back into another glider that is fed into the other half.\footnote{This adjustable glider gun was constructed by Matthias Merzenich in September 2015.} The $8$ input gliders serve to start the gun, and as-displayed it will have period~$80$. To increase the period of this gun by $n$, simply (a) move the top half of the gun (i.e., the top $33$ rows of the pattern) northeast by $n$ cells, and (b) adjust the $8$ input gliders so as to be separated by $80+n$ generations.
+However, now that we are familiar with the syringe\index{syringe}, there is a much smaller and simpler way to create glider guns of any period at least~$80$.\footnote{Actually, this same method works for periods $74$, $75$, $78$, and $79$ too---see Exercise~\ref{exer:p80_adjustable_manipulate}.} The pattern displayed in Figure~\ref{fig:p80_adjustable_gun} is made up of two identical halves that take in a glider, convert it to a Herschel (via a syringe) and then convert it back into another glider that is fed into the other half.\footnote{This adjustable glider gun was constructed by Matthias Merzenich in September 2015.} The $8$ input gliders serve to start the gun, and as-displayed it will have period~$80$. To increase the period of this gun by $n$, simply (a) move the top half of the gun (i.e., the top $33$ rows of the pattern) northeast by $n$ cells, and (b) adjust the $8$ input gliders so as to each be separated by $80+n$ generations.
 
-\begin{figure}[!ht]
+\begin{figure}[!htb]
 	\centering
 	\embedlink{p80_adjustable_gun}{\vcenteredhbox{\patternimg{0.102}{p80_adjustable_gun}} \vcenteredhbox{\genarrow{665}} \vcenteredhbox{\patternimg{0.102}{p80_adjustable_gun_665}}}
 	\caption{A period~$80$ adjustable glider gun. Eight gliders come in from the southwest (highlighted in \bgbox{aquaback}{aqua}) to start the gun. Those gliders are fed into a syringe (highlighted in \bgbox{yellowback2}{yellow}) and then proceed clockwise through an F117 conduit (highlighted in \bgbox{orangeback2}{orange}) and the herschel-to-glider converter from Figure~\ref{fig:H_to_2G} (highlighted in \bgbox{greenpastel}{green}). Then the glider enters the bottom half of the gun, which is identical except that it is missing one eater and thus emits a stream of gliders to the southeast (highlighted in \bgbox{magentaback}{magenta}). To increase the period of this gun by $n$~generations, simply move the top half of the gun northeast by $n$~cells and separate the eight input gliders by $n$~more generations.}\label{fig:p80_adjustable_gun}
@@ -1044,6 +1044,41 @@ In general, Herschel-to-glider converters and other conduits can be appended to 
 			% Coe ship, loafer, space rake, ecologist, etc.
 		\end{enumerate}
 	\end{problem}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:other_toolkit_stable_conduits}
+		Another toolkit for duplicating and synchronizing gliders in stable circuitry, which can be used instead of Table~\ref{tab:conduit_phase_changers}, is provided at \httpsurl{conwaylife.com/forums/viewtopic.php?f=&p=51934}. \smallskip
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item \probdiff{4} Use this toolkit to build a stable glider-to-LWSS converter.
+			
+			\item \probdiff{5} Use this toolkit to build a stable glider-to-2-engine-Cordership converter.
+		\end{enumerate}
+	\end{problem}
+
+
+\mfilbreak
+
+
+\begin{problem}\label{exer:faster_trombone_slide}
+The trombone slide displayed in Figure~\ref{fig:trombone_slide_276} delays a glider by $144$~generations.\smallskip
+
+\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+	\item \probdiff{1} Bring the north and east Snarks as far southwest as possible without breaking the trombone slide. How many generations is the glider delayed by after making this change?
+	% SOLUTION: 2 cells closer, 128 generations.
+	\item \probdiff{1} Bring the south and east Snarks as far northwest as possible without breaking the trombone slide. Does this change affect how much the glider is delayed?
+	% SOLUTION: 1 cell closers, 128 generations.
+	
+	\item \probdiff{3} By welding two Snarks together, bring the south and east Snarks northwest by 1 more cell than you did in part~(b).
+	% SOLUTION: https://conwaylife.com/forums/viewtopic.php?f=2&t=2784&start=0#p41664
+\end{enumerate}
+\end{problem}
+
+
+\httpsurl{conwaylife.com/forums/viewtopic.php?f=&p=51934}
 	
 	
 	\mfilbreak
