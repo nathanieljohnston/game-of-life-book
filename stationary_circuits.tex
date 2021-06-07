@@ -2,8 +2,6 @@
 %%   CHAPTER: STATIONARY CIRCUITRY
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% TODO: Add (maybe as an exercise? but also review paragraph above Figure 7.9: is a 0-degree reflector still a reflector, or no?) the Bandersnatch: https://www.conwaylife.com/wiki/Bandersnatch
-
 \renewcommand{\chapterfolder}{stationary_circuitry/}
 \chapterimage{cover/stationary_circuitry}
 
@@ -261,46 +259,53 @@ Despite the simplicity of converting a Herschel into a glider, the reverse conve
 	\caption{The \emph{syringe} is a conduit that converts a glider into a Herschel. The smaller version~(a) is very fast, but makes use of an unusual large welded still life. The larger version~(b) has the disadvantage of being slower and bulkier, but the advantage of only using ``standard'' components, which makes it easier to synthesize.}\label{fig:syringe}
 \end{figure}
 
-While the canonical version of the syringe that is displayed in Figure~\ref{fig:syringe_main} is much more compact and quick, its variant from Figure~\ref{fig:syringe_modified} has the advantage of consisting entirely of easy-to-synthesize pieces like blocks and eater~1s. Its most complicated-to-synthesize component is the eater~2, which is much simpler to construct via advanced synthesis techniques like slow-salvo (Section~\ref{sec:slow_salvo}) or single-channel (Section~\ref{sec:single_channel_synth}) synthesis than the complicated, unnamed still life from the canonical syringe. We call any conduit of this type (i.e., entirely made up of small, easy-to-synthesize still lifes and p2 oscillators) \emph{Spartan}\index{Spartan}, and they will be the main type of conduit used throughout most of the mega-constructions that we will see in Chapters~\ref{chp:universal_computation}--\ref{chp:universal_construction}.\footnote{The exact definition of ``Spartan'' changes from time to time, as glider synthesis technology improves and so it becomes ``easy'' to synthesize a wider class of objects. The original definition, from 2004, included only still lifes with $7$ or fewer live cells. Nowadays, the definition typically includes any object whose slow salvo synthesis can be automatically compiled by the computer program \emph{slsparse} (see \httpsurl{conwaylife.com/wiki/Slsparse}), which is a much wider class of objects.}\index{slsparse}
+While the canonical version of the syringe that is displayed in Figure~\ref{fig:syringe_main} is much more compact and quick, its variant from Figure~\ref{fig:syringe_modified} has the advantage of consisting entirely of easy-to-synthesize pieces like blocks and eater~1s. Its most complicated-to-synthesize component is the eater~2, which is much simpler to construct via advanced synthesis techniques like slow-salvo (Section~\ref{sec:slow_salvo}) or single-channel (Section~\ref{sec:single_channel_synth}) synthesis than the complicated, unnamed still life from the canonical syringe. We call any conduit of this type (i.e., entirely made up of small, easy-to-synthesize still lifes and p2 oscillators) \emph{Spartan}\index{Spartan}, and they will be the main type of conduit used throughout most of the mega-constructions that we will see in Chapters~\ref{chp:universal_computation}--\ref{chp:0e0p}.\footnote{The exact definition of ``Spartan'' changes from time to time, as glider synthesis technology improves and so it becomes ``easy'' to synthesize a wider class of objects. The original definition, from 2004, included only still lifes with $7$ or fewer live cells. Nowadays, the definition typically includes any object whose slow salvo synthesis can be automatically compiled by the computer program \emph{slsparse} (see \httpsurl{conwaylife.com/wiki/Slsparse}), which is a much wider class of objects.}\index{slsparse}
 
 
-% NJ is here in cleanup process
 
-\section{From Gliders to Gliders}\label{sec:glider_duplication_conduits}
+\section{From Gliders to Gliders}\label{sec:from_gliders_to_gliders}
 
 To give an example of just how useful the syringe is, we note that it can easily be combined with the Herschel-to-glider converter from Figure~\ref{fig:H_to_G} to create the small and fast color-changing stable reflector displayed in Figure~\ref{fig:color_change_stable} (recall that the Snark is color-preserving). Explicitly, this reflector uses a syringe to convert the input glider into a Herschel, which is then converted back to a glider (with opposite color and rotated $90$ degrees from the input glider). However, since its repeat time is $78$~generations,\footnote{The syringe still works when its input gliders have a gap of $74$ or $75$~generations, but \emph{not} $76$ or $77$ generations. We call this phenomenon \emph{overclocking}.}\index{overclocking} the smaller and faster bouncer reflectors from Section~\ref{sec:bumper_bouncer} are still more useful in many situations.
 
+A slightly smaller and faster stable color-changing reflector can be made by using a conduit called the \emph{Bandersnatch},\footnote{Found by Martin Grant and ConwayLife.com forums user ``Entity Valkyrie'' in June 2020. Like the Snark, it was named after a fictional creature in Lewis Carroll's poem \emph{The Hunting of the Snark}.}\index{Bandersnatch} which changes the color of a glider, but does not change its direction. Conduits of this type are sometimes called \emph{zero-degree reflectors},\index{zero-degree reflector} and they can be turned into proper 90-degree reflectors simply by attaching a Snark to their input or output, as in Figure~\ref{fig:bandersnatch}. This new color-changing reflector is not only a bit smaller than ones based on the syringe, but it also has a slightly lower repeat time of just 70~generations. Furthermore, it is a bit easier to construct via glider synthesis, since the Bandersnatch is Spartan.
+
 \begin{figure}[!htb]
-	\centering\patternimglink{0.1}{color_change_stable}
-	\caption{A reasonably small and fast color-changing stable reflector with a repeat time of $78$~generations, based on the syringe. The input glider (shown in \bgbox{greenback}{green}) comes in from the bottom-left, is converted into a Herschel in $84$ generations, and then is converted into the output glider (shown in \bgbox{orangeback}{orange}) after $53$ more generations.}\label{fig:color_change_stable}
+	\centering
+	\begin{minipage}{.56\textwidth}
+		\centering
+		\patternimglink{0.135}{color_change_stable}
+		\caption{A stable color-changing reflector with a repeat time of $78$~generations. A syringe converts a glider to a Herschel, which is then converted back into a glider by the conduit from Figure~\ref{fig:H_to_G}.}\label{fig:color_change_stable}
+	\end{minipage} \hfill %
+	\begin{minipage}{.405\textwidth}
+		\centering
+		\patternimglink{0.111}{bandersnatch}
+		\caption{A stable color-changing reflector with a repeat time of $70$~generations. A Bandersnatch (highlighted on the left in \bgbox{aquaback}{aqua}) changes the color of a glider, which is then reflected by a Snark.}\label{fig:bandersnatch}
+	\end{minipage}
 \end{figure}
 
-% TODO: Add subsection for reflectors out of these components, and put bandersnatch in here
-% Need to alter/move some of next paragraph due to re-sectioning
-
-To demonstrate some even more extreme examples of how useful the syringe is, we now describe how we can use it to construct conduits that convert a glider into (almost) any other pattern. As a starting point, let's show how to convert a glider into \emph{two} gliders. It should not be surprising that such a conversion is possible now, as we can use the syringe to convert a glider into a Herschel, and a Herschel can be made to emit as many gliders as we like by pushing it along a track and not destroying the gliders that it naturally emits. Perhaps the simplest way to make this construction explicit is to use a syringe followed by the Herschel-to-$3$~gliders converter from Figure~\ref{fig:H_to_3G}. If we want to increase the number of output gliders, we can just insert some Herschel tracks between these two end pieces. For example, every copy of the Fx77 conduit that we insert increases the number of output gliders by $1$ (see Figure~\ref{fig:glider_multipliers} and Exercise~\ref{exer:convert_more_gliders}).
+We now go one step farther and build conduits that don't just reflect a glider, but also duplicate it and produce \emph{multiple} output gliders. It should not be surprising that such a conversion is possible now, as we can use the syringe to convert a glider into a Herschel, and a Herschel can be made to emit as many gliders as we like by pushing it along a track without destroying its first natural gliders. Perhaps the simplest way to make this construction explicit is to use a syringe followed by the Herschel-to-$3$~gliders converter from Figure~\ref{fig:H_to_3G}. If we want to increase the number of output gliders, we can just insert some Herschel tracks between these two end pieces. For example, every copy of the Fx77 conduit that we insert increases the number of output gliders by $1$ (see Figure~\ref{fig:glider_tripler}).
 
 \begin{figure}[!htb]
 	\centering
 	\begin{subfigure}{.38\textwidth}
 		\centering
-		\patternimglink{0.092}{glider_duplicator}
-		\caption{A glider duplicator that uses a syringe and the Herschel-to-$3$~gliders converter from Figure~\ref{fig:H_to_3G}.}\label{fig:glider_duplicator}
-	\end{subfigure} \ \ \ \ % 
+		\patternimglink{0.09}{glider_duplicator}
+		\caption{A glider duplicator that uses a syringe and the Herschel-to-$3$-gliders converter from Figure~\ref{fig:H_to_3G}.}\label{fig:glider_duplicator}
+	\end{subfigure} \hfill % 
 	\begin{subfigure}{.58\textwidth}
 		\centering
-		\patternimglink{0.092}{glider_tripler}
-		\caption{A glider tripler that uses a syringe, the Fx77 conduit, and the Herschel-to-$3$~gliders converter.}
+		\patternimglink{0.095}{glider_tripler}
+		\caption{A glider tripler that uses a syringe, the Fx77 conduit, and the Herschel-to-$3$-gliders converter.}
 		\label{fig:glider_tripler}
 	\end{subfigure}
-	\caption{Some conduits that use the syringe to duplicate (or just generally multiply) a glider. By extending the length of the track by inserting more copies of the Fx77 conduit, we can increase the number of emitted gliders.}\label{fig:glider_multipliers}
+	\caption{Some conduits that use the syringe to duplicate a glider. By extending the length of the track by inserting more copies of the Fx77 conduit, we can increase the number of emitted gliders.}\label{fig:glider_multipliers}
 \end{figure}
 
-Now that we know how to construct conduits that convert one glider into any number of gliders, we can use glider synthesis to create conduits that convert a single glider into any pattern that we know how to synthesize---all we have to do is first convert the glider into the number of gliders required for the synthesis, and then use Snarks (or other stable reflectors) to reposition and rephase those gliders so as to actually perform the synthesis. However, we run into the exact same problem that we ran into when using one-time turners to perform slow salvo synthesis in Section~\ref{sec:slow_salvo}: even though it is straightforward to reflect gliders into the correct \emph{positions}, having them all show up at the right \emph{time} is rather tricky. Fortunately, we can solve this problem in the same way that we did back then---we create a family of conduits that can either preserve or change the color of a glider, and can also give us any mod-$8$ timing of the output glider of our choosing. One such collection of conduits can be constructed by using a syringe to turn the input glider into a Herschel, followed by a Herschel-to-glider conduit to transform it back, possibly with one or more Herschel conduits placed in between to change the relative timing of the input and output gliders. One such collection of conduits is presented in Table~\ref{tab:conduit_phase_changers}.\footnote{Compiled by Simon Ekstr\"{o}m in August 2015---see \httpsurl{conwaylife.com/forums/viewtopic.php?f=2\&t=1643\&start=50\#p21708} for his somewhat more thorough collection.}
+Now that we know how to construct conduits that convert one glider into any number of gliders, we can create conduits take a single glider as input and then implement arbitrary glider syntheses---all we have to do is first convert the input glider into the number of gliders required for the synthesis, and then use Snarks (or other stable reflectors) to reposition and rephase those gliders so as to actually perform the synthesis.
 
-% Mention analogy with one-time turner method from Section{sec:slow_salvo_splitters}. It's the same method, just not one-time.
+However, we run into the exact same problem that we ran into when using one-time turners to perform slow salvo synthesis in Section~\ref{sec:slow_salvo}: even though it is straightforward to reflect gliders into the correct \emph{positions}, having them all show up at the right \emph{time} is rather tricky. Fortunately, we can solve this problem in the same way that we did back then---we create a family of conduits that can either preserve or change the color of a glider, and can also give us any mod-$8$ timing of the output glider of our choosing. One such collection of conduits can be constructed by using a syringe to turn the input glider into a Herschel, followed by a Herschel-to-glider conduit to transform it back, possibly with one or more Herschel conduits placed in between to change the relative timing of the input and output gliders---see Table~\ref{tab:conduit_phase_changers}.\footnote{This collection was compiled by Simon Ekstr\"{o}m in August 2015. He also put together a few more---see \httpsurl{conwaylife.com/forums/viewtopic.php?f=2\&t=1643\&start=50\#p21708}.}
 
-\begin{table}[!ht]\vspace*{0.05in}
+\begin{table}[!htb]
 	\begin{center}		
 		\begin{tabular}{Sc Sc Sc Sc Sc Sc Sc}
 			\toprule
@@ -312,10 +317,12 @@ Now that we know how to construct conduits that convert one glider into any numb
 			\begin{minipage}[b]{0.15\textwidth}\centering Color-\\ Preserving \\ (CP) \\ ${}$ \\ ${}$\end{minipage} & \begin{minipage}[b]{0.18\textwidth}\centering\patternimglink{0.095}{phase_changer_4_0}\end{minipage} & \begin{minipage}[b]{0.15\textwidth}\centering\patternimglink{0.1}{phase_changer_5_0}\end{minipage} & \begin{minipage}[b]{0.18\textwidth}\centering\patternimglink{0.107}{phase_changer_6_0}\end{minipage} & \begin{minipage}[b]{0.15\textwidth}\centering\patternimglink{0.1}{phase_changer_7_0}\end{minipage} \\
 			\begin{minipage}[b]{0.15\textwidth}\centering Color-\\ Changing \\ (CC) \\ ${}$ \\ ${}$ \\ ${}$\end{minipage} & \begin{minipage}[b]{0.18\textwidth}\centering\patternimglink{0.09}{phase_changer_4_1}\end{minipage} & \begin{minipage}[b]{0.15\textwidth}\centering\patternimglink{0.115}{phase_changer_5_1}\end{minipage} & \begin{minipage}[b]{0.18\textwidth}\centering\patternimglink{0.1}{phase_changer_6_1}\end{minipage} & \begin{minipage}[b]{0.15\textwidth}\centering\patternimglink{0.109}{phase_changer_7_1}\end{minipage} \\\bottomrule
 		\end{tabular}
-		\caption{A collection of glider rephasers that, together with the Snark, can be used to put gliders into any timing and color relative to each other that is desired (compare with Table~\ref{tab:180_degree_one_time_turners}, which did the same thing via one-time-turners instead of stable circuits). In all cases, the input glider is highlighted in \bgbox{greenback}{green} and comes in from the top-left, while the location of the output glider is highlighted in \bgbox{orangeback}{orange}. To get the output gliders travelling in the desired direction or to adjust their timing by a multiple of $8$~generations, just use additional Snarks (e.g., build a trombone slide as in Figure~\ref{fig:trombone_slide}).}\label{tab:conduit_phase_changers}
+		\caption{A collection of stable glider rephasers that can be used to put gliders into any timing and color relative to each other that is desired (compare with Table~\ref{tab:180_degree_one_time_turners}, which did the same thing via one-time-turners instead of stable circuits). In all cases, the input glider is highlighted in \bgbox{greenback}{green} and comes in from the top-left, while the location of the output glider is highlighted in \bgbox{orangeback}{orange}.}\label{tab:conduit_phase_changers}
 	\end{center}
 \end{table}
 
+
+% NJ is here in the cleanup process
 
 \section{Synthesizing Objects via Conduits}\label{sec:other_converters}
 
@@ -701,6 +708,7 @@ Of the still lifes that we know how to create via factories, the loaf is best-su
 	\label{fig:glider_loaf_collision}
 \end{figure}
 
+% adjust the next paragraph -- bandersnatch allows for faster highway robbers
 All that we have to do to create a highway robber out of this reaction is use the newly-created perpendicular glider to recreate the loaf. Doing so is just a matter of feeding the glider into a syringe to turn it into a Herschel, and then feeding that Herschel into the Herschel-to-loaf factory of Figure~\ref{fig:H_to_loaf}. The resulting highway robber is displayed in Figure~\ref{fig:highway_robber}. While it is somewhat large and slow (see Exercise~\ref{exer:highway_robber_repeat}), it is essentially the fastest one known (some slightly faster highway robbers have been built, but at the expense of being much larger).
 
 \begin{figure}[!htb]
@@ -899,7 +907,7 @@ In general, Herschel-to-glider converters and other conduits can be appended to 
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:eat_herschel}
+	\begin{problem}\label{exer:eat_herschel} \probdiff{1}
 		Construct a stable pattern that eats a Herschel.
 		
 		\noindent [Hint: If you cannot find a ``direct'' way to do this, convert a Herschel into something that you already know how to eat.]
@@ -909,7 +917,7 @@ In general, Herschel-to-glider converters and other conduits can be appended to 
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:two_transparent_lanes}
+	\begin{problemstar}\label{exer:two_transparent_lanes} \probdiff{2}
 		Modify the conduit from Figure~\ref{fig:transparent_lane} so that it has two side-by-side transparent lanes instead of just one.
 		
 		\noindent [Hint: There are other ways to eat a glider.]
@@ -919,8 +927,8 @@ In general, Herschel-to-glider converters and other conduits can be appended to 
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:H_to_G_transparent_better}
-		A conduit that is very similar to the HNE5T-4 conduit from Figure~\ref{fig:transparent_lane} is presented below. Explain why this conduit might be more useful than HNE5T-4 in some situations.
+	\begin{problemstar}\label{exer:H_to_G_transparent_better} \probdiff{2}
+		A conduit that is very similar to HNE5T-4 (see Figure~\ref{fig:transparent_lane}) is presented below. Explain why this conduit might be more useful than HNE5T-4 in some situations.
 		
 		\begin{center}
 			\patternimglink{0.1}{H_to_G_transparent_better}
@@ -931,15 +939,14 @@ In general, Herschel-to-glider converters and other conduits can be appended to 
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:syringe_creates_pi}
+	\begin{problemstar}\label{exer:syringe_creates_pi} \probdiff{1}
 		The syringe\index{syringe} works by converting the input glider into an intermediate object that we have seen before, and then converting that object into a B-heptomino, which creates a glider (which is eaten) and the output Herschel. What is the name of the intermediate object?
 	\end{problemstar}
 	
 	
 	\mfilbreak
 	
-	
-	\begin{problemstar}\label{exer:syringe_compact}
+	\begin{problemstar}\label{exer:syringe_compact} \probdiff{3}
 		A slightly more compact version of the syringe can be constructed by modifying its large unnamed still life. Complete the partial syringe on the left below by filling in the light gray cells appropriately (make sure that the resulting pattern can eat the glider that the output Herschel emits).
 		
 		\begin{center}
@@ -953,7 +960,7 @@ In general, Herschel-to-glider converters and other conduits can be appended to 
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:syringe_glider_synth}
+	\begin{problem}\label{exer:syringe_glider_synth} \probdiff{3}
 		Construct a glider synthesis of the large version of the syringe displayed in Figure~\ref{fig:syringe_modified}.
 	\end{problem}
 	
@@ -961,17 +968,39 @@ In general, Herschel-to-glider converters and other conduits can be appended to 
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:syringe_Lx200}\index{F166}\index{Lx200}
+	\begin{problemstar}\label{exer:syringe_Lx200}\index{F166}\index{Lx200} \probdiff{2}
 		The right half of the large version of the syringe from Figure~\ref{fig:syringe_modified} is a conduit that is called F166 (displayed below on the left). Create another large version of the syringe by replacing F166 with Lx200 (displayed below on the right). What is the repeat time of this new version of the syringe?
 		
 		\begin{center}
 			\patternimglink{0.098}{F166}~\quad~\patternimglink{0.095565217391}{Lx200}
 		\end{center}
+	
+		\noindent [Side note: In both of these conduits, the input is a great-grandparent of a Herschel. The reason that these two conduits can be attached to the syringe is that the input Herschel's first natural glider is suppressed by the initial collision with the block.]
 		
 		\noindent [Hint: You might have to fiddle with the orientation of some eaters so that Lx200 does not collide with the other half of the syringe.]
-		
-		\noindent [Side note: In both of these conduits, the input is a great-grandparent of a Herschel. The reason that these two conduits can be attached to the syringe is that the input Herschel's first natural glider is suppressed by the initial collision with the block.]
 	\end{problemstar}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:bandersnatch_snark_other_side} \probdiff{1}
+		Create a stable color-changing reflector that consists of a Snark followed by a Bandersnatch (whereas the reflector from Figure~\ref{fig:bandersnatch} has them in the opposite order).
+	\end{problem}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:bandersnatch_reflector_timing} \probdiff{2}
+		Bandersnatch-based glider reflectors can be used in place of some of the reflectors from Table~\ref{tab:conduit_phase_changers}.\smallskip
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Which reflector from that table can be replaced by a Bandersnatch together with a Snark (i.e., the reflector from Figure~\ref{fig:bandersnatch})?
+			
+			\item Which reflector from that table can be replaced by a Bandersnatch together with \emph{two} Snarks?
+		\end{enumerate}
+	\end{problem}
 	
 	
 	\mfilbreak
@@ -1372,10 +1401,17 @@ In general, Herschel-to-glider converters and other conduits can be appended to 
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:highway_robber_repeat}
-		Calculate the repeat time of the highway robber from Figure~\ref{fig:highway_robber}.
+	\begin{problem}\label{exer:better_highway_robber_bandersnatch}
+		The repeat time of the highway robber from Figure~\ref{fig:highway_robber} can be reduced somewhat by making use of a Bandersnatch.\smallskip
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item \probdiff{1} Calculate its repeat time.
+			% SOLUTION: 951
+			
+			\item \probdiff{4} With the help of a Bandersnatch, rebuild that highway robber so as to have a smaller repeat time.
+			% SOLUTION: https://www.conwaylife.com/forums/viewtopic.php?t=&p=99379#p99379
+		\end{enumerate}
 	\end{problem}
-	% SOLUTION: 951
 	
 	
 	% EXERCISE: make HWSS heisenburp https://www.conwaylife.com/forums/viewtopic.php?f=2&t=315&start=175#p99744
