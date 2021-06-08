@@ -358,12 +358,12 @@ Now that we can use stable conduits to reposition gliders however we like (via t
 	\centering
 	\begin{subfigure}{.485\textwidth}
 		\centering
-		\patternimglink{0.102}{trombone_slide_276}
+		\patternimglink{0.1}{trombone_slide_276}
 		\caption{A path that takes $276$~generations.}\label{fig:trombone_slide_276}
 	\end{subfigure} \hfill % 
 	\begin{subfigure}{.485\textwidth}
 		\centering
-		\patternimglink{0.102}{trombone_slide_284}
+		\patternimglink{0.1}{trombone_slide_284}
 		\caption{A path that takes $284$~generations.}
 		\label{fig:trombone_slide_284}
 	\end{subfigure}
@@ -376,7 +376,7 @@ As our starting point, we need a glider synthesis of the 2-engine Cordership to 
 
 \begin{figure}[!htb]
 	\centering
-	\patternimglink{0.136}{g_to_2engine_V}
+	\patternimglink{0.1}{g_to_2engine_V}
 	\caption{An arrangement of Herschel edge shooters (highlighted in \bgbox{aquaback}{aqua}) that places 10 gliders coming from the northwest (displayed in \bgbox{greenback}{green}) into the correct positions (displayed in \bgbox{orangeback}{orange}) $738$ generations later to synthesize to synthesize a $2$-engine Cordership.}\label{fig:g_to_2engine_V}
 \end{figure}
 
@@ -396,7 +396,7 @@ It is worth pointing out that there are other stable circuitry toolkits besides 
 % This figure can be moved 1 paragraph earlier. It is just here now because spacing worked out better this way.
 \begin{figure}[!htb]
 	\centering
-	\patternimglink{0.105}{glider_to_2engine_cordership}
+	\patternimglink{0.095}{glider_to_2engine_cordership}
 	\caption{A stable circuit that converts a single glider (displayed in \bgbox{greenback}{green} at the northwest) into a $2$-engine Cordership (which is synthesized by the $10$ gliders displayed in \bgbox{orangeback}{orange} at the southeast). Those $10$ gliders are synchronized, $2$ or $3$ gliders at a time, by the various mechanisms highlighted in \bgbox{greenpastel}{green} and \bgbox{magentaback}{magenta} (the four southernmost of which were displayed in Figure~\ref{fig:2engine_synchronize}) and fed into the arrangement of Herschel edge shooters (highlighted in \bgbox{aquaback}{aqua}) that we originally saw in Figure~\ref{fig:g_to_2engine_V}.}\label{fig:glider_to_2engine_cordership}
 \end{figure}
 
@@ -417,47 +417,51 @@ While these guns are reasonably simple and straightforward to construct, they su
 
 It turns out that this lower bound is ``essentially'' tight---there exists a constant $C$ such that it is possible to construct period~$p$ guns inside a box of size $\big(C\sqrt{\log_2(p)}\big) \times \big(C\sqrt{\log_2(p)}\big)$ for all large $p$. In other words, we can construct period~$p$ glider guns with bounding box of length and width that are $\Theta\big(\sqrt{\log(p)}\big)$.\footnote{See Appendix~\ref{sec:bigO} if you need a refresher on big-$\Theta$ notation.} The key objects used in the construction of such guns are \emph{period multipliers}\index{period multiplier}---conduits that only produce an output signal for every two or more (identical) input signals that are received, and thus multiply the period of the input stream. The two simplest such conduits are the \emph{semi-Snarks}\index{semi-Snark} displayed in Figure~\ref{fig:semi_snarks}, which reflect every second input glider and thus can be used to double the period of a glider stream.
 
-% NJ is here in the cleanup process.
-
 \begin{figure}[!htb]
 	\centering
 	\begin{subfigure}{\textwidth}
 		\centering
-		\embedlink{cp_semi_snark}{\vcenteredhbox{\patternimg{0.075}{cp_semi_snark_0}} \vcenteredhbox{\genarrow{48}} \vcenteredhbox{\patternimg{0.075}{cp_semi_snark_48}} \vcenteredhbox{\genarrow{48}} \vcenteredhbox{\patternimg{0.075}{cp_semi_snark_96}}}
-		\caption{The color-preserving (CP) semi-Snark, which has a repeat time of $48$ generations. It is the same as a Snark (compare it with Figure~\ref{fig:snark}), but with the top eater replaced by a custom conduit that, when hit by a glider, creates a tub that destroys the next glider. Found by Tanner Jacobi in October 2017. }
+		\embedlink{cp_semi_snark}{\vcenteredhbox{\patternimg{0.088}{cp_semi_snark_0}} \vcenteredhbox{\genarrow{48}} \vcenteredhbox{\patternimg{0.088}{cp_semi_snark_48}} \vcenteredhbox{\genarrow{48}} \vcenteredhbox{\patternimg{0.088}{cp_semi_snark_96}}}
+		\caption{The \emph{color-preserving (CP) semi-Snark}, which has a repeat time of $48$ generations. It is the same as a Snark (compare it with Figure~\ref{fig:snark}), but with one of its eater~1s replaced by a custom conduit that, when hit by a glider, creates a tub that destroys the next glider. Found by Tanner Jacobi in October 2017. }
 		\label{fig:cp_semi_snark}
 	\end{subfigure} \\[0.25cm]
 	\begin{subfigure}{\textwidth}
 		\centering
-		\embedlink{cp_semi_snark}{\vcenteredhbox{\patternimg{0.075}{cc_semi_snark_0}} \vcenteredhbox{\genarrow{51}} \vcenteredhbox{\patternimg{0.075}{cc_semi_snark_51}} \vcenteredhbox{\genarrow{51}} \vcenteredhbox{\patternimg{0.075}{cc_semi_snark_102}}}
-		\caption{The color-changing (CC) semi-Snark, which has a repeat time of $51$ generations. The first glider is reflected and moves the central block, and the second glider simply moves the block back via the $(2,1)$-block pull from Figure~\ref{fig:block_move_1_glider}. Found by Sergey Petrov in July 2013.}
+		\embedlink{cp_semi_snark}{\vcenteredhbox{\patternimg{0.0948}{cc_semi_snark_0}} \vcenteredhbox{\genarrow{75}} \vcenteredhbox{\patternimg{0.0948}{cc_semi_snark_75}} \vcenteredhbox{\genarrow{27}} \vcenteredhbox{\patternimg{0.0948}{cc_semi_snark_102}}}
+		\caption{The \emph{color-changing (CC) semi-Snark}, which has a repeat time of $51$ generations. The first glider is reflected and moves the central block, and the second glider simply moves the block back via the $(2,1)$-block pull from Figure~\ref{fig:block_move_1_glider}. Found by Sergey Petrov in July 2013.}
 		\label{fig:cc_semi_snark}
 	\end{subfigure}
 	\caption{\emph{Semi-Snarks} are stable conduits that produce one glider for every two input gliders.}
 	\label{fig:semi_snarks}
 \end{figure}
 
-For example, placing one of these semi-Snarks along the output lane of the $536$-generation Herschel track from Figure~\ref{fig:p67_gun} produces a period~$(2 \times 536)=1\, 072$ gun. Placing a second semi-Snark in the path of the output gliders then doubles its period again, resulting in the period~$(4 \times 536)=2\, 144$ gun in Figure~\ref{fig:p2144_gun}. We can of course place many more semi-Snarks along the output path of the gun, resulting in very compact guns with exponentially-large period. For example, Figure~\ref{fig:p_2_100_gun} shows a gun that consists of a p$256$ gun with $92$ semi-Snarks arranged in a spiral pattern along its output path. Each semi-Snark doubles the gun's period, resulting in a ridiculously large overall period of $256 \times 2^{92} = 2^8 \times 2^{92} = 2^{100} = 1\,267\,650\,600\,228\,229\,401\,496\,703\,205\,376$, despite fitting inside a bounding box of size just $240 \times 260$.
+For example, placing one of these semi-Snarks along the output lane of the $536$-generation Herschel track from Figure~\ref{fig:p67_gun} produces a period~$2 \times 536=1{\thousep}072$ gun. Placing a second semi-Snark in the path of the output gliders then doubles its period again, resulting in the period~$4 \times 536=2{\thousep}144$ gun in Figure~\ref{fig:p2144_gun}. We can of course place many more semi-Snarks along the output path of the gun, resulting in very compact guns with exponentially-large period. For example, Figure~\ref{fig:p_2_100_gun} shows a gun that consists of a p$256$ gun with $92$ semi-Snarks arranged in a spiral pattern along its output path. Each semi-Snark doubles the gun's period, resulting in a ridiculously large overall period of
+\[
+	256 \times 2^{92} = 2^8 \times 2^{92} = 2^{100} = 1{\thousep}267{\thousep}650{\thousep}600{\thousep}228{\thousep}229{\thousep}401{\thousep}496{\thousep}703{\thousep}205{\thousep}376,
+\]
+despite fitting inside a bounding box of size just $240 \times 260$.\index{machine gun}
 
 \begin{figure}[!htb]
 	\centering
-	\begin{subfigure}{0.39\textwidth}
-		\centering\vspace*{2.2cm}
-		\patternimglink{0.112}{p2144_gun}
-		\caption{a period~$4 \times 536 = 2\, 144$ gun}
+	\begin{subfigure}{0.415\textwidth}
+		\centering\vspace*{1.73cm}
+		\patternimglink{0.12}{p2144_gun}
+		\caption{a period~$4 \times 536 = 2{\thousep}144$ gun}
 		\label{fig:p2144_gun}
-	\end{subfigure} \ \ \ \ %
-	\begin{subfigure}{0.57\textwidth}
+	\end{subfigure} \hfill %
+	\begin{subfigure}{0.555\textwidth}
 		\centering
 		\patternimglink{0.11}{p_2_100_gun}
 		\caption{a period~$2^{100}$ gun}
 		\label{fig:p_2_100_gun}
 	\end{subfigure}
-	\caption{Two guns that use semi-Snarks to increase their periods. The gun in (a) uses two semi-Snarks (highlighted in \bgbox{aquaback}{aqua}) to multiply the period of a p$536$ gun (highlighted in \bgbox{yellowback2}{yellow}) by $4$. In the glider gun in (b), the central gun (which consists of four copies of the R64 conduit and is called the \emph{machine gun}\index{machine gun}) has period $256$ and funnels gliders into a spiral of $92$ semi-Snarks, resulting in a gun of period $256 \times 2^{92} = 2^8 \times 2^{92} = 2^{100}$.}
+	\caption{Two guns that use semi-Snarks to increase their periods. The gun in (a) uses two semi-Snarks (highlighted in \bgbox{aquaback}{aqua}) to multiply the period of a p$536$ gun (highlighted in \bgbox{yellowback2}{yellow}) by $4$. The gun in (b) uses $92$ semi-Snarks to multiply the period of the p$256$ central gun (which consists of four copies of the R64 conduit and is called the \emph{machine gun}) by $2^{92}$, for a total period of $256 \times 2^{92} = 2^8 \times 2^{92} = 2^{100}$.}
 	\label{fig:semi_snark_compact_guns}
 \end{figure}
 
-By simply extending this spiral pattern even farther, we can construct guns of period $p = 2^n$ inside a box of size roughly $\big(30\sqrt{\log_2{p}}\big) \times \big(30\sqrt{\log_2{p}}\big) = (30\sqrt{n}) \times (30\sqrt{n})$.\footnote{We do not particularly care about the factor of $30$ here---constants like this do not matter much compared to the square root and logarithmic factors when $n$ is large.} We still have some work to do though if we want to be able to construct compact high-period guns like these ones for \emph{any} large period, rather than just periods that contain a large power of $2$ in their prime decomposition. For example, this method cannot help us construct a small gun with period equal to a prime number like $3\, 413\, 277\, 319$.
+% NJ is here in the cleanup process.
+
+By simply extending this spiral pattern even farther, we can construct guns of period $p = 2^n$ inside a bounding box of size roughly $\big(30\sqrt{\log_2(p)}\big) \times \big(30\sqrt{\log_2(p)}\big) = (30\sqrt{n}) \times (30\sqrt{n})$.\footnote{We do not particularly care about the factor of $30$ here---constants like this do not matter much compared to the square root and logarithmic factors when $n$ is large.} We still have some work to do though if we want to be able to construct compact high-period guns like these ones for \emph{any} large period, rather than just periods that contain a large power of $2$ in their prime decomposition. For example, this method cannot help us construct a small gun with period equal to a prime number like $3\, 413\, 277\, 319$.
 
 In order to get one step closer to this goal, we now show how we can use semi-Snarks to multiply the period of a glider stream by \emph{any} positive integer, not just powers of $2$.\footnote{There are also small \emph{tremi-}, \emph{quadri-}, and \emph{quiti-Snarks} that multiply the period of a glider stream by $3$, $4$, and $5$, respectively---see Exercises~\ref{exer:tremi_snark}, \ref{exer:quadri_snark}, and \ref{exer:quinti_snark}.} The key observation that lets us do this is that if we line up an arrangement of semi-Snarks, then firing a glider at those semi-Snarks counts down in binary (if we interpret a semi-Snark that blocks a glider as a ``1'' and a semi-Snark that lets a glider pass as a ``0''). In particular, this means that if we place semi-Snarks in an on-off pattern corresponding to a number's binary representation, then the circuit encodes how many gliders are destroyed before the first glider is able to pass through it, as in Figure~\ref{fig:block_18_gliders}.
 
