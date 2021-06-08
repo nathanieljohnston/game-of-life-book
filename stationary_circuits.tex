@@ -391,7 +391,7 @@ We can then just iterate this procedure, building up the circuit in layers of gl
 	\caption{Four circuits that, from left to right, synchronize the $3$ leftmost input gliders in Figure~\ref{fig:g_to_2engine_V}, the next three gliders, the next two gliders, and the final two gliders, respectively. All four of these circuits can be constructed using the same methods that we used to build the glider-to-LWSS circuit in Figure~\ref{fig:glider_to_lwss_both}. Glider duplicators are highlighted in \bgbox{aquaback}{aqua}, Snarks are highlighted in \bgbox{yellowback2}{yellow}, and reflectors that change a glider's color and/or mod-$8$ timing are highlighted in \bgbox{magentaback}{magenta}.}\label{fig:2engine_synchronize}
 \end{figure}
 
-It is worth pointing out that there are other stable circuitry toolkits besides the one from Table~\ref{tab:conduit_phase_changers} for adjusting the relative timings and positions of gliders. For example, instead of always using the duplicators from Figure~\ref{fig:glider_multipliers} and then adjusting the timing of gliders via numerous different reflectors (as we have done so far), we could instead make use of numerous different glider duplicators to \emph{directly} put two gliders into any desired relative positioning (i.e., same or different color) and mod-$8$ timing of our choosing, and then only use Snarks for all reflections. However, introducing a second toolkit to do something that we already known how to do is perhaps overkill, so we do not present it here.\footnote{The interested reader can find this toolkit at \httpsurl{conwaylife.com/forums/viewtopic.php?f=&p=51934}.}
+It is worth pointing out that there are other stable circuitry toolkits besides the one from Table~\ref{tab:conduit_phase_changers} for adjusting the relative timings and positions of gliders. For example, instead of always using the duplicators from Figure~\ref{fig:glider_multipliers} and then adjusting the timing of gliders via numerous different reflectors (as we have done so far), we could instead make use of numerous different glider duplicators to \emph{directly} put two gliders into any desired relative positioning (i.e., same or different color) and mod-$8$ timing of our choosing, and then only use Snarks for all reflections. However, introducing a second toolkit to do something that we already known how to do is perhaps overkill, so we do not present it here.\footnote{The interested reader can find this toolkit at \httpsurl{conwaylife.com/forums/viewtopic.php?f=2&t=2784}.}
 
 % This figure can be moved 1 paragraph earlier. It is just here now because spacing worked out better this way.
 \begin{figure}[!htb]
@@ -403,23 +403,16 @@ It is worth pointing out that there are other stable circuitry toolkits besides 
 
 \section{Period Multipliers and Small High-Period Guns}\label{sec:large_glider_guns}
 
-Herschel tracks\index{Herschel!track} can be used to construct guns of any period at least $62$, via the techniques introduced in Section~\ref{sec:herschel_track} and revisited in Section~\ref{sec:conduits} (in fact, Herschel tracks give rise to guns somewhat more naturally than they give rise to oscillators---we just remove one or more of the eaters in a Herschel track oscillator to turn it into a gun).\footnote{Even though we could construct Herschel track oscillators of period~$61$, a period~$61$ Herschel track \emph{gun} is not so simple since the escaping gliders collide with subsequent Herschels if we remove an eater.} For example, a period~$93$ gun that works by using $16$ Herschels on the track that we originally constructed in Figure~\ref{fig:herschel_track_248}, and deleting one of the eater~2s, is displayed in Figure~\ref{fig:p93_gun}.\footnote{Unfortunately, this particular track cannot be used to make a period~$62$ gun, even though placing $24$ Herschels on the track makes a period $1488/24 = 62$ oscillator. See Exercise~\ref{exer:p62_gun_problem} for an explanation of the problem and a method of fixing it.}
+Herschel tracks\index{Herschel!track} can be used to construct guns of any period at least $62$, via the techniques introduced in Section~\ref{sec:herschel_track} and revisited in Section~\ref{sec:conduits}. In fact, Herschel tracks give rise to guns somewhat more naturally than they give rise to oscillators---we just remove one or more of the eaters in a Herschel track oscillator to turn it into a gun.\footnote{Even though we could construct Herschel track oscillators of period~$61$, a period~$61$ Herschel track \emph{gun} is not so simple since the escaping gliders collide with subsequent Herschels if we remove an eater.} However, now that we are familiar with the syringe, there is a much smaller and simpler way to create glider guns of any period at least~$78$.\footnote{Thanks to overclocking, this same method works for periods $74$ and $75$ too---see Exercise~\ref{exer:p80_adjustable_manipulate}.}
+
+The pattern displayed in Figure~\ref{fig:p80_adjustable_gun} is made up of two identical halves that take in a glider, convert it to a Herschel (via a syringe) and then convert it back into another glider that is fed into the other half. Eight input gliders serve to start the gun, and as-displayed it will have period~$80$. To increase the period of this gun by $n$, simply (a) move the top half of the gun (i.e., the top $33$ rows of the pattern) northeast by $n$ cells, and (b) adjust the $8$ input gliders so as to each be separated by $80+n$ generations.
+\begin{figure}[!htb]
+	\centering
+	\embedlink{p80_adjustable_gun}{\vcenteredhbox{\patternimg{0.106}{p80_adjustable_gun}} \vcenteredhbox{\genarrow{665}} \vcenteredhbox{\patternimg{0.106}{p80_adjustable_gun_665}}}
+	\caption{A period~$80$ adjustable glider gun. Eight gliders come in from the southwest (highlighted in \bgbox{greenpastel}{green}) to start the gun. Those gliders are fed into a syringe (highlighted in \bgbox{yellowback2}{yellow}) and then proceed clockwise through an F117 conduit (highlighted in \bgbox{magentaback}{magenta}) and the herschel-to-glider converter from Figure~\ref{fig:H_to_2G} (highlighted in \bgbox{aquaback}{aqua}). The glider then enters the bottom half of the gun, which is identical except that it is missing one eater and thus emits a stream of gliders to the southeast (highlighted in \bgbox{orangeback2}{orange}). Constructed by Matthias Merzenich in September 2015.}\label{fig:p80_adjustable_gun}
+\end{figure}
 
 % NJ is here in the cleanup process.
-
-\begin{figure}[!htb]
-	\centering
-	\patternimglink{0.1}{p93_gun}
-	\caption{A period~$93$ glider gun consisting of the R64 and Fx77 conduits introduced in Section~\ref{sec:herschel_track}. This gun has $16$ Herschels on the track instead of $6$ as in the original track from Figure~\ref{fig:herschel_track_248}, making its period $1488/16 = 93$ instead of $1488/6 = 248$. We also deleted one of the eater~2s at the southeast corner to allow a single stream of gliders to escape, thus making it a gun instead of an oscillator.}\label{fig:p93_gun}
-\end{figure}
-
-However, now that we are familiar with the syringe\index{syringe}, there is a much smaller and simpler way to create glider guns of any period at least~$80$.\footnote{Actually, this same method works for periods $74$, $75$, $78$, and $79$ too---see Exercise~\ref{exer:p80_adjustable_manipulate}.} The pattern displayed in Figure~\ref{fig:p80_adjustable_gun} is made up of two identical halves that take in a glider, convert it to a Herschel (via a syringe) and then convert it back into another glider that is fed into the other half.\footnote{This adjustable glider gun was constructed by Matthias Merzenich in September 2015.} The $8$ input gliders serve to start the gun, and as-displayed it will have period~$80$. To increase the period of this gun by $n$, simply (a) move the top half of the gun (i.e., the top $33$ rows of the pattern) northeast by $n$ cells, and (b) adjust the $8$ input gliders so as to each be separated by $80+n$ generations.
-
-\begin{figure}[!htb]
-	\centering
-	\embedlink{p80_adjustable_gun}{\vcenteredhbox{\patternimg{0.102}{p80_adjustable_gun}} \vcenteredhbox{\genarrow{665}} \vcenteredhbox{\patternimg{0.102}{p80_adjustable_gun_665}}}
-	\caption{A period~$80$ adjustable glider gun. Eight gliders come in from the southwest (highlighted in \bgbox{aquaback}{aqua}) to start the gun. Those gliders are fed into a syringe (highlighted in \bgbox{yellowback2}{yellow}) and then proceed clockwise through an F117 conduit (highlighted in \bgbox{orangeback2}{orange}) and the herschel-to-glider converter from Figure~\ref{fig:H_to_2G} (highlighted in \bgbox{greenpastel}{green}). Then the glider enters the bottom half of the gun, which is identical except that it is missing one eater and thus emits a stream of gliders to the southeast (highlighted in \bgbox{magentaback}{magenta}). To increase the period of this gun by $n$~generations, simply move the top half of the gun northeast by $n$~cells and separate the eight input gliders by $n$~more generations.}\label{fig:p80_adjustable_gun}
-\end{figure}
 
 While these guns are reasonably simple and straightforward to construct, they suffer the drawback that they increase in size quite quickly as their period does. In particular, a period~$p$ gun of this type has bounding box of size $(p+18) \times (p-14)$, and it seems natural to ask how much smaller we can make them. We can obtain a rough lower bound on the size of a period-$p$ gun by noting that an $m \times m$ bounding box contains $m^2$ cells, each of which can be in one of two states, so there are $2^{m^2}$ distinct patterns that fit within such a box. Thus no gun or oscillator in an $m \times m$ box can have period larger than $p = 2^{m^2}$ (since after that many generations, it must return to a phase that was already seen earlier). By flipping this around and solving for $m$, we see that there cannot exist a period~$p$ gun inside a box of size less than $\sqrt{\log_2(p)} \times \sqrt{\log_2(p)}$.
 
@@ -1319,14 +1312,18 @@ The trombone slide displayed in Figure~\ref{fig:trombone_slide_276} delays a gli
 	
 	
 	\begin{problem}\label{exer:p62_gun_problem}
-		Recall that the period~$93$ glider gun in Figure~\ref{fig:p93_gun} has $16$ Herschels on a track that each take $16 \times 93 = 1488$ generations to traverse it.\smallskip
+		Recall that Herschel tracks can be used to create glider guns with periods as low as $62$.\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item Adjust the number of Herschels on the track so as to create a period~$124$ glider gun.
+			\item \probdiff{2} Create a square Herschel track oscillator that uses four R64 conduits (one at each of its corners) and 16 Fx77 conduits (four on each of its sides). If you place just a single Herschel on this track, it should have period $1{\thousep}488$.
 			
-			\item Explain why this does not become a period~$62$ glider gun if we place $1488/62 = 24$ Herschels on the track. % without the eater 2, the FNG collides with the next Herschel
+			\item \probdiff{3} Place $24$ Herschels on this track, creating an oscillator with period $1488/24 = 62$.
 			
-			\item Create a true-period~$62$ glider gun by making a Herschel loop that uses the L156 circuit for the corners instead of R64 conduits (still use Fx77 conduits for the sides).
+			[Hint: You may have to fiddle with eaters a bit to be able to pack the Herschels together this closely.]
+			
+			\item \probdiff{1} What goes wrong if you try to turn this Herschel track into a period~62 glider gun? % without the eater 2, the FNG collides with the next Herschel
+			
+			\item \probdiff{3} Create a period~$62$ glider gun by modifying this Herschel loop so that it uses L156 conduits for its corners instead of R64 conduits.
 		\end{enumerate}
 	\end{problem}
 	
