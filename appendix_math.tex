@@ -77,8 +77,12 @@ However, this formula is quite technical and has many details that we typically 
 	\]
 \end{definition}
 
-Informally, the phrase ``$f(x)$ is $\Theta(g(x))$'' means that $f$ and $g$ have the same rate of growth as $x$ gets large, ignoring things like scalars and low-order terms. For example, for the population formula $p(t)$ given in Equation~\eqref{eq:max_population_formula}, we can say that $p(t)$ is $\Theta(t^2)$.\footnote{This is the fastest possible growth rate of any pattern in the Life plane---after $t$~generations, each cell can only affect cells within the $(2t + 1) \times (2t + 1)$ square centered at it. There are $(2t+1)^2$ cells in such a square, which is $\Theta(t^2)$.} This is hopefully somewhat intuitive, but it can be made precise by choosing $c = 1/4$ and $C = ??$ in Definition~\ref{defn:big_theta}.
+Informally, the phrase ``$f(x)$ is $\Theta(g(x))$'' means that $f$ and $g$ have the same rate of growth as $x$ gets large, ignoring things like scalars and low-order terms. For example, for the population formula $p(t)$ given in Equation~\eqref{eq:max_population_formula}, we can say that $p(t)$ is $\Theta(t^2)$.\footnote{This is the fastest possible growth rate of any pattern in the Life plane---after $t$~generations, each cell can only affect cells within the $(2t + 1) \times (2t + 1)$ square centered at it. There are $(2t+1)^2$ cells in such a square, which is $\Theta(t^2)$.} This is hopefully somewhat intuitive, but it can be made precise by choosing $c = 1/4$, $C = 1/2$, and $N = 57$ in Definition~\ref{defn:big_theta}---see Figure~\ref{fig:max_population_graph}.\footnote{Many other choices of $c$, $C$, and $N$ are possible as well. For example, we could choose any smaller value of $c$ and/or any larger value of $C$ or $N$. We could even choose a smaller value of $C$ as long as we choose a larger value of $N$ to compensate.}
 
-% Show population plot with c and C bounds
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{appendices/max_population.pdf}
+	\caption{A plot of the population $p(t)$ of the max pattern from Figure~\ref{fig:max} in generation $t$. Since $p(t)$ is between $t^2/4$ and $t^2/2$ when $t \geq 57$, we say that $p(t)$ is $\Theta(t^2)$.}\label{fig:max_population_graph}
+\end{figure}
 
-% Give a couple more basic mathematical examples
+% TODO: Give a couple more basic mathematical examples? Not motivated by Life, but just things like (any quadratic is Theta(x^2)) and stuff like that?
