@@ -612,7 +612,7 @@ The key facts that make this reaction so useful for us are (1) that the output g
 
 With this reaction in hand, we can now use a p2 slow salvo to construct any arrangement of gliders in the plane that we desire. First, we ``rewind'' the desired glider synthesis back as far as we like, so that it consists of four salvos of gliders---one coming from each direction.\footnote{Recall that the gliders must be able to reach their positions from arbitrarily far away in order to be considered a valid glider synthesis.} We then construct the four salvos one glider at a time. If the gliders in a salvo are spaced sufficiently far apart, we can insert gliders into it via one-time turners. If the gliders are spaced close together, we instead first synthesize a clock (via p1 slow salvo synthesis, such as in Figure~\ref{fig:clock_slow_salvo}) and then use the clock inserter to insert the close gliders one at a time. We have thus finally proved the following theorem:
 
-\begin{theorem}\label{thm:p2_slow_salvo}
+\begin{theorem}[Universality of p2 Slow Salvo Synthesis]\label{thm:p2_slow_salvo}
 	Every pattern that can be constructed via glider synthesis can be constructed by a p2 slow salvo glider synthesis.
 \end{theorem}
 
@@ -624,7 +624,7 @@ With this reaction in hand, we can now use a p2 slow salvo to construct any arra
 
 The only p2 object that we needed to prove Theorem~\ref{thm:p2_slow_salvo} was the clock, which we used to place clusters of tightly-packed gliders. We can get around having to use clocks (and thus avoid p$2$ objects altogether) by instead using the blockic seed of a clock from Figure~\ref{fig:clock_slow_salvo}. More specifically, if we wish to use a clock insertion reaction, we first split a single glider into three via blockic splitters---one of those gliders then hits the seed, creating a clock, and the other two are reflected so as to trigger the clock insertion reaction as in Figure~\ref{fig:clock_inserter}. Since this entire process is carried out by a single glider in the slow salvo synthesis, the result is a p1 slow salvo synthesis. We thus have the following strengthening of Theorem~\ref{thm:p2_slow_salvo}:\footnote{There are some mild technicalities that we have glossed over here---see Exercise~\ref{exer:p2_salvo_reduce_to_p1}.}%\footnote{The fact that some p2 clocks are created during this synthesis is irrelevant, since they are destroyed before the next glider in the salvo arrives.}
 
-\begin{theorem}\label{thm:p1_slow_salvo}
+\begin{theorem}[Universality of p1 Slow Salvo Synthesis]\label{thm:p1_slow_salvo}
 	Every pattern that can be constructed via glider synthesis can be constructed by a p1 slow salvo glider synthesis.
 \end{theorem}
 

@@ -924,9 +924,9 @@ For this particular track, these are the only possible periods that we can const
 
 By arranging the R64 and Fx77 Herschel conduits in larger and larger squares like this, we can create oscillators with a wide variety of periods. To pin down exactly which periods are possible, we note that if we place $2k$ copies of Fx77 on each side of the track, then a Herschel requires $(4 \times 64) + (8k \times 77) = 256 + 616k$ generations to traverse the track. To create an oscillator with period $p$, we require $256 + 616k$ to be evenly divisible by $p$. At this point, a problem emerges: $256 + 616k \equiv 4 \ (\text{mod } 7)$ and $256 + 616k \equiv 3 \ (\text{mod } 11)$ for all $k$, so these tracks will never give an oscillator whose period is a multiple of $7$ or $11$. However, they can be used to construct oscillators with all other periods (no smaller than $61$):
 
-\begin{proposition}\label{prop:Herschel_7_11}
+\begin{theorem}[Herschel Track Oscillators of Most Periods]\label{thm:Herschel_7_11}
 	Let $p \geq 1$ be a positive integer. There exists an integer $k \geq 1$ such that $p$ evenly divides $256 + 616k$ if and only if $p$ is not a multiple of $7$ or $11$. Square Herschel tracks consisting of $4$ R64 conduits and $2k$ Fx77 conduits per side can thus be used to create oscillators of any period $61$ or larger that is not a multiple of $7$ or $11$.
-\end{proposition}
+\end{theorem}
 
 \begin{proof}
 	Note that $p$ evenly divides $256 + 616k$ if and only if there exists an integer $a \geq 1$ such that $pa = 256 + 616k$. The problem then becomes to determine for which values of $p$ there exist integers $a,k$ such that $pa - 616k = 256$. This is a linear Diophantine equation, which is a well-studied mathematical object, and it is known that $a$ and $k$ exist if and only if $\mathrm{gcd}(p,616)$ evenly divides $256$ (see Appendix~\ref{sec:gcd} for details). Since the only prime factors of $616$ that are not prime factors of $256$ are $7$ and $11$, it follows that $a$ and $k$ exist if and only if $p$ is not a multiple of $7$ or $11$.
@@ -948,12 +948,12 @@ We could similarly fold in the corners of larger square Herschel tracks, potenti
 
 The point of doing this is that if we fold in the corners of a large square enough times, we end up with a track whose length is a multiple of $77$ and thus can be used to construct oscillators whose period is a multiple of $7$ and/or $11$. In particular, if we take a square Herschel track with $26$ or more Fx77 conduits on each side (i.e., $k \geq 13$) and we fold in the corners $76$ times,\footnote{In general, if we have $2k$ Fx77 conduits on each side of the square track, we can fold in the corners up to $k(k-1)/2$ times. To be able to fold the corners in $76$ times, we need $k(k-1)/2 \geq 76$, so $k \geq 13$.} then it will take a Herschel $(256 + 616k) - (76 \times 52) = 77(8k - 48)$ generations to traverse the track. This new family of tracks gives us exactly what we want:
 
-\begin{proposition}\label{prop:Herschel_61}
+\begin{theorem}[Herschel Track Oscillators of All Periods]\label{thm:Herschel_61}
 	Let $p \geq 1$ be a positive integer. Then there exists an integer $k \geq 13$ such that $p$ evenly divides $77(8k - 48)$. The Herschel conduits R64 and Fx77 can thus be used to create oscillators of any period $61$ or larger.
-\end{proposition}
+\end{theorem}
 
 \begin{proof}
-	The proof of this fact is very similar to that of Proposition~\ref{prop:Herschel_7_11}: we note that $p$ evenly divides $77(8k - 48)$ if and only if we can find positive integers $a$ and $k$ such that $pa - 77 \times 8k = -(77 \times 48)$, if and only if $\mathrm{gcd}(p,77 \times 8)$ evenly divides $77 \times 48$, which is always the case regardless of the value of $p$.
+	The proof of this fact is very similar to that of Theorem~\ref{thm:Herschel_7_11}: we note that $p$ evenly divides $77(8k - 48)$ if and only if we can find positive integers $a$ and $k$ such that $pa - 77 \times 8k = -(77 \times 48)$, if and only if $\mathrm{gcd}(p,77 \times 8)$ evenly divides $77 \times 48$, which is always the case regardless of the value of $p$.
 \end{proof}
 
 It is perhaps worth noting that these Herschel tracks with $k \geq 13$ are extremely large, and for many periods it is possible to find much smaller Herschel tracks that work; we only chose this particular family of Herschel tracks because it is relatively straightforward to analyze, not because it is efficient. Furthermore, even though we have only discussed Herschels in the context of creating oscillators so far, they are useful for much more. For example, if we look back at the Silver reflector in Figure~\ref{fig:silver_reflector}, we see the Fx77 conduit near its top-center. Indeed, that reflector works by converting the input glider into a Herschel, which is then funneled along a Herschel track without suppressing the gliders that it creates (and making use of some other conduits that we have not yet seen). We explore conduits and tracks like these ones in much more depth in Chapter~\ref{chp:stationary_circuitry}.
@@ -1031,7 +1031,7 @@ Before closing this chapter, we make a brief detour and consider the period~2 os
 	\caption{A period~$2$ phoenix oscillator.}\label{fig:phoenix}
 \end{figure}
 
-\begin{theorem}\label{thm:phoenix_oscillate}
+\begin{theorem}[Phoenices are Oscillators]\label{thm:phoenix_oscillate}
 	In Conway's Game of Life, no phoenix can ever extend more than one cell outside of its original bounding box. In particular, every phoenix evolves into an oscillator.
 \end{theorem}
 \begin{proof}
@@ -1061,7 +1061,7 @@ Before proceeding, we note that the technique used in the proof of Theorem~\ref{
 
 Now that we know that all phoenices evolve into oscillators, we are left with the question of what periods they can have. We already saw an example of a period~2 phoenix, but to date no one has found any phoenices with period~3 or higher. The following theorem\footnote{This theorem was also originally proved by Stephen Silver in January 2000.} shows that no phoenix of period~3 exists.
 
-\begin{theorem}\label{thm:phoenix_p3}
+\begin{theorem}[No Phoenices with Period $3$]\label{thm:phoenix_p3}
 	In Conway's Game of Life, there does not exist a phoenix oscillator with period~3.
 \end{theorem}
 

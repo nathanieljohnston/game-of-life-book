@@ -298,7 +298,7 @@
 {\;}% Punctuation after theorem head
 {0.25em}% Space after theorem head
 {\small\sffamily{\tiny\ensuremath{\blacksquare}}\nobreakspace\thmname{#1}\nobreakspace\thmnumber{\@ifnotempty{#1}{}\@upn{#2}}% Theorem text (e.g. Theorem 2.1)
-\thmnote{\nobreakspace\the\thm@notefont\sffamily\bfseries---\nobreakspace#3.}}% Optional theorem note
+\thmnote{\nobreakspace\the\thm@notefont\sffamily\bfseries---\nobreakspace#3\\[0.01cm]}}% Optional theorem note
 
 \newtheoremstyle{blacknumbox} % Theorem style name
 {0pt}% Space above
@@ -308,8 +308,8 @@
 {\small\bf\sffamily}% Theorem head font
 {\;}% Punctuation after theorem head
 {0.25em}% Space after theorem head
-{\small\sffamily\thmname{#1}\nobreakspace\thmnumber{\@ifnotempty{#1}{}\@upn{#2}}% Theorem text (e.g. Theorem 2.1)
-\thmnote{\nobreakspace\the\thm@notefont\sffamily\bfseries---\nobreakspace#3.}}% Optional theorem note
+{\small\sffamily\color{ocre}\thmname{#1}\nobreakspace\thmnumber{\@ifnotempty{#1}{}\@upn{#2}}% Theorem text (e.g. Theorem 2.1)
+\thmnote{\nobreakspace\the\thm@notefont\sffamily\bfseries\color{black}---\nobreakspace#3\\[0.01cm]}}% Optional theorem note
 
 % Non-boxed/non-framed environments
 \newtheoremstyle{exercisenum}%
@@ -349,7 +349,7 @@
 \newtheorem{exampleT}{Example}[chapter]
 \theoremstyle{blacknumbox}
 \newtheorem{vocabulary}{Vocabulary}[chapter]
-\newtheorem{definitionT}{Definition}[section]
+\newtheorem{definitionT}{Definition}[chapter]
 \theoremstyle{ocrenum}
 \newcommand{\rawtilde}{\raise.17ex\hbox{$\scriptstyle\mathtt{\sim}$}}
 
@@ -447,11 +447,12 @@ bottomline=false,
 linecolor=ocre,
 innerleftmargin=5pt,
 innerrightmargin=5pt,
-innertopmargin=0pt,
+innertopmargin=5pt,
 leftmargin=0cm,
 rightmargin=0cm,
 linewidth=4pt,
-innerbottommargin=0pt]{dBox}	
+backgroundcolor=black!5,
+innerbottommargin=5pt]{dBox}	
 
 % Corollary box
 \newmdenv[skipabove=7pt,

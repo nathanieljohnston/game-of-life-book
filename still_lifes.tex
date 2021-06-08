@@ -118,7 +118,7 @@ Given that the definition of a pseudo still lifes involves being able to partiti
 	\caption{Pseudo still lifes that can be partitioned into (a) $3$ still lifes  and (b) $4$ still lifes, but not fewer. The way of partitioning the still lifes is indicated by the different colors.}\label{fig:pseudo_still_life_decompose}
 \end{figure}
 
-\begin{theorem}\label{thm:pseudo_still_four}
+\begin{theorem}[Four-Partitions of Pseudo Still Lifes]\label{thm:pseudo_still_four}
 	Every pseudo still life can be partitioned into $4$ or fewer still lifes.
 \end{theorem}
 
@@ -460,7 +460,7 @@ From the very early days of Life, many examples of infinite still lifes were kno
 
 It was a long-standing question whether or not an asymptotic density of greater than $1/2$ is attainable, or if $1/2$ really is the upper limit.\footnote{The conjecture that the asymptotic density of still lifes does not exceed $1/2$ was called the \emph{still life conjecture}, which was first considered in \emph{Lifeline} vol. 3 in September 1971. In 1992, an upper bound of $6/11$ on the density of an infinite still life was proved by Dean Hickerson using the method outlined in Exercise~\ref{exer:sl_density_611}. This bound was then improved to $15/28$ by Hartmut Holzwart, and finally to $1/2$, hence proving the conjecture, by Noam Elkies in 1998 \cite{Elk98}.} The following theorem shows that the latter is the case: there are no stable configurations that are more dense than those presented in Figure~\ref{fig:dense_still_lifes} (though there are others that also attain density~$1/2$).\footnote{The original proof presented in \cite{Elk98} is somewhat complicated and requires a decent amount of casework, but also finds the maximum asymptotic density of still lifes in many other Life-like cellular automata. The simpler proof provided here, which is specific to the Game of Life, was first presented in \cite{CSB09}.}
 
-\begin{theorem}\label{thm:still_life_density}
+\begin{theorem}[Still Life Density (version 1)]\label{thm:still_life_density}
 	A still life contained in an $n \times n$ bounding box has no more than $\lfloor n^2/2 \rfloor + 2n$ live cells. In particular, the asymptotic density of still lifes as $n \rightarrow \infty$ is no greater than $1/2$.
 \end{theorem}
 
@@ -628,9 +628,9 @@ While it is nice to have an answer to the asymptotic version of the still life d
 
 In fact, even this bound can be improved, because these $4n$ neighboring dead cells only send a token into the square if their neighbor inside the square is alive. However, only $2$ out of every $3$ cells on the outer edge of the square can be alive, or else they would cause a birth outside of the square and hence not be a still life. It follows that at most $4\lceil 2n/3 \rceil$ tokens can enter the square (see Figure~\ref{fig:density_border_improve}). If we repeat the calculation that was done at the start of the proof of Theorem~\ref{thm:still_life_density}, we immediately arrive at the following result, which is possibly the best upper bound on the density of a finite still life that can be ``easily'' derived:
 
-\begin{proposition}\label{prop:still_life_density_better}
+\begin{theorem}[Still Life Density (version 2)]\label{thm:still_life_density_better}
 	A still life contained in an $n \times n$ bounding box has no more than $\lfloor n^2/2 \rfloor + \lceil 2n/3 \rceil$ live cells.
-\end{proposition}
+\end{theorem}
 
 For large values of $n$, this new bound is not too much better than the bound provided by Theorem~\ref{thm:still_life_density}, since the $n^2/2$ term is much larger than the $2n$ term that we improved anyway. However, for small values of $n$ this bound is now good enough that it is sometimes exactly correct. In particular, when $n = 2, 3,$ or $5$, this bound equals $4$, $6$, and $16$, respectively, and it is straightforward to construct still lifes that attain these bounds---a block, a ship, and a $2 \times 2$ arrangement of $4$ blocks. For other small squares, we can find the densest still lifes simply by brute-force search: Table~\ref{tab:still_life_n10} gives a summary of the densest patterns in $n \times n$ bounding boxes for $n = 2, 3, 4, \ldots, 10$.
 
@@ -638,7 +638,7 @@ For large values of $n$, this new bound is not too much better than the bound pr
 	\begin{center}		
 		\begin{tabular}{Sc Sc Sl Sc Sc Sc}
 			\toprule
-			$n$ & \multicolumn{2}{c}{Densest Still Life} & Prop.~\ref{prop:still_life_density_better} Bound & Maximal Live Cells & Density \\\midrule
+			$n$ & \multicolumn{2}{c}{Densest Still Life} & Thm.~\ref{thm:still_life_density_better} Bound & Maximal Live Cells & Density \\\midrule
 			\specialcell{2} & \specialcell{\patternimglink{0.1969696969}{densest_block}} & \specialcell{block} & \specialcell{4} & \specialcell{4} & \specialcell{$2/2 = 1.000$} \\
 			\rowcolor{gray!20} \specialcell{3} & \specialcell{\patternimglink{0.15853658536}{densest_ship}} & \specialcell{ship} & \specialcell{6} & \specialcell{6} & \specialcell{$6/9 \approx 0.6667$} \\
 			\specialcell{4} & \specialcell{\patternimglink{0.13265306122}{densest_pond}} & \specialcell{pond} & \specialcell{11} & \specialcell{8} & \specialcell{$8/16 = 0.5000$} \\
@@ -649,11 +649,11 @@ For large values of $n$, this new bound is not too much better than the bound pr
 			\rowcolor{gray!20} \specialcell{9} & \specialcell{\patternimglink{0.07303370786}{densest_9}} & \specialcell{--} & \specialcell{46} & \specialcell{43} & \specialcell{$43/81 \approx 0.5309$} \\
 			\specialcell{10} & \specialcell{\patternimglink{0.06701030927}{densest_10}} & \specialcell{--} & \specialcell{57} & \specialcell{54} & \specialcell{$54/100 = 0.5400$} \\\bottomrule
 		\end{tabular}
-		\caption{The densest still lifes that fit within an $n \times n$ bounding box for $2 \leq n \leq 10$, as well as the upper bound on the population of such a still life guaranteed by Proposition~\ref{prop:still_life_density_better}. The examples displayed here are only unique when $n = 2, 3, 5$, or $7$.}\label{tab:still_life_n10}
+		\caption{The densest still lifes that fit within an $n \times n$ bounding box for $2 \leq n \leq 10$, as well as the upper bound on the population of such a still life guaranteed by Theorem~\ref{thm:still_life_density_better}. The examples displayed here are only unique when $n = 2, 3, 5$, or $7$.}\label{tab:still_life_n10}
 	\end{center}
 \end{table}
 
-Remarkably, we actually know a complete answer to the question of how many live cells a still life in an $n \times n$ bounding box can have. Various clever computer searches were used\footnote{These values for $n \leq 10$ were computed by Robert Bosch in 1999 \cite{Bos99}. This was extended to $n \leq 15$ by Bosch and Michael Trick in 2004 \cite{BT04}, and to $n \leq 20$ by Javier Larrosa, Enric Morancho, and David Niso in 2005 \cite{LMN05}. The remaining values were computed by Geoffrey Chu et. al., with the $n \leq 27$ values being computed in 2009 \cite{CSB09}, and a complete solution for all $n$ being presented in 2012 \cite{CS12}.} to compute the answer when $n \leq 60$, the results of which are summarized in Table~\ref{tab:still_life_n60}. For the $n \geq 61$ cases, the problem stabilizes quite a bit, and there is an explicit formula that is summarized by the following theorem. Proving this theorem is beyond the scope of this book, so the interested reader is directed to \cite{CS12} for details of how it was derived. It is worth noting that the bound we proved in Proposition~\ref{prop:still_life_density_better} is not too far from optimal: the $n^2/2$ term is right, and the linear term in our bound is $2n/3 \approx 0.6667n$, versus the following exact result which has a linear term of $17n/27 \approx 0.6296n$.
+Remarkably, we actually know a complete answer to the question of how many live cells a still life in an $n \times n$ bounding box can have. Various clever computer searches were used\footnote{These values for $n \leq 10$ were computed by Robert Bosch in 1999 \cite{Bos99}. This was extended to $n \leq 15$ by Bosch and Michael Trick in 2004 \cite{BT04}, and to $n \leq 20$ by Javier Larrosa, Enric Morancho, and David Niso in 2005 \cite{LMN05}. The remaining values were computed by Geoffrey Chu et. al., with the $n \leq 27$ values being computed in 2009 \cite{CSB09}, and a complete solution for all $n$ being presented in 2012 \cite{CS12}.} to compute the answer when $n \leq 60$, the results of which are summarized in Table~\ref{tab:still_life_n60}. For the $n \geq 61$ cases, the problem stabilizes quite a bit, and there is an explicit formula that is summarized by the following theorem. Proving this theorem is beyond the scope of this book, so the interested reader is directed to \cite{CS12} for details of how it was derived. It is worth noting that the bound we proved in Theorem~\ref{thm:still_life_density_better} is not too far from optimal: the $n^2/2$ term is right, and the linear term in our bound is $2n/3 \approx 0.6667n$, versus the following exact result which has a linear term of $17n/27 \approx 0.6296n$.
 
 \begin{table}[!htb]\vspace*{0.05in}\setlength\arrayrulewidth{0.75pt}
 	\begin{center}		
@@ -676,7 +676,7 @@ Remarkably, we actually know a complete answer to the question of how many live 
 	\end{center}
 \end{table}
 
-\begin{theorem}\label{thm:still_life_density_finite}
+\begin{theorem}[Still Life Density (version 3)]\label{thm:still_life_density_finite}
 	For all $n \geq 61$, the maximum number of live cells $M(n)$ in a still life with an $n \times n$ bounding box is given by the formula
 	$$
 	M(n) = \begin{cases}
@@ -1079,7 +1079,7 @@ Finally, Simon Ekström wrote a program to search for still lifes in January 201
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item Prove that a still life with an $m \times n$ bounding box cannot have more than $\lfloor mn/2 \rfloor + m + n$ live cells. [Hint: Use the token distribution scheme from the proof of Theorem~\ref{thm:still_life_density}.]
 			
-			\item Prove that a still life with an $m \times n$ bounding box cannot have more than $$\Big\lfloor mn/2 + \frac{1}{2}\lceil 2m/3 \rceil + \frac{1}{2}\lceil 2n/3 \rceil \Big\rfloor$$ live cells. [Hint: Use the argument that was used to prove Proposition~\ref{prop:still_life_density_better}.]
+			\item Prove that a still life with an $m \times n$ bounding box cannot have more than $$\Big\lfloor mn/2 + \frac{1}{2}\lceil 2m/3 \rceil + \frac{1}{2}\lceil 2n/3 \rceil \Big\rfloor$$ live cells. [Hint: Use the argument that was used to prove Theorem~\ref{thm:still_life_density_better}.]
 			
 			\item Use the formula from part~(b) to show that a still life with an $2 \times n$ bounding box cannot have more than
 			$$

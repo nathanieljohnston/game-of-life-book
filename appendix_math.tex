@@ -1,3 +1,10 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   APPENDIX: MISCELLANEOUS MATH
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\chapterfolder}{appendices/}
+\chapterimage{cover/stationary_circuitry}
+
 \chapter{Mathematical Miscellany}\label{app:math}
 
 In this appendix, we present some of the miscellaneous bits of mathematical knowledge that we needed to discuss certain concepts or to prove certain theorems. While none of these topics are particularly deep, they are often taught at scattered places throughout one's math education (or not taught at all), so we summarize them here for ease of reference.
@@ -41,8 +48,37 @@ The \emph{least common multiple} (or \emph{LCM} for short) of two positive integ
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%   SECTION: BIG-O NOTATION
+%%   SECTION: BIG-Theta NOTATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Big-O Notation}\label{sec:bigO}
+\section{Big-$\Theta$ Notation}\label{sec:bigO}
 
-Stuff.
+When describing the long-term behaviour of a Life pattern, we often just want to focus on the ``big picture'', while suppressing the ``fine details''. For example, the pattern displayed in Figure~\ref{fig:max} grows extremely quickly, filling the entire Life plane with zebra stripes\index{aebra stripes} as its four corners expand outward. Patterns that fill the plane like this are called \emph{spacefillers},\index{spacefiller} and this one is called \emph{max}.\footnote{Its name is a reference to the fact that its growth rate is maximal---no pattern can expand faster than $c/2$ in each direction (see Theorem~\ref{thm:speed_limits}), and no pattern can tile the plane with a stable configuration that is more dense than zebra stripes (see Theorem~\ref{thm:still_life_density}).}\index{max}
+
+\begin{figure}[!htb]
+	\centering
+	\embedlink{max}{\vcenteredhbox{\patternimg{0.093}{max_0}} \vcenteredhbox{\genarrow{100}} \vcenteredhbox{\patternimg{0.093}{max_100}}}
+	\caption{The \emph{max} spacefiller. Constructed by Tim Coe in October 1995.}\label{fig:max}
+\end{figure}
+
+To communicate how quickly this pattern grows, we could of course give an explicit formula for its population $p(t)$ in generation~$t$, which has the following form:
+\begin{align}\label{eq:max_population_formula}
+	p(t) = \frac{t^2}{4} + \begin{cases}
+		21t/2 + 209, & \text{ if } t \equiv 0 \pmod{4} \\
+		21t/2 + 215, & \text{ if } t \equiv 2 \pmod{4} \\
+		10t + 923/4, & \text{ otherwise}.
+	\end{cases}
+\end{align}
+However, this formula is quite technical and has many details that we typically do not actually care about. Its ``most important'' piece is the $t^2/4$ term at the front---in the long run (i.e., when $t$ is large), that term has the biggest effect on the population. For this reason, we would typically just say that $p(t)$ ``grows like $t^2/4$'', or even that $p(t)$ ``is proportional to $t^2$''. Big-$\Theta$ notation provides a way of making this terminology precise:
+
+\begin{definition}[Big-$\Theta$ Notation]\label{defn:big_theta}
+	Suppose $f$ and $g$ are real-valued functions. We say ``$f(x)$ is $\Theta(g(x))$'' if there exist positive scalars $c$, $C$, and $N$ such that
+	\[
+		cg(x) \leq f(x) \leq Cg(x) \quad \text{whenever} \quad x \geq N.
+	\]
+\end{definition}
+
+Informally, the phrase ``$f(x)$ is $\Theta(g(x))$'' means that $f$ and $g$ have the same rate of growth as $x$ gets large, ignoring things like scalars and low-order terms. For example, for the population formula $p(t)$ given in Equation~\eqref{eq:max_population_formula}, we can say that $p(t)$ is $\Theta(t^2)$.\footnote{This is the fastest possible growth rate of any pattern in the Life plane---after $t$~generations, each cell can only affect cells within the $(2t + 1) \times (2t + 1)$ square centered at it. There are $(2t+1)^2$ cells in such a square, which is $\Theta(t^2)$.} This is hopefully somewhat intuitive, but it can be made precise by choosing $c = 1/4$ and $C = ??$ in Definition~\ref{defn:big_theta}.
+
+% Show population plot with c and C bounds
+
+% Give a couple more basic mathematical examples
