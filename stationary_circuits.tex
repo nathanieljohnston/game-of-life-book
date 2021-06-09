@@ -514,13 +514,11 @@ as desired, and is displayed in Figure~\ref{fig:p3413277319_gun}.\footnote{Most 
 \end{figure}
 
 
-% NJ is here in the cleanup process.
-
 \section{Converters for Other Objects}\label{sec:misc_converters}
 
-To finish off this section, we note that it is sometimes also convenient to be able to work with objects other than Herschels and gliders. Herschel tracks are the most well-developed and well-used tracks, mainly because the Herschel is so much more ``mobile'' than other small chaotic objects, but there's no fundamental reason why we couldn't create a track that (for example) converts a glider into a Herschel, which is converted into an R-pentomino, which is then converted into a pi-heptomino, and finally back into a glider. For ease of reference, we give these various frequently-converted objects single-letter abbreviations as indicated in Figure~\ref{fig:convert_object_codes}.
+In addition to converting gliders to Herschels and back, it is sometimes also convenient to be able to convert between other commonly-occurring moving objects. Herschel tracks are the most well-developed and well-used tracks, mainly because the Herschel is so much more mobile than other small chaotic objects, but there's no fundamental reason why we couldn't create a track that (for example) converts a glider into a Herschel, which is converted into an R-pentomino, followed by a pi-heptomino, and finally back into a glider. For ease of reference, we give these various frequently-converted objects single-letter abbreviations as indicated in Figure~\ref{fig:convert_object_codes}.
 
-\begin{figure}[!ht]
+\begin{figure}[!htb]
 	\centering\begin{tikzpicture}[scale=0.8, every node/.style={transform shape}]%
 	\node[inner sep=0pt,anchor=south west] at (0,0) {\patternimg{0.12}{convert_object_codes}};
 	
@@ -532,35 +530,33 @@ To finish off this section, we note that it is sometimes also convenient to be a
 	\colorletternode{gray}{8.29}{1.46}{R}
 	\colorletternode{gray}{9.7}{1.46}{P}
 	\end{tikzpicture}
-	\caption{For brevity, when manipulating small common objects as signals, we typically use the single-letter abbreviations G (glider), L (lightweight spaceship), M (middleweight spaceship), H (Herschel), B (B-heptomino), R (R-pentomino), and P (pi-heptomino). It is sometimes useful (for example, when naming conduits that convert between these types of objects) to be able to refer to a canonical phase and orientation of these objects, and those are what are displayed here.}\label{fig:convert_object_codes}
+	\caption{For brevity, when manipulating common small objects, we typically use the single-letter abbreviations G (glider), L (lightweight spaceship), M (middleweight spaceship), H (Herschel), B (B-heptomino), R (R-pentomino), and P (pi-heptomino). It is sometimes useful (for example, when naming conduits that convert between these types of objects) to be able to refer to a canonical phase and orientation of these objects, which are displayed here.}\label{fig:convert_object_codes}
 \end{figure}
 % Also queen bee (Q), century or bookend (C), dove (D), and wing (W), but these are less common.
 
-Conduits that convert these objects into each other are typically referred to via abbreviations of the form ``X-to-Y'', where X and Y are the abbreviations described by Figure~\ref{fig:convert_object_codes}. For example, a conduit that converts a Herschel into a pi-heptomino would be referred to as an H-to-P conduit. More specifically, we name converters in a manner similar to the naming scheme for Herschel conduits from Section~\ref{sec:conduits}, but with the single-letter abbreviations of the input and output objects pre- and post-pended. That is, we give these converters names of the form
+Conduits that convert these objects into each other are typically referred to via abbreviations of the form ``X-to-Y'', where X and Y are the single-letter codes described by Figure~\ref{fig:convert_object_codes}. For example, a conduit that converts a Herschel into a pi-heptomino would be referred to as an H-to-P conduit. More specifically, we name converters in a manner similar to the naming scheme for Herschel conduits from Section~\ref{sec:conduits}, but with the single-letter abbreviations of the input and output objects pre- and post-pended. That is, we give these converters names of the form
 \begin{center}
 	\verb|<input code><orientation><timing><output code>|,
 \end{center}
 \noindent where \verb|<input code>| and \verb|<output code>| are the single-letter abbreviations of the input and output objects of the converter, \verb|<orientation>| is the orientation prefix (i.e., R, Rx, L, Lx, F, Fx, B, or Bx) that describes how the output of the converter is rotated and/or reflected relative to the canonical phase displayed in Figure~\ref{fig:convert_object_codes}, and \verb|<timing>| is the number of generations that it takes for the input object to be converted into the (canonical phase of the) output object.\footnote{An unfortunate collision in this naming convention is that ``B'' means both ``180-degree rotation'' and ``B-heptomino'' (and similar collisions happen with ``L'' and ``R''). This is somewhat undesirable, but we can tell what the ``B'' stands for by its position in the name (e.g., it is a B-heptomino in BLx19R, but it is a 180-degree rotation in RB57P).}
 
-For example, the conduit displayed in Figure~\ref{fig:first_converter_conduits}(a) takes $19$~generations to convert a B-heptomino into an R-pentomino. Since the output R-pentomino is reflected top-to-bottom from its canonical phase shown in Figure~\ref{fig:convert_object_codes} and then rotated to the left (i.e., counter-clockwise), it gets \verb|<orientation>| prefix ``Lx'' (compare with Figure~\ref{fig:herschel_orientations}, where we introduced these \verb|<orientation>| prefixes for Herschels). This conduit is thus named BLx19R.\index{BLx19R} Similarly, the conduit displayed in Figure~\ref{fig:first_converter_conduits}(b) takes $28$~generations to convert an R-pentomino into a B-heptomino,\index{B-heptaplet}\footnote{Actually, this conduit does not produce the B-heptomino itself, but rather the \emph{B-heptaplet} that evolves in the same way.} and the output heptomino is in its canonical orientation (i.e., it has \verb|<orientation>| prefix ``F'') and is thus named RF28B.\index{RF28B}\footnote{The RF28B conduit appears in some of the Herschel conduits that we saw back in Table~\ref{tab:herschel_conduits}: BX202, L156, and Rx164 (see Exercise~\ref{exer:l156_break_apart}).}
+For example, the conduit displayed in Figure~\ref{fig:first_converter_conduits}(a) takes $19$~generations to convert a B-heptomino into an R-pentomino. Since the output R-pentomino is reflected top-to-bottom from its canonical phase shown in Figure~\ref{fig:convert_object_codes} and then rotated to the left (i.e., counter-clockwise), it gets \verb|<orientation>| prefix ``Lx'' (compare with Figure~\ref{fig:herschel_orientations}, where we introduced these \verb|<orientation>| prefixes for Herschels). This conduit is thus named \emph{BLx19R}.\index{BLx19R} Similarly, the conduit displayed in Figure~\ref{fig:first_converter_conduits}(b) takes $28$~generations to convert an R-pentomino into a B-heptomino,\index{B-heptaplet}\footnote{Actually, this conduit does not produce the B-heptomino itself, but rather the \emph{B-heptaplet} that evolves in the same way.} and the output heptomino is in its canonical orientation (i.e., it has \verb|<orientation>| prefix ``F'') and is thus named \emph{RF28B}.\index{RF28B}\footnote{The RF28B conduit appears in some of the Herschel conduits that we saw back in Table~\ref{tab:herschel_conduits}: Bx202, L156, and Rx164 (see Exercise~\ref{exer:l156_break_apart}).}
 
 \begin{figure}[!htb]
 	\centering
-	\begin{tabular}{cc}
-		\begin{subfigure}{.47\textwidth}
-			\centering\embedlink{BLx19R}{\vcenteredhbox{\patternimg{0.1}{BLx19R_0}} \vcenteredhbox{\genarrow{19}} \vcenteredhbox{\patternimg{0.1}{BLx19R_19}}}
-			\caption{\emph{BLx19R}: A conduit that converts a B-heptomino to an R-pentomino in $19$~generations.}\label{fig:BLx19R}
-		\end{subfigure} &
-		\begin{subfigure}{.47\textwidth}\vspace*{0.19cm}
-			\centering\embedlink{RF28B}{\vcenteredhbox{\patternimg{0.1}{RF28B_0}} \vcenteredhbox{\genarrow{28}} \vcenteredhbox{\patternimg{0.1}{RF28B_28}}}
-			\caption{\emph{RF28B}: A conduit that converts an R-pentomino to a B-heptomino in $28$~generations.}\label{fig:RF28B}
-		\end{subfigure}
-	\end{tabular}
+	\begin{subfigure}{.44\textwidth}
+		\centering\embedlink{BLx19R}{\vcenteredhbox{\patternimg{0.11565517241}{BLx19R_0}} \vcenteredhbox{\genarrow{19}} \vcenteredhbox{\patternimg{0.11565517241}{BLx19R_19}}}
+		\caption{\emph{BLx19R}: A conduit that converts a B-heptomino to an R-pentomino in $19$~generations.}\label{fig:BLx19R}
+	\end{subfigure} \hfill
+	\begin{subfigure}{.525\textwidth}
+		\centering\embedlink{RF28B}{\vcenteredhbox{\patternimg{0.13}{RF28B_0}} \vcenteredhbox{\genarrow{28}} \vcenteredhbox{\patternimg{0.13}{RF28B_28}}}
+		\caption{\emph{RF28B}: A conduit that converts an R-pentomino to a B-heptomino in $28$~generations.}\label{fig:RF28B}
+	\end{subfigure}
 	\caption{Some conduits that convert B-heptominoes into R-pentominoes and back. The cells highlighted in \bgbox{redback}{red} in~(b) die off in another $6$~generations.}
 	\label{fig:first_converter_conduits}
 \end{figure}
 
-When the converter in question just sends a Herschel to a Herschel, we typically omit the ``H'' \verb|<input code>| and \verb|<output code>| from its name and thus recover the naming scheme that we developed for Herschel tracks back in Section~\ref{sec:herschel_track}. When the object that is being converted has additional symmetry so that it does not make sense to say whether it is being turned left or right, people sometimes use \verb|<orientation>| code ``T'' (for \textbf{t}urn) instead of ``R'' or ``L''. For example, the conduit displayed in Figure~\ref{fig:PT8P} takes $8$~generations to turn a pi-heptomino either right (clockwise) or left (counter-clockwise), depending on its orientation, so it is sometimes called PT8P (rather than PR8P or PL8P\index{PL8P}). However, we typically just pick whatever orientation of the conduit we need and refer to the name that makes sense given that orientation.
+When the converter in question just sends a Herschel to a Herschel, we typically omit the ``H'' \verb|<input code>| and \verb|<output code>| from its name, and thus recover the naming scheme that we developed for Herschel tracks back in Section~\ref{sec:herschel_track}. When the object that is being converted has additional symmetry, conduits that manipulate it can have multiple valid names. For example, the conduit displayed in Figure~\ref{fig:PT8P} takes $8$~generations to turn a pi-heptomino either right (clockwise) or left (counter-clockwise), depending on its orientation. This conduit could thus be called either \emph{PR8P}\index{PR8P} or \emph{PL8P}\index{PL8P}, and we typically just pick the name that corresponds to the orientation of the conduit that we are using.
 
 \begin{figure}[!htb]
 	\centering
@@ -574,31 +570,35 @@ When the converter in question just sends a Herschel to a Herschel, we typically
 			\caption{\emph{PR8P}: Turning a pi-heptomino right.}\label{fig:PR8P}
 		\end{subfigure}
 	\end{tabular}
-	\caption{\emph{PT8P}: A conduit that takes $8$~generations to turn a pi-heptomino by $90$~degrees.}
+	\caption{\emph{PL8P} or \emph{PR8P}: A conduit that takes $8$~generations to turn a pi-heptomino by $90$~degrees.}
 	\label{fig:PT8P}
 \end{figure}
 
-It is worth pointing out that we have seen this conduit before---it was used in Figure~\ref{fig:p32_pi_hassler} to create the p$32$ ``gourmet''\index{gourmet} oscillator.\footnote{In fact, the same conduit and pi-heptomino rotation appears in Tanner's~p$46$.} In a sense, that oscillator (and a few other hasslers that we have seen) function in the same way as Herschel track oscillators---we will see another example of how we can build hasslers out of these types of conduits in Exercise~\ref{exer:RFx36R_osc}.
+It is worth pointing out that we have seen this conduit before---it was used in Figure~\ref{fig:p32_pi_hassler} to create the p$32$ ``gourmet''\index{gourmet} oscillator, and also as part of Tanner's p46 in Figure~\ref{fig:tanners_p46}. In a sense, those oscillators (and a few other hasslers that we have seen) function in the same way as Herschel track oscillators. We will see another example of how we can build hasslers out of these types of conduits in Exercise~\ref{exer:RFx36R_osc}.
 
-When the input or output of a conduit is a spaceship like a glider, the naming convention used is a bit more intricate and involves codes of the form \verb|<direction><lane>T<timing>|, just like in Section~\ref{sec:glider_to_herschel}. Just as was the case back then, we do not dwell on the details of how the \verb|<lane>| or \verb|<timing>| are computed, but instead just note that the basic movement of the conduit can be gleaned by reading its name. For example, a conduit named LSE11T-8 transforms a lightweight spaceship into a glider traveling southeast in lane~$11$ (i.e., roughly~$11$ cells to the right of where the LWSS hits the conduit) and timing~$-8$ (i.e., delayed by $8$~generations from the destruction of the LWSS), whereas a conduit named MSW-1T1 transforms a middleweight spaceship into a glider traveling southwest in lane~$-1$ and timing~$1$ (i.e., the glider starts its journey almost exactly when and where the MWSS hits the conduit). These converters are displayed in Figure~\ref{fig:XWSS_to_G}.
+When the input or output of a conduit is a spaceship like a glider, the naming convention used is a bit more intricate and involves codes of the form
+\begin{center}
+	\verb|<input code><direction><lane>T<timing><output code>|,
+\end{center}
+much like in Section~\ref{sec:glider_to_herschel} (and if either of the input or output object are a glider, we omit the corresponding \verb|<input code>| or \verb|<output code>|). Just as was the case back then, we do not dwell on the details of how the \verb|<lane>| or \verb|<timing>| values are computed, but instead we just note that the basic movement of the conduit can be gleaned by reading its name.
+
+For example, a conduit named \emph{LSE11T-8}\index{LSE11T-8} transforms a lightweight spaceship into a glider traveling southeast in lane~$11$ (i.e., roughly~$11$ cells to the right of where the LWSS hits the conduit) and timing~$-8$ (i.e., delayed by $8$~generations from the destruction of the LWSS), whereas a conduit named \emph{MSW-1T1}\index{MSW-1T1} transforms a middleweight spaceship into a glider traveling southwest on lane~$-1$ and timing~$1$ (i.e., the glider starts its journey almost exactly when and where the MWSS hits the conduit). These converters are displayed in Figure~\ref{fig:XWSS_to_G}.
 
 \begin{figure}[!htb]
 	\centering
-	\begin{tabular}{@{}cc@{}}
-		\begin{subfigure}{.48\textwidth}
-			\centering\embedlink{L_to_G}{\vcenteredhbox{\patternimg{0.1}{L_to_G_0}} \vcenteredhbox{\genarrow{69}} \vcenteredhbox{\patternimg{0.1}{L_to_G_69}}}
-			\caption{\emph{LSE11T-8}\index{LSE11T-8}: Turns an LWSS into a glider.}\label{fig:L_to_G}
-		\end{subfigure} &
-		\begin{subfigure}{.48\textwidth}\vspace*{0.07cm}
-			\centering\embedlink{M_to_G}{\vcenteredhbox{\patternimg{0.1}{M_to_G_0}} \vcenteredhbox{\genarrow{12}} \vcenteredhbox{\patternimg{0.1}{M_to_G_12}}}
-			\caption{\emph{MSW-1T1}\index{MSW-1T1}: Turns an MWSS into a glider.}\label{fig:M_to_G}
-		\end{subfigure}
-	\end{tabular}
-	\caption{Some conduits that turn spaceships into gliders. The (a) LWSS-to-G can also act as an MWSS-to-G (see Exercise~\ref{exer:mwss_to_g}) and was found by Ivan Fomichev in October 2015, and the (b) MWSS-to-G was found by Matthias Merzenich in July 2013.}
+	\begin{subfigure}{.465\textwidth}
+		\centering\embedlink{L_to_G}{\vcenteredhbox{\patternimg{0.13}{L_to_G_0}} \vcenteredhbox{\genarrow{69}} \vcenteredhbox{\patternimg{0.13}{L_to_G_69}}}
+		\caption{\emph{LSE11T-8}: Turns an LWSS into a glider. Found by Ivan Fomichev in October 2015.}\label{fig:L_to_G}
+	\end{subfigure} \hfill
+	\begin{subfigure}{.505\textwidth}
+		\centering\embedlink{M_to_G}{\vcenteredhbox{\patternimg{0.1399047619}{M_to_G_0}} \vcenteredhbox{\genarrow{12}} \vcenteredhbox{\patternimg{0.1399047619}{M_to_G_12}}}
+		\caption{\emph{MSW-1T1}: Turns an MWSS into a glider. Found by Matthias Merzenich in July 2013.}\label{fig:M_to_G}
+	\end{subfigure}
+	\caption{Some conduits that turn xWSSes into gliders.}
 	\label{fig:XWSS_to_G}
 \end{figure}
 
-A selection of conduits that convert between these basics types of signals is presented in Table~\ref{tab:converters}. We emphasize that this collection of converters is not even close to complete, but rather just consists of some particularly small, fast, and/or important representative examples.\footnote{A much larger and more complete catalog of conduits and converters is available online at \httpsurl{conwaylife.com/forums/viewtopic.php?f=2\&t=1849\&p=23375}} We also clarify that a cell being empty in Table~\ref{tab:converters} does not mean that we know of \emph{no} converters of the indicated type, but rather that we do not know of any simple, fast, and small converter of that type. By combining the various small converters using the techniques we have already seen, we can convert essentially any type of object to any other type of object, as long as we are comfortable using large converters that make use of several intermediate conversions. For example, to convert a glider into a pi-heptomino, we could perform the following sequence of conversions (see Exercise~\ref{exer:composite_converters}):
+A selection of conduits that convert between these basics types of objects is presented in Table~\ref{tab:converters}. We emphasize that this collection of converters is not even close to complete, but rather just consists of some particularly small, fast, and/or important representative examples.\footnote{A much larger and more complete catalog of stable converters is available online at \httpsurl{conwaylife.com/forums/viewtopic.php?f=2&t=1849}} We also clarify that a cell being empty in Table~\ref{tab:converters} does not mean that we know of \emph{no} converters of the indicated type, but rather that we do not know of any simple, fast, and small converter of that type. By combining the various small converters using the techniques we have already seen, we can convert essentially any type of object to any other type of object, as long as we are comfortable using large converters that make use of several intermediate conversions. For example, to convert a glider into a pi-heptomino, we could perform the following sequence of conversions (see Exercise~\ref{exer:composite_converters}):
 
 \begin{center}
 	glider $\xrightarrow{{}_{} \ \text{syringe} \ {}_{}}$ Herschel $\xrightarrow{{}_{} \ \text{HF95P} \ {}_{}}$ pi-heptomino.
@@ -611,21 +611,22 @@ A selection of conduits that convert between these basics types of signals is pr
 			from $\backslash$ to & glider (G) & Herschel (H) & B-hept. (B)  & R-pent. (R) & pi-hept. (P) \\ \midrule
 			\specialcell{\patternimg{0.1}{glider_cropped} \\ G} & \specialcell{Snark, \\ Figure~\ref{fig:color_change_stable}} & syringe & \specialcell{--} & \specialcell{--} & \specialcell{--} \\
 			
-			\rowcolor{gray!20} \specialcell{\patternimg{0.1}{herschel_cropped} \\ H} & \specialcell{Figure~\ref{fig:herschel_to_glider}} & \specialcell{Section~\ref{sec:conduits}} & \specialcell{\patternimglink{0.14}{HFx58B} \\ HFx58B\index{HFx58B}} & \specialcell{\patternimglink{0.14}{HLx69R} \\ HLx69R\index{HLx69R}} & \specialcell{\patternimglink{0.13}{HF95P} \\ HF95P\index{HF95P}} \\
+			\rowcolor{gray!20} \begin{minipage}[b]{0.02\textwidth}\centering\patternimg{0.1}{herschel_cropped} \\ H \\ ${}$\end{minipage} & \begin{minipage}[b]{0.15\textwidth}\centering Figure~\ref{fig:herschel_to_glider} \\ ${}$ \\ ${}$\end{minipage} & \begin{minipage}[b]{0.16\textwidth}\centering Section~\ref{sec:conduits} \\ ${}$ \\ ${}$\end{minipage} & \begin{minipage}[b]{0.13\textwidth}\centering\patternimglink{0.14765432098}{HFx58B} \\ HFx58B\index{HFx58B}\end{minipage} & \begin{minipage}[b]{0.16\textwidth}\centering\patternimglink{0.1495}{HLx69R} \\ HLx69R\index{HLx69R}\end{minipage} & \begin{minipage}[b]{0.13\textwidth}\centering\patternimglink{0.13}{HF95P} \\ HF95P\index{HF95P}\end{minipage} \\
 			
-			\specialcell{\patternimg{0.1}{b_cropped} \\ B} & \specialcell{\patternimglink{0.15}{BSE22T31} \\ BSE22T31\index{BSE22T31}} & \specialcell{\patternimglink{0.14}{BFx59H} \\ BFx59H\index{BFx59H}} & \specialcell{\patternimglink{0.14}{BRx46B} \\ BRx46B\index{BRx46B}} & \specialcell{\patternlink{BLx19R}{\patternimg{0.14}{BLx19R}} \\ BLx19R\index{BLx19R}} & \specialcell{\patternimglink{0.14}{BF22P} \\ BF22P\index{BF22P}} \\
+			\begin{minipage}[b]{0.02\textwidth}\centering\patternimg{0.1}{b_cropped} \\ B \\ ${}$\end{minipage} & \begin{minipage}[b]{0.15\textwidth}\centering\patternimglink{0.15}{BSE22T31} \\ BSE22T31\index{BSE22T31}\end{minipage} & \begin{minipage}[b]{0.16\textwidth}\centering\patternimglink{0.17701149425}{BFx59H} \\ BFx59H\index{BFx59H}\end{minipage} & \begin{minipage}[b]{0.13\textwidth}\centering\patternimglink{0.15}{BRx46B} \\ BRx46B\index{BRx46B}\end{minipage} & \begin{minipage}[b]{0.16\textwidth}\centering\patternlink{BLx19R}{\patternimg{0.160555555}{BLx19R}} \\ BLx19R\index{BLx19R}\end{minipage} & \begin{minipage}[b]{0.13\textwidth}\centering\patternimglink{0.17}{BF22P} \\ BF22P\index{BF22P}\end{minipage} \\
 			
-			\rowcolor{gray!20} \specialcell{\patternimg{0.1}{r_pentomino_cropped} \\ R} & \specialcell{\patternimglink{0.14}{RNW3T46} \\ RNW3T46\index{RNW3T46}} & \specialcell{\patternimglink{0.14}{RR56H} \\ RR56H\index{RR56H}} & \specialcell{\patternlink{RF28B}{\patternimg{0.14}{RF28Bb}} \\ RF28B\index{RF28B}} & \specialcell{\patternimglink{0.14}{RFx36R} \\ RFx36R\index{RFx36R}} & \specialcell{\patternimglink{0.14}{RF29P} \\ RF29P\index{RF29P}} \\
+			\rowcolor{gray!20} \begin{minipage}[b]{0.02\textwidth}\centering\patternimg{0.1}{r_pentomino_cropped} \\ R \\ ${}$\end{minipage} & \begin{minipage}[b]{0.15\textwidth}\centering\patternimglink{0.15}{RNW3T46} \\ RNW3T46\index{RNW3T46}\end{minipage} & \begin{minipage}[b]{0.16\textwidth}\centering\patternimglink{0.164}{RR56H} \\ RR56H\index{RR56H}\end{minipage} & \begin{minipage}[b]{0.13\textwidth}\centering\patternlink{RF28B}{\patternimg{0.1875}{RF28Bb}} \\ RF28B\index{RF28B}\end{minipage} & \begin{minipage}[b]{0.16\textwidth}\centering\patternimglink{0.15}{RFx36R} \\ RFx36R\index{RFx36R}\end{minipage} & \begin{minipage}[b]{0.13\textwidth}\centering\patternimglink{0.15}{RF29P} \\ RF29P\index{RF29P}\end{minipage} \\
 			
-			\specialcell{\patternimg{0.1}{pi_cropped} \\ P} & \specialcell{\patternimglink{0.15}{P_to_G} \\ PNW6T138\index{PNW6T138}} & \specialcell{\patternimglink{0.14}{P_to_H} \\ PF81H\index{PF81H}} & \specialcell{\patternimglink{0.14}{PT9B} \\ PR9B\index{PR9B}} & \specialcell{\patternimglink{0.13}{P_to_R} \\ PR127R} & \specialcell{\patternlink{P_to_P}{\patternimg{0.14}{P_to_P}} \\ PL8P\index{PL8P}} \\\bottomrule
+			\begin{minipage}[b]{0.02\textwidth}\centering\patternimg{0.1}{pi_cropped} \\ P \\ ${}$\end{minipage} & \begin{minipage}[b]{0.15\textwidth}\centering\patternimglink{0.16323529411}{P_to_G} \\ PNW6T138\index{PNW6T138}\end{minipage} & \begin{minipage}[b]{0.16\textwidth}\centering\patternimglink{0.14}{P_to_H} \\ PF81H\index{PF81H}\end{minipage} & \begin{minipage}[b]{0.13\textwidth}\centering\patternimglink{0.18}{PT9B} \\ PR9B\index{PR9B}\end{minipage} & \begin{minipage}[b]{0.16\textwidth}\centering\patternimglink{0.13}{P_to_R} \\ PR127R\index{PR127R}\end{minipage} & \begin{minipage}[b]{0.13\textwidth}\centering\patternlink{P_to_P}{\patternimg{0.18}{P_to_P}} \\ PL8P\index{PL8P}\end{minipage} \\\bottomrule
 		\end{tabular}
-		\caption{Some conduits that convert objects into other types of objects. Most of these conduits are quite old and well-known.}\label{tab:converters}
+		\caption{Some conduits that convert one type of object into another. Most of these conduits are quite old and well-known.}\label{tab:converters}
 	\end{center}
 \end{table}
 % No repeat time listed for these since for a lot of them it doesn't really make sense (depends heavily on what is done with the output signal). Some here anyway: PF81H (151), HLx69R (66), LSE11T-8 (58), MSW-1T1 (36)
-% TODO: Note that name of conduit does not depend on what happens within it, so some conduits that look different have same names
 
 
+
+% NJ is here in the cleanup process.
 
 \section{Factories}\label{sec:factories}\index{factory}
 
