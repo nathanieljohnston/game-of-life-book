@@ -586,12 +586,12 @@ For example, a conduit named \emph{LSE11T-8}\index{LSE11T-8} transforms a lightw
 
 \begin{figure}[!htb]
 	\centering
-	\begin{subfigure}{.465\textwidth}
-		\centering\embedlink{L_to_G}{\vcenteredhbox{\patternimg{0.13}{L_to_G_0}} \vcenteredhbox{\genarrow{69}} \vcenteredhbox{\patternimg{0.13}{L_to_G_69}}}
+	\begin{subfigure}{.46\textwidth}
+		\centering\embedlink{L_to_G}{\vcenteredhbox{\patternimg{0.14}{L_to_G_0}} \vcenteredhbox{\genarrow{69}} \vcenteredhbox{\patternimg{0.14}{L_to_G_69}}}
 		\caption{\emph{LSE11T-8}: Turns an LWSS into a glider. Found by Ivan Fomichev in October 2015.}\label{fig:L_to_G}
 	\end{subfigure} \hfill
-	\begin{subfigure}{.505\textwidth}
-		\centering\embedlink{M_to_G}{\vcenteredhbox{\patternimg{0.1399047619}{M_to_G_0}} \vcenteredhbox{\genarrow{12}} \vcenteredhbox{\patternimg{0.1399047619}{M_to_G_12}}}
+	\begin{subfigure}{.51\textwidth}
+		\centering\embedlink{M_to_G}{\vcenteredhbox{\patternimg{0.15066666666}{M_to_G_0}} \vcenteredhbox{\genarrow{12}} \vcenteredhbox{\patternimg{0.15066666666}{M_to_G_12}}}
 		\caption{\emph{MSW-1T1}: Turns an MWSS into a glider. Found by Matthias Merzenich in July 2013.}\label{fig:M_to_G}
 	\end{subfigure}
 	\caption{Some conduits that turn xWSSes into gliders.}
@@ -625,53 +625,46 @@ A selection of conduits that convert between these basics types of objects is pr
 % No repeat time listed for these since for a lot of them it doesn't really make sense (depends heavily on what is done with the output signal). Some here anyway: PF81H (151), HLx69R (66), LSE11T-8 (58), MSW-1T1 (36)
 
 
-
-% NJ is here in the cleanup process.
-
 \section{Factories}\label{sec:factories}\index{factory}
 
-Somewhat surprisingly, it is not only useful to convert moving objects like Herschels or gliders into other moving objects, but also into stationary objects like still lifes and oscillators. A conduit that implements such a conversion is called a \emph{factory}, as is any other pattern that repeatedly creates a still life or oscillator.
+Somewhat surprisingly, it is not only useful to convert moving objects into other moving objects like Herschels or gliders, but also into stationary objects like still lifes and oscillators. A conduit that implements such a conversion is called a \emph{factory}, as is any other pattern that repeatedly creates a still life or oscillator.
 
-In most cases, a factory will self-destruct if we do not make use of the still life or oscillator that it creates before it tries to make another one. For example, the queen bee can be thought of as a beehive factory (refer back to Figure~\ref{fig:queen_bee}), which self-destructs unless we regularly destroy the beehives that it leaves behind (thus creating a queen bee shuttle).\footnote{For an almost-oscillator that similarly acts as a block factory, see Exercise~\ref{exer:p144_gun_from_achim}.} We can similarly construct factories for other small still lifes and oscillators by aiming two or more glider guns at each other so that the glider collisions synthesize the desired object. Once again though, we must regularly make use of and destroy that synthesized object or else it will interfere with subsequent syntheses and cause the factory to self-destruct.
+In most cases,\footnote{But not all cases---see Figure~\ref{fig:H_to_block}.} a factory will self-destruct if we do not make use of the still life or oscillator that it creates before it tries to make another one. For example, the queen bee can be thought of as a beehive factory (refer back to Figure~\ref{fig:queen_bee}), which self-destructs unless we regularly destroy the beehives that it leaves behind (thus creating a queen bee shuttle).\footnote{For an almost-oscillator that similarly acts as a block factory, see Exercise~\ref{exer:p144_gun_from_achim}.} We can similarly construct factories for other small still lifes and oscillators by aiming two or more glider guns at each other so that the glider collisions synthesize the desired object. Once again though, we must regularly make use of and destroy that synthesized object, or else it will interfere with subsequent syntheses and cause the factory to explode.
 
-As an example that is slightly more relevant to our current interests, consider the conduits displayed in Figure~\ref{fig:glider_beehive_stopper} that convert a glider into a beehive.\footnote{The glider stopper in Figure~\ref{fig:glider_stopper} is bigger than the beehive stopper in Figure~\ref{fig:beehive_stopper}, but has the advantage of also producing $2$ extra glider outputs when making its beehive.} The reason that these conduits are useful is that they act as logic circuits that test whether or not a a signal (i.e., a glider) has come in from the northwest. Indeed, when such a signal comes in, a beehive is created, which blocks the next signal (i.e., glider) that comes in from the northeast.
+As an example that is slightly more relevant to our current interests, consider the conduits displayed in Figure~\ref{fig:glider_beehive_stopper} that convert a glider into a beehive.\footnote{The \emph{glider stopper} in Figure~\ref{fig:glider_stopper} is bigger than the \emph{beehive stopper} in Figure~\ref{fig:beehive_stopper}, but has the advantage of also producing $2$ extra output gliders while making its beehive.} The reason that these conduits are useful is that they can act as logic circuits that test whether or not a a signal (i.e., a glider) has come in from the northwest. Indeed, when such a signal comes in, a beehive is created, and we can test whether or not this has happened by sending in a glider from the north\emph{east}. If a beehive has been created then it will block (and be destroyed by) this test glider, whereas if no beehive has been created then this test glider will pass through the conduit to the southwest unimpeded.
 
 \begin{figure}[!htb]
 	\centering
-	\begin{tabular}{@{}cc@{}}
-		\begin{subfigure}{.53\textwidth}
-			\centering\patternimglink{0.104578313253}{glider_stopper}
-			\caption{\emph{Glider stopper}\index{glider!stopper}}\label{fig:glider_stopper}
-		\end{subfigure} &
-		\begin{subfigure}{.43\textwidth}
-			\centering\patternimglink{0.12}{beehive_stopper}
-			\caption{\emph{Beehive stopper}\index{beehive stopper}}\label{fig:beehive_stopper}
-		\end{subfigure}
-	\end{tabular}
+	\begin{subfigure}{.53\textwidth}
+		\centering\patternimglink{0.11765060241}{glider_stopper}
+		\caption{\emph{Glider stopper}\index{glider!stopper}}\label{fig:glider_stopper}
+	\end{subfigure} \hfill
+	\begin{subfigure}{.43\textwidth}
+		\centering\patternimglink{0.135}{beehive_stopper}
+		\caption{\emph{Beehive stopper}\index{beehive stopper}}\label{fig:beehive_stopper}
+	\end{subfigure}
 	\caption{Some factories that use a glider (displayed in \bgbox{greenback}{green}) to create a beehive (displayed in \bgbox{orangeback}{orange}). If the beehive is present, it destroys (and is destroyed by) a single glider coming from the northeast on the lane highlighted in \bgbox{yellowback2}{yellow}. Otherwise, that glider passes through the factory unharmed. Found by (a) Paul Callahan in 1996 and (b) Tanner Jacobi in 2015.}
 	\label{fig:glider_beehive_stopper}
 \end{figure}
 
-Since the still life or oscillator that is created by a factory does not move, it is especially important that it is created near the factory's edge, thus making it accessible to other nearby circuitry. For this reason, the edgy Herschel-to-beehive conduit displayed in Figure~\ref{fig:H_to_beehive} is particularly useful, as is the Herschel-to-loaf conduit displayed in Figure~\ref{fig:H_to_loaf}.
-% TODO: Talk about gen -3
+Since the still life or oscillator that is created by a factory does not move, it is especially important that it is created near the factory's edge, thus making it accessible to other nearby circuitry. For this reason, the edgy Herschel-to-beehive conduit displayed in Figure~\ref{fig:H_to_beehive} is particularly useful,\footnote{The input object in this conduit is actually a great-grandparent of a Herschel. The block interferes with it before it has a chance to fully evolve into a Herschel, but it can nonetheless be attached to other circuits that output Herschels without a problem.} as is the edgy Herschel-to-loaf factory of Figure~\ref{fig:H_to_loaf}. We will also see that just a couple of eater~1s can be used as a very edgy (but slightly dirty) Herschel-to-ship factory a bit later, in Figure~\ref{fig:H_to_ship}.
 
+Since a boat can be used as a one-time turner\index{one-time turner} (see Exercise~\ref{exer:boat_one_time_turner}), factories that create boats can be used to reflect gliders by 90 degrees. For example, the Herschel-to-boat factories of Figure~\ref{fig:H_to_boat} can be used to reflect gliders heading northwest so that they instead go northeast. Another Herschel-to-boat factory, called the \emph{demultiplexer}\index{demultiplexer}, is displayed in Figure~\ref{fig:demultiplexer}.\footnote{Found by Brice Due in August 2006.} While this conduit is significantly less edgy than those of Figure~\ref{fig:H_to_boat}, it has the advantage that if the boat is \emph{not} present then that glider simply passes through the factory unharmed. It can thus serve as a logic circuit in much the same way as the beehive-based factories from Figure~\ref{fig:glider_beehive_stopper}---a glider coming in from the northeast can be used to test whether or not a Herschel has been fed into the conduit.
+
+% This figure can be moved 1 paragraph earlier if desired. Just here for spacing reasons.
 \begin{figure}[!htb]
 	\centering
-	\begin{tabular}{@{}cc@{}}
-		\begin{subfigure}{.38\textwidth}
-			\centering\patternimglink{0.1}{H_to_beehive}
-			\caption{Herschel-to-beehive}\label{fig:H_to_beehive}
-		\end{subfigure} &
-		\begin{subfigure}{.58\textwidth}
-			\centering\patternimglink{0.09768115942}{H_to_loaf}
-			\caption{Herschel-to-loaf}\label{fig:H_to_loaf}
-		\end{subfigure}
-	\end{tabular}
+	\begin{subfigure}{.38\textwidth}
+		\centering\patternimglink{0.1}{H_to_beehive}
+		\caption{Herschel-to-beehive}\label{fig:H_to_beehive}
+	\end{subfigure} \hfill
+	\begin{subfigure}{.58\textwidth}
+		\centering\patternimglink{0.09768115942}{H_to_loaf}
+		\caption{Herschel-to-loaf}\label{fig:H_to_loaf}
+	\end{subfigure}
 	\caption{Some edgy conduits that can convert a Herschel (displayed in \bgbox{greenback}{green}) into a small still life (displayed in \bgbox{orangeback}{orange}). The (b) loaf factory was found by Adam~P.~Goucher in 2009.}
 	\label{fig:H_to_beehive_loaf}
 \end{figure}
-
-Since a boat can be used as a one-time turner\index{one-time turner} (refer back to Section~\ref{sec:slow_salvo_turners} and Exercise~\ref{exer:boat_one_time_turner}), factories that create boats can be used to reflect gliders by 90 degrees. For example, the Herschel-to-boat factories of Figure~\ref{fig:H_to_boat} can be used to reflect gliders heading northwest so that they instead go northeast. The Herschel-to-boat factory of Figure~\ref{fig:demultiplexer} is called the \emph{demultiplexer}\index{demultiplexer},\footnote{Found by Brice Due in August 2006.} and it can similarly reflect a glider heading southwest (despite being much less edgy than the other two boat factories). However, it also has the useful property that if the boat is \emph{not} present then that glider simply passes through the factory unharmed (whereas such the glider would destroy either of the factories in Figure~\ref{fig:H_to_boat} if the boat were not present).
 
 \begin{figure}[!htb]
 	\centering
@@ -691,46 +684,57 @@ Since a boat can be used as a one-time turner\index{one-time turner} (refer back
 	\label{fig:H_to_boat_and_demult}
 \end{figure}
 
-For this reason, the demultiplexer can act as a storage device for a single bit of memory---we can think of the absence or presence of the boat as a ``0'' or a ``1'', respectively. A Herschel going into this factory then corresponds to storing the bit ``$1$'' in its memory, and a glider going into this factory has the effect of reading the contents of its memory (and resetting it to ``$0$'').
+The other most common type of still life factory is one that creates a block, and several of them are displayed in Figure~\ref{fig:H_to_block}. We note that Herschels create a block on their own (called the \emph{first natural block}\index{first natural block}\footnote{In analogy with the first natural glider that they make in generation~$21$.}) in generation~$37$. For this reason, some Herschel-to-block factories (like the two leftmost ones in Figure~\ref{fig:H_to_block}) are particularly simple and work just by cleaning up the input Herschel's debris after it makes that block. The two rightmost factories in Figure~\ref{fig:H_to_block} are somewhat larger and more complicated than the other two, but are useful for the fact that they product blocks so far away from their circuitry.
 
-The other most common type of still life factory is one that creates a block, and several of them are displayed in Figure~\ref{fig:H_to_block}. We note that Herschels create a block on their own (called the \emph{first natural block}\index{first natural block}\footnote{In analogy with the first natural glider that they make in generation~$21$.}) in generation~$37$. For this reason, some Herschel-to-block factories (like the two central ones in Figure~\ref{fig:H_to_block}) are particularly simple and work just by cleaning up the input Herschel's debris after it makes that block. The leftmost factory in Figure~\ref{fig:H_to_block} is somewhat larger and more complicated than the other block factories, but is particularly useful for how far away it produces its block, as well as the fact that it can act as a period tripler (see Exercise~\ref{exer:block_factory_is_tripler}).
+Furthermore, these two more complicated block factories have the remarkable property that they do not self-destruct if an input Herschel is received while the output block is still present. In the second-from-the-right block factory, a second Herschel moves the block and produces an output glider, and a third Herschel simply destroys that block, returning it to its original state. This conduit can thus act as a period tripler for a glider or Herschel stream (see Exercise~\ref{exer:block_factory_is_tripler}).
 
+% This figure can be moved 1 paragraph earlier if desired. Just here for spacing reasons.
 \begin{figure}[!htb]
 	\centering
-	\patternimglink{0.083402489626}{H_to_block} \quad \ \ \ \patternimglink{0.1}{H_to_block_2} \quad \ \ \ \patternimglink{0.118934911243}{H_to_block_3} \quad \ \ \ \patternimglink{0.118934911243}{H_to_block_4}
+	\patternimglink{0.118934911243}{H_to_block_3} \hfill \patternimglink{0.1}{H_to_block_2} \hfill \patternimglink{0.083402489626}{H_to_block} \hfill \patternimglink{0.06261682242}{block_keeper}
 	\caption{Some Herschel-to-block factories.}
 	\label{fig:H_to_block}
 \end{figure}
 
+In the rightmost of these block factories, a second Herschel simply has no extra effect---if the output block is already present, it is temporary destroyed but then rebuilt in the exact same spot. Factories with this remarkable property of being able to accept multiple input signals without affecting the output objects are called \emph{keepers}.\index{keeper}
+
 
 \subsection{Highway Robbers}\label{sec:highway_robber}\index{highway robber}
 
-While we have seen numerous glider reflectors so far---the Snark, the Silver reflector, bumpers, bouncers, and Herschel-track-based reflectors from earlier in this chapter---they all accept their input glider somewhat near their center. It is thus difficult to use these mechanisms to reflect a stream of gliders that is just a few lanes away from another stream. As an application of still life factories, we now construct a stable glider reflector that overcomes this problem and reflects gliders from a particular lane without being affected whatsoever by gliders on any further away lanes (even directly adjacent ones). A pattern with this property is called a \emph{highway robber}.\footnote{The name refers to the fact that highway robbers ``steal'' gliders from their lane.}
+While we have seen numerous glider reflectors so far---the Snark, the Silver reflector, bumpers, bouncers, and Herschel-track-based reflectors---they all accept their input glider somewhat near their center. It is thus difficult to use these mechanisms to reflect a stream of gliders that is just a few lanes away from another stream. As an application of still life factories, we now construct a stable glider reflector that overcomes this problem and reflects gliders from a particular lane without being affected whatsoever by gliders on any further away lanes (even directly adjacent ones). A pattern with this property is called a \emph{highway robber}.\footnote{The name refers to the fact that highway robbers ``steal'' gliders from their lane.}
 
-While there is no known ``quick'' or ``direct'' stable pattern that carries out this task (like the Snark or the syringe for their tasks), we have seen all of the tools needed to construct a somewhat large and slow one. The key observation that we need is that many still lifes are destroyed, producing some chaotic debris or a perpendicular glider, if they are hit at their edge by a passing glider. In order to construct a highway robber, we will funnel that debris or glider through a conduit back into a factory that replaces the destroyed still life (and also sends off one or more signals along the way).
+While there is no known ``quick'' or ``direct'' stable pattern that carries out this task (like the Snark or the syringe for their tasks), we have seen all of the tools needed to construct a somewhat large and slow one. The key observation that we need is that many still lifes, if they are hit at their edge by a passing glider, produce some chaotic debris or a perpendicular glider. In order to construct a highway robber, we will funnel that debris or glider through a conduit back into a factory that replaces the destroyed still life (and also sends off one or more signals along the way).
 
-Of the still lifes that we know how to create via factories, the loaf is best-suited to this task since a glider hitting its edge almost immediately produces a perpendicular glider, along with some extra debris.\footnote{If hit on its edge by a glider, a (1) block quickly moves as in Figure~\ref{fig:glider_block_move}, a (2) beehive (depending on its orientation) quickly dies or evolves into lumps of muck,\index{lumps of muck} and a (3) boat (depending on its orientation) quickly dies, produces a block, produces a honey farm, or makes debris that is difficult to clean up since it is on the opposite side of the glider.} We can simply place a nearby eater~1 so as to clean up that debris, as displayed in Figure~\ref{fig:glider_loaf_collision}, so that the loaf extracts the glider from its lane.
+Of the still lifes that we know how to create via factories, the loaf is best-suited to this task since a glider hitting its edge almost immediately produces a perpendicular glider, along with some extra debris.\footnote{If hit on its edge by a glider, a (1) block quickly moves via the $(2,1)$ block pull of Figure~\ref{fig:glider_block_move}, a (2) beehive (depending on its orientation) quickly dies or evolves into lumps of muck,\index{lumps of muck} and a (3) boat (depending on its orientation) quickly dies, produces a block, produces a honey farm, or makes debris that is difficult to clean up since it is on the opposite side of the glider.} We can simply place a nearby eater~1 so as to clean up that debris, as displayed in Figure~\ref{fig:glider_loaf_collision}, so that the loaf extracts the glider from its lane.
 
 \begin{figure}[!htb]
 	\centering
-	\embedlink{glider_loaf_collision}{\vcenteredhbox{\patternimg{0.1}{glider_loaf_collision_0}} \vcenteredhbox{\genarrow{59}} \vcenteredhbox{\patternimg{0.1}{glider_loaf_collision_59}}}
-	\caption{When a glider just barely hits a loaf, a perpendicular glider and some debris are created. An eater~1 can be used to absorb the extra debris. Gliders on any further away lanes simply pass by the loaf unharmed.}
+	\embedlink{glider_loaf_collision}{\vcenteredhbox{\patternimg{0.12}{glider_loaf_collision_0}} \vcenteredhbox{\genarrow{59}} \vcenteredhbox{\patternimg{0.12}{glider_loaf_collision_59}}}
+	\caption{When a glider just barely hits a loaf, a perpendicular glider and some debris are created. An eater~1 can be used to absorb the extra debris.}
 	\label{fig:glider_loaf_collision}
 \end{figure}
 
-% adjust the next paragraph -- bandersnatch allows for faster highway robbers
-All that we have to do to create a highway robber out of this reaction is use the newly-created perpendicular glider to recreate the loaf. Doing so is just a matter of feeding the glider into a syringe to turn it into a Herschel, and then feeding that Herschel into the Herschel-to-loaf factory of Figure~\ref{fig:H_to_loaf}. The resulting highway robber is displayed in Figure~\ref{fig:highway_robber}. While it is somewhat large and slow (see Exercise~\ref{exer:highway_robber_repeat}), it is essentially the fastest one known (some slightly faster highway robbers have been built, but at the expense of being much larger).
+All that we have to do to create a highway robber out of this reaction is use the newly-created perpendicular glider to recreate the loaf. Doing so is just a matter of feeding the glider into a syringe to turn it into a Herschel, and then feeding that Herschel into the Herschel-to-loaf factory of Figure~\ref{fig:H_to_loaf}. The resulting highway robber is displayed in Figure~\ref{fig:highway_robber}. While it is somewhat large and slow, only mild improvements on this design are known (see Exercise~\ref{exer:better_highway_robber_bandersnatch}).
 
 \begin{figure}[!htb]
 	\centering
-	\patternimglink{0.1}{highway_robber}
+	\patternimglink{0.115}{highway_robber}
 	\caption{A highway robber that was constructed by Chris Cain in March 2015. It uses the glider-loaf collision of Figure~\ref{fig:glider_loaf_collision} to create a perpendicular glider that is fed into a Snark (highlighted in \bgbox{yellowback2}{yellow}) and then a syringe (highlighted in \bgbox{aquaback}{aqua}), an L112 conduit (highlighted in \bgbox{greenpastel}{green}), and finally a Herschel-to-loaf factory (highlighted in \bgbox{magentaback}{magenta}) so as to recreate the loaf.}
 	\label{fig:highway_robber}
 \end{figure}
 
-% Note about perfect glider robber via 14-tick separation not being explicitly constructed yet?
-% Boat bit is kind of a glider-to-boat factory: {fig:boat_bit}
 
+% NJ is here in the cleanup process.
+
+\subsection{A Stable Heisenburp}\label{sec:stable_heisenburp}\index{Heisenburp}
+
+As another application of still life factories, we now construct a stable Heisenburp---a stable pattern that can detect the presence of a spaceship without affecting it at all, even temporarily (recall that we saw some \emph{periodic} Heisenburps in Section~\ref{sec:p46_heisenburps}). No such pattern can be constructed to detect the presence of a glider, since gliders do not emit any sparks. However, xWSSes are plenty sparky, and we can use factories to construct stable Heisenburps that detect their presence. In particular, we now construct a stable Heisenburp for an MWSS.
+
+Much like our highway robber, our starting point is a reaction in which an MWSS triggers a still life to explode into a chaotic mess and/or a glider. One such reaction is displayed in Figure~??...
+
+% MWSS is nice because sparky but easier to construct than HWSS. strikes a nice balance between LWSS and HWSS.
+
+% Exercise: make stable HWSS heisenburp
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1420,18 +1424,10 @@ The trombone slide displayed in Figure~\ref{fig:trombone_slide_276} delays a gli
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:block_factory_is_tripler}
-		This exercise concerns the leftmost Herschel-to-block factory from Figure~\ref{fig:H_to_block}.\smallskip
-		
-		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item What happens if you send a second Herschel into this conduit without cleaning up the block that the first Herschel made?
-			
-			\item What happens if you then send a third Herschel into this conduit?
-			
-			\item Use a syringe and this conduit to turn a Gosper glider gun into a period~$90$ gun.
-		\end{enumerate}
+	\begin{problem}\label{exer:block_factory_is_tripler} \probdiff{1}
+		Create a period~90 glider gun by combining a Gosper glider gun, a syringe, and the second-from-the-right Herschel-to-block factory from Figure~\ref{fig:H_to_block}.
 	\end{problem}
-	% SOLUTION: (a) it moves the block and produces a glider, (b) it destroys the extra block, returning it to its original state, so it's really a period tripler.
+	% SOLUTION: Just stitch them together. That conduit is a period tripler.
 	
 	
 	\mfilbreak
@@ -1446,6 +1442,17 @@ The trombone slide displayed in Figure~\ref{fig:trombone_slide_276} delays a gli
 			\item How many adjacent lanes can a glider coming from the southeast be placed on so as to cleanly destroy the block? Why is this answer different from that of part~(a)?
 		\end{enumerate}
 	\end{problem}
+
+
+%	\mfilbreak
+%	
+%	
+%	\begin{problem}\label{exer:factory_toggle}
+%		A factory that cleanly destroys its output object if a second input signal is received is called a \emph{toggle factory},\index{toggle!factory} and one is displayed below.
+%		
+%		% FIGURE
+%		% TODO: WHAT EXERCISE TO MAKE HERE?
+%	\end{problem}
 	
 	
 	\mfilbreak
