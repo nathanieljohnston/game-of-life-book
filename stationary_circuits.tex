@@ -724,17 +724,34 @@ All that we have to do to create a highway robber out of this reaction is use th
 \end{figure}
 
 
-% NJ is here in the cleanup process.
-
 \subsection{A Stable Heisenburp}\label{sec:stable_heisenburp}\index{Heisenburp}
 
-As another application of still life factories, we now construct a stable Heisenburp---a stable pattern that can detect the presence of a spaceship without affecting it at all, even temporarily (recall that we saw some \emph{periodic} Heisenburps in Section~\ref{sec:p46_heisenburps}). No such pattern can be constructed to detect the presence of a glider, since gliders do not emit any sparks. However, xWSSes are plenty sparky, and we can use factories to construct stable Heisenburps that detect their presence. In particular, we now construct a stable Heisenburp for an MWSS.
+Still life factories can also be used to construct stable Heisenburps---stable patterns that can detect the presence of a spaceship without affecting it at all, even temporarily (recall that we saw some \emph{periodic} Heisenburps in Section~\ref{sec:p46_heisenburps}). No such pattern can be constructed to detect the presence of a glider, since gliders do not emit any sparks. However, xWSSes are plenty sparky, and we now construct a stable Heisenburp for an MWSS.
 
-Much like our highway robber, our starting point is a reaction in which an MWSS triggers a still life to explode into a chaotic mess and/or a glider. One such reaction is displayed in Figure~??...
+Much like our highway robber, our starting point is a reaction in which an MWSS triggers a still life to explode into a chaotic mess and/or a glider. Unfortunately, none of the still lifes that we have seen factories for are particularly well-suited to this task,\footnote{If triggered by an MWSS's central spark, a (1) block either dies quickly or destroys the MWSS, a (2) beehive destroys the MWSS, a (3) boat destroys the MWSS, and a (4) loaf in one orientation produces some chaotic junk, but it is not known how to quickly or easily convert that junk into one of our standard signals like a Herschel or a glider.} so we instead use a ship as illustrated in Figure~\ref{fig:mwss_ship_heisenburp_reaction}. This is slightly inconvenient, since we do not know of any clean and edgy ship factories. However, a Herschel on its own evolves into a configuration of two blocks, two gliders, and a rather edgy ship, as illustrated in Figure~\ref{fig:herschel_evolution}.\footnote{So, in a sense, the empty Life plane is a somewhat dirty Herschel-to-ship factory.}
 
-% MWSS is nice because sparky but easier to construct than HWSS. strikes a nice balance between LWSS and HWSS.
+\begin{figure}[!htb]
+	\centering
+	\begin{minipage}[b]{0.48\textwidth}
+		\centering
+		\embedlink{mwss_ship_to_glider}{\vcenteredhbox{\patternimg{0.1}{mwss_ship_to_glider}} \vcenteredhbox{\genarrow{64}} \vcenteredhbox{\patternimg{0.1}{mwss_ship_to_glider_64}}}
+		\caption{The spark from an MWSS can cause a ship to explode (without destroying the MWSS). Some eater~1s can be used to turn that explosion into a block and a glider.}\label{fig:mwss_ship_heisenburp_reaction}
+	\end{minipage} \hfill \begin{minipage}[b]{0.49\textwidth}
+		\centering
+		\embedlink{herschel_evolution}{\vcenteredhbox{\patternimg{0.084}{herschel_evolution_0}} \vcenteredhbox{\genarrow{128}} \vcenteredhbox{\patternimg{0.084}{herschel_evolution_128}}}
+		\caption{A Herschel on its own evolves into two blocks, two gliders, and a ship.}\label{fig:herschel_evolution}
+	\end{minipage}
+\end{figure}
 
-% Exercise: make stable HWSS heisenburp
+Both of these reactions are a bit dirtier than we would like---the ship-plus-spark explosion creates an extra block that we will have to clean up, and the Herschel-to-ship conversion creates two extra blocks and two extra gliders. However, all of these extra bits and pieces can be cleaned up straightforwardly by using the stable circuitry techniques that we learned in this chapter to redirect those extra gliders (and possibly create more of them) so that they collide with, and destroy, the extra blocks. A completed stable MWSS Heisenburp that uses these ideas is displayed in Figure~\ref{fig:stable_heisenburp}.\footnote{Similar ideas can be used to construct a stable HWSS Heisenburp---see Exercise~\ref{exer:create_hwss_heisenburp}.}
+
+\begin{figure}[!htb]
+	\centering
+	\patternimglink{0.13}{stable_heisenburp}
+	\caption{A stable MWSS-detecting Heisenburp that was constructed by ConwayLife.com forums member ``Entity Valkyrie'' in June 2020, largely based on earlier work by Martin Grant. The MWSS's spark triggers the central ship to create a glider as in Figure\ref{fig:mwss_ship_heisenburp_reaction} (highlighted in \bgbox{aquaback}{aqua}), and stable circuitry is then used to manipulate that glider into rebuilding the ship as in Figure~\ref{fig:herschel_evolution} (highlighted in \bgbox{magentaback}{magenta}). Some glider duplicators and reflectors are used to destroy extra stray blocks.}\label{fig:stable_heisenburp}
+\end{figure}
+
+% NJ is here in the cleanup process.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1469,9 +1486,32 @@ The trombone slide displayed in Figure~\ref{fig:trombone_slide_276} delays a gli
 			% SOLUTION: https://www.conwaylife.com/forums/viewtopic.php?t=&p=99379#p99379
 		\end{enumerate}
 	\end{problem}
+
+
+	\mfilbreak
 	
 	
-	% EXERCISE: make HWSS heisenburp https://www.conwaylife.com/forums/viewtopic.php?f=2&t=315&start=175#p99744
+	\begin{problemstar}\label{exer:stable_heisenburp_break_apart} \probdiff{2}
+		Identify each of the stable conduits used in the stable Heisenburp of Figure~\ref{fig:stable_heisenburp}.
+		
+		\noindent [Hint: We saw most of them in the main text of this chapter. However, one of them was introduced earlier in this chapter's exercises, and another one was introduced in Chapter~\ref{chp:oscillators}'s exercises.]
+	\end{problemstar}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:create_hwss_heisenburp} \probdiff{4}
+		In the reaction below, three gliders synthesize a block on a ship, and a passing HWSS then turns that pseudo still life into a glider.
+		
+		\begin{center}
+			\embedlink{exercise_hwss_heisenburp_reaction}{\vcenteredhbox{\patternimg{0.1}{exercise_hwss_heisenburp_reaction}} \vcenteredhbox{\genarrow{130}} \vcenteredhbox{\patternimg{0.1}{exercise_hwss_heisenburp_reaction_130}}}
+		\end{center}
+	
+		\noindent Add stable circuitry that turns the output glider into the three (synchronized) input gliders, thus creating a stable HWSS Heisenburp.
+	\end{problem}
+	% SOLUTION: https://www.conwaylife.com/forums/viewtopic.php?p=99834#p99834
+	
 	% EXCERCISE: https://www.conwaylife.com/wiki/4g-to-5g_reaction (make a gun like the one at the bottom out of the reaction)
 	
 	
