@@ -207,7 +207,7 @@ With this in mind, these conduits are given names of the form \verb|<direction><
 	\item \verb|<lane>| is the lane number of the output glider, and \verb|<timing>| is similarly its timing, also relative to the input Herschel.\footnote{Refer back to Section~\ref{sec:glider_lanes} if you need a refresher on glider lanes and timing.}\smallskip
 \end{itemize}
 
-For example, the conduit in Figure~\ref{fig:H_to_G} is called \emph{HNE5T-4}\index{HNE5T-4} (to be clear, the dash in this name is a minus sign, not a separator---the timing of the output glider is $-4$) and the ones in Figures~\ref{fig:H_to_2G} and~\ref{fig:H_to_3G} are both called \emph{NW31T120}.\index{NW31T120} The first and second natural gliders (i.e., the southwest and northwest gliders in Figure~\ref{fig:H_to_3G}) are not included in the name of a Herschel-to-glider conduit unless they are its only output. Exactly how the timing and lane of a glider is computed relative to a Herschel is not particularly important for our purposes---it's just nice to know where these names come from.
+For example, the conduit in Figure~\ref{fig:H_to_G} is called \emph{NE5T-4}\index{NE5T-4} (to be clear, the dash in this name is a minus sign, not a separator---the timing of the output glider is $-4$) and the ones in Figures~\ref{fig:H_to_2G} and~\ref{fig:H_to_3G} are both called \emph{NW31T120}.\footnote{This conduit is common enough that its name is often abbreviated as \emph{NW31}.}\index{NW31T120}\index{NW31|see {NW31T120}} The first and second natural gliders (i.e., the southwest and northwest gliders in Figure~\ref{fig:H_to_3G}) are not included in the name of a Herschel-to-glider conduit unless they are its only output. Exactly how the timing and lane of a glider is computed relative to a Herschel is not particularly important for our purposes---it's just nice to know where these names come from.
 
 With all of this taken care of, some other Herschel-to-glider edge shooters are displayed in Figure~\ref{fig:herschel_to_glider_edge}.\footnote{A more-or-less complete collection of Herschel-to-glider converters is available for download at \httpsurl{conwaylife.com/forums/viewtopic.php?f=2\&t=1682}}
 
@@ -747,37 +747,69 @@ Both of these reactions are a bit dirtier than we would like---the ship-plus-spa
 
 \begin{figure}[!htb]
 	\centering
-	\patternimglink{0.13}{stable_heisenburp}
+	\patternimglink{0.12}{stable_heisenburp}
 	\caption{A stable MWSS-detecting Heisenburp that was constructed by ConwayLife.com forums member ``Entity Valkyrie'' in June 2020, largely based on earlier work by Martin Grant. The MWSS's spark triggers the central ship to create a glider as in Figure\ref{fig:mwss_ship_heisenburp_reaction} (highlighted in \bgbox{aquaback}{aqua}), and stable circuitry is then used to manipulate that glider into rebuilding the ship as in Figure~\ref{fig:herschel_evolution} (highlighted in \bgbox{magentaback}{magenta}). Some glider duplicators and reflectors are used to destroy extra stray blocks.}\label{fig:stable_heisenburp}
 \end{figure}
-
-% NJ is here in the cleanup process.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Notes and Historical Remarks}\label{sec:stable_circuits_notes}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-While stable circuitry for carrying out the tasks described in this chapter has existed for a couple of decades at this point, it became significantly smaller and easier to work with in the mid-2010s. For example, the discovery of the Snark\index{Snark} in 2013 allows us to easily reposition gliders without having to make use of large engineered reflectors like the Silver reflector from Figure~\ref{fig:silver_reflector}.
+While stable circuitry for carrying out the tasks described in this chapter has existed for a couple of decades at this point, it became significantly smaller and easier to work with in the mid-2010s. For example, the discovery of the Snark\index{Snark} in 2013 allows us to easily reposition gliders without having to make use of large engineered reflectors like the Silver reflector\index{Silver reflector} from Figure~\ref{fig:silver_reflector}.
 
-The discovery of the syringe in 2015 similarly shrank most stable circuits considerably. It has always been easy to convert a Herschel into a glider, but the standard way to accomplish the reverse task in previous years was to use a \emph{Herschel transceiver}\index{Herschel!transceiver}---a device that sends and receives a \emph{pair} of gliders traveling the same direction, but potentially on different lanes.\index{tandem}\footnote{Such gliders are said to be in \emph{tandem}.} The first such device to be discovered\footnote{This Herschel transceiver was found by Paul Callahan---the receiver in October 1996 and the transmitter in May 1997.} is displayed in Figure~\ref{fig:herschel_transceiver}.
+The discovery of the syringe in 2015 similarly shrank most stable circuits considerably. It has always been easy to convert a Herschel into a glider, but the smallest and fastest way to accomplish the reverse task in previous years was to use the reaction from Figure~\ref{fig:2g_to_h_old_callahan} in which a glider is converted into a Herschel and an extra ``junk'' beehive.\footnote{Found by Paul Callahan in November 1998.} That beehive must be destroyed before the conduit can be used again---a task that can be carried out by using stable conduits to redirect a Herschel's first natural glider back to the beehive. The simplest sequence of stable conduits that does the job is Fx77 $\rightarrow$ L112 $\rightarrow$ Fx77,\index{Fx77}\index{L112} and the resulting glider-to-Herschel conduit is called the \emph{Callahan G-to-H} (see Figure~\ref{fig:callahan_g_to_h}).\index{Callahan G-to-H} Because of the slow creation of its cleanup glider, it has a rather high repeat time of 575 generations.
+
+Indeed, the Silver reflector that we saw way back in Figure~\ref{fig:silver_reflector} works in almost the exact same way---it uses the exact same initial component to turn the input glider into a Herschel and junk beehive, and even follows it up by Fx77 and L112 conduits. The only difference is that the final Fx77 conduit from the Callahan G-to-H is replaced by the NW31\index{NW31T120} conduit from Figure~\ref{fig:H_to_2G}. Since NW31 puts an output glider on the same lane as Fx77, but much sooner, this gives Silver reflectors a slightly smaller repeat time of 497 generations.
+
+% This figure could be moved 1 paragraph earlier. It is just here for spacing reasons.
+\begin{figure}[!htb]
+	\centering
+	\begin{minipage}[b]{0.43\textwidth}
+		\centering
+		\patternimglink{0.13}{2g_to_h_old_callahan}
+		\caption{A stable conduit that converts a glider into a Herschel and a beehive. By using a second glider to clean up the beehive, this can be thought of as a 2G-to-H converter.}\label{fig:2g_to_h_old_callahan}
+	\end{minipage} \hfill \begin{minipage}[b]{0.53\textwidth}
+		\centering
+		\patternimglink{0.12}{callahan_g_to_h}
+		\caption{A \emph{Callahan G-to-H} that converts a single glider into a Herschel via the reaction of Figure~\ref{fig:2g_to_h_old_callahan}.}\label{fig:callahan_g_to_h}
+	\end{minipage}
+\end{figure}
+
+Silver reflectors are fairly large and slow by modern standards. Oddly enough, though, they're still top-of-the-line technology for certain applications:\smallskip
+
+\begin{itemize}
+	\item It costs just about the same number of gliders to synthesize them as any other known reflector.\smallskip
+	
+	\item The construction recipe is very simple because Silver reflectors (and Callahan G-to-Hs) are Spartan.\smallskip
+	
+	\item Silver reflectors have two separate transparent output lanes, so they can be used as merge circuits.\smallskip
+	
+	\item Silver reflectors can be trivially adjusted to produce output gliders in any or all of the four diagonal directions (see Exercise~\ref{exer:four_dir_silver_reflector}), so they're also fairly efficient signal splitters.\smallskip
+	
+	\item The various output gliders can be blocked or released to produce either color-changing or color-preserving 90-degree reflections.\smallskip
+\end{itemize}
+
+In general, Herschel-to-glider converters and other conduits can be appended to a syringe to create compact circuits with each of the Silver reflector's good qualities (constructibility, merge capability, signal-splitting ability, or two colors of glider output), as well as many other possible logic-circuit functions. However, duplicating \emph{all} of those qualities in a single converter requires adding so much circuitry that the result may actually be larger than a Silver reflector.
+
+In order to transmit a Herschel from one place in the Life plane to another one that is faw away, nowadays we can simply convert it into a glider, and then convert it back via a syringe. Callahan's G-to-H could be used for this same task as of 1998, but a much smaller and faster method of doing so was already known by May 1997. Indeed, a device called a \emph{Herschel transceiver},\index{Herschel!transceiver} which is displayed in Figure~\ref{fig:herschel_transceiver}, converts a Herschel into a \emph{pair} of gliders travelling the same direction (but potentially on different lanes---such gliders are said to be in \emph{tandem})\index{tandem} and then back into a Herschel.
 
 \begin{figure}[!htb]
 	\centering
 	\patternimglink{0.1}{herschel_transceiver}
-	\caption{A Herschel transceiver that is made up of two components that can be separated by an arbitrary amount---a conduit that converts a Herschel into two gliders at the top-left, and a conduit that converts those two gliders back into a Herschel (via a B-heptomino) at the bottom-right. This device appeared in lots of pre-2015 circuitry, but was made almost completely obsolete by the discovery of the syringe.}
+	\caption{A Herschel transceiver that is made up of two components that can be separated by an arbitrary amount---a conduit that converts a Herschel into two gliders at the top-left (found in May 1997 by Paul Callahan), and a conduit that converts those two gliders back into a Herschel at the bottom-right (found in October 1996, also by Callahan). This device appeared in lots of pre-2015 circuitry, but was made almost completely obsolete by the discovery of the syringe.}
 	\label{fig:herschel_transceiver}
 \end{figure}
 
-The receiving half of this Herschel transceiver (which is called a \emph{Herschel receiver}\index{Herschel!receiver}) just uses the first input glider to erase its beehive, so the relative timing of the input gliders does not really matter. Furthermore, there are several other ways that a glider can collide with a beehive so that they destroy each other, so the second glider can be $6$, $5$, $2$, or $-2$ lanes to the right of the first glider without affecting the receiver's functionality. Several more transmitting halves (i.e., \emph{Herschel transmitters}\index{Herschel!transmitter}) for this receiver were found in the next year or two,\footnote{By Paul Callahan and by Dieter Leithner} but they were relatively awkward, needing sparks from oscillators or other extra cleanup, so they were seldom or never used in larger patterns. One other H-to-G6 conduit (i.e., Herschel transmitter that converts a Herschel into a pair of tandem gliders offset from each other by $6$~lanes) that \emph{is} still useful is presented in Exercise~\ref{exer:h_to_g6}.
+The receiving half of this Herschel transceiver (which is called a \emph{Herschel receiver}\index{Herschel!receiver}) just uses the first input glider to erase its beehive, so the relative timing of the input gliders does not really matter. Furthermore, there are several other ways that a glider can collide with a beehive so that they destroy each other, so the second glider can be any of $6$, $5$, $2$, or $-2$ lanes to the right of the first glider without affecting the receiver's functionality. Several more transmitting halves (i.e., \emph{Herschel transmitters}\index{Herschel!transmitter}) for this receiver were found in the next year or two,\footnote{By Paul Callahan and by Dieter Leithner.} but they were relatively awkward, needing sparks from oscillators or other extra cleanup, so they were seldom or never used in larger patterns. One H-to-G6 conduit (i.e., Herschel transmitter that converts a Herschel into a pair of tandem gliders offset from each other by $6$~lanes) that \emph{is} still useful is presented in Exercise~\ref{exer:h_to_g6}.
 
-The original Herschel transceiver was featured quite often in pre-2015 circuitry, because it provided a relatively inexpensive way of ``transmitting'' a Herschel signal from one place to another in the form of gliders. It was easy to get a Herschel to generate a \emph{single} glider, but to then get a Herschel back out of that single glider required a large composite circuit, the fastest of which had a repeat time of 497 generations. By contrast, a Herschel transceiver can send the same signal via two gliders with a repeat time of just 117 generations, and its receiver is much smaller as well.
+With the appearance of the syringe in 2015 (with a repeat time of 78 generations, instead of the Herschel transceiver's 117), it became cheaper and faster to send a single glider and then convert it back to a Herschel with a syringe whenever necessary. As a result, tandem gliders pretty much became obsolete, with a few odd exceptions. When we happen to have two gliders anyway, or when a pair of tandem gliders naturally produces some other reaction of interest, it is still sometimes easier to catch them with a Herschel receiver. One such reaction that we will make use of later is the one displayed in Figure~\ref{fig:block_pusher} that uses $3$ gliders to push a block forward while sending a pair of tandem gliders back.
 
-With the appearance of the syringe in 2015 (repeat time 78, or 74 with overclocking), it became cheaper and faster to send a single glider and then convert it back to a Herschel with a syringe whenever necessary. As a result, tandem gliders pretty much became obsolete, with a few odd exceptions. When we happen to have two gliders anyway, or when two tandem gliders naturally produce some other reaction of interest, it is still sometimes easier to catch them with a Herschel receiver---especially when their lanes are only $2$ cells apart. One such reaction that we will make use of later is the one displayed in Figure~\ref{fig:block_pusher} that uses $3$ gliders to push a block and send $2$ tandem gliders back.
+% NJ is here in the cleanup process.
 
 \begin{figure}[!htb]
 	\centering\embedlink{block_pusher}{\vcenteredhbox{\patternimg{0.1}{block_pusher_0}} \vcenteredhbox{\genarrow{110}} \vcenteredhbox{\patternimg{0.1}{block_pusher_110}}}
-	\caption{A reaction in which $3$ gliders push a block southeast by $10$~cells and send $2$ tandem gliders back, separated by just $2$ lanes and thus suitable for input into a Herschel receiver. The debris highlighted in \bgbox{redback}{red} dies off in $25$ more generations.}\label{fig:block_pusher}
+	\caption{A reaction in which $3$ gliders push a block southeast by $10$~cells and send a pair of tandem gliders back, separated by just $2$ lanes and thus suitable for input into the Herschel receiver from Figure~\ref{fig:herschel_transceiver}. The debris highlighted in \bgbox{redback}{red} dies off in $25$ more generations.}\label{fig:block_pusher}
 \end{figure}
 
 Another Herschel transceiver that is sometimes useful is the one displayed in Figure~\ref{fig:herschel_transceiver_4} that works via gliders that are separated by $4$ lanes instead of $2$, $5$, or $6$.\footnote{This transceiver was found by Sergei Petrov in December 2011.} This transceiver has two advantages over the one that we saw earlier: it produces a quick 90-degree glider output in addition to its Herschel output, and it is \emph{ambidextrous}\index{ambidextrous} (i.e., it can be configured to accept the gliders from the transmitter in either order). For this reason, this transceiver is still a fairly efficient way to quickly split a single signal into multiple signals, using only Spartan catalysts.
@@ -796,98 +828,6 @@ Alternatively, prior to the discovery of the syringe, there were some stable con
 	\caption{A stable conduit that converts a Coe ship into a Herschel.}\label{fig:coe_to_herschel}
 \end{figure}
 
-% TODO: Actually work in the rest of this, and put in proper images
-% Silver reflector is already in chapter 3!
-% https://conwaylife.com/wiki/Callahan_G-to-H
-For many years the best known G-to-H (glider-to-Herschel) converter was a Herschel-based staged recovery mechanism constructed by Paul Callahan in 1998. A glider striking a beehive can be catalyzed to create a replacement beehive in the same location.  However, an extra "junk" beehive also appears that must be removed.  The required cleanup glider can be created by appending Fx77 + L112 + Fx77 conduits to the base converter, making a \emph{Callahan G-to-H}.  Because of the slow creation of the cleanup glider, the repeat time is a rather high 575 ticks.
-
-% FIGURE HERE -- not sure what form is most useful:
-% LifeHistory shows the stages, Herschel connection points, and optional glider outputs --
-% #N Callahan G-to-H
-% #O Paul Callahan, November 1998
-% x = 97, y = 106, rule = LifeHistory
-% 32.4B$33.4B$34.4B$35.4B$36.4B$37.4B$38.4B$39.4B$40.4B$41.4B$42.4B$43.
-% 4B$44.4B$45.4B$46.4B26.A$47.4B23.3A$48.4B21.A$38.A10.4B20.2A$36.3A11.
-% 4B17.4B$20.A14.A15.4B15.3B$20.3A12.2A15.4B14.4B$23.A7.2B.3B3.7B.B4.4B
-% 12.5B$22.2A6.5B5.13B.4B11.6B$22.5B2.36B2.8B$24.37BD14B$23.2A34B3D13B$
-% 23.2A17B2A15BDBD4B.7B$24.B.16B2A15BD15B12.4B4.D$26.23B3.2B2.19B11.5B
-% 3.D.D$27.9B2.10B11.17B8.7B3.D.D$28.8B3.6B16.15B.2B2.10B4.D$29.7B4.3B
-% 19.22BD6B$26.11B3.B21.8B.13BDBD4B$25.12B2.2A19.8B3.2B2A9B3D4B$25.12B
-% 2.A20.2A3.B5.2B2A11BD4B$25.11B5.A19.A10.18B$25.B3D4B.4B2.2A16.3A12.B.
-% 3B.4B$25.2BD4B4.2A20.A19.4B$25.2B3D2B4.A40.4B$25.6B6.3A36.4B$24.7B8.A
-% 35.4B$23.8B43.4B$22.8B43.4B$21.9B42.4B$20.4B.6B40.4B$19.4B.7B39.4B$
-% 18.4B2.6B15.2A22.4B$17.4B3.8B4.B8.A22.4B$16.4B5.B2A6B.4B3.BA.A21.4B$
-% 15.4B5.2B2A13B.B2A21.4B$14.4B7.18B22.4B$13.4B9.17B21.4B$12.4B13.13B
-% 21.4B$11.4B13.12B22.4B$10.4B14.10B23.4B$9.4B14.11B22.4B$8.4B15.7B.2B
-% 22.4B$7.4B15.11B21.4B$6.4B17.11B19.4B$5.4B18.11B18.4B$4.4B19.11B17.4B
-% $3.4B18.2AB2.4B3DB16.4B$2.4B18.A.AB3.4BD2B15.4B$.4B19.A6.2B3D2B14.4B$
-% 4B19.2A7.6B13.4B$3B29.7B11.4B$2B30.8B9.4B$B32.8B7.4B$33.9B5.4B$32.6B.
-% 4B3.4B$32.7B.4B.4B$33.6B2.7B$33.6B3.5B$33.2B2AB4.5B$32.3B2A2B2.7B$32.
-% 7B.4B.4B$33.5B.4B3.4B$33.9B5.4B$33.8B7.4B$33.7B9.4B$24.2A7.6B11.4B$
-% 25.A7.7B5.2A4.4B$25.A.AB3.7B6.A6.4B$26.2AB.11B.BA.A7.4B$28.10BA2B.B2A
-% 9.4B$27.10BABA3B12.4B$28.9BABA3B13.4B$26.2AB.8BA2B16.4B$25.A.AB2.8B
-% 19.4B$25.A4.4B2.3B20.4B$24.2A3.4B3.5B19.4B$28.4B6.B2A20.4B$27.2A2B8.A
-% 22.4B$26.ABAB10.3A20.4B$27.BA13.A21.4B$65.4B$66.4B$67.4B$68.4B$69.4B$
-% 70.4B$71.4B$72.4B$73.4B$74.4B$75.4B!
-%
-%... or the plain RLE is 
-% #N Callahan G-to-H
-% #O Paul Callahan, November 1998
-% x = 67, y = 81, rule = B3/S23
-% 56bo$54b3o$53bo$18bo34b2o$16b3o$o14bo$3o12b2o$3bo$2b2o3$3b2o$3b2o17b2o
-% $22b2o4$64bo$64bo$19b2o32b2o9b3o$19bo20b2o11b2o11bo$21bo19bo$20b2o16b
-% 3o$16b2o20bo$16bo$17b3o$19bo6$25b2o$25bo$6b2o15bobo$6b2o15b2o12$5b2o$
-% 4bobo$4bo$3b2o9$15b2o$15b2o6$4b2o$5bo19b2o$5bobo17bo$6b2o15bobo$18bo4b
-% 2o$17bobo$17bobo$6b2o10bo$5bobo$5bo$4b2o$19b2o$7b2o10bo$6bobo11b3o$8bo
-% 13bo!
-%
-% ... leaving out all the ghost Herschels except the one in the final output position.
-% If we want to keep those in the clickable pattern, it would look like
-%
-% x = 67, y = 81, rule = B3/S23
-% 56bo$54b3o$53bo$18bo34b2o$16b3o$o14bo$3o12b2o$3bo$2b2o2$41bo$3b2o34b3o
-% $3b2o17b2o15bo$22b2o15bo4$64bo$64bo$19b2o32b2o9b3o$19bo20b2o11b2o11bo$
-% 21bo19bo$6b2o12b2o16b3o$7bo8b2o20bo$7b3o6bo$17b3o$19bo6$25b2o$25bo$6b
-% 2o15bobo$6b2o15b2o12$5b2o8b2o$4bobo8bo$4bo8b3o$3b2o9$15b2o$15b2o6$4b2o
-% $5bo19b2o$5bobo17bo$6b2o15bobo$18bo4b2o$17bobo$17bobo$6b2o10bo$5bobo$
-% 5bo$4b2o$19b2o$7b2o10bo$6bobo11b3o$8bo13bo!
-
-Stephen Silver immediately found a variant of the Callahan G-to-H that became the smallest known 90-degree \emph{stable reflector} for well over a decade.  The \emph{Silver reflector} took advantage of the fact that a standard NW31 converter produces an output glider on the same lane as an Fx77 conduit, but much sooner, giving a Silver reflector a repeat time of 497 ticks.
-
-% FIGURE HERE
-% #N Silver reflector
-% #O Stephen Silver, November 1998
-% x = 66, y = 91, rule = B3/S23
-% 54b2o$54b2o2$22bo$20b3o$4bo14bo$4b3o12b2o$7bo$6b2o3$7b2o$7b2o17b2o$26b
-% 2o2$64b2o$64b2o3$23b2o$23bo19b2o$25bo16bobo$24b2o16bo$20b2o19b2o$20bo
-% $21b3o$23bo6$29b2o$29bo$10b2o15bobo$10b2o15b2o12$9b2o$8bobo$8bo$7b2o9$
-% 19b2o$19b2o6$8b2o$9bo19b2o$9bobo17bo$10b2o15bobo$22bo4b2o$21bobo$21bo
-% bo$10b2o10bo$9bobo$9bo$8b2o$23b2o$23bo$24b3o$26bo8$b2o$obo$2bo!
-%
-% Version that produces output gliders in all four directions
-% x = 66, y = 92, rule = B3/S23
-% 50bo$50b3o$53bo$52b2o$22bo$20b3o$4bo14bo$4b3o12b2o$7bo$6b2o3$7b2o$7b2o
-% 17b2o$26b2o2$64b2o$64b2o3$23b2o$23bo19b2o$25bo16bobo$24b2o16bo$20b2o
-% 19b2o$20bo$21b3o$23bo6$29b2o$29bo$10b2o15bobo$10b2o15b2o12$9b2o$8bobo$
-% 8bo$7b2o9$19b2o$19b2o6$8b2o$9bo19b2o$9bobo17bo$10b2o15bobo$22bo4b2o$
-% 21bobo$21bobo$10b2o10bo$9bobo$9bo$8b2o$23b2o$23bo$24b3o$26bo8$b2o$obo$
-% 2bo!
-
-Silver reflectors are fairly large and slow by modern standards.  Oddly enough, though, they're still top-of-the-line technology for certain applications.
-
-\begin{itemize}
-	\item It costs just about the same number of gliders to construct them as to construct any other known reflector.\smallskip
-	\item The construction recipe is very simple because Silver reflectors and Callahan G-to-Hs are Spartan.\smallskip
-	\item Silver reflectors have two separate transparent output lanes, so they can be used as merge circuits.\smallskip
-	\item Silver reflectors can be trivially adjusted to produce output gliders in any or all of the four diagonal directions, so they're also fairly efficient signal splitters.\smallskip
-	\item The various output gliders can be blocked or released to produce either color-changing or color-preserving 90-degree reflections.\medskip
-\end{itemize}
-
-We will see examples of uses of Silver reflectors and syringes in Chapter~\ref{chp:universal_computation}.
-
-In general, Herschel-to-glider converters and other conduits can be appended to a syringe to create compact circuits with each of the Silver reflector's good qualities (constructibility, merge capability, signal-splitting ability, two colors of glider output) as well as many other possible logic-circuit functions.  However, duplicating \emph{all} of those qualities in a single converter requires adding so much circuitry that the result may be larger than a Silver reflector!
-
-% TODO: Introduce term "Spartan". This term is used in History section, so if no place makes sense earlier, at least properly introduce it there (i.e., rewrite a bit)
 % "Transparent" reaction: one in which some intermediate pattern (e.g., block) is destroyed but then reconstructed, with pattern like Herschel travelling through it
 % G-to-LWSS/MWSS: http://conwaylife.com/forums/viewtopic.php?f=2&t=1651&start=50#p18616
 % herschel duplicator: http://conwaylife.com/forums/viewtopic.php?f=2&t=1599&p=29968#p29968
@@ -900,7 +840,6 @@ In general, Herschel-to-glider converters and other conduits can be appended to 
 % Make gun with period (large prime) inside small (but not all small as period exercise) bounding box
 % Show the H-to-MWSS here and ask users to erase the leftover beehive to make a TRUE H-to-MWSS: http://conwaylife.com/forums/viewtopic.php?f=2&t=1599&p=23909#p23888
 % Give converter, ask reader to give name of it
-% Exercise: Break down Silver reflector into pieces. 2G to H plus Fx77 plus L112 plus H to 2G
 % EXERCISE: Introduce, link to, Karel Suhajda's search program Hersrch. Do something with it.
 % Exercise: https://www.conwaylife.com/wiki/Keeper (?)
 % Exercise: glider-to-block converter
@@ -960,7 +899,7 @@ In general, Herschel-to-glider converters and other conduits can be appended to 
 	
 	
 	\begin{problemstar}\label{exer:H_to_G_transparent_better} \probdiff{2}
-		A conduit that is very similar to HNE5T-4 (see Figure~\ref{fig:transparent_lane}) is presented below. Explain why this conduit might be more useful than HNE5T-4 in some situations.
+		A conduit that is very similar to NE5T-4 (see Figure~\ref{fig:transparent_lane}) is presented below. Explain why this conduit might be more useful than NE5T-4 in some situations.
 		
 		\begin{center}
 			\patternimglink{0.1}{H_to_G_transparent_better}
@@ -1321,7 +1260,7 @@ The trombone slide displayed in Figure~\ref{fig:trombone_slide_276} delays a gli
 	
 	
 	\begin{problem}\label{exer:h_to_g6}
-		An H-to-G6 conduit other than the one at the top-left corner of Figure~\ref{fig:herschel_transceiver} is presented below.\footnote{This conduit was found by Matthias Merzenich in December 2011.}
+		An H-to-G6 conduit that can be used in place of the H-to-G5 conduit at the top-left corner of Figure~\ref{fig:herschel_transceiver} is presented below.\footnote{This conduit was found by Matthias Merzenich in December 2011.}
 		
 		\begin{center}
 			\patternimglink{0.1}{h_to_G6}
@@ -1511,6 +1450,24 @@ The trombone slide displayed in Figure~\ref{fig:trombone_slide_276} delays a gli
 		\noindent Add stable circuitry that turns the output glider into the three (synchronized) input gliders, thus creating a stable HWSS Heisenburp.
 	\end{problem}
 	% SOLUTION: https://www.conwaylife.com/forums/viewtopic.php?p=99834#p99834
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:callahan_g_to_h_faster_periodic} \probdiff{3}
+		Find a way of appending just a single periodic reflector to the conduit from Figure~\ref{fig:2g_to_h_old_callahan} (instead of three stable conduits, as in the Callahan G-to-H) so that the output Herschel's first natural glider destroys the junk beehive. What is the repeat time of the resulting periodic G-to-H conduit?
+	\end{problem}
+	% p8 version based on bouncer is showed at https://conwaylife.com/wiki/Callahan_G-to-H
+	% repeat time 192
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:four_dir_silver_reflector} \probdiff{2}
+		Modify just a single conduit in the Silver reflector from Figure~\ref{fig:silver_reflector} so that it produces an output glider in all four directions.
+	\end{problemstar}
 	
 	% EXCERCISE: https://www.conwaylife.com/wiki/4g-to-5g_reaction (make a gun like the one at the bottom out of the reaction)
 	
