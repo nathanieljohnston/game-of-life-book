@@ -805,48 +805,41 @@ The receiving half of this Herschel transceiver (which is called a \emph{Hersche
 
 With the appearance of the syringe in 2015 (with a repeat time of 78 generations, instead of the Herschel transceiver's 117), it became cheaper and faster to send a single glider and then convert it back to a Herschel with a syringe whenever necessary. As a result, tandem gliders pretty much became obsolete, with a few odd exceptions. When we happen to have two gliders anyway, or when a pair of tandem gliders naturally produces some other reaction of interest, it is still sometimes easier to catch them with a Herschel receiver. One such reaction that we will make use of later is the one displayed in Figure~\ref{fig:block_pusher} that uses $3$ gliders to push a block forward while sending a pair of tandem gliders back.
 
-% NJ is here in the cleanup process.
-
 \begin{figure}[!htb]
 	\centering\embedlink{block_pusher}{\vcenteredhbox{\patternimg{0.1}{block_pusher_0}} \vcenteredhbox{\genarrow{110}} \vcenteredhbox{\patternimg{0.1}{block_pusher_110}}}
 	\caption{A reaction in which $3$ gliders push a block southeast by $10$~cells and send a pair of tandem gliders back, separated by just $2$ lanes and thus suitable for input into the Herschel receiver from Figure~\ref{fig:herschel_transceiver}. The debris highlighted in \bgbox{redback}{red} dies off in $25$ more generations.}\label{fig:block_pusher}
 \end{figure}
 
-Another Herschel transceiver that is sometimes useful is the one displayed in Figure~\ref{fig:herschel_transceiver_4} that works via gliders that are separated by $4$ lanes instead of $2$, $5$, or $6$.\footnote{This transceiver was found by Sergei Petrov in December 2011.} This transceiver has two advantages over the one that we saw earlier: it produces a quick 90-degree glider output in addition to its Herschel output, and it is \emph{ambidextrous}\index{ambidextrous} (i.e., it can be configured to accept the gliders from the transmitter in either order). For this reason, this transceiver is still a fairly efficient way to quickly split a single signal into multiple signals, using only Spartan catalysts.
+Another Herschel transceiver that is sometimes useful is the one displayed in Figure~\ref{fig:herschel_transceiver_4} that works via gliders that are separated by $4$ lanes instead of $2$, $5$, or $6$.\footnote{Found by Sergei Petrov in December 2011.} This transceiver has two advantages over the one that we saw earlier: it produces a quick 90-degree glider output in addition to its Herschel output, and it is \emph{ambidextrous}\index{ambidextrous} (i.e., it can be configured to accept the gliders from the transmitter in either order). For this reason, this transceiver is still a fairly efficient way to quickly split a single signal into multiple signals via Spartan components.
 
 \begin{figure}[!htb]
 	\centering
-	\patternimglink{0.09}{herschel_transceiver_4}
+	\patternimglink{0.1}{herschel_transceiver_4}
 	\caption{A Herschel transceiver that works via tandem glider pairs that are separated by $4$ lanes. The receiver that it uses is ambidextrous---it can be configured to work regardless of which of the two input gliders arrives first, as demonstrated here by the middle and right receivers here taking different configurations of input gliders.}
 	\label{fig:herschel_transceiver_4}
 \end{figure}
 
-Alternatively, prior to the discovery of the syringe, there were some stable conduits known for converting some spaceships \emph{other} than gliders into Herschels. For example, the conduit displayed in Figure~\ref{fig:coe_to_herschel} converts a Coe ship\index{Coe ship} into a Herschel.\footnote{This conduit was found by Stephen Silver in September 1997.} However, the reverse transformation of a Herschel into the original spaceship was much less straightforward, and would be performed by converting the Herschel into multiple gliders that we use to synthesize the original spaceship (a Coe ship in this case) via a glider synthesis like the one that we saw in Figure~\ref{fig:coe_ship_synth}.
+Alternatively, prior to the discovery of the syringe, there were stable conduits known for converting some spaceships \emph{other} than gliders into Herschels. For example, the conduit displayed in Figure~\ref{fig:coe_to_herschel} converts a Coe ship\index{Coe ship} into a Herschel. However, the reverse transformation of a Herschel back into the original spaceship was much less straightforward, and would be performed by converting the Herschel into multiple gliders that would then synthesize the original spaceship (a Coe ship in this case) via a glider synthesis like the one that we saw in Figure~\ref{fig:coe_ship_synth}.
 
 \begin{figure}[!htb]
-	\centering\embedlink{coe_to_herschel}{\vcenteredhbox{\patternimg{0.1}{coe_to_herschel_0}} \vcenteredhbox{\genarrow{124}} \vcenteredhbox{\patternimg{0.1}{coe_to_herschel_124}}}
-	\caption{A stable conduit that converts a Coe ship into a Herschel.}\label{fig:coe_to_herschel}
+	\centering\embedlink{coe_to_herschel}{\vcenteredhbox{\patternimg{0.112}{coe_to_herschel_0}} \vcenteredhbox{\genarrow{124}} \vcenteredhbox{\patternimg{0.112}{coe_to_herschel_124}}}
+	\caption{A stable conduit that converts a Coe ship into a Herschel. Found by Stephen Silver in September 1997.}\label{fig:coe_to_herschel}
 \end{figure}
 
 % "Transparent" reaction: one in which some intermediate pattern (e.g., block) is destroyed but then reconstructed, with pattern like Herschel travelling through it
-% G-to-LWSS/MWSS: http://conwaylife.com/forums/viewtopic.php?f=2&t=1651&start=50#p18616
 % herschel duplicator: http://conwaylife.com/forums/viewtopic.php?f=2&t=1599&p=29968#p29968
 
 
 %% EXERCISE IDEAS
-% - Create a stable conduit that converts a glider into... 2 gliders? A LWSS? An MWSS? Etc.
-% - Use two copies of B60 to make a p120 gun (and make lots of guns with different periods via other circuits...)
+% - What is the repeat time of the G-to-(2-engine Cordership)... 556, but a painfully advanced exercise could be how to reduce the repeat time to 458 (probably giving the alternate three-sided recipe from http://conwaylife.com/forums/viewtopic.php?p=63282#p63282 -- or possibly just the recipe for the switch engine with the alternate kickback). Also, make a gun out of it? Trivial, but not done elsewhere yet.
 % Make gun with period (for example) 15*2^50 inside small bounding box
 % Make gun with period (large prime) inside small (but not all small as period exercise) bounding box
 % Show the H-to-MWSS here and ask users to erase the leftover beehive to make a TRUE H-to-MWSS: http://conwaylife.com/forums/viewtopic.php?f=2&t=1599&p=23909#p23888
 % Give converter, ask reader to give name of it
 % EXERCISE: Introduce, link to, Karel Suhajda's search program Hersrch. Do something with it.
-% Exercise: https://www.conwaylife.com/wiki/Keeper (?)
 % Exercise: glider-to-block converter
 % Exercise: Construct a pseudo-heisenburp http://b3s23life.blogspot.com/2007/01/stable-pseudo-heisenburp-and-other-p1.html
-% EXERCISE: Construct stable MWSS heisenburp like that one in https://www.conwaylife.com/forums/viewtopic.php?f=2&t=364
-
-% IMPORTANT EXERCISE: Scorbie splitter basically comes from https://conwaylife.com/forums/viewtopic.php?f=2&t=1599&hilit=scorbie+syringe&start=200#p19126 (April 2015). Introduce it here, it's used lots in chapter 11 for example
+% EXCERCISE: https://www.conwaylife.com/wiki/4g-to-5g_reaction (make a gun like the one at the bottom out of the reaction)
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -899,7 +892,7 @@ Alternatively, prior to the discovery of the syringe, there were some stable con
 	
 	
 	\begin{problemstar}\label{exer:H_to_G_transparent_better} \probdiff{2}
-		A conduit that is very similar to NE5T-4 (see Figure~\ref{fig:transparent_lane}) is presented below. Explain why this conduit might be more useful than NE5T-4 in some situations.
+		A conduit that is very similar to NE5T-4\index{NE5T-4} (see Figure~\ref{fig:transparent_lane}) is presented below. Explain why this conduit might be more useful than NE5T-4 in some situations.
 		
 		\begin{center}
 			\patternimglink{0.1}{H_to_G_transparent_better}
@@ -918,7 +911,7 @@ Alternatively, prior to the discovery of the syringe, there were some stable con
 	\mfilbreak
 	
 	\begin{problemstar}\label{exer:syringe_compact} \probdiff{3}
-		A slightly more compact version of the syringe can be constructed by modifying its large unnamed still life. Complete the partial syringe on the left below by filling in the light gray cells appropriately (make sure that the resulting pattern can eat the glider that the output Herschel emits).
+		A slightly more compact version of the syringe can be constructed by modifying its large unnamed still life. Complete the partial syringe on the left below by filling in the light gray cells appropriately. Make sure that the resulting pattern can eat the glider that the output Herschel emits.\\[-0.75cm]
 		
 		\begin{center}
 			\belowbaseline[0pt]{\patternimglink{0.1}{exercise_syringe_compact}}~\quad~\belowbaseline[0pt]{\patternimglink{0.1}{eater_5_modification}}
@@ -993,35 +986,35 @@ Alternatively, prior to the discovery of the syringe, there were some stable con
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:glider_to_lwss_weird_sl}
+	\begin{problem}\label{exer:glider_to_lwss_weird_sl} \probdiff{1}
 		One of the still lifes near the eastern edge of the glider-to-LWSS circuit in Figure~\ref{fig:glider_to_lwss_big} is displayed in red. Why is it singled out like this---what makes it different from the other still lifes in that circuit?
 	\end{problem}
+
+
 	
 	
 	\mfilbreak
 	
-	% To add: what is the repeat time of the G-to-(2-engine Cordership)... 556, but a painfully advanced exercise could be how to reduce the repeat time to 458 (probably giving the alternate three-sided recipe from http://conwaylife.com/forums/viewtopic.php?p=63282#p63282 -- or possibly just the recipe for the switch engine with the alternate kickback). Also, make a gun out of it? Trivial, but not done elsewhere yet.
 	
-	% NJ: Still working on this exercise.
 	\begin{problem}\label{exer:convert_stable_g_to_spaceships}
-		Use the glider syntheses provided below (or any other glider syntheses of your choosing) to construct a stable circuit that converts a glider into the following objects.\smallskip
+		Use any glider syntheses of your choosing to construct a stable circuit that converts a glider into the following objects.\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item A middleweight spaceship.
+			\item \probdiff{3} A middleweight spaceship.
 			
-			\item A heavyweight spaceship.
+			\item \probdiff{4} A heavyweight spaceship.
 			
-			\item A Schick engine. % provide synthesis
-			% Coe ship, loafer, space rake, ecologist, etc.
+			\item \probdiff{5} A Schick engine.
 		\end{enumerate}
 	\end{problem}
+	% SOME SOLUTIONS: http://conwaylife.com/forums/viewtopic.php?f=2&t=1651&start=50#p18616
 
 
 	\mfilbreak
 	
 	
 	\begin{problem}\label{exer:other_toolkit_stable_conduits}
-		Another toolkit for duplicating and synchronizing gliders in stable circuitry, which can be used instead of Table~\ref{tab:conduit_phase_changers}, is provided at \httpsurl{conwaylife.com/forums/viewtopic.php?f=&p=51934}. \smallskip
+		Another toolkit for duplicating and synchronizing gliders in stable circuitry, which can be used instead of Table~\ref{tab:conduit_phase_changers}, is provided at \httpsurl{conwaylife.com/forums/viewtopic.php?p=51934}. \smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item \probdiff{4} Use this toolkit to build a stable glider-to-LWSS converter.
@@ -1031,39 +1024,36 @@ Alternatively, prior to the discovery of the syringe, there were some stable con
 	\end{problem}
 
 
-\mfilbreak
-
-
-\begin{problem}\label{exer:faster_trombone_slide}
-The trombone slide displayed in Figure~\ref{fig:trombone_slide_276} delays a glider by $144$~generations.\smallskip
-
-\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-	\item \probdiff{1} Bring the north and east Snarks as far southwest as possible without breaking the trombone slide. How many generations is the glider delayed by after making this change?
-	% SOLUTION: 2 cells closer, 128 generations.
-	\item \probdiff{1} Bring the south and east Snarks as far northwest as possible without breaking the trombone slide. Does this change affect how much the glider is delayed?
-	% SOLUTION: 1 cell closers, 128 generations.
-	
-	\item \probdiff{3} By welding two Snarks together, bring the south and east Snarks northwest by 1 more cell than you did in part~(b).
-	% SOLUTION: https://conwaylife.com/forums/viewtopic.php?f=2&t=2784&start=0#p41664
-\end{enumerate}
-\end{problem}
-
-
-\httpsurl{conwaylife.com/forums/viewtopic.php?f=&p=51934}
-	
-	
 	\mfilbreak
 	
 	
-	\begin{problem}\label{fig:g_to_2engine_why_10_gliders}
-		The $2$-direction glider synthesis of the $2$-engine Cordership from Exercise~\ref{exer:2_engine_cordership_synthesis}(b) consists of 11~gliders, but when we used it to start our construction of the glider-to-($2$-engine Cordership) circuit in Figure~\ref{fig:g_to_2engine_V}, we only needed $10$ input gliders. Explain this discrepancy---what happened to the $11$th glider?
+	\begin{problem}\label{exer:faster_trombone_slide}
+		The trombone slide displayed in Figure~\ref{fig:trombone_slide_276} delays a glider by $144$~generations.\smallskip
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item \probdiff{1} Bring the north and east Snarks as far southwest as possible without breaking the trombone slide. How many generations is the glider delayed by after making this change?
+			% SOLUTION: 2 cells closer, 128 generations.
+			\item \probdiff{1} Bring the south and east Snarks as far northwest as possible without breaking the trombone slide. Does this change affect how much the glider is delayed?
+			% SOLUTION: 1 cell closers, 128 generations.
+			
+			\item \probdiff{3} By welding two Snarks together, bring the south and east Snarks northwest by 1 more cell than you did in part~(b).
+			% SOLUTION: https://conwaylife.com/forums/viewtopic.php?f=2&t=2784&start=0#p41664
+		\end{enumerate}
 	\end{problem}
 	
 	
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:stable_thin_out_gliders}
+	\begin{problemstar}\label{fig:g_to_2engine_why_10_gliders} \probdiff{2}
+		The $2$-direction glider synthesis of the $2$-engine Cordership from Exercise~\ref{exer:2_engine_cordership_synthesis}(b) consists of 11~gliders, but when we used it to start our construction of the glider-to-($2$-engine Cordership) circuit in Figure~\ref{fig:g_to_2engine_V}, we only needed $10$ input gliders. Explain this discrepancy---what happened to the $11$th glider?
+	\end{problemstar}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:stable_thin_out_gliders} \probdiff{2}
 		In Figure~\ref{fig:block_18_gliders_repeatable}, we saw a stable circuit that destroys all except for $1$ out of every $19$ input gliders. Construct a similar circuit that destroys all except for $1$ out of every...\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
@@ -1087,11 +1077,11 @@ The trombone slide displayed in Figure~\ref{fig:trombone_slide_276} delays a gli
 		\end{center}
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item What is the repeat time of the tremi-Snark?% 43
+			\item \probdiff{1} What is its repeat time?% 43
 			
-			\item Is it color-changing or color-preserving?% CP
+			\item \probdiff{1} Is it color-changing or color-preserving?% CP
 			
-			\item Use tremi-Snarks to make a glider gun with period~$3^{50}$.
+			\item \probdiff{3} Use tremi-Snarks to make a glider gun with period~$3^{50}$.
 		\end{enumerate}
 	\end{problem}
 	
@@ -1107,11 +1097,11 @@ The trombone slide displayed in Figure~\ref{fig:trombone_slide_276} delays a gli
 		\end{center}
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item What is its repeat time?% 48
+			\item \probdiff{1} What is its repeat time?% 48
 			
-			\item The quadri-Snark is color-preserving. Construct a similar stable circuit for reflecting one out of every four input gliders, but is color-changing.% CP semi-Snark + CC semi-Snark + Snark
+			\item \probdiff{2} The quadri-Snark is color-preserving. Use conduits that we have seen to construct a similar stable circuit for reflecting one out of every four input gliders, but which is color-changing.% CP semi-Snark + CC semi-Snark + Snark
 			
-			\item Use quadri-Snarks to make a glider gun with period~$2^{100}$ that fits in a smaller bounding box than the one from Figure~\ref{fig:p_2_100_gun}.
+			\item \probdiff{3} Use quadri-Snarks to make a glider gun with period~$2^{100}$ that fits in a smaller bounding box than the one from Figure~\ref{fig:p_2_100_gun}.
 		\end{enumerate}
 	\end{problem}
 	
@@ -1127,11 +1117,11 @@ The trombone slide displayed in Figure~\ref{fig:trombone_slide_276} delays a gli
 		\end{center}
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item Is it color-changing or color-preserving?% CC
+			\item \probdiff{1} Is it color-changing or color-preserving?% CC
 			
-			\item What is its repeat time?
+			\item \probdiff{1} What is its repeat time?
 			
-			\item The quinti-Snark is not stable---it contains a p$5$ heavyweight volcano as one of its pieces. Explain why, in spite of this, it can be used with any glider stream of period at least its repeat time (not just glider streams whose period is a multiple of $5$).
+			\item \probdiff{2} The quinti-Snark is not stable---it contains a p$5$ heavyweight volcano as one of its pieces. Explain why, in spite of this, it can be used with any glider stream of period at least its repeat time (not just glider streams whose period is a multiple of $5$).
 		\end{enumerate}
 	\end{problem}
 	
@@ -1139,44 +1129,33 @@ The trombone slide displayed in Figure~\ref{fig:trombone_slide_276} delays a gli
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:p1703_gun_why_semisnark}
-		The semi-Snark in the mechanism from Figure~\ref{fig:p1703_gun} serves to increase the period of that gun by $616$~generations. Explain why it is there---why can we not remove it and rearrange the other components so as to create a gun with period $616+471 = 1\, 087$?
+	\begin{problem}\label{exer:p1703_gun_why_semisnark} \probdiff{2}
+		The semi-Snark in the mechanism from Figure~\ref{fig:p1703_gun} serves to increase the period of that gun by $616$~generations. Explain why it is there---why can we not remove it and rearrange the other components so as to create a gun with period $1{\thousep}703 - 616 = 1{\thousep}087$?
 	\end{problem}
 	
 	
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:p1703_gun}
-		We claimed that the method of Figure~\ref{fig:p1703_gun} can be used to add $1\, 087$ or more generations to the period of the $p616$ adjustable glider gun. Explain why the cut-off is $1\, 087$ generations.
-		
-		\noindent [Hint: Try to add $1\, 086$ generations to the period of the p$616$ gun---what goes wrong?]
-	\end{problem}
-	% Collision in trombone slide due to changing reflector. TODO: make sure this reflector is one of the ones from earlier Table so that this question is actually answerable
-	
-	
-	\mfilbreak
-	
-	
-	\begin{problem}\label{exer:mwss_to_g}
+	\begin{problem}\label{exer:mwss_to_g} \probdiff{1}
 		Show how the LWSS-to-glider converter from Table~\ref{tab:converters} can also function as an MWSS-to-glider converter.
 	\end{problem}
-	% Just put MWSS in the exact same spot (front ends aligned)
+	% SOLUTION: Just put MWSS in the exact same spot (front ends aligned)
 	
 	
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:simkin_glider_gun}
+	\begin{problemstar}\label{exer:simkin_glider_gun} \probdiff{1}
 		Use two copies of the B60 Herschel conduit to make a glider gun (the resulting gun is called the \emph{Simkin glider gun}\index{Simkin glider gun}).\footnote{It is named for discoverer, Michael Simkin, who found it in April 2015.} What is its period, and how could you determine that period based only on the name of this conduit?
 	\end{problemstar}
-	% p120 simkin glider gun
+	% SOLUTION: p120 simkin glider gun
 	
 	
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:RFx36R_osc}
+	\begin{problem}\label{exer:RFx36R_osc}\index{RFx36R} \probdiff{1}
 		Use two copies of the RFx36R conduit to make an oscillator. What is its period, and how could you determine that period based only on the name of this conduit?
 	\end{problem}
 	% 72
@@ -1185,9 +1164,8 @@ The trombone slide displayed in Figure~\ref{fig:trombone_slide_276} delays a gli
 	\mfilbreak
 	
 	
-	% Solution: Converts to a pi first, then pi to 2G. HF95P
-	\begin{problem}\label{exer:H_to_4G}
-		The conduit displayed below converts a Herschel into 4 gliders, all traveling in different directions. Break this conduit up into elementary conduits (i.e., conduits that convert named objects into each other and cannot be broken down any further).
+	\begin{problem}\label{exer:H_to_4G} \probdiff{2}
+		The conduit displayed below converts a Herschel into 4 gliders, all traveling in different directions. Break this conduit down into elementary conduits (i.e., conduits that convert named objects into each other and cannot be broken down any further).
 		
 		\begin{center}
 			\patternimglink{0.1}{exercise_H_to_4G}
@@ -1195,12 +1173,13 @@ The trombone slide displayed in Figure~\ref{fig:trombone_slide_276} delays a gli
 		
 		\noindent [Hint: We saw one of these conduits in Table~\ref{tab:converters}---which one?]
 	\end{problem}
+	% Solution: Converts to a pi first, then pi to 2G. HF95P
 	
 	
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:HFx58B_modify}
+	\begin{problemstar}\label{exer:HFx58B_modify} \probdiff{2}
 		The conduit below on the left is called BR146H\index{BR146H} and the one on the right is a variant of the HFx58B\index{HFx58B} conduit from Table~\ref{tab:converters}.
 		
 		\begin{center}
@@ -1218,7 +1197,7 @@ The trombone slide displayed in Figure~\ref{fig:trombone_slide_276} delays a gli
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:herschel_variants}
+	\begin{problemstar}\label{exer:herschel_variants}\index{BFx59H} \probdiff{2}
 		Here are some variants of the BFx59H conduit from Table~\ref{tab:converters}:
 		\begin{center}
 			\patternimglink{0.093}{BFx59H_variants}
@@ -1233,7 +1212,7 @@ The trombone slide displayed in Figure~\ref{fig:trombone_slide_276} delays a gli
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:l156_break_apart}\index{L156}
+	\begin{problemstar}\label{exer:l156_break_apart}\index{L156} \probdiff{2}
 		The L156 conduit from Figure~\ref{fig:p67_with_conduits}(b) is made up of $3$ conduits that convert the input Herschel into other well-known named objects before converting it back into a Herschel. What are the intermediate objects that the Herschel is converted into, and what are the names of those $3$ conduits?
 	\end{problemstar}
 	
@@ -1241,7 +1220,7 @@ The trombone slide displayed in Figure~\ref{fig:trombone_slide_276} delays a gli
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:composite_converters}
+	\begin{problem}\label{exer:composite_converters} \probdiff{2}
 		String together conduits that we have seen so as to create a stable conduit that converts...\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
@@ -1259,7 +1238,7 @@ The trombone slide displayed in Figure~\ref{fig:trombone_slide_276} delays a gli
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:h_to_g6}
+	\begin{problem}\label{exer:h_to_g6} \probdiff{3}
 		An H-to-G6 conduit that can be used in place of the H-to-G5 conduit at the top-left corner of Figure~\ref{fig:herschel_transceiver} is presented below.\footnote{This conduit was found by Matthias Merzenich in December 2011.}
 		
 		\begin{center}
@@ -1267,23 +1246,23 @@ The trombone slide displayed in Figure~\ref{fig:trombone_slide_276} delays a gli
 		\end{center}
 		
 		\noindent Use two copies of this conduit, together with two copies of the Herschel receiver from the bottom-right corner of Figure~\ref{fig:herschel_transceiver}, to create a glider gun. Place $6$ signals (i.e., Herschels and/or tandem glider pairs) on the track and separate the components so that the gun has period~$127$.
-		% SOLUTION:
-		%x = 99, y = 69, rule = B3/S23
-		%		33b2o$33b2o3$31b2o$31b2o$18b2o65bo$19bo64bobo$19bobo7b2o53bobo$20b2o6b
-		%		o3bo35bo13b3ob2o$16b2o11b2obo35b3o10bo$16b2o9b3o2b2o37bo10b3ob2o9b2o$
-		%		27b3o40b2o12bob2o9bo$27bob5o3b2o56bobo$34bo2b2o56b2o$29bob5o25b3o$35bo
-		%		24b5o$30b2o2b3o22b5obo25bo$29bo5bo21b2o2b3ob2o22b2ob2o$29bobob2o22b2ob
-		%		o2b3o23b2o$22b2o5bobobo22b2o6bo26b3o$21bo2bo8bo23bo2bo36bo$22b2o34b3o
-		%		35b2o$14bo34bo$14b2o32bobo$13bobo32b2o$57b2o$57bo19b2o$58bo17bobo$57b
-		%		2o17bo$22b2o51b2o$12b2o8b2o$13b2o81b2o$12bo83b2o2$b2o83bo$b2o81b2o$75b
-		%		2o8b2o$22b2o51b2o$22bo17b2o$20bobo17bo$20b2o19bo$40b2o$49b2o32bobo$48b
-		%		obo32b2o$49bo34bo$b2o35b3o34b2o$bo36bo2bo23bo8bo2bo$5b3o26bo6b2o22bobo
-		%		bo5b2o$8b2o23b3o2bob2o22b2obobo$5b2ob2o22b2ob3o2b2o21bo5bo$7bo25bob5o
-		%		22b3o2b2o$34b5o24bo$35b3o25b5obo$2b2o56b2o2bo$bobo56b2o3b5obo$bo9b2obo
-		%		54b3o$2o9b2ob3o48b2o2b3o9b2o$17bo48bob2o11b2o$11b2ob3o49bo3bo6b2o$12bo
-		%		bo53b2o7bobo$12bobo64bo$13bo65b2o$66b2o$66b2o2$39bo$40bo23b2o$38b3o23b
-		%		2o!
 	\end{problem}
+% SOLUTION:
+%x = 99, y = 69, rule = B3/S23
+%		33b2o$33b2o3$31b2o$31b2o$18b2o65bo$19bo64bobo$19bobo7b2o53bobo$20b2o6b
+%		o3bo35bo13b3ob2o$16b2o11b2obo35b3o10bo$16b2o9b3o2b2o37bo10b3ob2o9b2o$
+%		27b3o40b2o12bob2o9bo$27bob5o3b2o56bobo$34bo2b2o56b2o$29bob5o25b3o$35bo
+%		24b5o$30b2o2b3o22b5obo25bo$29bo5bo21b2o2b3ob2o22b2ob2o$29bobob2o22b2ob
+%		o2b3o23b2o$22b2o5bobobo22b2o6bo26b3o$21bo2bo8bo23bo2bo36bo$22b2o34b3o
+%		35b2o$14bo34bo$14b2o32bobo$13bobo32b2o$57b2o$57bo19b2o$58bo17bobo$57b
+%		2o17bo$22b2o51b2o$12b2o8b2o$13b2o81b2o$12bo83b2o2$b2o83bo$b2o81b2o$75b
+%		2o8b2o$22b2o51b2o$22bo17b2o$20bobo17bo$20b2o19bo$40b2o$49b2o32bobo$48b
+%		obo32b2o$49bo34bo$b2o35b3o34b2o$bo36bo2bo23bo8bo2bo$5b3o26bo6b2o22bobo
+%		bo5b2o$8b2o23b3o2bob2o22b2obobo$5b2ob2o22b2ob3o2b2o21bo5bo$7bo25bob5o
+%		22b3o2b2o$34b5o24bo$35b3o25b5obo$2b2o56b2o2bo$bobo56b2o3b5obo$bo9b2obo
+%		54b3o$2o9b2ob3o48b2o2b3o9b2o$17bo48bob2o11b2o$11b2ob3o49bo3bo6b2o$12bo
+%		bo53b2o7bobo$12bobo64bo$13bo65b2o$66b2o$66b2o2$39bo$40bo23b2o$38b3o23b
+%		2o!
 	
 	
 	\mfilbreak
@@ -1309,7 +1288,7 @@ The trombone slide displayed in Figure~\ref{fig:trombone_slide_276} delays a gli
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:p80_adjustable_manipulate}
+	\begin{problem}\label{exer:p80_adjustable_manipulate} \probdiff{2}
 		Recall the period~$80$ adjustable true period glider gun from Figure~\ref{fig:p80_adjustable_gun}.\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
@@ -1324,12 +1303,43 @@ The trombone slide displayed in Figure~\ref{fig:trombone_slide_276} delays a gli
 			\item Try to adjust the gun to have period $73$. Explain the two independent reasons why it does not work.
 		\end{enumerate}
 	\end{problem}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:toggle_better_demultiplexer}\index{demultiplexer}
+		A boat factory that behaves much like the demultiplexer from Figure~\ref{fig:demultiplexer}, in that a glider can detect the presence of its boat, is displayed below.
+		
+		\begin{center}
+			\patternimglink{0.1}{exercise_toggle_better_demultiplexer}
+		\end{center}
+	
+		\noindent The main advantage of this factory over the demultiplexer is that it does not self-destruct if a second input Herschel is received before the boat's presence is tested. Instead, a second input Herschel simply toggles the boat back off.\smallskip
+	
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item \probdiff{1} Find a Herschel conduit from Table\ref{tab:herschel_conduits} that can be prepended to this boat factory. Make sure that the test glider's lane coming from the northeast remains transparent (i.e., unobstructed).
+			
+			[Hint: One of the eaters in this boat factory is very recognizable.]
+			
+			\item \probdiff{2} Attach Snarks and a syringe to one of the glider output lanes from part~(a) so as to create a composite semi-Snark. It will have a fairly slow recovery time, somewhere around 650 generations.
+			
+			[Hint: To make the syringe fit, you will have to move an eater out of the way.]
+			
+			\item \probdiff{3} Attach stable conduits to one of the glider output lanes from part~(a) so that if the test glider detects and destroys the boat, it subsequently rebuilds it.
+			
+			[Side note: This gives a new type of logic circuit with the property that if two gliders follow each other closely then one glider passes through unharmed (since the other has not yet rebuilt the boat), but if the gliders are separated by a lot them they are both blocked.]
+			
+			\item \probdiff{3} Adjust the circuit from part~(c) so that if a pair of input gliders is has a separation of 400 generations then one of them passes through the circuit, but if they have a separation of 800 generations then they are both blocked.
+		\end{enumerate}
+	\end{problem}
+	% SOLUTION: https://www.conwaylife.com/forums/viewtopic.php?f=15&t=3452&start=25#p131947
 	
 	
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:p144_gun_from_achim}
+	\begin{problem}\label{exer:p144_gun_from_achim} \probdiff{3}
 		The sparky oscillators below are called \emph{Wainwright's p72}\index{Wainwright's p72} (or sometimes \emph{two blockers hassling R-pentomino}\index{two blockers hassling R-pentomino|see {Wainwright's p72}}) and \emph{Achim's p144}\index{Achim's p144}.\footnote{Found by Robert Wainwright in 1990 and Achim Flammenkamp in 1994, respectively.}
 		\begin{center}
 			\patternimglink{0.095}{wainwright_p72} \quad \patternimglink{0.095}{achims_p144}
@@ -1389,7 +1399,7 @@ The trombone slide displayed in Figure~\ref{fig:trombone_slide_276} delays a gli
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:block_factory_block_gliders}
+	\begin{problem}\label{exer:block_factory_block_gliders} \probdiff{2}
 		The block that is created by the center-left Herschel-to-block factory from Figure~\ref{fig:H_to_block} can be used to cleanly destroy (and be destroyed by) a glider coming from the northwest or from the southeast.
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
@@ -1398,24 +1408,13 @@ The trombone slide displayed in Figure~\ref{fig:trombone_slide_276} delays a gli
 			\item How many adjacent lanes can a glider coming from the southeast be placed on so as to cleanly destroy the block? Why is this answer different from that of part~(a)?
 		\end{enumerate}
 	\end{problem}
-
-
-%	\mfilbreak
-%	
-%	
-%	\begin{problem}\label{exer:factory_toggle}
-%		A factory that cleanly destroys its output object if a second input signal is received is called a \emph{toggle factory},\index{toggle!factory} and one is displayed below.
-%		
-%		% FIGURE
-%		% TODO: WHAT EXERCISE TO MAKE HERE?
-%	\end{problem}
 	
 	
 	\mfilbreak
 	
 	
 	\begin{problem}\label{exer:better_highway_robber_bandersnatch}
-		The repeat time of the highway robber from Figure~\ref{fig:highway_robber} can be reduced somewhat by making use of a Bandersnatch.\smallskip
+		Recall the highway robber from Figure~\ref{fig:highway_robber}.\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item \probdiff{1} Calculate its repeat time.
@@ -1468,8 +1467,6 @@ The trombone slide displayed in Figure~\ref{fig:trombone_slide_276} delays a gli
 	\begin{problemstar}\label{exer:four_dir_silver_reflector} \probdiff{2}
 		Modify just a single conduit in the Silver reflector from Figure~\ref{fig:silver_reflector} so that it produces an output glider in all four directions.
 	\end{problemstar}
-	
-	% EXCERCISE: https://www.conwaylife.com/wiki/4g-to-5g_reaction (make a gun like the one at the bottom out of the reaction)
 	
 	
 	%% EXERCISE END COMMANDS
