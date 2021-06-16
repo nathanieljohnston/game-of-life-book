@@ -172,101 +172,94 @@ For a filter oscillator to work correctly, it's generally necessary that the per
 % Exercise: use two filters to turn p20 into p80 (solution: blocker followed by Rich/Rob p16)
 
 
-% NJ is here in the cleanup process
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%   SUBSECTION: GLIDER INSERTION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Glider Insertion}\label{sec:glider_insertion}
 
-Our next technique is one that is complementary to that of the previous section: it lets us thicken up glider streams (i.e., it lets us decrease their period). The main idea behind this trick is to collide two gliders (or other objects) in such a way as to produce a single glider that is travelling in a different direction. Unfortunately, this technique in its simplest form is very rarely useful, since there are only two 2-glider collisions that result in a single glider (refer back to Table~\ref{tab:2_glider_synth}), one of which results in a glider going in the \emph{same} direction as one of the input gliders, and the other of which results in a glider going in the \emph{opposite} direction of one of the input gliders (and thus will crash into other gliders in the input stream). In particular, neither of these glider-producing $2$-glider collisions results in a glider travelling perpendicular to both input gliders, which is what we really want.
-%
-%\begin{wrapfigure}{R}{0.4\textwidth}
-%	\centering
-%	\vcenteredhbox{\includegraphics[scale=0.1]{glider_guns/glider_flip_0.png}} \vcenteredhbox{\genarrow{16}} \vcenteredhbox{\includegraphics[scale=0.1]{glider_guns/glider_flip_16.png}}
-%	\caption{Two gliders can collide to reverse the path of one of them.}\label{fig:glider_flip}
-%\end{wrapfigure}
+Our next technique is one that is complementary to that of the previous section: it lets us thicken glider streams (i.e., it lets us decrease their period) rather than thin them. The main idea behind this trick is to collide two or more spaceships in such a way as to produce a single glider that fits in a stream's gap. Unfortunately, this technique in its simplest form is very rarely useful, since there are only two 2-glider collisions that result in a single glider (refer back to Table~\ref{tab:2_glider_synth}), one of which results in a glider going in the \emph{same} direction as one of the input gliders, and the other of which results in a glider going in the \emph{opposite} direction of one of the input gliders. In particular, neither of these glider-producing $2$-glider collisions results in a glider travelling \emph{perpendicular} to both input gliders, which is what we really want.
 
-Fortunately, there are a few other ways of colliding spaceships together to get around this problem. The first such method is to use one more glider: the $3$-glider collision called a \emph{tee}\index{tee} that we introduced back in Table~\ref{tab:3_glider_synth} produces an output glider that is perpendicular to all $3$ input gliders (see Figure~\ref{fig:tee}).\footnote{An alternate ``tee'' reaction is presented in Exercise~\ref{exer:herschel_tee}.} Another such method is to instead collide a glider with a lightweight spaceship as in Figure~\ref{fig:lwss_reflect_glider}, which has the advantage that an LWSS never travels in the same direction as a glider, so we typically have a wider selection of possible orientations to make the collision happen without interfering with other gliders in the stream.
+Fortunately, there are a few other ways of colliding spaceships together to get around this problem. The first such method is to use one more glider: the $3$-glider collisions called \emph{tees}\index{tee} that we introduced back in Table~\ref{tab:3_glider_synth} produces an output glider that is perpendicular to all $3$ input gliders (see Figure~\ref{fig:tee}). Another solution to this problem is to instead collide a glider with a lightweight spaceship as in Figure~\ref{fig:lwss_reflect_glider}, which has the advantage that an LWSS never travels in the same direction as a glider, so we typically have a wider selection of possible orientations to make the collision happen without interfering with other gliders in the stream.
 
 \begin{figure}[!htb]
 	\centering
 	\begin{subfigure}{.48\textwidth}
 		\centering
-		\embedlink{tee}{\vcenteredhbox{\patternimg{0.1}{tee_0}} \vcenteredhbox{\genarrow{16}} \vcenteredhbox{\patternimg{0.1}{tee_16}}}
+		\embedlink{tee}{\vcenteredhbox{\patternimg{0.11}{tee_0}} \vcenteredhbox{\genarrow{16}} \vcenteredhbox{\patternimg{0.11}{tee_16}}}
 		\caption{A \emph{tee}: a collision of $3$ gliders that results in a single glider perpendicular to the input gliders.}
 		\label{fig:tee}
 	\end{subfigure} \ \ \ \ % 
 	\begin{subfigure}{.48\textwidth}
 		\centering
-		\embedlink{lwss_reflect_glider}{\vcenteredhbox{\patternimg{0.1}{lwss_reflect_glider_0}} \vcenteredhbox{\genarrow{12}} \vcenteredhbox{\patternimg{0.1}{lwss_reflect_glider_12}}}
+		\embedlink{lwss_reflect_glider}{\vcenteredhbox{\patternimg{0.11}{lwss_reflect_glider_0}} \vcenteredhbox{\genarrow{12}} \vcenteredhbox{\patternimg{0.11}{lwss_reflect_glider_12}}}
 		\caption{A collision between a lightweight spaceship and a glider that rotates the glider by $90$ degrees.}
 		\label{fig:lwss_reflect_glider}
 	\end{subfigure}
 	\caption{Two methods of changing the direction of a glider so that it can be inserted into another glider stream. These techniques help us create glider guns with a wide variety of periods, and are also extremely useful for creating guns that make use of syntheses with tightly-spaced gliders.}\label{fig:glider_insert_methods}
 \end{figure}
 
-These collisions can be used to insert additional gliders into an already-existing glider stream, thus decreasing its period. For example, the glider gun displayed in Figure~\ref{fig:p23_gun} uses the LWSS--glider collision to insert additional gliders into a period~$46$ glider stream combing from a twin bees guns, thus converting it into a period~$23$ gun (compare with the period~$23$ gun that we saw back in Figure~\ref{fig:twin_bees_p23_gun}).
+These collisions can be used to insert additional gliders into an already-existing glider stream, thus decreasing its period. For example, the glider gun displayed in Figure~\ref{fig:p23_gun} uses the LWSS--glider collision to insert additional gliders into a period~$46$ glider stream coming from a twin bees guns, thus converting it into a period~$23$ gun (compare with the period~$23$ gun that we saw back in Figure~\ref{fig:twin_bees_p23_gun}).
 
-\begin{figure}[!ht]
+\begin{figure}[!htb]
 	\centering
-	\patternimglink{0.1}{p23_gun}
+	\patternimglink{0.123}{p23_gun}
 	\caption{A period~$23$ glider gun constructed from several period~$46$ glider guns. The top-left glider gun in \bgbox{magentaback}{magenta} fires a period~$46$ stream of gliders. To interlace this stream with another period~$46$ stream of gliders (outlined in \bgbox{greenpastel}{green}), we use the LWSS--glider collision of Figure~\ref{fig:lwss_reflect_glider}: the glider in that collision is created by the glider gun outlined in \bgbox{yellowback2}{yellow}, while the LWSS is created by the LWSS gun (which we introduced in Figure~\ref{fig:twin_bees_p46_lwss_gun}) outlined in \bgbox{aquaback}{aqua}.}\label{fig:p23_gun}
 \end{figure}
 
-Unfortunately, the ``tee'' from Figure~\ref{fig:tee} cannot be used to produce glider streams of period below~$25$, and the LWSS--glider collision from Figure~\ref{fig:lwss_reflect_glider} can only produce streams of period down to~$22$; the temporary debris created by these collisions interferes with the rest of the glider stream at lower periods. So for example, these reactions cannot be used to transform multiple Gosper glider guns into a period~$15$ gun, despite the fact that period~$15$ glider streams are indeed possible.
+Unfortunately, the tee from Figure~\ref{fig:tee} cannot be used to produce glider streams with period smaller than~$25$, and the LWSS--glider collision from Figure~\ref{fig:lwss_reflect_glider} is similarly limited to periods of at least $22$; the temporary debris created by these collisions interferes with the rest of the glider stream at lower periods. So for example, these reactions cannot be used to transform multiple Gosper glider guns into a period~$15$ gun, despite the fact that period~$15$ glider streams are indeed possible.
 
-One way of constructing guns for even tighter glider streams (all the way down to period~$14$, which is the smallest possible) is to instead use the reaction displayed in Figure~\ref{fig:lwss_squish}(a), which uses two sparks to transform a lightweight spaceship into a glider with essentially no debris occurring outside of that transformation.\footnote{This reaction was found by Dietrich Leithner no later than 1994.} The first of these sparks (which can be of essentially any type, but is typically a dot, a finger, or a domino coming from a pipsquirter)\index{pipsquirter} starts destroying the lightweight spaceship and can typically be provided by a suitably-chosen oscillator. The second spark (which must be a domino or duoplet) then transforms the dying LWSS into the desired glider. However, that second spark is a bit tricker to get into place, as it must be provided directly adjacent to the glider stream, so it is typically provided by another dying object like an LWSS or a Herschel. Some methods of providing these two sparks are illustrated in Figure~\ref{fig:lwss_squish}(b--f).
+One way of constructing guns for even tighter glider streams (all the way down to period~$14$, which is the smallest possible) is to instead use the reaction from Figure~\ref{fig:lwss_squish}(a), in which two sparks transform a lightweight spaceship into a glider with essentially no debris occurring outside of that transformation.\footnote{This reaction was found by Dietrich Leithner no later than 1994.} The first of these sparks (which can be of essentially any type, but is typically a dot, a finger, or a domino coming from a pipsquirter)\index{pipsquirter} starts destroying the lightweight spaceship and can be provided by a wide variety of oscillators. The second spark (which must be a domino or duoplet) then transforms the dying LWSS into the desired glider. However, that second spark is a bit tricker to get into place, as it must be provided directly adjacent to the glider stream, so it is typically provided by another dying object like an LWSS or a Herschel. Some methods of providing these two sparks are illustrated in Figure~\ref{fig:lwss_squish}(b--f).
 
 \begin{figure}[!htb]
 	\centering
 	\begin{tabular}{@{}ccc@{}}
-		\begin{subfigure}{0.485\textwidth}
-			\centering
+		\begin{subfigure}{0.49\textwidth}
+			\centering\vspace*{1cm}
 			\embedlink{lwss_squish}{\vcenteredhbox{\patternimg{0.11}{lwss_squish_0}} \vcenteredhbox{\genarrow{5}} \vcenteredhbox{\patternimg{0.11}{lwss_squish_5}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.11}{lwss_squish_6}}}
 			\caption{A clean glider insertion using an LWSS and two sparks.}
 			\label{fig:lwss_squish_sparks}
-		\end{subfigure} & \begin{subfigure}{.21\textwidth}
+		\end{subfigure} & \begin{subfigure}{.245\textwidth}
 			\centering
-			\patternimg{0.095}{lwss_squish_pip}
+			\patternimg{0.10604}{lwss_squish_pip}
 			\caption{p$6$ insertion via unix and pipsquirter.}
 			\label{fig:lwss_squish_pip}
-		\end{subfigure} & \begin{subfigure}{.24\textwidth}
+		\end{subfigure} & \begin{subfigure}{.205\textwidth}
 			\centering
-			\patternimg{0.095}{lwss_squish_blinker}
-			\caption{Any-period insertion.}
+			\patternimg{0.08419484978}{lwss_squish_blinker}
+			\caption{Insertion that works at any period.}
 			\label{fig:lwss_squish_blinker}
-		\end{subfigure} \\[0.5cm] \begin{subfigure}{0.485\textwidth}
+		\end{subfigure} \\[2cm] \begin{subfigure}{0.49\textwidth}
 			\centering
-			\patternimg{0.095}{lwss_squish_herschel}
-			\caption{Insertion via a pipquirter and (generation $-1$ of) a Herschel.}
+			\patternimg{0.099}{lwss_squish_herschel}
+			\caption{Insertion via a pipquirter and a Herschel.}
 			\label{fig:lwss_squish_herschel}
-		\end{subfigure} & \begin{subfigure}{.21\textwidth}
+		\end{subfigure} & \begin{subfigure}{.245\textwidth}
 			\centering
-			\patternimg{0.095}{lwss_squish_p5}
-			\caption{p$15$ insertion.}
-			\label{fig:lwss_squish_p5}
-		\end{subfigure} & \begin{subfigure}{.23\textwidth}
-			\centering
-			\patternimg{0.095}{lwss_squish_p4}
+			\patternimg{0.099}{lwss_squish_p4}
 			\caption{p$4$ insertion.}
 			\label{fig:lwss_squish_p4}
+		\end{subfigure} & \begin{subfigure}{.205\textwidth}
+			\centering
+			\patternimg{0.099}{lwss_squish_p5}
+			\caption{p$15$ insertion.}
+			\label{fig:lwss_squish_p5}
 		\end{subfigure}
 	\end{tabular}
-	\caption{(a) A dot spark (in \bgbox{orangeback}{orange}), followed by a domino spark~$5$ generations later (in \bgbox{greenback}{green}) can be used to transform a lightweight spaceship into a glider so cleanly that it can be used to fill in gaps in p$14$ glider streams---the tightest streams possible. The first spark can be provided by (b,d,e,f) a wide variety of different oscillators or (c) a two-glider collision, and the second spark can be provided either via (b,e,f) an LWSS being destroyed by an oscillator, (c) a blinker + glider + LWSS collision, or (d) a Herschel conduit.}\label{fig:lwss_squish}
+	\caption{(a) A dot spark (in \bgbox{orangeback}{orange}), followed by a domino spark~$5$ generations later (in \bgbox{greenback}{green}) can be used to transform a lightweight spaceship into a glider so cleanly that it can be used to fill in gaps in p$14$ glider streams---the tightest streams possible. The first spark can be provided by (b,d,e,f) a wide variety of different oscillators or (c) a two-glider collision. The second spark can be provided either via (b,e,f) an LWSS being destroyed by an oscillator, (c) a blinker + glider + LWSS collision, or (d) a Herschel conduit.}\label{fig:lwss_squish}
 \end{figure}
 
-To illustrate the utility of this reaction, we can now construct a period~$15$ glider gun by making use of several copies of the p$30$ Gosper glider gun, much like we constructed a period~$23$ glider gun out of many copies of the p$46$ twin bees gun in Figure~\ref{fig:p23_gun}. In particular, since the reaction of Figure~\ref{fig:lwss_squish} works so naturally at period~$15$, we make use of it via $7$ Gosper glider guns: $1$ to create the initial p$30$ glider stream, and $3$ for each of the two lightweight spaceships that we smash together between a pentadecathlon and middleweight volcano. The completed p$15$ gun is displayed in Figure~\ref{fig:p15_gun}.
+To illustrate the utility of this reaction, we can now construct a period~$15$ glider gun by making use of several copies of the p$30$ Gosper glider gun, much like we constructed a period~$23$ glider gun out of many copies of the p$46$ twin bees gun in Figure~\ref{fig:p23_gun}. In particular, since the reaction of Figure~\ref{fig:lwss_squish_p5} works so naturally at period~$15$, we make use of it via $7$ Gosper glider guns: $1$ to create the initial p$30$ glider stream, and $3$ for each of the two lightweight spaceships that we smash together between a pentadecathlon and middleweight volcano. The completed p$15$ gun is displayed in Figure~\ref{fig:p15_gun}.\index{pentadecathlon}\index{middleweight volcano}
 
-\begin{figure}[!ht]
+\begin{figure}[!htb]
 	\centering
-	\patternimglink{0.1}{p15_gun}
-	\caption{A period~$15$ glider gun constructed from several period~$30$ Gosper glider guns. The top-left glider gun in \bgbox{magentaback}{magenta} fires a period~$30$ stream of gliders. To interlace this stream with another period~$30$ stream of gliders (outlined in \bgbox{greenpastel}{green}), we use the LWSS--LWSS--pentadecathlon--middleweight volcano collision of Figure~\ref{fig:lwss_squish}(e).}\label{fig:p15_gun}
+	\patternimglink{0.1185}{p15_gun}
+	\caption{A period~$15$ glider gun constructed from several period~$30$ Gosper glider guns. The top-left glider gun in \bgbox{magentaback}{magenta} fires a period~$30$ stream of gliders. To interlace this stream with another period~$30$ stream of gliders (outlined in \bgbox{greenpastel}{green}), we use the LWSS--LWSS--pentadecathlon--middleweight volcano collision of Figure~\ref{fig:lwss_squish_p5}.}\label{fig:p15_gun}
 \end{figure}
 
 % EXERCISE: introduce alternate p15 version that leads to smaller p15 gun
 
 
+% NJ is here in the cleanup process
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%   SUBSECTION: STREAMS OF OTHER SPACESHIPS
@@ -275,7 +268,7 @@ To illustrate the utility of this reaction, we can now construct a period~$15$ g
 
 Since most ways of implementing the glider insertion reaction of Figure~\ref{fig:lwss_squish} rely so heavily on the use of lightweight spaceships, we now briefly discuss how to efficiently create and manipulate lightweight (as well as middleweight and heavyweight) spaceships. We of course can create streams of these spaceships simply via the various $3$-glider syntheses that we saw in Chapter~\ref{chp:glider_synthesis}, but we are going to focus on reactions that let us save space over this na\"ive method.
 
-On particularly cheap way of creating lightweight and middleweight spaceships is the conduit displayed in Figure~\ref{fig:H_plus_G_to_WSS}, which converts a glider and a Herschel into whichever of the other two spaceships is desired (the only difference in these two reactions is the relative timing between the input Herschel and glider). Since the Herschel that is used in that collision creates a glider anyway, and that glider can simply be reflected back so as to collide with the next Herschel, this conduit can turn a Herschel stream into an LWSS stream or an MWSS streamreasonably directly.\footnote{This reaction only works with \emph{streams} of Herschels, rather than individual Herschels, since each Herschel must collide with the first natural glider of a Herschel that came before it. The period of that stream can be modified straightforwardly by adjusting the reflectors---see Exercise~\ref{exer:p156_adjust_lwss}.} However, the tight spacing of the required reflectors is such that this technique works best for streams whose period is a multiple of $3$, since p$3$ and p$6$ bumpers are some of the only reflectors that fit so close together.
+One particularly cheap way of creating lightweight and middleweight spaceships is the conduit displayed in Figure~\ref{fig:H_plus_G_to_WSS}, which converts a glider and a Herschel into whichever of the other two spaceships is desired (the only difference in these two reactions is the relative timing between the input Herschel and glider). Since the Herschel that is used in that collision creates a glider anyway, and that glider can simply be reflected back so as to collide with the next Herschel, this conduit can turn a Herschel stream into an LWSS stream or an MWSS stream reasonably directly.\footnote{This reaction only works with \emph{streams} of Herschels, rather than individual Herschels, since each Herschel must collide with the first natural glider of a Herschel that came before it. The period of that stream can be modified straightforwardly by adjusting the reflectors---see Exercise~\ref{exer:p156_adjust_lwss}.} However, the tight spacing of the required reflectors is such that this technique works best for streams whose period is a multiple of $3$, since p$3$ and p$6$ bumpers are some of the only reflectors that fit so close together.
 
 \begin{figure}[!htb]
 	\centering
@@ -1335,12 +1328,12 @@ This collection of small glider guns is now being maintained by Chris Cain and D
 	
 	
 	\begin{problem}\label{exer:duplicate_doubled_stream}
-		The stream inverter/duplicator from Section~\ref{fig:stream_inverter} is quite useful if we want to duplicate a glider stream that took a lot of effort to create.\smallskip
+		The stream inverter-and-duplicator from Figure~\ref{fig:stream_inverter} is quite useful in situations where we want to duplicate a glider stream that took a lot of effort to create.\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item Use three (not four!) Gosper glider guns and a single extra block to create a gun that fires two p$60$ streams of gliders.
+			\item \probdiff{1} Use three (not four!) Gosper glider guns and a single extra block to create a gun that fires two p$60$ streams of gliders.
 			
-			\item Use four (not six!) Gosper glider guns and two extra blocks to create a gun that fires three p$60$ streams of gliders.
+			\item \probdiff{2} Use four (not six!) Gosper glider guns and two extra blocks to create a gun that fires three p$60$ streams of gliders.
 		\end{enumerate}
 	\end{problem}
 	
@@ -1348,25 +1341,28 @@ This collection of small glider guns is now being maintained by Chris Cain and D
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:p80_gun_rich_p16}
-		Use Rich's p16 (and potentially other sparkers as well) as a filter to turn the true-period~$20$ glider gun into a true-period~$80$ glider gun. [Hint: If you're lucky, you can get a single copy of Rich's p16 to delete \emph{two} consecutive gliders.]
+	\begin{problemstar}\label{exer:p80_gun_rich_p16} \probdiff{2}
+		Use Rich's p16 (and potentially other sparkers as well) as a filter to turn the true-period~$20$ glider gun into a true-period~$80$ glider gun.
+		
+		\noindent [Hint: If you're lucky, you can get a single copy of Rich's p16 to delete \emph{two} consecutive gliders.]
 	\end{problemstar}
 	
 	
 	\mfilbreak
 	
 	
+	% TODO: clean up this exercise and make it more specific
 	\begin{problemstar}\label{exer:p4_glider_filter}
-		We saw several filters\index{filter} that can double the period of every stream of lightweight spaceships with period $4n+2$. Explain why there cannot exist a filter capable of doubling the period of every stream of \emph{gliders} with period $4n+2$.
+		We saw several filters that can double the period of every stream of lightweight spaceships with period $4n+2$. Explain why there cannot exist a filter capable of doubling the period of every stream of \emph{gliders} with period $4n+2$.
 	\end{problemstar}
-	
-	
-	\mfilbreak
-	
-	
-	\begin{problem}\label{exer:p44_double}
-		Create a double-barrelled true-period~$44$ glider gun (i.e., a gun that produces two streams of gliders).
-	\end{problem}
+%
+%	
+%	\mfilbreak
+%	
+%	
+%	\begin{problem}\label{exer:p44_double}
+%		Create a double-barrelled true-period~$44$ glider gun (i.e., a gun that produces two streams of gliders).
+%	\end{problem}
 	
 	
 	\mfilbreak
