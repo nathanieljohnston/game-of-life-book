@@ -3,6 +3,16 @@
 %%   CHAPTER: GUNS AND GLIDER STREAMS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% TODO: p28 gun https://www.conwaylife.com/wiki/Period-28_glider_gun smallest version at https://www.conwaylife.com/forums/viewtopic.php?t=&p=115869#p115928
+% TODO: Important new exercise [5/5] -- create a p14 gun that uses the p28 gun. Should have smaller bounding box than the p14 we constructed. Solution in posts after https://www.conwaylife.com/forums/viewtopic.php?t=&p=115869#p115869
+% Related exercise: Add blocker to make it p56?
+% TODO: See scorbie's email. smaller p6 HW emulator leads to smaller p24 gun
+% TODO: Touch up 8.8 re: big-theta notation
+% New p57: https://www.conwaylife.com/forums/viewtopic.php?f=2&t=3552&start=225#p128256
+% New p20: https://www.conwaylife.com/forums/viewtopic.php?f=2&t=3552&start=250#p130340
+% This p20 might still be smaller: https://www.conwaylife.com/forums/viewtopic.php?p=85709#p85709
+% DO NOT put smaller p24 in the text (but smaller p20 is fair game). Already referenced in notes/history
+
 \renewcommand{\chapterfolder}{glider_guns/}
 \chapterimage{cover/glider_guns}
 \chapter{Guns and Glider Streams}\label{chp:guns}
@@ -13,77 +23,82 @@
 \vspace*{0.4in}
 
 
-\noindent We have seen that being able to efficiently create and manipulate streams of gliders is extremely important when constructing complex objects in Life, since we use collisions between these gliders to create other objects, and we often have to be careful to have appropriate spacing between the gliders. However, thus far we have only seen how to create glider streams with a few different spacings: the period~30 stream produced by the Gosper glider gun (Section~\ref{sec:queen_bee}), the period~46 stream produced by the twin bees gun (Section~\ref{sec:twin_bees}), and the streams of period~61 and higher than we can construct via the (typically very large) Herschel tracks of Sections~\ref{sec:herschel_track} and~\ref{sec:conduits}. In this chapter, we look at how to construct glider guns that create gliders of any spacing and almost any positioning that we like.
-
+\noindent We have seen that being able to efficiently create and manipulate streams of gliders is extremely important when constructing complex objects in Life, since we can use collisions between those gliders to synthesize other objects. However, so far we have only seen how to create glider streams with a few different spacings: the period~30 stream produced by the Gosper glider gun (Section~\ref{sec:queen_bee}), the period~46 stream produced by the twin bees gun (Section~\ref{sec:twin_bees}), and the streams of period~61 and higher than we can construct via the Herschel tracks of Sections~\ref{sec:herschel_track} and~\ref{sec:conduits}. In this chapter, we look at how to construct glider guns that create gliders of any spacing and almost any positioning that we like.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%   SECTION: GLIDER DELETION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Glider Deletion}\label{sec:glider_deletion}
 
-The first technique that we present for constructing guns of different periods is one that erases every second glider in any stream of period at least~$29$, thus doubling its period (the semi-Snark\index{semi-Snark} of Section~\ref{sec:large_glider_guns} can similarly delete every second glider in a glider stream, but it only works at periods~$48$ and greater).\footnote{There is a similar reaction that can be used to double glider streams of period at least $28$---see Exercise~\ref{exer:p28_double}.} The way this technique works is to fire two streams of the same period at each other in such a way that they synthesize a block,\footnote{In particular, this glider collision is the fifth of the block-producing collisions listed in Table~\ref{tab:2_glider_synth}.} and that block then destroys the next glider in one of the streams. The particular orientation of the glider streams that works is displayed in Figure~\ref{fig:glider_delete}, and we see that one of the glider streams is erased completely (half of its gliders are destroyed in the glider-to-block collision with the other stream, and half of its gliders are destroyed by the subsequent block), and the other glider stream has half of its gliders destroyed.
+The first technique that we present for constructing guns of different periods is one that erases every second glider in a stream of period at least~$29$,\footnote{There is a similar reaction that can be used to double glider streams of period at least $28$---see Exercise~\ref{exer:p28_double}.} thus doubling its period (the semi-Snark\index{semi-Snark} of Section~\ref{sec:large_glider_guns} can similarly delete every second glider in a glider stream, but it only works at periods~$48$ and greater). The way this technique works is to fire two streams of the same period at each other in such a way that they synthesize a block,\footnote{In particular, this glider collision is the fifth of the block-producing collisions listed in Table~\ref{tab:2_glider_synth}.} and that block then destroys the next glider in one of the streams. A particular orientation of glider streams that works is displayed in Figure~\ref{fig:glider_delete}---one of the glider streams is erased completely (half of its gliders are destroyed in the glider-to-block collision, and the other half are destroyed by the subsequent block), while the other glider stream has half of its gliders destroyed.
+
 \begin{figure}[!htb]
 	\centering
-	\embedlink{glider_delete}{\vcenteredhbox{\patternimg{0.1}{glider_delete_0}} \vcenteredhbox{\genarrow{4}} \vcenteredhbox{\patternimg{0.1}{glider_delete_4}} \vcenteredhbox{\genarrow{25}} \vcenteredhbox{\patternimg{0.1}{glider_delete_29}} \vcenteredhbox{\genarrow{29}} \vcenteredhbox{\patternimg{0.1}{glider_delete_58}}}
-	\caption{If we shoot two glider streams (of period at least $29$) at each other in the proper phase, one of the streams is destroyed completely while the other stream is thinned out by a factor of 2. This works because the gliders collide to form a block, and that block then destroys the next glider in the bottom stream, letting the next glider in the top stream pass by unharmed.}\label{fig:glider_delete}
+	\embedlink{glider_delete}{\vcenteredhbox{\patternimg{0.109}{glider_delete_0}} \vcenteredhbox{\genarrow{4}} \vcenteredhbox{\patternimg{0.109}{glider_delete_4}} \vcenteredhbox{\genarrow{25}} \vcenteredhbox{\patternimg{0.109}{glider_delete_29}} \vcenteredhbox{\genarrow{29}} \vcenteredhbox{\patternimg{0.109}{glider_delete_58}}}
+	\caption{If we shoot two glider streams of period at least $29$ at each other in the proper phase, one of the streams is destroyed completely while the other stream is thinned out by a factor of 2. This works because the gliders collide to form a block, and that block then destroys the next glider in the bottom stream, letting the next glider from the top stream pass by unharmed.}\label{fig:glider_delete}
 \end{figure}
 
-We can use this reaction to straightforwardly double the period of any glider gun with period~$29$ or higher, which we demonstrate in Figure~\ref{fig:guns_doubled_period} with the period~$30$ Gosper glider gun and the period~$46$ twin bees gun.\footnote{The gun in Figure~\ref{fig:guns_doubled_period}(a) is currently the smallest known period~$60$ gun, but a slightly smaller period~$92$ gun can be constructed by colliding two twin bees shuttles together directly in a certain way.} We can also iterate this procedure to create (rather large) glider guns with periods as large as we like, by doubling the spacing out the output glider stream as many times as we like.
+We can use this reaction to straightforwardly double the period of any glider gun with period~$29$ or higher, which we demonstrate in Figure~\ref{fig:guns_doubled_period} with the period~$30$ Gosper glider gun and the period~$46$ twin bees gun.\footnote{The gun in Figure~\ref{fig:guns_doubled_period}(a) is currently the smallest known period~$60$ gun, but a slightly smaller period~$92$ gun can be constructed by colliding two twin bees shuttles together directly in a clever way.}
+
+By iterating this procedure, we can repeatedly double the period of a glider stream, thus multiplying the period of any glider stream (with period at least~$29$) by any power of two. However, what if we want to multiply the period by another number, such as $3$ or $5$? Well, we could simply try firing glider streams at each other in different ways and see if any of them do the trick---after all, we saw in Section~\ref{sec:2glidersynth} that there are only $71$ ways for two glider streams to hit each other, so it won't take too long to check them for useful combinations. And indeed, it turns out that a period-tripling configuration exists,\footnote{The collision we describe here is the third one listed in the ``misc'' section of Table~\ref{tab:2_glider_synth}.} as demonstrated in Figure~\ref{fig:glider_delete2}.
+
+% This figure can be moved 1 paragraph earlier, if desired. It is just here for spacing reasons.
 \begin{figure}[!htb]
 	\centering
 	\begin{subfigure}{.48\textwidth}
 		\centering
-		\patternimglink{0.105}{p60_gun}
+		\patternimglink{0.14309638554}{p60_gun}
 		\caption{A period~$60$ gun that uses two Gosper glider guns.}
 		\label{fig:p60_gun}
-	\end{subfigure} \ \ \ \ % 
-	\begin{subfigure}{.48\textwidth}
+	\end{subfigure} \hfill % 
+	\begin{subfigure}{.49\textwidth}
 		\centering
-		\patternimglink{0.09}{p92_gun}
+		\patternimglink{0.111}{p92_gun}
 		\caption{A period~$92$ gun that uses two twin bees guns.}
 		\label{fig:p92_gun}
 	\end{subfigure}
 	\caption{We can use two copies of any gun with period at least $29$ to create a gun with double the period. This is demonstrated in (a) with two period~$30$ Gosper glider guns creating a period~$60$ gun, and (b) two period~$46$ twin bees guns creating a period~$92$ gun. In each case, the individual guns are outlined in \bgbox{aquaback}{aqua}, gliders that collide to create a block are outlined in \bgbox{yellowback2}{yellow}, and gliders to survive to create the new, thinner glider stream travelling to the southeast are outlined in \bgbox{greenpastel}{green}.}\label{fig:guns_doubled_period}
 \end{figure}
 
-We can thus use this technique to multiply the period of any glider stream (with period at least~$29$) by any power of two. However, what if we want to multiply the period by another number, such as $3$ or $5$? Well, we could simply try firing glider streams at each other in different ways and see if any of them do the trick---after all, we saw in Section~\ref{sec:2glidersynth} that there are only $71$ ways for two glider streams to hit each other, so it won't take too long to check them for useful combinations. And indeed, it turns out that a period-tripling configuration exists,\footnote{The collision we describe here is the third one listed in the ``misc'' section of Table~\ref{tab:2_glider_synth}.} as demonstrated in Figure~\ref{fig:glider_delete2}.
-\begin{figure}[!htb]
-	\centering
-	\embedlink{glider_delete2}{\vcenteredhbox{\patternimg{0.09}{glider_delete2_0}} \vcenteredhbox{\genarrow{6}} \vcenteredhbox{\patternimg{0.09}{glider_delete2_6}} \vcenteredhbox{\genarrow{30}} \vcenteredhbox{\patternimg{0.09}{glider_delete2_36}} \vcenteredhbox{\genarrow{66}} \vcenteredhbox{\patternimg{0.09}{glider_delete2_102}}}
-	\caption{If we shoot two glider streams (of period at least $34$) at each other in the proper phase, one of the streams is destroyed completely while the other stream is thinned out by a factor of ~$3$.}\label{fig:glider_delete2}
-\end{figure}
-
-The idea behind this mechanism is largely the same as it was in the collision in Figure~\ref{fig:glider_delete}, only slightly more complicated:\medskip
+The way that this period-tripler works is largely the same as it was from the period-doubling collision from Figure~\ref{fig:glider_delete}, only slightly more complicated:\smallskip
 
 \begin{itemize}
-	\item When the first gliders in the streams collide, they leave behind two blocks.\smallskip
+	\item When the first gliders in the streams collide, they leave behind a pair of blocks.\smallskip
 	
-	\item When the next gliders in the streams hit the blocks, the blocks are erased and a single blinker is left behind.\smallskip
+	\item When the next gliders in the streams hit the blocks, they are turned into a single blinker.\smallskip
 	
-	\item That blinker destroys the third glider in one of the streams, and the third glider in the other stream passes by unharmed.\medskip
+	\item That blinker destroys the third glider in one of the streams, and the third glider in the other stream passes by unharmed.\smallskip
 \end{itemize}
 
-\noindent The effect of firing two glider streams at each other in this way is thus to completely destroy one of the streams and thin out the other stream by a factor of~$3$. This reaction is demonstrated in Figure~\ref{fig:p138_gun}, where we use two period~$46$ twin bees guns to create a period $3 \times 46 = 138$ gun (this reaction only works for glider streams of period~$34$ or higher, so we cannot apply it to the Gosper glider gun).
+% This figure can be moved 1 paragraph earlier, if desired. It is just here for spacing reasons.
+\begin{figure}[!htb]
+	\centering
+	\embedlink{glider_delete2}{\vcenteredhbox{\patternimg{0.094}{glider_delete2_0}} \vcenteredhbox{\genarrow{6}} \vcenteredhbox{\patternimg{0.094}{glider_delete2_6}} \vcenteredhbox{\genarrow{30}} \vcenteredhbox{\patternimg{0.094}{glider_delete2_36}} \vcenteredhbox{\genarrow{66}} \vcenteredhbox{\patternimg{0.094}{glider_delete2_102}}}
+	\caption{If we shoot two glider streams of period at least $34$ at each other in the proper phase, one of the streams is destroyed completely while the other stream is thinned out by a factor of ~$3$.}\label{fig:glider_delete2}
+\end{figure}
+
+The effect of firing two glider streams at each other in this way is thus to completely destroy one of the streams and to destroy two-thirds of the gliders in the other. This reaction is demonstrated in Figure~\ref{fig:p138_gun}, where we use two period~$46$ twin bees guns to create a period $3 \times 46 = 138$ gun (this reaction only works for glider streams of period~$34$ or higher, so we cannot apply it to the Gosper glider gun). Also, just like before, we can use this reaction repeatedly with more and more copies of the original gun, each time multiplying the gun's period by $3$.
+
 \begin{figure}[!htb]
 	\centering
 	\patternimglink{0.1}{p138_gun}
-	\caption{We can use two copies of any gun with period at least~$34$ to create a gun with triple the period. This is demonstrated here with two period~$46$ twin bees guns creating a period~$138$ gun. The individual twin bees guns are outlined in \bgbox{aquaback}{aqua}, gliders that collide to create two blocks are outlined in \bgbox{yellowback2}{yellow}, and gliders that survive to create the new, thinner glider stream travelling to the southeast are outlined in \bgbox{greenpastel}{green}.}\label{fig:p138_gun}
+	\caption{We can use two copies of any gun with period at least~$34$ to create a gun with triple the period. Here, two period~$46$ twin bees guns are aimed at each other so as to create a period~$138$ gun.}\label{fig:p138_gun}
 \end{figure}
 
-Also, just like before, we can use this reaction repeatedly with more and more copies of the original gun, each time multiplying the gun's period by either $2$ or $3$, which lets us multiply the gun's period by any number whose prime factorization contains only those numbers. We can thus use this technique to thin out a glider stream by a factor of $4$, $6$, $8$, or $9$, for example (but recall from Section~\ref{sec:large_glider_guns} that we can use semi-Snarks to thin out a glider stream by any factor of our choosing). To fill in some of the gaps in this list, we present in Figure~\ref{fig:glider_delete_prime} some methods for thinning out a stream by a factor of $5$ or $7$.
+By combining these two period-multiplying reactions together, we can multiply a gun's period by any number whose prime factorization contains only $2$ or $3$. We can thus use this technique to thin out a glider stream by a factor of $4$, $6$, $8$, or $9$, for example.\footnote{We can use the stable circuitry techniques from Section~\ref{sec:large_glider_guns} to thin out a glider stream by any factor of our choosing, but these collision-based techniques are a bit smaller and easier to use, at least for small factors.} To fill in some of the gaps in this list, we present in Figure~\ref{fig:glider_delete_prime} some methods for thinning out a stream by a factor of $5$ or $7$.
 
 \begin{figure}[!htb]
 	\centering
 	\begin{subfigure}{.48\textwidth}
 		\centering
 		\patternimglink{0.12}{glider_delete4}
-		\caption{A collision that thins out glider streams (with period at least $108$) by a factor of $5$.}
+		\caption{A collision that thins out glider streams with period at least $108$ by a factor of $5$.}
 		\label{fig:glider_delete4}
-	\end{subfigure} \ \ \ \ % 
+	\end{subfigure} \hfill % 
 	\begin{subfigure}{.48\textwidth}
 		\centering
-		\patternimglink{0.095}{glider_delete6}
-		\caption{A collision that thins out glider streams (with period at least $46$) by a factor of $7$.}
+		\patternimglink{0.12}{glider_delete6}
+		\caption{A collision that thins out glider streams with period at least $46$ by a factor of $7$.}
 		\label{fig:glider_delete6}
 	\end{subfigure}
 	\caption{Some additional methods of multiplying the period of glider streams by small prime numbers.}\label{fig:glider_delete_prime}
@@ -93,69 +108,71 @@ Also, just like before, we can use this reaction repeatedly with more and more c
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%   SUBSECTION: FILTERS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Filters}\label{sec:filters}\index{filter}
+\subsection{Filters}\label{sec:filters}
 
-Another way of deleting some gliders within a stream is to use a \emph{filter},\index{filter} which is an oscillator that pulsates or gives off a spark in such a way as to destroy some of the gliders in the stream, but not all of them (similar to how we used a Schick engine to erase some of the gliders released by a space rake in Section~\ref{sec:schick_engine}). Gliders can be destroyed by essentially any type of spark (see Figure~\ref{fig:glider_delete_spark}), so we can use many sparkers (of appropriately large enough periods) to destroy gliders and thin out glider streams.
+Another way of deleting some gliders within a stream is to use a \emph{filter},\index{filter} which is an oscillator that pulsates or gives off a spark in such a way as to destroy some of the gliders in the stream, but not all of them (similar to how we used a Schick engine to erase some of the gliders released by a space rake in Section~\ref{sec:schick_engine}). Gliders can be destroyed by essentially any type of spark (see Figure~\ref{fig:glider_delete_spark}), so we can use many high-period sparkers to destroy gliders and thin out glider streams.
 
 \begin{figure}[!htb]
 	\centering
-	\begin{subfigure}{.31\textwidth}
+	\begin{subfigure}{.32\textwidth}
 		\centering
-		\embedlink{glider_delete_dot}{\vcenteredhbox{\patternimg{0.1}{glider_delete_dot_0}}
+		\embedlink{glider_delete_dot}{\vcenteredhbox{\patternimg{0.11}{glider_delete_dot_0}}
 			\vcenteredhbox{\genarrow{5}}
-			\vcenteredhbox{\patternimg{0.1}{glider_delete_dot_5}}}
-		\caption{A dot spark\index{dot spark} can delete a glider.}
+			\vcenteredhbox{\patternimg{0.11}{glider_delete_dot_5}}}
+		\caption{A dot spark\index{dot spark} deleting a glider.}
 		\label{fig:glider_delete_dot}
-	\end{subfigure} \ \ \ \ % 
-	\begin{subfigure}{.31\textwidth}
+	\end{subfigure} \hfill % 
+	\begin{subfigure}{.32\textwidth}
 		\centering
-		\embedlink{glider_delete_domino}{\vcenteredhbox{\patternimg{0.1}{glider_delete_domino_0}}
+		\embedlink{glider_delete_domino}{\vcenteredhbox{\patternimg{0.11}{glider_delete_domino_0}}
 			\vcenteredhbox{\genarrow{4}}
-			\vcenteredhbox{\patternimg{0.1}{glider_delete_domino_4}}}
+			\vcenteredhbox{\patternimg{0.11}{glider_delete_domino_4}}}
 		\caption{A domino spark\index{domino spark} deleting a glider.}
 		\label{fig:glider_delete_domino}
-	\end{subfigure} \ \ \ \ % 
-	\begin{subfigure}{.31\textwidth}
+	\end{subfigure} \hfill % 
+	\begin{subfigure}{.32\textwidth}
 		\centering
-		\embedlink{glider_delete_banana}{\vcenteredhbox{\patternimg{0.1}{glider_delete_banana_0}}
+		\embedlink{glider_delete_banana}{\vcenteredhbox{\patternimg{0.11}{glider_delete_banana_0}}
 			\vcenteredhbox{\genarrow{5}}
-			\vcenteredhbox{\patternimg{0.1}{glider_delete_banana_5}}}
+			\vcenteredhbox{\patternimg{0.11}{glider_delete_banana_5}}}
 		\caption{A banana spark\index{banana spark} deleting a glider.}
 		\label{fig:glider_delete_banana}
 	\end{subfigure}
 	\caption{Many different sparks can be used to delete gliders.}\label{fig:glider_delete_spark}
 \end{figure}
 
-For example, if we place a period~$8$ blocker\index{blocker} next to a glider stream of period $8n+4$ $(n \geq 2$), it destroys every second glider in the stream, thus doubling its period. Similarly, the period~$16$ oscillator ``Rich's p16'' from Figure~\ref{fig:rich_p16} emits a banana spark that can be used to double the period of any glider stream with period $16n+8$ ($n \geq 1$), and the period~$22$ oscillator from Figure~\ref{fig:period_22} emits a domino spark that can be used to double the period of any glider stream with period $22n+11$ ($n \geq 1$). These period-doubling filters are illustrated for streams of period~$20$, $24$, and~$33$ in Figure~\ref{fig:glider_filters}.
+For example, if we place a period~$8$ blocker\index{blocker} next to a glider stream of period $8n+4$ $(n \geq 2$), it destroys every second glider in the stream, thus doubling its period. Similarly, the period~$16$ oscillator ``Rich's p16'' from Figure~\ref{fig:rich_p16} emits a banana spark that can be used to double the period of any glider stream with period $16n+8$ ($n \geq 1$),\footnote{Rob's p16 works just as well for this purpose---see Exercise~\ref{exer:robs_p16_smaller_p16_gun}.} and the period~$22$ oscillator from Figure~\ref{fig:period_22} emits a domino spark that can be used to double the period of any glider stream with period $22n+11$ ($n \geq 1$). These period-doubling filters are illustrated for streams of period~$20$, $24$, and~$33$ in Figure~\ref{fig:glider_filters}.\index{Rich's p16}\index{Rob's p16}\index{blocker}\index{Jason's p22}
 
 \begin{figure}[!htb]
 	\centering
 	\begin{subfigure}{.31\textwidth}
 		\centering
-		\patternimglink{0.105}{blocker_glider_filter}
-		\caption{The dot spark from a blocker (outlined in \bgbox{aquaback}{aqua}) can be used to destroy every other glider in a stream of period~$20$ (or $8n+4$ for any $n \geq 2$).}
+		\patternimglink{0.13014522821}{blocker_glider_filter}
+		\caption{The dot spark from a blocker can be used to destroy every other glider in a stream of period~$20$ (or $8n+4$ for any $n \geq 2$).}
 		\label{fig:blocker_glider_filter}
-	\end{subfigure} \ \ \ \ % 
+	\end{subfigure} \hfill % 
 	\begin{subfigure}{.31\textwidth}
 		\centering
-		\patternimglink{0.077}{richs_p16_glider_filter}
-		\caption{The banana spark from Rich's p16 (outlined in \bgbox{aquaback}{aqua}) can be used to destroy every other glider in a stream of period~$24$ (or $16n+8$ for any $n \geq 1$).}
+		\patternimglink{0.0953343465}{richs_p16_glider_filter}
+		\caption{The banana spark from Rich's p16 can be used to destroy every other glider in a stream of period~$24$ (or $16n+8$ for any $n \geq 1$).}
 		\label{fig:richs_p16_glider_filter}
-	\end{subfigure} \ \ \ \ % 
+	\end{subfigure} \hfill % 
 	\begin{subfigure}{.31\textwidth}
 		\centering
-		\patternimglink{0.07}{p22_glider_filter}
-		\caption{A p22 sparker (outlined in \bgbox{aquaback}{aqua}) can be used to destroy every other glider in a stream of period~$33$ (or $22n+11$ for any $n \geq 1$).}
+		\patternimglink{0.085}{p22_glider_filter}
+		\caption{A domino spark from Jason's p22 can be used to destroy every other glider in a stream of period~$33$ (or $22n+11$ for any $n \geq 1$).}
 		\label{fig:p22_glider_filter}
 	\end{subfigure}
-	\caption{Some filters that can be used to double the period of certain glider streams.}\label{fig:glider_filters}
+	\caption{Some filters (highlighted in \bgbox{aquaback}{aqua}) that can be used to double the period of certain glider streams.}\label{fig:glider_filters}
 \end{figure}
-% Rob's p16 works same as Rich's but is smaller, see Exercise {exer:robs_p16_smaller_p16_gun}.
 
-For a filter oscillator to work correctly, it's generally necessary that the period of the oscillator shares some factor (greater than one) with the period of the glider stream being thinned. Otherwise, all possible combinations of oscillator spark and glider position will eventually appear in the evolution of the pattern, and some of those combinations will usually cause a chaotic explosion instead of causing a glider to disappear cleanly.
+For a filter oscillator to work correctly, it's generally necessary that the period of the oscillator shares some factor (greater than one) with the period of the glider stream being thinned. Otherwise, all possible combinations of oscillator spark and glider position will eventually appear in the evolution of the pattern, and some of those combinations will usually cause a chaotic explosion instead of a clean glider deletion.
 
-% Mention other filters. p6 pipsquirter? Some others?
+% Mention other filters. p6 pipsquirter? Some others? Or exercise at least?
+% Exercise: use two filters to turn p20 into p80 (solution: blocker followed by Rich/Rob p16)
 
+
+% NJ is here in the cleanup process
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%   SUBSECTION: GLIDER INSERTION
@@ -1286,32 +1303,32 @@ This collection of small glider guns is now being maintained by Chris Cain and D
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Exercises \hfill \normalfont\textsf{\small solutions on \hyperlink{solutions_glider_guns}{page \pageref{solutions_glider_guns}}}}
+\section*{Exercises \hfill \normalfont\textsf{\small solutions to starred exercises on \hyperlink{solutions_glider_guns}{page \pageref{solutions_glider_guns}}}}
 \label{sec:guns_exercises}
 \addcontentsline{toc}{section}{Exercises}
 \vspace*{-0.4cm}\hrulefill\vspace*{-0.3cm}\footnotesize\begin{multicols}{2}\vspace*{-0.4cm}\raggedcolumns\interlinepenalty=10000
 	\setlength{\parskip}{0pt}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
-	\begin{problem}\label{exer:gun_double_again}
+	\begin{problemstar}\label{exer:p28_double} \probdiff{1}
+		The glider collision in Figure~\ref{fig:glider_delete} can only be used to double the period of glider streams of period~$29$ or higher. Use the collision in Table~\ref{tab:2_glider_synth} that produces an eater~1 to double the period of a period~28 glider stream.
+	\end{problemstar}
+
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:gun_double_again} \probdiff{1}
 		We used the reaction in Figure~\ref{fig:glider_delete} to turn two Gosper glider guns into a period~$60$ gun. Use that reaction multiple times to turn four Gosper glider guns into a period~$120$ gun.
 	\end{problem}
-	
-	
-	\mfilbreak
-	
-	
-	\begin{problem}\label{exer:p28_double}
-		The glider collision in Figure~\ref{fig:glider_delete} can only be used to double the period of glider streams of period~$29$ or higher. Use the collision in Table~\ref{tab:2_glider_synth} that produces an eater~1 to double the period of a period~28 glider stream.
-	\end{problem}
-	
+
 	
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:p322_gun}
+	\begin{problemstar}\label{exer:p322_gun} \probdiff{2}
 		Use the reaction from Figure~\ref{fig:glider_delete6} to create a period~$322$ glider gun.
-	\end{problem}
+	\end{problemstar}
 	
 	
 	\mfilbreak
@@ -1331,17 +1348,17 @@ This collection of small glider guns is now being maintained by Chris Cain and D
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:p80_gun_rich_p16}
+	\begin{problemstar}\label{exer:p80_gun_rich_p16}
 		Use Rich's p16 (and potentially other sparkers as well) as a filter to turn the true-period~$20$ glider gun into a true-period~$80$ glider gun. [Hint: If you're lucky, you can get a single copy of Rich's p16 to delete \emph{two} consecutive gliders.]
-	\end{problem}
+	\end{problemstar}
 	
 	
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:p4_glider_filter}
+	\begin{problemstar}\label{exer:p4_glider_filter}
 		We saw several filters\index{filter} that can double the period of every stream of lightweight spaceships with period $4n+2$. Explain why there cannot exist a filter capable of doubling the period of every stream of \emph{gliders} with period $4n+2$.
-	\end{problem}
+	\end{problemstar}
 	
 	
 	\mfilbreak
@@ -1363,7 +1380,7 @@ This collection of small glider guns is now being maintained by Chris Cain and D
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:p50_glider_stabilize}
+	\begin{problemstar}\label{exer:p50_glider_stabilize}
 		Another method of stabilizing one side of the p$50$ pi-heptomino reaction used in the true-period~$50$ glider gun is displayed below.
 		\begin{center}
 			\patternimglink{0.1}{exer_p50_glider_stabilize}
@@ -1375,7 +1392,7 @@ This collection of small glider guns is now being maintained by Chris Cain and D
 			
 			\item two bumpers (what is the only known bumper period that works with period~$50$ mechanisms?).
 		\end{enumerate}
-	\end{problem}
+	\end{problemstar}
 	
 	
 	\mfilbreak
