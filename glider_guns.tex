@@ -360,7 +360,7 @@ In order to construct a somewhat smaller p$14$ glider gun using these same ideas
 
 \begin{figure}[!htb]
 	\centering
-	\patternimglink{0.09}{p14_pieces_p84}
+	\patternimglink{0.1}{p14_pieces_p84}
 	\caption{A p$84$ gun that emits $2$ out of $3$ gliders in a p$28$ stream. The central Herschel is fed through NE30T3 (highlighted in \bgbox{greenpastel}{green}) so as to create two output gliders, one of which is reflected (via standard reflectors like bumpers, bouncers, and Snarks, highlighted in \bgbox{yellowback2}{yellow}) into the same lane as the other one. The first natural glider of the central Herschel is similarly reflected and then injected into a syringe (highlighted in \bgbox{aquaback}{aqua}) so as to recreate itself (just as in the gun from Figure~\ref{fig:p84_lwss_gun}).}
 	\label{fig:p14_pieces_p84}
 \end{figure}
@@ -375,22 +375,20 @@ By making use of these reactions, we can create the period~$14$ glider gun displ
 
 
 
-% NJ is here in the cleanup process
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%   SUBSECTION: TRUE PERIOD GUNS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{True-Period Guns}\label{sec:true_period_guns}
 
-While we now know how to construct glider guns of every period greater than or equal to $14$, many of them are somewhat artificial---many of these guns themselves oscillate at a higher period than (and necessarily a multiple of) the stream that they produce. For example, the gun of Figure~\ref{fig:p15_gun} actually oscillates at period~$30$, despite producing a glider stream of period~$15$. Such guns are called \emph{pseudo-period guns}\index{pseudo-period gun}, and all of the new low-period guns that we introduced in this chapter are of this type.
+While we now know how to construct glider guns of every period greater than or equal to $14$, many of them are somewhat artificial---they oscillate at a higher period than (and necessarily a multiple of) the stream that they produce. For example, the gun of Figure~\ref{fig:p15_gun} actually oscillates at period~$30$, despite producing a glider stream of period~$15$, and the gun of Figure~\ref{fig:p14_gun} oscillates at period~$84$, despite producing a glider stream of period~$14$. Such guns are called \emph{pseudo-period guns}\index{pseudo-period gun}, and the new low-period guns that we introduced in this chapter are all of this type.
 
-While there is nothing inherently wrong with pseudo-period guns, it seems natural to ask whether or not we can construct guns of arbitrary periods that actually oscillate at the same period as their stream (i.e., guns that do not make use of techniques like glider insertion to decrease the period of the stream that they produce). We call such guns \emph{true-period guns}\index{true-period gun}, and examples include all of the guns that we saw prior to this chapter, such as the p$30$ Gosper glider gun\index{Gosper glider gun} and the p$46$ twin bees gun\index{twin bees!gun}.
+There is nothing inherently wrong with pseudo-period guns, but it seems natural to ask whether or not we can construct guns of arbitrary periods that actually oscillate at the same period as their stream (i.e., guns that do not make use of techniques like glider insertion to decrease the period of the stream that they produce). We call such guns \emph{true-period guns}\index{true-period gun}, and examples include all of the guns that we saw prior to this chapter, such as the p$30$ Gosper glider gun\index{Gosper glider gun} and the p$46$ twin bees gun\index{twin bees!gun}.
 
 In general, using glider insertion to decrease the period of a gun's stream results in a pseudo-period gun, but using filters or the glider deletion methods of Section~\ref{sec:glider_deletion} to \emph{increase} the period of its glider stream results in a true-period gun (e.g., the p$60$ gun from Figure~\ref{fig:p60_gun} that uses two Gosper glider guns is a true-period gun). Constructing true-period guns with small period\footnote{Herschel tracks can be used to create true-period guns of large period (period~$62$ and larger, in particular).} is much more difficult than the same task for pseudo-period guns, since we cannot just manipulate gliders themselves to get the period we desire, but rather must actually develop new glider-generating mechanisms.
 
-There are just a few ad-hoc methods that are known for creating true-period glider guns, and they only work for a few select periods. A brief summary of the known true-period guns of these few periods is presented in Table~\ref{tab:true_period_glider_gun}, and the next few subsections illustrate and describe the construction of these guns.\footnote{Unfortunately, it probably will not be long before this list of true-period guns becomes out of date ($5$ new periods were discovered while this book was being written!), so a perhaps more up-to-date list of known true-period gun periods can be found at \httpsurl{conwaylife.com/wiki/Gun} and \httpsurl{conwaylife.com/wiki/LifeWiki:Game_of_Life_Status_page\#Glider_gun_true-periods}.}
+There are just a few ad-hoc methods that are known for creating true-period glider guns, and they only work for a few select periods. A brief summary of the known true-period guns of these few periods is presented in Table~\ref{tab:true_period_glider_gun}, and the next few subsections illustrate and describe their construction.\footnote{Unfortunately, it probably will not be long before this list of true-period guns becomes out of date ($6$ new periods were discovered while this book was being written!), so a perhaps more up-to-date list of known true-period gun periods can be found at \httpsurl{conwaylife.com/wiki/Gun} and \httpsurl{conwaylife.com/wiki/LifeWiki:Game_of_Life_Status_page\#Glider_gun_true-periods}.}
 
-\begin{table}[htbp]\vspace*{0.05in}
+\begin{table}[!htbp]\vspace*{0.02in}
 	\begin{center}		
 		\begin{tabular}{ccll}
 			\toprule
@@ -398,25 +396,26 @@ There are just a few ad-hoc methods that are known for creating true-period glid
 			20 & 2013 & \specialcelll[t]{Matthias Merzenich \\ Noam Elkies} & upcoming Figure~\ref{fig:p20_glider_gun} \\
 			\rowcolor{gray!20} 22 & 2000 & \specialcelll[t]{David Eppstein \\ Jason Summers} & upcoming Figure~\ref{fig:p22_glider_gun} \\
 			24 & 1997 & Noam Elkies & upcoming Figure~\ref{fig:p24_glider_gun} \\
-			\rowcolor{gray!20} 30 & 1970 & Bill Gosper & Gosper glider gun (Figure~\ref{fig:gosper_glider_gun}) \\
-			33 & 2018 & \specialcelll[t]{Arie Paap \\ Matthias Merzenich} & upcoming Figure~\ref{fig:p33_gun} \\
-			\rowcolor{gray!20} 36 & 2004 & Jason Summers & upcoming Figure~\ref{fig:p36_gun} \\
-			40 & 2013 & \specialcelll[t]{Adam P. Goucher \\ Matthias Merzenich \\ Jason Summers} & \specialcelll[t]{{\small$\bullet$} smallest known (Figure~\ref{fig:p20_glider_gun}) uses a blocker to \\ \hphantom{\small$\bullet$} filter the p$20$ gun \\ {\small$\bullet$} first known (not displayed) was found $3$~months earlier} \\
-			\rowcolor{gray!20} 44 & 1992 & David Buckingham & improved a bit in 1997 by Paul Callahan (Figure~\ref{fig:p44_glider_gun}) \\
-			45 & 2010 & Matthias Merzenich & upcoming Figure~\ref{fig:p45_gun} \\
-			\rowcolor{gray!20} 46 & 1971 &	Bill Gosper & twin bees gun (Figure~\ref{fig:twin_bees_gun}) \\
-			48 & 1997 & Noam Elkies & uses a filter on the p$24$ gun from Figure~\ref{fig:p24_glider_gun} \\
-			\rowcolor{gray!20} 50 & 1996 & \specialcelll[t]{Dean Hickerson \\ Noam Elkies} & upcoming Figure~\ref{fig:true_p50_glider_gun} \\
-			52 & 2018 & \specialcelll[t]{Dave Greene \\ Chris Cain \\ Adam P. Goucher \\ Matthias Merzenich} & \specialcelll[t]{{\small$\bullet$} smallest known (Figure~\ref{fig:p52_gun}) was constructed in \\ \hphantom{\small$\bullet$} November 2018 with help from ConwayLife.com \\ \hphantom{\small$\bullet$} forums user ``Entity Valkyrie'' \\ {\small$\bullet$} first known (not displayed) was found $2$~months earlier} \\
-			\rowcolor{gray!20} 54 & 1998 & Dietrich Leithner & \\
-			55 & 1998 & Stephen Silver & \cellcolor{gray!20} \\
-			\rowcolor{gray!20} 56 & 1998 & \specialcelll[t]{Dietrich Leithner \\ {}} & \multirow{-3}{*}{\raisebox{0.5cm}{\specialcelll[t]{{\small$\bullet$} smallest known p$54$--$56$ guns (Figure~\ref{fig:quetzals}(c--e)) were \\ \hphantom{\small$\bullet$} constructed in October 2018 by Chris Cain \\ {\small$\bullet$} first known p$54$--$56$ guns (not displayed) were much \\ \hphantom{\small$\bullet$} larger---roughly $500 \times 500$}}} \\
-			57 & 2016 & Matthias Merzenich & \specialcelll[t]{{\small$\bullet$} smallest known (Figure~\ref{fig:p57_gun}) was constructed in \\ \hphantom{\small$\bullet$} October 2018 by Luka Okanishi \\ {\small$\bullet$} first known (not displayed) was large (about $330 \times 350$)} \\
-			\rowcolor{gray!20} 58 & 2016 & \specialcelll[t]{``thunk'' \\ Matthias Merzenich} & upcoming Figure~\ref{fig:p58_gun} \\
-			59 & 2009 & \specialcelll[t]{Adam P. Goucher \\ Jason Summers} & \specialcelll[t]{{\small$\bullet$} first known (not displayed) was huge (\rawtilde$4\,000 \times 3\,000$) \\ {\small$\bullet$} ConwayLife.com forums user ``Entity Valkyrie'' made \\ \hphantom{\small$\bullet$} a smaller one (Figure~\ref{fig:p59_glider_gun}) in October 2018} \\
-			\rowcolor{gray!20} 60 & 1970 & Bill Gosper & two Gosper glider guns (Figure~\ref{fig:p60_gun}) \\
-			61 & 2016 & Luka Okanishi & upcoming Figure~\ref{fig:p61_gun} \\
-			\rowcolor{gray!20} 62+ & 1996 & David Buckingham & Herschel tracks (some periods known earlier) \\\bottomrule
+			\rowcolor{gray!20} 28 & 2020 & \specialcelll[t]{Matthias Merzenich \\ Paul Callahan} & upcoming Figure~\ref{fig:p28_glider_gun} \\
+			30 & 1970 & Bill Gosper & Gosper glider gun (Figure~\ref{fig:gosper_glider_gun}) \\
+			\rowcolor{gray!20} 33 & 2018 & \specialcelll[t]{Arie Paap \\ Matthias Merzenich} & upcoming Figure~\ref{fig:p33_gun} \\
+			36 & 2004 & Jason Summers & upcoming Figure~\ref{fig:p36_gun} \\
+			\rowcolor{gray!20} 40 & 2013 & \specialcelll[t]{Adam P. Goucher \\ Matthias Merzenich \\ Jason Summers} & \specialcelll[t]{{\small$\bullet$} smallest known (Figure~\ref{fig:p20_glider_gun}) uses a blocker to \\ \hphantom{\small$\bullet$} filter the p$20$ gun \\ {\small$\bullet$} first known (not displayed) was found $3$~months earlier} \\
+			44 & 1992 & David Buckingham & improved a bit in 1997 by Paul Callahan (Figure~\ref{fig:p44_glider_gun}) \\
+			\rowcolor{gray!20} 45 & 2010 & Matthias Merzenich & upcoming Figure~\ref{fig:p45_gun} \\
+			46 & 1971 &	Bill Gosper & twin bees gun (Figure~\ref{fig:twin_bees_gun}) \\
+			\rowcolor{gray!20} 48 & 1997 & Noam Elkies & uses a filter on the p$24$ gun from Figure~\ref{fig:p24_glider_gun} \\
+			50 & 1996 & \specialcelll[t]{Dean Hickerson \\ Noam Elkies} & upcoming Figure~\ref{fig:true_p50_glider_gun} \\
+			\rowcolor{gray!20} 52 & 2018 & \specialcelll[t]{Dave Greene \\ Chris Cain \\ Adam P. Goucher \\ Matthias Merzenich} & \specialcelll[t]{{\small$\bullet$} smallest known (Figure~\ref{fig:p52_gun}) was constructed in \\ \hphantom{\small$\bullet$} November 2018 with help from ConwayLife.com \\ \hphantom{\small$\bullet$} forums user ``Entity Valkyrie'' \\ {\small$\bullet$} first known (not displayed) was found $2$~months earlier} \\
+			54 & 1998 & Dietrich Leithner & \\
+			\rowcolor{gray!20} 55 & 1998 & Stephen Silver & \cellcolor{white} \\
+			56 & 1998 & \specialcelll[t]{Dietrich Leithner \\ {}} & \multirow{-3}{*}{\raisebox{0.5cm}{\specialcelll[t]{{\small$\bullet$} small p$54$--$56$ guns (Figure~\ref{fig:quetzals}(c--e)) were \\ \hphantom{\small$\bullet$} constructed in October 2018 by Chris Cain \\ {\small$\bullet$} first known p$54$--$56$ guns (not displayed) were much \\ \hphantom{\small$\bullet$} larger---roughly $500 \times 500$}}} \\
+			\rowcolor{gray!20} 57 & 2016 & Matthias Merzenich & \specialcelll[t]{{\small$\bullet$} smallest known (Figure~\ref{fig:p57_gun}) was constructed in \\ \hphantom{\small$\bullet$} October 2018 by Luka Okanishi \\ {\small$\bullet$} first known (not displayed) was large (about $330 \times 350$)} \\
+			58 & 2016 & \specialcelll[t]{``thunk'' \\ Matthias Merzenich} & upcoming Figure~\ref{fig:p58_gun} \\
+			\rowcolor{gray!20} 59 & 2009 & \specialcelll[t]{Adam P. Goucher \\ Jason Summers} & \specialcelll[t]{{\small$\bullet$} first known (not displayed) was huge (\rawtilde$4\,000 \times 3\,000$) \\ {\small$\bullet$} ConwayLife.com forums user ``Entity Valkyrie'' made \\ \hphantom{\small$\bullet$} a smaller one (Figure~\ref{fig:p59_glider_gun}) in October 2018} \\
+			60 & 1970 & Bill Gosper & two Gosper glider guns (Figure~\ref{fig:p60_gun}) \\
+			\rowcolor{gray!20} 61 & 2016 & Luka Okanishi & upcoming Figure~\ref{fig:p61_gun} \\
+			62+ & 1996 & David Buckingham & Herschel tracks (some periods known earlier) \\\bottomrule
 		\end{tabular}
 		\caption{A summary of when the first true-period glider gun of each known period was first discovered. The first discoverer credited above put the gun itself together, while other contributors who provided important reactions or ideas used in the construction are listed alphabetically by their last name. Some of these guns were extremely large, and the guns of the same periods that we introduce in the upcoming sections are sometimes much smaller and make use of more recently-discovered mechanisms.}\label{tab:true_period_glider_gun}
 	\end{center}
@@ -427,102 +426,106 @@ There are just a few ad-hoc methods that are known for creating true-period glid
 
 Most of the simplest true-period glider guns work simply by having sparks from different oscillators collide with each other in such a way as to create a glider. In fact, the very first guns to be discovered---the p$30$ Gosper glider gun\footnote{Technically, the Gosper glider gun does not work by colliding \emph{sparks}, since the colliding debris would form a beehive if left uninterrupted, rather than dying. Nonetheless, the idea behind it is the same.} and the p$46$ twin bees gun---are of this type. The next simplest true-period glider guns have periods~$22$ and~$45$, and are similarly of this type.
 
-The true-period~$45$ gun displayed in Figure~\ref{fig:p22_45_guns}(b) works by colliding the sparks of a custom period~$45$ oscillator with the edge of a pentadecathlon, so that their interacting sparks create a glider. Similarly, the true-period~$22$ gun displayed in Figure~\ref{fig:p22_45_guns}(a) works by positioning two copies of the very sparky Jason's~p$22$ oscillator (refer back to Figure~\ref{fig:period_22}) next to each other. Unfortunately, no filter is capable of doubling the period of this gun (see Exercise~\ref{exer:p4_glider_filter}) and none of the other glider deletion techniques that we discussed earlier work at period~$22$, so it is not clear whether or not this gun can be easily modified to create a true-period~$44$ gun. However, will see a different method of making a true-period~$44$ gun shortly, in Section~\ref{sec:true_period_hassler}.
+The true-period~$45$ gun displayed in Figure~\ref{fig:p45_gun} works by colliding the sparks of a custom period~$45$ oscillator with the edge of a pentadecathlon, so that their interacting sparks create a glider. Similarly, the true-period~$22$ gun displayed in Figure~\ref{fig:p22_glider_gun} works by positioning two copies of the very sparky Jason's~p$22$\index{Jason's p22} oscillator (refer back to Figure~\ref{fig:period_22}) next to each other. Unfortunately, no filter is capable of doubling the period of this gun (see Exercise~\ref{exer:p4_glider_filter}) and none of the other glider deletion techniques that we discussed earlier work at period~$22$, so it is not clear whether or not this gun can be easily modified to create a true-period~$44$ gun. However, will see a different method of making a true-period~$44$ gun shortly, in Section~\ref{sec:true_period_hassler}.
 
 \begin{figure}[!htb]
 	\centering
-	\noindent\begin{tabular}{@{}cc@{}}
-		\noindent\begin{subfigure}{0.48\textwidth}
-			\centering
-			\patternimglink{0.12}{p22_glider_gun}
-			\caption{A true-period~$22$ glider gun that consists of two copies of Jason's p$22$ oscillator (highlighted in \bgbox{yellowback2}{yellow} and \bgbox{aquaback}{aqua}).}\label{fig:p22_glider_gun}
-		\end{subfigure} & \begin{subfigure}{0.48\textwidth}
-			\centering
-			\patternimglink{0.09}{p45_gun}
-			\caption{A true-period~$45$ glider gun that consists of a custom p$45$ oscillator and a pentadecathlon (highlighted in \bgbox{yellowback2}{yellow} and \bgbox{aquaback}{aqua}, respectively).}\label{fig:p45_gun}
-		\end{subfigure}
-	\end{tabular}
+	\begin{subfigure}{0.50\textwidth}
+		\centering
+		\patternimglink{0.13}{p22_glider_gun}
+		\caption{A true-period~$22$ glider gun that consists of two copies of Jason's p$22$ oscillator (highlighted in \bgbox{yellowback2}{yellow} and \bgbox{aquaback}{aqua}).}\label{fig:p22_glider_gun}
+	\end{subfigure} \hfill \begin{subfigure}{0.46\textwidth}
+		\centering
+		\patternimglink{0.10053824362}{p45_gun}
+		\caption{A true-period~$45$ glider gun that consists of a custom p$45$ oscillator and a pentadecathlon (highlighted in \bgbox{yellowback2}{yellow} and \bgbox{aquaback}{aqua}, respectively).}\label{fig:p45_gun}
+	\end{subfigure}
 	\caption{Two true-period glider guns. The (a) period~$22$ gun was found by David Eppstein later on the same day that Jason Summers found the oscillator (August 23, 2000), and the (b) period~$45$ gun was found by Matthias Merzenich in April 2010, with subsequent improvements by  Adam P.~Goucher, Dave Greene, and Tanner Jacobi.}\label{fig:p22_45_guns}
 \end{figure}
 
-There are also glider guns of periods~$33$ and~$36$ that are mostly of this type---they work by colliding together large sparks from two copies of very sparky oscillators of periods~$33$ and~$36$, respectively. However, these guns also require a few extra stabilizing components to clean up the glider-producing reaction. For example, the period~$36$ oscillator in Figure~\ref{fig:p36_gun_both}(a) can be paired up with itself to create the true-period~$36$ gun in Figure~\ref{fig:p36_gun_both}(b), but it requires an extra heavyweight emulator to clean up a block that is left behind by the sparks otherwise, which would destroy the gun between the first and second glider that it creates.
+There are also glider guns of periods~$33$ and~$36$ that are mostly of this type---they work by colliding together large sparks from two copies of very sparky oscillators of periods~$33$ and~$36$, respectively. However, these guns also require a few extra stabilizing components to clean up the glider-producing reaction. For example, the period~$36$ oscillator in Figure~\ref{fig:jasons_p36} can be paired up with itself to create the true-period~$36$ gun in Figure~\ref{fig:p36_gun}, but it requires an extra heavyweight emulator to clean up a block that is left behind by the sparks that would otherwise destroy the gun between the first and second glider that it creates.
 
 \begin{figure}[!htb]
 	\centering
-	\noindent\begin{tabular}{@{}cc@{}}
-		\noindent\begin{subfigure}{0.48\textwidth}
-			\centering
-			\patternimglink{0.13}{jasons_p36}
-			\caption{A period~$36$ oscillator called \emph{Jason's p$36$} that works by using jams\index{jam} and eater~1s to hassle two B-heptominoes.\index{Jason's p36} It was found by Jason Summers in July 2004.}\label{fig:jasons_p36}
-		\end{subfigure} & \begin{subfigure}{0.48\textwidth}
-			\centering
-			\patternimglink{0.08}{p36_gun}
-			\caption{A true-period~$36$ gun.}\label{fig:p36_gun}
-		\end{subfigure}
-	\end{tabular}
+	${}$ \ \begin{subfigure}{0.53\textwidth}
+		\centering\vspace*{0.6cm}
+		\patternimglink{0.15}{jasons_p36}
+		\caption{A period~$36$ oscillator called \emph{Jason's p$36$} that works by using jams\index{jam} and eater~1s to hassle two B-heptominoes.\index{Jason's p36} It was found by Jason Summers in July 2004.}\label{fig:jasons_p36}
+	\end{subfigure} \hfill \begin{subfigure}{0.42\textwidth}
+		\centering
+		\patternimglink{0.08}{p36_gun}
+		\caption{A true-period~$36$ gun.}\label{fig:p36_gun}
+	\end{subfigure}
 	\caption{A (b) true-period~$36$ gun (found by Jason Summers in July 2004, with improvements by Adam P.~Goucher and Scot Ellison) that works by colliding two copies of (a) Jason's p$36$ (highlighted in \bgbox{aquaback}{aqua} and \bgbox{yellowback2}{yellow}). The heavyweight emulator (highlighted in \bgbox{magentaback}{magenta}) is needed to clean up the reaction so that the gun doesn't destroy itself after creating its first glider.}\label{fig:p36_gun_both}
 \end{figure}
 
-Similarly, the period~$33$ oscillator in Figure~\ref{fig:jasons_p33} can be paired with itself, once we remove the boat and tub that stabilize it on one end, to create the true-period~$33$ gun in Figure~\ref{fig:p33_gun}. However, an extra eater~1 is needed to help produce the output glider, and a custom period~$3$ oscillator is needed to clean up the reaction so that the gun is not destroyed after it creates its first glider.
+Similarly, the period~$33$ oscillator in Figure~\ref{fig:jasons_p33} can be paired with itself, once we remove the boat and tub that stabilize it on one end, to create the true-period~$33$ gun that is displayed in Figure~\ref{fig:p33_gun}. However, an extra eater~1 is needed to help produce the output glider, and a custom period~$3$ oscillator is needed to clean up the reaction so that the gun does not collide with its own glider stream, resulting in self-destruction shortly after the creation of its first glider.
 
 \begin{figure}[!htb]
 	\centering
-	\noindent\begin{tabular}{@{}cc@{}}
-		\noindent\begin{subfigure}{0.47\textwidth}
-			\centering
-			\patternimglink{0.13}{jasons_p33}
-			\caption{A period~$33$ oscillator called \emph{Jason's p$33$}.\index{Jason's p33} It was found by Jason Summers in August 2000 and shrunk somewhat by Matthias Merzenich in 2013.}\label{fig:jasons_p33}
-		\end{subfigure} & \begin{subfigure}{0.49\textwidth}
-			\centering
-			\patternimglink{0.095}{p33_gun}
-			\caption{A true-period~$33$ gun.}\label{fig:p33_gun}
-		\end{subfigure}
-	\end{tabular}
-	\caption{A (b) true-period~$33$ gun (found by Arie Paap and Matthias Merzenich in October 2018) that works by colliding two copies of (a) Jason's p$33$ (highlighted in \bgbox{aquaback}{aqua} and \bgbox{yellowback2}{yellow}). The eater~1 cleans up the reaction so as to actually create the output glider and the custom period~$3$ oscillator (highlighted in \bgbox{magentaback}{magenta}) is needed to clean up the reaction so that the gun doesn't destroy itself after creating its first glider.}\label{fig:p33_gun_both}
+	${}$ \ \begin{subfigure}{0.46\textwidth}
+		\centering
+		\patternimglink{0.142}{jasons_p33}
+		\caption{A period~$33$ oscillator called \emph{Jason's p$33$}.\index{Jason's p33} It was found by Jason Summers in August 2000 and shrunk somewhat by Matthias Merzenich in 2013.}\label{fig:jasons_p33}
+	\end{subfigure} \hfill \begin{subfigure}{0.49\textwidth}
+		\centering
+		\patternimglink{0.105}{p33_gun}
+		\caption{A true-period~$33$ gun.}\label{fig:p33_gun}
+	\end{subfigure}
+	\caption{A (b) true-period~$33$ gun (found by Arie Paap and Matthias Merzenich in October 2018) that works by colliding two copies of (a) Jason's p$33$ (highlighted in \bgbox{aquaback}{aqua} and \bgbox{yellowback2}{yellow}). The eater~1 cleans up the reaction so as to actually create the output glider, while the custom period~$3$ oscillator (highlighted in \bgbox{magentaback}{magenta}) is needed to clean up the reaction so that the gun doesn't destroy itself after creating its first glider.}\label{fig:p33_gun_both}
 \end{figure}
 
 
-\subsection{Hasslers: True-Period 20, 24, 40, 44, 48, 50, and 59 Guns}\label{sec:true_period_hassler}
+\subsection{Hasslers: True-Period 20, 24, 28, 40, 44, 48, 50, 56, and 59 Guns}\label{sec:true_period_hassler}
 
 Quite a few true-period guns work by hassling a commonly-occurring unstable object like a T-tetromino or pi-heptomino, much like the oscillators that we saw back in Section~\ref{sec:hasslers}. The difference here is that the hassling reaction has to be chaotic enough that a glider can be extracted from the debris that it produces.
 
-For example, we can construct true-period~$20$, $24$, $40$, and~$48$ glider guns by using the T-tetromino hassling reactions that we introduced back in Figure~\ref{fig:t_tetromino_hasslers}. In particular, notice that the period~$24$ oscillator from Figure~\ref{fig:p24_t_tetromino_hassler} emits a large and somewhat long-lasting spark near its bottom-right corner---if we could hit this large spark with another spark just right, it seems believable that a glider might be formed.\footnote{This line of thinking led Bill Gosper to guess that a gun would be made from his p$24$ T-tetromino oscillator within about $24$~hours. It turned out to be trickier than he expected though, and actually took a bit longer than $2$~years to complete.} It turns out that there is indeed a (somewhat complicated) combination of sparks that works to collide two T-tetrominoes together to give us what we want, and the resulting true-period~$24$ glider gun is displayed in Figure~\ref{fig:p24_glider_gun}. Since we can use Rich's p16 to double the period of period~$24$ glider streams as in Figure~\ref{fig:richs_p16_glider_filter}, this also gives us a true-period~$48$ glider gun almost for free.
+For example, we can construct true-period~$20$, $24$, $40$, and~$48$ glider guns by using the T-tetromino hassling reactions that we introduced back in Figure~\ref{fig:t_tetromino_hasslers}. In particular, notice that the period~$24$ oscillator from Figure~\ref{fig:p24_t_tetromino_hassler} emits a large and somewhat long-lasting spark near its bottom-right corner---if we could hit this large spark with another spark just right, it seems believable that a glider might be formed.\footnote{This line of thinking led Bill Gosper to guess that a gun would be made from his p$24$ T-tetromino oscillator within about $24$~hours. It turned out to be trickier than he expected though, and actually took a bit longer than $2$~years to complete.} There is indeed a (somewhat complicated) combination of sparks that works to collide two T-tetrominoes together to give us what we want, and the resulting true-period~$24$ glider gun is displayed in Figure~\ref{fig:p24_glider_gun}. Since we can use Rich's p16 to double the period of period~$24$ glider streams as in Figure~\ref{fig:richs_p16_glider_filter}, this also gives us a true-period~$48$ glider gun almost for free.
+
+By using the same T-tetromino collision, together with the p$20$ hassling reaction from Figure~\ref{fig:p20_t_tetromino_hassler}, we also get a true-period~$20$ glider gun for not too much extra effort. The biggest hurdle to overcome when constructing the p$20$ gun is the fact that there is so much going on in such a small space that it is difficult to generate the necessary sparks without the sparkers overlapping with each other. One configuration that works is displayed in Figure~\ref{fig:p20_glider_gun}.\footnote{This is the smallest period for which a true-period glider gun is currently known.} Furthermore, we can use a blocker to filter this p$20$ stream, as in Figure~\ref{fig:blocker_glider_filter}, to quickly and easily turn this into a true-period~$40$ gun.
 
 \begin{figure}[!htb]
 	\centering
-	\noindent\begin{tabular}{@{}cc@{}}
-		\noindent\begin{subfigure}{0.41\textwidth}
-			\centering
-			\patternimglink{0.08}{p24_glider_gun}
-			\caption{A true-period~$24$ (and $48$) glider gun, based on the p$24$ oscillator from Figure~\ref{fig:p24_t_tetromino_hassler}. Superfountains\index{superfountain} (see Figure~\ref{fig:superfountain}) are highlighted in \bgbox{aquaback}{aqua} and a custom p$4$ sparker is highlighted in \bgbox{yellowback2}{yellow}. Rich's p$16$\index{Rich's p16} (highlighted in \bgbox{magentaback}{magenta}) is used to filter the p$24$ stream into a p$48$ one, as in Figure~\ref{fig:richs_p16_glider_filter}.}
-			\label{fig:p24_glider_gun}
-		\end{subfigure} & \begin{subfigure}{0.55\textwidth}
-			\centering
-			\patternimglink{0.09}{p20_glider_gun}
-			\caption{A true-period~$20$ (and $40$) glider gun. Middleweight supervolcanoes\index{middleweight!supervolcano} (see Figure~\ref{fig:mw_supervolcano}) are highlighted in \bgbox{aquaback}{aqua} and other oscillators (the bottom of which is a fumarole and the top of which is a custom p$4$ domino and thumb sparker) are highlighted in \bgbox{yellowback2}{yellow}. A blocker (highlighted in \bgbox{magentaback}{magenta}) is used to filter the p$20$ stream into a p$40$ one, as in Figure~\ref{fig:blocker_glider_filter}.}
-			\label{fig:p20_glider_gun}
-		\end{subfigure}
-	\end{tabular}
+	\begin{subfigure}{0.41\textwidth}
+		\centering
+		\patternimglink{0.094}{p24_glider_gun}
+		\caption{A true-period~$24$ (and $48$) glider gun, based on the p$24$ oscillator from Figure~\ref{fig:p24_t_tetromino_hassler}. Superfountains\index{superfountain} (see Figure~\ref{fig:superfountain}) are highlighted in \bgbox{aquaback}{aqua} and a custom p$4$ sparker is highlighted in \bgbox{yellowback2}{yellow}. Rich's p$16$\index{Rich's p16} (highlighted in \bgbox{magentaback}{magenta}) is used to filter the p$24$ stream into a p$48$ one, as in Figure~\ref{fig:richs_p16_glider_filter}.}
+		\label{fig:p24_glider_gun}
+	\end{subfigure} \hfill \begin{subfigure}{0.56\textwidth}
+		\centering\vspace*{0.15cm}
+		\patternimglink{0.103}{p20_glider_gun}
+		\caption{A true-period~$20$ (and $40$) glider gun. Middleweight supervolcanoes\index{middleweight!supervolcano} (see Figure~\ref{fig:mw_supervolcano}) are highlighted in \bgbox{aquaback}{aqua} and other oscillators (the bottom of which is a fumarole and the top of which is a custom p$4$ domino and thumb sparker) are highlighted in \bgbox{yellowback2}{yellow}. A blocker (highlighted in \bgbox{magentaback}{magenta}) is used to filter the p$20$ stream into a p$40$ one, as in Figure~\ref{fig:blocker_glider_filter}.}
+		\label{fig:p20_glider_gun}
+	\end{subfigure}
 	\caption{True-period (a) $24$, $48$, (b) $20$, and $40$ glider guns. They were found by (a) Noam Elkies in 1997 (with subsequent improvements to decrease its size by Karel Suhajda) and (b) Matthias Merzenich in 2013 (also with improvements by Karel Suhajda).}\label{fig:p20_24_guns}
 \end{figure}
 
-By using the same T-tetromino collision, together with the p$20$ hassling reaction from Figure~\ref{fig:p20_t_tetromino_hassler}, we also get a true-period~$20$ glider gun for not too much extra effort. The biggest hurdle to overcome when constructing the p$20$ gun is the fact that there is so much going on in such a small space that it is difficult to generate the necessary sparks without the sparkers overlapping with each other. One configuration that works is displayed in Figure~\ref{fig:p20_glider_gun}. It is worth noting that this is the smallest-period true-period glider gun that is currently known. Furthermore, we can use a blocker to filter this p$20$ stream as FSince we can use Rich's p16 to double the period of period~$24$ glider streams as in Figure~\ref{fig:blocker_glider_filter} to quickly and easily turn this into a true-period~$40$ gun.
+The only known true-period~$28$ glider gun is also based on hassling a T-tetromino, but this one uses components that we have not yet seen: a massive p7 ultrafountain,\footnote{Just like a fountain or volcano releases its spark one row of dead cells away from the oscillator itself, and a superfountain or supervolcano releases its spark two rows of dead cells away, an \emph{ultra}fountain provides three rows of dead cells of clearance between their spark and the oscillator itself.}\index{ultrafountain} as well as an eater~1 another custom still life, which cause a single T-tetromino to release a glider. This gun is displayed in Figure~\ref{fig:p28_glider_gun}, and it can be turned into a true-period~$56$ gun by adding a filter to it (see Exercise~\ref{exer:p56_gun_smaller}).
 
-The period~$44$ pi-heptomino\index{pi-heptomino} hassler from Figure~\ref{fig:p44_pi_hassler} is similarly the basis of all known true-period~$44$, $50$, and~$59$ glider guns. For example, the true-period~$44$ glider gun works simply by replacing one of the blocks (which are used to suppress the debris from the pi-heptominoes) on the side of the oscillator with a custom conduit that converts that debris into a glider. This conduit consists of a block and two eater~1s,\footnote{The third eater~1 is not part of the conduit, but just replaces one of the other stabilizing blocks for spacing reasons.} and the resulting gun is displayed in Figure~\ref{fig:p44_glider_gun}.\footnote{The first true-period~$44$ glider gun was found by David Buckingham in 1992. He then found this smaller version in October 1996.}
+The period~$44$ pi-heptomino\index{pi-heptomino} hassler from Figure~\ref{fig:p44_pi_hassler} is similarly the basis of all known true-period~$44$, $50$, and~$59$ glider guns. For example, the true-period~$44$ glider gun works simply by replacing one of its blocks (which are used to suppress the debris from the pi-heptominoes) on the side of the oscillator with a custom conduit that converts that debris into a glider. This conduit consists of a block and two eater~1s,\footnote{The third eater~1 is not part of the conduit, but just replaces one of the other stabilizing blocks for spacing reasons.} and the resulting gun is displayed in Figure~\ref{fig:p44_glider_gun}.\footnote{The first true-period~$44$ glider gun was found by David Buckingham in 1992. He found this smaller version in 1996.}
 
 \begin{figure}[!htb]
 	\centering
-	\patternimglink{0.1}{p44_glider_gun}
-	\caption{A true-period~$44$ glider gun that works by funnelling some of the debris from the p$44$ pi-heptomino hassler (highlighted in \bgbox{yellowback2}{yellow}) through a custom conduit (highlighted in \bgbox{aquaback}{aqua}) so as to transform it into a glider.}\label{fig:p44_glider_gun}
+	\begin{minipage}{.55\textwidth}
+		\centering
+		\patternimglink{0.084}{p28_glider_gun}
+		\caption{A true-period~$28$ glider gun that works by using a p7 ultrafountain (highlighted in \bgbox{yellowback2}{yellow}) to hassle a T-tetromino so that it releases a glider via a custom conduit (highlighted in \bgbox{aquaback}{aqua}).}\label{fig:p28_glider_gun}
+	\end{minipage} \hfill %
+	\begin{minipage}{.42\textwidth}
+		\centering
+		\patternimglink{0.088}{p44_glider_gun}
+		\caption{A true-period~$44$ glider gun that works by funnelling some of the debris from the p$44$ pi-heptomino hassler (highlighted in \bgbox{yellowback2}{yellow}) through a custom conduit (highlighted in \bgbox{aquaback}{aqua}) so as to transform it into a glider.}\label{fig:p44_glider_gun}
+	\end{minipage}
 \end{figure}
 
-By swapping out the heavyweight emulators on the sides of this reaction for an arrangement of two blocks and blinker, its period increases to $50$~generations, but with the disadvantage that the blinker is pushed away by one cell when the debris hits it, so it needs to be pushed back if it is going to form part of a viable oscillator or gun. There are a number of sparks that can push the blinker back, perhaps the simplest of which comes from a collision of $3$ queen bees. The resulting glider gun is displayed in Figure~\ref{fig:p50_glider_gun}. However, there is one problem: this gun is pseudo-period, not true-period, since the queen bees oscillate at period~$30$ and thus the whole gun oscillates at period~$150$ (not period~$50$).
+By swapping out the heavyweight emulators on the sides of this reaction for an arrangement of two blocks and a blinker, its period increases to $50$~generations, but with the disadvantage that the blinker is pushed away by one cell when the debris hits it. That blinker needs to be pushed back to its original position if it is going to form part of a viable oscillator or gun. There are a number of sparks that can push the blinker back, perhaps the simplest of which comes from a collision of $3$ queen bees. The resulting glider gun is displayed in Figure~\ref{fig:p50_glider_gun}. However, there is one problem: this gun is pseudo-period, not true-period, since the queen bees oscillate at period~$30$ and thus the whole gun oscillates at period~$150$ (not period~$50$).
 
 \begin{figure}[!htb]
 	\centering
 	\patternimglink{0.1}{p50_glider_gun}
-	\caption{A pseudo-period~$50$ glider gun that works by using an alternate stabilization (highlighted in \bgbox{greenback}{green}), instead of the heavyweight emulators, to change the p$44$ pi-heptomino reaction (highlighted in \bgbox{yellowback2}{yellow}) to p$50$. The reaction pushes the blinker away by $1$ cell, so some queen bees (highlighted in \bgbox{magentaback}{magenta}) are used to push it back. As before, the conduit that transforms the pi-heptomino debris into a glider is highlighted in \bgbox{aquaback}{aqua}.}\label{fig:p50_glider_gun}
+	\caption{A pseudo-period~$50$ glider gun that works by using an alternate stabilization (highlighted in \bgbox{greenpastel}{green}) to change the p$44$ pi-heptomino reaction (highlighted in \bgbox{yellowback2}{yellow}) to p$50$. The reaction pushes the blinker away by $1$ cell, so some queen bees (highlighted in \bgbox{magentaback}{magenta}) are used to push it back.}\label{fig:p50_glider_gun}
 \end{figure}
+
+% NJ is here in the cleanup process
 
 To turn this gun into a true-period gone, we need a mechanism for pushing back the blinkers that oscillates at period~$50$ (or a divisor of $50$). One such mechanism is the p$50$ traffic jam\index{traffic jam} oscillator from Exercise~\ref{exer:traffic_jam}. Unfortunately, this mechanism is rather large and thus, to prevent the glider-generating conduit from colliding with the traffic jam oscillator, we have to use \emph{two} copies of the p$50$ pi-heptomino hassling reaction as well, so that rather than having the form
 
@@ -1335,6 +1338,17 @@ This collection of small glider guns is now being maintained by Chris Cain and D
 			\item Use the MWSS-to-HWSS reaction to turn your MWSS gun from part~(b) into a p18 HWSS gun (which is the smallest period possible for such a gun!).
 		\end{enumerate}
 	\end{problem}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:p56_gun_smaller} \probdiff{2}
+		Construct a true-period 56 gun that is smaller than the one from Figure~\ref{fig:p56_gun}.
+		
+		\noindent [Hint: Just add a filter to some other gun.]
+	\end{problem}
+	% SOLUTION: Filter the p28 gun with a blocker.
 	
 	
 	\mfilbreak
