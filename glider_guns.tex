@@ -344,33 +344,7 @@ Fortunately, we do not actually need to come up with new insertion mechanisms fo
 	\caption{Some ways of firing lightweight spaceships or gliders at LWSS and MWSS streams so as to ``upgrade'' them to MWSS and HWSS streams. These reactions are clean enough to work at the minimum possible periods (16 for the LWSS $\rightarrow$ MWSS conversion and 18 for the MWSS $\rightarrow$ HWSS conversion).}\label{fig:xwss_upgrade}
 \end{figure}
 
-Just like glider insertion can be used to create glider guns with small periods, LWSS insertion can be used to create xWSS guns with small periods. We leave the explicit construction of such guns to Exercise~\ref{exer:pseudo_xwss_gun_p18} though, as we have carried out this type of task several times already at this point. However, these techniques can only be used to create xWSS guns with period at least 18. Even though LWSS and MWSS streams can be packed to have periods as small as~14 and~16, respectively, no guns of those periods for those spaceships are currently known, since there is no known xWSS insertion reaction that is clean and tight enough.
-
-% NJ is here in clean-up.
-
-% MISC NOTES:
-% Direct H to MWSS as exercise in stable circuitry chapter:
-% http://conwaylife.com/forums/viewtopic.php?f=2&t=1599&p=23909#p23909 and posts right before it
-% Maybe backref as a footnote here?
-
-%%%%%%%%%%%%%%%%%%%%%%%
-%% MOVING GLIDER LOGIC
-% Dean Hickerson in 1992
-% Some components of this shown in one of hte last exercises in Spaceships chapter
-%%%%%%%%%%%%%%%%%%%%%%%
-%x = 179, y = 87, rule = B3/S23
-%8$9bo$10bo$5bo4bo$6b5o95b5o$105bo4bo$110bo52bo$109bo54bo$162b3o7$62b2o
-%$58b4ob2o$58b6o$59b4o78bo$142bo$137bo4bo$138b5o6$52b2o$50b2ob2o$50b4o$
-%51b2o$148b2o$40b6o98b4ob2o$39bo5bo98b6o$45bo99b4o$44bo$60b2o$57b3ob2o
-%12b6o$57b5o12bo5bo$58b3o19bo$79bo4$77b2o$73b4ob2o$73b6o$74b4o9$97bo$
-%98bo$69b2o21bo5bo$65b4ob2o21b6o$65b6o$66b4o9$105bo$106bo$100bo5bo$101b
-%6o!
-
-
-% FILTER: p6 pipsquirt (Stephen Silver 01 Apr 1998)
-
-% Gun possibilities based on G4 transceiver: http://conwaylife.com/forums/viewtopic.php?f=2&t=148&start=25
-
+Just like glider insertion can be used to create glider guns with small periods, LWSS insertion can be used to create xWSS guns with small periods. We leave the explicit construction of such guns to Exercise~\ref{exer:pseudo_xwss_gun_p18} though, as we have carried out this type of task several times already at this point (and we will do it again for glider guns in the next section). However, these techniques can only be used to create xWSS guns with period at least 18. Even though LWSS and MWSS streams can be packed to have periods as small as~14 and~16, respectively, no guns of those periods for those spaceships are currently known, since there is no known xWSS insertion reaction that is clean and tight enough.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -380,28 +354,28 @@ Just like glider insertion can be used to create glider guns with small periods,
 
 We have already seen a few methods of constructing glider guns of any suitably large period of our choosing---we can use Herschel tracks as described in Sections~\ref{sec:herschel_track} and~\ref{sec:conduits} to create guns of any period~$62$ or greater, the adjustable-period glider gun of Figure~\ref{fig:p80_adjustable_gun} to create guns of any period~$80$ or greater, and the period multipliers of Section~\ref{sec:large_glider_guns} to create guns with extraordinarily large periods. However, none of those methods can create a glider gun with very \emph{small} period, like~$14$.
 
-By making use of the glider insertion reaction of Figure~\ref{fig:lwss_squish}, we can now fill in this gap in our knowledge and construct glider guns of all periods~$14$ and greater---we just create a gun whose period is a suitably large multiple of the period that we actually want, and then repeatedly use multiple copies of this gun and the glider insertion reaction to fill in the gaps in its glider stream.\footnote{The first period~14 glider gun was built by Dietrich Leithner in November 1994 using these same ideas (and the same glider insertion reaction).} For example, to create a period~$14$ gun, we could use Herschel tracks to construct a gun of period~$14 \times 5 = 70$ to create a p$70$ glider stream, and then use multiple copies of that gun to do glider insertion $4$ times between each pair of gliders in that stream. However, the resulting p$14$ gun would be quite large---recall that creating a p$15$ gun required \emph{seven} p$30$ guns in Figure~\ref{fig:p15_gun}, and that was just to perform a single glider insertion.
+By making use of the glider insertion reaction of Figure~\ref{fig:lwss_squish}, we can now fill in this gap in our knowledge and construct glider guns of all periods~$14$ and greater---we just create a gun whose period is a suitably large multiple of the period that we actually want, and then repeatedly use multiple copies of this gun and the glider insertion reaction to fill in the gaps in its glider stream. For example, to create a period~$14$ gun, we could use Herschel tracks to construct a gun of period~$14 \times 5 = 70$ to create a p$70$ glider stream, and then use multiple copies of that gun to do glider insertion $4$ times between each pair of gliders in that stream.\footnote{The first period~14 glider gun was built by Dietrich Leithner in November 1994 using these same ideas (and the same glider insertion reaction).} However, the resulting p$14$ gun would be quite large---recall that creating a p$15$ gun required \emph{seven} p$30$ guns in Figure~\ref{fig:p15_gun}, and that was just to perform a single glider insertion.
 
-% NJ is here in the cleanup process
-
-In order to construct a somewhat smaller p$14$ glider gun using these same ideas, we instead use a period~$14 \times 6 = 84$ stream as our starting point, so that we can make use of the syringe in our circuitry (recall that its repeat time is $78$~generations). It is straightforward to construct a period~$84$ glider gun using the adjustable-period gun of Figure~\ref{fig:p80_adjustable_gun}, for example,\footnote{In fact, we already did this in Figure~\ref{fig:p84_lwss_gun_both}.} but if we are slightly more clever then we can actually build a gun that places \emph{two} of the six gliders that we need to bring a p$84$ stream down to p$14$. In particular, if we use one of the Herschel-to-multiple-glider edge shooters of Figure~\ref{fig:herschel_to_glider_edge}, we can then reflect one of its other output gliders so as to be on the same output lane as the glider that was shot from the edge of the conduit. Figure~\ref{fig:p14_pieces}(a) illustrates one way of using this idea with the NE30T3 conduit to construct a p$84$ gun that emits $2$ out of every $3$ gliders in a p$28$ stream.\footnote{By rearranging the reflectors in this gun slightly, its period can be adjusted relatively straightforwardly---see Exercise~\ref{exer:p28_adjust_29}.}
+In order to construct a somewhat smaller p$14$ glider gun using these same ideas, we instead use a period~$14 \times 6 = 84$ stream as our starting point, so that we can make use of the syringe in our circuitry (recall that its repeat time is $78$~generations). It is straightforward to construct a period~$84$ glider gun using the adjustable-period gun of Figure~\ref{fig:p80_adjustable_gun}, for example,\footnote{In fact, we already did this in Figure~\ref{fig:p84_lwss_gun_both}.} but if we are slightly more clever then we can actually build a gun that places \emph{two} of the six gliders that we need to bring a p$84$ stream down to p$14$. In particular, if we use the NE30T3\index{NE30T3} H-to-2G edge-shooting conduit from Figure~\ref{fig:herschel_to_glider_edge_4}, we can reflect one of its output gliders so as to be on the same lane as the other one. Figure~\ref{fig:p14_pieces_p84} illustrates how to use this technique to construct a p$84$ gun that emits $2$ out of every $3$ gliders in a p$28$ stream (or equivalently, $2$ out of every $6$ gliders in a p$14$ stream).\footnote{By rearranging the reflectors in this gun slightly, its period can be adjusted relatively straightforwardly---see Exercise~\ref{exer:p28_adjust_29}.}
 
 \begin{figure}[!htb]
 	\centering
-	\patternimglink{0.134}{p14_pieces_p84}
-	\caption{A p$84$ gun that emits $2$ out of $3$ gliders in a p$28$ stream. The central Herschel is fed through NE30T3 (highlighted in \bgbox{greenpastel}{green}) so as to create two output gliders, one of which is reflected (via standard reflectors like bumpers, bouncers, and Snarks, highlighted in \bgbox{yellowback2}{yellow}) into the same lane as the other one. The first natural glider of the central Herschel is similarly reflected and then injected into a syringe (highlighted in \bgbox{aquaback}{aqua}) so as to recreate itself (just as in the gun from Figure~\ref{fig:p84_lwss_gun_both}(b)).}
+	\patternimglink{0.09}{p14_pieces_p84}
+	\caption{A p$84$ gun that emits $2$ out of $3$ gliders in a p$28$ stream. The central Herschel is fed through NE30T3 (highlighted in \bgbox{greenpastel}{green}) so as to create two output gliders, one of which is reflected (via standard reflectors like bumpers, bouncers, and Snarks, highlighted in \bgbox{yellowback2}{yellow}) into the same lane as the other one. The first natural glider of the central Herschel is similarly reflected and then injected into a syringe (highlighted in \bgbox{aquaback}{aqua}) so as to recreate itself (just as in the gun from Figure~\ref{fig:p84_lwss_gun}).}
 	\label{fig:p14_pieces_p84}
 \end{figure}
 
-By making use of these reactions, we can create the period~$14$ glider gun displayed in Figure~\ref{fig:p14_gun}. Despite its large size, it is only about 50\% larger than the smallest p$14$ gun that is currently known.\footnote{When measured according to bounding box area. When measuring according to population, the gun from Figure~\ref{fig:p14_gun} is roughly tied for smallest known.} Furthermore, that smallest known p$14$ gun makes use of all the same mechanisms, just packed together somewhat more cleverly.
+By making use of these reactions, we can create the period~$14$ glider gun displayed in Figure~\ref{fig:p14_gun}. Despite its large size, it is only about 50\% larger than the smallest p$14$ gun that is currently known.\footnote{When measured according to bounding box area. When measuring according to population, the gun from Figure~\ref{fig:p14_gun} is roughly tied with the smallest known.} Furthermore, that smallest known p$14$ gun makes use of all the same mechanisms that we used here, just packed together somewhat more cleverly.
 
-\begin{figure}[!p]
+\begin{figure}[!htbp]
 	\centering
 	\patternimglink{0.1025}{p14_gun}
-	\caption{A period~$14$ glider gun that uses the p$84$ two-glider gun from Figure~\ref{fig:p14_pieces_p84} (highlighted in \bgbox{magentaback}{magenta}), as well as four copies of a p$84$ glider insertion mechanism (highlighted in \bgbox{aquaback}{aqua}, \bgbox{greenpastel}{green}, \bgbox{yellowback2}{yellow}, and \bgbox{orangeback2}{orange}) to reduce the period of the stream down to~$84/6 = 14$. The glider insertion mechanisms works via the reaction from Figure~\ref{fig:lwss_squish}(d), which is fed by the p$84$ LWSS gun of Figure~\ref{fig:p84_lwss_gun_both}(b) and a Herschel that is generated by another copy of the same p$84$ Herschel loop.}\label{fig:p14_gun}
+	\caption{A period~$14$ glider gun that uses the p$84$ two-glider gun from Figure~\ref{fig:p14_pieces_p84} (highlighted in \bgbox{magentaback}{magenta}), as well as four copies of a p$84$ glider insertion mechanism (highlighted in \bgbox{aquaback}{aqua}, \bgbox{greenpastel}{green}, \bgbox{yellowback2}{yellow}, and \bgbox{orangeback2}{orange}) to reduce the period of the stream down to~$84/6 = 14$. The glider insertion mechanisms works via the reaction from Figure~\ref{fig:lwss_squish_herschel}, which is fed by the p$84$ LWSS gun of Figure~\ref{fig:p84_lwss_gun} and a Herschel that is generated by another copy of the same p$84$ Herschel loop.}\label{fig:p14_gun}
 \end{figure}
 
 
+
+% NJ is here in the cleanup process
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%   SUBSECTION: TRUE PERIOD GUNS
@@ -1316,6 +1290,21 @@ This collection of small glider guns is now being maintained by Chris Cain and D
 	\begin{problemstar}\label{exer:p4_glider_filter} \probdiff{2}
 		We saw in Figure~\ref{fig:lwss_filter_tnosed_p4} that a filter can be used to double the period of any stream of lightweight spaceships with period $4n+2$ ($n \geq 3$). Explain why there cannot exist a filter capable of doubling the period of every stream of \emph{gliders} with period $4n+2$ ($n \geq 3$).
 	\end{problemstar}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:p6_lwss_filter} \probdiff{2}
+		Find an oscillator that can be used to double the period of any LWSS stream with period $6n+3$ ($n \geq 2$).
+	\end{problem}
+%	SOLUTION: p6 pipsquirter
+%	x = 75, y = 20, rule = B3/S23
+%	15bo2bo5b2o19bo2bo5b2o$b4o5b2o7bo3b4o4b4o5b2o7bo3b4o4b4o$o3bo3b2ob2o2b
+%	o3bo3b2ob2o2bo3bo3b2ob2o2bo3bo3b2ob2o2bo3bo$4bo3b4o4b4o5b2o7bo3b4o4b4o
+%	5b2o7bo$o2bo5b2o19bo2bo5b2o19bo2bo2$65bo$65bo2$63bo3bo$61b3obob3o$60bo
+%	3b2o4bo$60bob2o2b2obobo$61bo2b2o2b2obo$62b2o2b2obobob2o$64bo2bobobob2o
+%	$64b4ob2o$68bo$66bobo$66b2o!
 
 
 	\mfilbreak
