@@ -738,7 +738,7 @@ This same technique can be used to construct a period~$58$ true-period glider gu
 	\caption{A period~$58$ oscillator that works by placing $98$ Herschels on a track made up of $4$ L112 conduits (highlighted in \bgbox{aquaback}{aqua}) and $68$ Fx77 conduits (highlighted in \bgbox{yellowback2}{yellow}).}\label{fig:p58_herschel_track}
 \end{figure}
 
-The second issue that is somewhat messier to deal with in this period~$58$ case is that the method we used to reflect a glider (and thus separate the two closely-spaced streams) in Figure~\ref{fig:p61_gun} does not work at period~$58$. We thus must use a different method of separating those two streams, and one method that works is to use a rephaser\index{rephaser} as in Exercise~\ref{exer:rephaser}. In particular, using two rephasers puts enough space between those streams that we can fit a Snark in between them, and from there we can inject one of those gliders back into the Herschel track just like we did in the p$61$ gun. The resulting true-period~$58$ gun is displayed in Figure~\ref{fig:p58_gun},\footnote{This gun was found by Matthias Merzenich and ConwayLife.com forum user ``thunk'', just one day after the p$61$ gun.} and it completes our collection of known periods that are attainable via true-period guns.
+The second issue that is somewhat messier to deal with in this period~$58$ case is that the method we used to reflect a glider (and thus separate the two closely-spaced streams) in Figure~\ref{fig:p61_gun} does not work at period~$58$. We thus must use a different method of separating those two streams, and one method that works is to use a rephaser\index{rephaser} as in Exercise~\ref{exer:rephaser}. In particular, using two rephasers puts enough space between those streams that we can fit a Snark in between them, and from there we can inject one of those gliders back into the Herschel track just like we did in the p$61$ gun. The resulting true-period~$58$ gun is displayed in Figure~\ref{fig:p58_gun},\footnote{This gun was built by Matthias Merzenich and ConwayLife.com forum user ``thunk'', just one day after the p$61$ gun.} and it completes our collection of known periods that are attainable via true-period guns.
 
 \begin{figure}[!htb]
 	\centering
@@ -748,107 +748,97 @@ The second issue that is somewhat messier to deal with in this period~$58$ case 
 
 
 
-% NJ is here in the cleanup process
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%   SUBSECTION: SLIDE GUNS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Slide Guns}\label{sec:slide_guns}
 
-Now that we know how to construct glider streams with essentially any spacing of our choosing, we switch focus a bit and ask how we can reposition those gliders so that a single gun (or group of guns) can create gliders traveling on a wide variety of different lanes. The simplest way to accomplish this task is to use an \emph{elbow}\index{elbow}, which is a small and simple still life (typically a block) or constellation (like a honey farm)\index{honey!farm} that can be moved to any point in the Life plane by gliders, and which can also turn gliders.
+Now that we know how to construct glider streams with essentially any spacing of our choosing on a single lane, we switch focus a bit and ask how we can reposition those gliders so that a single gun (or group of guns) can create gliders traveling on a wide variety of different lanes. The simplest way to accomplish this task is to use an \emph{elbow}\index{elbow}, which is a small and simple still life (typically a block) or constellation (like a honey farm)\index{honey!farm} that can be moved to any point in the Life plane by gliders, and which can also turn gliders.
 
 We already saw several different ways of using gliders to move a block around the Life plane when we investigated slow-salvo synthesis back in Section~\ref{sec:slow_salvo_blocks}. However, those recipes can be made slightly more efficient if we do not require them to be slow---that is, if we allow subsequent gliders to collide with the block before the reaction from the previous gliders settles down. For example, we can push a block diagonally away by $1$~cell via just $3$~synchronized gliders, whereas we required $6$~gliders in a slow salvo to achieve the same result back in Figure~\ref{fig:block_move_6_gliders}. Some reasonably simple block-moving recipes of this type are displayed in Figure~\ref{fig:synchronized_block_movers}.
 
 \begin{figure}[!htb]
 	\centering
-	\begin{tabular}{@{}ccc@{}}
-		\begin{subfigure}{0.28\textwidth}
-			\centering
-			\embedlink{synchronized_block_movers}{\vcenteredhbox{\patternimg{0.15}{synchronized_block_mover_1_0}} \vcenteredhbox{\genarrow{8}} \vcenteredhbox{\patternimg{0.15}{synchronized_block_mover_1_1}}}
-			\caption{left~$1$, up~$2$}
-			\label{fig:synchronized_block_mover_1}
-		\end{subfigure} & \begin{subfigure}{.32\textwidth}
-			\centering
-			\patternlink{synchronized_block_movers}{\vcenteredhbox{\patternimg{0.09}{synchronized_block_mover_4_0}} \vcenteredhbox{\genarrow{26}} \vcenteredhbox{\patternimg{0.09}{synchronized_block_mover_4_1}}}
-			\caption{left~$1$, up~$1$}
-			\label{fig:synchronized_block_mover_4}
-		\end{subfigure} & \begin{subfigure}{.32\textwidth}
-			\centering
-			\patternlink{synchronized_block_movers}{\vcenteredhbox{\patternimg{0.09}{synchronized_block_mover_5_0}} \vcenteredhbox{\genarrow{32}} \vcenteredhbox{\patternimg{0.09}{synchronized_block_mover_5_1}}}
-			\caption{right~$1$, down~$1$}
-			\label{fig:synchronized_block_mover_5}
-		\end{subfigure}
-	\end{tabular}
-	\caption{Some reactions that use gliders to move a block around the Life plane. By combining these reactions with each other, the block can be moved to any location. The reaction~(a) is the same as the one from Figure~\ref{fig:block_move_1_glider}, while (b) was found by Dean Hickerson no later than March 1990 and (c) was found by Paul Chapman in 2004. Notice that (c) is exactly the same as (b) except with an additional input glider that changes the direction in which the block is moved.}\label{fig:synchronized_block_movers}
+	\begin{subfigure}{0.3\textwidth}
+		\centering
+		\embedlink{synchronized_block_movers}{\vcenteredhbox{\patternimg{0.17861538461}{synchronized_block_mover_1_0}} \vcenteredhbox{\genarrow{8}} \vcenteredhbox{\patternimg{0.17861538461}{synchronized_block_mover_1_1}}}
+		\caption{left~$1$, up~$2$}
+		\label{fig:synchronized_block_mover_1}
+	\end{subfigure} \hfill \begin{subfigure}{.325\textwidth}
+		\centering
+		\patternlink{synchronized_block_movers}{\vcenteredhbox{\patternimg{0.09}{synchronized_block_mover_4_0}} \vcenteredhbox{\genarrow{26}} \vcenteredhbox{\patternimg{0.09}{synchronized_block_mover_4_1}}}			\caption{left~$1$, up~$1$}
+		\label{fig:synchronized_block_mover_4}
+	\end{subfigure} \hfill \begin{subfigure}{.325\textwidth}
+		\centering
+		\patternlink{synchronized_block_movers}{\vcenteredhbox{\patternimg{0.09}{synchronized_block_mover_5_0}} \vcenteredhbox{\genarrow{32}} \vcenteredhbox{\patternimg{0.09}{synchronized_block_mover_5_1}}}
+		\caption{right~$1$, down~$1$}
+		\label{fig:synchronized_block_mover_5}
+	\end{subfigure}
+	\caption{Some reactions that use gliders to move a block around the Life plane. By combining these reactions with each other, the block can be moved to any location. The reaction~(a) is the (2,1) block pull\index{(2,1) block pull} from Figure~\ref{fig:glider_block_move}, while (b) was found by Dean Hickerson no later than March 1990 and (c) was found by Paul Chapman in 2004. Notice that (c) is exactly the same as (b) except with an additional input glider that changes the direction in which the block is moved.}\label{fig:synchronized_block_movers}
 \end{figure}
 
-% TODO: Was (c) really found so late? Didn't Hickerson use it around the same time as he used (b)?
-
-There are similarly numerous ways of colliding gliders with blocks so as to create a glider traveling perpendicularly to the input gliders, without destroying (but potentially moving) the block. A brief selection of glider-reflecting reactions of this type are displayed in Figure~\ref{fig:synchronized_block_reflectors}. It is worth comparing these reactions with the one-time turners that we saw in Section~\ref{sec:slow_salvo_turners}---the key difference here is that the block is not destroyed during the reflection. In fact, that reactions in parts~(e) and~(f) of Figure~\ref{fig:synchronized_block_reflectors} explicitly make use of one-time turners: a the first three gliders move the block and create a boat which is used as a one-time turner (and thus destroyed).\footnote{We first saw that a boat can be used as a one-time turner in Exercise~\ref{exer:boat_one_time_turner}.}
-
-% Compure these (footnote?) to block-pushing, tandeom-glider-returning reaction from Ch 7 historical remarks
+There are also numerous ways of colliding gliders with blocks so as to create a glider travelling perpendicular to the input gliders, without destroying (but potentially moving) the block. A brief selection of glider-reflecting reactions of this type are displayed in Figure~\ref{fig:synchronized_block_reflectors}. It is worth comparing these reactions with the one-time turners that we saw in Section~\ref{sec:slow_salvo_turners}---the key difference here is that the block is not destroyed during the reflection. In fact, that reactions in parts~(e) and~(f) of Figure~\ref{fig:synchronized_block_reflectors} explicitly make use of one-time turners: a the first three gliders move the block and create a boat which is used as a one-time turner (and thus destroyed).\footnote{We first saw that a boat can be used as a one-time turner in Exercise~\ref{exer:boat_one_time_turner}.}
 
 \begin{figure}[!htb]
 	\centering
-	\begin{tabular}{@{}ccc@{}}
-		\begin{subfigure}{0.31\textwidth}
-			\centering
-			\embedlink{synchronized_block_reflectors}{\vcenteredhbox{\patternimg{0.09}{synchronized_block_reflector_1_0}} \vcenteredhbox{\genarrow{36}} \vcenteredhbox{\patternimg{0.09}{synchronized_block_reflector_1_1}}}
-			\caption{right~$3$, down~$4$}
-			\label{fig:synchronized_block_reflector_1}
-		\end{subfigure} & \begin{subfigure}{0.32\textwidth}
-			\centering
-			\patternlink{synchronized_block_reflectors}{\vcenteredhbox{\patternimg{0.09}{synchronized_block_reflector_3_0}} \vcenteredhbox{\genarrow{28}} \vcenteredhbox{\patternimg{0.09}{synchronized_block_reflector_3_1}}}
-			\caption{left~$5$, down~$8$}
-			\label{fig:synchronized_block_reflector_3}
-		\end{subfigure} & \begin{subfigure}{0.31\textwidth}
-			\centering
-			\patternlink{synchronized_block_reflectors}{\vcenteredhbox{\patternimg{0.1}{synchronized_block_reflector_2_0}} \vcenteredhbox{\genarrow{16}} \vcenteredhbox{\patternimg{0.1}{synchronized_block_reflector_2_1}}}
-			\caption{left~$5$, up~$5$}
-			\label{fig:synchronized_block_reflector_2}
-		\end{subfigure} \\[1.5cm] \begin{subfigure}{0.31\textwidth}
-			\centering
-			\patternlink{synchronized_block_reflectors}{\vcenteredhbox{\patternimg{0.073}{synchronized_block_reflector_4_0}} \vcenteredhbox{\genarrow{40}} \vcenteredhbox{\patternimg{0.073}{synchronized_block_reflector_4_1}}}
-			\caption{right~$1$, down~$1$}
-			\label{fig:synchronized_block_reflector_4}
-		\end{subfigure} & \begin{subfigure}{0.33\textwidth}
-			\centering
-			\patternlink{synchronized_block_reflectors}{\vcenteredhbox{\patternimg{0.07}{synchronized_block_reflector_5_0}} \vcenteredhbox{\genarrow{50}} \vcenteredhbox{\patternimg{0.07}{synchronized_block_reflector_5_1}}}
-			\caption{left~$1$, up~$1$}
-			\label{fig:synchronized_block_reflector_5}
-		\end{subfigure} & \begin{subfigure}{0.31\textwidth}
-			\centering
-			\patternlink{synchronized_block_reflectors}{\vcenteredhbox{\patternimg{0.075}{synchronized_block_reflector_6_0}} \vcenteredhbox{\genarrow{43}} \vcenteredhbox{\patternimg{0.075}{synchronized_block_reflector_6_1}}}
-			\caption{left~$1$, up~$1$}
-			\label{fig:synchronized_block_reflector_6}
-		\end{subfigure}
-	\end{tabular}
-	\caption{Some ways of colliding gliders coming from one direction with a block so as to produce a glider traveling perpendicularly. The block is not destroyed, but it may be moved---it can then be moved back, if desired, by the reactions shown in Figure~\ref{fig:synchronized_block_movers}. Reactions (e) and (f) were found by Paul Chapman in 2004 and make use of the same first two gliders as the block mover from Figure~\ref{fig:synchronized_block_mover_4}. Their final glider can be delayed by any amount, and the output gliders of these two reactions have opposite colors.}\label{fig:synchronized_block_reflectors}
+	\begin{subfigure}{0.29\textwidth}
+		\centering
+		\embedlink{synchronized_block_reflectors}{\vcenteredhbox{\patternimg{0.07932298134}{synchronized_block_reflector_1_0}} \vcenteredhbox{\genarrow{36}} \vcenteredhbox{\patternimg{0.07932298134}{synchronized_block_reflector_1_1}}}
+		\caption{right~$3$, down~$4$}
+		\label{fig:synchronized_block_reflector_1}
+	\end{subfigure} \hfill \begin{subfigure}{0.35\textwidth}
+		\centering
+		\patternlink{synchronized_block_reflectors}{\vcenteredhbox{\patternimg{0.099}{synchronized_block_reflector_3_0}} \vcenteredhbox{\genarrow{28}} \vcenteredhbox{\patternimg{0.099}{synchronized_block_reflector_3_1}}}
+		\caption{left~$5$, down~$8$}
+		\label{fig:synchronized_block_reflector_3}
+	\end{subfigure} \hfill \begin{subfigure}{0.32\textwidth}
+		\centering
+		\patternlink{synchronized_block_reflectors}{\vcenteredhbox{\patternimg{0.11301769911}{synchronized_block_reflector_2_0}} \vcenteredhbox{\genarrow{16}} \vcenteredhbox{\patternimg{0.11301769911}{synchronized_block_reflector_2_1}}}
+		\caption{left~$5$, up~$5$}
+		\label{fig:synchronized_block_reflector_2}
+	\end{subfigure} \\[0.4cm] \begin{subfigure}{0.29\textwidth}
+		\centering
+		\patternlink{synchronized_block_reflectors}{\vcenteredhbox{\patternimg{0.065}{synchronized_block_reflector_4_0}} \vcenteredhbox{\genarrow{40}} \vcenteredhbox{\patternimg{0.065}{synchronized_block_reflector_4_1}}}
+		\caption{right~$1$, down~$1$}
+		\label{fig:synchronized_block_reflector_4}
+	\end{subfigure} \hfill \begin{subfigure}{0.35\textwidth}
+		\centering
+		\patternlink{synchronized_block_reflectors}{\vcenteredhbox{\patternimg{0.065}{synchronized_block_reflector_5_0}} \vcenteredhbox{\genarrow{50}} \vcenteredhbox{\patternimg{0.065}{synchronized_block_reflector_5_1}}}
+		\caption{left~$1$, up~$1$}
+		\label{fig:synchronized_block_reflector_5}
+	\end{subfigure} \hfill \begin{subfigure}{0.32\textwidth}
+		\centering
+		\patternlink{synchronized_block_reflectors}{\vcenteredhbox{\patternimg{0.0773076923}{synchronized_block_reflector_6_0}} \vcenteredhbox{\genarrow{43}} \vcenteredhbox{\patternimg{0.0773076923}{synchronized_block_reflector_6_1}}}
+		\caption{left~$1$, up~$1$}
+		\label{fig:synchronized_block_reflector_6}
+	\end{subfigure}
+	\caption{Some ways of colliding gliders coming from one direction with a block so as to produce a glider traveling perpendicularly. The block is not destroyed, but it may be moved---it can then be moved back, if desired, by the reactions shown in Figure~\ref{fig:synchronized_block_movers}. Reactions (e) and (f) were found by Paul Chapman in 2004 and make use of the same first two gliders as the block mover from Figure~\ref{fig:synchronized_block_mover_4}. Their final input glider can be delayed by any amount, and their output gliders have opposite colors.}\label{fig:synchronized_block_reflectors}
 \end{figure}
 
-Reflection reactions of this type are particularly useful as they let us use guns along just a finite number of lanes to create gliders traveling along any lane of our choosing, without the need for permanent fixtures like Snarks or glider guns in the locations of those lanes. For example, if we use one glider to shift a block as in Figure~\ref{fig:synchronized_block_mover_1} and then two more gliders to shift a block and reflect a glider as in Figure~\ref{fig:synchronized_block_reflector_1}, then the result is that the block is moved a total of $3-1=2$~cells right and $4-2=2$~cells down (i.e., perfectly diagonally) and a single glider is output in a perpendicular direction. By repeating this reaction (by producing those $3$ input gliders via glider guns, for example), every perpendicular glider is released $4$ lanes farther away than the one that came before it. We call the resulting gun a \emph{slide gun}\index{slide gun}, and one example is displayed in Figure~\ref{fig:slide_gun}.\footnote{The first slide gun was constructed by Dietrich Leithner in July 1994. It made use of the reaction from Figure~\ref{fig:synchronized_block_reflector_4} (see Exercise~\ref{exer:2_lane_slide_gun}).}
+Reflection reactions of this type are particularly useful as they let us use guns along just a finite number of lanes to create gliders traveling along any lane of our choosing, without the need for permanent fixtures like Snarks or glider guns in the locations of those output lanes. For example, if we use one glider to shift a block as in Figure~\ref{fig:synchronized_block_mover_1} and then two more gliders to reflect a glider (while moving the block) as in Figure~\ref{fig:synchronized_block_reflector_1}, then the result is that the block is moved a total of $3-1=2$~cells right and $4-2=2$~cells down (i.e., perfectly diagonally) and a single glider is output in a perpendicular direction. By repeating this reaction (by producing those $3$ input gliders via glider guns, for example), every perpendicular glider is released $4$ lanes farther away than the one that came before it. We call the resulting gun a \emph{slide gun}\index{slide gun}, and one example is displayed in Figure~\ref{fig:slide_gun}.\footnote{The first slide gun was constructed by Dietrich Leithner in July 1994. It only used the reaction from Figure~\ref{fig:synchronized_block_reflector_4} instead.}
 
 \begin{figure}[!htb]
 	\centering
-	\patternimglink{0.11}{slide_gun}
-	\caption{The glider highlighted in \bgbox{aquaback}{aqua} moves the southeastern block and then the two gliders highlighted in \bgbox{magentaback}{magenta} and \bgbox{greenpastel}{green} move it and create a perpendicular glider. The total resulting movement of the block is $2$~cells southeast, so this \emph{slide gun} fires gliders on infinitely many different lanes (highlighted in \bgbox{orangeback2}{orange}). The three constituent p$120$ glider guns each consist of the p$60$ gun from Figure~\ref{fig:p60_gun} together with a blocker to filter its output (and some buckaroos to reposition their glider streams).}\label{fig:slide_gun}\index{buckaroo}
+	\patternimglink{0.125}{slide_gun}
+	\caption{The glider highlighted in \bgbox{aquaback}{aqua} moves the southeastern block and then the gliders highlighted in \bgbox{magentaback}{magenta} and \bgbox{greenpastel}{green} create a perpendicular glider (while again moving the block). The total resulting movement of the block is $2$~cells southeast, so this \emph{slide gun} fires gliders on infinitely many different lanes (highlighted in \bgbox{orangeback2}{orange}). The three constituent p$120$ glider guns each consist of the p$60$ gun from Figure~\ref{fig:p60_gun} together with a blocker to filter its output (and some buckaroos to reposition their glider streams).}\label{fig:slide_gun}\index{buckaroo}
 \end{figure}
 
-Numerous other slide guns and variants of slide guns can also be created by combining these block-moving and glider-reflecting reactions in various ways. For example, the reaction from Figure~\ref{fig:synchronized_block_reflector_4} can be used to create a slide gun that has gliders separated by $2$ lanes instead of $4$ (see Exercise~\ref{exer:2_lane_slide_gun}), and we could even create a ``slide gun'' that doesn't slide at all by choosing a block-moving combination of gliders that returns the block to its initial position after reflecting a glider. One possible way to achieve this effect is to use a total of $7$~gliders: the reflection from Figure~\ref{fig:synchronized_block_reflector_1} followed by the move of Figure~\ref{fig:synchronized_block_mover_1} and then the move of Figure~\ref{fig:synchronized_block_mover_4} twice (see Exercise~\ref{exer:slide_gun_no_slide}).
+Numerous other slide guns and variants of slide guns can also be created by combining these block-moving and glider-reflecting reactions in various ways. For example, the reaction from Figure~\ref{fig:synchronized_block_reflector_4} can be used to create a slide gun that has gliders separated by $2$ lanes instead of $4$ (see Exercise~\ref{exer:2_lane_slide_gun}). We could similarly create a ``slide gun'' that doesn't slide at all by choosing a block-moving combination of gliders that returns the block to its initial position after reflecting a glider. One possible way to achieve this effect is to use a total of $7$~gliders: the reflection from Figure~\ref{fig:synchronized_block_reflector_1} followed by the move of Figure~\ref{fig:synchronized_block_mover_1} and then the move of Figure~\ref{fig:synchronized_block_mover_4} twice (see Exercise~\ref{exer:slide_gun_no_slide}).
 
-We can even perform different block-reflecting operations like this in sequence. For example, we could create a slide gun that fires \emph{two} gliders on each of its output lanes by using a $10$-glider recipe: $7$~gliders to create a perpendicular glider without moving the block, and then $3$~more gliders to create another perpendicular glider while moving the block down and to the right. The resulting ``double'' slide gun is displayed in Figure~\ref{fig:double_slide_gun}---it is made up of $10$~glider guns (instead of just $3$ like the regular slide gun from Figure~\ref{fig:slide_gun}), and due to the tight arrangement of $10$ gliders that it must fire, it makes heavy use of the glider-insertion technique that we saw back in Figure~\ref{fig:lwss_reflect_glider}.
+We can even perform different block-reflecting operations like this in sequence. For example, we could create a slide gun that fires \emph{two} gliders on each of its output lanes by using a $10$-glider recipe: $7$~gliders to create a perpendicular glider without moving the block, and then $3$~more gliders to create another perpendicular glider while moving the block. The resulting ``double'' slide gun is displayed in Figure~\ref{fig:double_slide_gun}---it is made up of $10$~glider guns (instead of just $3$ like the regular slide gun from Figure~\ref{fig:slide_gun}), and due to the tight arrangement of $10$ gliders that it must fire, it makes heavy use of the glider-insertion technique that we saw back in Figure~\ref{fig:lwss_reflect_glider}.
 
 \begin{figure}[!htb]
 	\centering
-	\patternimglink{0.107}{double_slide_gun}
+	\patternimglink{0.108}{double_slide_gun}
 	\caption{A slide gun that fires two gliders on each of its output lanes. The numerous p$240$ guns that make up this slide gun are each the same as the p$120$ guns from Figure~\ref{fig:slide_gun}, but with Rich's p$16$ attached to filter the output. The $10$ gliders used in the block-pushing recipe consist of two copies of the single-glider block mover from Figure~\ref{fig:synchronized_block_mover_1} (highlighted in \bgbox{aquaback}{aqua}), two copies of the two-glider block mover from Figure~\ref{fig:synchronized_block_mover_4} (highlighted in \bgbox{greenpastel}{green}), and two copies of the two-glider reflector from Figure~\ref{fig:synchronized_block_mover_1} (highlighted in \bgbox{magentaback}{magenta}).}\label{fig:double_slide_gun}
 \end{figure}
 
-Theoretically, this method could be used to create any sequence of gliders appearing on any sequence of lanes of our choosing, though the details become increasingly cumbersome as the desired pattern of output gliders increases in complexity. We will return to this topic in Chapter~\ref{chp:universal_construction}, where we show how to use these ideas to build a pattern that can create copies of any pattern that can be synthesized by gliders (including itself).
-
-% Earlier: give note that periodic reflectors like buckaroo are preferable over Snarks in some situations since they reflect at their edge (if this is not already mentioned)
+Theoretically, this method could be used to create any sequence of gliders appearing on any sequence of lanes of our choosing, though the details become increasingly cumbersome as the desired pattern of output gliders increases in complexity. We will return to this topic in Chapter~\ref{chp:universal_construction}, where we discuss how to use these ideas to build a pattern that can create copies of any pattern that can be synthesized by gliders (including itself).
 
 
+% NJ is here in the cleanup process
+
+% TODO: Rename to "armless guns"? motivate as previous section elbow gives one method of firing on multiple lanes, but there are methods without an elbow too
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%   SUBSECTION: ARMLESS CONSTRUCTION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
