@@ -525,9 +525,7 @@ By swapping out the heavyweight emulators on the sides of this reaction for an a
 	\caption{A pseudo-period~$50$ glider gun that works by using an alternate stabilization (highlighted in \bgbox{greenpastel}{green}) to change the p$44$ pi-heptomino reaction (highlighted in \bgbox{yellowback2}{yellow}) to p$50$. The reaction pushes the blinker away by $1$ cell, so some queen bees (highlighted in \bgbox{magentaback}{magenta}) are used to push it back.}\label{fig:p50_glider_gun}
 \end{figure}
 
-% NJ is here in the cleanup process
-
-To turn this gun into a true-period gone, we need a mechanism for pushing back the blinkers that oscillates at period~$50$ (or a divisor of $50$). One such mechanism is the p$50$ traffic jam\index{traffic jam} oscillator from Exercise~\ref{exer:traffic_jam}. Unfortunately, this mechanism is rather large and thus, to prevent the glider-generating conduit from colliding with the traffic jam oscillator, we have to use \emph{two} copies of the p$50$ pi-heptomino hassling reaction as well, so that rather than having the form
+To turn this gun into a true-period one, we need a mechanism for pushing back the blinkers that oscillates at period~$50$ (or a divisor of $50$). One such mechanism is the p$50$ traffic jam\index{traffic jam} oscillator from Exercise~\ref{exer:traffic_jam}. Unfortunately, this mechanism is rather large and thus, to prevent the glider-generating conduit from colliding with the traffic jam oscillator, we have to use \emph{two} copies of the p$50$ pi-heptomino hassling reaction as well, so that rather than having the form
 
 \begin{center}
 	queen bees -- blinker -- pi-heptominoes -- blinker -- queen bees,
@@ -543,18 +541,19 @@ To turn this gun into a true-period gone, we need a mechanism for pushing back t
 
 \begin{figure}[!htb]
 	\centering
-	\patternimglink{0.089}{true_p50_glider_gun}
+	\patternimglink{0.0918}{true_p50_glider_gun}
 	\caption{A true-period~$50$ glider gun that works just like the pseudo-period~$50$ gun, but uses the traffic jam oscillator (highlighted in \bgbox{magentaback}{magenta}) and some middleweight volcanoes (highlighted in \bgbox{orangeback2}{orange}) to stabilize the ends instead of queen bees. To prevent the conduit (highlighted in \bgbox{aquaback}{aqua}) from colliding with the middleweight volcanoes, we have to use two copies of the pi-heptomino reaction (highlighted in \bgbox{yellowback2}{yellow}) rather than just one. As before, a special configuration of blocks and blinkers is used between the different p$50$ components, and is highlighted in \bgbox{greenpastel}{green}.}\label{fig:true_p50_glider_gun}
 \end{figure}
 
 Finally, this pi-heptomino hassling reaction can also be extended to period~$59$ by carefully hitting it with gliders. In particular, the reaction displayed in Figure~\ref{fig:p59_glider_reaction} features two copies of the pi-heptomino reaction and converts  $5$ input gliders into $6$ output gliders every $59$ generations (two of the output gliders are created via the same conduit as in the period~$44$ and~$50$ guns, and the other four gliders are produced at the center where the two copies of the pi-heptomino reaction meet each other).\footnote{This reaction was found by Jason Summers in December 2009.}
+
 \begin{figure}[!htb]
 	\centering
-	\patternimglink{0.1}{p59_glider_reaction}
-	\caption{A period~$59$ reaction that takes in $5$~gliders (highlighted in \bgbox{greenpastel}{green}) and spits out $6$~gliders (highlighted in \bgbox{magentaback}{magenta}). The reaction works by using two copies of the pi-heptomino reaction (highlighted in \bgbox{yellowback2}{yellow}) to create two gliders via a conduit (highlighted in \bgbox{aquaback}{aqua}) and four more gliders when the debris from these reactions collide with each other at the center. Since it emits more gliders than it destroys, it can be used to construct a period~$59$ glider gun.}\label{fig:p59_glider_reaction}
+	\patternimglink{0.072}{p59_glider_reaction}
+	\caption{A period~$59$ reaction that takes in $5$~gliders (highlighted in \bgbox{greenpastel}{green}) and spits out $6$~gliders (highlighted in \bgbox{magentaback}{magenta}). The reaction works by using two copies of the pi-heptomino reaction (highlighted in \bgbox{yellowback2}{yellow}) to create two gliders via a conduit (highlighted in \bgbox{aquaback}{aqua}) and four more gliders when the debris from these reactions collide with each other at the center.}\label{fig:p59_glider_reaction}
 \end{figure}
 
-The reason that this reaction can be used to create a gun is that it produces more gliders than it destroys---we simply need to redirect $5$ of the output gliders back into the appropriate input positions so as to continuously fuel the reaction, leaving the $6$th output glider as the output of the gun. The smallest-known true-period~$59$ glider gun that can be constructed via this method is presented in Figure~\ref{fig:p59_glider_gun}, and it uses Snarks (as well as some of the welded Snarks) to reflect most of the output gliders from this reaction right back into itself, thus ``fueling'' the creating of the single excess glider.\footnote{The first true-period~$59$ gun used the same reaction and was also built in December 2009, by Adam P. Goucher. Since the Snark had not yet been discovered, it used (very large) reflectors based on Herschel tracks instead, and had more than $300 \, 000$ live cells.}
+The reason that this reaction can be used to create a gun is that it produces more gliders than it destroys---we simply need to redirect $5$ of the output gliders back into the appropriate input positions so as to continuously fuel the reaction, leaving the $6$th output glider as the output of the gun. The smallest-known true-period~$59$ glider gun that can be constructed via this method is presented in Figure~\ref{fig:p59_glider_gun}, and it uses Snarks (as well as some of the welded Snarks) to reflect most of the output gliders from this reaction right back into itself, thus ``fueling'' the creating of the single excess glider.\footnote{The first true-period~$59$ gun used the same reaction and was also built in December 2009, by Adam P. Goucher. Since the Snark had not yet been discovered, it used (very large) reflectors based on Herschel tracks instead, and had more than $300{\thousep}000$ live cells.}
 
 \begin{figure}[!htb]
 	\centering
@@ -567,192 +566,179 @@ It is worth noting that the top half of this gun is almost identical to its bott
 
 \subsection{Quetzals: True-Period 52, 54--58, and 61 Guns}\label{sec:true_period_guns_p57}
 
-The remaining known true-period guns are all based on Herschel tracks, but they make use of custom (typically oscillating) components to overcome the fact that a Herschel's first natural glider will collide with a Herschel following behind it by fewer than $62$~generations, and thus cannot be used as the output of the gun. A gun of this type is called a \emph{quetzal}\index{quetzal} or \emph{quetzalcoatlus}\index{quetzalcoatlus|see {quetzal}} after the giant flying pterosaur, in reference to the fact that these guns are typically extremely large due to the limited components that we have to build the tracks. In contrast, oscillators of this type (such as the period~$56$ one from Figure~\ref{fig:period_56_herschel}) are called \emph{emus}\index{emu}, in reference to the fact that they are ``flightless'' (they do not emit any gliders).
+The remaining known true-period guns are all based on Herschel tracks, but they make use of custom (typically oscillating) components to overcome the fact that a Herschel's first natural glider will collide with subsequent Herschels if they are separated by fewer than $62$~generations, and thus cannot be used as the output of the gun. A gun of this type is called a \emph{quetzalcoatlus}\index{quetzalcoatlus|see {quetzal}} (or simply \emph{quetzal}\index{quetzal} for short) after the giant flying pterosaur, in reference to the fact that these guns are typically extremely large due to the limited components that we have to build the tracks. In contrast, oscillators of this type (such as the period~$56$ one from Figure~\ref{fig:period_56_herschel}) are called \emph{emus}\index{emu}, in reference to the fact that they are ``flightless'' (i.e., they do not emit any gliders).
 
-There are two key ideas that let quetzals work: we can use custom components to extract gliders from Herschels \emph{other} than their first natural glider, and we can use periodic components to decrease the repeat time of some conduits by eating a Herschel's first natural glider before it has a chance to collide with the subsequent Herschel. Some custom conduits that implement the first of these ideas (glider extraction) at some low periods are presented in Figure~\ref{fig:fx77_extract}, and some additional methods of performing this same task are presented in Exercise~\ref{exer:fx77_extract_other_osc}. We note that this glider extraction technique, as well as the other upcoming conduit modifications based on oscillators, is applied to the Fx77 Herschel conduit since it has a much lower repeat time than most other known conduits, and thus is easier to get working at these low periods.
+There are two key ideas that let quetzals work: we can use custom components to extract gliders from Herschels \emph{other} than their first natural glider, and we can use periodic components to decrease the repeat time of some conduits by eating a Herschel's first natural glider before it has a chance to collide with the next Herschel. Some custom conduits that implement the first of these ideas (glider extraction) at some low periods are presented in Figure~\ref{fig:fx77_extract}, and some additional methods of performing this same task are presented in Exercise~\ref{exer:fx77_extract_other_osc}. We note that this glider extraction technique, as well as the other upcoming conduit modifications based on oscillators, is applied to the Fx77\index{Fx77} Herschel conduit since it has a much lower repeat time than most other known conduits, and thus is easier to get working at these low periods.
 
 \begin{figure}[!htb]
 	\centering
 	\begin{subfigure}{\textwidth}
 		\centering
-		\vcenteredhbox{\patternimg{0.11}{fx77_extract_spark_0}} \vcenteredhbox{\genarrow{53}} \vcenteredhbox{\patternimg{0.11}{fx77_extract_spark_53}} \vcenteredhbox{\genarrow{24}} \vcenteredhbox{\patternimg{0.11}{fx77_extract_spark_77}}
+		\vcenteredhbox{\patternimg{0.112}{fx77_extract_spark_0}} \vcenteredhbox{\genarrow{53}} \vcenteredhbox{\patternimg{0.112}{fx77_extract_spark_53}} \vcenteredhbox{\genarrow{24}} \vcenteredhbox{\patternimg{0.112}{fx77_extract_spark_77}}
 		\caption{A spark (displayed in \bgbox{orangeback}{orange} in the middle) can be used instead of a second eater~1 to extract a glider from the Fx77 Herschel conduit.}
 		\label{fig:fx77_extract_spark}
 	\end{subfigure} \\[0.5cm]
-	\begin{tabular}{@{}cccc@{}}
-		\begin{subfigure}{0.22\textwidth}
-			\centering
-			\patternimglink{0.085}{fx77_extract_p4}
-			\caption{p$4$ thumb sparker}
-			\label{fig:fx77_extract_p4}
-		\end{subfigure} & \begin{subfigure}{.22\textwidth}
-			\centering
-			\patternimglink{0.085}{fx77_extract_p5}
-			\caption{p$5$ MW volcano}
-			\label{fig:fx77_extract_p5}
-		\end{subfigure} & \begin{subfigure}{.22\textwidth}
-			\centering
-			\patternimglink{0.085}{fx77_extract_p6}
-			\caption{p$6$ pipsquirter}
-			\label{fig:fx77_extract_p6}
-		\end{subfigure} & \begin{subfigure}{.23\textwidth}
-			\centering
-			\patternimglink{0.095}{fx77_extract_p8}
-			\caption{p$8$ blocker}
-			\label{fig:fx77_extract_p8}
-		\end{subfigure}
-	\end{tabular}
+	\begin{subfigure}{0.23\textwidth}
+		\centering
+		\patternimglink{0.085}{fx77_extract_p4}
+		\caption{p$4$ thumb sparker}
+		\label{fig:fx77_extract_p4}
+	\end{subfigure} \hfill \begin{subfigure}{.23\textwidth}
+		\centering
+		\patternimglink{0.085}{fx77_extract_p5}
+		\caption{p$5$ MW volcano}
+		\label{fig:fx77_extract_p5}
+	\end{subfigure} \hfill \begin{subfigure}{.22\textwidth}
+		\centering
+		\patternimglink{0.08258007117}{fx77_extract_p6}
+		\caption{p$6$ pipsquirter}
+		\label{fig:fx77_extract_p6}
+	\end{subfigure} \hfill \begin{subfigure}{.25\textwidth}
+		\centering
+		\patternimglink{0.09628630705}{fx77_extract_p8}
+		\caption{p$8$ blocker}
+		\label{fig:fx77_extract_p8}
+	\end{subfigure}
 	\caption{A spark can be used to extract a glider from the Fx77 Herschel conduit. This spark can be provided by numerous different oscillators of several different periods.}\label{fig:fx77_extract}
 \end{figure}
 
-For the second idea (decreasing a conduit's repeat time), there is a variant of eater~$5$ that can be used to eat a first natural glider quickly enough to let two Herschels follow each other by as little as $57$ generations. In fact, this is exactly why Fx77's repeat time is $57$ generations---the first natural glider is its limiting factor. There are also some sparkers that are good enough at eating gliders to allow Herschels to follow each other every $52$, $54$, $55$, or $56$ generations (such components could theoretically exist to allow for gaps of $51$ or $53$ generations as well, but no examples are currently known, and as a result no true-period guns of period~$51$ or~$53$ are currently known). These various fast eaters are displayed on the Fx77 conduit in Figure~\ref{fig:fx77_fast_eaters}.
+For the second idea (decreasing a conduit's repeat time), there is a variant of eater~$5$ that can be used to eat a first natural glider quickly enough to let two Herschels follow each other by as little as $57$ generations. In fact, this is exactly why we say that Fx77's repeat time is $57$ generations---the first natural glider is its limiting factor. There are also some sparkers that are good enough at eating gliders to allow Herschels to follow each other every $52$, $54$, $55$, or $56$ generations (such components could theoretically exist to allow for gaps of $51$ or $53$ generations as well, but no examples are currently known, and as a result no true-period guns of period~$51$ or~$53$ are currently known). These various fast eaters are displayed on the Fx77 conduit in Figure~\ref{fig:fx77_fast_eaters}.
 
 \begin{figure}[!htb]
 	\centering
-	\begin{tabular}{@{}cccc@{}}
-		\begin{subfigure}{0.24\textwidth}
-			\centering
-			\patternimglink{0.091}{fx77_57}
-			\caption{stable eater~5 variant, repeat time~$57$}
-			\label{fig:fx77_57}
-		\end{subfigure} & \begin{subfigure}{.22\textwidth}
-			\centering
-			\patternimglink{0.078}{fx77_p5_eat}
-			\caption{p$5$ MW volcano, repeat time~$55$}
-			\label{fig:fx77_p5_eat}
-		\end{subfigure} & \begin{subfigure}{.22\textwidth}
-			\centering
-			\patternimglink{0.092}{fx77_p8_eat}
-			\caption{p$8$ blocker, repeat time~$56$}
-			\label{fig:fx77_p8_eat}
-		\end{subfigure} & \begin{subfigure}{.22\textwidth}
-			\centering
-			\patternimglink{0.086}{fx77_p9_eat}
-			\caption{p$9$ thumb sparker, repeat time~$54$}
-			\label{fig:fx77_p9_eat}
-		\end{subfigure}
-	\end{tabular}
-	\caption{The repeat time of the Fx77 Herschel conduit can be reduced by quickly and cleanly eating each Herschel's first natural glider. The repeat time can be made as low as (a) $57$ via stable components, or (b--d) $51$ via oscillating components (though the oscillating components shown here only go as low as a repeat time of $54$).}\label{fig:fx77_fast_eaters}
+	\begin{subfigure}{0.25\textwidth}
+		\centering
+		\patternimglink{0.09}{fx77_57}
+		\caption{stable eater~5 variant, repeat time~$57$}
+		\label{fig:fx77_57}
+	\end{subfigure} \hfill \begin{subfigure}{.23\textwidth}
+		\centering
+		\patternimglink{0.07554216867}{fx77_p5_eat}
+		\caption{p$5$ MW volcano, repeat time~$55$}
+		\label{fig:fx77_p5_eat}
+	\end{subfigure} \hfill \begin{subfigure}{.23\textwidth}
+		\centering
+		\patternimglink{0.09}{fx77_p8_eat}
+		\caption{p$8$ blocker, repeat time~$56$}
+		\label{fig:fx77_p8_eat}
+	\end{subfigure} \hfill \begin{subfigure}{.23\textwidth}
+		\centering
+		\patternimglink{0.0836}{fx77_p9_eat}
+		\caption{p$9$ thumb sparker, repeat time~$54$}
+		\label{fig:fx77_p9_eat}
+	\end{subfigure}
+	\caption{The repeat time of the Fx77 Herschel conduit can be reduced by quickly and cleanly eating each Herschel's first natural glider. The repeat time can be made as low as (a) $57$ via stable components, or (b--d) $51$ via oscillating components (though the oscillating components shown here only go as low as $54$).}\label{fig:fx77_fast_eaters}
 \end{figure}
 
-One final component that is extremely useful in these low-period situations is \emph{Jormungant's G-to-H}\index{Jormungant's G-to-H},\footnote{Found by Louis-François Handfield, who goes by the online pseudonym ``Jormungant'', in April 2018.} which is the conduit displayed in Figure~\ref{fig:2G_to_H} that quickly converts two gliders into a Herschel. While a syringe (refer back to Figure~\ref{fig:syringe}) has a repeat time of $78$~generations, which is too large for our purposes here, this two-glider variant of it uses a second glider to clean up some of the glider-to-Herschel reaction, resulting in a significantly smaller repeat time of just~$47$ generations (assuming that the first natural glider of the output Herschel can be erased quickly enough to allow for such a low repeat time). The downside of this conduit, however, is that it requires two input gliders rather than just one---it is a 2G-to-H conduit rather than just a G-to-H.\index{2G-to-H}
+One final component that is extremely useful in these low-period situations is \emph{Jormungant's G-to-H}\index{Jormungant's G-to-H},\footnote{Found by Louis-François Handfield, who goes by the online pseudonym ``Jormungant'', in April 2018.} which is the conduit displayed in Figure~\ref{fig:2G_to_H} that quickly converts two gliders into a Herschel. While a syringe (refer back to Figure~\ref{fig:syringe}) has a repeat time of $78$~generations, which is too large for our purposes here, this two-glider variant of it uses a second glider to clean up some of the glider-to-Herschel reaction, resulting in a significantly smaller repeat time of just~$47$ generations. The downside of this conduit, however, is that it requires two input gliders rather than just one---it is a 2G-to-H conduit rather than just a G-to-H.\index{2G-to-H}
 
 \begin{figure}[!htb]
 	\centering
-	\begin{tabular}{@{}cc@{}}
-		\begin{subfigure}{0.48\textwidth}
-			\centering
-			\patternimglink{0.11}{2G_to_Ha}
-			\caption{helper glider from the southeast}
-			\label{fig:2G_to_Ha}
-		\end{subfigure} & \begin{subfigure}{.48\textwidth}
-			\centering
-			\patternimglink{0.1}{2G_to_Hb}
-			\caption{helper glider from the northwest}
-			\label{fig:2G_to_Hb}
-		\end{subfigure}
-	\end{tabular}
+	\begin{subfigure}{0.48\textwidth}
+		\centering
+		\patternimglink{0.13}{2G_to_Ha}
+		\caption{helper glider from the southeast}
+		\label{fig:2G_to_Ha}
+	\end{subfigure} \hfill \begin{subfigure}{.48\textwidth}
+		\centering
+		\patternimglink{0.11082949308}{2G_to_Hb}
+		\caption{helper glider from the northwest}
+		\label{fig:2G_to_Hb}
+	\end{subfigure}
 	\caption{Two versions of a conduit called \emph{Jormungant's G-to-H}, which very quickly and cleanly turn a pair of gliders into a Herschel. They each have a repeat time of $47$~generations, but are useful in different situations due to their second input glider coming from different directions.}\label{fig:2G_to_H}
 \end{figure}
 
 With these mechanisms in hand, we are now in a position to construct true-period glider guns with periods $52$, $54$, $55$, $56$, and $57$---see Figure~\ref{fig:quetzals}. In particular, we use Jormungant's G-to-H to create a Herschel, which we move along a track via periodic conduits that quickly clean up its first natural glider so as to not disturb the next Herschel, and we extract three gliders from this Herschel: two that will be reflected back into Jormungant's G-to-H, and one that becomes the output of the gun. Since each of the periods that we now tackle have small prime factors, we can implement these reactions via the low-period conduits that we saw earlier (for example, $56 = 2^3 \times 7$, so the period~$56$ gun can make use of p$4$, p$7$, and p$8$ components).
 
-\begin{figure}[!htbp]
+\begin{figure}[!htb]
 	\centering
-	\noindent\begin{tabular}{@{}cc@{}}
-		\begin{subfigure}{0.47\textwidth}
-			\centering
-			\patternimglink{0.095}{p52_gun}
-			\caption{A true-period~$52$ gun that uses an unnamed p$13$ oscillator to eat first natural gliders (FNGs) and p$4$ thumb sparkers to extract other gliders from Herschels.}
-			\label{fig:p52_gun}
-		\end{subfigure}
-		& \begin{subfigure}{0.49\textwidth}
-			\centering
-			\patternimglink{0.077}{p57_gun}
-			\caption{A true-period~$57$ gun that uses eater~$5$s to eat first natural gliders and an unnamed p$3$ oscillator to extract other gliders from Herschels.}
-			\label{fig:p57_gun}
-		\end{subfigure}
-	\end{tabular} \\[0.2cm]
-	\noindent\begin{tabular}{@{}ccc@{}}
-		\begin{subfigure}{0.3\textwidth}
-			\centering
-			\patternimglink{0.118}{p54_gun}
-			\caption{A true-period~$54$ gun that uses p$9$ thumb sparkers and p$6$ pipsquirters.}
-			\label{fig:p54_gun}
-		\end{subfigure} &
-		\begin{subfigure}{0.26\textwidth}
-			\centering
-			\patternimglink{0.093}{p55_gun}
-			\caption{A true-period~$55$ gun that uses middleweight volcanoes.}
-			\label{fig:p55_gun}
-		\end{subfigure} &
-		\begin{subfigure}{0.37\textwidth}
-			\centering
-			\patternimglink{0.13}{p56_gun}
-			\caption{A true-period~$56$ gun that uses blockers and p$8$ pipsquirters to eat FNGs and extract other gliders.}
-			\label{fig:p56_gun}
-		\end{subfigure}
-	\end{tabular}
+	\begin{subfigure}{0.47\textwidth}
+		\centering
+		\patternimglink{0.095}{p52_gun}
+		\caption{A true-period~$52$ gun that uses an unnamed p$13$ oscillator to eat first natural gliders and p$4$ thumb sparkers to extract other gliders from Herschels.}
+		\label{fig:p52_gun}
+	\end{subfigure} \hfill \begin{subfigure}{0.49\textwidth}
+		\centering
+		\patternimglink{0.07694059405}{p57_gun}
+		\caption{A true-period~$57$ gun that uses eater~$5$s to eat first natural gliders and an unnamed p$3$ oscillator to extract other gliders from Herschels.}
+		\label{fig:p57_gun}
+	\end{subfigure} \\[0.4cm]
+	\begin{subfigure}{0.3\textwidth}
+		\centering
+		\patternimglink{0.118}{p54_gun}
+		\caption{A true-period~$54$ gun that uses p$9$ thumb sparkers and p$6$ pipsquirters.}
+		\label{fig:p54_gun}
+	\end{subfigure} \hfill
+	\begin{subfigure}{0.26\textwidth}
+		\centering
+		\patternimglink{0.09419886363}{p55_gun}
+		\caption{A true-period~$55$ gun that uses middleweight volcanoes.}
+		\label{fig:p55_gun}
+	\end{subfigure} \hfill
+	\begin{subfigure}{0.37\textwidth}
+		\centering
+		\patternimglink{0.13105928853}{p56_gun}
+		\caption{A true-period~$56$ gun that uses blockers and p$8$ pipsquirters to eat first natural gliders and extract other gliders.}
+		\label{fig:p56_gun}
+	\end{subfigure}
 	\caption{True-period glider guns of periods (a) $52$, (b) $57$, (c) $54$, (d) $55$, and (e) $56$ that were constructed in 2018 by (a) ConwayLife.com forums user ``Entity Valkyrie'', (b) Luka Okanishi, and (c--e) Chris Cain. These guns all work by using Jormungant's G-to-H (highlighted in \bgbox{aquaback}{aqua}) to create a Herschel, which is fed along a track of Fx77's and oscillators to eat its first natural gliders faster than stable components can (as in Figure~\ref{fig:fx77_fast_eaters}, highlighted in \bgbox{magentaback}{magenta}). That Herschel is converted into three gliders---two of those gliders are extracted by oscillators (as in Figure~\ref{fig:fx77_extract}, highlighted in \bgbox{greenpastel}{green}) and the third is extracted by a stable H-to-G conduit. Two of those gliders are then reflected (by the reflectors highlighted in \bgbox{yellowback2}{yellow}) back into Jormungant's G-to-H to complete the loop, while the third glider is the output of the gun.}
 	\label{fig:quetzals}
 \end{figure}
 
-The only remaining periods that are currently known to be attainable by true-period guns are $58$ and $61$. However, these periods are somewhat more challenging to construct guns for than the previous periods due to not being divisible by any of the periods for which we have periodic Herschel conduits (like $4$, $5$, $6$, $8$, and $9$). For this reason, we must entirely make use of stable components, and the only Herschel conduits that have repeat time low enough to function at these periods are Fx77 ($57$~generations), L112 ($58$~generations), L200 (see Exercise~\ref{exer:name_conduit}(d)---$59$~generations), and R64 ($61$~generations).
+The only remaining periods that are currently known to be attainable by true-period guns are $58$ and $61$. However, these periods are somewhat more challenging to construct guns for than the previous ones, since they are not divisible by any of the periods for which we have periodic Herschel conduits (like $4$, $5$, $6$, $8$, and $9$). For this reason, we must entirely make use of stable components, and the only Herschel conduits that have repeat time low enough to function at these periods are Fx77 ($57$~generations), L112\index{L112} ($58$~generations), L200\index{L200} (see Exercise~\ref{exer:name_conduit}(d)---$59$~generations), and R64\index{R64} ($61$~generations).
 
-To extract a glider from a Herschel track made up of these conduits, we make use of two reactions---one that uses an extra glider to duplicate a Herschel on the track, and then another one that turns that extra Herschel into two output gliders (see Figure~\ref{fig:H_G_reacs_58_61}). It is important that \emph{two} gliders are produced from that duplicated Herschel so that one of them can be used to fuel the earlier Herschel duplication reaction, and the other can be used as the output of the gun.\footnote{It is worth comparing these conduits with the Herschel transceivers from the ``Notes and Historical Remarks'' section of Chapter~\ref{chp:stationary_circuitry}; sometimes it is easier or quicker to send a tandem glider pair rather than individual gliders.}\index{tandem}
+To extract a glider from a Herschel track made up of these conduits, we make use of two reactions---one that uses an extra glider to duplicate a Herschel on the track, and then another one that turns that extra Herschel into two output gliders (see Figure~\ref{fig:H_G_reacs_58_61}). It is important that \emph{two} gliders are produced from that duplicated Herschel so that one of them can be used to fuel the earlier Herschel duplication reaction, while the other can be used as the output of the gun.\footnote{It is worth comparing these conduits with the Herschel transceivers from Section~\ref{sec:stable_circuits_notes}. Sometimes it is quicker or easier to send a pair of tandem gliders rather than individual gliders.}\index{tandem}\index{Herschel!transceiver}
 
 \begin{figure}[!htb]
 	\centering
-	\begin{tabular}{@{}cc@{}}
-		\begin{subfigure}{0.46\textwidth}
-			\centering
-			\begin{tabular}{@{}cc@{}}
-				\begin{subfigure}{0.48\textwidth}
-					\centering
-					\patternimglink{0.077}{HG_to_HB}
-				\end{subfigure} & \begin{subfigure}{.48\textwidth}
-					\centering
-					\patternimglink{0.093}{HG_to_BB}
-				\end{subfigure}
-			\end{tabular}
-			\caption{How to quickly convert a Herschel and a glider into two Herschels or B-heptominoes. The output B-heptominoes can be converted into Herschels, if desired, by BFx59H (see Table~\ref{tab:converters}).}
-			\label{fig:HG_to_HB}
-		\end{subfigure} & \begin{subfigure}{.5\textwidth}
-			\centering
-			\begin{tabular}{@{}cc@{}}
-				\begin{subfigure}{0.5\textwidth}
-					\centering
-					\patternimglink{0.118}{H_to_2G_quick1}
-				\end{subfigure} & \begin{subfigure}{.46\textwidth}
-					\centering
-					\patternimglink{0.073}{H_to_2G_quick2}
-				\end{subfigure}
-			\end{tabular}
-			\caption{How to quickly convert a Herschel into two output gliders. The conduit on the right is somewhat more complicated, but has the benefit of the output gliders being slightly farther apart.}
-			\label{fig:H_to_2G_quick}
-		\end{subfigure}
-	\end{tabular}
+	\begin{subfigure}{0.46\textwidth}
+		\centering
+		\begin{tabular}{@{}cc@{}}
+			\begin{subfigure}{0.435\textwidth}
+				\centering
+				\patternimglink{0.075}{HG_to_HB}
+			\end{subfigure} & \begin{subfigure}{.535\textwidth}
+				\centering
+				\patternimglink{0.09427710842}{HG_to_BB}
+			\end{subfigure}
+		\end{tabular}
+		\caption{How to quickly convert a Herschel and a glider into two Herschels or B-heptominoes. The output B-heptominoes can be converted into Herschels, if desired, by BFx59H (see Table~\ref{tab:converters}).}
+		\label{fig:HG_to_HB}
+	\end{subfigure} \hfill \begin{subfigure}{.51\textwidth}
+		\centering
+		\begin{tabular}{@{}cc@{}}
+			\begin{subfigure}{0.53\textwidth}
+				\centering
+				\patternimglink{0.12163212434}{H_to_2G_quick1}
+			\end{subfigure} & \begin{subfigure}{.44\textwidth}
+				\centering
+				\patternimglink{0.0696587537}{H_to_2G_quick2}
+			\end{subfigure}
+		\end{tabular}
+		\caption{How to quickly convert a Herschel into two output gliders. In the conduit on the right, the northwest Herschel should be delayed from the southeast one by $38$ generations.}
+		\label{fig:H_to_2G_quick}
+	\end{subfigure}
 	\caption{Some conduits that transform various types of signals (gliders, Herschels, and B-heptominoes) into each other more quickly than standard conduits. Their low repeat times (see Exercise~\ref{exer:H_G_reacs_58_61}) are achieved at the expense of being slightly more complicated than other conduits that we have seen---they all have multiple inputs and/or outputs.}\label{fig:H_G_reacs_58_61}
 \end{figure}
 
-One slight issue that arises with these particular reactions is that the two output gliders are very close to each other, so it is difficult to separate them. We saw some similar conduits that convert a Herschel into multiple (more easily separated) gliders back in Figures~\ref{fig:herschel_to_glider} and~\ref{fig:herschel_to_glider_edge}, but they all have repeat times of higher than $61$ generations and thus cannot be used in this setting. One method that \emph{does} work at period~$61$ and higher to separate these closely-spaced output gliders is to reflect one of the gliders off of the corner of an L112 conduit as a Herschel passes by.\footnote{This method does not work at period~$60$ or lower---see Exercise~\ref{exer:p61_gun_reflection_no_60}.} Using this trick lets us construct the true-period~$61$ glider gun displayed in Figure~\ref{fig:p61_gun}.\footnote{First first true-period~$61$ gun was found by Luka Okanishi in April 2016. The smaller gun displayed here was constructed the next day with the help of Chris Cain.}
-
-\begin{figure}[!htb]
-	\centering
-	\patternimglink{0.13}{p61_gun}
-	\caption{A true-period~$61$ glider gun. It uses one copy of a period~$61$ Herschel track made up of R64, L112, and L200 conduits (highlighted in \bgbox{aquaback}{aqua}) to generate a Herschel via the trick of Figure~\ref{fig:HG_to_HB} (highlighted in \bgbox{magentaback}{magenta}). That Herschel is then converted into two gliders via the conduit of Figure~\ref{fig:H_to_2G_quick} (highlighted in \bgbox{orangeback2}{orange}), one of which becomes the output of the gun and the other of which is reflected by the other copy of the p$61$ Herschel track (highlighted in \bgbox{greenpastel}{green}) back around to fuel the Herschel-generating reaction.}\label{fig:p61_gun}
-\end{figure}
+One slight issue that arises with these particular reactions is that the two output gliders are very close to each other, so it is difficult to separate them. We saw some similar conduits that convert a Herschel into multiple (more easily separated) gliders back in Figures~\ref{fig:herschel_to_glider} and~\ref{fig:herschel_to_glider_edge}, but they all have repeat times of higher than $61$ generations and thus cannot be used in this setting. One method that \emph{does} work at period~$61$ and higher to separate these closely-spaced output gliders is to reflect one of the gliders off of the corner of an L112 conduit as a Herschel passes by.\footnote{This method does not work at period~$60$ or lower---see Exercise~\ref{exer:p61_gun_reflection_no_60}.} Using this trick lets us construct the true-period~$61$ glider gun displayed in Figure~\ref{fig:p61_gun}.\footnote{The first true-period~$61$ gun was found by Luka Okanishi in April 2016. The smaller gun displayed here was constructed on the next day with the help of Chris Cain.}
 
 This same technique can be used to construct a period~$58$ true-period glider gun, but the details are somewhat messier for a few reasons. First, we no longer have access to the R64 or L200 conduits (their repeat times are $61$ and $59$, respectively), so we must construct all Herschel tracks out of Fx77 and L112 conduits only. The smallest such track whose length is a multiple of the desired period of $58$ makes use of $4$ copies of L112 and $68$ copies of Fx77, for a total length of $(4 \times 112) + (68 \times 77) = 5{\thousep}684$ generations. Placing $5684/58 = 98$ Herschels on this track results in the period~$58$ oscillator displayed in Figure~\ref{fig:p58_herschel_track} that we can extract a glider from.
+
+% This figure can be moved one paragraph earlier. It is just here for spacing/layout reasons.
+\begin{figure}[!htb]
+	\centering
+	\patternimglink{0.082}{p61_gun}
+	\caption{A true-period~$61$ glider gun. It uses one copy of a period~$61$ Herschel track made up of R64, L112, and L200 conduits (highlighted in \bgbox{aquaback}{aqua}) to generate a Herschel via the trick of Figure~\ref{fig:HG_to_HB} (highlighted in \bgbox{magentaback}{magenta}). That Herschel is then converted into two gliders via one of the conduits from Figure~\ref{fig:H_to_2G_quick} (highlighted in \bgbox{orangeback2}{orange}), one of which becomes the output of the gun and the other of which is reflected by the other copy of the p$61$ Herschel track (highlighted in \bgbox{greenpastel}{green}) back around to fuel the Herschel-generating reaction.}\label{fig:p61_gun}
+\end{figure}
 
 \begin{figure}[!htb]
 	\centering
 	\patternimglink{0.117}{p58_herschel_track}
 	\caption{A period~$58$ oscillator that works by placing $98$ Herschels on a track made up of $4$ L112 conduits (highlighted in \bgbox{aquaback}{aqua}) and $68$ Fx77 conduits (highlighted in \bgbox{yellowback2}{yellow}).}\label{fig:p58_herschel_track}
 \end{figure}
-% Earlier: in p58 construction exercise, solution just refs here
 
-The second issue that is somewhat messier to deal with in this period~$58$ case is that the method we used to reflect a glider (and thus separate the two closely-spaced streams) in Figure~\ref{fig:p61_gun} does not work at period~$58$. We thus must use a different method of separating those two streams, and one method that works is to use a rephaser\index{rephaser} as in Exercise~\ref{exer:rephaser}. In particular, using two rephasers puts enough space between those streams that we can fit a Snark in between them, and from there we can inject one of those gliders back into the Herschel track just like we did in the p$61$ gun. The resulting true-period~$58$ gun is displayed in Figure~\ref{fig:p58_gun},\footnote{This gun was found by Matthias Merzenich and ConwayLife.com forum user ``thunk'', just one day after the p$61$ gun.} and it completes our collection of known periods with true-period guns.
+The second issue that is somewhat messier to deal with in this period~$58$ case is that the method we used to reflect a glider (and thus separate the two closely-spaced streams) in Figure~\ref{fig:p61_gun} does not work at period~$58$. We thus must use a different method of separating those two streams, and one method that works is to use a rephaser\index{rephaser} as in Exercise~\ref{exer:rephaser}. In particular, using two rephasers puts enough space between those streams that we can fit a Snark in between them, and from there we can inject one of those gliders back into the Herschel track just like we did in the p$61$ gun. The resulting true-period~$58$ gun is displayed in Figure~\ref{fig:p58_gun},\footnote{This gun was found by Matthias Merzenich and ConwayLife.com forum user ``thunk'', just one day after the p$61$ gun.} and it completes our collection of known periods that are attainable via true-period guns.
 
 \begin{figure}[!htb]
 	\centering
@@ -761,6 +747,8 @@ The second issue that is somewhat messier to deal with in this period~$58$ case 
 \end{figure}
 
 
+
+% NJ is here in the cleanup process
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%   SUBSECTION: SLIDE GUNS
