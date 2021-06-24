@@ -955,8 +955,6 @@ We have now seen four different explicit constructions of a gun that fires $2$-e
 Indeed, the biggest advantage of armless construction in general, whether monochrome or multicolor, is that the general form of the gun would not significantly change if we wanted it to synthesize a completely different spaceship like a loafer or an ecologist. All that we would have to change is the sequences of gliders running through the glider loops. This trick of encoding patterns in sequences of gliders, rather than in the positions of various complicated guns, will be extremely useful once we investigate universal construction in Chapter~\ref{chp:universal_construction}.
 
 
-% NJ is here in the cleanup process
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%   SUBSECTION: SLOW AND IRREGULAR GUNS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -967,9 +965,9 @@ We have spent most of this chapter looking at methods of constructing fixed-peri
 
 \subsection{Sqrtguns}\label{sec:sqrt_gun}
 
-One method of creating a gun that gets slower and slower is to use a Herschel and/or glider track that gets longer and longer. This can be achieved by making use of the block-pushing reaction that we saw back in Figure~\ref{fig:block_pusher}---every time the $3$~input gliders hit the block it is pushed farther away, thus increasing the time that it takes for the next $3$~input gliders to hit the block. If we can feed the $2$~tandom output gliders into a circuit that recreates the $3$~input gliders and also creates an output glider for the gun to fire, we will be done.
+One method of creating a gun that gets slower and slower is to use a Herschel and/or glider track that becomes longer and longer. This can be achieved by making use of the block-pushing reaction that we saw back in Figure~\ref{fig:block_pusher}---every time the $3$~input gliders hit the block it is pushed farther away, thus increasing the time that it takes for the next $3$~input gliders to hit the block. If we can feed the $2$~tandom output gliders into a circuit that recreates the $3$~input gliders and also creates an output glider for the gun to fire, we will be done.
 
-Fortunately, this is a relatively straightforward exercise involving the circuits that we have seen. We can convert the tandem gliders from the block-pushing reaction into a Herschel via the Herschel receiver that we saw in Figure~\ref{fig:herschel_transceiver}. That Herschel can then be converted into $4$~gliders via stable conduits like the ones that we saw in Section~\ref{sec:glider_to_herschel}, and $3$~of those gliders can be redirected back toward the block so as to start the process all over again. The resulting pattern is a gun that emits each glider $80$~generations more slowly than its previous one, so its $n$-th glider is released in a generation that is asymptotically proportional to $n^2$ (specifically, in generation $40n^2 + 2029n - 969$). Such a gun is called a \emph{sqrtgun}\index{sqrtgun} (pronounced ``squirt gun'', in reference to the fact that its population in generation~$t$ is asymptotically proportional to $\sqrt{t}$), and one example is displayed in Figure~\ref{fig:sqrtgun}.\footnote{The first sqrtgun was constructed by Dean Hickerson sometime around 1991.}
+Fortunately, this is a relatively straightforward exercise involving the circuits that we have seen. We can convert the tandem gliders from the block-pushing reaction into a Herschel via the Herschel receiver that we saw in Figure~\ref{fig:herschel_transceiver}. That Herschel can then be converted into $4$~gliders via stable conduits like the ones that we saw in Section~\ref{sec:herschels_to_gliders}, and $3$~of those gliders can be redirected back toward the block so as to start the process all over again. The resulting pattern is a gun that emits each glider $80$~generations more slowly than its previous one, so its $n$-th glider is released in a generation that is asymptotically proportional to $n^2$ (specifically, in generation $40n^2 + 2029n - 969$). Such a gun is called a \emph{sqrtgun}\index{sqrtgun} (pronounced ``squirt gun''), in reference to the fact that its population in generation~$t$ is $\Theta(\sqrt{t})$\footnote{Refer to Appendix~\ref{sec:bigO} if you are unfamiliar with this ``big theta'' notation.}, and one example is displayed in Figure~\ref{fig:sqrtgun}.\footnote{The first sqrtgun was constructed by Dean Hickerson sometime around 1991.}
 
 \begin{figure}[!htb]
 	\centering
@@ -1020,7 +1018,7 @@ Fortunately, this is a relatively straightforward exercise involving the circuit
 			\label{fig:sqrtgun_pop}
 		\end{subfigure}
 	\end{tabular}
-	\caption{A \emph{sqrtgun} that fires gliders slower and slower. Its population in generation~$t$ is asymptotically proportional to $\sqrt{t}$. Note that in (b), the spacings between objects are to scale, but the objects themselves have been magnified (the bounding box at that point is roughly $30{\thousep}000 \times 30{\thousep}000$, so the objects are too small to see).}\label{fig:sqrtgun}
+	\caption{A \emph{sqrtgun} that fires gliders slower and slower. Its population in generation~$t$ is asymptotically proportional to $\sqrt{t}$. Note that in (b), the spacings between objects are to scale, but the objects themselves have been magnified (the bounding box at that point is roughly $30{\thousep}000 \times 30{\thousep}000$, so the objects would be too small to see otherwise).}\label{fig:sqrtgun}
 \end{figure}
 
 
@@ -1028,35 +1026,33 @@ Fortunately, this is a relatively straightforward exercise involving the circuit
 
 We now construct a gun that fires gliders even more slowly than a sqrtgun. The idea that we now use is to bounce a glider back and forth between a receding spaceship and a stationary object that reflects and duplicates the glider. Because the spaceship gets farther and farther away, the time that it takes for the bouncing glider to make a round-trip and get duplicated increases by some multiplicative factor every loop (rather than by some additive factor, as in sqrtguns), so the resulting growth rate is logarithmic.
 
-Such guns are called \emph{caber tossers}\index{caber tosser}, and the simplest ones to construct make use of a single glider bouncing off of the back of a Cordership (after all, we already saw how to bounce gliders off of the back of Corderships in Figure~\ref{fig:cordership_reflections} and Exercise~\ref{exer:2_engine_cordership}, for example). The only somewhat tricky part of their construction is the object that duplicates and reflects the bouncing glider back toward the Cordership. We saw several conduits that could carry out this task in Chapter~\ref{chp:stationary_circuitry}, but we will instead make use of a periodic circuit that is somewhat smaller. In particular, we aim one glider gun in the correct positioning and timing as to be reflected by the receding Cordership, but we place another glider gun so as to block it. Then we just fiddle with the timing and spacing until we find a configuration in which the returning glider blocks the blocking stream,\footnote{This configuration can easily be found by hand---recall that roughly one third of all two-glider collisions result in the gliders destroying each other, and those are what we want here.} thus letting a single glider from each stream escape and repeat the process. One configuration that works is displayed in Figure~\ref{fig:caber_tosser}.\footnote{The first caber tosser was built by Dean Hickerson in May 1991 using this same arrangement of guns, but it used a slightly different glider reflection involving the larger 13-engine Cordership instead of the 2-engine Cordership.}
+Guns of this type are called \emph{caber tossers}\index{caber tosser}, and the simplest ones to construct make use of a single glider bouncing off of the back of a Cordership (we already saw how to bounce gliders off of the back of Corderships in Figure~\ref{fig:cordership_reflections} and Exercise~\ref{exer:2_engine_cordership}, for example). The only somewhat tricky part of their construction is the object that duplicates and reflects the bouncing glider back toward the Cordership. We saw several conduits that could carry out this task in Chapter~\ref{chp:stationary_circuitry}, but we will instead make use of a periodic circuit that is somewhat smaller. In particular, we aim one glider gun in the correct positioning and timing as to be reflected by the receding Cordership, but we place another glider gun so as to block it. Then we just fiddle with the timing and spacing until we find a configuration in which the returning glider blocks the blocking stream as in an inverter,\footnote{This configuration can be found by hand relatively straightforwardly---recall that roughly one third of all two-glider collisions result in the gliders destroying each other, and one of those is what we want here.} thus letting a single glider from each stream escape and repeat the process. One configuration that works is displayed in Figure~\ref{fig:caber_tosser}.\footnote{The first caber tosser was built by Dean Hickerson in May 1991 using this same arrangement of guns, but a slightly different glider reflection involving the 13-engine Cordership.}
 
 \begin{figure}[!htb]
 	\centering
-	\begin{tabular}{@{}cc@{}}
-		\begin{subfigure}{.48\textwidth}
-			\centering
-			\patternimglink{0.085}{caber_tosser}
-			\caption{a caber tosser firing gliders northeast}
-			\label{fig:caber_tosser_0}
-		\end{subfigure} & \begin{subfigure}{.48\textwidth}
-			\centering
-			\patternlink{caber_tosser}{\patternimg{0.091}{caber_tosser_121920}}
-			\caption{by generation $121{\thousep}920$ it has emitted $7$ gliders}
-			\label{fig:caber_tosser_121920}
-		\end{subfigure}
-	\end{tabular}
-	\caption{A \emph{caber tosser} with logarithmic growth rate. A period~$60$ glider gun (highlighted in \bgbox{greenpastel}{green}) fires gliders at a 2-engine Cordership (highlighted in \bgbox{yellowback2}{yellow}) to be reflected back, but is blocked by a period~$30$ glider gun (highlighted in \bgbox{orangeback2}{orange}). When the triggering glider (highlighted in \bgbox{aquaback}{aqua}) blocks \emph{this} stream, it allows a single glider through from both guns and thus restarts the process. Since the Cordership is constantly moving away from the guns, the round trip taken by the triggering glider takes longer and longer (in fact, exactly twice as long each time) so the output gliders have logarithmic spacing. In (b), the spacings between objects are to scale, but the objects themselves have been magnified.}
+	\begin{subfigure}{.51\textwidth}
+		\centering
+		\patternimglink{0.092}{caber_tosser}
+		\caption{a caber tosser firing gliders northeast}
+		\label{fig:caber_tosser_0}
+	\end{subfigure} \hfill \begin{subfigure}{.46\textwidth}
+		\centering
+		\patternlink{caber_tosser}{\patternimg{0.09856712508}{caber_tosser_121920}}
+		\caption{by generation $121{\thousep}920$ it has emitted $7$ gliders}
+		\label{fig:caber_tosser_121920}
+	\end{subfigure}
+	\caption{A \emph{caber tosser} with logarithmic growth rate. A period~$60$ glider gun (highlighted in \bgbox{greenpastel}{green}) fires gliders at a 2-engine Cordership (highlighted in \bgbox{yellowback2}{yellow}) to be reflected back, but is blocked by a period~$30$ glider gun (highlighted in \bgbox{orangeback2}{orange}). When that returning glider arrives at the pair of guns, it allows then to each release a single glider, which restarts the process. Since the Cordership is constantly moving away from the guns, the round trip taken by the triggering glider takes longer and longer (in fact, exactly twice as long each time) so the output gliders have logarithmic spacing. In (b), the spacings between objects are to scale, but the objects themselves have been magnified.}
 	\label{fig:caber_tosser}
 \end{figure}
 
-For this particular caber tosser, the bouncing glider takes twice as long to make a round trip every time a glider is released, so each glider takes twice as long to be released as the one before it. In particular, its $n$-th glider is released in generation $480 \times 2^n - 727$, so its growth rate is logarithmic (i.e., its population in generation~$t$ is asymptotically proportional to $\log(t)$).\footnote{All logarithms that we consider are base-$2$ (however, it does not matter what base we use in this particular case).}
+For this particular caber tosser, the bouncing glider takes twice as long to make a round trip every time a glider is released, so each glider takes twice as long to be released as the one before it. In particular, its $n$-th glider is released in generation $480 \times 2^n - 727$, so its growth rate is logarithmic (i.e., its population in generation~$t$ is $\Theta(\log(t))$).\footnote{All logarithms that we consider in this chapter are base-$2$. However, it does not matter what base we use in this particular case.}
 
 
 \subsection{Recursive Filters and Slower Growth Rates}\label{sec:recursive_filter}
 
-Now that we know how to create patterns that grow logarithmically, it seems natural to ask: ``how slow can you grow?'' That is, are there patterns that grow even slower than logarithmically, and is there an asymptotically slowest-growing pattern? The answers to these questions are ``yes'' and ``no'', respectively, and they both follow from the existence of devices that can be attached to the output of a glider gun so as to create an asymptotically slower glider gun.
+Now that we know how to create patterns that grow logarithmically, it seems natural to ask ``How slow can you grow?'' That is, are there patterns that grow even slower than logarithmically, and is there an asymptotically slowest-growing pattern? The answers to these questions are ``yes'' and ``no'', respectively, and they both follow from the existence of devices that can be attached to the output of a glider gun so as to create an asymptotically slower glider gun.\footnote{In this section, we are discussing the growth rate of the \emph{population} of a pattern, which can be made arbitrarily slow. On the other hand, there \emph{is} a slowest possible growth rate of the \emph{bounding box} of a pattern, and we will see a pattern attaining it in Section~\ref{sec:Osqrtlogt}.}
 
-One such device is displayed in Figure~\ref{fig:recursive_filter}.\footnote{Constructed by Alexey Nigin in July 2015.} This object is called a \emph{recursive filter}\index{recursive filter}, and when it receives a glider from whatever gun is attached to its input\footnote{The input glider must be aligned to period~$120$. The caber tosser from Figure~\ref{fig:caber_tosser} thus works fine for generating input to this recursive filter, but if we wanted to use the sqrtgun from Figure~\ref{fig:sqrtgun}, for example, then we would have to insert a universal regulator in between (see Exercise~??).} (typically a slow gun like a caber tosser, but ``standard'' guns work fine too), it releases a pair of lightweight spaceships to the east. Then one of three things happens:\smallskip
+One such device is displayed in Figure~\ref{fig:recursive_filter}. This object is called a \emph{recursive filter},\index{recursive filter} and when it receives a glider from whatever gun is attached to its input\footnote{The input glider must be aligned to period~$120$. The caber tosser from Figure~\ref{fig:caber_tosser} thus works fine for generating input to this recursive filter, but if we wanted to use the sqrtgun from Figure~\ref{fig:sqrtgun}, for example, then we would have to insert a universal regulator in between.} (typically a slow gun like a caber tosser, but ``standard'' guns work fine too), it releases a pair of lightweight spaceships to the east. Then one of three things happens:\smallskip
 
 \begin{itemize}
 	\item[1)] If this was the first pair of lightweight spaceships to be released, they hit the sparks at the back of the unnamed $c/3$ eastbound spaceship, creating a loaf.\smallskip
@@ -1069,19 +1065,27 @@ One such device is displayed in Figure~\ref{fig:recursive_filter}.\footnote{Cons
 \begin{figure}[!htb]
 	\centering
 	\patternimglink{0.11}{recursive_filter}
-	\caption{A \emph{recursive filter} that receives input gliders from a gun that is aligned to p$120$ and emits output gliders much more slowly. The guns highlighted in \bgbox{aquaback}{aqua} on the left create a stream of LWSS pairs that are blocked by the gun central gun highlighted in \bgbox{magentaback}{magenta}, and similarly the p$120$ gun highlighted in \bgbox{yellowback2}{yellow} blocks the output gun at the southeast. When an input glider is received from the northeast, it blocks the magenta gun, thus letting a LWSS pair proceed to the east and collide with the unnamed $c/3$ spaceship highlighted in \bgbox{greenpastel}{green}, creating a loaf. Future LWSS pairs then pull this loaf westward so that the yellow stream is eventually blocked by that loaf, allowing an output glider (highlighted in \bgbox{orangeback2}{orange}) to escape to the southwest.}\label{fig:recursive_filter}
+	\caption{A \emph{recursive filter} that receives input gliders from a gun that is aligned to p$120$ and emits output gliders much more slowly. The guns highlighted in \bgbox{aquaback}{aqua} on the left create a stream of LWSS pairs that are blocked by the central gun highlighted in \bgbox{magentaback}{magenta}, while the p$120$ gun highlighted in \bgbox{yellowback2}{yellow} similarly blocks the output gun at the southeast. When an input glider is received from the northeast, it blocks the magenta gun, thus letting a LWSS pair proceed to the east and collide with the unnamed $c/3$ spaceship highlighted in \bgbox{greenpastel}{green}, creating a loaf. Future LWSS pairs then pull this loaf westward so that the yellow stream is eventually blocked by that loaf, allowing an output glider (highlighted in \bgbox{orangeback2}{orange}) to escape to the southwest. Constructed by Alexey Nigin in July 2015.}\label{fig:recursive_filter}
 \end{figure}
-
-% Picture is 480 gen offset from what is described here, needs to be fixed up
 
 The result of this behavior is that if the $c/3$ spaceship is $2n$~cells away from the recursive filter when its first input glider releases the first pair of lightweight spaceships, they will make the first loaf about $12n$~generations later when the $c/3$ spaceship is $6n$~cells away. It will then take $6n/6 = n$ additional input gliders to pull that loaf back to the recursive filter, at which point its first output glider will finally be released.
 
-For example, if we attach a caber tosser to this recursive filter then it takes $480 \times 2^{n+1} - 727$ generations for those $n+1$ total input gliders to come in, so it takes that same amount of time for the recursive filter to release its first output glider. In particular, it takes about $500$ generations for the first glider from the caber tosser of Figure~\ref{fig:caber_tosser} to release the recursive filter's first pair of lightweight spaceships, at which time the $c/3$ spaceship is $208$ cells away from the recursive filter. We thus expect the filter's first output glider to appear after $208/2 = 104$ additional input gliders come in, at approximately generation
+For example, if we attach a caber tosser to this recursive filter then it takes about $480 \times 2^{n+1}$ generations for those $n+1$ total input gliders to come in, so it takes that same amount of time for the recursive filter to release its first output glider. In particular, if the caber tosser starts in the phase displayed in Figure~\ref{fig:caber_tosser_0} then it takes about $500$ generations for the first glider from the caber tosser of Figure~\ref{fig:caber_tosser} to release the recursive filter's first pair of lightweight spaceships, at which time the $c/3$ spaceship is $208$ cells away from the recursive filter. We thus expect the filter's first output glider to appear after $208/2 = 104$ additional input gliders come in, at approximately generation
 \[
-480 \times 2^{104 + 1} - 727 \approx 1.947 \times 10^{34}.
+	480 \times 2^{104 + 1} \approx 1.947 \times 10^{34}.
 \]
-Indeed, we see in Figure~\ref{fig:recursive_filter_caber} that after $1\, 920$ generations the first LWSS pair has created the first loaf, which is $6 \times 104 = 624$ cells away, and the first output glider finally appears at exactly generation $19{\thousep}471{\thousep}113{\thousep}219{\thousep}505{\thousep}603{\thousep}606{\thousep}989{\thousep}361{\thousep}234{\thousep}575{\thousep}175 \approx 1.947 \times 10^{34}$.
+Indeed, we see in Figure~\ref{fig:recursive_filter_caber} that after $1{\thousep}920$ generations the first LWSS pair has created the first loaf, which is $6 \times 104 = 624$ cells away, and the first output glider finally appears at exactly generation
+\[
+	19{\thousep}471{\thousep}113{\thousep}219{\thousep}505{\thousep}603{\thousep}606{\thousep}989{\thousep}361{\thousep}234{\thousep}575{\thousep}175 \approx 1.947 \times 10^{34}.
+\]
 
+To analyze when future gliders appear, we just focus on the asymptotic behavior of this recursively-filtered caber tosser. Using the same argument as in the previous paragraph, if the $c/3$ spaceship is $2n$~cells away from the recursive filter when the first pair of lightweight spaceships is released, it will take $\Theta(2^n)$ generations for the recursive filter to release its first output glider. However, during that time while we waited for the first output glider, the $c/3$ spaceship also moved out to a distance of $\Theta(2^n)$ cells away from the recursive filter. We thus now have to wait for the caber tosser to release $\Theta(2^n)$ more input gliders before the recursive filter releases its second output glider, which takes $\Theta(2^{2^n})$ generations. Indeed, the pattern in Figure~\ref{fig:recursive_filter_caber} doesn't release its second output glider until approximately generation
+\[
+	480 \times 2^{19471113219505603606989361234575175/6 + 1},
+\]
+which is a number with roughly $10^{33}$ digits---just writing down the decimal expansion of such a number would use more computer storage space than exists on the entire planet.
+
+% Can be moved one paragraph earlier. Just here for spacing reasons.
 \begin{figure}[!htb]
 	\centering
 	\patternlink{recursive_filter}{\begin{tikzpicture}[scale=1, every node/.style={transform shape}]%
@@ -1089,75 +1093,67 @@ Indeed, we see in Figure~\ref{fig:recursive_filter_caber} that after $1\, 920$ g
 		\draw[white,line width=3pt,opacity=0.5](14.29,0.947) circle (0.165);
 		\draw[redback2,line width=1pt](14.29,0.947) circle (0.165);
 		\end{tikzpicture}}
-	\caption{If we use a caber tosser (highlighted in \bgbox{yellowback2}{yellow}) as input to a recursive filter (highlighted in \bgbox{aquaback}{aqua}), the result is a gun that grows extraordinarily slowly. The first glider from the caber tosser creates a loaf (circled in \bgbox{redback}{red}) $624$ cells away from the recursive filter, thus requiring $624/6 = 104$ additional input gliders from the caber tosser before the first output glider is created on the path highlighted in \bgbox{orangeback2}{orange}---this takes more than $10^{34}$ generations.}\label{fig:recursive_filter_caber}
+	\caption{If we use a caber tosser (highlighted in \bgbox{yellowback2}{yellow}) as input to a recursive filter (highlighted in \bgbox{aquaback}{aqua}), the result is a gun whose population grows extraordinarily slowly. The first glider from the caber tosser creates a loaf (circled in \bgbox{redback}{red}) $624$ cells away from the recursive filter, thus requiring $624/6 = 104$ additional input gliders from the caber tosser before the first output glider is created on the path highlighted in \bgbox{orangeback2}{orange}---this takes more than $10^{34}$ generations.}\label{fig:recursive_filter_caber}
 \end{figure}
 
-To analyze when future gliders appear, we just focus on the asymptotic behavior of this recursively-filtered caber tosser. Using the same argument as in the previous paragraph, if the $c/3$ spaceship is $2n$~cells away from the recursive filter when the first pair of lightweight spaceships is released, it will take $\Theta(2^n)$ generations for the recursive filter to release its first output glider. However, during that time while we waited for the first output glider, the $c/3$ spaceship also moved out to a distance of $\Theta(2^n)$ cells away from the recursive filter. We thus now have to wait for the caber tosser to release $\Theta(2^n)$ more input gliders before the recursive filter releases its second output glider, which takes $\Theta(2^{2^n})$ generations. Indeed, the pattern in Figure~\ref{fig:recursive_filter_caber} doesn't release its second output glider until approximately generation
+Repeating this argument shows that the third output glider takes $\Theta\big(2^{2^{2^n}}\big)$ generations to produce, and in general the $k$-th output glider takes
 \[
-480 \times 2^{19471113219505603606989361234575175/6 + 1},
+	\raisebox{0.18cm}{$\displaystyle\Theta\Big($}\begingroup\color{gray}\underbrace{{\color{black}2^{2^{\cdot^{\cdot^{2^n}}}}}}_{\text{\color{gray}$k$ levels}}\endgroup\raisebox{0.18cm}{$\displaystyle\Big)$}
 \]
-which is a number with roughly $10^{33}$ digits---just writing down the decimal expansion of such a number would use more computer storage space than exists on the entire planet.
-
-Repeating this argument, we see that the third output glider takes $\Theta(2^{2^{2^n}})$ generations to produce, and in general the $k$-th output glider takes
+generations to produce. It follows that the population of this pattern in generation~$t$ grows asymptotically more slowly than $\log(t)$, $\log(\log(t))$, $\log(\log(\log(t)))$, and so on, regardless of how many times the logarithm is composed with itself. Its exact asymptotic growth rate is $\Theta(\log^*(t))$, where $\log^*$ is the \emph{iterated logarithm}\index{iterated logarithm} that counts how many times the (base~$2$) logarithm must be applied to a number to get a result no larger than $1$:\footnote{Equivalently, $\log^*(t)$ is the number of levels needed in a power tower of $2$'s to get a result at least as large as $t$, just like $\lceil\log(t)\rceil$ is the number of times $2$ must be multiplied by itself to get a result at least as large as $t$.}
 \[
-\raisebox{0.18cm}{$\displaystyle\Theta\Big($}\begingroup\color{gray}\underbrace{{\color{black}2^{2^{\cdot^{\cdot^{2^n}}}}}}_{\text{\color{gray}$k$ levels}}\endgroup\raisebox{0.18cm}{$\displaystyle\Big)$}
-\]
-generations to produce. It follows that the population of this pattern in generation~$t$ grows asymptotically more slowly than $\log(t)$, $\log(\log(t))$, $\log(\log(\log(t)))$, and so on (regardless of how many times the logarithm is composed with itself). Its exact asymptotic growth rate is $\Theta(\log^*(t))$, where $\log^*$ is the \emph{iterated logarithm}\index{iterated logarithm} that counts how many times the (base~$2$) logarithm must be applied to a number to get a result no larger than $1$:\footnote{Equivalently, $\log^*(t)$ is the number of levels needed in a power tower of $2$'s to get a result at least as large as $t$, just like $\lceil\log(t)\rceil$ is the number of times $2$ must be multiplied by itself to get a result at least as large as $t$.}
-\[
-\log^*(t) =
-\begin{cases}
-0                  & \mbox{if } \quad t \leq 1, \\
-1 + \log^*(\log(t)) & \mbox{if } \quad t > 1.
-\end{cases}
+	\log^*(t) = \begin{cases}
+		0                  & \mbox{if } \quad t \leq 1, \\
+		1 + \log^*(\log(t)) & \mbox{if } \quad t > 1.
+	\end{cases}
 \]
 
 As if that weren't slowly-growing enough, we could even use recursive filters in sequence to create guns that fire gliders even more slowly. For example, if we attach a second recursive filter to the output of the gun from Figure~\ref{fig:recursive_filter_caber} (see Exercise~??), we get a pattern whose population in generation~$t$ is $\Theta(\log^{**}(t))$, where $\log^{**}$ is the \emph{doubly-iterated logarithm} that counts how many times the iterated logarithm $\log^*$ must be applied to get a result no larger than $1$:\footnote{To give a rough idea of how slowly this function grows, we note that if $t$ is an integer with a trillion digits then $\log^{**}(t) = 4$.}
 \[
-\log^{**}(t) =
-\begin{cases}
-0                  & \mbox{if } \quad t \leq 1, \\
-1 + \log^{**}(\log^{*}(t)) & \mbox{if } \quad t > 1.
-\end{cases}
+	\log^{**}(t) = \begin{cases}
+		0                  & \mbox{if } \quad t \leq 1, \\
+		1 + \log^{**}(\log^{*}(t)) & \mbox{if } \quad t > 1.
+	\end{cases}
 \]
-This gun won't emit even a single glider until somewhere around generation~$2^{2^{\cdot^{\cdot^{2}}}}$, where there are roughly $10^{34}$ levels in that power tower.
-
-% There *is* a slowest growth rate by bounding box, found by Goucher and Greene. O(sqrt(log(n)). Will be covered in Universal Computation chapter.
-
-% Talk about quadratic and exponential filters in Notes/History section
-% Exercises: determine growth rate of (some filter attached to some gun) or determine when first/second glider leaves
-% EXERCISE: Make pattern with growth rate O(t^3/2) or O(t log^*t) (both easy, just attach guns we made here to a G-to-rake conduit). Earlier exercise: make G-to-rake conduit
+Such a gun won't emit even a single glider until somewhere around generation~$2^{2^{\cdot^{\cdot^{2}}}}$, where there are roughly $10^{34}$ levels in that power tower.
 
 
 \subsection{Fermat Primes and Unknown Growth}\label{sec:unknown_growth}
 
-We now go one step beyond constructing patterns that just grow slowly, and construct a pattern for which we do not even know whether its population grows without bound at all. That is, we construct a pattern whose population might tend to infinity as time goes on, or might stay bounded below some fixed value as time goes on, and we do not know how to distinguish between these two possibilities.
+We now go one step beyond constructing patterns that just grow slowly, and construct a pattern for which we do not even know whether its population grows without bound at all. That is, we construct a pattern whose population might tend to infinity as time goes on, or might stay bounded below some fixed value as time goes on, and we do not know how to determine which of these two possibilities is correct.
 
-One way to construct such a pattern is to encode an unsolved mathematical problem into the evolution of the pattern. Since there are numerous unsolved problems involving prime numbers, we use the prime-number-generating gun that we constructed in Figure~\ref{fig:primer} as our starting point. For example, it is currently unknown whether or not there are infinitely many \emph{Fermat primes}:\index{Fermat prime} prime numbers of the form $2^n + 1$, where $n$ is a non-negative integer. In fact, the only known Fermat primes are $3$, $5$, $17$, $257$, and $65537$, corresponding to $n = 1$, $2$, $4$, $8$, and $16$,\footnote{It is known that if $2^n+1$ is prime then $n$ must be a power of $2$.} and it is known that these are the only Fermat primes below
+One way to construct such a pattern is to encode an unsolved mathematical problem into the evolution of the pattern. Since there are numerous unsolved problems involving prime numbers, we use the prime-number-generating gun that we constructed in Figure~\ref{fig:primer} as our starting point. For example, it is currently unknown whether or not there are infinitely many \emph{Fermat primes}:\index{Fermat prime} prime numbers of the form $2^n + 1$, where $n$ is a non-negative integer. In fact, the only known Fermat primes are $3$, $5$, $17$, $257$, and $65{\thousep}537$, corresponding to $n = 1$, $2$, $4$, $8$, and $16$,\footnote{It is known that if $2^n+1$ is prime then $n$ must be a power of $2$, so Fermat primes are necessarily actually of the form $2^{2^n}+1$.} and it is known that these are the only Fermat primes below
 \[
-2^{2^{33}} \approx 9.63 \times 10^{2{\thousep}585{\thousep}827{\thousep}972}.
+	2^{2^{33}} \approx 9.63 \times 10^{2{\thousep}585{\thousep}827{\thousep}972}.
 \]
 
-In order to tweak the primer so that it computes just Fermat primes (rather than all primes), we can use the caber tosser. For example, we could use some p240 guns to destroy each LWSS that the primer outputs, but then aim the caber tosser so as to block those p240 guns, thus allowing lightweight spaceships corresponding to numbers of the form $2^n+1$ to pass (see Exercise~\ref{exer:construct_fermat_primer}).
+In order to tweak the primer so that it computes just Fermat primes (rather than all primes), we can use the caber tosser. For example, we could use some p240 guns to destroy each LWSS that the primer outputs, but then aim the caber tosser so as to block those p240 guns, thus allowing lightweight spaceships corresponding to numbers of the form $2^n+1$ to pass (see Exercise~\ref{exer:construct_fermat_primer}). The result would be a gun that fires lightweight spaceships whose positions correspond to Fermat primes.
 
-However, the population of such a gun would still tend to infinity regardless of how many Fermat primes exist, since the primer itself continues to construct more and more Gosper glider guns as time goes on. In order to get around this problem, we rig this Fermat prime calculator to self-destruct if a sixth Fermat prime is ever found.\footnote{We could similarly use the twin prime calculator (instead of a Fermat prime calculator) that we constructed in Exercise~\ref{exer:twin_prime_gun}. However, there are currently hundreds of trillions of twin prime pairs known, so it would not be easy to make it self-destruct only when a new one is found.} In particular, in that case we have the calculator send a signal to the front of the primer that causes an explosion to block it from expanding any further.
+However, the population of such a gun would still tend to infinity regardless of how many Fermat primes exist, since the primer itself continues to construct more and more Gosper glider guns as time goes on. In order to get around this problem, we rig this Fermat prime calculator to self-destruct if a sixth Fermat prime is ever found. In particular, in that case we have the calculator send a signal to the front of the primer that causes an explosion to block it from expanding any farther.
 
-One mild hiccup that arises when constructing such a pattern is that primer travels at a speed of $c/2$ to the north and to the east, so the ``self-destruct'' signal that we send cannot be a spaceship (recall from Section~\ref{sec:speed_limits} that no spaceship travels faster than this). Instead, we use wickstretchers\index{wickstretcher}\index{fuse} to create wicks along the sides of the primer, and we send the ``self-destruct'' signal in the form of a fuse burning through those wicks at a speed exceeding $c/2$. The resulting pattern, displayed in Figure~\ref{fig:fermat_primer}, makes use of the $4c/5$ fuse from Exercise~\ref{exer:4c5_fuse} and the beehive puffer/wickstretcher from Exercise~\ref{exer:beehive_puffer}. It grows without bound if there are only $5$ Fermat primes, whereas it has a bounded population otherwise.
+One mild hiccup that arises when constructing such a pattern is that the primer travels at a speed of $c/2$ to the north and to the east, so the self-destruct signal that we send cannot be a spaceship (recall from Theorem~\ref{thm:speed_limits} that no spaceship travels faster than this). Instead, we use wickstretchers\index{wickstretcher}\index{fuse} to create wicks along the sides of the primer, and we send the self-destruct signal in the form of a fuse burning through those wicks at a speed exceeding $c/2$. One configuration that works, displayed in Figure~\ref{fig:fermat_primer}, makes use of the $4c/5$ fuse from Exercise~\ref{exer:4c5_fuse} and the beehive wickstretcher from Exercise~\ref{exer:beehive_puffer}. This pattern grows without bound if there are only $5$ Fermat primes, whereas it has a bounded population otherwise.
 
 \begin{figure}[!htbp]
 	\centering
 	\embedlink{fermat_primer}{\includegraphics[width=\textwidth]{glider_guns/fermat_prime.pdf}}
-	\caption{A Fermat prime calculator that self-destructs and has bounded population if a sixth Fermat prime exists, but grows without bound otherwise. A caber tosser (highlighted in \bgbox{yellowback2}{yellow}) fires gliders at the lightweight spaceships that the primer creates corresponding to integers of the form $2^n+1$ (the LWSS corresponding to the Fermat prime $5$ is circled in \bgbox{redback}{red}). If that LWSS is present (i.e., $2^n+1$ is prime) then the glider is reflected and destroys one of the four tubs to its northeast (they are destroyed by the known Fermat primes $5$, $17$, $257$, and $65537$). If another Fermat prime is found, the glider goes through a glider duplicator (highlighted in \bgbox{magentaback}{magenta}) and ignites two $4c/5$ beehive wicks that are laid by beehive puffers (highlighted in \bgbox{aquaback}{aqua}). Those wicks eventually cause two extensible $c/2$ spaceships (highlighted in \bgbox{greenpastel}{green}) to explode, blocking the primer.}\label{fig:fermat_primer}
+	\caption{A Fermat prime calculator that self-destructs and has bounded population if a sixth Fermat prime exists, but grows without bound otherwise. A caber tosser (highlighted in \bgbox{yellowback2}{yellow}) fires gliders at the lightweight spaceships that the primer creates corresponding to integers of the form $2^n+1$ (the LWSS corresponding to the Fermat prime $5$ is circled in \bgbox{redback}{red}). If that LWSS is present (i.e., $2^n+1$ is prime) then the glider is reflected and destroys one of the four tubs to its northeast (they are destroyed by the known Fermat primes $5$, $17$, $257$, and $65{\thousep}537$). If another Fermat prime is found, the glider goes through a glider duplicator (highlighted in \bgbox{magentaback}{magenta}) and ignites two $4c/5$ beehive wicks that are laid by beehive puffers (highlighted in \bgbox{aquaback}{aqua}). Those wicks eventually cause two extensible $c/2$ spaceships (highlighted in \bgbox{greenpastel}{green}) to explode, blocking the primer.}\label{fig:fermat_primer}
 \end{figure}
 
-For spacing and timing reasons, this particular pattern starts with the Fermat prime $5$ (not $3$), and gliders corresponding to the Fermat primes $5$, $17$, $257$, and $65537$ each destroy a single tub near the southwest corner of the pattern. If a sixth Fermat prime is ever computed, the resulting glider is fed into a glider duplicator that ignites both fuses and leads to the primer's self-destruction. However, such self-destruction will not happen until at least generation
+For spacing and timing reasons, this particular pattern starts with the Fermat prime $5$ (not $3$), and gliders corresponding to the Fermat primes $5$, $17$, $257$, and $65{\thousep}537$ each destroy a single tub near the southwest corner of the pattern. If a sixth Fermat prime is ever found, the resulting glider is fed into a glider duplicator that ignites both fuses and leads to the primer's self-destruction. However, such self-destruction will not happen until at least generation
 \[
-120 \times 2^{2^{33}} \approx 1.16 \times 10^{2{\thousep}585{\thousep}827{\thousep}975},
+	120 \times 2^{2^{33}} \approx 1.16 \times 10^{2{\thousep}585{\thousep}827{\thousep}975},
 \]
-so evolving this pattern via computer software is  not actually an effective method of checking whether or not a sixth Fermat prime exists.
+so evolving this pattern via computer software is not actually an effective method of checking whether or not a sixth Fermat prime exists.
 
-While it is not possible to run this pattern long enough to see it self-destruct, we can force its self-destruction by manually erasing one or more of the glider-absorbing tubs at its southwest corner. If we erase all $4$ of those tubs, the glider corresponding to the Fermat prime $5$ almost immediately triggers the primer's self-destruction, whereas deleting a smaller number of tubs delays its self-destruction somewhat. If we remove just $1$ tub, the ``self-destruct'' fuse is ignited after roughly $8$~million generations (by the glider corresponding to the Fermat prime $65537$) and the primer finally stabilizes after roughly $21$~million generations.
+While it is not possible to run this pattern long enough to see it self-destruct, we can force its self-destruction by manually erasing one or more of the glider-absorbing tubs at its southwest corner. If we erase all $4$ of those tubs, the glider corresponding to the Fermat prime $5$ almost immediately triggers the primer's self-destruction, whereas deleting a smaller number of tubs delays its self-destruction somewhat. If we remove just $1$ tub, the self-destruct fuse is ignited after roughly $8$~million generations (by the glider corresponding to the Fermat prime $65{\thousep}537$) and the primer finally stabilizes after roughly $21$~million generations.
 
 
+
+% NJ is here in the cleanup process
+
+% Talk about quadratic and exponential filters in Notes/History section
+% Exercises: determine growth rate of (some filter attached to some gun) or determine when first/second glider leaves
+% EXERCISE: Make pattern with growth rate O(t^3/2) or O(t log^*t) (both easy, just attach guns we made here to a G-to-rake conduit). Earlier exercise: make G-to-rake conduit
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Notes and Historical Remarks}\label{sec:glider_guns_history}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
