@@ -836,17 +836,21 @@ We can even perform different block-reflecting operations like this in sequence.
 Theoretically, this method could be used to create any sequence of gliders appearing on any sequence of lanes of our choosing, though the details become increasingly cumbersome as the desired pattern of output gliders increases in complexity. We will return to this topic in Chapter~\ref{chp:universal_construction}, where we discuss how to use these ideas to build a pattern that can create copies of any pattern that can be synthesized by gliders (including itself).
 
 
-% TODO: Rename to "armless guns"? motivate as previous section elbow gives one method of firing on multiple lanes, but there are methods without an elbow too
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%   SUBSECTION: ARMLESS CONSTRUCTION
+%%   SUBSECTION: ARMLESS GUNS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Armless Guns}\label{sec:armless}
 
 It is very useful to be able to fire gliders along arbitrary lanes via guns that work on just a fixed set of lanes, and the block-pushing reactions of the previous section give us one way of doing so. However, perhaps a simpler way of achieving the same effect is to collide antiparallel gliders with each other so as to create a perpendicular glider. We saw that this can be achieved via the ``tee''\index{tee} collisions of Table~\ref{tab:3_glider_synth}, but those reactions require us to be able to generate input gliders on $3$ different lanes, including two lanes that are quite close together. In fact, since a given tee reaction always produces gliders of the same color, we would need two separate tee reactions and a total $6$ different input lanes if we wanted to use this method to generate perpendicular gliders of both colors.
 
-Luckily there is a known component, which we saw in Exercise~\ref{exer:herschel_tee}, that converts a single Herschel directly into a pair of gliders that can be used in one of these tee reactions. This means that we won't need three guns to fire a perpendicular glider via a tee---we can instead get away with just two, by having one of them generate glider pairs via this H-to-2G component while the other produces the corresponding antiparallel gliders.
 
-If we use loop guns (like the adjustable one from Figure~\ref{fig:p80_adjustable_gun}) to produce these gliders, we can then adjust the lane that the output glider is produced on simply by adjusting the relative spacing of the gliders in those loops. However, these guns are necessarily \emph{monochrome}\index{monochrome}---they can only produce gliders of a single color. In particular, delaying a glider in one of the loops by $8$~generations will shift the corresponding output glider from the tee reaction by one full diagonal, but there is no way to shift that output glider by just a half diagonal. To get around this problem, we can double the number of loop guns from $2$ to $4$: one pair to produce gliders of one color, and another pair to produce gliders of the other color, as illustrated in Figure~\ref{fig:armless_4_lane_monochrome_gun}.
+\subsection{Monochrome Armless Guns}\label{sec:monochrome_armless_guns}
+
+Luckily there is a known component, which we saw in Exercise~\ref{exer:herschel_tee}, that converts a single Herschel directly into a pair of gliders that can be used in one of the tee reactions. This means that we won't need three guns to fire a perpendicular glider via a tee---we can instead get away with just two, by having one of them generate glider pairs via this H-to-2G component while the other produces the corresponding antiparallel gliders.
+
+If we use loop guns (like the adjustable one from Figure~\ref{fig:p80_adjustable_gun}) to produce these gliders, we can then adjust the lane that the output glider is produced on simply by adjusting the relative spacing of the gliders in those loops. However, these guns are necessarily \emph{monochrome}\index{monochrome}---they can only produce gliders of a single color. In particular, delaying a glider in one of the loops by $8$~generations (i.e., 2~full diagonals) will shift the corresponding output glider from the tee reaction by one full diagonal, but there is no way to adjust the gliders in the loops so as to shift the output glider by just a half diagonal. To get around this problem, we can double the number of loop guns from two to four: one pair to produce gliders of one color, and another pair to produce gliders of the other color, as illustrated in Figure~\ref{fig:armless_4_lane_monochrome_gun}.
+
+\clearpage % Forces next section to next page, since spacing was awkward otherwise. Can remove if spacing/layout changes
 
 \begin{figure}[!htb]
 	\centering
@@ -854,117 +858,104 @@ If we use loop guns (like the adjustable one from Figure~\ref{fig:p80_adjustable
 	\caption{A gun that fires gliders to the northwest on four consecutive lanes (highlighted in order from right-to-left in \bgbox{magentaback}{magenta}, \bgbox{aquaback}{aqua}, \bgbox{greenpastel}{green}, and \bgbox{yellowback2}{yellow}). The first and third gliders are created by the northwest pair of loop guns, while the second and fourth gliders (of the other color) are created by the southeast pair of loop guns. The output lanes can be adjusted simply by adjusting the relative spacing of the gliders in the loops. The loop guns on the southwest feed into the SW1T43\index{SW1T43} H-to-2G conduit from Exercise~\ref{exer:herschel_tee} so that they produce 2 of the 3 gliders needed in the tee reaction at once.}\label{fig:armless_4_lane_monochrome_gun}
 \end{figure}
 
-% NJ is here in the cleanup process
 
-It's a little awkward to have to use a separate pair of loop guns to generate each of the two glider colors. It means there are more glider streams to maintain, and additional constraints come into play because one of the glider colors has to cross the construction area for the other glider color, where the tee collisions are occurring. In future chapters we will come across situations where it's much better to keep the number of individual signal storage loops to a minimum.  So the question arises:  is there a way to encode both colors of output glider into a single pair of loop guns?
+\subsection{Multicolor Armless Guns}\label{sec:multicolor_armless_guns}
 
-There is in fact a known way to do this. We can use slow antiparallel glider collisions that only make use of $2$ gliders at a time, always arriving from the same two antiparallel lanes. This gives us the maximum amount of flexibility in storing the gliders in loop, and extracting copies. We only need to ensure that the time between adjacent gliders is at least the repeat time of the circuitry used to build the loop. For many syringe-based reflectors and splitters, this minimum repeat time is 74 ticks.
+It is somewhat awkward to have to use a separate pair of loop guns to generate gliders of each of the two colors---it results in more glider streams to maintain, and additional constraints come into play because the gliders of one color have to cross the construction area for the gliders of the other color. This raises a natural question: is there a way to encode output gliders of both colors in a single pair of loop guns?
 
-The simplest known reactions of this type are displayed in Figure~\ref{fig:armless_tee}, and they make use of $3$ antiparallel $2$-glider collisions to generate an output perpendicular glider of either color. Slowing down the input gliders in one half of these reactions by $8n$ generations (i.e., moving them backward by two full diagonal steps) will move the output glider in that direction by $2n$~lanes, or one full diagonal. So we can use these two $6$-glider recipes to create an output glider on any perpendicular lane of our choosing.
+There is in fact a known way to do this. Instead of using $3$ synchronized gliders to create a perpendicular one, as in tee reactions, we can use slow antiparallel glider collisions that only make use of $2$ gliders at a time, always arriving from the same two antiparallel lanes. This gives us the maximum amount of flexibility in storing the gliders in loop, and extracting copies---we only need to ensure that the time between adjacent gliders is at least the repeat time of the circuitry used to build the loop. For many syringe-based reflectors and splitters, this minimum repeat time is 78 generations (but it can be overclocked down to 74 generations).
+
+The simplest known reactions of this type are displayed in Figure~\ref{fig:armless_tee}, which make use of $3$ antiparallel $2$-glider collisions to generate a perpendicular output glider of either color. Slowing down the input gliders in one half of these reactions by $8n$ generations (i.e., moving them backward by $2n$~full diagonals) will move the output glider in that direction by $n$~full diagonals. We can thus use these two $6$-glider recipes to create an output glider on any perpendicular lane of our choosing.
 
 \begin{figure}[!htb]
 	\centering
-	\begin{tabular}{@{}cc@{}}
-		\begin{subfigure}{0.48\textwidth}
-			\centering
-			\embedlink{armless_tee}{\vcenteredhbox{\patternimg{0.1}{armless_tee_0_0}} \vcenteredhbox{\genarrow{138}} \vcenteredhbox{\patternimg{0.1}{armless_tee_0_1}}}
-			\caption{output glider of one color}
-			\label{fig:armless_tee_0}
-		\end{subfigure} & \begin{subfigure}{.48\textwidth}
-			\centering
-			\patternlink{armless_tee}{\vcenteredhbox{\patternimg{0.1}{armless_tee_1_0}} \vcenteredhbox{\genarrow{142}} \vcenteredhbox{\patternimg{0.1}{armless_tee_1_1}}}
-			\caption{output glider of the other color}
-			\label{fig:armless_tee_1}
-		\end{subfigure}
-	\end{tabular}
-	\caption{A way of colliding $3$ single-lane antiparallel pairs of gliders so as to create perpendicular gliders of either color. The collisions are \emph{slow}\index{slow glider pairs}, so the glider pairs can be delayed relative to each other by any number of generations without affecting the overall reaction (well, the delay must be even since some of the intermediate collisions create p$2$ traffic lights).}\label{fig:armless_tee}
+	\begin{subfigure}{0.485\textwidth}
+		\centering
+		\embedlink{armless_tee}{\vcenteredhbox{\patternimg{0.104}{armless_tee_0_0}} \vcenteredhbox{\genarrow{138}} \vcenteredhbox{\patternimg{0.104}{armless_tee_0_1}}}
+		\caption{output glider of one color}
+		\label{fig:armless_tee_0}
+	\end{subfigure} \hfill \begin{subfigure}{.485\textwidth}
+		\centering
+		\patternlink{armless_tee}{\vcenteredhbox{\patternimg{0.104}{armless_tee_1_0}} \vcenteredhbox{\genarrow{142}} \vcenteredhbox{\patternimg{0.104}{armless_tee_1_1}}}
+		\caption{output glider of the other color}
+		\label{fig:armless_tee_1}
+	\end{subfigure}
+	\caption{A way of colliding $3$ single-lane antiparallel pairs of gliders so as to create perpendicular gliders of either color. The collisions are \emph{slow}\index{slow glider pairs} and p2 (some of the collisions create intermediate blinkers), so the glider pairs can be delayed relative to each other by any even number of generations without affecting the overall reaction.}\label{fig:armless_tee}
 \end{figure}
 
-The wonderful thing about not having to worry about the timing between the glider pairs in these reactions, and only having to use a single lane, is that we can now use just two loop-based guns to generate any slow-salvo recipe we might want. For example, if we want to create a gun that cycles between firing gliders on four consecutive lanes, we first figure out which $4 \times 3 = 12$ antiparallel glider pairs we need to fire at each other, and then we place those pairs into two loop guns that are aimed at each other.\footnote{This is the same method that we used in Section~\ref{sec:p46_ticker_tape} to create ticker tapes.} In particular, for each output glider that we wish to generate, we first choose which collision from Figure~\ref{fig:armless_tee} we should use based on the color of that glider, and then we delay the $3$ gliders on one half of that collision by $8$~generations ($2$ full diagonals) at a time until the output glider is produced in the correct lane. The resulting gun is displayed in Figure~\ref{fig:armless_4_lane_gun}.
+The wonderful thing about not having to worry about the timing between the glider pairs in these reactions, and only having to use a single lane, is that we can now use just two loop-based guns to generate gliders on any sequence of lanes of our choosing. For example, we can now create a gun like the one from Figure~\ref{fig:armless_4_lane_monochrome_gun} that cycles between firing gliders on four consecutive lanes, but which only uses two loop guns. The trade-off is that instead of each loop gun having $2$ gliders on its loop (for a total of $2 \times 4 = 8$), we now need $4 \times 3 = 12$ gliders in each loop (for a total of $12 \times 2 = 24$).
 
-% TODO: Probably make smaller
-%       -- see https://conwaylife.com/forums/viewtopic.php?p=85842#p85842
+To actually build this gun, we need to figure out which antiparallel glider pairs we need to fire at each other, and then we place those pairs into two loop guns that are aimed at each other. In particular, for each output glider that we wish to generate, we first choose which collision from Figure~\ref{fig:armless_tee} we should use based on the color of that glider, and then we delay the $3$ gliders on one half of that collision by $8$~generations (i.e., $2$ full diagonals) at a time until the output glider is produced on the correct lane. The resulting gun is displayed in Figure~\ref{fig:armless_4_lane_gun}.
 
 \begin{figure}[!htb]
 	\centering
-	\patternimglink{0.087}{armless_4_lane_gun}
+	\patternimglink{0.088}{armless_4_lane_gun}
 	\caption{A gun that fires gliders to the northwest on four consecutive lanes (highlighted in order from right-to-left in \bgbox{magentaback}{magenta}, \bgbox{aquaback}{aqua}, \bgbox{greenpastel}{green}, and \bgbox{yellowback2}{yellow}). The first and third gliders are created by the reaction from Figure~\ref{fig:armless_tee_0}, while the second and fourth gliders of the other color are created by the reaction from Figure~\ref{fig:armless_tee_1}.}\label{fig:armless_4_lane_gun}
 \end{figure}
 
 
+\subsection{Armless Construction}\label{sec:armless_construction_subsec}
 
-\subsection{Monochrome Armless Construction}\label{sec:monochrome_armless}
+This armless method of generating gliders is particularly useful for implementing slow salvo syntheses.\index{slow salvo} The primary method that we saw earlier for generating a slow salvo was to use numerous carefully-placed high period-guns (many of which would have to be edge shooters). However, if a salvo of gliders takes up too many lanes, then a conventional edge shooter may not have enough clearance to place a glider in one of the central lanes from either side. This is where armless guns shine: they can reach across any number of lanes, as long as the input gliders do not interfere with perpendicular output gliders that have already been placed in the salvo.
 
-This method of generating gliders is particularly useful for implementing slow salvo syntheses.\footnote{Slow salvo synthesis was explored in Section~\ref{sec:slow_salvo}.}\index{slow salvo} If we want to create a gun that implements any given slow-salvo synthesis, we could use numerous carefully-placed high period-guns (many of which will have to be edge shooters). But an easier way would be to encode the slow salvo synthesis in a two pairs of (quite large) loop guns, one pair for each glider color. This method of implementing a slow salvo synthesis is called \emph{armless}\index{armless construction} construction, in contrast with \emph{armed} construction\index{construction arm} that uses a block (or other still life or constellation) to position the slow gliders as in Section~\ref{sec:slide_guns}.
+For this reason, we often encode slow salvos in the sequences of gliders in pairs of (quite large) loop guns, which fire at each other to create perpendicular gliders on whichever lanes are needed in the slow salvo synthesis. This method of implementing a slow salvo synthesis is called \emph{armless}\index{armless construction} construction, in contrast with \emph{armed} construction\index{construction arm} that uses a block (or other still life or constellation) to position the slow gliders as in Section~\ref{sec:slide_guns}.
 
-Unfortunately, slow-salvo syntheses of even moderately-sized objects like Corderships tend to require hundreds of gliders, so huge and unwieldy loop guns would needed to generate those syntheses. However, if we are willing to use $2$-direction slow syntheses instead, then we can synthesize a $2$-engine Cordership via just $17$ pairs of gliders.\footnote{In particular, we make use of the seed for the $2$-engine Cordership that we constructed in Exercise~\ref{exer:2_engine_corder_seed}.}
+Unfortunately, slow-salvo syntheses of even moderately-sized objects like Corderships tend to require hundreds of gliders, so huge and unwieldy loop guns would be needed to generate those syntheses. However, if we are willing to use $2$-direction slow syntheses instead, then the glider recipes shrink considerably. That is, we use \emph{slow glider pairs}:\index{slow glider pair} the two gliders in each pair have to be precisely synchronized with each other, but an arbitrarily long delay can be added between any two pairs of gliders. By using this technique, the slow salvo recipe for a $2$-engine Cordership decreases from $112$ unidirectional slow gliders to just $17$ slow glider pairs, as illustrated in Figure~\ref{fig:2_engine_cordership_slow_pair_synthesis}.\footnote{Both of these slow syntheses work by first building the seed for the $2$-engine Cordership that we constructed in Exercise~\ref{exer:2_engine_corder_seed}. The $112$-glider unidirectional recipe is given in Exercise~\ref{exer:cordership_slow_salvo_from_single_channel}.}
 
-% ADD FIGURE HERE:  17 glider pairs labeled by color -- could move closer together, like this:
-%
-% x = 220, y = 135, rule = LifeHistory
-% 116.D$115.D.D$115.2D4$112.D$111.D.D13.2D$112.2D13.2D2$118.3C$112.D5.C
-% $111.D.D5.C$107.3C2.2D$109.C$101.3C4.C21.3E2.2D$103.C26.E4.2D$102.C
-% 28.E4$117.2D$117.2D2$102.D4.D$101.D.D2.D.D$102.2D3.2D2$96.3C$98.C$97.
-% C$131.3C$131.C$84.3E27.2D16.C4.3C$86.E27.2D21.C$85.E52.C5$102.2D$102.
-% 2D$161.3E$161.E$162.E$90.3E$92.E$91.E3$79.3E$81.E$80.E$148.3E$148.E$
-% 149.E3$64.3C90.3E$66.C90.E$65.C92.E20.3E$179.E$180.E$88.3E$90.E$64.3E
-% 22.E$66.E$65.E$149.3E$149.E$52.3C95.E4.3E$54.C100.E$53.C102.E7$174.3E
-% $174.E$175.E$57.3E$59.E$58.E2$51.3E$53.E$52.E$166.3E$166.E$39.3C125.E
-% 4.3E$41.C130.E$40.C132.E10$183.3C$183.C33.3E$184.C32.E$42.3C173.E$44.
-% C$43.C3$172.3E$172.E$173.E$29.3E$31.E$8.3C19.E$10.C$9.C8$201.2C$200.
-% 2C$202.C4$3C$2.C$.C!
-%
-%
-% or possibly leave them in the minimum configuration that one of these tee-based armless guns can actually produce, to make it easier to use them in a follow-up exercise:
-%
-% x = 918, y = 483, rule = LifeHistory
-% 465.D$464.D.D$464.2D4$461.D$460.D.D13.2D$461.2D13.2D3$461.D$460.D.D$
-% 461.2D2$484.2D$484.2D5$466.2D$466.2D2$451.D4.D$450.D.D2.D.D$451.2D3.
-% 2D7$463.2D$463.2D6$451.2D$451.2D21$519.3C$519.C$520.C$404.3C$406.C$
-% 405.C16$382.2C164.2E$381.C.C164.E.E$383.C164.E25$363.3C$365.C$364.C$
-% 562.3C$562.C$563.C16$335.2E248.2C$334.E.E248.C.C$336.E248.C32$633.3E$
-% 633.E$634.E$316.3E$318.E$317.E34$274.2E$273.E.E$275.E$652.2E$652.E.E$
-% 652.E17$245.3C426.3E$247.C426.E$246.C428.E16$713.2E$713.E.E$713.E$
-% 253.2E$252.E.E$254.E49$180.3E$182.E$181.E$731.3E$731.E$732.E16$152.2C
-% 600.2E$151.C.C600.E.E$153.C600.E17$782.3E$782.E$783.E$147.3E$149.E$
-% 148.E28$115.2E$114.E.E$116.E$801.2E$801.E.E$801.E17$86.3C734.3E$88.C
-% 734.E$87.C736.E31$856.2C$856.C.C$856.C$68.2C$67.C.C$69.C3$845.2E$844.
-% 2E$846.E$55.2E$56.2E$55.E9$25.3C$27.C$26.C2$916.E$915.2E$915.E.E4$
-% 882.2C$881.2C$883.C20$.C$.2C$C.C!
+\begin{figure}[!htb]
+	\centering
+	\patternimglink{0.121}{2_engine_cordership_slow_pair_synthesis}
+	\caption{A way of synthesizing a 2-engine Cordership via $17$ slow glider pairs. The first $16$ pairs synthesize a seed (displayed in \bgbox{greenpastel}{green}), while the final pair turns that seed into the 2-engine Cordership. Gliders of one color are highlighted in 
+	\bgbox{aquaback}{aqua}, while gliders of the other color are highlighted in \bgbox{magentaback}{magenta}.}\label{fig:2_engine_cordership_slow_pair_synthesis}
+\end{figure}
 
-These are \emph{slow glider pairs}\index{slow glider pairs}, meaning that the action of each pair is completely independent from all pairs before it. The two gliders in each pair have to be precisely synchronized with each other, but an arbitrarily long delay can be added between any two pairs of gliders. This is a very useful feature when the glider production mechanism has a significant speed limitation, as we'll see in the next section.
+The two salvos that make up these slow glider pairs each contain gliders of both colors, so if we are to use the monochrome guns based on tees to create them, as described in Section~\ref{sec:monochrome_armless_guns}, we need a total of $8$ glider loops: $2$ for each color in each salvo. Those loop guns will create the $17$ slow glider pairs via a total of $68$ gliders in the $8$ different loops ($2$ gliders in the loops for each of the $34$ gliders in the $17$ pairs). The $2$-engine Cordership gun that results from this construction is displayed in Figure~\ref{fig:armless_monochrome_cordership_gun}.
 
-Each of the two salvos contains gliders of both colors, so we'll have to include two pairs of loop guns  similar to the gun from Figure~\ref{fig:p80_adjustable_gun} that duplicates whatever gliders are placed on its track. Each pair of guns will be dedicated to producing all the gliders of one color. The above $17$ slow glider pairs can be created by a total of $8$~loop guns containing a total of $68$ gliders. For each output glider in each salvo, two gliders are added to one of the pairs of guns, depending on the output glider's color.  The result is the $2$-engine Cordership gun displayed in Figure~\ref{fig:armless_tee_cordership_gun}.
+\begin{figure}[!htb]
+	\centering
+	\patternimglink{0.1365}{armless_monochrome_cordership_gun}
+	\caption{A $2$-engine Cordership gun that works by using 8 loop guns (highlighted in \bgbox{aquaback}{aqua} and \bgbox{magentaback}{magenta}, and whose tracks are ``folded'' via Snarks just to reduce their size) to create gliders of different colors. Those glider pairs travel along various lanes (highlighted in \bgbox{greenpastel}{green}) that implement the $17$-glider-pair slow salvo synthesis of a $2$-engine Cordership from Figure~\ref{fig:2_engine_cordership_slow_pair_synthesis}.}\label{fig:armless_monochrome_cordership_gun}
+\end{figure}
 
-% The tee-based armless Cordership gun is posted here:
-%    https://conwaylife.com/forums/viewtopic.php?p=85842#p85842for each output glider in each salvo, 
+If we instead make use of the multicolor armless techniques that were described in Section~\ref{sec:multicolor_armless_guns}, the same $17$ glider pairs in the Cordership recipe from Figure~\ref{fig:2_engine_cordership_slow_pair_synthesis} can be created by a total of just four loop guns instead of eight, as illustrated in Figure~\ref{fig:armless_cordership_gun}. However, the trade-off is the each loop gun requires far more gliders in its loop in order to encode the synthesis. In particular, the loops each contain $3 \times 17 = 51$ gliders, for a total of $4 \times 51 = 204$: exactly three times as many as the $68$ that were used in the loops of the monochrome gun from Figure~\ref{fig:armless_monochrome_cordership_gun}).
 
-A tee reaction can be a convenient component in many situations where a slow salvo or a synchronized salvo must be generated. If a salvo of gliders takes up too many lanes, then a conventional edge shooter may not have enough clearance to place a glider in one of the central lanes, from either side of the salvo. A tee reaction can reach across any number of lanes, as long as the three gliders don't interfere with gliders that have already been placed in the salvo.
-
-
-\subsection{Multicolor Armless Construction}\label{sec:multicolor_armless}
-
-As a more advanced example, the same $17$ glider pairs in the Cordership recipe from the previous section can be created by a total of just $4$~loop guns instead of eight.  Each gun has a track containing $3 \times 17 = 51$ gliders each, giving us the $2$-engine Cordership gun displayed in Figure~\ref{fig:armless_cordership_gun}.
+\clearpage % Forces next section to next page, since spacing was awkward otherwise. Can remove if spacing/layout changes
 
 \begin{figure}[!htb]
 	\centering
 	\patternimglink{0.136}{armless_cordership_gun}
-	\caption{A $2$-engine Cordership gun that works by using four loop guns (highlighted in \bgbox{aquaback}{aqua} and \bgbox{yellowback2}{yellow}) that each contain $51$ gliders along their track (the tracks are ``folded'' via Snarks just to reduce their size). Those loop guns create $17$ slow glider pairs along various lanes (highlighted in \bgbox{greenpastel}{green}), which synthesize the Cordership.}\label{fig:armless_cordership_gun}
+	\caption{A $2$-engine Cordership gun that works by using 4 loop guns (highlighted in \bgbox{aquaback}{aqua} and \bgbox{yellowback2}{yellow}) that each contain $51$ gliders along their tracks (which are ``folded'' via Snarks just to reduce their size). Those loop guns create $17$ slow glider pairs along various lanes (highlighted in \bgbox{greenpastel}{green}), which synthesize the Cordership.}\label{fig:armless_cordership_gun}
 \end{figure}
 
 
 \subsection{Comparison of Methods}\label{sec:method_compare}
 
-A tee-reaction armless design has a lower total population (only two stored loop gliders per output glider) and consequently a faster repeat rate.  To change the output lane it's only necessary to move a single glider by 2N cells diagonally; to change the output glider's timing we simply delay or advance the two paired gliders in two connected loop guns.
+There are advantages and drawbacks to each of the monochrome (i.e., tee-based) and multicolor armless construction techniques, which we now compare and contrast. Some reasons that armless construction based on monochrome tee-based guns is sometimes advantageous include:\smallskip
 
-Multicolor armless designs have other compensating advantages besides the smaller number of loops. Interleaving different colored gliders becomes relatively trivial, with no need to worry about gliders from the back pair of guns interfering with the forward guns' insertion reaction (or vice versa). The paired streams can be reflected into place with just plain Snarks if needed, and they're ambidextrous, if that's ever useful:  swap the glider triplets to the opposite guns, and the glider will fire in the opposite direction. A tee-reaction setup can't do that.
+\begin{itemize}
+	\item Their total population will be lower, since only two stored loop gliders are needed per output glider, whereas multicolor armless guns need six.\smallskip
+	
+	\item Their repeat time will be smaller, since the glider loops contain fewer gliders and can thus be smaller.\smallskip
+	
+	\item They are somewhat easier to adjust: to change a glider's output lane by $n$~cells, it is only necessary to move a single glider by $2n$ full diagonals in one of the loops, whereas adjustments would have to be made to three gliders in the multicolor design.\smallskip
+\end{itemize}
 
-Thus, choosing one of these mechanisms over the other has some definite implications about priorities. If overall simplicity is more important for a given project, then it might make sense to use three glider pairs to insert each glider. The conduit that creates two gliders for the tee reaction is not something we know how to build easily, especially with slow salvos, so it wouldn't be a reasonable part of any circuitry that must itself be constructed by gliders. But it's very easy to assemble Spartan circuitry that puts simple pairs of gliders on two opposing lanes. 
+However, multicolor armless designs have other compensating advantages that sometimes make them preferable:\smallskip
 
-The biggest advantage of armless construction is that the general form of the gun would not significantly change if we instead wanted the gun to synthesize a completely different spaceship like a loafer or an ecologist.  All that we would have to change is the sequences of gliders running through the glider loops. This trick of encoding patterns in sequences of gliders, rather than in the positions of various complicated guns, will be extremely useful once we investigate universal construction in Chapter~\ref{chp:universal_construction}.
+\begin{itemize}
+	\item They have half as many glider loops.\smallskip
+	
+	\item Interleaving different-colored gliders is relatively trivial, with no need to worry about gliders from the back pair of guns interfering with the forward guns' insertion reaction (or vice versa).\smallskip
+	
+	\item The glider loops that generate antiparallel colliding gliders can be made to be Spartan,\index{Spartan} and thus easy to synthesize via slow salvos. In contrast, the conduit from Exercise~\ref{exer:herschel_tee} that serves as the basis for monochrome tee-based armless construction is not Spartan, so it would not be a reasonable part of any circuitry that must itself be constructed by gliders.\smallskip 
+\end{itemize}
 
-We have now seen four different explicit constructions of a gun that fires $2$-engine Corderships: we saw how to use its $9$-glider synthesis to construct such a gun ``directly'' in Exercise~\ref{exer:2eng_corder_gun}, we saw how to transform a glider into a $2$-engine Cordership (and thus any sufficiently high-period glider gun into a $2$-engine Cordership gun) in Figure~\ref{fig:glider_to_2engine_cordership}, and two different ways of using armless construction to fire $2$-engine Corderships using loop guns are shown above.
+We have now seen four different explicit constructions of a gun that fires $2$-engine Corderships: we saw how to use its $9$-glider synthesis to construct such a gun ``directly'' in Exercise~\ref{exer:2eng_corder_gun}, we saw how to transform a glider into a $2$-engine Cordership (and thus any sufficiently high-period glider gun into a $2$-engine Cordership gun) in Figure~\ref{fig:glider_to_2engine_cordership}, and we saw two different ways of using armless construction to fire $2$-engine Corderships using loop guns in Figures~\ref{fig:armless_monochrome_cordership_gun} and~\ref{fig:armless_cordership_gun}. Even though the guns based on armless construction are much larger, and perhaps seem more complicated at first, they have the advantage that they can be more easily modified to synthesize other types of objects.
 
+Indeed, the biggest advantage of armless construction in general, whether monochrome or multicolor, is that the general form of the gun would not significantly change if we wanted it to synthesize a completely different spaceship like a loafer or an ecologist. All that we would have to change is the sequences of gliders running through the glider loops. This trick of encoding patterns in sequences of gliders, rather than in the positions of various complicated guns, will be extremely useful once we investigate universal construction in Chapter~\ref{chp:universal_construction}.
+
+
+% NJ is here in the cleanup process
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%   SUBSECTION: SLOW AND IRREGULAR GUNS
@@ -1606,6 +1597,15 @@ This collection of small glider guns is now being maintained by Chris Cain and D
 		
 		\noindent [Hint: Using an edge-shooting gun like the one from Exercise~\ref{exer:edge_shoot_30n} will help keep the size of your slide gun down.]
 	\end{problem}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:four_lane_gun_smaller} \probdiff{3}
+		Decrease the bounding box of the four-lane gun from Figure~\ref{fig:armless_4_lane_gun} so that it no larger than $275 \times 275$, by using Snarks to wrap the glider loops around like we did in Figures~\ref{fig:armless_monochrome_cordership_gun} and~\ref{fig:armless_cordership_gun}.
+	\end{problem}
+	% SOLUTION: https://conwaylife.com/forums/viewtopic.php?p=85842#p85842
 	
 	
 	\mfilbreak
