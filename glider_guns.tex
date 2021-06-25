@@ -1174,23 +1174,39 @@ After Herschel tracks hit the mainstream, which allowed for the systematic creat
 
 As a result of these repeated optimizations, most of the guns in this collection are now very cleverly and tightly packed---much moreso than the p$14$ gun that we constructed in Figure~\ref{fig:p14_gun}. Indeed, that gun had lots of empty whitespace that could be reduced by customizing the four glider insertion mechanisms that it uses, rather than using the exact same track for all four of them. For example, a particularly compact p$16$ gun is displayed in Figure~\ref{fig:p16_gun}.\footnote{However, this is not quite the smallest known p$16$ gun---see Exercise~\ref{exer:robs_p16_smaller_p16_gun}.} This gun uses a small p$24$ glider gun (one that is slightly smaller and newer than the one we saw in Figure~\ref{fig:p24_glider_gun}), which is then filtered to p$48$ by Rich's p$16$, and then sped up to p$16$ via two copies of the glider insertion reaction from Figure~\ref{fig:lwss_squish_pip}.
 
-Patterns that decrease the asymptotic growth rate of a gun were known prior to the recursive filter of Figure~\ref{fig:recursive_filter}, but their effects were less pronounced. The first such pattern was a \emph{quadratic filter},\index{quadratic filter} which is displayed in Figure~\ref{fig:quadratic_filter}. This pattern produces its $n$-th output glider after receiving its $n(n+1)/2$-th input glider,\footnote{This device relies on p$90$ circuitry, so the input gliders have to be aligned to that period.} and thus decreases the growth rate of glider guns quadratically. In particular, appending this pattern to a gun whose growth rate is $\Theta(f(t))$ results in a gun with the slower growth rate $\Theta(\sqrt{f(t)})$. For example, if we append $n$ of these quadratic filters in series after a gun whose population grows linearly (i.e., a ``standard'' glider gun), we get a gun with growth rate $\Theta(t^{1/2^n})$.
+Patterns that decrease the asymptotic growth rate of a gun were known prior to the recursive filter of Figure~\ref{fig:recursive_filter}, but their effects were less pronounced. The first such pattern was a \emph{quadratic filter},\index{quadratic filter} which is displayed in Figure~\ref{fig:quadratic_filter}. This pattern produces its $n$-th output glider after receiving its $n(n+1)/2$-th input glider,\footnote{This device relies on p$90$ circuitry, so the input gliders have to be aligned to that period.} and thus decreases the growth rate of glider guns quadratically. In particular, appending this pattern to a gun whose population in generation~$t$ is $\Theta(f(t))$ results in a gun with whose population is $\Theta(\sqrt{f(t)})$. For example, if we append $n$ of these quadratic filters in series after a gun whose population grows linearly (i.e., a ``standard'' glider gun), we get a gun whose population is $\Theta(t^{1/2^n})$.
 
 \begin{figure}[!htb]
 	\centering
-	\patternimglink{0.143}{quadratic_filter}
-	\caption{A \emph{quadratic filter}, which reduces the growth rate of a gun quadratically. It works by using a pair of gliders (highlighted in \bgbox{aquaback}{aqua}) to pull a block from an ever-receding trail (highlighted in \bgbox{greenpastel}{green}), similar to the loaf-pulling reaction used in the recursive filter of Figure~\ref{fig:recursive_filter}. The rest of the device (highlighted in \bgbox{magentaback}{magenta}) extends the back end of the block trail. Here, the filter is attached to a p$90$ glider gun (highlighted in \bgbox{yellowback2}{yellow}), resulting in a sqrtgun. Constructed by Gabriel Nivasch in June 2006.}\label{fig:quadratic_filter}
+	\patternimglink{0.1425}{quadratic_filter}
+	\caption{A \emph{quadratic filter}, which reduces the growth rate of a gun quadratically. It works by using a pair of gliders (highlighted in \bgbox{aquaback}{aqua}) to pull a block from an ever-receding trail (highlighted in \bgbox{greenpastel}{green}), similar to the loaf-pulling reaction used in the recursive filter of Figure~\ref{fig:recursive_filter}. The rest of the device (highlighted in \bgbox{magentaback}{magenta}) extends the back end of the block trail. Here, the filter is attached to a p$90$ glider gun (highlighted in \bgbox{yellowback2}{yellow}), resulting in a sqrtgun.\index{sqrtgun} Constructed by Gabriel Nivasch in June 2006.}\label{fig:quadratic_filter}
 \end{figure}
 
-% Next: exponential filters in Notes/History section
+The quadratic filter works by performing a block-pulling reaction whenever an input glider is received. Once a certain threshold is passed, the block is deleted, an output glider is released, and a farther-away block is created. If we rearrange the circuitry so that the location of the new block is pushed away \emph{every} time an input glider is received, rather than only when an output glider is produced, the filtering becomes even more pronounced. In fact, we get an \emph{exponential filter}---a\index{exponential filter} pattern that can be attached to the output of a glider gun so as to decrease its growth rate exponentially.
+
+The particular exponential filter that is displayed in Figure~\ref{fig:exponential_filter} produces its $n$-th output glider after receiving $5 \times 2^n - 4$ input gliders, so appending it to a gun whose growth rate is $\Theta(f(t))$ results in a gun with the slower growth rate $\Theta(\log(f(t)))$. For example, feeding the output of a caber tosser into this exponential filter, as in Figure~\ref{fig:exponential_filter}, results in a gun whose population in generation~$t$ is $\Theta\big(\log(\log(t))\big)$.
+
+\begin{figure}[!htb]
+	\centering
+	\patternimglink{0.136}{exponential_filter}
+	\caption{An \emph{exponential filter}, which reduces the growth rate of a gun exponentially, attached to a caber tosser (highlighted in \bgbox{yellowback2}{yellow}) so that its population in generation~$t$ is $\Theta\big(\log(\log(t))\big)$. It works via most of the same mechanisms as the quadratic filter of Figure~\ref{fig:quadratic_filter}, and was also constructed by Gabriel Nivasch in June 2006.}\label{fig:exponential_filter}
+\end{figure}
+
+We could also apply several of these filters in sequence, producing guns with population
+\[
+	\Theta\big(\log(\log(\cdots (\log(t))))\big),
+\]
+where the logarithms are nested as many times as we like. However, even just a single usage of the recursive filter as in Figure~\ref{fig:recursive_filter_caber} results in a slower gun.
 
 
+% Exercise: what happens to quad filter if you remove some of the blocks in the trail?
 % Exercise: make gun with growth rate like O(t^{1/4}). Easy with quad filter. Another: attach to caber tosser. What is growth rate?
 % EXERCISE for crossing two glider streams:
 % x = 7, y = 8, rule = B3/S23
 % bo$2bo$3o$5b2o$5b2o$3o$2bo$bo!
 
 % EXERCISE: Include a tethered rake? The simple one that uses p120 gun?
+% Exercise: growth rate where we add a quad filter and an exp filter? Mention that order matters and changes the growth rate
 
 % Another tripler (for lower period) in p66.lif
 % Exercise: make p66 true gun out of p22 true gun
