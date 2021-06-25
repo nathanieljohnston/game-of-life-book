@@ -972,9 +972,9 @@ Fortunately, this is a relatively straightforward exercise involving the circuit
 \begin{figure}[!htb]
 	\centering
 	\begin{tabular}{@{}cc@{}}
-		\multirow{2}{0.6\textwidth}{\begin{subfigure}{0.6\textwidth}
-				\centering\vspace*{-2.98cm}
-				\patternimglink{0.085}{sqrtgun}
+		\multirow{2}{0.61\textwidth}{\begin{subfigure}{0.6\textwidth}
+				\centering\vspace*{-2.8cm}
+				\patternimglink{0.084}{sqrtgun}
 				\caption{Three gliders (highlighted in \bgbox{yellowback2}{yellow}, \bgbox{greenpastel}{green}, and \bgbox{magentaback}{magenta}) push a block, thus extending the length of the track and delaying the next glider that the gun releases by $80$~generations. Makes use of two Herschel transceivers (highlighted in \bgbox{aquaback}{aqua}) and otherwise standard Herschel conduits.}
 				\label{fig:sqrtgun_itself}
 		\end{subfigure}} & 
@@ -1199,23 +1199,7 @@ We could also apply several of these filters in sequence, producing guns with po
 where the logarithms are nested as many times as we like. However, even just a single usage of the recursive filter as in Figure~\ref{fig:recursive_filter_caber} results in a slower gun.
 
 
-% Exercise: what happens to quad filter if you remove some of the blocks in the trail?
-% Exercise: make gun with growth rate like O(t^{1/4}). Easy with quad filter. Another: attach to caber tosser. What is growth rate?
-% EXERCISE for crossing two glider streams:
-% x = 7, y = 8, rule = B3/S23
-% bo$2bo$3o$5b2o$5b2o$3o$2bo$bo!
-
-% EXERCISE: Include a tethered rake? The simple one that uses p120 gun?
-% Exercise: growth rate where we add a quad filter and an exp filter? Mention that order matters and changes the growth rate
-
-% Another tripler (for lower period) in p66.lif
-% Exercise: make p66 true gun out of p22 true gun
-
-% TODO: Earlier, footnote forward ref to exercises mentioning ways of making some of these guns smaller, or smaller p120 Simkin in particular
-
-% Exercises: determine growth rate of (some filter attached to some gun) or determine when first/second glider leaves
 % EXERCISE: Make pattern with growth rate O(t^3/2) or O(t log^*t) (both easy, just attach guns we made here to a G-to-rake conduit). Earlier exercise: make G-to-rake conduit
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Exercises \hfill \normalfont\textsf{\small solutions to starred exercises on \hyperlink{solutions_glider_guns}{page \pageref{solutions_glider_guns}}}}
@@ -1321,8 +1305,55 @@ where the logarithms are nested as many times as we like. However, even just a s
 			\item Use the MWSS-to-HWSS reaction to turn your MWSS gun from part~(b) into a p18 HWSS gun (which is the smallest period possible for such a gun!).
 		\end{enumerate}
 	\end{problem}
-
-
+	
+	
+	\mfilbreak
+	
+	
+	% SOLUTION: http://conwaylife.com/forums/viewtopic.php?f=2&t=1651&start=50#p18616
+	% Smallest currently known, mention in solution
+	\begin{problem}\label{exer:smaller_G_to_LWSS} \probdiff{4}
+		The conduit from Figure~\ref{fig:H_plus_G_to_WSS} can be used to create smaller stable glider-to-LWSS and glider-to-MWSS converters than we have seen so far.\smallskip
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Use that conduit to build a smaller stable glider-to-LWSS converter than the one that we constructed in Figure~\ref{fig:glider_to_lwss_both}(b).
+			
+			[Hint: Be careful---do not use periodic reflectors like we did in Figure~\ref{fig:H_plus_G_to_WSS}, and make sure that the glider collides with the \emph{same} Herschel, rather than the \emph{next} one like in that figure.]
+			
+			\item Use that conduit to build a stable glider-to-MWSS converter.
+		\end{enumerate}
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:p28_adjust_29} \probdiff{3}
+		Adjust the reflectors in the gun from Figure~\ref{fig:p14_pieces_p84} to create a gun that emits $2$ out of $3$ gliders in a p$29$ (instead of p$28$) stream.
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:p156_adjust_lwss} \probdiff{2}
+		Adjust the reflectors reaction from Figure~\ref{fig:p14_pieces_lwss} to make it work with Herschel streams of period~$180$ (instead of~$156$).
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:jasons_p36_caterer} \probdiff{2}
+		Show how to stabilize Jason's p$36$ (see Figure~\ref{fig:jasons_p36}) with caterers instead of jams.
+	\end{problem}
+	% SOLUTION:
+	%x = 39, y = 22, rule = B3/S23
+	%26bo$25bobo2$2o23bo$bo23b2o$bobo18b5o$2b2o18b2ob2o$14b2o9bo$13b2o$14b
+	%2o$15bo$23bo$23b2o$24b2o$13bo9b2o$12b2ob2o18b2o$12b5o18bobo$12b2o23bo$
+	%13bo23b2o2$11bobo$12bo!
+	
+	
 	\mfilbreak
 	
 	
@@ -1337,7 +1368,7 @@ where the logarithms are nested as many times as we like. However, even just a s
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:p50_triple_gun}
+	\begin{problem}\label{exer:p50_triple_gun} \probdiff{2}
 		The true-period~$50$ glider gun in Figure~\ref{fig:true_p50_glider_gun} uses two copies of the central pi-heptomino reaction. Create a true-period~$50$ glider gun that uses three copies of that reaction.
 	\end{problem}
 	
@@ -1345,7 +1376,7 @@ where the logarithms are nested as many times as we like. However, even just a s
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:p50_glider_stabilize}
+	\begin{problemstar}\label{exer:p50_glider_stabilize} \probdiff{3}
 		Another method of stabilizing one side of the p$50$ pi-heptomino reaction used in the true-period~$50$ glider gun is displayed below.
 		\begin{center}
 			\patternimglink{0.1}{exer_p50_glider_stabilize}
@@ -1363,55 +1394,8 @@ where the logarithms are nested as many times as we like. However, even just a s
 	\mfilbreak
 	
 	
-	% SOLUTION: http://conwaylife.com/forums/viewtopic.php?f=2&t=1651&start=50#p18616
-	% Smallest currently known, mention in solution
-	\begin{problem}\label{exer:smaller_G_to_LWSS}
-		The conduit from Figure~\ref{fig:H_plus_G_to_WSS} can be used to create smaller stable glider-to-LWSS and glider-to-MWSS converters than we have seen so far.
-		
-		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item Use that conduit to build a smaller stable glider-to-LWSS converter than the one that we constructed in Figure~\ref{fig:glider_to_lwss_both}(b).
-			
-			[Hint: Be careful---do not use periodic reflectors like we did in Figure~\ref{fig:H_plus_G_to_WSS}, and make sure that the glider collides with the \emph{same} Herschel, rather than the \emph{next} one like in that figure.]
-			
-			\item Use that conduit to build a stable glider-to-MWSS converter.
-		\end{enumerate}
-	\end{problem}
-	
-	
-	\mfilbreak
-	
-	
-	\begin{problem}\label{exer:p28_adjust_29}
-		Adjust the reflectors in the gun from Figure~\ref{fig:p14_pieces}(a) to create a gun that emits $2$ out of $3$ gliders in a p$29$ (instead of p$28$) stream.
-	\end{problem}
-	
-	
-	\mfilbreak
-	
-	
-	\begin{problem}\label{exer:p156_adjust_lwss}
-		Adjust the reflectors reaction from Figure~\ref{fig:p14_pieces}(b) to make it work with Herschel streams of period~$180$ (instead of~$156$).
-	\end{problem}
-	
-	
-	\mfilbreak
-	
-	
-	\begin{problem}\label{exer:jasons_p36_caterer}
-		Show how to stabilize Jason's p$36$ (see Figure~\ref{fig:jasons_p36}) with caterers instead of jams.
-	\end{problem}
-	% SOLUTION:
-	%x = 39, y = 22, rule = B3/S23
-	%26bo$25bobo2$2o23bo$bo23b2o$bobo18b5o$2b2o18b2ob2o$14b2o9bo$13b2o$14b
-	%2o$15bo$23bo$23b2o$24b2o$13bo9b2o$12b2ob2o18b2o$12b5o18bobo$12b2o23bo$
-	%13bo23b2o2$11bobo$12bo!
-	
-	
-	\mfilbreak
-	
-	
-	\begin{problem}\label{exer:fx77_extract_other_osc}
-		Show how to extract a glider from an Fx77 conduit like we did in Figure~\ref{fig:fx77_extract} via the following oscillators:
+	\begin{problem}\label{exer:fx77_extract_other_osc} \probdiff{2}
+		Show how to extract a glider from an Fx77 conduit like we did in Figure~\ref{fig:fx77_extract} via the following oscillators:\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item a unix (p$6$),
@@ -1427,7 +1411,7 @@ where the logarithms are nested as many times as we like. However, even just a s
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:p54_fold_corners}
+	\begin{problem}\label{exer:p54_fold_corners} \probdiff{3}
 		The p$56$ glider gun displayed in Figure~\ref{fig:p56_gun} uses three reflectors at its top and at its bottom, instead of just one, to make it bounding box slightly smaller. You can similarly ``fold in'' the top and bottom corners of some other guns to make their bounding boxes smaller.
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
@@ -1441,7 +1425,7 @@ where the logarithms are nested as many times as we like. However, even just a s
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:H_G_reacs_58_61}
+	\begin{problem}\label{exer:H_G_reacs_58_61} \probdiff{1}
 		Determine the repeat times of the four conduits from Figure~\ref{fig:H_G_reacs_58_61}.
 	\end{problem}
 	
@@ -1449,7 +1433,7 @@ where the logarithms are nested as many times as we like. However, even just a s
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:p61_gun_reflection_no_60}
+	\begin{problem}\label{exer:p61_gun_reflection_no_60} \probdiff{2}
 		Explain why the method of separating the two close glider streams in the p$61$ gun from Figure~\ref{fig:p61_gun} (by reflecting one of the gliders off of the corner of an L112 conduit) does not work at p$58$, p$59$, or p$60$, despite L112 having a repeat time of~$58$ generations.
 	\end{problem}
 	% SOLUTION: eater 2 only fast enough at p61 and higher. Can replace with another eater (to get lower repeat time, like eater 5 variant), but then interferes with passing gliders
@@ -1458,7 +1442,7 @@ where the logarithms are nested as many times as we like. However, even just a s
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:2_lane_slide_gun}
+	\begin{problem}\label{exer:2_lane_slide_gun} \probdiff{3}
 		Use the reaction from Figure~\ref{fig:synchronized_block_reflector_4} to create a slide gun that fires gliders separated by $2$ lanes (instead of $4$ lanes, like the slide gun from Figure~\ref{fig:slide_gun}).
 	\end{problem}
 	
@@ -1466,8 +1450,8 @@ where the logarithms are nested as many times as we like. However, even just a s
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:slide_gun_honey_farm}\index{honey!farm}
-		Slide guns can be made to work by pushing any object, not just a block. Use the following reactions\footnote{Both found by Jason Summers in 1999.} to create slide guns:\\[0.05cm]
+	\begin{problem}\label{exer:slide_gun_honey_farm}\index{honey!farm} \probdiff{4}
+		Slide guns can be made to work by pushing any stable object, not just a block. Use the following reactions\footnote{Both found by Jason Summers in 1999. The reaction in part~(a) was used in the quadratic and exponential filters of Figures~\ref{fig:quadratic_filter} and~\ref{fig:exponential_filter}.} to create slide guns:\\[0.05cm]
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item \raisebox{-\height+\ht\strutbox}{\patternlink{exercise_honey_farm_pusher}{\vcenteredhbox{\patternimg{0.1}{exercise_honey_farm_pusher_0}} \vcenteredhbox{\genarrow{51}} \vcenteredhbox{\patternimg{0.1}{exercise_honey_farm_pusher_1}}}}\\[0.1cm]
@@ -1537,7 +1521,7 @@ where the logarithms are nested as many times as we like. However, even just a s
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:simkin_glider_gun_smaller_slide}
+	\begin{problem}\label{exer:simkin_glider_gun_smaller_slide} \probdiff{3}
 		Use the small p$120$ glider gun from Exercise~\ref{exer:simkin_glider_gun} to rebuild the slide gun from Figure~\ref{fig:slide_gun} within an $85 \times 70$ bounding box.
 	\end{problem}
 	% SOLUTION
@@ -1557,15 +1541,15 @@ where the logarithms are nested as many times as we like. However, even just a s
 	
 	
 	\begin{problem}\label{exer:edge_shoot_30n}
-		The device below\footnote{Found by Arie Paap and Tanner Jacobi in late 2018 in a period period~$30n$ ($n \geq 2$) form, and adjusted to the form shown here in late 2019.} can be attached to the output of any gun with period~$5n$ ($n \geq 8$) to create an edge-shooting gun of the same period:
+		The device below\footnote{Found by Arie Paap and Tanner Jacobi in late 2018 in a period~$30n$ ($n \geq 2$) form, and adjusted to the period~$5n$ form shown here in late 2019.} can be attached to the output of any gun with period~$5n$ ($n \geq 8$) to create an edge-shooting gun of the same period:
 		\begin{center}
 			\patternimglink{0.12}{exercise_edge_shoot_30n}
 		\end{center}
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item Use this reaction to create an edge-shooting p$240$ gun.
+			\item \probdiff{3} Use this reaction to create an edge-shooting p$240$ gun.
 			
-			\item Use $10$ copies of the gun from part~(a) (and perhaps the p$120$ glider gun from Exercise~\ref{exer:simkin_glider_gun}) to rebuild the slide gun from Figure~\ref{fig:double_slide_gun} in a much smaller way. In particular, this edge shooter lets you avoid using the glider insertion mechanism from Figure~\ref{fig:lwss_reflect_glider}.
+			\item \probdiff{4} Use $10$ copies of the gun from part~(a) (and perhaps the p$120$ glider gun from Exercise~\ref{exer:simkin_glider_gun}) to rebuild the slide gun from Figure~\ref{fig:double_slide_gun} in a much smaller way. In particular, this edge shooter lets you avoid using the glider insertion mechanism from Figure~\ref{fig:lwss_reflect_glider}.
 		\end{enumerate}
 	\end{problem}
 	
@@ -1573,7 +1557,7 @@ where the logarithms are nested as many times as we like. However, even just a s
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:slide_gun_hd}
+	\begin{problem}\label{exer:slide_gun_hd} \probdiff{4}
 		Create a slide gun that fires gliders separated by just $1$ lane.
 		
 		\noindent [Hint: This is tricky! The reactions like Figure~\ref{fig:synchronized_block_reflector_4} that move a block $1$~cell diagonally result in slide guns with a separation of $2$~lanes.]
@@ -1584,7 +1568,7 @@ where the logarithms are nested as many times as we like. However, even just a s
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:slide_gun_no_slide}
+	\begin{problem}\label{exer:slide_gun_no_slide} \probdiff{2}
 		Create a ``slide'' gun that fires $7$~gliders at a block so as to create a perpendicular glider without moving the block at all. That is, create a slide gun that doesn't slide.
 	\end{problem}
 	% SOLUTION: just remove 3 gliders from {fig:double_slide_gun}
@@ -1593,7 +1577,7 @@ where the logarithms are nested as many times as we like. However, even just a s
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:triple_slide_gun}
+	\begin{problem}\label{exer:triple_slide_gun} \probdiff{4}
 		Create a slide gun that fires $3$~gliders on each of its output lanes (instead of $2$, like in Figure~\ref{fig:double_slide_gun}).
 		
 		\noindent [Hint: Using an edge-shooting gun like the one from Exercise~\ref{exer:edge_shoot_30n} will help keep the size of your slide gun down.]
@@ -1613,13 +1597,13 @@ where the logarithms are nested as many times as we like. However, even just a s
 	
 	
 	\begin{problem}\label{exer:armless_basics}
-		``Armless'' glider production is a useful and highly adjustable mechanism, but some adjustments have consequences that may not be intuitively obvious.
+		Armless glider production is a useful and highly adjustable mechanism, but some adjustments have consequences that may not be intuitively obvious.\smallskip
+		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item In a pair of loop guns that are connected to create an armless salvo, if two glider streams are identical in length and timing, what limitation does that place on the output salvo?
-			% SOLUTION: the gliders will be \emph{single-channel} -- limited to a single output lane. To get different output lanes, the streams of gliders in the two guns must have different timings.
-			\item What behavior appears if you try to make output gliders with two loop guns with periods that are \emph{different} by a multiple of 8?
+			\item \probdiff{2} What behavior appears if you try to produce perpendicular output gliders via two loop guns whose periods differ by a multiple of 8?
 			% SOLUTION: the output glider lane(s) drift in one direction or the other, eventually reaching and probably destroying one of the loop guns.
-			\item Find a design for a "drifting armless-tee" gun that would allow multiple cycles of the above behavior but avoid the resulting problem.
+			
+			\item \probdiff{4} Make a design for a ``drifting'' armless gun that would allow loop guns of different periods, but avoid the problem that was alluded to in part~(a).
 			% SOLUTION: One option would be to adjust the loop guns' periods to particular multiples of 8, so that there's some number P = N*{gun1 period} = (N+1)*{gun2 period}. Then add an additional period-P gun that suppresses one signal from gun #2, producing a period-P ``scanning'' or ``strobing'' effect.
 		\end{enumerate}
 	\end{problem}
@@ -1629,30 +1613,43 @@ where the logarithms are nested as many times as we like. However, even just a s
 	
 	
 	\begin{problem}\label{exer:armless_tee}
-		Tee reactions can be used to build simple unidirectional slow salvos, or even synchronized salvos.
+		In Section~\ref{sec:armless}, we only constructed armless guns that fire slow salvos. However, we can also construct ones that fire synchronized salvos.\smallskip
+		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item Use the idea from Section~\ref{sec:armless} (separate loops for different glider colors) with the following period-387 loop gun ...
+			\item \probdiff{4} Use (several copies of) the p387 loop gun displayed below on the left, along with the H-to-2G conduit that we used in our tee-based armless guns, to create a $4$-consecutive-lane armless gun that fires the tight arrangement of gliders displayed below on the right.\\[-0.6cm]
 			
 			\begin{center}
-				\patternimglink{0.1}{exercise_herschel_tee_387_loop}
+				\begin{minipage}[t]{.575\linewidth}\vspace{0pt}
+					\centering \patternimglink{0.1}{exercise_herschel_tee_387_loop}
+				\end{minipage} \hfill %
+				\begin{minipage}[t]{.38\linewidth}\vspace{0pt}
+					\centering \patternimglink{0.14}{exercise_herschel_tee_4_gliders}
+				\end{minipage}
 			\end{center}
+		
+			\item \probdiff{2} Adjust your gun from part~(a) so that it fires that configuration of gliders with period 129.
 			
-			to build an armless $4$-consecutive-lane shotgun like the one from Figure~\ref{fig:armless_4_lane_gun}, but with period 387.
-			\item How can the shotgun from (a) be modified to allow the gliders to be placed at the minimum possible distance shown below? Create a new version of the shotgun that produces these four gliders at period 387.
+			\noindent [Hint: $129 \times 3 = 387$.]
 			
-			\begin{center}
-				\patternimglink{0.1}{exercise_herschel_tee_4_gliders}
-			\end{center}
+			\item \probdiff{3} Adjust your gun from part~(a) so that it fires that configuration of gliders with period 87 (which is minimal).
 			
-			[Hint: Even though the first and third gliders are the same color, they can't be stored in the same loop because they're too close together.]
-			\item Adjust the shotgun from (b) to build an armless $4$-consecutive-lane gun where the entire cycle repeats with period 129.  [Hint: 129*3 = 387, so add two more gliders to each of the p387 loops in the gun from (b).]
-			\item Adjust the shotgun from (b) to build an armless $4$-consecutive-lane gun with the minimum repeat time of 87 ticks.  [Hint: $387+6 \times 8 = 435 = 87\times5$, so first adjust each loop to be 6fd bigger.]
-			% SOLUTIONS: patterns are posted at  https://conwaylife.com/forums/viewtopic.php?p=86064#p86064
-			\item In a shotgun with one pair of loop guns per glider color, why can recipes consisting of gliders with alternate colors be stored more efficiently than consecutive gliders on the same colors?
-			% SOLUTION: Signals in a single loop gun represent output gliders of a particular color. With current circuitry, these signals can't be placed any closer together than 74 ticks. But a glider of the other color is represented by a signal in a separate loop, so it can appear at any time, limited only by potential interference between gliders and tee insertion reactions.
-			\item The "armless-tee" Cordership gun (Figure ??) has already been adjusted to close to its recipe's minimum repeat time of $2061$ ticks. What could be added to this gun to allow a repeat time of less than $2000$ ticks?
-			% SOLUTION: Add more loop guns -- same solution as in (b) above. Wherever a 74-tick limitation appears, move one of the gliders involved to a separate pair of loop guns.
-			\item How could the repeat time be reduced \emph{without} increasing the number of loop guns?
+			\noindent [Hint: $387+6 \times 8 = 435 = 87\times5$, so first adjust each loop to be 6fd bigger.]
+		\end{enumerate}
+	\end{problem}
+	% SOLUTIONS: patterns are posted at  https://conwaylife.com/forums/viewtopic.php?p=86064#p86064
+
+
+	\mfilbreak
+
+
+	\begin{problem}\label{exer:armless_tee_decrease_repeat_time}
+		In this exercise, we explore some methods that can be used to decrease the repeat time of an armless gun.\smallskip
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item \probdiff{3} The tee-based armless Cordership gun of Figure~\ref{fig:armless_monochrome_cordership_gun} has already been adjusted to close to its recipe's minimum repeat time of $2{\thousep}061$ generations. Explain how additional loop guns could be added to allow a repeat time of less than $2{\thousep}000$ generations.
+			% SOLUTION: Add more loop guns: Wherever a 74-tick limitation appears, move one of the gliders involved to a separate pair of loop guns.
+			
+			\item \probdiff{5} How could the repeat time of this gun be reduced \emph{without} increasing the number of loop guns?
 			% SOLUTION: There are some long stretches of same-color gliders in both salvos making up the Cordership glider-pair recipe. For the glider pairs that build blocks, there are alternate recipes (e.g., the mirror image of the current recipe) that can switch one or both gliders to a different color.
 			%Might not need a figure for this, but here's some RLE just in case. The left-side glider is a different color in these two recipes:
 			% x = 34, y = 9, rule = LifeHistory
@@ -1666,44 +1663,39 @@ where the logarithms are nested as many times as we like. However, even just a s
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:slow_glider_pairs}
-		In an "armless-tee" gun that produces pairs of colliding gliders, the gliders in the loop guns are synchronized in groups of four. Adjustments to the four gliders in a group can make a collision happen in a different place, or at a different time.
+	\begin{problem}\label{exer:slow_glider_pairs_cordership_armless}
+		In a tee-based armless gun that implements 2-directional slow synthesis, the gliders in the loop guns are synchronized in groups of four. Adjustments to the four gliders in a group can make a collision happen in a different place, or at a different time.\smallskip
+		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item Find a case where a glider follows another glider by 74 ticks in the "armless-tee" Cordership gun. Then find the other three gliders that are synchronized with that glider, and delay all four gliders by one tick. What happens?
+			\item \probdiff{2} Find a case where a glider follows another one by just 74 generations in the tee-based armless Cordership gun of Figure~\ref{fig:armless_monochrome_cordership_gun}. Then find the other three gliders that are synchronized with that glider, and delay all four gliders by one generation. What happens?
 			% SOLUTION: Most likely the recipe will still work, but one part of it will be constructed one tick more slowly than before. Occasionally, if the changed position causes a conflict with other gliders, the recipe will fail.
-			\item Return the four gliders to their original positions, and instead of delaying all four gliders, advance them all by one tick.  What happens?
+			
+			\item \probdiff{2} Return the four gliders to their original positions, and instead of delaying them all, advance them all by one generation. What happens?
 			% SOLUTION: The other three gliders in the group will generally have much plenty of space in front of them, but the first glider's 74-tick spacing is a limiting factor that prevents that particular collision from occurring any sooner in the construction recipe. Attempting to advance the 74-tick following glider will cause a failure in the syringe conduit, the next time that glider attempts to pass through.
-			\item Find the four gliders that collaborate to produce the southernmost block in the Cordership seed. How would you move those gliders to build the block two cells directly south of its current position, or one cell directly southeast or southwest?
+			
+			\item \probdiff{3} Find the four gliders that collaborate to produce the southernmost block in the Cordership seed. How would you move those gliders to build the block two cells directly south of its current position, or one cell directly southeast or southwest?
 		\end{enumerate}
 	\end{problem}
-	
-	
+
+
 	\mfilbreak
 	
 	
-	% MOVE THE FOLLOWING FIGURE INTO CHAPTER TEXT
-	% 	\begin{center}
-	% 		\patternimglink{0.085}{herschel_tee} \qquad \patternimglink{0.12}{tee_2}
-	% 	\end{center}
-	% 	By using these reactions, we can create armless guns like those that we saw in Section~\ref{sec:armless}.
-	% 	
-	% 		\item Create a loop gun that feeds a Herschel into the reaction on the left and thus creates $2$ of the $3$ gliders needed in the tee collision on the right.
-	% 		
-	% 		\item Use two loop guns and the reactions above to create an armless gun that fires gliders on $4$ different (but not necessarily consecutive) lanes.
-	% 		
-	% 		\item Explain why we cannot use two loop guns and these reactions to create a faster version of the four-lane gun from Figure~\ref{fig:armless_4_lane_gun} (i.e., a gun that armlessly fires gliders on $4$ \emph{consecutive} lanes). Similarly, explain why we cannot use four loop guns with these reactions to create a faster version of the $2$-engine Cordership gun from Figure~\ref{fig:armless_cordership_gun} (i.e., one that uses only $17$ gliders in each loop instead of $51$).
-	
-	\begin{problem}\label{exer:multicolor_armless}
-		With fewer separate loops in a multicolor armless design, changing the period of the gun becomes somewhat simpler. (Review)
+	\begin{problem}\label{exer:multicolor_armless}\index{NW31}
+		It is somewhat easier to change the period of a multicolor armless gun than the monochrome one, since they have fewer glider loops to adjust. The multicolor armless Cordership gun of Figure~\ref{fig:armless_cordership_gun} has period $5{\thousep}603$.\smallskip
+		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item Adjust one of the loop guns in the multicolor-armless Cordership gun, to make it an even period. How does the period change when a second syringe-based splitter (syringe+NW31) is added to the loop? [Hint: Start by moving the outermost two Snarks a long distance away to make space.]
+			\item \probdiff{3} A syringe followed by NW31 (i.e., the conduit of Figure~\ref{fig:H_to_2G}) makes a stable glider reflector. Add one of these reflectors to one of the loop guns from the multicolor armless Cordership gun. How does its period change?
+			
+			\noindent [Hint: Start by moving some Snarks a long distance away to make space.]
 			% SOLUTION: adding a syringe+NW31 component similar to the ones in the Cordership guns, will add 3 ticks (mod 8) to the period.  That is, if the gun period is N before adding a syringe+NW31, then after the addition it will be possible to adjust the new period to N+3.
-			\item How many of these syringe+NW31s would have to be added to change the loop gun to a ``HashLife-friendly'' period -- e.g., period $2^{12} = 4{\thousep}096$?
-			% SOLUTION: a chain of seven syringe+NW31s will allow for a p2603+7*3+8N gun, which can be adjusted to period 4096.
-			\item Find an alternate reflector in the Stable Circuitry chapter % (TODO: link)
-			that changes the period (mod 8) by 5, with the same repeat time. How many of these must be added to allow for a p4096 loop?
-			% SOLUTION: Use a CP +3 reflector from simeks' toolkit (TODO: find link).  Only one of these will be needed, because (2603 + 5 + 8N) mod 8 = 4096 mod 8.
-			\item Optionally, make the exact same addition to the other three loop guns to produce a working p4096 Cordership gun.
+			
+			\item \probdiff{3} Adjust that glider loop so that it has period $2^{13} = 8{\thousep}192$.
+			
+			[Hint: You cannot just adjust the trombone slides, since the mod-$8$ length of that loop is not right. Either add more syringe $+$ NW31s or add another reflector from Table~\ref{tab:conduit_phase_changers}.]
+			% SOLUTION: a chain of seven syringe+NW31s will allow for a p2603+7*3+8N gun, which can be adjusted to period 8192.
+			
+			\item \probdiff{4} Make the same adjustments to the other three loop guns to produce a working period~$8{\thousep}192$ Cordership gun.
 		\end{enumerate}
 	\end{problem}
 	
@@ -1711,7 +1703,7 @@ where the logarithms are nested as many times as we like. However, even just a s
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:caber_tosser_rewind}
+	\begin{problem}\label{exer:caber_tosser_rewind} \probdiff{2}
 		Explain why we cannot rewind the caber tosser from Figure~\ref{fig:caber_tosser_0} so that the triggering glider in aqua is traveling northwest before it is reflected by the caber tosser.
 	\end{problem}
 	
@@ -1719,7 +1711,7 @@ where the logarithms are nested as many times as we like. However, even just a s
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:caber_tosser_stationary}
+	\begin{problem}\label{exer:caber_tosser_stationary} \probdiff{3}
 		Construct a caber tosser that uses the same Cordership and glider bouncing off of it as in Figure~\ref{fig:caber_tosser_0}, but uses stationary circuitry (e.g., syringes and Herschel conduits) in place of the glider guns.
 	\end{problem}
 	
@@ -1727,7 +1719,7 @@ where the logarithms are nested as many times as we like. However, even just a s
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:caber_tosser_different_speeds}
+	\begin{problem}\label{exer:caber_tosser_different_speeds} \probdiff{2}
 		If a caber tosser makes use of a receding spaceship with speed $s_1$ (instead of a Cordership) and bouncing spaceship with speed $s_2$ (instead of a glider), what is the ratio of the gaps between the gliders that it emits? For example, in the caber tosser of Figure~\ref{fig:caber_tosser_0} we had $s_1 = c/12$, $s_2 = c/4$, and a ratio of $2$ (each glider took twice as long to be emitted as the previous one).
 	\end{problem}
 	% SOLUTION: $(s_2+s_1)/(s_2-s_1)$
@@ -1736,7 +1728,7 @@ where the logarithms are nested as many times as we like. However, even just a s
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:sqrtgun_standard}
+	\begin{problem}\label{exer:sqrtgun_standard} \probdiff{4}
 		Rebuild the sqrtgun from Figure~\ref{fig:sqrtgun} without any Herschel tranceivers---use syringes (and other ``modern'' Herschel conduits) instead.
 	\end{problem}
 	
@@ -1744,17 +1736,15 @@ where the logarithms are nested as many times as we like. However, even just a s
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:construct_fermat_primer}
+	\begin{problem}\label{exer:construct_fermat_primer} \probdiff{2}
 		Construct a gun that emits lightweight spaceships corresponding to Fermat primes (much like the primer itself emits lightweight spaceships corresponding to all primes), rather than a pattern that self-destructs if it finds a sixth Fermat prime like the one we made in Figure~\ref{fig:fermat_primer}.
 	\end{problem}
-	
-	
 	
 	
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:fermat_beehive_puffer}
+	\begin{problem}\label{exer:fermat_beehive_puffer} \probdiff{2}
 		The beehive puffer that is used at the bottom-right and top-left of the Fermat prime calculator (see Figure~\ref{fig:fermat_primer}) is displayed below.
 		
 		\begin{center}
@@ -1769,14 +1759,14 @@ where the logarithms are nested as many times as we like. However, even just a s
 	
 	
 	\begin{problem}\label{exer:robs_p16_smaller_p16_gun}
-		Recall the small p$16$ oscillator from Figure~\ref{fig:rob_p16} called Rob's p$16$.
+		Recall the small p$16$ oscillator from Figure~\ref{fig:rob_p16} called Rob's p$16$.\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item Show how Rob's p16 can be used to filter a p$24$ LWSS stream, creating a p$48$ stream.
+			\item \probdiff{2} Show how Rob's p16 can be used to filter a p$24$ LWSS stream, creating a p$48$ stream.
 			
-			\item What LWSS stream periods can be filtered by Rob's p16? % $16n+8$ for any $n \geq 1$ (same as Rich's p16)
+			\item \probdiff{2} What LWSS stream periods can be filtered by Rob's p16? % $16n+8$ for any $n \geq 1$ (same as Rich's p16)
 			
-			\item Use the filtering reaction from part~(a) to reduce the bounding box of the p$16$ glider gun that we saw in Figure~\ref{fig:p16_gun} by at least $2$ rows or columns.
+			\item \probdiff{4} Use the filtering reaction from part~(a) to reduce the bounding box of the p$16$ glider gun that we saw in Figure~\ref{fig:p16_gun} by at least $2$ rows or columns.
 		\end{enumerate}
 	\end{problem}
 	% SOLUTION:
@@ -1905,6 +1895,35 @@ where the logarithms are nested as many times as we like. However, even just a s
 	%34b3ob3o35b2o$56bo9bo2bob3o22b3ob3o8bobo36b2o$68b2obo23b2obobob2o$90b
 	%2o2bo9bo2b2o45bo$90bo4b2o5b2o4bo$87b2obo5bo5bo5bob2o42bo$87b2ob2o15b2o
 	%b2o!
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:fourth_root_gun} \probdiff{3}
+		Construct a glider gun whose population in generation~$t$ is $\Theta(t^{1/4})$.
+	\end{problem}
+	% SOLUTION: Add a quad filter after itself, or a quad filter after sqrtgun (but need to filter sqrtgun so that only gliders aligned to p90 escape).
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:sqrt_caber} \probdiff{3}
+		Attach a quadratic filter to the output of a caber tosser. What is the growth rate of the population of the resulting gun?
+	\end{problem}
+	% SOLUTION: \Theta(\sqrt{\log(t)})
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:exp_filter_sqrtgun} \probdiff{4}\index{universal regulator}
+		Attach an exponential filter to the output of a sqrtgun. What is the growth rate of the population of the resulting gun. Is it the same as the growth rate of the gun constructed in Exercise~\ref{exer:sqrt_caber}?
+		
+		\noindent [Hint: Be careful---the exponential filter of Figure~\ref{fig:exponential_filter} is aligned to period~$90$ and thus cannot accept all input gliders from the sqrtgun of Figure~\ref{fig:sqrtgun}. Either use a universal regulator between these two mechanisms or use a different sqrtgun.]
+	\end{problem}
+	% SOLUTION: \Theta(\log(\sqrt{t})). NOT the same as in previous exercise.
 	
 	%% EXERCISE END COMMANDS
 \end{multicols}
