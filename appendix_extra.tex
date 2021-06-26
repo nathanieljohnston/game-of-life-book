@@ -288,42 +288,43 @@ Recall that lines listed with a substate (input value) \texttt{*} just do the sa
 			\State \verb|MULA2;     NZ;      MULA2;        TDEC U6, INC U9|
 			\State \verb|MULA3;     Z;       MULA4;        TDEC U7|
 			\State \verb|MULA3;     NZ;      MULA3;        TDEC U9, INC U6, INC U7|
-			\State \verb|MULA4;     Z;       MULA7;        TDEC B1|
+			\State \verb|MULA4;     Z;       MULA8;        TDEC B1|
 			\State \verb|MULA4;     NZ;      MULA5;        READ B1|
-			\State \verb|MULA5;     Z;       MULA6;        READ B3|
-			\State \verb|MULA5;     NZ;      MULA6;        SET B1, SET B3, NOP|
-			\State \verb|MULA6;     *;       MULA4;        INC B1, INC B3, TDEC U7|
-			\State \verb|MULA7;     Z;       MULA8;        TDEC B3|
-			\State \verb|MULA7;     NZ;      MULA7;        TDEC B1|
-			\State \verb|MULA8;     Z;       MULA9;        TDEC U1|
-			\State \verb|MULA8;     NZ;      MULA8;        TDEC B3|
+			\State \verb|MULA5;     Z;       MULA7;        READ B3|
+			\State \verb|MULA5;     NZ;      MULA6;        SET B1, READ B3|
+			\State \verb|MULA6;     *;       MULA7;        SET B3, NOP|
+			\State \verb|MULA7;     *;       MULA4;        INC B1, INC B3, TDEC U7|
+			\State \verb|MULA8;     Z;       MULA9;        TDEC B3|
+			\State \verb|MULA8;     NZ;      MULA8;        TDEC B1|
+			\State \verb|MULA9;     Z;       MULA10;       TDEC U1|
+			\State \verb|MULA9;     NZ;      MULA9;        TDEC B3|
 			\State \verb||
 			\State \verb|# Copy U1 to temporary register U8.|
-			\State \verb|MULA9;     Z;       MULA10;       TDEC U7|
-			\State \verb|MULA9;     NZ;      MULA9;        TDEC U1, INC U7|
-			\State \verb|MULA10;    Z;       MULA11;       TDEC U8|
-			\State \verb|MULA10;    NZ;      MULA10;       TDEC U7, INC U1, INC U8|
+			\State \verb|MULA10;     Z;      MULA11;       TDEC U7|
+			\State \verb|MULA10;     NZ;     MULA10;       TDEC U1, INC U7|
+			\State \verb|MULA11;    Z;       MULA12;       TDEC U8|
+			\State \verb|MULA11;    NZ;      MULA11;       TDEC U7, INC U1, INC U8|
 			\State \verb||
 			\State \verb|# Set B1 = U1 * B3 and U8 = 0.|
-			\State \verb|MULA11;    *;       MULA12;       TDEC U8|
-			\State \verb|MULA12;    Z;       MULB1;        TDEC U6|
-			\State \verb|MULA12;    NZ;      MULA13;       TDEC U6|
-			\State \verb|MULA13;    Z;       MULA14;       TDEC U9|
-			\State \verb|MULA13;    NZ;      MULA13;       TDEC U6, INC U9|
-			\State \verb|MULA14;    Z;       MULA15;       TDEC U7|
-			\State \verb|MULA14;    NZ;      MULA14;       TDEC U9, INC U6, INC U7|
-			\State \verb|MULA15;    Z;       MULA19;       TDEC B3|
-			\State \verb|MULA15;    NZ;      MULA16;       READ B3|
-			\State \verb|MULA16;    Z;       MULA17;       READ B1|
-			\State \verb|MULA16;    NZ;      MULA17;       READ B1, SET B3, ADD A1|
-			\State \verb|MULA17;    Z;       MULA18;       ADD B0|
-			\State \verb|MULA17;    NZ;      MULA18;       ADD B1|
-			\State \verb|MULA18;    Z;       MULA15;       TDEC U7, INC B1, INC B3|
-			\State \verb|MULA18;    NZ;      MULA18;       SET B1, NOP|
-			\State \verb|MULA19;    Z;       MULA20;       TDEC B1|
-			\State \verb|MULA19;    NZ;      MULA19;       TDEC B3|
-			\State \verb|MULA20;    Z;       MULA12;       TDEC U8|
-			\State \verb|MULA20;    NZ;      MULA20;       TDEC B1|
+			\State \verb|MULA12;    *;       MULA13;       TDEC U8|
+			\State \verb|MULA13;    Z;       MULB1;        TDEC U6|
+			\State \verb|MULA13;    NZ;      MULA14;       TDEC U6|
+			\State \verb|MULA14;    Z;       MULA15;       TDEC U9|
+			\State \verb|MULA14;    NZ;      MULA14;       TDEC U6, INC U9|
+			\State \verb|MULA15;    Z;       MULA16;       TDEC U7|
+			\State \verb|MULA15;    NZ;      MULA15;       TDEC U9, INC U6, INC U7|
+			\State \verb|MULA16;    Z;       MULA20;       TDEC B3|
+			\State \verb|MULA16;    NZ;      MULA17;       READ B3|
+			\State \verb|MULA17;    Z;       MULA18;       READ B1|
+			\State \verb|MULA17;    NZ;      MULA18;       READ B1, SET B3, ADD A1|
+			\State \verb|MULA18;    Z;       MULA19;       ADD B0|
+			\State \verb|MULA18;    NZ;      MULA19;       ADD B1|
+			\State \verb|MULA19;    Z;       MULA16;       TDEC U7, INC B1, INC B3|
+			\State \verb|MULA19;    NZ;      MULA19;       SET B1, NOP|
+			\State \verb|MULA20;    Z;       MULA21;       TDEC B1|
+			\State \verb|MULA20;    NZ;      MULA20;       TDEC B3|
+			\State \verb|MULA21;    Z;       MULA13;       TDEC U8|
+			\State \verb|MULA21;    NZ;      MULA21;       TDEC B1|
 			\State \verb||
 			\State \verb|## The MULB states set B3 = B0, B0 = U0 * B0.|
 			\State \verb|# Copy B0 into B3, without erasing B0.|
