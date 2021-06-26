@@ -3,16 +3,6 @@
 %%   CHAPTER: GUNS AND GLIDER STREAMS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% TODO: p28 gun https://www.conwaylife.com/wiki/Period-28_glider_gun smallest version at https://www.conwaylife.com/forums/viewtopic.php?t=&p=115869#p115928
-% TODO: Important new exercise [5/5] -- create a p14 gun that uses the p28 gun. Should have smaller bounding box than the p14 we constructed. Solution in posts after https://www.conwaylife.com/forums/viewtopic.php?t=&p=115869#p115869
-% Related exercise: Add blocker to make it p56?
-% TODO: See scorbie's email. smaller p6 HW emulator leads to smaller p24 gun
-% TODO: Touch up 8.8 re: big-theta notation
-% New p57: https://www.conwaylife.com/forums/viewtopic.php?f=2&t=3552&start=225#p128256
-% New p20: https://www.conwaylife.com/forums/viewtopic.php?f=2&t=3552&start=250#p130340
-% This p20 might still be smaller: https://www.conwaylife.com/forums/viewtopic.php?p=85709#p85709
-% DO NOT put smaller p24 in the text (but smaller p20 is fair game). Already referenced in notes/history
-
 \renewcommand{\chapterfolder}{glider_guns/}
 \chapterimage{cover/glider_guns}
 \chapter{Guns and Glider Streams}\label{chp:guns}
@@ -1108,7 +1098,7 @@ generations to produce. It follows that the population of this pattern in genera
 	\end{cases}
 \]
 
-As if that weren't slowly-growing enough, we could even use recursive filters in series to create guns that fire gliders even more slowly. For example, if we attach a second recursive filter to the output of the gun from Figure~\ref{fig:recursive_filter_caber} (see Exercise~??), we get a pattern whose population in generation~$t$ is $\Theta(\log^{**}(t))$, where $\log^{**}$ is the \emph{doubly-iterated logarithm} that counts how many times the iterated logarithm $\log^*$ must be applied to get a result no larger than $1$:\footnote{To give a rough idea of how slowly this function grows, we note that if $t$ is an integer with a trillion digits then $\log^{**}(t) = 4$.}
+As if that weren't slowly-growing enough, we could even use recursive filters in series to create guns that fire gliders even more slowly. For example, if we attach a second recursive filter to the output of the gun from Figure~\ref{fig:recursive_filter_caber}, we get a pattern whose population in generation~$t$ is $\Theta(\log^{**}(t))$, where $\log^{**}$ is the \emph{doubly-iterated logarithm} that counts how many times the iterated logarithm $\log^*$ must be applied to get a result no larger than $1$:\footnote{To give a rough idea of how slowly this function grows, we note that if $t$ is an integer with a trillion digits then $\log^{**}(t) = 4$.}
 \[
 	\log^{**}(t) = \begin{cases}
 		0                  & \mbox{if } \quad t \leq 1, \\
@@ -1200,6 +1190,8 @@ where the logarithms are nested as many times as we like. However, even just a s
 
 
 % EXERCISE: Make pattern with growth rate O(t^3/2) or O(t log^*t) (both easy, just attach guns we made here to a G-to-rake conduit). Earlier exercise: make G-to-rake conduit
+% New p57: https://www.conwaylife.com/forums/viewtopic.php?f=2&t=3552&start=225#p128256
+% Smallest p20 https://www.conwaylife.com/forums/viewtopic.php?p=85709#p85709
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Exercises \hfill \normalfont\textsf{\small solutions to starred exercises on \hyperlink{solutions_glider_guns}{page \pageref{solutions_glider_guns}}}}
@@ -1363,6 +1355,15 @@ where the logarithms are nested as many times as we like. However, even just a s
 		\noindent [Hint: Just add a filter to some other gun.]
 	\end{problem}
 	% SOLUTION: Filter the p28 gun with a blocker.
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:smaller_p14_gun} \probdiff{4}
+		By using (multiple copies of) the p28 glider gun from Figure~\ref{fig:p28_glider_gun}, construct a period~14 glider gun that is smaller than the one that we built in Figure~\ref{fig:p14_gun}.
+	\end{problem}
+	% SOLUTION: Posts right after https://www.conwaylife.com/forums/viewtopic.php?t=&p=115869#p115869
 	
 	
 	\mfilbreak
@@ -1924,6 +1925,22 @@ where the logarithms are nested as many times as we like. However, even just a s
 		\noindent [Hint: Be careful---the exponential filter of Figure~\ref{fig:exponential_filter} is aligned to period~$90$ and thus cannot accept all input gliders from the sqrtgun of Figure~\ref{fig:sqrtgun}. Either use a universal regulator between these two mechanisms or use a different sqrtgun.]
 	\end{problem}
 	% SOLUTION: \Theta(\log(\sqrt{t})). NOT the same as in previous exercise.
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:sawtooth}\index{sawtooth} \probdiff{3}
+		A pattern whose population grows without bound, but also falls below some fixed value infinitely often, is called a \emph{sawtooth}.\footnote{This name comes from the shape of the graph of their population versus time, which goes up and down over and over, like a sawtooth wave.}\smallskip
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item How can you modify the quadratic filter from Figure~\ref{fig:quadratic_filter} to make a sawtooth?
+			% SOLUTION: Just add an eater to its output. Becomes a parabolid sawtooth.
+			
+			\item Use the loaf-pulling tractor beam from the recursive filter in Figure~\ref{fig:recursive_filter} to create another sawtooth.
+		\end{enumerate}
+	\end{problem}
+	
 	
 	%% EXERCISE END COMMANDS
 \end{multicols}
