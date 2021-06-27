@@ -273,7 +273,7 @@ Synthesizing the Coe ship is slightly less straightforward, since we have not ye
 
 Corderships make up another family of objects that are prime candidates for glider synthesis, since they are also made up of several easily-synthesized components---switch engines.\index{switch engine} The difficult part of synthesizing a Cordership is that the switch engines have to be synchronized with each other, making an incremental synthesis difficult. Since each switch engine requires at least three gliders to synthesize, we expect the $10$-engine Cordership from Figure~\ref{fig:10_engine_cordership} to require at least $30$ gliders to synthesize. Furthermore, the $6$ front and middle switch engines will have to be constructed at almost the exact same time as each other.\footnote{Despite these obstacles, Stephen Silver created a $60$-glider synthesis of the $10$-engine Cordership in 1998 (using a 4-glider synthesis of a switch engine, since the 3-glider synthesis was not yet known).}
 
-With these difficulties in mind, it seems desirable to try synthesizing a Cordership that uses as few switch engines as possible---the $2$-engine Cordership from Exercise~\ref{exer:2_engine_cordership} or the $3$-engine Cordership from Figure~\ref{fig:3_engine_cordership}. Here we focus on the $3$-engine Cordership, and we leave the task of synthesizing its $2$-engine counterpart to Exercise~\ref{exer:2_engine_cordership_synthesis}.
+With these difficulties in mind, it seems desirable to try synthesizing a Cordership that uses as few switch engines as possible---the $2$-engine Cordership from Exercise~\ref{exer:2_engine_cordership} or the $3$-engine Cordership from Exercise~\ref{exer:3_engine_cordership}. Here we focus on the $3$-engine Cordership, and we leave the task of synthesizing its $2$-engine counterpart to Exercise~\ref{exer:2_engine_cordership_synthesis}.
 
 As expected, it is not too difficult to use $3 \times 3 = 9$ gliders to synthesize the three switch engines that make up this Cordership. However, one small problem arises after we use these $9$~gliders: while the Cordership is indeed synthesized correctly, the switch engines take a few generations to sync up with each other, so some unwanted debris is left behind. To prevent this debris from forming, we use $2$~extra gliders---one for each of the outermost switch engines---to suppress some chaotic reactions that are normally suppressed by the central switch engine. Altogether, this results in the $11$-glider synthesis of the $3$-engine Cordership displayed in Figure~\ref{fig:3_engine_cordership_synthesis}.
 
@@ -1115,8 +1115,9 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	
 	\begin{problemstar}\label{exer:one_time_track}
 		One-time turners can be used as tracks for gliders, allowing us to create objects that move at a different speed at the front than at the back (such patterns are called \emph{growing spaceships}\index{growing spaceship}).
+		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item Use two copies of the blinker puffer from Figure~\ref{fig:adjustable_spaceship} to lay two blinker fuses that a glider bounces back and forth between, using the reaction from Exercise~\ref{exer:boat_one_time_turner}(d).
+			\item Use two copies of the blinker puffer from Exercise~\ref{exer:blinker_ship} to lay two blinker fuses that a glider bounces back and forth between, using the reaction from Exercise~\ref{exer:boat_one_time_turner}(d).
 			
 			\item Use rakes of your choosing to synthesize a track of boats that a glider uses as one-time turners and destroys (as in Exercise~\ref{exer:boat_one_time_turner}(a)).
 		\end{enumerate}
