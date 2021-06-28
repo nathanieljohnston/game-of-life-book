@@ -7,23 +7,41 @@
 
 \chapter{Mathematical Miscellany}\label{app:math}
 
-In this appendix, we present some of the miscellaneous bits of mathematical knowledge that we needed to discuss certain concepts or to prove certain theorems. While none of these topics are particularly deep, they are often taught at scattered places throughout one's math education (or not taught at all), so we summarize them here for ease of reference.
+In this appendix, we present some of the miscellaneous bits of mathematical knowledge that we need in order to discuss certain concepts or to prove certain theorems regarding the Game of Life in the main text. While none of these topics are particularly deep, they are often taught at scattered places throughout one's math education (or not taught at all), so we summarize them here for ease of reference.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%   SECTION: MODULAR ARITHMETIC
+%%   SECTION: MODULAR CONGRUENCE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Modular Arithmetic}\label{sec:modular_arithmetic}
+\section{Modular Congruence}\label{sec:modular_arithmetic}\index{modular congruence}\index{mod|see {modular congruence}}
 
-To be filled in later. Maybe not actually needed?
+When we divide two integers by each other, we get a \emph{quotient} (i.e., the integer result of division) and a \emph{remainder} (i.e., a piece that is left over from the integer division). For example, dividing $7$ by $3$ gives the quotient $q = \lfloor 7/3 \rfloor = 2$ with a remainder of $r = 1$. The number that we divide by ($3$ in this example) is called the \emph{modulus}, and the remainder is always between $0$ (inclusive) and the modulus (exclusive).
+
+Modular congruence is a way of grouping numbers together based on their remainder upon division by a given modulus $n \geq 2$. For example, if the modulus is $n = 3$ then we say that $1$, $4$, $7$, $10$, and so on are all \emph{congruent modulo $3$}, since they all have the same remainder ($1$) upon division by $3$. Equivalently, we say that two integers $x$ and $y$ are \emph{congruent modulo $n$} if $x-y$ is an integer multiple of $n$, and in this case we write
+\[
+	x \equiv y \pmod{n}.
+\]
+For example, $7 \equiv 1 \pmod{3}$ since $7 - 1 = 6$ is a multiple of $3$.
+
+Congruence modulo $n$ can be thought of as partitioning the set of integers into $n$ disjoint sets, called \emph{congruence classes}, each consisting of all integers that are congruent to each other. For example, if $n = 2$ then there are two congruence classes: the set of even integers and the set of odd integers. If $n = 3$ then there are three congruence classes:\footnote{Negative integers can be congruent to each other, and do belong to congruence classes. For example, $7 \equiv -5 \pmod{3}$ since $7-(-5) = 12$ is a multiple of $3$, so $7$ and $-5$ belong to the same mod-$3$ congruence class.}
+\begin{align*}
+	\{\ldots, -6, -3, 0, 3, 6, 9, \ldots\}, \quad \{\ldots, -5, -2, 1, 4, 7, 10, \ldots\}, \quad \text{and} \quad \{\ldots, -4, -1, 2, 5, 8, 11, \ldots\}.
+\end{align*}
+Since every integer $x$ belongs to (exactly) one of the congruence classes, if we are given another member $y$ of that congruence class then we can find an integer $k$ so that $x = kn + y$.
+
+One of the most prominent uses of modular congruence in the Game of Life arises when making timing and spacing adjustments in Life circuitry. For example, if we knew of some way to delay a signal by $3$~generation, then we could repeat that reaction $n$ times in order to delay the signal by $3n$~generations. If we also knew of methods of delaying that signal by, say, $5$ and $7$ generations, then we could delay it by any (sufficiently large) amount of our choosing: every mod-$3$ congruence class contains either $3$, $5$, or $7$, so every integer can be written in the form $3n$, $3n + 5$, or $3n + 7$.
+
+A slightly more realistic scenario that occurs in the Game of Life makes use of mod-$8$ arithmetic. It is often easy to delay a glider by any multiple of $8$~generations, so to be able to implement arbitrary delays we ``just'' need to find ways of delaying it by amounts that cover the other $7$ congruence classes. We collect glider-delaying reactions like this in two different places in the main text: Tables~\ref{tab:180_degree_one_time_turners} and~\ref{tab:conduit_phase_changers}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%   SECTION: GREATEST COMMON DIVISOR
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Greatest Common Divisor and Least Common Multiple}\label{sec:gcd}
+\section{Greatest Common Divisor and Least Common Multiple}\label{sec:gcd}\index{greatest common divisor}\index{GCD|see {greatest common divisor}}
 
-The \emph{greatest common divisor} (or \emph{GCD} for short) of two non-zero integers $a$ and $b$ is the largest positive integer that evenly divides both $a$ and $b$. We often denote the GCD of $a$ and $b$ by $\mathrm{gcd}(a,b)$. For example, $\mathrm{gcd}(6,15) = 3$. Our primary interest in the GCD comes from the fact that it tells us exactly which equations of the form $ax + by = c$ (where $a,b,c$ are given integers, and $x,y$ are variables we are trying to solve for) have integer solutions.\footnote{An equation of this form is called a \emph{linear Diophantine equation}.} In particular, the following theorem answers this question:
+The \emph{greatest common divisor} (or \emph{GCD} for short) of two non-zero integers $a$ and $b$ is the largest positive integer that both $a$ and $b$ are integer multiples of. We denote the GCD of $a$ and $b$ by $\mathrm{gcd}(a,b)$. For example, $\mathrm{gcd}(6,15) = 3$, since $6$ and $15$ are each multiples of $3$, but they are not each multiples of any larger integer.
+
+Our primary interest in the GCD comes from the fact that it tells us exactly which equations of the form $ax + by = c$ (where $a,b,c$ are given integers, and $x,y$ are variables we are trying to solve for) have integer solutions.\footnote{An equation of this form is called a \emph{linear Diophantine equation}.} In particular, the following theorem answers this question:
 
 % TODO: Add example to illustrate this theorem, as well as GCD/LCM stuff. This is really opaque for this level of book right now.
 
