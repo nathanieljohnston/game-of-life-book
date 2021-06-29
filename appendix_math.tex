@@ -17,19 +17,19 @@ In this appendix, we present some of the miscellaneous bits of mathematical know
 
 When we divide two integers by each other, we get a \emph{quotient} (i.e., the integer result of division) and a \emph{remainder} (i.e., a piece that is left over from the integer division). For example, dividing $7$ by $3$ gives the quotient $q = \lfloor 7/3 \rfloor = 2$ with a remainder of $r = 1$. The number that we divide by ($3$ in this example) is called the \emph{modulus}, and the remainder is always between $0$ (inclusive) and the modulus (exclusive).
 
-Modular congruence is a way of grouping numbers together based on their remainder upon division by a given modulus $n \geq 2$. For example, if the modulus is $n = 3$ then we say that $1$, $4$, $7$, $10$, and so on are all \emph{congruent modulo $3$}, since they all have the same remainder ($1$) upon division by $3$. Equivalently, we say that two integers $x$ and $y$ are \emph{congruent modulo $n$} if $x-y$ is an integer multiple of $n$, and in this case we write
+Modular congruence is a way of grouping numbers together based on their remainder upon division by a given modulus $n \geq 2$. For example, if the modulus is $n = 3$ then we say that $1$, $4$, $7$, $10$, and so on are all \emph{congruent modulo $3$}, since they all have the same remainder ($1$) upon division by $3$. Equivalently, we say that two integers $a$ and $b$ are \emph{congruent modulo $n$} if $a-b$ is an integer multiple of $n$, and in this case we write
 \[
-	x \equiv y \pmod{n}.
+	a \equiv b \pmod{n}.
 \]
 For example, $7 \equiv 1 \pmod{3}$ since $7 - 1 = 6$ is a multiple of $3$.
 
-Congruence modulo $n$ can be thought of as partitioning the set of integers into $n$ disjoint sets, called \emph{congruence classes}, each consisting of all integers that are congruent to each other. For example, if $n = 2$ then there are two congruence classes: the set of even integers and the set of odd integers. If $n = 3$ then there are three congruence classes:\footnote{Negative integers can be congruent to each other, and do belong to congruence classes. For example, $7 \equiv -5 \pmod{3}$ since $7-(-5) = 12$ is a multiple of $3$, so $7$ and $-5$ belong to the same mod-$3$ congruence class.}
+Congruence modulo $n$ provides a way partitioning the set of integers into $n$ disjoint sets, called \emph{congruence classes}, each consisting of all integers that are congruent to each other. For example, if $n = 2$ then there are two congruence classes: the set of even integers and the set of odd integers. If $n = 3$ then there are three congruence classes:\footnote{Negative integers can be congruent to each other, and do belong to congruence classes. For example, $7 \equiv -5 \pmod{3}$ since $7-(-5) = 12$ is a multiple of $3$, so $7$ and $-5$ belong to the same mod-$3$ congruence class.}
 \begin{align*}
 	\{\ldots, -6, -3, 0, 3, 6, 9, \ldots\}, \quad \{\ldots, -5, -2, 1, 4, 7, 10, \ldots\}, \quad \text{and} \quad \{\ldots, -4, -1, 2, 5, 8, 11, \ldots\}.
 \end{align*}
-Since every integer $x$ belongs to (exactly) one of the congruence classes, if we are given another member $y$ of that congruence class then we can find an integer $k$ so that $x = kn + y$.
+Since every integer $a$ belongs to (exactly) one of the congruence classes, if we are given another member $b$ of that congruence class then we can find an integer $k$ so that $a = kn + b$.
 
-One of the most prominent uses of modular congruence in the Game of Life arises when making timing and spacing adjustments in Life circuitry. For example, if we knew of some way to delay a signal by $3$~generation, then we could repeat that reaction $n$ times in order to delay the signal by $3n$~generations. If we also knew of methods of delaying that signal by, say, $5$ and $7$ generations, then we could delay it by any (sufficiently large) amount of our choosing: every mod-$3$ congruence class contains either $3$, $5$, or $7$, so every integer can be written in the form $3n$, $3n + 5$, or $3n + 7$.
+One of the most prominent uses of modular congruence in the Game of Life arises when making timing and spacing adjustments in Life circuitry. For example, if we know of some way to delay a signal by $3$~generation, then we can repeat that reaction $n$ times in order to delay the signal by $3n$~generations. If we also know of methods of delaying that signal by, say, $5$ and $7$ generations, then we can delay it by any (sufficiently large) amount of our choosing: every mod-$3$ congruence class contains either $3$, $5$, or $7$, so every integer can be written in the form $3n$, $3n + 5$, or $3n + 7$.
 
 A slightly more realistic scenario that occurs in the Game of Life makes use of mod-$8$ arithmetic. It is often easy to delay a glider by any multiple of $8$~generations, so to be able to implement arbitrary delays we ``just'' need to find ways of delaying it by amounts that cover the other $7$ congruence classes. We collect glider-delaying reactions like this in two different places in the main text: Tables~\ref{tab:180_degree_one_time_turners} and~\ref{tab:conduit_phase_changers}.
 
@@ -37,32 +37,39 @@ A slightly more realistic scenario that occurs in the Game of Life makes use of 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%   SECTION: GREATEST COMMON DIVISOR
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Greatest Common Divisor and Least Common Multiple}\label{sec:gcd}\index{greatest common divisor}\index{GCD|see {greatest common divisor}}
+\section{Greatest Common Divisor and Least Common Multiple}\label{sec:gcd}\index{greatest common divisor}\index{gcd|see {greatest common divisor}}
 
-The \emph{greatest common divisor} (or \emph{GCD} for short) of two non-zero integers $a$ and $b$ is the largest positive integer that both $a$ and $b$ are integer multiples of. We denote the GCD of $a$ and $b$ by $\mathrm{gcd}(a,b)$. For example, $\mathrm{gcd}(6,15) = 3$, since $6$ and $15$ are each multiples of $3$, but they are not each multiples of any larger integer.
+Suppose that we know of some repeatable way of delaying a signal in a Life circuit by $3$~generations, and another (also repeatable) way of delaying it by $7$~generations. Just these two delays are enough to implement a delay of \emph{any} sufficiently large\footnote{Specifically, $12$~generations or more.} number of generations. Indeed, every mod-$3$ congruence class contains either $0$, $7$, or $14$, so we know from Section~\ref{sec:modular_arithmetic} that we can write every integer in the form $3m + 7n$ for some integers $m$ and $n$ (and we can even choose $0 \leq n \leq 2$).
 
-Our primary interest in the GCD comes from the fact that it tells us exactly which equations of the form $ax + by = c$ (where $a,b,c$ are given integers, and $x,y$ are variables we are trying to solve for) have integer solutions.\footnote{An equation of this form is called a \emph{linear Diophantine equation}.} In particular, the following theorem answers this question:
+On the other hand, if we only know repeatable methods of delaying a signal in a Life circuit by $6$ or $10$ generations, for example, then we can only implement delays of an \emph{even} number of generations. The problem here is that $6$ and $10$ are each even, so every number of the form $6m + 10n$ (where $m$ and $n$ are integers) is even as well. There was no such limitation when the delays were $3$ and $7$ generations, since there is no common number larger than $1$ that they are each multiples of.
 
-% TODO: Add example to illustrate this theorem, as well as GCD/LCM stuff. This is really opaque for this level of book right now.
+This line of thinking leads naturally to the \emph{greatest common divisor} of two non-zero integers $a$ and $b$: the largest positive integer that both $a$ and $b$ are integer multiples of, which we denote by $\mathrm{gcd}(a,b)$. For example, $\mathrm{gcd}(6,10) = 2$, since $6$ and $10$ are each multiples of $2$, but they are not each multiples of any larger integer, while $\mathrm{gcd}(3,7) = 1$. The following theorem tells us that what we informally observed earlier really is true: the integers of the form $am + bn$ are exactly the multiples of $\mathrm{gcd}(a,b)$.\footnote{We might have to choose $m$ and/or $n$ to be negative to achieve certain multiples of $\mathrm{gcd}(a,b)$, though. For example, no \emph{positive} integer values of $m$ and $n$ give $3m + 7n = 11$: we need to allow one of them to be negative, as in the solution $m = 6$, $n = -1$.}
 
 \begin{theorem}[B\'ezout's identity]\label{thm:linear_diophantine}
-	Let $a, b,$ and $c$ be non-zero integers. Then the equation $ax + by = c$ has a solution where both $x$ and $y$ are integers if and only if $c$ is a multiple of $\mathrm{gcd}(a,b)$. Furthermore, if $a$ and $b$ have opposite signs then $x$ and $y$ can be chosen to both be positive.
+	Let $a, b,$ and $c$ be non-zero integers. Then there exist integers $m$ and $n$ such that
+	\[
+		am + bn = c
+	\]
+	if and only if $c$ is a multiple of $\mathrm{gcd}(a,b)$. Furthermore, if $a$ and $b$ have opposite signs then $m$ and $n$ can be chosen to both be positive.
 \end{theorem}
 
 \begin{proof}
-	To prove the ``only if'' direction of the theorem, we note that $\mathrm{gcd}(a,b)$ evenly divides each of $a$ and $b$, so for all integers $x,y$ it evenly divides $ax + by$ as well, so $c$ must be a multiple of $\mathrm{gcd}(a,b)$.
+	To prove the ``only if'' direction of the theorem, note that $a$ and $b$ each being multiples of $\mathrm{gcd}(a,b)$ implies that $am$ and $bn$ are also multiples of $\mathrm{gcd}(a,b)$ for all integers $m$ and $n$, so $am + bn = c$ is also a multiple of $\mathrm{gcd}(a,b)$.
 	
-	To prove the ``if'' direction of the theorem, we suppose that $c$ is a multiple of $\mathrm{gcd}(a,b)$, and we will show that there exist integers $x,y$ such that $ax+by = c$. To this end, let $x^\prime$ and $y^\prime$ be integers that make $ax^\prime + by^\prime$ as small (but positive) as possible. For convenience, define $s := ax^\prime + by^\prime$. When dividing $a$ by $s$, the remainder $r$ is also of the form $r = ax + by$ since it is obtained by subtracting a multiple of $s = ax^\prime + by^\prime$ from $a$. Since the $0 \leq r < s$, and $s$ is the smallest positive number of this form, the only possibility is that $r = 0$. In other words, $s$ evenly divides $a$ (and a similar argument shows that $s$ evenly divides $b$).
+	To prove the ``if'' direction of the theorem, we suppose that $c$ is a multiple of $\mathrm{gcd}(a,b)$, and we will show that there exist integers $m$ and $n$ such that $am + bn = c$. To this end, let $m^\prime$ and $n^\prime$ be integers that make $am^\prime + bn^\prime$ as small (but positive) as possible. For convenience, define $s = am^\prime + bn^\prime$ to be this minimal value. When dividing $a$ by $s$, the remainder $r$ is also of the form $r = am + bn$ since it is obtained by subtracting a multiple of $s = am^\prime + bn^\prime$ from $a$. Since the remainder satisfies $0 \leq r < s$, and $s$ is the smallest positive number of this form, the only possibility is that $r = 0$. In other words, $s$ evenly divides $a$ (and a similar argument shows that $s$ evenly divides $b$).
 	
-	It follows that $c/s$ is an integer (since $c$ is a multiple of $\mathrm{gcd}(a,b)$, which is a multiple of $s$), so $x = x^\prime(c/s)$, $y = y^\prime(c/s)$ is a pair of integers satisfying $ax + by = (ax^\prime + by^\prime)(c/s) = s(c/s) = c$, as desired.
+	It follows that $c/s$ is an integer (since $c$ is a multiple of $\mathrm{gcd}(a,b)$, which is a multiple of $s$), so choosing $m = m^\prime(c/s)$ and $n = n^\prime(c/s)$ gives $am + bn = (am^\prime + bn^\prime)(c/s) = s(c/s) = c$, as desired.
 	
-	To prove the final claim that $x$ and $y$ can be chosen to be positive when $a$ and $b$ have opposite signs, note that if $x$ and $y$ are integers such that $ax + by = c$ then for any integer $k$ it is also the case that $a(x + k(b/\mathrm{gcd}(a,b))) + b(y - k(a/\mathrm{gcd}(a,b))) = c$. By taking $k$ large enough and positive (if $a < 0$ and $b > 0$) or large enough and negative (if $a > 0$ and $b < 0$), this gives us a positive solution to the equation.
+	To prove the final claim that $m$ and $n$ can be chosen to be positive when $a$ and $b$ have opposite signs, note that if $m$ and $n$ are integers such that $am + bn = c$ then for any integer $k$ it is also the case that
+	\[
+		a\left(m + \frac{kb}{\mathrm{gcd}(a,b)}\right) + b\left(n - \frac{ka}{\mathrm{gcd}(a,b)}\right) = c.
+	\]
+	By taking $k$ large enough and positive (if $a < 0$ and $b > 0$) or large enough and negative (if $a > 0$ and $b < 0$), this gives us a positive solution to the original equation $am + bn = c$.
 \end{proof}
 
-The \emph{least common multiple} (or \emph{LCM} for short) of two positive integers $a$ and $b$ is the smallest integer that is a multiple of both $a$ and $b$. We often denote the LCM of $a$ and $b$ by $\mathrm{lcm}(a,b)$. For example, $\mathrm{lcm}(6,15) = 30$. It is straightforward to verify that $\mathrm{lcm}(a,b) = ab/\mathrm{gcd}(a,b)$ for all $a,b$.
+In the special case when $\mathrm{gcd}(a,b) = 1$ (in which case $a$ and $b$ are said to be \emph{relatively prime}),\index{relatively prime} Theorem~\ref{thm:linear_diophantine} tells us that \emph{every} integer $c$ can be written in the form $c = am + bn$ for some integers $m$ and $n$. Equivalently, every mod-$b$ congruence class contains a multiple of $a$, and every mod-$a$ congruence class contains a multiple of $b$.
 
-% Explicitly mention that if gcd(a,n) = 1 then the multiples of a (mod n) reach everything. This idea is used in the silverfish and caterpillar rephasers in chapter 10
-% Important: introduce term "relatively prime" and put in the index. This term is used in at least one exercise
+Complementary to the greatest common divisor is the \emph{least common multiple}\index{least common multiple}\index{lcm|see {least common multiple}} of two positive integers $a$ and $b$: the smallest positive integer that is a multiple of each of $a$ and $b$, which we denote by $\mathrm{lcm}(a,b)$. For example, $\mathrm{lcm}(3,7) = 21$ and $\mathrm{lcm}(6,10) = 30$. It is straightforward to verify that $\mathrm{lcm}(a,b) = ab/\mathrm{gcd}(a,b)$ for all integers $a$ and $b$.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -70,7 +77,7 @@ The \emph{least common multiple} (or \emph{LCM} for short) of two positive integ
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Big-$\Theta$ Notation}\label{sec:bigO}
 
-When describing the long-term behaviour of a Life pattern, we often just want to focus on the ``big picture'', while suppressing the ``fine details''. For example, the pattern displayed in Figure~\ref{fig:max} grows extremely quickly, filling the entire Life plane with zebra stripes\index{aebra stripes} as its four corners expand outward. Patterns that fill the plane like this are called \emph{spacefillers},\index{spacefiller} and this one is called \emph{max}.\footnote{Its name is a reference to the fact that its growth rate is maximal---no pattern can expand faster than $c/2$ in each direction (see Theorem~\ref{thm:speed_limits}), and no pattern can tile the plane with a stable configuration that is more dense than zebra stripes (see Theorem~\ref{thm:still_life_density}).}\index{max}
+When describing the long-term behaviour of a Life pattern, we often just want to focus on the ``big picture'', while suppressing the ``fine details''. For example, the pattern displayed in Figure~\ref{fig:max} grows extremely quickly, filling the entire Life plane with zebra stripes\index{zebra stripes} as its four corners expand outward. Patterns that fill the plane like this are called \emph{spacefillers},\index{spacefiller} and this one is called \emph{max}.\footnote{Its name is a reference to the fact that its growth rate is maximal---no pattern can expand faster than $c/2$ in each direction (see Theorem~\ref{thm:speed_limits}), and no pattern can tile the plane with a stable configuration that is more dense than zebra stripes (see Theorem~\ref{thm:still_life_density}).}\index{max}
 
 \begin{figure}[!htb]
 	\centering
@@ -95,7 +102,7 @@ However, this formula is quite technical and has many details that we typically 
 	\]
 \end{definition}
 
-Informally, the phrase ``$f(x)$ is $\Theta(g(x))$'' means that $f$ and $g$ have the same rate of growth as $x$ gets large, ignoring things like scalars and low-order terms. For example, for the population formula $p(t)$ given in Equation~\eqref{eq:max_population_formula}, we can say that $p(t)$ is $\Theta(t^2)$. This is hopefully somewhat intuitive, but it can be made precise by choosing $c = 1/4$, $C = 1/2$, and $N = 57$ in Definition~\ref{defn:big_theta}---see Figure~\ref{fig:max_population_graph}.\footnote{Many other choices of $c$, $C$, and $N$ are possible as well. For example, we could choose any smaller value of $c$ and/or any larger value of $C$ or $N$. We could even choose a smaller value of $C$ as long as we choose a larger value of $N$ to compensate.}
+Informally, the phrase ``$f(x)$ is $\Theta(g(x))$'' means that $f$ and $g$ have the same rate of growth as $x$ gets large, ignoring things like scalars and low-order terms. For example, for the population formula $p(t)$ given in Equation~\eqref{eq:max_population_formula}, we can say that $p(t)$ is $\Theta(t^2)$. This is hopefully somewhat intuitive, but it can be made precise by choosing $c = 1/4$, $C = 1/2$, and $N = 57$ in Definition~\ref{defn:big_theta}---see Figure~\ref{fig:max_population_graph}.\footnote{Many other choices of $c$, $C$, and $N$ are possible here as well. For example, we could choose any smaller value of $c$ and/or any larger value of $C$ or $N$. We could even choose a smaller value of $C$ as long as we choose a larger value of $N$ to compensate.}
 
 \begin{figure}[!htbp]
 	\centering
@@ -103,4 +110,12 @@ Informally, the phrase ``$f(x)$ is $\Theta(g(x))$'' means that $f$ and $g$ have 
 	\caption{A plot of the population $p(t)$ of the max pattern from Figure~\ref{fig:max} in generation $t$. Since $p(t)$ is between $t^2/4$ and $t^2/2$ when $t \geq 57$, we say that $p(t)$ is $\Theta(t^2)$.}\label{fig:max_population_graph}
 \end{figure}
 
-% TODO: Give a couple more basic mathematical examples? Not motivated by Life, but just things like (any quadratic is Theta(x^2)) and stuff like that?
+Some other examples of potential usage of big-$\Theta$ notation include:\smallskip
+
+\begin{itemize}
+	\item If $f(x) = 4x^3 + 3x^2 - 7x + 5$ then $f(x)$ is $\Theta(x^3)$. In fact, if $f$ is \emph{any} degree-$n$ polynomial with positive leading coefficient then $f(x)$ is $\Theta(x^n)$.\smallskip
+	
+	\item If $f(x) = x^3$ then $f(x)$ is $\Theta(4x^3 + 3x^2 - 7x + 5)$. However, this type of usage is extremely uncommon, if not completely non-existent. We typically (always?) want the function within the big $\Theta$ to be as simplified as possible.\smallskip
+	
+	\item All logarithmic functions have the same growth rate as each other, in the sense that $\log_a(x)$ is $\Theta(\log_b(x))$ for all $a,b > 1$. Indeed, $\log_a(x) = (\log_a(b))\log_b(x)$, so logarithms only differ by the multiplicative scalar $\log_a(b)$, which is absorbed by the big $\Theta$. For this reason, we typically just write $\Theta(\log(x))$ when discussing logarithmic growth rates, as the base makes no difference.
+\end{itemize}
