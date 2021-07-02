@@ -415,7 +415,7 @@ The pattern displayed in Figure~\ref{fig:p80_adjustable_gun} is made up of two i
 
 While these guns are reasonably simple and straightforward to construct, they suffer the drawback that they increase in size quite quickly with their period. In particular, a period~$p$ gun of this type has bounding box of size $(p+18) \times (p-14)$, and it seems natural to ask how much smaller we can make them. We can obtain a rough lower bound on the size of a period-$p$ gun by noting that an $m \times m$ bounding box contains $m^2$ cells, each of which can be in one of two states, so there are $2^{m^2}$ distinct patterns that fit within such a box. It follows that no gun or oscillator in an $m \times m$ box can have period larger than $p = 2^{m^2}$, since after that many generations, it must return to a phase that was already seen earlier. By flipping this around and solving for $m$, we see that there cannot exist a period~$p$ gun inside a box of size less than $\sqrt{\log_2(p)} \times \sqrt{\log_2(p)}$.
 
-It turns out that this lower bound is ``essentially'' tight---there exists a constant $C$ such that it is possible to construct period~$p$ guns inside a box of size $\big(C\sqrt{\log_2(p)}\big) \times \big(C\sqrt{\log_2(p)}\big)$ for all large $p$. In other words, we can construct period~$p$ glider guns with bounding box of length and width that are $\Theta\big(\sqrt{\log(p)}\big)$.\footnote{See Appendix~\ref{sec:bigO} if you need a refresher on big-$\Theta$ notation.} The key objects used in the construction of such guns are \emph{period multipliers}\index{period multiplier}---conduits that only produce an output signal for every two or more (identical) input signals that are received, and thus multiply the period of the input stream. The two simplest such conduits are the \emph{semi-Snarks}\index{semi-Snark} displayed in Figure~\ref{fig:semi_snarks}, which reflect every second input glider and thus can be used to double the period of a glider stream.
+It turns out that this lower bound is ``essentially'' tight---there exists a constant $C$ such that it is possible to construct period~$p$ guns inside a box of size $\big(C\sqrt{\log_2(p)}\big) \times \big(C\sqrt{\log_2(p)}\big)$ for all large $p$. In other words, we can construct period~$p$ glider guns with bounding box of length and width that are $\Theta\big(\sqrt{\log(p)}\big)$.\footnote{See Appendix~\ref{sec:bigO} if you need a refresher on big-$\Theta$ notation.} The key objects used in the construction of such guns are \emph{period multipliers}\index{period multiplier}---conduits that only produce an output signal for every two or more (identical) input signals that are received, and thus multiply the period of the input stream. The two simplest such conduits are the \emph{semi-Snarks}\index{semi-Snark} displayed in Figure~\ref{fig:semi_snarks}, which reflect every second input glider and thus can be used to double the period of a glider stream.\footnote{Two other conduits that perform the same period-doubling task are presented in Exercises~\ref{exer:other_toolkit_from_semi_snarks} and~\ref{exer:other_cc_toolkit_from_semi_snarks}. They have a similar size and repeat time, but are sometimes useful for adjusting glider timing.}
 
 \begin{figure}[!htb]
 	\centering
@@ -850,7 +850,7 @@ Alternatively, prior to the discovery of the syringe, there were stable conduits
 	\setlength{\parskip}{0pt}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
-	% Part (d) of this exercise is L200, which is referenced in the text. Do not re-order or re-label!
+	% Part (d) of this exercise is L200, which is referenced in the text. Do not re-order or re-label! Part (c) is reffed in another exercise too.
 	\begin{problemstar}\label{exer:name_conduit} \probdiff{1}
 		Give the name (using the naming scheme of Table~\ref{tab:herschel_conduits}) for each of the following Herschel conduits, as well as their repeat time.\vspace*{-0.25cm}
 		
@@ -858,11 +858,11 @@ Alternatively, prior to the discovery of the syringe, there were stable conduits
 			\begin{enumerate}
 				\item[\bf\color{ocre}(a)] \raisebox{-\height+0.5em}{\patternimglink{0.1}{exercise_name_conduit_1}}
 				
-				\item[\bf\color{ocre}(c)] \raisebox{-\height+0.5em}{\patternimglink{0.11}{exercise_name_conduit_3}}
+				\item[\bf\color{ocre}(c)] \raisebox{-\height+0.5em}{\patternimglink{0.116911764706}{exercise_name_conduit_3}}
 				
 				\item[\bf\color{ocre}(b)] \raisebox{-\height+0.5em}{\patternimglink{0.1}{exercise_name_conduit_2}}
 				
-				\item[\bf\color{ocre}(d)] \raisebox{-\height+0.5em}{\patternimglink{0.1}{exercise_name_conduit_4}}
+				\item[\bf\color{ocre}(d)] \raisebox{-\height+0.5em}{\patternimglink{0.10701754386}{exercise_name_conduit_4}}
 			\end{enumerate}
 		\end{multicols}
 	\end{problemstar}
@@ -1060,6 +1060,57 @@ Alternatively, prior to the discovery of the syringe, there were stable conduits
 			\item $47$ gliders.
 		\end{enumerate}
 	\end{problem}
+
+
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:other_toolkit_from_semi_snarks} \probdiff{3}\index{semi-Snark}\index{century}\index{semi-cenark}
+		The conduit below uses two (color-preserving) semi-Snarks to transform two input gliders into a single output glider.
+		
+		\begin{center}
+			\patternimglink{0.1}{exercise_other_toolkit_from_semi_snarks}
+		\end{center}
+	
+		\noindent In this exercise, we use this device to develop an alternate set of stable color-preserving glider rephasers that can implement arbitrary glider delays, which can be used instead of the rephasers from Table~\ref{tab:conduit_phase_changers}.\smallskip
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Attach a syringe, the NW31\index{NW31} variant from Figure~\ref{fig:H_to_3G}, and two welded Snarks to the input of this conduit so that its two input gliders are produced by just a single input glider to the syringe.
+			
+			\item How can you adjust the semi-Snarks so that this circuit produces an output glider with a different mod-$8$ timing? Use this technique to build circuits that produce the output glider exactly $1$, $6$, or $7$ generations slower than the output glider shown in part~(a).
+			
+			\item Create an additional four circuits that produce output gliders of the four remaining mod-$8$ timings by replacing one or both of the semi-Snarks in the circuits from part~(b) with the following color-preserving \emph{semi-cenark}:\footnote{Found by Tanner Jacobi in November 2017, and named for the fact that it converts each pair of incoming gliders into a six-cell pattern called a \emph{century}, which is then converted into the output glider.}
+			
+			\begin{center}
+				\patternimglink{0.1}{cp_semi_cenark}
+			\end{center}
+		\end{enumerate}
+	\end{problemstar}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:other_cc_toolkit_from_semi_snarks}
+		The color-preserving glider rephasers from Exercise~\ref{exer:other_toolkit_from_semi_snarks} can be made color-changing in (at least) three different ways.\smallskip
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item \probdiff{2} Method~$1$: Replace the Fx77\index{Fx77} conduit in one of those glider rephasers by the Herschel conduit from Exercise~\ref{exer:name_conduit}(c), thus creating a color-changing rephaser.
+			
+			\noindent [Side note: Doing this in all 8 CP rephasers would create a complete set of CC rephasers for all mod-8 timings.]
+			
+			\item \probdiff{3} Method~$2$: the CP semi-Snarks and/or semi-cenarks in these conduits can be replaced by a CC semi-Snark and/or the following CC semi-cenark:\footnote{Also found by Tanner Jacobi in November 2017.}
+			
+			\begin{center}
+				\patternimglink{0.1}{cc_semi_cenark}
+			\end{center}
+		
+			\noindent Which mod-$8$ timings of color-changing rephasers can be reached in this way? Why are we more limited, and unable to reach all $8$ possible timings?
+			
+			\item \probdiff{2} Method~$3$: Which component from this chapter could be added before or after one of the CP rephasers to turn it into a CC rephaser?
+		\end{enumerate}
+	\end{problem}
+	% SOLUTION: https://www.conwaylife.com/forums/viewtopic.php?f=15&p=132818#p132818
 	
 	
 	\mfilbreak
@@ -1106,7 +1157,7 @@ Alternatively, prior to the discovery of the syringe, there were stable conduits
 	
 	
 	\begin{problem}\label{exer:quinti_snark}
-		The following pattern is called a \emph{quinti-Snark},\index{quinti-Snark}\footnote{Found by Tanner Jacobi in October 2018. Some other periodic quinti-Snarks are also known, but this is the most useful one for the reason explained in part~(c) of this exercise.} since it only produces a single output glider for every five input gliders that it receives.
+		The following pattern is called a \emph{quinti-Snark},\index{quinti-Snark}\footnote{Found by (you guessed it) Tanner Jacobi in October 2018. Some other periodic quinti-Snarks are also known, but this is the most useful one for the reason explained in part~(c) of this exercise.} since it only produces a single output glider for every five input gliders that it receives.
 		
 		\begin{center}
 			\patternimglink{0.1}{quinti_snark}
