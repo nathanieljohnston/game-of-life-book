@@ -4,49 +4,62 @@
 
 \renewcommand{\chapterfolder}{0e0p/}
 \chapterimage{cover/0e0p}
-\chapter{The 0E0P Metacell}\label{chp:0e0p}\index{0E0P}
+\chapter{The 0E0P Metacell}\label{chp:0e0p}\index{0E0P metacell}
 
 
 \vspace*{-0.4in}
 \epigraph{If you couldn't predict what [Life] did then probably that's because it's capable of doing anything.}{John H. Conway}
-\vspace*{0.4in}
+\vspace*{0.15in}
 
 
-\noindent The previous chapter introduced universal construction and presented
-several adjustable spaceships using these techniques. This chapter explores a
-more complex application of universal construction: a self-reproducing cell
-which interacts with its neighbours to emulate Conway's Game of Life or a
-different cellular automaton on a much larger and slower scale.
+\noindent In the previous chapter, we introduced universal construction and presented several adjustable spaceships based on it. In this chapter, we explore a more complex application of universal construction: a self-reproducing pattern that interacts with nearby copies of itself so as to emulate Conway's Game of Life, or a different cellular automaton, on a much larger and slower scale.
 
-As an example application, there is a simple replicator in a similar cellular
-automaton, HighLife (B36/S23), discovered in 1994 by Nathan Thompson. This
-takes 12 ticks to reproduce into two identical copies of itself:
+Specifically, we construct a pattern called the \emph{0E0P metacell},\footnote{Constructed by Adam P.~Goucher from 2014 to November 2018. The acronym ``0E0P'' stands for ``(State) 0 Encoded by 0 Population'', in reference to the fact that its ``off'' state is just a metacell-sized region of empty space---its most remarkable property, which is not shared by any metacell that came before it (see Section~\ref{sec:0e0p_history}).} which has the property that if we arrange copies of it on the Life plane then, at a zoomed-out macroscopic scale, it evolves in the same way that the corresponding arrangement of cells would evolve. For example, if we place five copies of this metacell in the Life plane in the formation of a glider, as illustrated in Figure~\ref{fig:0e0p_glider}, then we indeed get a spaceship that travels like a glider (but much more slowly).
 
-% TODO include picture
+\begin{figure}[!htb]
+	\centering
+	\embedlink{0e0p_glider}{\vcenteredhbox{\patternimg{0.129}{0e0p_glider_0}} \vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{4}{45} $2^{36}$}}$}} \vcenteredhbox{\patternimg{0.129}{0e0p_glider_236}}}
+	\caption{A \emph{metaglider}\index{metaglider} made up of five copies of the 0E0P metacell, each of which is $2^{18} \times 2^{18}$ and logically makes up one ``cell''. It travels in much the same way as a glider, but $2^{36}$ times as slowly.}\label{fig:0e0p_glider}
+\end{figure}
 
-Each of these attempt the same behaviour. The two copies that would otherwise
-occupy the same space mutually annihilate, resulting in (at time 24) two copies
-separated by a greater distance. By generation 36 there are four copies. More
-generally, at generation $12n$, the number of copies is $2^{h(n)}$, where
-$h(n)$ is the \emph{Hamming weight} of $n$ -- the number of `1'-bits when $n$
-is written in binary.
+A meta-fied pattern like this is roughly $2^{18} = 262{\thousep}144$ times as large as the original pattern that it is based on, and it runs $2^{36} = 68{\thousep}719{\thousep}476{\thousep}736$ times as slowly. Indeed, the 0E0P metacell is so much larger and slower than any other pattern that we have seen in this book that evolving the metaglider from Figure~\ref{fig:0e0p_glider} through four ``metagenerations'' (i.e., $4 \times 2^{36}$ generations), to see that it really is a spaceship, would take a couple of years on a modern desktop computer via standard Life simulation algorithms.\footnote{The fastest ``standard'' Life simulation algorithm is called \emph{HashLife} \cite{Gos84}, which is fast enough to run any of the patterns that we saw earlier in this book---even huge ones like the $\pi$ calculator of Section~\ref{sec:pi_calc} and the Gemini spaceship of Section~\ref{sec:gemini_itself}. To run patterns that use huge streams of gliders (like the 0E0P metacell) more efficiently, Adam P.~Goucher developed a new algorithm called \emph{StreamLife}, but even it would require several months to evolve a metaglider through four metagenerations.}\index{HashLife}\index{StreamLife}
 
-However, since we're using Thompson's modified rules instead of Conway's
-original rules, this is not a valid replicator in Life: when run, it merely
-degenerates into a configuration of eight blinkers. To `import' the behaviour
-of the HighLife replicator into regular Life, we need a `unit cell' in Life
-which emulates HighLife. We could then appropriately arrange twelve copies of
-this unit cell in order to create a pattern that faithfully emulates
-HighLife's replicator.
+While emulating Life within Life perhaps does not seem as remarkable a feat as some of the other things we have achieved over the past three chapters, what really makes the 0E0P metacell shine is that it can actually emulate a huge variety of 2D cellular automata besides Life as well. As a result, any pattern from one of those other cellular automata can be straightforwardly ``imported'' into Life simply by meta-fying it, thus giving us exotic new types of patterns that were previously not known how to construct.
 
-This chapter introduces the \emph{0E0P metacell}, a programmable configuration
-which can emulate any non-B0 two-state Moore-neighbourhood cellular automaton.
-Since it needs to be able to construct multiple copies of itself in different
-locations, it uses the same universal construction technology developed in
-the previous chapter.
+To illustrate this phenomenon, consider the cellular automaton that has all the same rules as Life, plus the additional rule that a dead cell comes to life if it has exactly $6$ live neighbors (i.e., the Life-like\index{Life-like} cellular automaton with rulestring\index{rulestring} B36/S23). This cellular automaton is called \emph{HighLife},\index{HighLife} and it is interesting for the fact that it has a simple \emph{replicator}: a pattern that repeatedly produces copies of itself, as illustrated in Figure~\ref{fig:highlife_replicator}.
+
+\begin{figure}[!htb]
+	\centering
+	\embedlink{highlife_replicator}{\vcenteredhbox{\patternimg{0.122}{highlife_replicator_0}} \vcenteredhbox{\genarrow{12}} \vcenteredhbox{\patternimg{0.122}{highlife_replicator_12}} \vcenteredhbox{\genarrow{12}} \vcenteredhbox{\patternimg{0.122}{highlife_replicator_24}} \vcenteredhbox{\genarrow{12}} \vcenteredhbox{\patternimg{0.122}{highlife_replicator_36}}}
+	\caption{A \emph{replicator} in the HighLife (B36/S23) Life-like cellular automaton that duplicates itself every $12$~generations. This replicator (and HighLife itself) was found by Nathan Thompson in 1994.}\label{fig:highlife_replicator}
+\end{figure}
+
+After this replicator copies itself the first time, each of its copies attempt to do the same. However, since these copies are right next to each other, two of \emph{their} copies attempt to occupy the same space, and instead annihilate each other (while their other copies are successfully created farther away). This behavior repeats forever: every $12$~generations, if there is space for a copy of this replicator then it is made, but two copies being made at the same spot at the same time mutually annihilate. The result is that after $n$ replication cycles (i.e., at generation $12n$), the sequence of replicators corresponds to the binary representation of $n$ (with a ``1'' being represented by the presence of a copy of the replicator, and a ``0'' being represented by empty space), followed by its mirror-image.
+
+Since we're using HighLife's rules that require birth when a dead cell has $6$ live neighbors, this is not a valid replicator in Life: when run, it merely degenerates into a configuration of eight blinkers. However, we can ``import'' its behavior into regular Life by programming the 0E0P metacell to emulate HighLife and then arranging $12$ copies of that metacell in the same formation as the $12$~cells that make up the replicator from Figure~\ref{fig:highlife_replicator}. This meta-fied replicator is displayed in Figure~\ref{fig:meta_replicator}.
+
+\begin{figure}[!htb]
+	\centering
+	\embedlink{metareplicator}{\vcenteredhbox{\patternimg{0.135}{metareplicator_0}} \vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{4}{55} $12 \times 2^{36}$}}$}} \vcenteredhbox{\patternimg{0.135}{metareplicator_12}}}
+	\caption{A replicator in Conway's Game of Life that is made up of twelve 0E0P metacells, each emulating the HighLife rule (B36/S23) from Figure~\ref{fig:highlife_replicator}.}\label{fig:meta_replicator}
+\end{figure}
+
+In this chapter, we first explore a few other cellular automata that have exotic patterns that can be implemented in this way in Life via the 0E0P metacell, and then we describe the inner workings of the 0E0P metacell itself.
+
+% Mention Adam's metafier script, which comes bundles with slsparse
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%
-\section{Rule Emulation}
+\section{Other 2D Cellular Automata}\label{sec:other_ca_rules}
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+Stuff.
+
+% All 8-state 4-neighbor rules, as long as they send (0,0,0,0) to 0.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Rule Emulation}\label{sec:0e0p_rules}
 %%%%%%%%%%%%%%%%%%%%%%%%
 
 Conway's Game of Life is a 2-state 9-neighbour rule: the next state of a cell
@@ -59,6 +72,7 @@ would be highly nontrivial for several reasons:
 	construct a copy of itself in up to eight different positions. If both the
 	north and east neighbours are present, it may be difficult to manoeuvre a
 	construction arm to build the north-east neighbour.
+	
 	\item \textbf{Survival}: a cell can live for multiple generations, so its
 	logic circuitry would need to be reusable. Reusable circuitry is considerably
 	more expensive than single-use circuitry: compare, for instance, the size of
@@ -127,6 +141,9 @@ zero-preserving 8-state 4-neighbour rules. It takes $2^{35}$ generations
 for the 0E0P metacell to run one generation of the 8-state rule (emulated
 at a 45-degree angle), and therefore $2^{36}$ generations to emulate one
 generation of the 2-state 9-neighbour rule (in the usual orientation).
+
+% Explicitly state the 4-neighbor rule that emulates Life
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Structure of the Metacell}
@@ -225,7 +242,7 @@ The OTCA metapixel also has the remarkable feature that its alive and dead state
 \begin{figure}[!htb]
 	\centering
 	\embedlink{metablinker}{\vcenteredhbox{\patternimg{0.104}{metablinker_0}} \vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{5}{46} 35328}}$}} \vcenteredhbox{\patternimg{0.104}{metablinker_35328}}}
-	\caption{A \emph{meta-blinker}: an arrangement of OTCA metapixels that emulates a blinker, but with period $2 \times 35{\thousep}328$.}\label{fig:metablinker}\index{meta-blinker}
+	\caption{A \emph{metablinker}: an arrangement of OTCA metapixels that emulates a blinker, but with period $2 \times 35{\thousep}328$.}\label{fig:metablinker}\index{metablinker}
 \end{figure}
 
 The next notable metacell to be constructed was the \emph{p1 megacell},\index{p1 megacell} by Adam P.~Goucher in 2008. This metacell was, again, larger and slower than the metacells that came before it, with a bounding box of $2^{15} \times 2^{15}$ and a period of $2^{24}$. The new features this time that warranted the extra size and delay were twofold:\smallskip
@@ -240,9 +257,10 @@ The next notable metacell to be constructed was the \emph{p1 megacell},\index{p1
 
 Finally, Adam P.~Goucher spent 2014--2018 constructing the 0E0P metapixel, which solved problem~(3) described earlier---it does not require a background grid of ``dead'' cells to be placed on the Life plane.
 
-% Lots of good stuff here for a notes/history section: https://www.conwaylife.com/forums/viewtopic.php?f=15&t=4117#p82954
-
-
+%https://www.conwaylife.com/forums/viewtopic.php?f=15&t=4117#p82954
+%https://cp4space.hatsya.com/2018/11/12/fully-self-directed-replication/
+%https://www.conwaylife.com/forums/viewtopic.php?f=2&t=3835
+%https://www.conwaylife.com/forums/viewtopic.php?t=3968
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Exercises \hfill \normalfont\textsf{\small solutions to starred exercises on \hyperlink{solutions_0e0p}{page \pageref{solutions_0e0p}}}}
@@ -253,8 +271,8 @@ Finally, Adam P.~Goucher spent 2014--2018 constructing the 0E0P metapixel, which
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	
-	\begin{problem}\label{exer:0e0p_ex1}
-		An exercise could be placed here.
+	\begin{problem}\label{exer:0e0p_hamming_weight} \probdiff{1}
+		Construct a formula for the population of the replicator from Figure~\ref{fig:highlife_replicator} in generation $12n$, where $n \geq 0$ is an integer. You may use the \emph{Hamming weight}\index{Hamming weight} of $n$, denoted by $H(n)$, which counts the number of ``1'' bits in the binary representation of $n$.
 	\end{problem}
 	
 	
