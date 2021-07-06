@@ -26,12 +26,12 @@ A meta-fied pattern like this is roughly $2^{18} = 262{\thousep}144$ times as la
 
 While emulating Life within Life perhaps does not seem as remarkable a feat as some of the other things we have achieved over the past three chapters, what really makes the 0E0P metacell shine is that it can actually emulate a huge variety of 2D cellular automata besides Life as well. As a result, any pattern from one of those other cellular automata can be straightforwardly ``imported'' into Life simply by meta-fying it, thus giving us exotic new types of patterns that were previously not known how to construct.
 
-To illustrate this phenomenon, consider the cellular automaton that has all the same rules as Life, plus the additional rule that a dead cell comes to life if it has exactly $6$ live neighbors (i.e., the Life-like cellular automaton with rulestring\index{rulestring} B36/S23). This cellular automaton is called \textbf{HighLife},\index{HighLife} and it is interesting for the fact that it has a simple \textbf{replicator}:\index{replicator (pattern)} a pattern that produces arbitrarily many copies of itself, as illustrated in Figure~\ref{fig:highlife_replicator}.
+To illustrate this phenomenon, consider the cellular automaton that has all the same rules as Life, plus the additional rule that a dead cell comes to life if it has exactly $6$ live neighbors (i.e., the Life-like cellular automaton with rulestring\index{rulestring} \texttt{B36/S23}). This cellular automaton is called \textbf{HighLife},\index{HighLife} and it is interesting for the fact that it has a simple \textbf{replicator}:\index{replicator (pattern)} a pattern that produces arbitrarily many copies of itself, as illustrated in Figure~\ref{fig:highlife_replicator}.
 
 \begin{figure}[!htb]
 	\centering
 	\embedlink{highlife_replicator}{\vcenteredhbox{\patternimg{0.122}{highlife_replicator_0}} \vcenteredhbox{\genarrow{12}} \vcenteredhbox{\patternimg{0.122}{highlife_replicator_12}} \vcenteredhbox{\genarrow{12}} \vcenteredhbox{\patternimg{0.122}{highlife_replicator_24}} \vcenteredhbox{\genarrow{12}} \vcenteredhbox{\patternimg{0.122}{highlife_replicator_36}}}
-	\caption{A \textbf{replicator} in the HighLife (B36/S23) Life-like cellular automaton that duplicates itself every $12$~generations. Found by Nathan Thompson in February 1994.}\label{fig:highlife_replicator}
+	\caption{A \textbf{replicator} in the HighLife (\texttt{B36/S23}) Life-like cellular automaton that duplicates itself every $12$~generations. Found by Nathan Thompson in February 1994.}\label{fig:highlife_replicator}
 \end{figure}
 
 After this replicator copies itself the first time, each of its copies attempt to do the same. However, since these copies are right next to each other, two of \emph{their} copies attempt to occupy the same space, and instead annihilate each other (while their other copies are successfully created farther away). This behavior repeats forever: every $12$~generations, if there is space for a copy of this replicator then it is made, but two copies being made at the same spot at the same time mutually annihilate. The result is that after $n$ replication cycles (i.e., at generation $12n$), the sequence of replicators corresponds to the binary representation of $n$ (with a ``1'' being represented by the presence of a copy of the replicator, and a ``0'' being represented by empty space), followed by its mirror-image.
@@ -41,7 +41,7 @@ Since we're using HighLife's rules that require birth when a dead cell has $6$ l
 \begin{figure}[!htb]
 	\centering
 	\embedlink{metareplicator}{\vcenteredhbox{\patternimg{0.135}{metareplicator_0}} \vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{4}{55} $12 \times 2^{36}$}}$}} \vcenteredhbox{\patternimg{0.135}{metareplicator_12}}}
-	\caption{A replicator in Conway's Game of Life that is made up of twelve 0E0P metacells, each emulating the HighLife rule (B36/S23) from Figure~\ref{fig:highlife_replicator}.}\label{fig:meta_replicator}
+	\caption{A replicator in Conway's Game of Life that is made up of twelve 0E0P metacells, each emulating the HighLife rule (\texttt{B36/S23}) from Figure~\ref{fig:highlife_replicator}.}\label{fig:meta_replicator}
 \end{figure}
 
 In this chapter, we first explore a few other cellular automata that have exotic patterns that can be implemented in this way in Life via the 0E0P metacell, and then we describe the inner workings of the 0E0P metacell itself.
@@ -58,31 +58,31 @@ While cellular automata (CA)\index{CA|see {cellular automaton}} can act on grids
 \subsection{Life-Like (i.e., Outer-Totalistic) Cellular Automata}\label{sec:lifelike_rules}\index{Life-like}\index{outer-totalistic}\index{totalistic}
 %%%%%%%%%%%%%%%%%%%%%%%%
 
-A $2$-state cellular automaton is called \textbf{outer-totalistic} if the birth and death rules depend only on the state of the current cell, as well the number of live neighbors that it has.\footnote{In contrast with \textbf{totalistic} cellular automata, in which the birth and death rules depend only on the number of live neighbors including the cell itself.} That is, they are exactly the cellular automata that can be described by the Bx/Sy rulestring\index{rulestring} notation that was introduced earlier. An outer-totalistic cellular automaton is said to be \textbf{Life-like} if it furthermore satisfies all of the properties that we assumed at the start of this section (i.e., it acts on a 2-dimensional square grid and neighbors are counted according to the Moore neighborhood).
+A $2$-state cellular automaton is called \textbf{outer-totalistic} if the birth and death rules depend only on the state of the current cell, as well the number of live neighbors that it has.\footnote{In contrast with \textbf{totalistic} cellular automata, in which the birth and death rules depend only on the number of live neighbors including the cell itself.} That is, they are exactly the cellular automata that can be described by the \texttt{Bx/Sy} rulestring\index{rulestring} notation that was introduced earlier. An outer-totalistic cellular automaton is said to be \textbf{Life-like} if it furthermore satisfies all of the properties that we assumed at the start of this section (i.e., it acts on a 2-dimensional square grid and neighbors are counted according to the Moore neighborhood).
 
-Some Life-like cellular automata have simple patterns that behave unlike any simple patterns that are known in Life itself, as evidenced by the replicator that we saw in Figure~\ref{fig:highlife_replicator}. While that pattern replicates along a single line, there are also Life-like rules that give rise to simple replicators that replicate in multiple directions and fill the whole plane. In fact, in the appropriately-named \textbf{replicator}\index{replicator (rule)} rule (B1357/S1357), \emph{every} pattern is a replicator that repeatedly produces copies of itself in all $8$ orthogonal and diagonal directions---see Figure~\ref{fig:replicator_smile} and Exercise~\ref{exer:replicator_rule_really_replicates}.
+Some Life-like cellular automata have simple patterns that behave unlike any simple patterns that are known in Life itself, as evidenced by the replicator that we saw in Figure~\ref{fig:highlife_replicator}. While that pattern replicates along a single line, there are also Life-like rules that give rise to simple replicators that replicate in multiple directions and fill the whole plane. In fact, in the appropriately-named \textbf{replicator}\index{replicator (rule)} rule (\texttt{B1357/S1357}), \emph{every} pattern is a replicator that repeatedly produces copies of itself in all $8$ orthogonal and diagonal directions---see Figure~\ref{fig:replicator_smile} and Exercise~\ref{exer:replicator_rule_really_replicates}.
 
 \begin{figure}[!htb]
 	\centering
 	\embedlink{replicator_smile}{\vcenteredhbox{\patternimg{0.19495412844}{replicator_smile_0}} \vcenteredhbox{\genarrow{8}} \vcenteredhbox{\patternimg{0.11486486484}{replicator_smile_8}} \vcenteredhbox{\genarrow{8}} \vcenteredhbox{\patternimg{0.06789137379}{replicator_smile_16}} \vcenteredhbox{\genarrow{8}} \vcenteredhbox{\patternimg{0.0927947598}{replicator_smile_24}}}
-	\caption{In the \textbf{replicator} rule (B1357/S1357), every pattern is a replicator that creates copies of itself in the $8$ standard directions.}\label{fig:replicator_smile}
+	\caption{In the \textbf{replicator} rule (\texttt{B1357/S1357}), every pattern is a replicator that creates copies of itself in the $8$ standard directions.}\label{fig:replicator_smile}
 \end{figure}
 
-While the patterns of Figures~\ref{fig:highlife_replicator} and~\ref{fig:replicator_smile} replicate in a sawtooth-like\index{sawtooth} fashion---whenever two copies would be created in the same place, they cleanly destroy each other instead, so their populations repeatedly reach new heights and then jump back down below some fixed value---replicators need not behave in this way. For example, consider the rule B12345678/S012345678 in which a  cell is born if it ever has at least one live neighbor, and then lives forever. In this rule, a single cell acts as a replicator that repeatedly births all cells in its Moore neighborhood, as illustrated in Figure~\ref{fig:all_births_replicator}.
+While the patterns of Figures~\ref{fig:highlife_replicator} and~\ref{fig:replicator_smile} replicate in a sawtooth-like\index{sawtooth} fashion---whenever two copies would be created in the same place, they cleanly destroy each other instead, so their populations repeatedly reach new heights and then jump back down below some fixed value---replicators need not behave in this way. For example, consider the rule \texttt{B12345678/S012345678} in which a  cell is born if it ever has at least one live neighbor, and then lives forever. In this rule, a single cell acts as a replicator that repeatedly births all cells in its Moore neighborhood, as illustrated in Figure~\ref{fig:all_births_replicator}.
 
 \begin{figure}[!htb]
 	\centering
 	\embedlink{replicator_all_births}{\vcenteredhbox{\patternimg{0.11}{replicator_all_births_0}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.11}{replicator_all_births_1}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.11}{replicator_all_births_2}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.11}{replicator_all_births_3}}}
-	\caption{A single cell acts as a space-filling replicator in the rule B12345678/S012345678.}\label{fig:all_births_replicator}
+	\caption{A single cell acts as a space-filling replicator in the rule \texttt{B12345678/S012345678}.}\label{fig:all_births_replicator}
 \end{figure}
 
-In fact, elementary replicators of various shapes and speeds are known in a few dozen different Life-like cellular automata,\footnote{See \httpsurl{www.ics.uci.edu/~eppstein/ca/replicators/index.html} for a partial list.} giving us a wide variety of patterns of this type in Life now, thanks to the 0E0P metacell. Somewhat less common are patterns that grow in other ways, like the spiral-growth pattern\index{spiral growth} for the rule B34568/S15678 that is displayed in Figure~\ref{fig:spiral_growth_elementary} (compare with the spiral growth pattern that we constructed in Life back in Figure~\ref{fig:spiral_growth}).
+In fact, elementary replicators of various shapes and speeds are known in a few dozen different Life-like cellular automata,\footnote{See \httpsurl{www.ics.uci.edu/~eppstein/ca/replicators/index.html} for a partial list.} giving us a wide variety of patterns of this type in Life now, thanks to the 0E0P metacell. Somewhat less common are patterns that grow in other ways, like the spiral-growth pattern\index{spiral growth} for the rule \texttt{B34568/S15678} that is displayed in Figure~\ref{fig:spiral_growth_elementary} (compare with the spiral growth pattern that we constructed in Life back in Figure~\ref{fig:spiral_growth}).
 % Maybe this: https://www.ics.uci.edu/~eppstein/ca/replicators/b36s245.html
 
 \begin{figure}[!htb]
 	\centering
 	\embedlink{spiral_growth_elementary}{\vcenteredhbox{\patternimg{0.123}{spiral_growth_elementary_0}} \vcenteredhbox{\genarrow{12}} \vcenteredhbox{\patternimg{0.123}{spiral_growth_elementary_1}} \vcenteredhbox{\genarrow{12}} \vcenteredhbox{\patternimg{0.123}{spiral_growth_elementary_13}} \vcenteredhbox{\genarrow{12}} \vcenteredhbox{\patternimg{0.123}{spiral_growth_elementary_25}} \vcenteredhbox{\genarrow{12}} \vcenteredhbox{\patternimg{0.123}{spiral_growth_elementary_37}}}
-	\caption{A pattern that exhibits spiral growth in the B34568/S15678 rule. Found by Dean Hickerson in June 2006.}\label{fig:spiral_growth_elementary}
+	\caption{A pattern that exhibits spiral growth in the \texttt{B34568/S15678} rule. Found by Dean Hickerson in June 2006.}\label{fig:spiral_growth_elementary}
 \end{figure}
 
 
@@ -94,19 +94,74 @@ A cellular automaton is called \textbf{isotropic} if the cell transition rules a
 
 \begin{figure}[!htb]
 	\centering
-	\patternimg{0.13}{isotropic_neighborhoods}
-	\caption{In an isotropic cellular automaton, the central cells (displayed in \bgbox{orangeback}{orange}) must evolve in the same way in the leftmost $3$ configurations, since their arrangements of neighbors are rotations and/or reflections of each other. In an outer-totalistic cellular automaton, the central cell in the 4th configuration must also evolve in the same way, since it has the same number of live neighbors ($2$).}\label{fig:isotropic_neighborhoods}
+	\patternimg{0.15}{isotropic_neighborhoods}
+	\caption{In an isotropic cellular automaton, the central cells (displayed in \bgbox{orangeback}{orange}) must evolve in the same way in each of the three leftmost configurations, since their arrangements of neighbors are rotations and/or reflections of each other. In an outer-totalistic cellular automaton, the central cell in the fourth configuration must also evolve in the same way, since it has the same number of live neighbors ($2$).}\label{fig:isotropic_neighborhoods}
 \end{figure}
 
-% Maybe this SMOS: https://www.conwaylife.com/forums/viewtopic.php?f=11&t=3071&hilit=smos&start=25#p51115 (6 rules from a LifeLike?)
-% Also 6 rules from Lifelike: https://www.conwaylife.com/forums/viewtopic.php?f=11&t=3071&hilit=smos&start=125#p91806
+Because of the extra flexibility afforded by isotropic cellular automata (there are a whopping $2^{102}$ isotropic $2$-state CA on a 2D square grid, versus ``just'' $2^{18}$ outer-totalistic ones), they often contain elementary patterns that appear completely alien when compared to those from Life. For example, consider the CA that has the same rules as Life, but with four isotropic modifications: two to its birth conditions and two to its survival conditions, as illustrated in Figure~\ref{fig:iso_rule_modifications}. This CA's rulestring is \texttt{B3-j6i/S23-c4i}, where the substrings ``\texttt{-j}'', ``\texttt{6i}'', ``\texttt{-c}'', and ``\texttt{4i}'' correspond to these four new rules (in the same order as they are displayed in Figure~\ref{fig:iso_rule_modifications}). The details of how to construct rulestrings for arbitrary isotropic cellular automata are somewhat involved, so we leave them to Appendix~??.
 
+\begin{figure}[!htb]
+	\centering
+	\patternimg{0.15}{iso_rule_modifications}
+	\caption{The four differences (up to rotation and reflection) between Life (\texttt{B3/S23}) and the isotropic cellular automaton \texttt{B3-j6i/S23-c4i}. The central cell in the first (i.e., leftmost) configuration is \emph{not} born (whereas it would be in Life), the central cell is born in the next configuration, the central cell dies in the third, and the central cell survives in the fourth.}\label{fig:iso_rule_modifications}
+\end{figure}
 
-% RRO goes here too: https://conwaylife.com/wiki/Reflectorless_rotating_oscillator
-% Maybe this RRO, since we can actually describe its transition rule: https://www.conwaylife.com/forums/viewtopic.php?f=11&t=3447&start=100#p87402 (it's close to Life)
-% There is *almost* one in a Life-like, but just give a footnote/exercise about it. Exercise could ask why it's not a true RRO.
+Our interest in this cellular automaton comes from the pattern displayed in Figure~\ref{fig:reflectorless_rotating_oscillator}, which is an example of a \textbf{reflectorless rotating oscillator}\index{reflectorless rotating oscillator} (or \textbf{RRO}\index{RRO|see {reflectorless rotating oscillator}} for short): an oscillator with the property that one of its phases is a rotation of another one, and two non-interacting copies of the oscillator can combine so as to produce an oscillator with period half as large.\footnote{This final ``two copies...'' requirement enforces the ``reflectorless'' part of the name: a single glider in a square Snark loop is an oscillator whose phases that are rotations of other phases, but two copies of this loop only produce an oscillator with half the period if we overlap the Snarks (thus violating the ``non-interacting'' part of the definition of an RRO).} Informally, RROs travel around in a loop like a spaceship that periodically turns a corner (they are even sometimes called \textbf{looping spaceships}).\index{looping spaceship|see {reflectorless rotating oscillator}} This is very unlike anything that we have seen in Life---all oscillators that we have seen either stay mostly stationary (like all of the oscillators in the first 8 or 9 pages of Chapter~\ref{chp:oscillators}), or move around a path with the help of other stationary pieces (like Snark loops, Herschel tracks, and the pi-heptomino hassler from Figure~\ref{fig:p37_pi_hassler}).
+
+\begin{figure}[!htb]
+	\centering
+	\begin{subfigure}{.32\textwidth}
+		\centering
+		\patternimglink{0.079}{reflectorless_rotating_oscillator}
+		\caption{One copy, period $200$.}
+		\label{fig:reflectorless_rotating_oscillator1}
+	\end{subfigure} \hfill % 
+	\begin{subfigure}{.32\textwidth}
+		\centering
+		\patternlink{reflectorless_rotating_oscillator}{\patternimg{0.079}{reflectorless_rotating_oscillator2}}
+		\caption{Two copies, period $100$.}
+		\label{fig:reflectorless_rotating_oscillator2}
+	\end{subfigure} \hfill % 
+	\begin{subfigure}{.32\textwidth}
+		\centering
+		\patternlink{reflectorless_rotating_oscillator}{\patternimg{0.079}{reflectorless_rotating_oscillator4}}
+		\caption{Four copies, period $50$.}
+		\label{fig:reflectorless_rotating_oscillator4}
+	\end{subfigure}
+	\caption{A \textbf{reflectorless rotating oscillator} in the isotropic cellular automaton \texttt{B3-j6i/S23-c4i}. Either one, two, or four copies of the oscillator can be placed along the same path, producing oscillators with periods 200, 100, and 50. Found by ConwayLife.com forums user ``Hdjensofjfnen'' in January 2020.}\label{fig:reflectorless_rotating_oscillator}
+\end{figure}
+
+Another exotic type of pattern that appears in isotropic cellular automata, but for which no elementary example is known in their Life-like brethren, is a \textbf{spaceship made of spaceships}\index{spaceship made of spaceships} (or \textbf{SMOS}\index{SMOS|see {spaceship made of spaceships}} for short): a spaceship that works by colliding two or more other spaceships with each other.\footnote{The Demonoids\index{Demonoid} that we constructed in the previous chapter are \emph{mostly} made up of gliders. However, they are not spaceships made of spaceships since there is no phase in which they consist \emph{entirely} of gliders.} One of the simplest such patterns occurs in the (admittedly very \emph{not} simple) cellular automaton
+\begin{center}
+	\texttt{B3acijn4jktwyz5ijr6-en7c/S2aen3-aceq4acijqty5cikr6ak7c}.
+\end{center}
+Under this rule, a glider functions as a $c/4$ diagonal spaceship in the exact same way as in Life, but if two gliders collide together just right then they push each other in such as way as to produce a $4c/17$ orthogonal spaceship (see Figure~\ref{fig:smos}). Even more remarkably, if two of these $4c/17$ spaceships collide together just right then they produce a $c/44$ diagonal spaceship---a \textbf{spaceship made of spaceships made of spaceships}\index{spaceship made of spaceships made of spaceships} (\textbf{SMOSMOS}).\index{SMOSMOS|see {spaceship made of spaceships made of spaceships}}
+
+\begin{figure}[!htb]
+	\centering
+	\begin{subfigure}{.32\textwidth}
+		\centering
+		\embedlink{smosmos}{\patternimg{0.1226519337}{smos_glider}}
+		\caption{A ($c/4$ diagonal) glider.}
+		\label{fig:smos_glider}
+	\end{subfigure} \hfill % 
+	\begin{subfigure}{.32\textwidth}
+		\centering
+		\patternlink{smosmos}{\patternimg{0.1226519337}{smos}}
+		\caption{A $4c/17$ orthogonal SMOS.}
+		\label{fig:smos_smos}
+	\end{subfigure} \hfill % 
+	\begin{subfigure}{.32\textwidth}
+		\centering
+		\patternlink{smosmos}{\patternimg{0.12}{smosmos}}
+		\caption{A $c/44$ diagonal SMOSMOS.}
+		\label{fig:smos_smosmos}
+	\end{subfigure}
+	\caption{In the rule \texttt{B3acijn4jktwyz5ijr6-en7c/S2aen3-aceq4acijqty5cikr6ak7c}, (a) a glider functions as a $c/4$ diagonal spaceship in the usual way. However, when it collides with itself it turns into (b) a $4c/17$ orthogonal spaceship (found by ConwayLife.com forums user ``Saka'' in August 2017), and when \emph{that} spaceship collides with itself it turns into (c) a $c/44$ diagonal spaceship (found by ConwayLife.com forums user ``FWKnightship'' in August 2019).}\label{fig:smos}
+\end{figure}
 
 % TODO: Add appendix with isotropic naming scheme
+% IN appendix, mention terminology "Hensel notation"
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -118,7 +173,7 @@ Stuff.
 % Maybe the c/714 single-cell?
 % https://www.conwaylife.com/forums/viewtopic.php?f=11&t=3089&hilit=MAP&start=50#p98128
 
-% Count number of rules, mention all can be emulated by 0E0P, as long as no birth on 0 neighbors
+% Count number of rules, mention all can be emulated by 0E0P, as long as no birth on 0 neighbors, so all of these weird patterns now work in Life at a macro scale. Mention first explicit construction of an SMOS and RRO, and give details on what makes RRO kinda tricky
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -364,6 +419,8 @@ Finally, Adam P.~Goucher spent 2014--2018 constructing the 0E0P metapixel, which
 % EXERCISE: Give reactions in HighLife-replicator-ship.rle from Golly and ask reader to make ship out of it
 % EXERCISE: Logarithmic replicator from B36/S245, found by Mark Niemiec in July 1994. Do... something with it. Pop in generation 300*4^n - 127 is 64 for all n >= 0.
 
+% EXERCISE: There is *almost* an RRO in a Life-like, but just give a footnote/exercise about it. Exercise could ask why it's not a true RRO.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Exercises \hfill \normalfont\textsf{\small solutions to starred exercises on \hyperlink{solutions_0e0p}{page \pageref{solutions_0e0p}}}}
@@ -383,7 +440,7 @@ Finally, Adam P.~Goucher spent 2014--2018 constructing the 0E0P metapixel, which
 	
 	
 	\begin{problem}\label{exer:replicator_rule_really_replicates}
-		Recall the replicator rule B1357/S1357 that was illustrated in Figure~\ref{fig:replicator_smile}.
+		Recall the replicator rule \texttt{B1357/S1357} that was illustrated in Figure~\ref{fig:replicator_smile}.
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item \probdiff{2} If the longest side of a pattern's bounding box is $n$ cells long, how many generations would it take to copy itself for the first time in this rule?
