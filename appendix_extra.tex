@@ -227,6 +227,67 @@ In Section~\ref{sec:medium_demonoid}, we described how to build a single-channel
 
 
 
+
+\renewcommand{\chapterfolder}{appendices/}
+
+\section{Isotropic Rulestrings}\label{sec:isotropic_rulestrings}\index{isotropic}\index{rulestring}\index{Hensel notation}
+
+We now describe how to read and construct rulestrings that specify an isotropic $2$-state cellular automaton that uses the Moore neighborhood on a 2D square grid. We start with a rulestring of the form \texttt{Bx/Sy}, where ``\texttt{x}'' and ``\texttt{y}'' are numeric strings describing how many neighbors lead to the \textbf{b}irth and \textbf{s}urvival of a cell, respectively. However, we then add modifiers after each integer in the rulestring to either add or remove some of those birth and survival conditions.\footnote{The rulestring notation that we describe here is sometimes called \textbf{Hensel notation}, after its creator Alan Hensel.}
+
+The possible modifiers are each specified by a single letter, all of which are described in Table~\ref{tab:isotropic_modifiers}. If a string of modifiers is preceded by a minus sign then the corresponding birth or survival conditions are being removed, rather than added. For example:\smallskip
+
+\begin{itemize}
+	\item \textbf{No modifiers}: If a rulestring contains ``\texttt{B3}'' (with no modifiers immediately after it) then cells are born if they have $3$ live neighbors, regardless of their orientation.\smallskip
+	
+	\item \textbf{Positive modifiers}: If a rulestring contains ``\texttt{B3acj}'' then cells are born if they have $3$ live neighbors as in the ``\texttt{a}'', ``\texttt{c}'', or ``\texttt{j}'' configurations (up to rotation), but not if they have $3$ live neighbors in any other configuration.\smallskip
+	
+	\item \textbf{Negative modifiers}: If a rulestring contains ``\texttt{B3-kr}'' then cells are born if they have $3$ live neighbors in any configuration \emph{except} for the ``\texttt{k}'' and ``\texttt{r}'' configurations (up to rotation).\smallskip
+\end{itemize}
+
+\begin{table}[!htb]
+	\begin{center}		
+		\begin{tabular}{c|ccccccc}
+			\toprule
+			modifier \textbackslash \ neighbors & $1$ & $2$ & $3$ & $4$ & $5$ & $6$ & $7$ \\ \midrule
+			\begin{minipage}[b]{0.13\textwidth}\centering \texttt{c} \\ (\textbf{c}orner)\\[-0.3cm] ${}$ \end{minipage} & \patternimg{0.2}{c1} & \patternimg{0.2}{c2} & \patternimg{0.2}{c3} & \patternimg{0.2}{c4} & \patternimg{0.2}{c5} & \patternimg{0.2}{c6} & \patternimg{0.2}{c7} \\
+			\begin{minipage}[b]{0.13\textwidth}\centering \texttt{e} \\ (\textbf{e}dge)\\[-0.3cm] ${}$ \end{minipage} & \patternimg{0.2}{e1} & \patternimg{0.2}{e2} & \patternimg{0.2}{e3} & \patternimg{0.2}{e4} & \patternimg{0.2}{e5} & \patternimg{0.2}{e6} & \patternimg{0.2}{e7} \\
+			\begin{minipage}[b]{0.13\textwidth}\centering \texttt{a} \\ (\textbf{a}djacent)\\[-0.3cm] ${}$ \end{minipage} & & \patternimg{0.2}{a2} & \patternimg{0.2}{a3} & \patternimg{0.2}{a4} & \patternimg{0.2}{a5} & \patternimg{0.2}{a6} & \\
+			\begin{minipage}[b]{0.13\textwidth}\centering \texttt{k} \\ (\textbf{k}night)\\[-0.3cm] ${}$ \end{minipage} & & \patternimg{0.2}{k2} & \patternimg{0.2}{k3} & \patternimg{0.2}{k4} & \patternimg{0.2}{k5} & \patternimg{0.2}{k6} & \\
+			\begin{minipage}[b]{0.13\textwidth}\centering \texttt{i} \\ ${}$ \end{minipage} & & \patternimg{0.2}{i2} & \patternimg{0.2}{i3} & \patternimg{0.2}{i4} & \patternimg{0.2}{i5} & \patternimg{0.2}{i6} & \\
+			\begin{minipage}[b]{0.13\textwidth}\centering \texttt{n} \\ ${}$ \end{minipage} & & \patternimg{0.2}{n2} & \patternimg{0.2}{n3} & \patternimg{0.2}{n4} & \patternimg{0.2}{n5} & \patternimg{0.2}{n6} & \\
+			\begin{minipage}[b]{0.13\textwidth}\centering \texttt{j} \\ ${}$ \end{minipage} & & & \patternimg{0.2}{j3} & \patternimg{0.2}{j4} & \patternimg{0.2}{j5} & & \\
+			\begin{minipage}[b]{0.13\textwidth}\centering \texttt{q} \\ ${}$ \end{minipage} & & & \patternimg{0.2}{q3} & \patternimg{0.2}{q4} & \patternimg{0.2}{q5} & & \\
+			\begin{minipage}[b]{0.13\textwidth}\centering \texttt{r} \\ ${}$ \end{minipage} & & & \patternimg{0.2}{r3} & \patternimg{0.2}{r4} & \patternimg{0.2}{r5} & & \\
+			\begin{minipage}[b]{0.13\textwidth}\centering \texttt{y} \\ ${}$ \end{minipage} & & & \patternimg{0.2}{y3} & \patternimg{0.2}{y4} & \patternimg{0.2}{y5} & & \\
+			\begin{minipage}[b]{0.13\textwidth}\centering \texttt{t} \\ ${}$ \end{minipage} & & & & \patternimg{0.2}{t4} & & & \\
+			\begin{minipage}[b]{0.13\textwidth}\centering \texttt{w} \\ ${}$ \end{minipage} & & & & \patternimg{0.2}{w4} & & & \\
+			\begin{minipage}[b]{0.13\textwidth}\centering \texttt{z} \\ ${}$ \end{minipage} & & & & \patternimg{0.2}{z4} & & & \\\bottomrule
+		\end{tabular}
+		\caption{A list of all possible configurations of the Moore neighborhood of a single cell, up to rotation and reflection, except for the all-dead and all-alive configurations. The letter on the left of each row specifies the modifier abbreviation that is associated with each of the configurations in that row. For example, a rulestring containing \texttt{B3k} indicates that a cell with $3$ neighbors as in the ``\texttt{k}'' row and ``$3$'' column will be born, and a rulestring containing \texttt{S4k} indicates survival of a cell with $4$ neighbors as in the ``\texttt{k}'' row and ``$4$'' column.}\label{tab:isotropic_modifiers}
+	\end{center}
+\end{table}
+
+Every rule that can be specified via positive modifiers can also be specified via negative modifiers, and vice-versa, so there is some redundancy in rulestrings. For example, the rule \texttt{B3/S2ac3} is exactly the same as the rule \texttt{B3/S2-eik3}: they both mean that a cell will be born and survive if it has $3$ live neighbors (regardless of orientation), and a cell will survive if it has $2$ live neighbors in one of the ``\texttt{a}'' or ``\texttt{c}'' configurations, but not in one of the ``\texttt{e}'', ``\texttt{i}'', or ``\texttt{k}'' configurations. To remove some of this ambiguity, we typically prefer shorter rulestrings over longer ones.
+
+These modifiers can be applied independently after each integer in the rulestring.\footnote{However, some modifiers cannot appear after some integers. For example, the modifier ``\texttt{q}'' cannot come after a $2$ since there is no corresponding entry in Table~\ref{tab:isotropic_modifiers}.} For example, the rulestring \texttt{B3-j6i/S23-c4i} indicates that:\smallskip
+
+\begin{itemize}
+	\item A dead cell will be born if it has $3$ live neighbors, unless they are in the ``\texttt{j}'' configuration.\smallskip
+	
+	\item A dead cell will be born if it has $6$ live neighbors, but only if they are in the ``\texttt{i}'' configuration.\smallskip
+	
+	\item A live cell will survive if it has $2$ live neighbors (in any configuration).\smallskip
+	
+	\item A live cell will survive if it has $3$ live neighbors, unless they are in the ``\texttt{c}'' configuration.\smallskip
+	
+	\item A live cell will survive if it has $4$ live neighbors, but only if they are in the ``\texttt{i}'' configuration.\smallskip
+\end{itemize}
+
+\noindent Indeed, the rule \texttt{B3-j6i/S23-c4i} is quite similar to Life itself, but with four isotropic modifications, as we saw in Figure~\ref{fig:iso_rule_modifications}.
+
+Similarly, the rulestring \texttt{B3acijn4jktwyz5ijr6-en7c/S2aen3-aceq4acijqty5cikr6ak7c} that we used in Figure~\ref{fig:smos} means that a dead cell will be born if it has $3$ live neighbors in one of the ``\texttt{a}'', ``\texttt{c}'', ``\texttt{i}'', ``\texttt{j}'', or ``\texttt{n}'' configurations, or if it has $4$ live neighbors in one of the ``\texttt{j}'', ``\texttt{k}'', ``\texttt{t}'', ``\texttt{w}'', ``\texttt{y}'', or ``\texttt{z}'' configurations, and so on.
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Pi APGsembly Code}\label{sec:appendix_apg}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

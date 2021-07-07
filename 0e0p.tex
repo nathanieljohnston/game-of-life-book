@@ -98,7 +98,7 @@ A cellular automaton is called \textbf{isotropic} if the cell transition rules a
 	\caption{In an isotropic cellular automaton, the central cells (displayed in \bgbox{orangeback}{orange}) must evolve in the same way in each of the three leftmost configurations, since their arrangements of neighbors are rotations and/or reflections of each other. In an outer-totalistic cellular automaton, the central cell in the fourth configuration must also evolve in the same way, since it has the same number of live neighbors ($2$).}\label{fig:isotropic_neighborhoods}
 \end{figure}
 
-Because of the extra flexibility afforded by isotropic cellular automata (there are a whopping $2^{102}$ isotropic $2$-state CA on a 2D square grid, versus ``just'' $2^{18}$ outer-totalistic ones), they often contain elementary patterns that appear completely alien when compared to those from Life. For example, consider the CA that has the same rules as Life, but with four isotropic modifications: two to its birth conditions and two to its survival conditions, as illustrated in Figure~\ref{fig:iso_rule_modifications}. This CA's rulestring is \texttt{B3-j6i/S23-c4i}, where the substrings ``\texttt{-j}'', ``\texttt{6i}'', ``\texttt{-c}'', and ``\texttt{4i}'' correspond to these four new rules (in the same order as they are displayed in Figure~\ref{fig:iso_rule_modifications}). The details of how to construct rulestrings for arbitrary isotropic cellular automata are somewhat involved, so we leave them to Appendix~??.
+Because of the extra flexibility afforded by isotropic cellular automata (there are a whopping $2^{102}$ isotropic $2$-state CA on a 2D square grid, versus ``just'' $2^{18}$ outer-totalistic ones), they often contain elementary patterns that appear completely alien when compared to those from Life. For example, consider the CA that has the same rules as Life, but with four isotropic modifications: two to its birth conditions and two to its survival conditions, as illustrated in Figure~\ref{fig:iso_rule_modifications}. This CA's rulestring is \texttt{B3-j6i/S23-c4i}, where the substrings ``\texttt{-j}'', ``\texttt{6i}'', ``\texttt{-c}'', and ``\texttt{4i}'' correspond to these four new rules (in the same order as they are displayed in Figure~\ref{fig:iso_rule_modifications}). The details of how to construct rulestrings for arbitrary isotropic cellular automata are somewhat involved, so we leave them to Appendix~\ref{sec:isotropic_rulestrings}.
 
 \begin{figure}[!htb]
 	\centering
@@ -159,9 +159,6 @@ Under this rule, a glider functions as a $c/4$ diagonal spaceship in the exact s
 	\end{subfigure}
 	\caption{In the rule \texttt{B3acijn4jktwyz5ijr6-en7c/S2aen3-aceq4acijqty5cikr6ak7c}, (a) a glider functions as a $c/4$ diagonal spaceship in the usual way. However, when it collides with itself it turns into (b) a $4c/17$ orthogonal spaceship (found by ConwayLife.com forums user ``Saka'' in August 2017), and when \emph{that} spaceship collides with itself it turns into (c) a $c/44$ diagonal spaceship (found by ConwayLife.com forums user ``FWKnightship'' in August 2019).}\label{fig:smos}
 \end{figure}
-
-% TODO: Add appendix with isotropic naming scheme
-% IN appendix, mention terminology "Hensel notation"
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -420,6 +417,8 @@ Finally, Adam P.~Goucher spent 2014--2018 constructing the 0E0P metapixel, which
 % EXERCISE: Logarithmic replicator from B36/S245, found by Mark Niemiec in July 1994. Do... something with it. Pop in generation 300*4^n - 127 is 64 for all n >= 0.
 
 % EXERCISE: There is *almost* an RRO in a Life-like, but just give a footnote/exercise about it. Exercise could ask why it's not a true RRO.
+% EXERCISE: Show how iso in Moore neighborhood can emulate outer totalistic in von Neumann neighborhood
+% EXERCISE: Give iso rulestring for (some rule)
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
