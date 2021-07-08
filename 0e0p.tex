@@ -77,7 +77,6 @@ While the patterns of Figures~\ref{fig:highlife_replicator} and~\ref{fig:replica
 \end{figure}
 
 In fact, elementary replicators of various shapes and speeds are known in a few dozen different Life-like cellular automata,\footnote{See \httpsurl{www.ics.uci.edu/~eppstein/ca/replicators/index.html} for a partial list.} giving us a wide variety of patterns of this type in Life now, thanks to the 0E0P metacell. Somewhat less common are patterns that grow in other ways, like the spiral-growth pattern\index{spiral growth} for the rule \texttt{B34568/S15678} that is displayed in Figure~\ref{fig:spiral_growth_elementary} (compare with the spiral growth pattern that we constructed in Life back in Figure~\ref{fig:spiral_growth}).
-% Maybe this: https://www.ics.uci.edu/~eppstein/ca/replicators/b36s245.html
 
 \begin{figure}[!htb]
 	\centering
@@ -95,7 +94,7 @@ A cellular automaton is called \textbf{isotropic} if the cell transition rules a
 \begin{figure}[!htb]
 	\centering
 	\patternimg{0.15}{isotropic_neighborhoods}
-	\caption{In an isotropic cellular automaton, the central cells (displayed in \bgbox{orangeback}{orange}) must evolve in the same way in each of the three leftmost configurations, since their arrangements of neighbors are rotations and/or reflections of each other. In an outer-totalistic cellular automaton, the central cell in the fourth configuration must also evolve in the same way, since it has the same number of live neighbors ($2$).}\label{fig:isotropic_neighborhoods}
+	\caption{In an outer-totalistic cellular automaton, the central cells (displayed in \bgbox{orangeback}{orange}) in the leftmost four configurations must all evolve in the same way, since they have the same number of live neighbors ($2$). In an isotropic cellular automaton, the central cells must evolve in the same way in only the \emph{three} leftmost configurations, since their arrangements of neighbors are rotations and/or reflections of each other. In a non-isotropic cellular automaton, the central cells can evolve in different ways in all five configurations.}\label{fig:isotropic_neighborhoods}
 \end{figure}
 
 Because of the extra flexibility afforded by isotropic cellular automata (there are a whopping $2^{102}$ isotropic $2$-state CA on a 2D square grid, versus ``just'' $2^{18}$ outer-totalistic ones), they often contain elementary patterns that appear completely alien when compared to those from Life. For example, consider the CA that has the same rules as Life, but with four isotropic modifications: two to its birth conditions and two to its survival conditions, as illustrated in Figure~\ref{fig:iso_rule_modifications}. This CA's rulestring is \texttt{B3-j6i/S23-c4i}, where the substrings ``\texttt{-j}'', ``\texttt{6i}'', ``\texttt{-c}'', and ``\texttt{4i}'' correspond to these four new rules (in the same order as they are displayed in Figure~\ref{fig:iso_rule_modifications}). The details of how to construct rulestrings for arbitrary isotropic cellular automata are somewhat involved, so we leave them to Appendix~\ref{sec:isotropic_rulestrings}.
@@ -106,7 +105,7 @@ Because of the extra flexibility afforded by isotropic cellular automata (there 
 	\caption{The four differences (up to rotation and reflection) between Life (\texttt{B3/S23}) and the isotropic cellular automaton \texttt{B3-j6i/S23-c4i}. The central cell in the first (i.e., leftmost) configuration is \emph{not} born (whereas it would be in Life), the central cell is born in the next configuration, the central cell dies in the third, and the central cell survives in the fourth.}\label{fig:iso_rule_modifications}
 \end{figure}
 
-Our interest in this cellular automaton comes from the pattern displayed in Figure~\ref{fig:reflectorless_rotating_oscillator}, which is an example of a \textbf{reflectorless rotating oscillator}\index{reflectorless rotating oscillator} (or \textbf{RRO}\index{RRO|see {reflectorless rotating oscillator}} for short): an oscillator with the property that one of its phases is a rotation of another one, and two non-interacting copies of the oscillator can combine so as to produce an oscillator with period half as large.\footnote{This final ``two copies...'' requirement enforces the ``reflectorless'' part of the name: a single glider in a square Snark loop is an oscillator whose phases that are rotations of other phases, but two copies of this loop only produce an oscillator with half the period if we overlap the Snarks (thus violating the ``non-interacting'' part of the definition of an RRO).} Informally, RROs travel around in a loop like a spaceship that periodically turns a corner (they are even sometimes called \textbf{looping spaceships}).\index{looping spaceship|see {reflectorless rotating oscillator}} This is very unlike anything that we have seen in Life---all oscillators that we have seen either stay mostly stationary (like all of the oscillators in the first 8 or 9 pages of Chapter~\ref{chp:oscillators}), or move around a path with the help of other stationary pieces (like Snark loops, Herschel tracks, and the pi-heptomino hassler from Figure~\ref{fig:p37_pi_hassler}).
+Our interest in this cellular automaton comes from the pattern displayed in Figure~\ref{fig:reflectorless_rotating_oscillator}, which is an example of a \textbf{reflectorless rotating oscillator}\index{reflectorless rotating oscillator} (or \textbf{RRO}\index{RRO|see {reflectorless rotating oscillator}} for short): an oscillator with the property that one of its phases is a rotation of another one, and two non-interacting copies of the oscillator can combine so as to produce an oscillator with period half as large.\footnote{This final ``two copies...'' requirement enforces the ``reflectorless'' part of the name: a single glider in a square Snark loop is an oscillator whose phases are rotations of other phases, but two copies of this loop only produce an oscillator with half the period if we overlap the Snarks (thus violating the ``non-interacting'' part of the definition of an RRO).} Informally, RROs travel around in a loop like a spaceship that periodically turns a corner (they are even sometimes called \textbf{looping spaceships}).\index{looping spaceship|see {reflectorless rotating oscillator}} This is very unlike anything that we have seen in Life---all oscillators that we have seen either stay mostly stationary (like all of the oscillators in the first 8 or 9 pages of Chapter~\ref{chp:oscillators}), or move around a path with the help of other stationary pieces (like glider loops, Herschel tracks, and the pi-heptomino hassler from Figure~\ref{fig:p37_pi_hassler}).
 
 \begin{figure}[!htb]
 	\centering
@@ -165,12 +164,51 @@ Under this rule, a glider functions as a $c/4$ diagonal spaceship in the exact s
 \subsection{Non-Isotropic Cellular Automata}\label{sec:non_isotropic_rules}
 %%%%%%%%%%%%%%%%%%%%%%%%
 
-Stuff.
-% Single-cell oblique spaceship in a non-isotropic rule: https://www.conwaylife.com/forums/viewtopic.php?f=11&t=3089&p=95700&hilit=MAP#p96359
-% Maybe the c/714 single-cell?
-% https://www.conwaylife.com/forums/viewtopic.php?f=11&t=3089&hilit=MAP&start=50#p98128
+If we go one step further and consider non-isotropic cellular automata, we can make even just a single cell behave in an extraordinary variety of ways. For example, we can define a rule with the property that cells never survive, and they are only born if they have a single live cell directly to their left.\footnote{This cellular automaton is described by the rulestring\protect\\\texttt{MAPAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA}.\protect\\ For an explanation of rulestrings of non-isotropic cellular automata, see Appendix~\ref{sec:non_isotropic_rulestrings}.} In this rule, a single cell is a spaceship that travels orthogonally at lightspeed (see Figure~\ref{fig:single_cell_orth}).
 
-% Count number of rules, mention all can be emulated by 0E0P, as long as no birth on 0 neighbors, so all of these weird patterns now work in Life at a macro scale. Mention first explicit construction of an SMOS and RRO, and give details on what makes RRO kinda tricky
+We can also consider the slightly more exotic cellular automaton in which cells are only born if they have no neighbors or a single neighbor to their southeast, and they only survive if they have neighbors everywhere \emph{except} for to their north and northwest.\footnote{This cellular automaton is described by the rulestring\protect\\\texttt{MAPwAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG}.} In this rule, a single cell acts as a $(1,2)c/2$ knightship,\index{knightship} as illustrated in Figure~\ref{fig:single_cell_knightship}. It is similarly possible to construct rules in which a single cell is a spaceship that travels at many other speeds and slopes---see Exercise~\ref{exer:0e0p_single_cell_spaceships}.
+
+\begin{figure}[!htb]
+	\centering
+	\begin{subfigure}{.32\textwidth}
+		\centering
+		\patternimglink{0.15}{single_cell_orth}
+		\caption{A single-cell lightspeed orthogonal spaceship.}
+		\label{fig:single_cell_orth}
+		\begin{minipage}{.1cm}
+			\vfill
+		\end{minipage}
+	\end{subfigure} \hfill % 
+	\begin{subfigure}{.65\textwidth}
+		\centering
+		\patternlink{single_cell_knightship}{\vcenteredhbox{\patternimg{0.15}{single_cell_knightship}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.15}{single_cell_knightship1}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.15}{single_cell_knightship2}}}
+		\caption{A single-cell knightship travelling at $(1,2)c/2$. In this rule, a dead cell is born when it has no live neighbors, so the background array of cells alternates between dead and alive in even and odd generations.}
+		\label{fig:single_cell_knightship}
+	\end{subfigure}
+	\caption{Non-isotropic rules are general enough that they can turn a single cell into a spaceship with a wide variety of speeds and slopes.}\label{fig:single_cell_spaceships}
+\end{figure}
+
+By changing the evolution rule even more, a single cell can also act in a variety of other exotic ways. For example, consider the cellular automaton that is defined by all cells surviving, and cells being born if and only if they have exactly one live cell directly to their northeast or northwest, as in Figure~\ref{fig:non_iso_rule_18}.\footnote{This cellular automaton is described by the rulestring\protect\\\texttt{MAPAAD//wAA//+AAP//AAD//wAA//8AAP//AAD//wAA//+AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//w}.} In this rule, a single cell generates better and better approximations of the Sierpi\'{n}ski triangle, as illustrated in Figure~\ref{fig:single_cell_sierpinski}. 
+ 
+\begin{figure}[!htb]
+	\centering
+	\begin{subfigure}{.42\textwidth}
+		\centering
+		\patternimg{0.155}{non_iso_rule_18}
+		\caption{Cells always survive, but they are only born in the two configurations shown here (in the central location marked in \bgbox{greenpastel}{green}).}
+		\label{fig:non_iso_rule_18}
+	\end{subfigure} \hfill \begin{subfigure}{.53\textwidth}
+		\centering
+		\patternlink{spiral_growth_elementary}{\vcenteredhbox{\patternimg{0.14}{single_cell_sierpinski0}} \vcenteredhbox{\genarrow{50}} \vcenteredhbox{\patternimg{0.14}{single_cell_sierpinski50}}}
+		\caption{A single-cell pattern creating the Sierpi\'{n}ski triangle.}
+		\label{fig:single_cell_sierpinski}
+	\end{subfigure}
+	\caption{In the non-isotropic rule in which all cells survive but are only born as in (a), a single cell produces the Sierpi\'{n}ski triangle as in (b).}\label{fig:single_cell_weird}
+\end{figure}
+
+Indeed, if we restrict non-isotropic cellular automata to a single dimension (e.g., by having every cell survive and having births only occur to the south of live cells, as we did in Figure~\ref{fig:single_cell_sierpinski}) then we get exactly what are called \textbf{elementary cellular automata} \cite{Wolfram2002}. There are $2^8 = 256$ automata of this type, and the Sierpi\'{n}ski-triangle-generating rule works by emulating the one called \textbf{Rule 18}\index{Rule 18} (see Exercise~\ref{exer:rule_18}).
+
+There are $2^{512}$ different 2D not-necessarily-isotropic cellular automata, and the 0E0P metacell can emulate the $2^{511}$ of them that send a dead cell with no live neighbors to a dead cell. It can thus be used to embed all of the patterns from this section into Life, though at a much larger and slower scale. Of particular note is the fact that this method gave the first (and to date, only) explicit construction of a spaceships made of spaceships\index{spaceship made of spaceships} in Life (and thus the first SMOSMOS in Life as well). This method also gave the first (and to date, only) reflectorless rotating oscillator\index{reflectorless rotating oscillator} in Life, but there are minor technicalities that must be overcome in this case (see Exercise~\ref{exer:0e0p_rro_technicalities}).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -419,7 +457,8 @@ Finally, Adam P.~Goucher spent 2014--2018 constructing the 0E0P metapixel, which
 % EXERCISE: There is *almost* an RRO in a Life-like, but just give a footnote/exercise about it. Exercise could ask why it's not a true RRO.
 % EXERCISE: Show how iso in Moore neighborhood can emulate outer totalistic in von Neumann neighborhood
 % EXERCISE: Give iso rulestring for (some rule)
-
+% EXERCISE: Create a non-iso rule in which a single cell acts as... (diagonal spaceship, what else?)
+% Exercise about emulating an elementary cellular automaton
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Exercises \hfill \normalfont\textsf{\small solutions to starred exercises on \hyperlink{solutions_0e0p}{page \pageref{solutions_0e0p}}}}
@@ -439,7 +478,7 @@ Finally, Adam P.~Goucher spent 2014--2018 constructing the 0E0P metapixel, which
 	
 	
 	\begin{problem}\label{exer:replicator_rule_really_replicates}
-		Recall the replicator rule \texttt{B1357/S1357} that was illustrated in Figure~\ref{fig:replicator_smile}.
+		Recall the replicator rule \texttt{B1357/S1357} that was illustrated in Figure~\ref{fig:replicator_smile}.\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item \probdiff{2} If the longest side of a pattern's bounding box is $n$ cells long, how many generations would it take to copy itself for the first time in this rule?
@@ -448,6 +487,44 @@ Finally, Adam P.~Goucher spent 2014--2018 constructing the 0E0P metapixel, which
 			\item \probdiff{5} Prove that every pattern in this rule really does replicate, as we claimed.
 			
 			\noindent [Hint: First, prove (via induction, perhaps) that a single cell replicates. Then show that evolving a multi-cell pattern in this rule is equivalent to evolving each cell individually and XOR-ing the results together.].
+		\end{enumerate}
+	\end{problem}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:0e0p_single_cell_spaceships}
+		Modify the rule used in Figure~\ref{fig:single_cell_knightship} so as to construct a (non-isotropic) 2-state cellular automaton on a square grid in which a single cell is a spaceship with speed...\smallskip
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item \probdiff{2} $c/2$ orthogonal;
+			
+			\item \probdiff{2} $c$ diagonal;
+			
+			\item \probdiff{2} $c/2$ diagonal; and
+			
+			\item \probdiff{4} $(1,3)c/4$ or any other non-orthogonal, non-diagonal, and non-knightship slope.
+			
+			\noindent [Hint: Use two generations to transform the cell into a domino, and two more generations to transform it back into a single cell.]
+		\end{enumerate}
+	\end{problem}
+% SOLUTIONS: https://www.conwaylife.com/forums/viewtopic.php?f=11&t=3089&p=95700&hilit=MAP#p96359
+% MORE: https://www.conwaylife.com/forums/viewtopic.php?f=11&t=3089&hilit=MAP&start=50#p98128
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:0e0p_rro_technicalities} \probdiff{3}
+		Copies of the 0E0P metacell can be placed on the Life plane so as to evolve in the same way as the pattern from Figure~\ref{fig:reflectorless_rotating_oscillator1}.\smallskip
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Explain why this pattern is \emph{not} a reflectorless rotating oscillator in Life, despite being a RRO in the rule that the 0E0P is emulating.
+			% SOLUTION: metacell itself does not rotate
+			
+			\item Explain how you could use even more 0E0P metacells to emulate multiple copies of the pattern from Figure~\ref{fig:reflectorless_rotating_oscillator1} so as to create an actual RRO in Life.
+			% Use four copies, rotated
 		\end{enumerate}
 	\end{problem}
 	
