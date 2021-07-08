@@ -161,12 +161,12 @@ Under this rule, a glider functions as a $c/4$ diagonal spaceship in the exact s
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Non-Isotropic Cellular Automata}\label{sec:non_isotropic_rules}
+\subsection{Non-Isotropic Cellular Automata}\label{sec:non_isotropic_rules}\index{non-isotropic}
 %%%%%%%%%%%%%%%%%%%%%%%%
 
-If we go one step further and consider non-isotropic cellular automata, we can make even just a single cell behave in an extraordinary variety of ways. For example, we can define a rule with the property that cells never survive, and they are only born if they have a single live cell directly to their left.\footnote{This cellular automaton is described by the rulestring\protect\\\texttt{MAPAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA}.\protect\\ For an explanation of rulestrings of non-isotropic cellular automata, see Appendix~\ref{sec:non_isotropic_rulestrings}.} In this rule, a single cell is a spaceship that travels orthogonally at lightspeed (see Figure~\ref{fig:single_cell_orth}).
+If we go one step further and consider non-isotropic cellular automata, we can make even just a single cell behave in an extraordinary variety of ways. For example, we can define a rule with the property that cells never survive, and they are only born if they have a single live cell directly to their left.\footnote{This cellular automaton is described by the rulestring\protect\\\texttt{AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA}.\protect\\ For an explanation of rulestrings of non-isotropic cellular automata, see Appendix~\ref{sec:non_isotropic_rulestrings}.} In this rule, a single cell is a spaceship that travels orthogonally at lightspeed (see Figure~\ref{fig:single_cell_orth}).
 
-We can also consider the slightly more exotic cellular automaton in which cells are only born if they have no neighbors or a single neighbor to their southeast, and they only survive if they have neighbors everywhere \emph{except} for to their north and northwest.\footnote{This cellular automaton is described by the rulestring\protect\\\texttt{MAPwAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG}.} In this rule, a single cell acts as a $(1,2)c/2$ knightship,\index{knightship} as illustrated in Figure~\ref{fig:single_cell_knightship}. It is similarly possible to construct rules in which a single cell is a spaceship that travels at many other speeds and slopes---see Exercise~\ref{exer:0e0p_single_cell_spaceships}.
+We can also consider the slightly more exotic cellular automaton in which cells are only born if they have no neighbors or a single neighbor to their southeast, and they only survive if they have neighbors everywhere \emph{except} for to their north and northwest.\footnote{This cellular automaton is described by the rulestring\protect\\\texttt{wAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA}.} In this rule, a single cell acts as a $(1,2)c/2$ knightship,\index{knightship} as illustrated in Figure~\ref{fig:single_cell_knightship}. It is similarly possible to construct rules in which a single cell is a spaceship that travels at many other speeds and slopes---see Exercise~\ref{exer:0e0p_single_cell_spaceships}.
 
 \begin{figure}[!htb]
 	\centering
@@ -181,14 +181,14 @@ We can also consider the slightly more exotic cellular automaton in which cells 
 	\end{subfigure} \hfill % 
 	\begin{subfigure}{.65\textwidth}
 		\centering
-		\patternlink{single_cell_knightship}{\vcenteredhbox{\patternimg{0.15}{single_cell_knightship}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.15}{single_cell_knightship1}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.15}{single_cell_knightship2}}}
+		\embedlink{single_cell_knightship}{\vcenteredhbox{\patternimg{0.15}{single_cell_knightship}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.15}{single_cell_knightship1}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.15}{single_cell_knightship2}}}
 		\caption{A single-cell knightship travelling at $(1,2)c/2$. In this rule, a dead cell is born when it has no live neighbors, so the background array of cells alternates between dead and alive in even and odd generations.}
 		\label{fig:single_cell_knightship}
 	\end{subfigure}
 	\caption{Non-isotropic rules are general enough that they can turn a single cell into a spaceship with a wide variety of speeds and slopes.}\label{fig:single_cell_spaceships}
 \end{figure}
 
-By changing the evolution rule even more, a single cell can also act in a variety of other exotic ways. For example, consider the cellular automaton that is defined by all cells surviving, and cells being born if and only if they have exactly one live cell directly to their northeast or northwest, as in Figure~\ref{fig:non_iso_rule_18}.\footnote{This cellular automaton is described by the rulestring\protect\\\texttt{MAPAAD//wAA//+AAP//AAD//wAA//8AAP//AAD//wAA//+AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//w}.} In this rule, a single cell generates better and better approximations of the Sierpi\'{n}ski triangle, as illustrated in Figure~\ref{fig:single_cell_sierpinski}. 
+By changing the evolution rule even more, a single cell can also act in a variety of other exotic ways. For example, consider the cellular automaton that is defined by all cells surviving, and cells being born if and only if they have exactly one live cell directly to their northeast or northwest, as in Figure~\ref{fig:non_iso_rule_18}.\footnote{This cellular automaton is described by the rulestring\protect\\\texttt{AAD//wAA//+AAP//AAD//wAA//8AAP//AAD//wAA//+AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//w}.} In this rule, a single cell generates better and better approximations of the Sierpi\'{n}ski triangle, as illustrated in Figure~\ref{fig:single_cell_sierpinski}. 
  
 \begin{figure}[!htb]
 	\centering
@@ -199,11 +199,11 @@ By changing the evolution rule even more, a single cell can also act in a variet
 		\label{fig:non_iso_rule_18}
 	\end{subfigure} \hfill \begin{subfigure}{.53\textwidth}
 		\centering
-		\patternlink{spiral_growth_elementary}{\vcenteredhbox{\patternimg{0.14}{single_cell_sierpinski0}} \vcenteredhbox{\genarrow{50}} \vcenteredhbox{\patternimg{0.14}{single_cell_sierpinski50}}}
+		\embedlink{single_cell_sierpinski}{\vcenteredhbox{\patternimg{0.14}{single_cell_sierpinski0}} \vcenteredhbox{\genarrow{50}} \vcenteredhbox{\patternimg{0.14}{single_cell_sierpinski50}}}
 		\caption{A single-cell pattern creating the Sierpi\'{n}ski triangle.}
 		\label{fig:single_cell_sierpinski}
 	\end{subfigure}
-	\caption{In the non-isotropic rule in which all cells survive but are only born as in (a), a single cell produces the Sierpi\'{n}ski triangle as in (b).}\label{fig:single_cell_weird}
+	\caption{In the non-isotropic rule in which all cells survive, but are only born as in (a), a single cell produces the Sierpi\'{n}ski triangle as in (b).}\label{fig:single_cell_weird}
 \end{figure}
 
 Indeed, if we restrict non-isotropic cellular automata to a single dimension (e.g., by having every cell survive and having births only occur to the south of live cells, as we did in Figure~\ref{fig:single_cell_sierpinski}) then we get exactly what are called \textbf{elementary cellular automata} \cite{Wolfram2002}. There are $2^8 = 256$ automata of this type, and the Sierpi\'{n}ski-triangle-generating rule works by emulating the one called \textbf{Rule 18}\index{Rule 18} (see Exercise~\ref{exer:rule_18}).
@@ -527,6 +527,15 @@ Finally, Adam P.~Goucher spent 2014--2018 constructing the 0E0P metapixel, which
 			% Use four copies, rotated
 		\end{enumerate}
 	\end{problem}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:non_isotropic_rulestring_life} \probdiff{3}
+		What is the non-isotropic rulestring (in the sense of Appendix~\ref{sec:non_isotropic_rulestrings}) for Conway's Game of Life?
+	\end{problem}
+	% SOLUTION: ARYXfhZofugWaH7oaIDogBZofuhogOiAaIDogIAAgAAWaH7oaIDogGiA6ICAAIAAaIDogIAAgACAAIAAAAAAAA
 	
 	
 	%% EXERCISE END COMMANDS

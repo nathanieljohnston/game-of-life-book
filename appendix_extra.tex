@@ -288,12 +288,79 @@ These modifiers can be applied independently after each integer in the rulestrin
 Similarly, the rulestring \texttt{B3acijn4jktwyz5ijr6-en7c/S2aen3-aceq4acijqty5cikr6ak7c} that we used in Figure~\ref{fig:smos} means that a dead cell will be born if it has $3$ live neighbors in one of the ``\texttt{a}'', ``\texttt{c}'', ``\texttt{i}'', ``\texttt{j}'', or ``\texttt{n}'' configurations, or if it has $4$ live neighbors in one of the ``\texttt{j}'', ``\texttt{k}'', ``\texttt{t}'', ``\texttt{w}'', ``\texttt{y}'', or ``\texttt{z}'' configurations, and so on.
 
 
-\section{Non-Isotropic Rulestrings}\label{sec:non_isotropic_rulestrings}\index{rulestring}
+\section{Non-Isotropic Rulestrings}\label{sec:non_isotropic_rulestrings}\index{rulestring}\index{non-isotropic}
 
-Stuff.
-%Each possible neighbourhood configuration thus corresponds to a number between 0 and 511, and the transition function can be represented as a 512-bit binary string, where the n-th bit is set to 1 if, in the configuration numbered n, the center cell will be alive in the next generation, and 0 otherwise.
-%
-%The resulting binary string is then further encoded in base64 for brevity, creating a string of 86 characters.
+We now describe how to read and construct rulestrings that specify a not-necessarily-isotropic $2$-state cellular automaton that uses the Moore neighborhood on a 2D square grid. Because there are so many more of these rules than isotropic ones ($2^{512}$ versus $2^{102}$), the length of their rulestrings becomes something of a concern, so we use a different format than their outer-totalistic and isotropic counterparts.\footnote{This non-isotropic rulestring format was created by Chris Rowett.}
+
+The basic idea behind these non-isotropic rulestrings is to simply list what happens to the central cell in each of the $2^9 = 512$ different possible configurations of cells in a $3 \times 3$ grid. In order to make that list though, we need to agree on a fixed ordering of those $512$ configurations. To this end, we use the diagram given in Figure~\ref{fig:map_rule_ordering}, which establishes what the ``first'' of those $512$ configurations is, what the ``second'' one is, and so on.
+
+\begin{figure}[!htbp]
+	\centering
+	\begin{subfigure}{.32\textwidth}
+		\centering
+		\includegraphics[scale=0.8]{appendices/map_rule_ordering.pdf}
+		\caption{The index of a configuration is the sum of the numbers on its live cells.}
+		\label{fig:map_rule_ordering_rule}
+	\end{subfigure} \hfill \begin{subfigure}{.65\textwidth}
+		\centering
+		\patternimg{0.22}{map_rule_ordering_eg}
+		\caption{From left to right, these are configurations (first row) $0$, $1$, $2$, $2+1=3$, (second row) $4$, $16+1=17$, $256+64+16+8+4=348$, and $256+128+64+32+16+8+4+2+1=511$.}
+		\label{fig:map_rule_ordering_eg}
+	\end{subfigure}
+	\caption{To order the $2^9 = 512$ possible configurations of $3 \times 3$ live cells, we assign each one an index that is the sum of the numbers from~(a) that are on live cells. The ``0th'' configuration is thus the one with all cells dead, the ``1st'' configuration is the one with only the bottom-right cell alive, and so on.}\label{fig:map_rule_ordering}
+\end{figure}
+
+When ordering these configurations, we start counting as $0$ so that the all-dead configuration is the ``0th'' one (which is listed first), the configuration with only the bottom-right cell alive is the ``1st'' one (which is listed second), and so on. To create a rulestring for a non-isotropic CA, we now do two things:\smallskip
+
+\begin{itemize}
+	\item[1)] We create a 512-bit string of $0$s and $1$s that specifies which configurations (in the ordering specified by Figure~\ref{fig:map_rule_ordering}) lead to the central cell being dead or alive, respectively, in the next generation.
+	
+	For example, if cells are only born if they have no neighbors or a single neighbor to their southeast, and they only survive if they have neighbors everywhere \emph{except} for to their north and northwest,\footnote{This is the cellular automaton that was used by the knightship of Figure~\ref{fig:single_cell_knightship}.} then there are only three configurations of $3 \times 3$ grids of cells that lead to the central cell being alive in the next generation, and they correspond to indices $0$, $1$, and $64+32+16+8+4+2+1=127$. The $512$-bit string describing this rule thus has $1$s in its $0$th, $1$st, and $127$th locations, and $0$s elsewhere:
+	\begin{align*}
+		& \texttt{11000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000} \\
+		& \texttt{00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000001} \\
+		& \texttt{00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000} \\
+		& \texttt{00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000} \\
+		& \texttt{00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000} \\
+		& \texttt{00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000} \\
+		& \texttt{00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000} \\
+		& \texttt{00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000}.
+	\end{align*}
+	
+	\item[2)] In order to make the rule's description a bit shorter, we convert this 512-bit string from base~$2$ to base~$64$ according to Table~\ref{tab:base64}.\footnote{This is a fairly standard way of converting a bitstring to a mostly-alphanumeric string that shows up in lots of contexts outside of cellular automata as well.} Since each character in the base~$64$ string encodes $\log_2(64) = 6$ bits of the bitstring, this process gives a $\lceil 512/6 \rceil = 86$-character string that uniquely specifies the rule.\footnote{Since $512 \equiv 2 \ (\text{mod} \ 6)$, the final two bits of the bitstring correspond to the final character in the base-64 rulestring (and that character is determined by just the first two bits from Table~\ref{tab:base64}). This leads to some redundancy in the base-64 rulestrings: a final character of ``\texttt{A}'' indicates the same rule as a final character of ``\texttt{P}'', for example, and any of the final characters ``\texttt{g}'' through ``\texttt{v}'' are equivalent to each other.}
+	
+	For example, if we convert the bitstring that we saw in part~(1) to base~$64$, the first 6 bits (``\texttt{110000}'') become ``\texttt{w}'', several groups of 6 bits (``\texttt{000000}'') each become ``\texttt{A}'', and one of the central groups of 6 bits (``\texttt{010000}'') becomes ``\texttt{Q}''. Altogether, the rulestring that describes this rule is
+	\begin{align*}
+		& \texttt{wAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAA} \\
+		& \texttt{AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA}.
+	\end{align*}
+\end{itemize}
+
+\begin{table}[!htb]
+	\begin{center}		
+		\begin{tabular}{cc|cc|cc|cc}
+			\toprule
+			Base $2$ & Base $64$ & Base $2$ & Base $64$ & Base $2$ & Base $64$ & Base $2$ & Base $64$ \\ \midrule
+			\texttt{000000} & \texttt{A} & \texttt{010000} & \texttt{Q} & \texttt{100000} & \texttt{g} & \texttt{110000} & \texttt{w} \\
+			\texttt{000001} & \texttt{B} & \texttt{010001} & \texttt{R} & \texttt{100001} & \texttt{h} & \texttt{110001} & \texttt{x} \\
+			\texttt{000010} & \texttt{C} & \texttt{010010} & \texttt{S} & \texttt{100010} & \texttt{i} & \texttt{110010} & \texttt{y} \\
+			\texttt{000011} & \texttt{D} & \texttt{010011} & \texttt{T} & \texttt{100011} & \texttt{j} & \texttt{110011} & \texttt{z} \\
+			\texttt{000100} & \texttt{E} & \texttt{010100} & \texttt{U} & \texttt{100100} & \texttt{k} & \texttt{110100} & \texttt{0} \\
+			\texttt{000101} & \texttt{F} & \texttt{010101} & \texttt{V} & \texttt{100101} & \texttt{l} & \texttt{110101} & \texttt{1} \\
+			\texttt{000110} & \texttt{G} & \texttt{010110} & \texttt{W} & \texttt{100110} & \texttt{m} & \texttt{110110} & \texttt{2} \\
+			\texttt{000111} & \texttt{H} & \texttt{010111} & \texttt{X} & \texttt{100111} & \texttt{n} & \texttt{110111} & \texttt{3} \\
+			\texttt{001000} & \texttt{I} & \texttt{011000} & \texttt{Y} & \texttt{101000} & \texttt{o} & \texttt{111000} & \texttt{4} \\
+			\texttt{001001} & \texttt{J} & \texttt{011001} & \texttt{Z} & \texttt{101001} & \texttt{p} & \texttt{111001} & \texttt{5} \\
+			\texttt{001010} & \texttt{K} & \texttt{011010} & \texttt{a} & \texttt{101010} & \texttt{q} & \texttt{111010} & \texttt{6} \\
+			\texttt{001011} & \texttt{L} & \texttt{011011} & \texttt{b} & \texttt{101011} & \texttt{r} & \texttt{111011} & \texttt{7} \\
+			\texttt{001100} & \texttt{M} & \texttt{011100} & \texttt{c} & \texttt{101100} & \texttt{s} & \texttt{111100} & \texttt{8} \\
+			\texttt{001101} & \texttt{N} & \texttt{011101} & \texttt{d} & \texttt{101101} & \texttt{t} & \texttt{111101} & \texttt{9} \\
+			\texttt{001110} & \texttt{O} & \texttt{011110} & \texttt{e} & \texttt{101110} & \texttt{u} & \texttt{111110} & \texttt{+} \\
+			\texttt{001111} & \texttt{P} & \texttt{011111} & \texttt{f} & \texttt{101111} & \texttt{v} & \texttt{111111} & \texttt{/} \\\bottomrule
+		\end{tabular}
+		\caption{A way of converting a (base-2) bitstring into a base-64 string. Every substring consisting of six bits gets mapped to a single alphanumeric character, or ``\texttt{+}'' or ``\texttt{/}''.}\label{tab:base64}
+	\end{center}
+\end{table}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
