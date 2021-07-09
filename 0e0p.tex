@@ -164,9 +164,9 @@ Under this rule, a glider functions as a $c/4$ diagonal spaceship in the exact s
 \subsection{Non-Isotropic Cellular Automata}\label{sec:non_isotropic_rules}\index{non-isotropic}
 %%%%%%%%%%%%%%%%%%%%%%%%
 
-If we go one step further and consider non-isotropic cellular automata, we can make even just a single cell behave in an extraordinary variety of ways. For example, we can define a rule with the property that cells never survive, and they are only born if they have a single live cell directly to their left.\footnote{This cellular automaton is described by the rulestring\protect\\\texttt{AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA}.\protect\\ For an explanation of rulestrings of non-isotropic cellular automata, see Appendix~\ref{sec:non_isotropic_rulestrings}.} In this rule, a single cell is a spaceship that travels orthogonally at lightspeed (see Figure~\ref{fig:single_cell_orth}).
+If we go one step further and consider non-isotropic cellular automata, we can make even just a single cell behave in an extraordinary variety of ways. For example, we can define a rule with the property that cells never survive, and they are only born if they have a single live cell directly to their left.\footnote{This cellular automaton is described by the rulestring\protect\\\texttt{MAPAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA}.\protect\\ For an explanation of rulestrings of non-isotropic cellular automata, see Appendix~\ref{sec:non_isotropic_rulestrings}.} In this rule, a single cell is a spaceship that travels orthogonally at lightspeed (see Figure~\ref{fig:single_cell_orth}).
 
-We can also consider the slightly more exotic cellular automaton in which cells are only born if they have no neighbors or a single neighbor to their southeast, and they only survive if they have neighbors everywhere \emph{except} for to their north and northwest.\footnote{This cellular automaton is described by the rulestring\protect\\\texttt{wAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA}.} In this rule, a single cell acts as a $(1,2)c/2$ knightship,\index{knightship} as illustrated in Figure~\ref{fig:single_cell_knightship}. It is similarly possible to construct rules in which a single cell is a spaceship that travels at many other speeds and slopes---see Exercise~\ref{exer:0e0p_single_cell_spaceships}.
+We can also consider the slightly more exotic cellular automaton in which cells are only born if they have no neighbors or a single neighbor to their southeast, and they only survive if they have neighbors everywhere \emph{except} for to their north and northwest.\footnote{This cellular automaton is described by the rulestring\protect\\\texttt{MAPwAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA}.} In this rule, a single cell acts as a $(1,2)c/2$ knightship,\index{knightship} as illustrated in Figure~\ref{fig:single_cell_knightship}. It is similarly possible to construct rules in which a single cell is a spaceship that travels at many other speeds and slopes---see Exercise~\ref{exer:0e0p_single_cell_spaceships}.
 
 \begin{figure}[!htb]
 	\centering
@@ -188,8 +188,8 @@ We can also consider the slightly more exotic cellular automaton in which cells 
 	\caption{Non-isotropic rules are general enough that they can turn a single cell into a spaceship with a wide variety of speeds and slopes.}\label{fig:single_cell_spaceships}
 \end{figure}
 
-By changing the evolution rule even more, a single cell can also act in a variety of other exotic ways. For example, consider the cellular automaton that is defined by all cells surviving, and cells being born if and only if they have exactly one live cell directly to their northeast or northwest, as in Figure~\ref{fig:non_iso_rule_18}.\footnote{This cellular automaton is described by the rulestring\protect\\\texttt{AAD//wAA//+AAP//AAD//wAA//8AAP//AAD//wAA//+AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//w}.} In this rule, a single cell generates better and better approximations of the Sierpi\'{n}ski triangle, as illustrated in Figure~\ref{fig:single_cell_sierpinski}. 
- 
+By changing the evolution rule even more, a single cell can also act in a variety of other exotic ways. For example, consider the cellular automaton that is defined by all cells surviving, and cells being born if and only if they have exactly one live cell directly to their northeast or northwest, as in Figure~\ref{fig:non_iso_rule_18}.\footnote{This cellular automaton is described by the rulestring\protect\\\texttt{MAPAAD//wAA//+AAP//AAD//wAA//8AAP//AAD//wAA//+AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//w}.} In this rule, a single cell generates better and better approximations of the Sierpi\'{n}ski triangle, as illustrated in Figure~\ref{fig:single_cell_sierpinski}. 
+
 \begin{figure}[!htb]
 	\centering
 	\begin{subfigure}{.42\textwidth}
@@ -208,7 +208,7 @@ By changing the evolution rule even more, a single cell can also act in a variet
 
 Indeed, if we restrict non-isotropic cellular automata to a single dimension (e.g., by having every cell survive and having births only occur to the south of live cells, as we did in Figure~\ref{fig:single_cell_sierpinski}) then we get exactly what are called \textbf{elementary cellular automata} \cite{Wolfram2002}. There are $2^8 = 256$ automata of this type, and the Sierpi\'{n}ski-triangle-generating rule works by emulating the one called \textbf{Rule 18}\index{Rule 18} (see Exercise~\ref{exer:rule_18}).
 
-There are $2^{512}$ different 2D not-necessarily-isotropic cellular automata, and the 0E0P metacell can emulate the $2^{511}$ of them that send a dead cell with no live neighbors to a dead cell. It can thus be used to embed all of the patterns from this section into Life, though at a much larger and slower scale. Of particular note is the fact that this method gave the first (and to date, only) explicit construction of a spaceships made of spaceships\index{spaceship made of spaceships} in Life (and thus the first SMOSMOS in Life as well). This method also gave the first (and to date, only) reflectorless rotating oscillator\index{reflectorless rotating oscillator} in Life, but there are minor technicalities that must be overcome in this case (see Exercise~\ref{exer:0e0p_rro_technicalities}).
+There are $2^{512}$ different 2D not-necessarily-isotropic cellular automata, and the 0E0P metacell can emulate the $2^{511}$ of them that send a dead cell with no live neighbors to a dead cell. It can thus be used to embed all of the patterns from this section into Life, except for the knightship from Figure~\ref{fig:single_cell_knightship}, though at a much larger and slower scale. Of particular note is the fact that this method gave the first (and to date, only) explicit construction of a spaceships made of spaceships\index{spaceship made of spaceships} in Life (and thus the first SMOSMOS in Life as well). This method also gave the first (and to date, only) reflectorless rotating oscillator\index{reflectorless rotating oscillator} in Life, but there are minor technicalities that must be overcome in this case (see Exercise~\ref{exer:0e0p_rro_technicalities}).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -218,16 +218,18 @@ There are $2^{512}$ different 2D not-necessarily-isotropic cellular automata, an
 While the 0E0P metacell can emulate any $2$-state Moore-neighborhood cellular automaton in which a dead cell with all dead neighbors stays dead, it does not do so directly. Indeed, building a 0E0P metacell that directly emulates Life would be highly nontrivial for (at least) two reasons:\smallskip
 
 \begin{itemize}
-	\item \textbf{Quantity of neighbors}: each metacell would need to be able to construct a copy of itself in up to eight different locations. If both the north and east neighbours are present, for example, it may be difficult to maneuver a construction arm to build the north-east neighbour.\smallskip
+	\item \textbf{Quantity of neighbors}: each metacell would need to be able to construct a copy of itself in up to eight different locations. If both the north and east neighbours are present, for example, it may be difficult to maneuver a construction arm to build the northeast neighbour.\smallskip
 	
 	\item \textbf{Survival}: a cell can live for multiple generations, so its logic circuitry would need to be reusable. Reusable circuitry is considerably more expensive than single-use circuitry: compare, for instance, the size of a boat and a Snark---the smallest known one-time turner\footnote{We originally showed that a boat is a one-time turner in Exercise~\ref{exer:boat_one_time_turner}(a).} and reusable stable reflector, respectively.\smallskip
 \end{itemize}
 
-To get around these two problems, the 0E0P metacell instead emulates an $8$-state von-Neumann-neighborhood\index{von Neumann neighborhood} CA in which every cell dies in every generation (but new cells may be born, so the pattern as a whole need not die). In particular, the cell $(x, y)$ can only be alive in generation~$t$ if $x + y + t$ is even, so patterns evolve according to a checkerboard pattern---they live entirely on one color of the checkerboard in even generations, and entirely on its other color in odd generations (see the upcoming Figure~\ref{fig:0e0p_rule_em_glider}). This pattern will be important for the 0E0P metacell, as it will ensure that its four diagonal neighbors are dead (i.e., empty), giving it lots of empty room to replicate itself if necessary.
+To get around these two problems, the 0E0P metacell instead emulates an $8$-state von-Neumann-neighborhood\index{von Neumann neighborhood} CA in which every cell dies in every generation (but new cells may be born, so the pattern as a whole need not die).\footnote{In other words, every pattern is a phoenix in these cellular automata.}\index{phoenix} In a cellular automaton of this type, patterns evolve according to a checkerboard pattern---if they live entirely on one color of the checkerboard in one generation, then they will live entirely on its other color in the next (see Figure~\ref{fig:0e0p_checkerboard} and note that we rotate the square grid by 45~degrees so that its cells match the orientation of the diamond-shaped 0E0P metacell). This checkerboard pattern is important, as it ensures that the 0E0P metacell's four diagonal neighbors are dead (i.e., empty), giving it lots of space to copy itself if necessary.
 
-% Maybe different figure here first?
-% rotated coordinate system?
-% a live cell at position $(x, y)$ in generation $t$ of the $2$-state emulated rule is encoded by a state-$7$ cell at position $(x + y, y - x)$ in generation $2t$ of the emulating rule.
+\begin{figure}[!htb]
+	\centering
+	\vcenteredhbox{\patternimg{0.345}{0e0p_checkerboard_0}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.345}{0e0p_checkerboard_1}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.345}{0e0p_checkerboard_2}}
+	\caption{An $8$-state cellular automaton using the von Neumann neighborhood that is of the type that the 0E0P metacell can emulate. The ``dead'' state is displayed in in a white and light grey checkerboard pattern. The other $7$ states are displayed in black and various other colors, which alternate being on the white and light grey portions of the checkerboard pattern from one generation to the next.}\label{fig:0e0p_checkerboard}
+\end{figure}
 
 Despite the seemingly limited nature of these cellular automata, the fact that they have $8$ states makes them general enough to emulate arbitrary $2$-state Moore-neighborhood cellular automata at half speed. To see how this works, suppose we are given a particular $2$-state CA that we want to emulate. If we represent the ``dead'' and ``alive'' cells of that CA by the numbers $0$ and $7$, respectively,\footnote{Yes, $7$ seems like a weird choice. It will make more sense shortly.} then we can encode the CA by a function
 \[
@@ -235,10 +237,10 @@ Despite the seemingly limited nature of these cellular automata, the fact that t
 \]
 that describes how a cell changes from alive to dead, or vice-versa, depending on the state of itself and its $8$ neighbors.
 
-Our goal now is to construct an $8$-state von-Neumann-neighborhood CA that emulates $M$ at half speed. If we label the states of this cellular automaton by $\{ 0, 1, 2, 3, 4, 5, 6, 7 \}$ (where $0$ is the background ``dead'' state, as usual), then we want to find a function
+Our goal is to construct an $8$-state von-Neumann-neighborhood CA, in which the central cell always dies, that emulates $M$ at half speed. If we label the states of this cellular automaton by $\{ 0, 1, 2, 3, 4, 5, 6, 7 \}$ (where $0$ is the background ``dead'' state, as usual), then this is equivalent to finding a function
 \[
 	N : \{ 0, 1, 2, 3, 4, 5, 6, 7 \}^4 \rightarrow
-	\{0, 1, 2, 3, 4, 5, 6, 7 \},
+	\{0, 1, 2, 3, 4, 5, 6, 7 \}
 \]
 with the property that
 \begin{align}\label{eq:0e0p_N_from_M}
@@ -263,18 +265,25 @@ with the property that
 		\end{pmatrix}
 	\end{pmatrix}
 \end{align}
-whenever $a_{1,1}$, $a_{1,2}$, $\ldots$, $a_{3,3} \in \{0,7\}$. That is, we want this $8$-state CA to have the property that, if we apply it to $2 \times 2$ groups of cells independently, then after $2$ iterations we get exactly the same result as if we were to apply the original $2$-state CA rule to $3 \times 3$ groups, as in Figure~\ref{fig:0e0p_double_transition}.
-% TODO: Work on the above sentence. Maybe move ABOVE N's equation?
-% Talk about shape of matrices not actually mattering -- we just organize like this to mimic orientation of cells (draw picture)
+whenever $a_{1,1}$, $a_{1,2}$, $\ldots$, $a_{3,3} \in \{0,7\}$. That is, we want this $8$-state CA to have the property that, if we apply it to $2 \times 2$ grids of cells (i.e., rotated von Neumann neighborhoods) independently, then after $2$ iterations we get exactly the same result as if we were to apply the original $2$-state CA rule to $3 \times 3$ grids of cells (i.e., Moore neighborhoods), as in Figure~\ref{fig:0e0p_double_transition}.
 
 \begin{figure}[!htb]
 	\centering
-	\vcenteredhbox{\patternimg{0.35}{0e0p_double_transition_0}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_double_transition_1.pdf}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.35}{0e0p_double_transition_2}}
-	\caption{The $8$-state CA that we construct will work by acting on $2 \times 2$ groups of cells in such a way that applying it twice results in the same evolution (at half speed) as applying the original $2$-state CA to $3 \times 3$ groups of cells.}\label{fig:0e0p_double_transition}
+	\begin{subfigure}{.37\textwidth}
+		\centering
+		\vcenteredhbox{\patternimg{0.35}{0e0p_single_transition_0}} \vcenteredhbox{\color{black}{$\xrightarrow[M]{\text{\clock{0}{1} 1}}$}} \vcenteredhbox{\patternimg{0.35}{0e0p_single_transition_1}}
+		\caption{A $3 \times 3$ configuration that leads to the central cell surviving in Life.}
+		\label{fig:0e0p_single_transition}
+	\end{subfigure} \hfill \begin{subfigure}{.6\textwidth}
+		\centering
+		\vcenteredhbox{\patternimg{0.35}{0e0p_double_transition_0}} \vcenteredhbox{\color{black}{$\xrightarrow[N]{\text{\clock{0}{1} 1}}$}} \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_double_transition_1.pdf}} \vcenteredhbox{\color{black}{$\xrightarrow[N]{\text{\clock{0}{1} 1}}$}} \vcenteredhbox{\patternimg{0.35}{0e0p_double_transition_2}}
+		\caption{In the emulating CA, each $3 \times 3$ grid evolves in the same way over the course of $2$ generations, by evolving $2 \times 2$ grids individually.}
+		\label{fig:0e0p_double_transition_em}
+	\end{subfigure}
+	\caption{The $8$-state CA that we construct will work by acting on $2 \times 2$ grids of cells in such a way that applying it twice results in the same evolution (at half speed) as applying the original $2$-state CA to $3 \times 3$ grids of cells.}\label{fig:0e0p_double_transition}
 \end{figure}
-% TODO: Add M and N arrows in this figure?
 
-While there are many ways that we could construct $N$, one reasonably simply approach is to ensure that if all four of its inputs comes from $\{0,7\}$ then its output is in $\{0,1,2,3,4,5,6\}$, and vice-versa. That is, we design the $8$-state CA so that patterns in even generations consist entirely of cells in the states $0$ and $7$, thus emulating the ``dead'' and ``live'' cells in a $2$-state CA, whereas in odd generations they consist entirely of cells in the state $0$ through $6$.
+While there are many ways that we could construct $N$, one reasonably simply approach is to ensure that if all four of its inputs comes from $\{0,7\}$ then its output is in $\{0,1,2,3,4,5,6\}$, and vice-versa. That is, we design the $8$-state CA so that patterns in even generations consist entirely of cells in the states $0$ and $7$, thus emulating the ``dead'' and ``live'' cells in a $2$-state CA, whereas in odd generations they consist entirely of cells in the states $0$ through $6$, which are just used as helper states for reconstructing the proper configuration in even generations.
 
 We first specify how $N$ should act when all of the inputs that it receives are either $0$ or $7$. Since there are only $2^4 = 16$ possible combinations of inputs in this case, we can list how $N$ acts on them explicitly:
 \begin{align}\label{eq:0e0p_N_from_even}
@@ -289,21 +298,17 @@ We first specify how $N$ should act when all of the inputs that it receives are 
 	\end{aligned}
 \end{align}
 These $16$ evolution rules are displayed in Figure~\ref{fig:0e0p_rule_em}, and they do not depend at all on the rule that we are trying to emulate (i.e., these input-output combinations of $N$ are the same no matter what $M$ is).
-% Emphasize that this is non-isotropic?
-% TODO add an exercise to find another suitable 16 transitions. Up to permuting
-% the different cell states, there are 200 different such functions sending 0 to 0.
-% With 8 states we have 7 colors. Doing this with 6 or fewer colours is absolutely impossible, and with 7 colours is difficult (there are only 200 distinct solutions, or 13 up to rotation/reflection).
 
 \begin{figure}[!htb]
 	\centering
-	\vcenteredhbox{\patternimg{0.25}{rule_em_0000_0}}\vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{0}{1}}}$}} \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_rule_em_7077.pdf}} \hfill \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_rule_em_0007_0.pdf}}\vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{0}{1}}}$}} \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_rule_em_0007.pdf}} \hfill \vcenteredhbox{\patternimg{0.25}{rule_em_0070_0}}\vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{0}{1}}}$}} \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_rule_em_0070.pdf}} \hfill \vcenteredhbox{\patternimg{0.25}{rule_em_0077_0}}\vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{0}{1}}}$}} \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_rule_em_0077.pdf}} \\[1em]
-	\vcenteredhbox{\patternimg{0.25}{rule_em_0700_0}}\vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{0}{1}}}$}} \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_rule_em_0700.pdf}} \hfill \vcenteredhbox{\patternimg{0.25}{rule_em_0707_0}}\vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{0}{1}}}$}} \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_rule_em_0707.pdf}} \hfill \vcenteredhbox{\patternimg{0.25}{rule_em_0770_0}}\vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{0}{1}}}$}} \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_rule_em_0770.pdf}} \hfill \vcenteredhbox{\patternimg{0.25}{rule_em_0777_0}}\vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{0}{1}}}$}} \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_rule_em_0700.pdf}} \\[1em]
-	\vcenteredhbox{\patternimg{0.25}{rule_em_7000_0}}\vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{0}{1}}}$}} \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_rule_em_0770.pdf}} \hfill \vcenteredhbox{\patternimg{0.25}{rule_em_7007_0}}\vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{0}{1}}}$}} \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_rule_em_0700.pdf}} \hfill \vcenteredhbox{\patternimg{0.25}{rule_em_7070_0}}\vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{0}{1}}}$}} \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_rule_em_0077.pdf}} \hfill \vcenteredhbox{\patternimg{0.25}{rule_em_7077_0}}\vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{0}{1}}}$}} \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_rule_em_7077.pdf}} \\[1em]
-	\vcenteredhbox{\patternimg{0.25}{rule_em_7700_0}}\vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{0}{1}}}$}} \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_rule_em_0007.pdf}} \hfill \vcenteredhbox{\patternimg{0.25}{rule_em_7707_0}}\vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{0}{1}}}$}} \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_rule_em_0770.pdf}} \hfill \vcenteredhbox{\patternimg{0.25}{rule_em_7770_0}}\vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{0}{1}}}$}} \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_rule_em_0707.pdf}} \hfill \vcenteredhbox{\patternimg{0.25}{rule_em_7777_0}}\vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{0}{1}}}$}} \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_rule_em_0070.pdf}}
-	\caption{The rule for transitioning from even to odd generations in the $8$-state von-Neumann-neighborhood CA (rotated by 45 degrees) from Equation~\eqref{eq:0e0p_N_from_even}. The states $0$ and $7$ correspond to ``dead'' and ``alive'' in Life and are thus displayed in white and black, respectively. The states $1$, $2$, $3$, $4$, $5$, and $6$ are displayed in \bgbox{yellowback2}{yellow}, \bgbox{orangeback2}{orange}, \bgbox{redback}{red}, \bgbox{magentaback}{magenta}, \bgbox{greenpastel}{green}, and \bgbox{aquaback}{aqua}, respectively.}\label{fig:0e0p_rule_em}
+	\vcenteredhbox{\patternimg{0.35}{rule_em_0000_0}}\vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{0}{1}}}$}} \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_rule_em_7077.pdf}} \hfill \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_rule_em_0007_0.pdf}}\vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{0}{1}}}$}} \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_rule_em_0007.pdf}} \hfill \vcenteredhbox{\patternimg{0.35}{rule_em_0070_0}}\vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{0}{1}}}$}} \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_rule_em_0070.pdf}} \hfill \vcenteredhbox{\patternimg{0.35}{rule_em_0077_0}}\vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{0}{1}}}$}} \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_rule_em_0077.pdf}} \\[1em]
+	\vcenteredhbox{\patternimg{0.35}{rule_em_0700_0}}\vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{0}{1}}}$}} \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_rule_em_0700.pdf}} \hfill \vcenteredhbox{\patternimg{0.35}{rule_em_0707_0}}\vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{0}{1}}}$}} \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_rule_em_0707.pdf}} \hfill \vcenteredhbox{\patternimg{0.35}{rule_em_0770_0}}\vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{0}{1}}}$}} \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_rule_em_0770.pdf}} \hfill \vcenteredhbox{\patternimg{0.35}{rule_em_0777_0}}\vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{0}{1}}}$}} \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_rule_em_0700.pdf}} \\[1em]
+	\vcenteredhbox{\patternimg{0.35}{rule_em_7000_0}}\vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{0}{1}}}$}} \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_rule_em_0770.pdf}} \hfill \vcenteredhbox{\patternimg{0.35}{rule_em_7007_0}}\vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{0}{1}}}$}} \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_rule_em_0700.pdf}} \hfill \vcenteredhbox{\patternimg{0.35}{rule_em_7070_0}}\vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{0}{1}}}$}} \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_rule_em_0077.pdf}} \hfill \vcenteredhbox{\patternimg{0.35}{rule_em_7077_0}}\vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{0}{1}}}$}} \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_rule_em_7077.pdf}} \\[1em]
+	\vcenteredhbox{\patternimg{0.35}{rule_em_7700_0}}\vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{0}{1}}}$}} \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_rule_em_0007.pdf}} \hfill \vcenteredhbox{\patternimg{0.35}{rule_em_7707_0}}\vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{0}{1}}}$}} \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_rule_em_0770.pdf}} \hfill \vcenteredhbox{\patternimg{0.35}{rule_em_7770_0}}\vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{0}{1}}}$}} \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_rule_em_0707.pdf}} \hfill \vcenteredhbox{\patternimg{0.35}{rule_em_7777_0}}\vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{0}{1}}}$}} \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_rule_em_0070.pdf}}
+	\caption{The rule for transitioning from even to odd generations in the $8$-state von-Neumann-neighborhood CA from Equation~\eqref{eq:0e0p_N_from_even}. The states $0$ and $7$ correspond to ``dead'' and ``alive'' in Life and are thus displayed in white and black, respectively. The states $1$, $2$, $3$, $4$, $5$, and $6$ are displayed in \bgbox{yellowback2}{yellow}, \bgbox{orangeback2}{orange}, \bgbox{redback}{red}, \bgbox{magentaback}{magenta}, \bgbox{greenpastel}{green}, and \bgbox{aquaback}{aqua}, respectively.}\label{fig:0e0p_rule_em}
 \end{figure}
 
-The reason for these seemingly-random transition rules is that they lead to the function
+The reason for choosing these seemingly-random transition rules is that they lead to the function
 \[
 	\begin{pmatrix}
 		a_{1,1} & a_{1,2} & a_{1,3} \\
@@ -326,20 +331,18 @@ The reason for these seemingly-random transition rules is that they lead to the 
 		\end{pmatrix}
 	\end{pmatrix}
 \]
-from $\{0,7\}^9$ to $\{0,1,2,3,4,5,6\}^4$ being injective (i.e., each output of the function corresponds to a \emph{unique} input). That is, given any $2 \times 2$ arrangement of states $0$, $1$, $\ldots$, $6$, we can figure out which $3 \times 3$ arrangement of $0$ and $7$ states (if any) gave rise to it. We can thus define $N$ on inputs from $\{0,1,2,3,4,5,6\}^4$ so that Equation~\eqref{eq:0e0p_N_from_M} holds.
-% Mention there are other possible choices for these 16 transitions, and are found by a computer, and injectivity checked by computer
+from $\{0,7\}^9$ to $\{0,1,2,3,4,5,6\}^4$ being injective (i.e., each output of the function corresponds to a \emph{unique} input).\footnote{However, the choices we made in Equation~\eqref{eq:0e0p_N_from_even} (or equivalently, Figure~\ref{fig:0e0p_rule_em}) are not the only ones that lead to this function being injective. This collection of outputs, and many others, can be found by computer search---see Exercise~??.} That is, given any $2 \times 2$ arrangement of states $0$, $1$, $\ldots$, $6$, we can figure out which $3 \times 3$ arrangement of $0$ and $7$ states (if any) gave rise to it. We can thus define $N$ on inputs from $\{0,1,2,3,4,5,6\}^4$ so that Equation~\eqref{eq:0e0p_N_from_M} holds (i.e., the cellular automaton defined by $N$ emulates the cellular automaton defined by $M$ at half speed).
 
-For example, [talk about emulating Life, give an example with an image, and note too many rules to list them all.]
-% Mention script for computing this emulating rule: https://conwaylife.com/forums/viewtopic.php?p=38032
+The resulting function $N$ is typically quite messy to write out in full detail (as it would just be an explicit list of how the $2^9 = 512$ possible arrangements of $2 \times 2$ grids of states $0$, $1$, $\ldots$, $6$ should evolve), even if the rule $M$ describes a relatively simple cellular automaton like Life. However, it can be constructed straightforwardly by a computer script,\footnote{One such script is available at \httpsurl{conwaylife.com/forums/viewtopic.php?p=38032}.} and the emulation of a glider in this way is illustrated in Figure~\ref{fig:0e0p_rule_em_glider}.
 
 \begin{figure}[!htb]
 	\centering
 	\embedlink{0e0p_rule_em_glider}{\vcenteredhbox{\hphantom{${}\, \cdots$ \genarrow{1}}}\vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_glider_states0.pdf}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\includegraphics[scale=1]{0e0p/0e0p_glider_states.pdf}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.3}{0e0p_rule_em_glider_2}} \\[0.7em]
 	\vcenteredhbox{$\cdots$ \genarrow{1}} \vcenteredhbox{\patternimg{0.3}{0e0p_rule_em_glider_3}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.3}{0e0p_rule_em_glider_4}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.3}{0e0p_rule_em_glider_5}} \\[0.7em] \vcenteredhbox{$\cdots$ \genarrow{1}} \vcenteredhbox{\patternimg{0.3}{0e0p_rule_em_glider_6}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.3}{0e0p_rule_em_glider_7}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.3}{0e0p_rule_em_glider_8}}}
-	\caption{A glider from Life being emulated at half speed via an $8$-state cellular automaton using the von Neumann neighborhood (rotated by 45 degrees). Uses the same state coloring as in Figure~\ref{fig:0e0p_rule_em}.}\label{fig:0e0p_rule_em_glider}
+	\caption{A glider from Life being emulated at half speed via an $8$-state cellular automaton using the von Neumann neighborhood (rotated by 45 degrees). Uses the same state coloring as in Figure~\ref{fig:0e0p_rule_em}, which describes the transitions from even to odd generations. The transitions from odd to even generations are encoded as an explicit list of which $2 \times 2$ arrangements of states $0$, $1$, $\ldots$, $6$ should lead to their central cell being born.}\label{fig:0e0p_rule_em_glider}
 \end{figure}
 
-The 0E0P metacell can be programmed to emulate any of the $8^{8^4-1}$ possible zero-preserving 8-state von-Neumann-neighborhood CAs in which every cell dies every generation (not just the ones that emulate one of the $2^{2^9-1}$ zero-preserving 2-state Moore-neighborhood CAs that we are actually interested in). It takes $2^{35}$ generations for the 0E0P metacell to run one generation of the 8-state rule (emulated at a 45-degree angle), and therefore $2^{36}$ generations to emulate one generation of the corresponding 2-state Moore-neighbourhood rule (in the usual orientation).
+The 0E0P metacell can be programmed to emulate any of the $8^{8^4-1}$ possible zero-preserving 8-state von-Neumann-neighborhood cellular automata in which every cell dies every generation (not just the ones that emulate one of the $2^{2^9-1}$ zero-preserving 2-state Moore-neighborhood CAs that we are actually interested in). It takes $2^{35}$ generations for the 0E0P metacell to run one generation of the 8-state rule (emulated at a 45-degree angle, as in the figures of this section), and therefore $2^{36}$ generations to emulate one generation of the corresponding 2-state Moore-neighborhood rule (in the usual orientation).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -460,6 +463,10 @@ Finally, Adam P.~Goucher spent 2014--2018 constructing the 0E0P metapixel, which
 % EXERCISE: Create a non-iso rule in which a single cell acts as... (diagonal spaceship, what else?)
 % Exercise about emulating an elementary cellular automaton
 
+% EXERCISE(S) about transition rules for rule emulation: find another one. Also:
+% the different cell states, there are 200 different such functions sending 0 to 0.
+% With 8 states we have 7 colors. Doing this with 6 or fewer colours is absolutely impossible, and with 7 colours is difficult (there are only 200 distinct solutions, or 13 up to rotation/reflection).
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Exercises \hfill \normalfont\textsf{\small solutions to starred exercises on \hyperlink{solutions_0e0p}{page \pageref{solutions_0e0p}}}}
 \label{sec:solutions_0e0p}
@@ -535,7 +542,7 @@ Finally, Adam P.~Goucher spent 2014--2018 constructing the 0E0P metapixel, which
 	\begin{problem}\label{exer:non_isotropic_rulestring_life} \probdiff{3}
 		What is the non-isotropic rulestring (in the sense of Appendix~\ref{sec:non_isotropic_rulestrings}) for Conway's Game of Life?
 	\end{problem}
-	% SOLUTION: ARYXfhZofugWaH7oaIDogBZofuhogOiAaIDogIAAgAAWaH7oaIDogGiA6ICAAIAAaIDogIAAgACAAIAAAAAAAA
+	% SOLUTION: MAPARYXfhZofugWaH7oaIDogBZofuhogOiAaIDogIAAgAAWaH7oaIDogGiA6ICAAIAAaIDogIAAgACAAIAAAAAAAA
 	
 	
 	%% EXERCISE END COMMANDS
