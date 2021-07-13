@@ -346,38 +346,69 @@ The 0E0P metacell can be programmed to emulate any of the $8^{8^4-1}$ possible z
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Structure of the Metacell}
+\section{Structure of the Metacell}\label{sec:0e0p_structure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{figure}[htb]
+% EVERYTHING AFTER THIS POINT IS PLACEHOLDER and/or copied from forums and/or gibberish that will be changed
+
+% TODO: Lead in with high-level idea of using single-channel construction (backref to Ch11) to reach out to cosntruct neighboring metacells as necessary.
+
+The 0E0P metacell works via...
+
+The large-scale structure of the metacell is tripartite, and each of the three parts is constructed separately. The outermost part is the \textbf{shell},\index{shell} which has exact order-4 rotational symmetry, consisting of four spiral arms which propagate gliders inwards. Only one of these arms is actually used; the other four exist only to enforce the rotational symmetry.
+
+Inside the shell is the \textbf{kernel},\index{kernel} which does not have any symmetry constraints. The south corner of the kernel contains logic circuitry for regulating the metacell's lifecycle and computing the state of the metacell based on the inputs from its four neighbouring cells. The kernel also contains an output path, shown in crimson in Figure~\ref{fig:0e0p_schematic}, which can connect to one of the four construction arms (dashed) or to the input spiral arm of one of the four neighbours. During the operation of the metacell, the glider stream is redirected between the different possible outputs by deleting Snarks.
+
+The largest region of the metacell is the \textbf{nucleus},\index{nucleus} a huge boustrophedonic glider loop with a period of exactly $2^{29}$. The nucleus is populated by over three million gliders, which together encode all of the construction recipes along with the lookup table for the metacell's rule.
+
+\begin{figure}[!htb]
 	\centering
 	\includegraphics[width=\textwidth]{0e0p/0e0p_schematic.pdf}
-	\caption{A schematic for the 0E0P metacell. The symmetrical outer
-		\textbf{shell} is highlighted in pastel green, and the \textbf{nucleus}
-		is highlighted in yellow. The unhighlighted region between them is the
-		\textbf{kernel}.}\label{fig:0e0p_schematic}
+	\caption{A schematic for the 0E0P metacell. The symmetrical outer \textbf{shell} is highlighted in \bgbox{greenpastel}{green}, while the \textbf{nucleus} is highlighted in \bgbox{yellowback2}{yellow}. The unhighlighted region between them is the \textbf{kernel}.}\label{fig:0e0p_schematic}% TODO: Expand this caption a bit.
 \end{figure}
 
-The large-scale structure of the metacell is tripartite, and each of the
-three parts is constructed separately. The outer \textbf{shell} has exact
-order-4 rotational symmetry, consisting of four spiral arms which propagate
-gliders inwards. Only one of these arms is actually used; the other four
-exist only to enforce the strict symmetry.
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=\textwidth]{0e0p/0e0p.png}
+	\caption{The 0E0P metacell itself. The symmetrical outer \textbf{shell} is highlighted in \bgbox{greenpastel}{green}, while the \textbf{nucleus} is highlighted in \bgbox{yellowback2}{yellow}. The unhighlighted region between them is the \textbf{kernel}.}\label{fig:0e0p_itself}
+\end{figure}
 
-Inside the shell is the \textbf{kernel}, which does not have any symmetry
-constraints. The south corner of the kernel contains logic circuitry for
-regulating the metacell's lifecycle and computing the state of the metacell
-based on the inputs from the four neighbouring cells. The kernel also contains
-an output path, shown in crimson in Figure~\ref{fig:0e0p_schematic}, which
-can connect to one of the four construction arms (violet, dashed) or to the
-input spiral arm of one of the four neighbours. During the operation of the
-metacell, the glider stream is redirected between the different possible
-outputs by deleting Snarks.
+% maybe next: sub-sections for each of those 3 pieces? Describing the shell in more detail, then the kernel in more detail, then a nucleus?
 
-The largest region of the metacell is the \textbf{nucleus}, a huge
-boustrophedonic glider loop with a period of exactly $2^{29}$. The nucleus
-is populated by over three million gliders, which together encode all of
-the construction recipes along with the lookup table for the metacell's rule.
+% Another figure of the metacell itself (not a schematic)
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The Shell}\label{sec:0e0p_structure_shell}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Each of the four edges of the metacell has 8 pins (4 input pins and 4 output pins) which connect to the 8 pins of the neighbouring metacell, but only one input pin and one output pin on each side is 'live'. (The remaining pins are unused, but exist to enforce the fourfold rotational symmetry of the outer shell.)
+
+The rotationally symmetric outer 'shell' is actually quite simple to explain: it's a quadruple-armed spiral (each arm pointing clockwise and inwards), rather resembling a spiral galaxy. Each side of the shell connects the 4 input pins to the 4 different arms. Only one of these four spiral arms is ever 'live' (the other three arms are useless and not connected to anything) and is the single 'standard input stream' of the metacell.
+
+The output pins bypass the shell entirely; the 4 live output pins (one on each side) are fed directly from the asymmetric 'kernel' inside the metacell. Gliders spiral clockwise-and-outwards through the spiral in the kernel of one metacell, pass through the output pin into the live arm of the neighbouring metacell, and spiral clockwise-and-inwards through the spiral in the shell of this neighbouring metacell. The important thing to note [which is how everything ends up in the correct phase and orientation] is that, irrespective of whichever of the four neighbours with which we're communicating, the glider stream performs exactly 6 spiral quarter-turns in total to get from the south corner of the parent metacell to the south corner of the child metacell.
+
+There are some trombone slides of different lengths on different edges of the kernel, designed to compensate for the 'Olympic running track' effect where outer lanes of the spiral are disadvantaged vis-a-vis inner lanes. This ensures that the communication time from the parent to each of the four children is exactly the same.
+
+Incoming gliders entering the child metacell get a 'head start', being injected several rows beyond the start of the tape. This 'head start' exactly compensates for the delay incurred by the gliders spiralling through the circuitry to pass from the parent metacell to the child, so the tapes of the parent and child metacell end up in exactly the same phase. This injection point is what you called 'Area 51' on Ch91's thread:
+
+This addresses the timing issue. Ensuring all four metacells are built in the same orientation is by building the outer shell first (which is impossible to get wrong, because it's rotationally symmetric!) and then sending the remainder of the recipe through the correct pin to build the kernel in the correct orientation. If we'd counterfactually sent gliders down one of the other three pins, they'd end up in a different one of the four spiral arms and the resulting metacell would be in the wrong orientation.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The Nucleus}\label{sec:0e0p_structure_nucleus}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+This is one of the few optimisations I deemed necessary. (Without this idea of subroutines and parallel construction, the metacell's side-length would need to be increased by a factor of 8.)
+
+The 0E0P memory unit is a Boustrophedonic tape loop composed of 180-degree reflectors (each of which is a pair of Snarks together with some nearby seeds of destruction). Each of those 180-degree reflectors is quite expensive; the single-channel recipe is somewhere between 1 and 2 million ticks. If the recipes for these reflectors were all individually stored in the memory unit, there would be a significant problem: adding more rows to the memory unit would linearly increase the total length of the recipe that needs to be stored in the memory unit. To break even, it would be necessary to increase the width of each row of the memory unit so that it takes 2 million ticks for gliders to travel from one 180-degree reflector to the next, making the memory unit 524288fd wide!
+
+A solution is to only store the recipe for a single 180-degree reflector in the tape, and to repeatedly invoke this 'subroutine' in a loop. Due to parity constraints, the north-west and south-east 180-degree reflectors have a different shape, so it is necessary to have two 2-million-tick subroutines: one for the north-west reflectors, and one for the south-east reflectors. In the last phase of constructing the daughter metacell, these subroutines are injected into two small temporary memory loops. The two subroutines run in parallel (giving a 2x speedup compared with constructing the reflectors sequentially), and each loop has a fourfold fanout to construct four copies of the same reflector simultaneously. The effect is that the memory loop is constructed in one-eighth of the time necessary for sequential synthesis, so the memory unit can be a mere 65536fd wide.
+
+This reduces the problem of constructing an immense ($2^{29}$-tick) memory loop to the problem of constructing two smaller memory loops ($2^{21}$ ticks each) to handle the subroutines. These smaller memory loops are small enough that they can be built in a naive sequential manner along with the remainder of the kernel of the 0E0P metacell. The small memory loops are each equipped with a binary counter which halts the subroutine after it has run for exactly 256 iterations and built 1024 reflectors (i.e. 2048 Snarks).
+
+These subroutine storage units are among the most complicated mechanisms in the 0E0P metacell. A lot of the rest of the 0E0P recipe is just simple single-channel recipes, building one thing after another after another. But for these two storage units it's necessary to extract two small pieces of the full recipe, and execute each one 512 times to build the Snark chains that make up the "nucleus". Adam mentioned that the 0E0P would have had to be a lot bigger if the recipes for all of those Snarks were included inline with no subroutines
+
 
 %%%%%%%%%%%%%%%%%%%%%
 \section{Memory Tape}
@@ -453,6 +484,7 @@ Finally, Adam P.~Goucher spent 2014--2018 constructing the 0E0P metapixel, which
 %https://cp4space.hatsya.com/2018/11/12/fully-self-directed-replication/
 %https://www.conwaylife.com/forums/viewtopic.php?f=2&t=3835
 %https://www.conwaylife.com/forums/viewtopic.php?t=3968
+%https://www.conwaylife.com/forums/viewtopic.php?p=72241
 
 % EXERCISE: Give reactions in HighLife-replicator-ship.rle from Golly and ask reader to make ship out of it
 % EXERCISE: Logarithmic replicator from B36/S245, found by Mark Niemiec in July 1994. Do... something with it. Pop in generation 300*4^n - 127 is 64 for all n >= 0.
@@ -466,6 +498,9 @@ Finally, Adam P.~Goucher spent 2014--2018 constructing the 0E0P metapixel, which
 % EXERCISE(S) about transition rules for rule emulation: find another one. Also:
 % the different cell states, there are 200 different such functions sending 0 to 0.
 % With 8 states we have 7 colors. Doing this with 6 or fewer colours is absolutely impossible, and with 7 colours is difficult (there are only 200 distinct solutions, or 13 up to rotation/reflection).
+% EXERCISE: Describe positions of replicators in HashLife replicator? Connect to Sierpinski triangle maybe (same pattern as n-th row of it)
+% Maybe exercise about 89-rotational RRO (https://www.conwaylife.com/forums/viewtopic.php?f=15&t=4116&p=131063#p131063). Or a part (b) of the already-planned RRO exercise?
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Exercises \hfill \normalfont\textsf{\small solutions to starred exercises on \hyperlink{solutions_0e0p}{page \pageref{solutions_0e0p}}}}
@@ -526,6 +561,17 @@ Finally, Adam P.~Goucher spent 2014--2018 constructing the 0E0P metapixel, which
 			% Use four copies, rotated
 		\end{enumerate}
 	\end{problem}
+
+
+	\mfilbreak
+
+
+	\begin{problem}\label{exer:0e0p_one_cell_smos}\index{spaceship made of spaceships} \probdiff{3}
+		Create a von-Neumann-neighbourhood cellular automaton on a 2D square grid with at most $8$ states, where every cell dies in every generation (so it is of the type described in Section~\ref{sec:0e0p_rule_emulation} that can be emulated by the 0E0P metacell), in which two single-cell spaceships can collide so as to create a $2$-cell SMOS.
+		
+		\noindent [Hint: Make a cell in one state move south, a cell in another state move east, and something else happen when they collide.]
+	\end{problem}
+	% SOLUTION: https://www.conwaylife.com/forums/viewtopic.php?p=72241#p72170
 
 
 	\mfilbreak

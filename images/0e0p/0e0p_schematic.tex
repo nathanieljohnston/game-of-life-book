@@ -45,7 +45,7 @@
                 % shell, kernel, and nucleus
                 \fill[greenpastel] ( 0.5,  0.5) rectangle (63.5, 63.5);
                 \fill[white]       ( 7.5,  7.5) rectangle (56.5, 56.5);
-                \fill[yellowback]  (14.5, 14.5) rectangle (49.5, 49.5);
+                \fill[yellowback]  (18.5, 14.5) rectangle (45.5, 37.5);
 
 
 		% Grey (unused) wires
@@ -76,14 +76,14 @@
 		\fill[fill=unusedgray] (2,35) circle (0.3);
 		
 		% Red wires
-		\draw[redback2,thick] (50,12) -- (52,12) -- (52,15) -- (16,15) -- (16,16) -- (48,16) -- (48,17) -- (16,17) -- (16,18) -- (48,18) -- (48,19) -- (16,19) -- (16,20) -- (48,20) -- (48,21) -- (16,21) -- (16,22) -- (48,22) -- (48,23) -- (16,23) -- (16,24) -- (48,24) -- (48,25) -- (16,25) -- (16,26) -- (48,26) -- (48,27) -- (16,27) -- (16,28) -- (48,28) -- (48,29) -- (16,29) -- (16,30) -- (48,30) -- (48,31) -- (16,31) -- (16,32) -- (48,32) -- (48,33) -- (16,33) -- (16,34) -- (48,34) -- (48,35) -- (16,35) -- (16,36) -- (48,36) -- (48,37) -- (16,37) -- (16,38) -- (48,38) -- (48,39) -- (16,39) -- (16,40) -- (48,40) -- (48,41) -- (16,41) -- (16,42) -- (48,42) -- (48,43) -- (16,43) -- (16,44) -- (48,44) -- (48,45) -- (16,45) -- (16,46) -- (48,46) -- (48,47) -- (16,47) -- (16,48) -- (52,48) -- (52,15);
+		\draw[redback2,thick] (50,12) -- (52,12) -- (52,15) -- (20,15) -- (20,16) -- (44,16) -- (44,17) -- (20,17) -- (20,18) -- (44,18) -- (44,19) -- (20,19) -- (20,20) -- (44,20) -- (44,21) -- (20,21) -- (20,22) -- (44,22) -- (44,23) -- (20,23) -- (20,24) -- (44,24) -- (44,25) -- (20,25) -- (20,26) -- (44,26) -- (44,27) -- (20,27) -- (20,28) -- (44,28) -- (44,29) -- (20,29) -- (20,30) -- (44,30) -- (44,31) -- (20,31) -- (20,32) -- (44,32) -- (44,33) -- (20,33) -- (20,34) -- (44,34) -- (44,35) -- (20,35) -- (20,36) -- (52,36) -- (52,15);
 		\draw[redback2,thick,-{Latex[length=2mm,width=1.5mm]}] (52,12) -- (52,9) -- (36,9) -- (36,-0.5);
 		\draw[redback2,thick,-{Latex[length=2mm,width=1.5mm]}] (36,9) -- (9,9) -- (9,29) -- (-0.5,29);
 		\draw[redback2,thick,-{Latex[length=2mm,width=1.5mm]}] (9,29) -- (9,55) -- (30,55) -- (30,64.5);
 		\draw[redback2,thick,-{Latex[length=2mm,width=1.5mm]}] (30,55) -- (55,55) -- (55,33) -- (64.5,33);
-                \draw[redback2,thick] (55,33) -- (55,9);
-		\draw[redback2,-{Latex[length=2mm,width=1.5mm]}] (48,48) -- (50.5,48);
-		\draw[redback2,-{Latex[length=2mm,width=1.5mm]}] (52,47) -- (52,45.2);
+        \draw[redback2,thick] (55,33) -- (55,9);
+		\draw[redback2,-{Latex[length=2mm,width=1.5mm]}] (48,36) -- (50.5,36);
+		\draw[redback2,-{Latex[length=2mm,width=1.5mm]}] (52,35) -- (52,33.2);
 		\draw[redback2,-{Latex[length=2mm,width=1.5mm]}] (51,15) -- (49.2,15);
 		\draw[redback2,-{Latex[length=2mm,width=1.5mm]}] (52,15) -- (52,12.9);
 		\draw[redback2,-{Latex[length=2mm,width=1.5mm]}] (52,12) -- (52,9.9);
@@ -103,11 +103,11 @@
 		\fill[fill=redback2] (55,55) circle (0.3);
 		\fill[fill=redback2] (9,55) circle (0.3);
 
-                % Construction arms
-		\draw[violet,dashed,thick,-{Latex[length=2mm,width=1.5mm]}] (55,9) -- (66, 9);
-		\draw[violet,dashed,thick,-{Latex[length=2mm,width=1.5mm]}] (55,55) -- (55, 66);
-		\draw[violet,dashed,thick,-{Latex[length=2mm,width=1.5mm]}] (9, 55) -- (-2, 55);
-		\draw[violet,dashed,thick,-{Latex[length=2mm,width=1.5mm]}] (9, 9) -- (9, -2);
+        % Construction arms
+		\draw[redback2,dashed,thick,-{Latex[length=2mm,width=1.5mm]}] (55,9) -- (66, 9);
+		\draw[redback2,dashed,thick,-{Latex[length=2mm,width=1.5mm]}] (55,55) -- (55, 66);
+		\draw[redback2,dashed,thick,-{Latex[length=2mm,width=1.5mm]}] (9, 55) -- (-2, 55);
+		\draw[redback2,dashed,thick,-{Latex[length=2mm,width=1.5mm]}] (9, 9) -- (9, -2);
 		
 		% Orange wires
 		\draw[darkorangeback,thick,{angle 60 reversed[length=2mm,width=1.5mm]}-] (26,-0.5) -- (26,12) -- (41,12);
@@ -146,11 +146,11 @@
 		\draw[darkgreenback,thick,{angle 60 reversed[length=2mm,width=1.5mm]}-] (36,64.5) -- (36,63) -- (62,63) -- (62,29);
 		\draw[darkgreenback,thick,{angle 60 reversed[length=2mm,width=1.5mm]}-] (64.5,29) -- (62,29) -- (62,3) -- (30,3);
 		\draw[darkgreenback,thick,{angle 60 reversed[length=2mm,width=1.5mm]}-] (30,-0.5) -- (30,3) -- (4,3) -- (4,33);
-		\draw[darkgreenback,thick,{angle 60 reversed[length=2mm,width=1.5mm]}-] (-0.5,33) -- (4,33) -- (4,59) -- (58,59) -- (58,7) -- (40,7) -- (40,8) -- (53,8) -- (53,19.5) -- (44,19.5) -- (44,20);
+		\draw[darkgreenback,thick,{angle 60 reversed[length=2mm,width=1.5mm]}-] (-0.5,33) -- (4,33) -- (4,59) -- (58,59) -- (58,7) -- (40,7) -- (40,8) -- (53,8) -- (53,19.5) -- (40,19.5) -- (40,20);
 		\fill[fill=darkgreenback] (62,29) circle (0.3);
 		\fill[fill=darkgreenback] (30,3) circle (0.3);
 		\fill[fill=darkgreenback] (4,33) circle (0.3);
-		\fill[fill=darkgreenback] (44,20) circle (0.3);
+		\fill[fill=darkgreenback] (40,20) circle (0.3);
 		\draw[darkgreenback,-{Latex[length=2mm,width=1.5mm]}] (62,62) -- (62,60.2);
 		\draw[darkgreenback,-{Latex[length=2mm,width=1.5mm]}] (61,3) -- (59.2,3);
 		\draw[darkgreenback,-{Latex[length=2mm,width=1.5mm]}] (4,4) -- (4,5.8);
