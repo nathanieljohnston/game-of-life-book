@@ -1,0 +1,61 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\definecolor{darkyellowback}{RGB}{96,96,0}
+\definecolor{darkgreenback}{RGB}{0,96,0}
+
+\begin{document}
+	\begin{tikzpicture}%
+		\node[inner sep=0pt,anchor=south west] (ca) at (0.05,0.05) {\includegraphics[width=11.9cm]{0e0p.png}};
+		
+		% ZOOM South
+			\newcommand\smlx{5.841}
+			\newcommand\smrx{\smlx+0.3298245614}
+			\newcommand\smby{0.079}
+			\newcommand\smty{\smby+0.4}
+			
+			\newcommand\bglx{0.1}
+			\newcommand\bgrx{\bglx+4.7}
+			\newcommand\bgty{1}
+			\newcommand\bgby{\bgty-5.7}
+			
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
+			
+			\node[inner sep=0pt,anchor=north west] (zoom2) at (\bglx,\bgty) {\includegraphics[width=4.7cm]{0e0p_zoom1.png}};
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (\smrx,\smty) -- (\bgrx,\bgty) -- (\bgrx,\bgby) -- (\smrx,\smby) -- (\smlx,\smby) -- (\smlx,\smty) -- cycle;
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\smlx,\smty) rectangle (\smrx,\smby);
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
+			
+			% GLIDER PATH ARROWS
+			\draw[color=gray,-stealth] (1.5,0.8-4.35) -- (1,1.3-4.35);
+			\draw[color=gray,-stealth] (4.35,4.2-7.4) -- (3.85,3.7-7.4);
+		% END ZOOM BOX NW
+		
+		\draw[darkgreenback] (0.5,6) node {\texttt{W}};
+		\draw[darkgreenback] (12-0.5,6) node {\texttt{E}};
+		\draw[darkgreenback] (6,0.78) node {\texttt{S}};
+		\draw[darkgreenback] (6.01,12-0.5) node {\texttt{N}};
+		
+		\draw[darkgreenback] (2.89,2.89) node {\texttt{SW}};
+		\draw[darkgreenback] (12-2.84,2.93) node {\texttt{SE}};
+		\draw[darkgreenback] (2.89,12-2.89) node {\texttt{NW}};
+		\draw[darkgreenback] (12-2.83,12-2.92) node {\texttt{NE}};
+		
+		\draw[gray] (5.12,8) node {\texttt{CN}};
+		\draw[gray] (8.23,5.26) node {\texttt{CE}};
+		
+		\draw[darkyellowback] (4.28,7.6) node {\texttt{LN}};
+		\draw[darkyellowback] (7.75,4.3) node {\texttt{LE}};
+		\draw[darkyellowback] (1.67,5) node {\texttt{LW}};
+		\draw[darkyellowback] (5.03,1.62) node {\texttt{LS}};
+		
+		% CIRCLE THE CONSTRUCTION ELBOW BLOCK
+		\draw[white,line width=1.5pt,opacity=0.6](3.165,-3.48) circle (0.1);
+		\draw[redback2,line width=0.6pt](3.165,-3.48) circle (0.1);
+	\end{tikzpicture}
+\end{document}
