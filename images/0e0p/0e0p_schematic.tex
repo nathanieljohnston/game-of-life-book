@@ -33,19 +33,20 @@
 \definecolor{unusedgray}{RGB}{192,192,192}
 
 \begin{document}
-    \rotatebox{315}{%
-	\begin{tikzpicture}[scale=0.25]%
+
+	\begin{tikzpicture}[scale=0.25,rotate=315]%
 %		Corner dots
 %		\fill[fill=black] (0,0) circle (0.3);
 %		\fill[fill=black] (64,0) circle (0.3);
 %		\fill[fill=black] (0,64) circle (0.3);
 %		\fill[fill=black] (64,64) circle (0.3);
 
+		\clip (-4,4) -- (-4,60) -- (4,68) -- (60,68) -- (68,60) -- (68,4) -- (60,-4) -- (4,-4) -- cycle;
 
-                % shell, kernel, and nucleus
-                \fill[greenpastel] ( 0.5,  0.5) rectangle (63.5, 63.5);
-                \fill[white]       ( 7.5,  7.5) rectangle (56.5, 56.5);
-                \fill[yellowback]  (18.5, 14.5) rectangle (45.5, 37.5);
+		% shell, kernel, and nucleus
+		\fill[greenpastel] ( 0.5,  0.5) rectangle (63.5, 63.5);
+		\fill[white]       ( 7.5,  7.5) rectangle (56.5, 56.5);
+		\fill[yellowback2]  (18.5, 14.5) rectangle (45.5, 37.5);
 
 
 		% Grey (unused) wires
@@ -76,22 +77,24 @@
 		\fill[fill=unusedgray] (2,35) circle (0.3);
 		
 		% Red wires
-		\draw[darkmagentaback,thick] (50,12) -- (52,12) -- (52,15) -- (20,15) -- (20,16) -- (44,16) -- (44,17) -- (20,17) -- (20,18) -- (44,18) -- (44,19) -- (20,19) -- (20,20) -- (44,20) -- (44,21) -- (20,21) -- (20,22) -- (44,22) -- (44,23) -- (20,23) -- (20,24) -- (44,24) -- (44,25) -- (20,25) -- (20,26) -- (44,26) -- (44,27) -- (20,27) -- (20,28) -- (44,28) -- (44,29) -- (20,29) -- (20,30) -- (44,30) -- (44,31) -- (20,31) -- (20,32) -- (44,32) -- (44,33) -- (20,33) -- (20,34) -- (44,34) -- (44,35) -- (20,35) -- (20,36) -- (52,36) -- (52,15);
+		\draw[darkyellowback,thick] (52,15) -- (20,15) -- (20,16) -- (44,16) -- (44,17) -- (20,17) -- (20,18) -- (44,18) -- (44,19) -- (20,19) -- (20,20) -- (44,20) -- (44,21) -- (20,21) -- (20,22) -- (44,22) -- (44,23) -- (20,23) -- (20,24) -- (44,24) -- (44,25) -- (20,25) -- (20,26) -- (44,26) -- (44,27) -- (20,27) -- (20,28) -- (44,28) -- (44,29) -- (20,29) -- (20,30) -- (44,30) -- (44,31) -- (20,31) -- (20,32) -- (44,32) -- (44,33) -- (20,33) -- (20,34) -- (44,34) -- (44,35) -- (20,35) -- (20,36) -- (52,36) -- (52,15);
+		\draw[darkmagentaback,thick] (50,12) -- (52,12) -- (52,15);
 		\draw[darkmagentaback,thick,-{Latex[length=2mm,width=1.5mm]}] (52,12) -- (52,9) -- (36,9) -- (36,-0.5);
 		\draw[darkmagentaback,thick,-{Latex[length=2mm,width=1.5mm]}] (36,9) -- (9,9) -- (9,29) -- (-0.5,29);
 		\draw[darkmagentaback,thick,-{Latex[length=2mm,width=1.5mm]}] (9,29) -- (9,55) -- (30,55) -- (30,64.5);
 		\draw[darkmagentaback,thick,-{Latex[length=2mm,width=1.5mm]}] (30,55) -- (55,55) -- (55,33) -- (64.5,33);
         \draw[darkmagentaback,thick] (55,33) -- (55,9);
-		\draw[darkmagentaback,-{Latex[length=2mm,width=1.5mm]}] (48,36) -- (50.5,36);
-		\draw[darkmagentaback,-{Latex[length=2mm,width=1.5mm]}] (52,35) -- (52,33.2);
-		\draw[darkmagentaback,-{Latex[length=2mm,width=1.5mm]}] (51,15) -- (49.2,15);
+		\draw[darkyellowback,-{Latex[length=2mm,width=1.5mm]}] (48,36) -- (50.5,36);
+		\draw[darkyellowback,-{Latex[length=2mm,width=1.5mm]}] (52,35) -- (52,33.2);
+		\draw[darkyellowback,-{Latex[length=2mm,width=1.5mm]}] (51,15) -- (49.2,15);
 		\draw[darkmagentaback,-{Latex[length=2mm,width=1.5mm]}] (52,15) -- (52,12.9);
 		\draw[darkmagentaback,-{Latex[length=2mm,width=1.5mm]}] (52,12) -- (52,9.9);
 		\draw[darkmagentaback,-{Latex[length=2mm,width=1.5mm]}] (51,9) -- (49.2,9);
 		\draw[darkmagentaback,-{Latex[length=2mm,width=1.5mm]}] (9,10) -- (9,11.8);
 		\draw[darkmagentaback,-{Latex[length=2mm,width=1.5mm]}] (9,55) -- (10.8,55);
 		\draw[darkmagentaback,-{Latex[length=2mm,width=1.5mm]}] (55,55) -- (55,53.2);
-		\fill[fill=darkmagentaback] (52,15) circle (0.3);
+		\draw[darkgreenback,-{Latex[length=2mm,width=1.5mm]}] (49,19.5) -- (47,19.5);
+		\fill[fill=darkyellowback] (52,15) circle (0.3);
 		\fill[fill=darkmagentaback] (52,12) circle (0.3);
 		\fill[fill=darkmagentaback] (36,9) circle (0.3);
 		\fill[fill=darkmagentaback] (9,29) circle (0.3);
@@ -116,7 +119,7 @@
 		\draw[darkorangeback,-{Latex[length=2mm,width=1.5mm]}] (12,37) -- (12,35.2);
 		\draw[darkorangeback,-{Latex[length=2mm,width=1.5mm]}] (13,12.5) -- (14.8,12.5);
 		
-		\draw[darkorangeback,thick,{angle 60 reversed[length=2mm,width=1.5mm]}-] (38,64.5) node[anchor=south west,shift={(-0.5,0)}]{\texttt{incoming cell state}} -- (38,52) -- (13,52) -- (13,13) -- (41,13);
+		\draw[darkorangeback,thick,{angle 60 reversed[length=2mm,width=1.5mm]}-] (38,64.5) node[anchor=south west,shift={(-0.2,0.3)},rotate=315]{\texttt{incoming cell state}} -- (38,52) -- (13,52) -- (13,13) -- (41,13);
 		\draw[darkorangeback,-{Latex[length=2mm,width=1.5mm]}] (37,52) -- (35.2,52);
 		\draw[darkorangeback,-{Latex[length=2mm,width=1.5mm]}] (13,51) -- (13,49.2);
 		\draw[darkorangeback,-{Latex[length=2mm,width=1.5mm]}] (14,13) -- (15.8,13);
@@ -130,7 +133,7 @@
 		
 		% Aqua wires
 		\draw[darkaquaback,thick,-{Latex[length=2mm,width=1.5mm]}] (41,10.5) -- (38,10.5) -- (38,-0.5);
-		\draw[darkaquaback,thick,-{Latex[length=2mm,width=1.5mm]}] (38,10.5) -- (10,10.5) -- (10,54) -- (26,54) -- (26,64.5) node[anchor=south east,shift={(0.5,0)}]{\texttt{outgoing cell state}};
+		\draw[darkaquaback,thick,-{Latex[length=2mm,width=1.5mm]}] (38,10.5) -- (10,10.5) -- (10,54) -- (26,54) -- (26,64.5) node[anchor=south east,shift={(0.25,-0.25)},rotate=315]{\texttt{outgoing cell state}};
 		\draw[darkaquaback,thick,-{Latex[length=2mm,width=1.5mm]}] (26,54) -- (54,54) -- (54,38) -- (64.5,38);
 		\draw[darkaquaback,thick,-{Latex[length=2mm,width=1.5mm]}] (10,26) -- (-0.5,26);
 		\fill[fill=darkaquaback] (38,10.5) circle (0.3);
@@ -161,10 +164,9 @@
 		
 		% LOGIC component
 		\filldraw[thick,color=darkaquaback,fill=aquaback!50] (41,10) -- (50,10) -- (50,14) -- (41,14) -- cycle;
-		\draw[darkaquaback] (45.5,12) node {\texttt{logic}};
+		\draw[darkaquaback] (45.5,12) node[rotate=315] {\texttt{logic}};
 		
 %		BORDER
 %		\draw[gridgray] (-1,-1) rectangle (65,67);
 	\end{tikzpicture}
-    }
 \end{document}
