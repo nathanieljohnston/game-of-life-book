@@ -3,9 +3,14 @@
 
 \definecolor{darkyellowback}{RGB}{96,96,0}
 \definecolor{darkgreenback}{RGB}{0,96,0}
+\definecolor{darkmagentaback}{RGB}{96,0,96}
+\definecolor{aquaback}{RGB}{192,255,255}
+\definecolor{darkaquaback}{RGB}{0,96,96}
 
 \begin{document}
 	\begin{tikzpicture}%
+		\clip (0.07,-4.69) rectangle (11.9,11.88);
+	
 		\node[inner sep=0pt,anchor=south west] (ca) at (0.05,0.05) {\includegraphics[width=11.9cm]{0e0p.png}};
 		
 		% ZOOM South
@@ -17,7 +22,7 @@
 			\newcommand\bglx{0.1}
 			\newcommand\bgrx{\bglx+4.7}
 			\newcommand\bgty{1}
-			\newcommand\bgby{\bgty-5.7}
+			\newcommand\bgby{\bgty-5.64}
 			
 			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
 			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
@@ -32,8 +37,20 @@
 			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
 			
 			% GLIDER PATH ARROWS
-			\draw[color=gray,-stealth] (1.5,0.8-4.35) -- (1,1.3-4.35);
-			\draw[color=gray,-stealth] (4.35,4.2-7.4) -- (3.85,3.7-7.4);
+			\draw[color=gray,-stealth] (1.65,0.6-4.3) --node[anchor=north east,rotate=-45,shift={(1.22,0)},align=center]{\small\texttt{to W}\\[-0.1cm]\scriptsize\texttt{(bottom 4 lanes)}} (0.95,1.3-4.3);
+			
+			\draw[color=gray,-stealth] (4.45,4.3-7.4) -- (3.95,3.8-7.4);
+			\draw[color=darkmagentaback,-stealth] (4.05,5.7-7.2) -- (3.55,5.2-7.2);
+			\draw[color=darkgreenback,-stealth] (4.33,0.03) --node[anchor=south,rotate=-45,shift={(0,0)},align=center]{\small\texttt{to LS}} (3.63,0.73);
+			\draw[color=darkmagentaback,-stealth] (4.33-1,0.03-0.05) --node[anchor=south,rotate=-45,shift={(0,0)},align=center]{\small\texttt{to LW}} (3.63-1,0.73-0.05);
+			\draw[color=darkmagentaback,-stealth] (0.9,0.03-0.35) --node[anchor=south,rotate=-45,shift={(0,0)},align=center]{\small\texttt{to SW}} (0.2,0.73-0.35);
+			
+			\draw[color=darkgreenback,-stealth] (0.3,-1.5+0.45) -- (0.2,-1.4+0.45) to [out=135,in=135] (0.5,-1.1+0.45) -- (0.6,-1.2+0.45) node[rotate=-45,anchor=south,shift={(1,0)}]{\scriptsize\texttt{trombone slide at SW}};
+			
+			% LOGIC box
+			\fill[fill=aquaback,opacity=0.5] (3.7,-0.85) -- (2,0.85) -- (1.2,0.85) -- (1.2,-0.75) -- (2.5,-2.05) -- cycle;
+			\draw[color=darkaquaback] (3.7,-0.85) -- (2,0.85) -- (1.2,0.85) -- (1.2,-0.75) -- (2.5,-2.05) -- cycle;
+			\draw[color=darkaquaback] (2.26,-0.64) node[rotate=-45]{\texttt{logic}};
 		% END ZOOM BOX NW
 		
 		\draw[darkgreenback] (0.5,6) node {\texttt{W}};

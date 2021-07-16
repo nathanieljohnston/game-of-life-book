@@ -228,7 +228,7 @@ To get around these two problems, the 0E0P metacell instead emulates an $8$-stat
 \begin{figure}[!htb]
 	\centering
 	\vcenteredhbox{\patternimg{0.345}{0e0p_checkerboard_0}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.345}{0e0p_checkerboard_1}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.345}{0e0p_checkerboard_2}}
-	\caption{An $8$-state cellular automaton using the von Neumann neighborhood that is of the type that the 0E0P metacell can emulate. The ``dead'' state is displayed in in a white and light grey checkerboard pattern. The other $7$ states are displayed in black and various other colors, which alternate being on the white and light grey portions of the checkerboard pattern from one generation to the next.}\label{fig:0e0p_checkerboard}
+	\caption{An $8$-state cellular automaton using the von Neumann neighborhood that is of the type that the 0E0P metacell can emulate. The ``dead'' state is displayed in a white and light grey checkerboard pattern. The other $7$ states are displayed in black and various other colors, which alternate being on the white and light grey portions of the checkerboard pattern from one generation to the next.}\label{fig:0e0p_checkerboard}
 \end{figure}
 
 Despite the seemingly limited nature of these cellular automata, the fact that they have $8$ states makes them general enough to emulate arbitrary $2$-state Moore-neighborhood cellular automata at half speed. To see how this works, suppose we are given a particular $2$-state CA that we want to emulate. If we represent the ``dead'' and ``alive'' cells of that CA by the numbers $0$ and $7$, respectively,\footnote{Yes, $7$ seems like a weird choice. It will make more sense shortly.} then we can encode the CA by a function
@@ -351,15 +351,9 @@ The 0E0P metacell can be programmed to emulate any of the $8^{8^4-1}$ possible z
 
 % EVERYTHING AFTER THIS POINT IS PLACEHOLDER and/or copied from forums and/or gibberish that will be changed
 
-% TODO: Lead in with high-level idea of using single-channel construction (backref to Ch11) to reach out to cosntruct neighboring metacells as necessary.
+The 0E0P metacell works by using the single-channel glider synthesis techniques of Chapter~\ref{chp:universal_construction} to construct copies of itself in neighboring locations. It starts by constructing a copy to the southeast, northeast, northwest, and southwest (in that order, and only if no metacells are already present in those locations), and then it sends information about its current state to those neighboring metacells so that the proper rule is emulated.
 
-The 0E0P metacell works via...
-
-The large-scale structure of the metacell is tripartite, and each of the three parts is constructed separately. The outermost part is the \textbf{shell},\index{shell} which has exact order-4 rotational symmetry, consisting of four spiral arms which propagate gliders inwards. Only one of these arms is actually used; the other four exist only to enforce the rotational symmetry.
-
-Inside the shell is the \textbf{kernel},\index{kernel} which does not have any symmetry constraints. The south corner of the kernel contains logic circuitry for regulating the metacell's lifecycle and computing the state of the metacell based on the inputs from its four neighbouring cells. The kernel also contains an output path, shown in crimson in Figure~\ref{fig:0e0p_schematic}, which can connect to one of the four construction arms (dashed) or to the input spiral arm of one of the four neighbours. During the operation of the metacell, the glider stream is redirected between the different possible outputs by deleting Snarks.
-
-The largest region of the metacell is the \textbf{nucleus},\index{nucleus} a huge boustrophedonic glider loop with a period of exactly $2^{29}$. The nucleus is populated by over three million gliders, which together encode all of the construction recipes along with the lookup table for the metacell's rule.
+In order to implement this behavior, the 0E0P metacell is made up of three components (see Figures~\ref{fig:0e0p_schematic} and~\ref{fig:0e0p_itself}), each of which are constructed by parent metacells separately:\smallskip
 
 \begin{figure}[!htb]
 	\centering
@@ -373,7 +367,15 @@ The largest region of the metacell is the \textbf{nucleus},\index{nucleus} a hug
 	\caption{The 0E0P metacell itself. The symmetrical outer \textbf{shell} is highlighted in \bgbox{greenpastel}{green}, while the \textbf{nucleus} is highlighted in \bgbox{yellowback2}{yellow}. The unhighlighted region between them is the \textbf{kernel}.}\label{fig:0e0p_itself}
 \end{figure}
 
-% maybe next: sub-sections for each of those 3 pieces? Describing the shell in more detail, then the kernel in more detail, then a nucleus?
+\begin{itemize}
+	\item The outermost part is the \textbf{shell},\index{shell} which directs information about the states of neighboring metacells. It has exact 90-degree rotational symmetry, consisting of four spiral arms which propagate gliders inwards. Only one of these arms is actually used; the other four exist only to enforce the rotational symmetry.\smallskip
+	
+	\item Inside the shell is the \textbf{kernel},\index{kernel} which does not have any symmetry constraints. The south corner of the kernel contains logic circuitry for regulating the metacell's lifecycle and computing the state of the metacell based on the inputs from its four neighboring cells. The kernel also contains an output path, shown in red in Figure~\ref{fig:0e0p_schematic}, which can connect to one of the four construction arms (dashed) or to the input shell of one of the four neighbours.\smallskip
+	
+	\item At its center is the largest region of the metacell: its \textbf{nucleus},\index{nucleus} which is a huge boustrophedonic glider loop\footnote{That is, a glider loop in which the gliders travel back and forth along antiparallel lanes.} with a period of exactly $2^{29}$. It is populated by over three million gliders, which together encode a complete single-channel glider synthesis of the 0E0P metacell, along with a lookup table for the rule that the metacell is emulating.\smallskip
+\end{itemize}
+
+We now describe these three sections of the metacell in a bit more detail.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -391,6 +393,13 @@ There are some trombone slides of different lengths on different edges of the ke
 Incoming gliders entering the child metacell get a 'head start', being injected several rows beyond the start of the tape. This 'head start' exactly compensates for the delay incurred by the gliders spiralling through the circuitry to pass from the parent metacell to the child, so the tapes of the parent and child metacell end up in exactly the same phase. This injection point is what you called 'Area 51' on Ch91's thread:
 
 This addresses the timing issue. Ensuring all four metacells are built in the same orientation is by building the outer shell first (which is impossible to get wrong, because it's rotationally symmetric!) and then sending the remainder of the recipe through the correct pin to build the kernel in the correct orientation. If we'd counterfactually sent gliders down one of the other three pins, they'd end up in a different one of the four spiral arms and the resulting metacell would be in the wrong orientation.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The Kernel}\label{sec:0e0p_structure_kernel}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+During the operation of the metacell, the glider stream is redirected between the different possible outputs by deleting Snarks.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -424,7 +433,7 @@ Stuff.
 \section{Construction}
 %%%%%%%%%%%%%%%%%%%%%%
 
-Stuff.
+The 0E0P metacell works by using the single-channel glider synthesis techniques of Chapter~\ref{chp:universal_construction} to construct copies of itself in neighboring locations. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
