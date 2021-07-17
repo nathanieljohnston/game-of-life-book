@@ -386,14 +386,28 @@ The rotationally symmetric shell that makes up the outermost edges of the 0E0P m
 
 After the metacell has been constructed, these input lanes read in a copy of the 0E0P's single-channel construction recipe and rule lookup table from its neighbors. That (extremely long) sequence of gliders revolves clockwise all the way around the spiral arm of the shell, until it is finally injected into the nucleus at the 0E0P's center.
 
-To make sure that just one copy of the single-channel glider sequence is allowed to enter the shell, regardless of how many neighbors try to send in that glider sequence, the 0E0P strategically deletes part of its own circuitry after the nucleus is populated. By deleting a single block from a syringe, as demonstrated in Figure~??, the 0E0P can change a syringe-based-reflector into a device that simply eats a glider stream. A single extra glider could also be used to destroy the syringe's eater~2, thus unblocking the stream as demonstrated in Figure~??, if desired.\footnote{This is not desired here, but we will see shortly that it is desired at another location in the 0E0P's circuitry.}
+To make sure that just one copy of the single-channel glider sequence is allowed to enter the shell, regardless of how many neighbors try to send in that glider sequence, the 0E0P strategically deletes part of its own circuitry after the nucleus is populated. By deleting a single block from a syringe, as demonstrated in Figure~\ref{fig:syringe_delete_block}, the 0E0P can change a syringe-based-reflector into a device that simply eats a glider stream. A single extra glider could also be used to destroy the syringe's eater~2, thus unblocking the stream as demonstrated in Figure~\ref{fig:syringe_delete_eater}, if desired.\footnote{This is not desired here, but we will see shortly that it is desired at another location in the 0E0P's circuitry.}
 
 % TODO: Talk about where the glider that does this block deletion comes from. The logic clock, right?
 % TODO: Be more specific about "shortly" in the above footnote. Reference a figure or section or something.
 
-% FIGURE showing the syringe-modifying reactions of Dave's 0E0P post
+\begin{figure}[!htb]
+	\centering
+	\begin{subfigure}{.535\textwidth}
+		\centering
+		\embedlink{syringe_path_changer}{\vcenteredhbox{\patternimg{0.12}{syringe_delete_block}} \vcenteredhbox{\genarrow{120}} \vcenteredhbox{\patternimg{0.12}{syringe_delete_block_1}}}
+		\caption{A single glider coming in from the southwest destroys a block, thus ``shutting off'' the syringe-based reflector.}
+		\label{fig:syringe_delete_block}
+	\end{subfigure} \hfill \begin{subfigure}{.435\textwidth}
+		\centering
+		\patternlink{syringe_path_changer}{\vcenteredhbox{\patternimg{0.12}{syringe_delete_eater}} \vcenteredhbox{\genarrow{120}} \vcenteredhbox{\patternimg{0.12}{syringe_delete_eater_1}}}
+		\caption{A glider coming in from the northeast destroys the eater~2, thus unblocking the glider stream.}
+		\label{fig:syringe_delete_eater}
+	\end{subfigure}
+	\caption{Some ways of deleting pieces of a syringe (displayed in \bgbox{redback}{red}) so as to change the path of a glider stream.}\label{fig:syringe_path_changer}
+\end{figure}
 
-We saw another technique that has a similar end result back in Figure~\ref{fig:snark_seeded_destroy}---a single glider can be used to destroy a Snark (with the help of 3 extra pre-placed still lifes). The 0E0P metacell makes use of Snark-destroying reactions like this one so as to redirect copies of its single-channel glider sequence to eight different locations over the course of its lifespan. In order,\footnote{The single-channel glider sequence really does have to be sent along these $8$ paths one after another. If we just used glider duplicators to send it along all $8$ paths at the same time, there could be unwanted collisions when constructing child metacells (e.g., if two parent metacells tried to create a child in the same location at the same time).} they are:\smallskip
+We saw another technique that has a similar end result back in Figure~\ref{fig:snark_seeded_destroy}---a single glider can be used to destroy a Snark (with the help of 3 extra pre-placed still lifes). The 0E0P metacell makes use of Snark-destroying reactions like this one\footnote{But not \emph{exactly} like this one---see Exercise~\ref{exer:0e0p_snark_destroyer}.} so as to redirect copies of its single-channel glider sequence to eight different locations over the course of its lifespan. In order,\footnote{The single-channel glider sequence really does have to be sent along these $8$ paths one after another. If we just used glider duplicators to send it along all $8$ paths at the same time, there could be unwanted collisions when constructing child metacells (e.g., if two parent metacells tried to create a child in the same location at the same time).} they are:\smallskip
 
 \begin{itemize}
 	\item[1)] Along the southeast construction lane (in dashed magenta in Figure~\ref{fig:0e0p_schematic}), to construct the child metacell to the southeast.\smallskip
@@ -402,7 +416,7 @@ We saw another technique that has a similar end result back in Figure~\ref{fig:s
 	
 	\item[3)] Along the northeast construction lane (in dashed magenta), to construct the child metacell to the northeast.\smallskip
 	
-	\item[4) -- 8)] Along the northeast output lane, and so on counterclockwise.
+	\item[4) -- 8)] Along the northeast output lane, then the northwest construction lane, and so on counterclockwise.
 \end{itemize}
 
 
@@ -423,6 +437,8 @@ The kernel also contains, at its southern corner, the logic circuitry that is us
 
 % Note to self: In initial phase of 0E0P, the magenta path into logic is disabled, as is the green trombone slide to SW path
 % Note to self: big gap in nucleus corresponds to when child metacell is repeatedly creating its nucleus's Snark loops. (i.e., when the child C1 and C2 are in use)
+% Timeline file goes through 1.5*2^29 generations (i.e., 1.5 cycles of nucleus loop). 3072 snapshots at a spacing of 2^11 generations
+% What happens during the 64 iterations of the glider loop during the 0E0P's life cycle? 1: construct SE, 2: copy into SE, 3: ?
 
 There are some trombone slides of different lengths on different edges of the kernel, designed to compensate for the 'Olympic running track' effect where outer lanes of the spiral are disadvantaged vis-a-vis inner lanes. This ensures that the communication time from the parent to each of the four children is exactly the same.
 
@@ -612,6 +628,20 @@ Finally, Adam P.~Goucher spent 2014--2018 constructing the 0E0P metapixel, which
 		What is the non-isotropic rulestring (in the sense of Appendix~\ref{sec:non_isotropic_rulestrings}) for Conway's Game of Life?
 	\end{problem}
 	% SOLUTION: MAPARYXfhZofugWaH7oaIDogBZofuhogOiAaIDogIAAgAAWaH7oaIDogGiA6ICAAIAAaIDogIAAgACAAIAAAAAAAA
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:0e0p_snark_destroyer} \probdiff{2}
+		Recall that a single glider can destroy a Snark, as long as we place some extra still lifes near it as in Figure~\ref{fig:snark_seeded_destroy}.\smallskip
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Find a similar configuration of still lifes that is used in the 0E0P metacell so as to allow a single glider to destroy a Snark.
+			
+			\item Explain why the configuration of still lifes from part~(a) might be preferable to the one from Figure~\ref{fig:snark_seeded_destroy}, despite being larger.
+		\end{enumerate}
+	\end{problemstar}
 	
 	
 	%% EXERCISE END COMMANDS
