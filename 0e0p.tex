@@ -363,9 +363,9 @@ In order to implement this behavior, the 0E0P metacell is made up of three compo
 	\centering
 	\embedlink{0e0p}{\includegraphics[width=\textwidth]{0e0p/0e0p.pdf}}	\caption{The 0E0P metacell itself, which implements the schematic of Figure~\ref{fig:0e0p_schematic}. It contains a significant amount of empty space between 14 points of interest. The shell (highlighted in \bgbox{greenpastel}{green}) goes through points \texttt{SW}, \texttt{W}, \texttt{NW}, \texttt{N}, \texttt{NE}, \texttt{E}, \texttt{SE}, and \texttt{S}, as do the points where the glider paths are reflected in the kernel. The logic circuitry is also located at point \texttt{S}, and an elbow block that is used to construct a new metacell to the southeast is circled in \bgbox{redback}{red}. The nucleus (highlighted in \bgbox{yellowback2}{yellow}) has corners at points \texttt{LW}, \texttt{LN}, \texttt{LE}, and \texttt{LS}. The sides between \texttt{LW} and \texttt{LN}, and between \texttt{LE} and \texttt{LS}, are each made up of $1{\thousep}024$ two-Snark (i.e., $180$-degree) reflectors that create a path long enough to house the nucleus's 3.6 million gliders. The points \texttt{CN} and \texttt{CE} are not displayed in the schematic of Figure~\ref{fig:0e0p_schematic}---they contain temporary circuitry that is used to construct the sides of the nucleus.}\label{fig:0e0p_itself}
 \end{figure}
-% Note to self: In initial phase of 0E0P, the magenta path into logic is disabled, as is the green trombone slide to SW path
-% Note to self: big gap in nucleus corresponds to when child metacell is repeatedly creating its nucleus's Snark loops. (i.e., when the child C1 and C2 are in use)
 % TODO: Add more wires in the 2nd figure on 0E0P itself (i.e., not in the zoom box)?
+% TODO: Show input and output orange/aqua wires to the logic component
+% TODO: double-check S corner zoom box. At magenta corner on east side of logic component, gliders eventually pass through to the southwest, right? Seems to go to a slightly lower section of the SW component.
 
 \begin{itemize}
 	\item The outermost part is the \textbf{shell},\index{shell} which directs information about the states of neighboring metacells. It has exact 90-degree rotational symmetry, consisting of four spiral arms which propagate gliders inwards. Only one of these arms is actually used; the other four exist only to enforce the rotational symmetry.\smallskip
@@ -377,18 +377,33 @@ In order to implement this behavior, the 0E0P metacell is made up of three compo
 
 We describe these three components of the metacell in more detail in the next three sections.
 
-% During the operation of the metacell, the glider stream is redirected between the different possible outputs by deleting Snarks.
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{The Shell and Switching Circuitry}\label{sec:0e0p_structure_shell}\index{shell}
+\section{The Shell and Lane-Switching Circuitry}\label{sec:0e0p_structure_shell}\index{shell}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The rotationally symmetric shell that makes up the outermost edges of the 0E0P metacell is perhaps the simplest one of its three pieces. Each of its four sides has four input lanes (in green and grey in Figure~\ref{fig:0e0p_schematic}). However, only one of these four input lanes is ever actually used (in green---a different one on each side), as they connect to the four output lanes coming from the kernel of neighboring metacells (in solid magenta in Figure~\ref{fig:0e0p_schematic}).\footnote{This design is similar to that of a circuit on a motherboard---you can think of each side of the 0E0P metacell as having 8 ``pins'' (4 inputs pins and 4 output pins) that connect to the 8 pins of neighboring metacells.} The remaining input lanes (in grey) are unused, and only exist to enforce the shell's fourfold rotational symmetry.
+The rotationally symmetric shell that makes up the outermost edges of the 0E0P metacell is perhaps the simplest of its three components. Each of its four sides has four input lanes (in green and grey in Figure~\ref{fig:0e0p_schematic}). However, only one of these four input lanes is ever actually used (in green)---the one that connects to the output lane coming in from the kernel of the neighboring metacell (in solid magenta), if it exists.\footnote{This design is similar to that of a circuit on a motherboard---you can think of each side of the 0E0P metacell as having 8 ``pins'' (4 inputs pins and 4 output pins) that connect to the 8 pins of neighboring metacells.} The remaining input lanes (in grey) are unused, and only exist to enforce the shell's fourfold rotational symmetry.
 
-As the metacell is being constructed by its neighbors, these input lanes read in a copy of the 0E0P's rule table and single-channel construction recipe from them. That (extremely long) sequence of gliders revolves clockwise all the way around the shell along its spiral arm, until it is finally injected into the nucleus at the 0E0P's center.
-% QUESTION: how does it only read in one copy if, say, 3 neighbors are alive? Likely some kind of switching mechanism, so a figure might be warranted
-% TODO: should probably have a (sub?)section devoted to switching circuitry. Or at least a paragraph and a figure? Things like the block being removed in a syringe so that it now just eats things
+After the metacell has been constructed, these input lanes read in a copy of the 0E0P's single-channel construction recipe and rule lookup table from its neighbors. That (extremely long) sequence of gliders revolves clockwise all the way around the spiral arm of the shell, until it is finally injected into the nucleus at the 0E0P's center.
+
+To make sure that just one copy of the single-channel glider sequence is allowed to enter the shell, regardless of how many neighbors try to send in that glider sequence, the 0E0P strategically deletes part of its own circuitry after the nucleus is populated. By deleting a single block from a syringe, as demonstrated in Figure~??, the 0E0P can change a syringe-based-reflector into a device that simply eats a glider stream. A single extra glider could also be used to destroy the syringe's eater~2, thus unblocking the stream as demonstrated in Figure~??, if desired.\footnote{This is not desired here, but we will see shortly that it is desired at another location in the 0E0P's circuitry.}
+
+% TODO: Talk about where the glider that does this block deletion comes from. The logic clock, right?
+% TODO: Be more specific about "shortly" in the above footnote. Reference a figure or section or something.
+
+% FIGURE showing the syringe-modifying reactions of Dave's 0E0P post
+
+We saw another technique that has a similar end result back in Figure~\ref{fig:snark_seeded_destroy}---a single glider can be used to destroy a Snark (with the help of 3 extra pre-placed still lifes). The 0E0P metacell makes use of Snark-destroying reactions like this one so as to redirect copies of its single-channel glider sequence to eight different locations over the course of its lifespan. In order,\footnote{The single-channel glider sequence really does have to be sent along these $8$ paths one after another. If we just used glider duplicators to send it along all $8$ paths at the same time, there could be unwanted collisions when constructing child metacells (e.g., if two parent metacells tried to create a child in the same location at the same time).} they are:\smallskip
+
+\begin{itemize}
+	\item[1)] Along the southeast construction lane (in dashed magenta in Figure~\ref{fig:0e0p_schematic}), to construct the child metacell to the southeast.\smallskip
+	
+	\item[2)] Along the southeast output lane (in solid magenta), to copy the glider sequence into the (now constructed) southeast child's nucleus.\smallskip
+	
+	\item[3)] Along the northeast construction lane (in dashed magenta), to construct the child metacell to the northeast.\smallskip
+	
+	\item[4) -- 8)] Along the northeast output lane, and so on counterclockwise.
+\end{itemize}
 
 
 % EVERYTHING AFTER THIS POINT IS PLACEHOLDER and/or copied from forums and/or gibberish that will be changed
@@ -405,6 +420,9 @@ The kernel also contains, at its southern corner, the logic circuitry that is us
 
 % Discuss the logic circuitry.
 % We should have a big zoomed-in figure of the "logic" component.
+
+% Note to self: In initial phase of 0E0P, the magenta path into logic is disabled, as is the green trombone slide to SW path
+% Note to self: big gap in nucleus corresponds to when child metacell is repeatedly creating its nucleus's Snark loops. (i.e., when the child C1 and C2 are in use)
 
 There are some trombone slides of different lengths on different edges of the kernel, designed to compensate for the 'Olympic running track' effect where outer lanes of the spiral are disadvantaged vis-a-vis inner lanes. This ensures that the communication time from the parent to each of the four children is exactly the same.
 
