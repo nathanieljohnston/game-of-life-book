@@ -201,7 +201,7 @@ For this reason, APGsembly loops based on the \texttt{TDEC} action often require
 
 Since APGsembly code requires an action in the \texttt{INITIAL} state anyway before any loops are entered, we often put the extra \texttt{TDEC} command there (we did this in each of APGsembly~\ref{alg:apgsembly_test_leq_or_ge} and~\ref{alg:apgsembly_add_same_register}). The resulting code has the effect of decreasing the value of the register from $n$ to $n-1$, then looping from $n-1$ to $-1$, but with the register getting bumped back up to $0$ automatically instead of staying at $-1$.
 
-An actual Life pattern that implements the computation described by APGsembly~\ref{alg:apgsembly_add_same_register} is presented in Figure~\ref{fig:add_computer}. There is a lot going on in this pattern, so we now describe how it is built in some detail. This computer (and Life computers built from APGsembly in general) consists of three main parts: a \emph{computer} (in the southeast), a \emph{component stack} (in the northwest), and a \emph{clock gun} (in the north). We describe these three pieces one at a time.\index{component stack}\index{computer}\index{clock!gun}
+An actual Life pattern that implements the computation described by APGsembly~\ref{alg:apgsembly_add_same_register} is presented in Figure~\ref{fig:add_computer}. There is a lot going on in this pattern, so we now describe how it is built in some detail. This computer (and Life computers built from APGsembly in general) consists of three main parts: a \emph{computer} (in the southeast), a \emph{component stack} (in the northwest), and a \textbf{clock gun} (in the north). We describe these three pieces one at a time.\index{component stack}\index{computer}\index{clock!gun}
 
 \begin{figure}[!htb]
 	\centering
