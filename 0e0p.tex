@@ -365,7 +365,7 @@ In order to implement this behavior, the 0E0P metacell is made up of three compo
 \end{figure}
 % TODO: Add more wires in the 2nd figure on 0E0P itself (i.e., not in the zoom box)?
 % TODO: Show input and output orange/aqua wires to the logic component
-% TODO: double-check S corner zoom box. At magenta corner on east side of logic component, gliders eventually pass through to the southwest, right? Seems to go to a slightly lower section of the SW component.
+% TODO: double-check S corner zoom box. At magenta corner on east side of logic component, gliders eventually pass through to the southwest, right? Seems to go to a slightly lower section of the SW component. What is currently the magenta "to SW" lane should probably be the square logic output instead
 
 \begin{itemize}
 	\item The outermost part is the \textbf{shell},\index{shell} which directs information about the states of neighboring metacells. It has exact 90-degree rotational symmetry, consisting of four spiral arms which propagate gliders inwards. Only one of these arms is actually used; the other four exist only to enforce the rotational symmetry.\smallskip
@@ -534,6 +534,12 @@ If we break the $2^{35}$-generation lifecycle of the metacell down into $2^6 = 6
 
 % To convert a timestamp from here to a timestamp from 0e0p_timeline.mc, add 138590856 = 33 * 2^22 + 178824
 
+% To convert a timestamp from here to rrocell_backup: t at start of RRO_file = 262144*RRO_NUM - 26375797384
+% Short version: t = 0 corresponds to rrocell_100615 at generation 178824
+% To get generation t, look in rrocell_X, where X = 100615 + floor((t+83320)/262144) at generation (t+83320) mod 262144
+
+% For t = 7482638336, use generation 105727352 of rrocell_backup128756
+
 
 \clearpage
 
@@ -591,8 +597,18 @@ If we break the $2^{35}$-generation lifecycle of the metacell down into $2^6 = 6
 	\vspace*{-0.3cm}
 	
 	\embedlink{0e0p_timeline_398415184_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_398415184.pdf}}
-	\caption{The glider from Figure~\ref{fig:0e0p_timeline_397258593} has reached \texttt{CN} and is about to start the clock there (highlighted in \bgbox{aquaback}{aqua}), which will trigger \texttt{CN}'s self-destruction $2^{29}$ generations later.}
+	\caption{The glider from Figure~\ref{fig:0e0p_timeline_397258593} (circled in \bgbox{redback}{red}) has reached \texttt{CN} and is about to start the clock there (highlighted in \bgbox{aquaback}{aqua}). That clock will trigger \texttt{CN}'s self-destruction $2^{29}$ generations later, after the period $2^{21}$ \texttt{CN} subroutine loop has been used $2^8 = 256$ times.}
 	\label{fig:0e0p_timeline_398415184}
+\end{figure}
+
+\begin{figure}[!htb]
+	\centering
+	
+	\vspace*{-0.3cm}
+	
+	\embedlink{0e0p_timeline_400027916_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_400027916.pdf}}
+	\caption{The subroutine glider loop at \texttt{CN} is now filled, since its final glider (circled in \bgbox{redback}{red}) just passed through the same temporary Snark as in Figure~\ref{fig:0e0p_timeline_398415184}, which will soon be destroyed by the glider from Figure~\ref{fig:0e0p_timeline_398415184}. The northwest wall of the nucleus is constructed along the \bgbox{aquaback}{aqua} lane leaving the splitter.}
+	\label{fig:0e0p_timeline_400027916}
 \end{figure}
 
 \clearpage

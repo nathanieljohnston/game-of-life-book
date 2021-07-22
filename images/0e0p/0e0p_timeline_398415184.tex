@@ -43,10 +43,10 @@
 		% END ZOOM MIDDLE
 		
 		% ZOOM RIGHT
-			\renewcommand\smlx{6.7+\gp}
-			\renewcommand\smrx{\smlx+0.3}
-			\renewcommand\smby{6.85}
-			\renewcommand\smty{\smby+0.3}
+			\renewcommand\smlx{6.46+\gp}
+			\renewcommand\smrx{\smlx+0.48}
+			\renewcommand\smby{6.69}
+			\renewcommand\smty{\smby+0.48}
 			
 			\renewcommand\bglx{9.5+\gp+\gp}
 			\renewcommand\bgrx{\bglx+4.5}
@@ -66,11 +66,16 @@
 			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
 		% END ZOOM RIGHT
 		
-		\draw[gray] (1.9,6.84) node {\small\texttt{CN}};
+		\draw[gray] (1.81,7.05) node {\small\texttt{CN}};
 		
 		% GLIDER PATH ARROWS
-		\draw[color=gray,-stealth] (15.4,7) -- (14.9,7.5);
-		\draw[color=gray,-stealth] (12.6,7.75) -- (12.1,7.25);
+		\draw[color=gray,-stealth] (15,8) -- (14.5,7.5);
+		\draw[color=gray,-stealth] (12.15,6.65) -- (11.65,6.15);
+		\draw[color=gray,-stealth] (12.15,9.3) -- (11.65,9.8);
+		
+		% CIRCLES
+		\draw[white,line width=1.5pt,opacity=0.6](15.42,8.47) circle (0.15);
+		\draw[redback2,line width=0.6pt](15.42,8.47) circle (0.15);
 		
 		\draw[gray] (0,10) node[anchor=north west,align=left] {\texttt{t = 398}\ \texttt{415}\ \texttt{184}\\ \texttt{{} \ \ttapprox \ 0.74 × 2$^{\texttt{29}}$}};
 	\end{tikzpicture}
