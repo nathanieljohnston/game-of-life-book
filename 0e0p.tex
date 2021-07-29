@@ -375,7 +375,7 @@ In order to implement this behavior, the 0E0P metacell is made up of three compo
 	\item At its center is the largest region of the metacell: its \textbf{nucleus},\index{nucleus} which is a huge boustrophedonic glider loop\footnote{That is, a glider loop in which the gliders travel back and forth along antiparallel lanes.} with a period of exactly $2^{29}$. It is populated by over three million gliders, which together encode a complete single-channel glider synthesis of the 0E0P metacell, along with a lookup table for the rule that the metacell is emulating.\smallskip
 \end{itemize}
 
-We describe how these three components of the metacell function throughout its lifecycle in more detail in the next three sections. We then talk about how they are constructed by parent metacells in Section~\ref{sec:0e0p_construction}.
+We describe how these three components of the metacell function throughout its lifecycle in more detail in the next three sections, and we then talk about how they are constructed by parent metacells in Section~\ref{sec:0e0p_construction}. Due to the complexity and size of the 0E0P metacell, it is extremely important that the reader does not just read through the next few sections, but also explores the metacell's different components as we describe them via Life simulation software.\footnote{Unfortunately, no Life simulation software is currently fast enough to run the entire 0E0P metacell ``quickly''. However, bits and pieces of it can be evolved to see how they behave, and numerous snapshots that show the metacell's state at different timestamps are provided in Section~\ref{sec:0e0p_timeline} and at ??.}% TODO: Add URL for timestamp files.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -413,7 +413,7 @@ To make sure that just one copy of the single-channel glider sequence is allowed
 
 The asymmetric kernel contains the paths that are used to feed the 0E0P's single-channel recipe into its neighbors (in magenta in Figure~\ref{fig:0e0p_schematic}). Along these paths, gliders spiral clockwise-and-outwards, and then bypass the shell and do one of two things: go into a construction lane (in dashed magenta) to construct a neighboring metacell, or go into an output lane (in solid magenta) that connects to an input lane of an already-constructed neighboring metacell.
 
-One important aspect of how the output and input lanes (not the construction lanes) of neighboring metacells connect to each other is that, irrespective of the orientation of the neighbors that are communicating, the single-channel glider sequence performs exactly 6 spiral quarter-turns to get from the south corner of the parent metacell to the south corner of the child metacell. This is how child metacells always end up in the correct phase and orientation after they are constructed.
+One important aspect of how the output and input lanes (not the construction lanes) of neighboring metacells connect to each other is that, irrespective of the orientation of the neighbors that are communicating, the single-channel glider sequence performs exactly 6 spiral quarter-turns to get from the south corner of the parent metacell to the south corner of the child metacell. This is how child metacells always end up in the correct phase and orientation after they are constructed. There are also some trombone slides of different lengths on different edges of the kernel, designed to compensate for the ``Olympic running track'' effect---the fact that outer lanes of the spiral slightly longer than inner lanes. These trombone slides ensure that the communication time from the parent to each of the four children is exactly the same.
 
 In order to control which lane the single-channel glider sequence enters, the 0E0P periodically destroys some of the kernel's Snarks. We saw one method of doing this back in Figure~\ref{fig:snark_seeded_destroy}---a single glider can be used to destroy a Snark (with the help of 3 extra pre-placed still lifes). The 0E0P metacell makes use of Snark-destroying reactions like this one\footnote{But not \emph{exactly} this one---see Exercise~\ref{exer:0e0p_snark_destroyer}.} so as to redirect copies of its single-channel glider sequence to eight different locations over the course of its lifespan. In order,\footnote{The single-channel glider sequence really does have to be sent along these $8$ paths one after another. If we just used glider duplicators to send it along all $8$ paths at the same time, there could be unwanted collisions when constructing child metacells (e.g., if two parent metacells tried to create a child in the same location at the same time).} they are:\smallskip
 
@@ -433,6 +433,7 @@ In order to control which lane the single-channel glider sequence enters, the 0E
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The lane-switching mechanisms described earlier are implemented by a \textbf{clock gun} that is located at the top-left corner of the ``\texttt{logic}'' component in Figures~\ref{fig:0e0p_schematic} and~\ref{fig:0e0p_itself}. This gun sends out a single glider every $2^{29}$ generations, thus matching exactly the period of the glider loop contained in the nucleus. It is made up of a p256 gun attached to a sequence of $21$ semi-Snarks, much like the clock gun of Figure~\ref{fig:p2to_the_20_gun} that was used by Chapter~\ref{chp:universal_computation}'s universal computer (though that gun used quadri-Snarks instead).\footnote{The 0E0P's clock gun uses the color-changing semi-Snark of Figure~\ref{fig:cc_semi_snark}, since it is Spartan and is thus easier to construct via a single-channel glider recipe than quadri-Snarks.}\index{semi-Snark}\index{Spartan}
+% Footnote that we lied a bit here? Sends out some gliders at p2^25 to destroy one-time circuitry, and self-destructs to be faster after a while
 
 The gliders that are released by the clock gun travel through sequences of one-time turners and splitters that are interspersed throughout the rest of the 0E0P's circuitry, so as to the trigger the appropriate lane-switching mechanisms at each step of its lifecycle. This method is illustrated at a much smaller scale in Figure~\ref{fig:clock_path_switcher}, where a clock gun is used to change what happens to the path of a single-channel glider sequence three times.
 
@@ -444,20 +445,6 @@ The gliders that are released by the clock gun travel through sequences of one-t
 \end{figure}
 
 % EVERYTHING AFTER THIS POINT IS PLACEHOLDER and/or copied from forums and/or gibberish that will be changed
-
-% Probably move all of the next few paragraphs earlier
-
-There are some trombone slides of different lengths on different edges of the kernel, designed to compensate for the 'Olympic running track' effect where outer lanes of the spiral are disadvantaged vis-a-vis inner lanes. This ensures that the communication time from the parent to each of the four children is exactly the same.
-
-Incoming gliders entering the child metacell get a 'head start', being injected several rows beyond the start of the tape. This 'head start' exactly compensates for the delay incurred by the gliders spiralling through the circuitry to pass from the parent metacell to the child, so the tapes of the parent and child metacell end up in exactly the same phase. This injection point is what you called 'Area 51' on Ch91's thread:
-
-% Talk about the clock and show example figure of it implementing the single-channel-switching stuff from earlier
-
-% Note to self: big gap in nucleus corresponds to when child metacell is repeatedly creating its nucleus's Snark loops. (i.e., when the child C1 and C2 are in use)
-% Timeline file goes through 1.5*2^29 generations (i.e., 1.5 cycles of nucleus loop). 3072 snapshots at a spacing of 2^11 generations
-% What happens during the 64 iterations of the glider loop during the 0E0P's life cycle? 1: construct SE, 2: copy into SE, 3: ?
-
-% TODO: At start of "Overview of Metacell" section, give a warning that reader REALLY needs to try actually viewing 0E0P to get anything out of this. Mention its size, warn again that it is too slow to actually run, and give link to timeline files.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -477,6 +464,7 @@ The kernel also contains, at its southern corner, the logic circuitry that is us
 % In memory tape: roughly 3.5 million gliders in 3 groups
 % 2465 doing rule table, but that amount varies depending on the rule.
 % The other 15k or so at the very front encode the construction of 2 Snarks and some one-time stuff. Not sure why it's separated off on its own yet.
+% Note to self: big gap in nucleus corresponds to when child metacell is repeatedly creating its nucleus's Snark loops. (i.e., when the child C1 and C2 are in use)
 
 This is one of the few optimisations I deemed necessary. (Without this idea of subroutines and parallel construction, the metacell's side-length would need to be increased by a factor of 8.)
 
@@ -487,6 +475,8 @@ A solution is to only store the recipe for a single 180-degree reflector in the 
 This reduces the problem of constructing an immense ($2^{29}$-tick) memory loop to the problem of constructing two smaller memory loops ($2^{21}$ ticks each) to handle the subroutines. These smaller memory loops are small enough that they can be built in a naive sequential manner along with the remainder of the kernel of the 0E0P metacell. The small memory loops are each equipped with a binary counter which halts the subroutine after it has run for exactly 256 iterations and built 1024 reflectors (i.e. 2048 Snarks).
 
 These subroutine storage units are among the most complicated mechanisms in the 0E0P metacell. A lot of the rest of the 0E0P recipe is just simple single-channel recipes, building one thing after another after another. But for these two storage units it's necessary to extract two small pieces of the full recipe, and execute each one 512 times to build the Snark chains that make up the "nucleus". Adam mentioned that the 0E0P would have had to be a lot bigger if the recipes for all of those Snarks were included inline with no subroutines
+
+Incoming gliders entering the child metacell get a 'head start', being injected several rows beyond the start of the tape. This 'head start' exactly compensates for the delay incurred by the gliders spiralling through the circuitry to pass from the parent metacell to the child, so the tapes of the parent and child metacell end up in exactly the same phase. This injection point is what you called 'Area 51' on Ch91's thread:
 
 
 %%%%%%%%%%%%%%%%%%%%%%
@@ -751,6 +741,7 @@ Finally, Adam P.~Goucher spent 2014--2018 constructing the 0E0P metapixel, which
 	\mfilbreak
 	
 	
+	% TODO: Add solution
 	\begin{problem}\label{exer:0e0p_rro_technicalities} \probdiff{3}
 		Copies of the 0E0P metacell can be placed on the Life plane so as to evolve in the same way as the pattern from Figure~\ref{fig:reflectorless_rotating_oscillator1}.\smallskip
 		
@@ -760,6 +751,26 @@ Finally, Adam P.~Goucher spent 2014--2018 constructing the 0E0P metapixel, which
 			
 			\item Explain how you could use even more 0E0P metacells to emulate multiple copies of the pattern from Figure~\ref{fig:reflectorless_rotating_oscillator1} so as to create an actual RRO in Life.
 			% Use four copies, rotated
+		\end{enumerate}
+	\end{problem}
+
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:0e0p_single_cell_rro_rule}
+		The 0E0P metacell from Figures~\ref{fig:0e0p_timeline_0}--?? is emulating the isotropic rule
+		\begin{align*}
+			& \texttt{B2-an3-eiky4aiqw5ijnr6ak} \\
+			& \quad \texttt{/S012ik3-acir4kqw5acq6ack7c8}.
+		\end{align*}
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item \probdiff{2} Find an RRO in this rule.
+			
+			\item \probdiff{3} Use multiple copies of the 0E0P metacell (each emulating this rule) so as to create an RRO in Life.
+			
+			\noindent [Hint: Be careful and recall the solution of Exercise~\ref{exer:0e0p_rro_technicalities}.]
 		\end{enumerate}
 	\end{problem}
 
