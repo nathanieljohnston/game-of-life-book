@@ -22,7 +22,7 @@ Specifically, we construct a pattern called the \textbf{0E0P metacell},\footnote
 	\caption{A \textbf{metaglider}\index{metaglider} made up of five copies of the 0E0P metacell, each of which is $2^{18} \times 2^{18}$ and logically makes up one ``cell''. It travels in much the same way as a glider, but $2^{36}$ times as slowly.}\label{fig:0e0p_glider}
 \end{figure}
 
-A meta-fied pattern like this is roughly $2^{18} = 262{\thousep}144$ times as large as the original pattern that it is based on, and it runs $2^{36} = 68{\thousep}719{\thousep}476{\thousep}736$ times as slowly. Indeed, the 0E0P metacell is so much larger and slower than any other pattern that we have seen in this book that evolving the metaglider from Figure~\ref{fig:0e0p_glider} through four ``metagenerations'' (i.e., $4 \times 2^{36}$ generations), to see that it really is a spaceship, would take a couple of years on a modern desktop computer via standard Life simulation algorithms.\footnote{The fastest ``standard'' Life simulation algorithm is \textbf{HashLife} \cite{Gos84}, which is fast enough to run any of the patterns that we saw earlier in this book---even huge ones like the $\pi$ calculator and the Gemini spaceship. To run patterns that use huge streams of gliders (like the 0E0P metacell) more efficiently, Adam P.~Goucher developed a new \textbf{StreamLife} algorithm, but even it would require several months to evolve a metaglider through four metagenerations.}\index{HashLife}\index{StreamLife}
+A meta-fied pattern like this is roughly $2^{18} = 262{\thousep}144$ times as large as the original pattern that it is based on, and it runs $2^{36} = 68{\thousep}719{\thousep}476{\thousep}736$ times as slowly. Indeed, the 0E0P metacell is so much larger and slower than any other pattern that we have seen in this book that evolving the metaglider from Figure~\ref{fig:0e0p_glider} through four \textbf{metagenerations}\index{metageneration} (i.e., $4 \times 2^{36}$ generations), to see that it really is a spaceship, would take a couple of years on a modern desktop computer via standard Life simulation algorithms.\footnote{The fastest ``standard'' Life simulation algorithm is \textbf{HashLife} \cite{Gos84}, which is fast enough to run any of the patterns that we saw earlier in this book---even huge ones like the $\pi$ calculator and the Gemini spaceship. To run patterns that use huge streams of gliders (like the 0E0P metacell) more efficiently, Adam P.~Goucher developed a new \textbf{StreamLife} algorithm, but even it would require several months to evolve a metaglider through four metagenerations.}\index{HashLife}\index{StreamLife}
 
 While emulating Life within Life perhaps does not seem as remarkable a feat as some of the other things we have achieved over the past three chapters, what really makes the 0E0P metacell shine is that it can actually emulate a huge variety of 2D cellular automata besides Life as well. As a result, any pattern from one of those other cellular automata can be straightforwardly ``imported'' into Life simply by meta-fying it, thus giving us exotic new types of patterns that were previously not known how to construct.
 
@@ -494,7 +494,7 @@ Ensuring all four metacells are built in the same orientation is by building the
 
 
 %%%%%%%%%%%%%%%%%%%%%%
-\section{A Complete Lifecycle}\label{sec:0e0p_timeline}
+\section{A Complete Metageneration}\label{sec:0e0p_timeline}\index{metageneration}
 %%%%%%%%%%%%%%%%%%%%%%
 
 So far, we have described how the 0E0P metacell works at a fairly high level: every $2^{29}$ generations, the clock gun fires a glider that potentially changes what happens throughout the metacell. Some of these gliders direct the single-channel glider sequence from the nucleus to start constructing a neighboring metacell, some of them redirect that glider sequence to be duplicated into a neighbor's nucleus, and some of them trigger the self-destruction of the entire metacell.
@@ -520,6 +520,8 @@ If we break the $2^{35}$-generation lifecycle of the metacell down into $2^6 = 6
 \end{itemize}
 % Can we be slightly more specific above? Does the self-destruction happen in cycle 15 exactly, for example?
 
+We now describe what happens throughout the 0E0P's lifecycle in much more specific detail, and highlight key timestamps where interesting things happen or change in its circuitry.
+
 % Timeline of important moments down here. Need to lead-in and reference these figures.
 
 % To convert a timestamp from here to a timestamp from 0e0p_timeline.mc, add 138590856 = 33 * 2^22 + 178824
@@ -531,32 +533,44 @@ If we break the $2^{35}$-generation lifecycle of the metacell down into $2^6 = 6
 % For t = 7482638336, use generation 105727352 of rrocell_backup128756
 
 
-\clearpage
+% TODO: Double-check the timestamps in the upcoming subsection. They might depend on the orientation of the 0E0P which seems to be off in linear_construct_canon
+%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The First $\mathbf{0.2 \times 2^{29}}$ Generations: Construction of the Southeast Child's Shell}\label{sec:0e0p_timeline_shell}
+%%%%%%%%%%%%%%%%%%%%%%
 
-\newgeometry{top=28mm,left=28mm,bottom=0mm,right=28mm,headsep=10pt,a4paper}
+We start with an 0E0P metacell that is ready to start constructing its neighbors. We say that generation $t = 0$ is the one displayed in Figure~\ref{fig:0e0p_timeline_0}: the parent metacell has a Herschel in its clock gun that will create a glider that escapes past all of the semi-Snarks, and then removes an eater~2 from a syringe. Construction of the southeast child's symmetric shell will begin when a copy of the glider stream from the parent's nucleus passes through this location that used to have an eater~2, and then makes its way on a circuitous path to a construction elbow in the parent's south corner.
 
 \begin{figure}[!htb]
 	\centering
-	
 	\embedlink{0e0p_timeline_0_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_0.pdf}}
 	\caption{A Herschel in the parent metacell's clock gun (highlighted in \bgbox{aquaback}{aqua}) is about to create a glider that will make it all the way out of the clock. It will use some one-time turners (circled in \bgbox{redback}{red}) and then destroy an eater~2 from a syringe, which will allow a copy of the single-channel glider recipe to escape from the nucleus and start constructing the southeast child metacell, starting with its shell.}
 	\label{fig:0e0p_timeline_0}
 \end{figure}
 
+Construction of the child's symmetric shell continues in several stages. Often a stage begins with the construction of a Cordership, followed by a slow salvo to shoot down the Cordership once it has traveled the right distance and turn it into a new target ``hand'' block at the correct location, and then followed by a slow salvo recipe to build whatever is needed at that location. There are many visible gaps in the 0E0P's single-channel recipe, and most of them correspond to the flight time of a Cordership, while the recipe waits to shoot it down after it has traveled the right distance.
+
+The first such Cordership launch happens at generation $t = 17{\thousep}367{\thousep}250 \approx 0.0323 \times 2^{29}$ (see Figure~\ref{fig:0e0p_timeline_17367250}), where a Cordership is constructed at the child's south corner and is launched to its east corner.
+
 \begin{figure}[!htb]
 	\centering
-	
-	\vspace*{-0.3cm}
-	
 	\embedlink{0e0p_timeline_17367250_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_17367250.pdf}}
 	\caption{A glider (circled in \bgbox{redback}{red}) at the south corner of the child metacell's shell, about to synthesize a Cordership that does a long-distance elbow push to its east corner.}
 	\label{fig:0e0p_timeline_17367250}
 \end{figure}
 
+By generation $t = 105{\thousep}736{\thousep}722 \approx 0.1969 \times 2^{29}$, construction of the final south corner of the symmetric shell is just about complete---the final construction glider has been produced, and a long-range backwards elbow move (\textbf{LRBEM})\index{LRBEM} recipe is processed immediately after this. At $t = 106{\thousep}799{\thousep}753 \approx 0.1989 \times 2^{29}$, the return glider from this LRBEM recipe has made a new elbow, and the single-channel recipe then shoots a single glider sideways from the new elbow position (at $t = 106{\thousep}801{\thousep}269$), removes the elbow (at $t = 106{\thousep}801{\thousep}938$), and then uses five gliders to clean up some leftover junk from the LRBEM (at $t = 107{\thousep}325{\thousep}700$), far away in the northeast corner.\footnote{This out-of-order cleanup is just the way that slsparse automatically compiled these LRBEMs in 2018. There are more efficient recipes known now.}
+
+That single extra glider that was shot sideways by the temporary elbow will be used shortly to trigger construction of the southeast child metacell's kernel.
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Generations $\mathbf{0.2 \times 2^{29}}$ to $\mathbf{0.74 \times 2^{29}}$: Construction of the Southeast Child's Kernel}\label{sec:0e0p_timeline_kernel}
+%%%%%%%%%%%%%%%%%%%%%%
+
+Stuff.
+
 \begin{figure}[!htb]
 	\centering
-	
-	\vspace*{-0.3cm}
 	
 	\embedlink{0e0p_timeline_107585535_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_107585535.pdf}}
 	\caption{The southeast child's shell has been constructed. A single stray glider (circled in \bgbox{redback}{red}) is about to delete a Snark, allowing the rest of the construction recipe to enter the correct lane of the child's shell. This ensures that the rest of that child is constructed in the proper orientation.}
@@ -566,16 +580,17 @@ If we break the $2^{35}$-generation lifecycle of the metacell down into $2^6 = 6
 \begin{figure}[!htb]
 	\centering
 	
-	\vspace*{-0.3cm}
-	
 	\embedlink{0e0p_timeline_334193646_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_334193646.pdf}}
 	\caption{Construction of the child's south corner begins. The logic circuit (highlighted in \bgbox{aquaback}{aqua}, including the clock gun) will now be constructed by the elbow block circled in \bgbox{redback}{red}.}
 	\label{fig:0e0p_timeline_334193646}
 \end{figure}
 
 
-\clearpage
+%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Generations $\mathbf{0.74 \times 2^{29}}$ to $\mathbf{0.76 \times 2^{29}}$: CN and CE Loop Initialization}\label{sec:0e0p_timeline_nucleus_nw}
+%%%%%%%%%%%%%%%%%%%%%%
 
+Stuff.
 
 \begin{figure}[!htb]
 	\centering
@@ -588,8 +603,6 @@ If we break the $2^{35}$-generation lifecycle of the metacell down into $2^6 = 6
 \begin{figure}[!htb]
 	\centering
 	
-	\vspace*{-0.3cm}
-	
 	\embedlink{0e0p_timeline_398415184_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_398415184.pdf}}
 	\caption{The glider from Figure~\ref{fig:0e0p_timeline_397758309} (circled in \bgbox{redback}{red}) has reached \texttt{CN} and is about to start the clock there (highlighted in \bgbox{aquaback}{aqua}). That clock will trigger \texttt{CN}'s self-destruction $2^{29}$ generations later, after the period $2^{21}$ \texttt{CN} subroutine loop has been used $2^8 = 256$ times.}
 	\label{fig:0e0p_timeline_398415184}
@@ -597,8 +610,6 @@ If we break the $2^{35}$-generation lifecycle of the metacell down into $2^6 = 6
 
 \begin{figure}[!htb]
 	\centering
-	
-	\vspace*{-0.3cm}
 	
 	\embedlink{0e0p_timeline_400027916_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_400027916.pdf}}
 	\caption{The subroutine glider loop at \texttt{CN} is now filled, since its final glider (circled in \bgbox{redback}{red}) just passed through the same temporary Snark as in Figure~\ref{fig:0e0p_timeline_398415184}, which will soon be destroyed by the glider from Figures~\ref{fig:0e0p_timeline_397758309} and \ref{fig:0e0p_timeline_398415184}. The gliders leaving from the \bgbox{aquaback}{aqua} lane of the splitter are duplicated three more times and then head to \texttt{LW} to construct the northwest wall of the nucleus.}
@@ -608,15 +619,10 @@ If we break the $2^{35}$-generation lifecycle of the metacell down into $2^6 = 6
 \begin{figure}[!htb]
 	\centering
 	
-	\vspace*{-0.3cm}
-	
 	\embedlink{0e0p_timeline_400787481_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_400787481.pdf}}
 	\caption{The subroutine glider loop has been used once at \texttt{LW} to construct the first set of Snarks along the nucleus's northwest wall (the last elbow operation from that loop is about to pull the elbow block circled in \bgbox{redback}{red} by 14fd). The glider from Figure~\ref{fig:0e0p_timeline_397758309} is between \texttt{CE} and \texttt{SE}, on its way to \texttt{S}.}
 	\label{fig:0e0p_timeline_400787481}
 \end{figure}
-
-\clearpage
-
 
 \begin{figure}[!htb]
 	\centering
@@ -629,8 +635,6 @@ If we break the $2^{35}$-generation lifecycle of the metacell down into $2^6 = 6
 \begin{figure}[!htb]
 	\centering
 	
-	\vspace*{-0.3cm}
-	
 	\embedlink{0e0p_timeline_402371523_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_402371523.pdf}}
 	\caption{A glider goes through a Snark at the child's south corner that leads it to \texttt{CE}, which will trigger construction of the nucleus's southeast wall (just like the glider from Figure~\ref{fig:0e0p_timeline_397758309}). The same things as in Figures~\ref{fig:0e0p_timeline_398415184}--\ref{fig:0e0p_timeline_400787481} then happen, but along that southeast wall instead of the northwest one.}
 	\label{fig:0e0p_timeline_402371523}
@@ -639,24 +643,33 @@ If we break the $2^{35}$-generation lifecycle of the metacell down into $2^6 = 6
 \begin{figure}[!htb]
 	\centering
 	
-	\vspace*{-0.3cm}
-	
 	\embedlink{0e0p_timeline_405381090_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_405381090.pdf}}
 	\caption{The glider from Figure~\ref{fig:0e0p_timeline_402371523} makes it back to \texttt{S}, where it destroys (and is destroyed by) the Snark from that figure. A complete copy of the construction recipe from the parent metacell has now been used---the next copy will be directed into the nucleus of this child.}
 	\label{fig:0e0p_timeline_405381090}
 \end{figure}
 
+
+%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The Next $\mathbf{?? \times 2^{29}}$ Generations: Nucleus Fills While Being Constructed}\label{sec:0e0p_timeline_nucleus_fill}
+%%%%%%%%%%%%%%%%%%%%%%
+
+Stuff.
+
 \begin{figure}[!htb]
 	\centering
 	
-	\vspace*{-0.3cm}
+	\patternlink{0e0p_timeline_935289088_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_935289088.pdf}}
+	\caption{A Herschel is present in the \texttt{CN} clock gun that will produce the glider that makes it through all of the twenty-one semi-Snarks in the loops below. That signal destroys a block in a syringe (circled in \bgbox{redback}{red}), and also destroys the three outermost semi-Snarks, making the clock gun $8$ times faster.}
+	\label{fig:0e0p_timeline_935289088}
+\end{figure}
+
+\begin{figure}[!htb]
+	\centering
 	
 	\patternlink{0e0p_timeline_0_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_68719476736.pdf}}
 	\caption{A full metageneration of the $2$-state Moore-neighborhood rule has passed. In the particular rule being emulated here, a single cell lives from one generation to the next, so this snapshot is identical to the one from Figure~\ref{fig:0e0p_timeline_0}: a Herschel is present in the clock gun which will release a glider that will destroy an eater~2, allowing the metacell to start construction of its southeast neighbor.}
 	\label{fig:0e0p_timeline_68719476736}
 \end{figure}
-
-\restoregeometry
 
 % TODO: Check that the coordinates in the timestamp files themselves are correct (they were relative to linear_construct_canon.mc.gz, so they may have changed slightly)
 
