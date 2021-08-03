@@ -547,7 +547,7 @@ We start with an 0E0P metacell that is ready to start constructing its neighbors
 	\label{fig:0e0p_timeline_0}
 \end{figure}
 
-Construction of the child's symmetric shell continues in several stages. Often a stage begins with the construction of a Cordership, followed by a slow salvo to shoot down the Cordership once it has traveled the right distance and turn it into a new target ``hand'' block at the correct location, and then followed by a slow salvo recipe to build whatever is needed at that location. There are many visible gaps in the 0E0P's single-channel recipe, and most of them correspond to the flight time of a Cordership, while the recipe waits to shoot it down after it has traveled the right distance.
+Construction of the child's symmetric shell continues in several stages. A stage often begins with the construction of a Cordership, followed by a slow salvo to shoot down the Cordership once it has traveled the right distance and turn it into a new target ``hand'' block at the correct location.\footnote{The 0E0P metacell uses 3-engine Corderships, since the single-channel recipe for the 2-engine Cordership from Figure~\ref{fig:2_engine_cordership_seed} and Appendix~\ref{sec:appendix_cordership_maker} was not known at the time of its completion in 2018.} Another slow salvo recipe then follows, to build whatever is needed at the location of the new hand block. There are many visible gaps in the 0E0P's single-channel recipe, and most of them correspond to the flight time of a Cordership, while the recipe waits to shoot it down after it has travelled the right distance.
 
 The first such Cordership launch happens at generation $t = 17{\thousep}367{\thousep}250 \approx 0.0323 \times 2^{29}$ (see Figure~\ref{fig:0e0p_timeline_17367250}), where a Cordership is constructed at the child's south corner and is launched to its east corner.
 
@@ -560,26 +560,30 @@ The first such Cordership launch happens at generation $t = 17{\thousep}367{\tho
 
 By generation $t = 105{\thousep}736{\thousep}722 \approx 0.1969 \times 2^{29}$, construction of the final south corner of the symmetric shell is just about complete---the final construction glider has been produced, and a long-range backwards elbow move (\textbf{LRBEM})\index{LRBEM} recipe is processed immediately after this. At $t = 106{\thousep}799{\thousep}753 \approx 0.1989 \times 2^{29}$, the return glider from this LRBEM recipe has made a new elbow, and the single-channel recipe then shoots a single glider sideways from the new elbow position (at $t = 106{\thousep}801{\thousep}269$), removes the elbow (at $t = 106{\thousep}801{\thousep}938$), and then uses five gliders to clean up some leftover junk from the LRBEM (at $t = 107{\thousep}325{\thousep}700$), far away in the northeast corner.\footnote{This out-of-order cleanup is just the way that slsparse automatically compiled these LRBEMs in 2018. There are more efficient recipes known now.}
 
-That single extra glider that was shot sideways by the temporary elbow will be used shortly to trigger construction of the southeast child metacell's kernel.
+That single extra stray glider that was shot sideways by the temporary elbow will be used shortly to trigger construction of the southeast child metacell's kernel.
 
 
 %%%%%%%%%%%%%%%%%%%%%%
 \subsection{Generations $\mathbf{0.2 \times 2^{29}}$ to $\mathbf{0.74 \times 2^{29}}$: Construction of the Southeast Child's Kernel}\label{sec:0e0p_timeline_kernel}
 %%%%%%%%%%%%%%%%%%%%%%
 
-Stuff.
+At generation $t = 107{\thousep}585{\thousep}535 \approx 0.2004 \times 2^{29}$ the extra stray glider has traveled through several one-time turners to the circuitry at the parent's southeast edge. It then cleanly destroys a Snark from the single-channel glider recipe's path (see Figure~\ref{fig:0e0p_timeline_107585535}), so that the recipe is directed into the child's newly-constructed symmetric shell. The design of the shell allows the interior part of the metacell to always be constructed in the same orientation, no matter which direction the construction recipe is coming from.
 
 \begin{figure}[!htb]
 	\centering
-	
 	\embedlink{0e0p_timeline_107585535_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_107585535.pdf}}
 	\caption{The southeast child's shell has been constructed. A single stray glider (circled in \bgbox{redback}{red}) is about to delete a Snark, allowing the rest of the construction recipe to enter the correct lane of the child's shell. This ensures that the rest of that child is constructed in the proper orientation.}
 	\label{fig:0e0p_timeline_107585535}
 \end{figure}
 
+The kernel takes a bit more than twice as long to construct as the shell, and makes use of numerous long-distance Cordership-based elbow pushes. This construction is heavily unoptimized, as it was generated automatically by slsparse using known standard methods---fire a Cordership towards a location, build something there, fire a glider back, and repeat.
+
+However, this could be made much less expensive. For example, instead of using a long-distance Cordership-based elbow push to start construction of the \texttt{CN} construction site (which is done at $t = 147{\thousep}608{\thousep}526 \approx 0.2749 \times 2^{29}$), it would have been possible to aim gliders at an outlying still life in the unused circuitry near the construction point along the northwest edge, produce a new target object, then rebuild the temporarily sacrificed still life. The 0E0P metacell could be reduced in size and made to run several times faster with these kinds of optimizations---but it would have been far more difficult to complete a working pattern.
+
+The last part of the kernel to be constructed is its south corner, which begins at generation $t = 334{\thousep}193{\thousep}646 \approx 0.6225 \times 2^{29}$ (see Figure~\ref{fig:0e0p_timeline_334193646}). The entirety of the metacell's clock gun and logic circuitry is constructed at this point. The final glider used in the south corner's construction is emitted at $t = 396{\thousep}918{\thousep}853 \approx 0.7393 \times 2^{29}$, followed by a Snarkmaker recipe that is used to redirect the rest of the single-channel glider recipe for the nucleus's construction.
+
 \begin{figure}[!htb]
 	\centering
-	
 	\embedlink{0e0p_timeline_334193646_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_334193646.pdf}}
 	\caption{Construction of the child's south corner begins. The logic circuit (highlighted in \bgbox{aquaback}{aqua}, including the clock gun) will now be constructed by the elbow block circled in \bgbox{redback}{red}.}
 	\label{fig:0e0p_timeline_334193646}
@@ -591,6 +595,7 @@ Stuff.
 %%%%%%%%%%%%%%%%%%%%%%
 
 Stuff.
+% TODO: Lead in a bit from the afore-mentioned Snarkmaker, and highlight it in the next figure? Also make next figure's caption appropriately more descriptive.
 
 \begin{figure}[!htb]
 	\centering
