@@ -668,8 +668,6 @@ Thanks to the removal of this Snark, the \emph{next} copy of the single-channel 
 \subsection{Generations $\mathbf{0.76 \times 2^{29}}$ to $\mathbf{1.94 \times 2^{29}}$: Nucleus Fills While Being Constructed}\label{sec:0e0p_timeline_nucleus_fill}
 %%%%%%%%%%%%%%%%%%%%%%
 
-At generation ??, the parent metacell's clock gun releases a glider that... switch to output lane instead of construction lane.
-
 So now both loops are filled and are building the repetitive Snark chains that will hold the child 0E0P's copy of the full recipe. When construction is done there will be 246 copies of 8 Snarks in long chains along the NW and SE sides of the "nucleus". The sets of 8 Snarks and their associated self-destruct circuitry are not quite mirror-images of each other, so different recipes are needed for the NW and SE subroutine storage units.
 
 This goes on for quite a while. The clock guns are period 256* $2^21$ = $2^29$. The glider storage loops are period 2097152, and they have to cycle 256 times each and then get shut down cleanly. The recipes in the subroutine storage units are actually for just two Snarks (plus their associated self-destruct circuitry). Splitters near the storage units duplicate the recipe several times, so that construction actually proceeds on four Snark pairs simultaneously. The unit of repetition that's constructed 256 times is made up of eight gliders, offset in pairs from each other so that the simultaneous constructions don't get in each other's way.
@@ -692,13 +690,16 @@ A side branch of that same signal also starts the gradual process of dismantling
 	\label{fig:0e0p_timeline_940814085}
 \end{figure}
 
-% 1002401984
+% Maybe move this next figure to the next section too? Depends on what headings we use.
 
-% 1040180242 (called 1577051154 on forums -- clock starts up in child)
-
+\begin{figure}[!htb]
+	\centering
+	\patternlink{0e0p_timeline_1040180152_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_1040180152.pdf}}
+	\caption{The first gliders in the child's single-channel glider recipe complete their first journey through its nucleus. The very first of these gliders hits a one-time reflector (circled in \bgbox{redback}{red}) that redirects it to start up that child metacell's clock gun (highlighted in \bgbox{aquaback}{aqua}).}
+	\label{fig:0e0p_timeline_1040180152}
+\end{figure}
 
 % Next section:
-
 % 1040192000
 
 \begin{figure}[!htb]
@@ -897,6 +898,14 @@ Finally, Adam P.~Goucher spent 2014--2018 constructing the 0E0P metapixel, which
 			
 			\item Explain why the configuration of still lifes from part~(a) might be preferable to the one from Figure~\ref{fig:snark_seeded_destroy}, despite being larger.
 		\end{enumerate}
+	\end{problemstar}
+
+
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:0e0p_extra_south_glider} \probdiff{2}
+		In Figure~\ref{fig:0e0p_timeline_1040180152}, there is a one-time-turner that emits a glider to the south (first to the southeast, but it is then redirected to the southwest). What does this glider do, and what purpose does it serve?
 	\end{problemstar}
 	
 	
