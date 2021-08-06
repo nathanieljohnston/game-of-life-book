@@ -514,7 +514,7 @@ If we break the $2^{35}$-generation lifecycle of the metacell down into $2^6 = 6
 	
 	\item Cycles 9--13: Do nothing (just spend some time ``looking like a cell'').\smallskip
 	
-	\item Cycle 14: The single-channel glider stream is emptied out of the metacell's nucleus. Simultaneously, information about the metacell's state is sent to all four of its neighbors.\smallskip
+	\item Cycle 14: The single-channel glider stream is emptied out of the metacell's nucleus. The metacell's state is then sent to all four of its neighbors.\smallskip
 	
 	\item Cycles 15--64: The parent metacell self-destructs and child metacells do nothing (they just spend some time ``looking like a cell'').\smallskip
 \end{itemize}
@@ -648,59 +648,57 @@ The entire procedure used to initialize the \texttt{CN} subroutine loop, as desc
 	\label{fig:0e0p_timeline_435925955}
 \end{figure}
 
-% NJ is here in timestamp updating
+That trigger glider will then activate the clock gun located at \texttt{CE} at $t = 436{\thousep}382{\thousep}282 \approx 0.8128 \times 2^{29}$, in the exact same way as happened at \texttt{CN} in Figure~\ref{fig:0e0p_timeline_431969616}. The subroutine portion of the single-channel recipe then fills the loop, with its final glider entering the loop at $t = 437{\thousep}805{\thousep}347 \approx 0.8155 \times 2^{29}$. Once this glider passes through this temporary Snark, the full construction recipe of the 0E0P metacell has been completely processed.
 
-That trigger glider will then activate the clock gun located at \texttt{CE} at $t = 402{\thousep}827{\thousep}850 \approx 0.7503 \times 2^{29}$, in the exact same way as happened at \texttt{CN} in Figure~\ref{fig:0e0p_timeline_398415184}. The subroutine portion of the single-channel recipe then fills the loop, with its final glider entering the loop at $t = 404{\thousep}250{\thousep}915 \approx 0.7530 \times 2^{29}$. Once this glider passes through this temporary Snark, the full construction recipe of the 0E0P metacell has been completely processed.
-
-The trigger glider then destroys the \texttt{CE} subroutine loop's input Snark, and is then redirected along a self-destruct chain toward the child's south corner, removing reflectors in four more locations along the way. Finally, it destroys (and is destroyed by) the Snark that directed it to \texttt{CE} in the first place. This final usage of the trigger glider occurs at $t = 405{\thousep}381{\thousep}090 \approx 0.7551 \times 2^{29}$ (see Figure~\ref{fig:0e0p_timeline_405381090}).
+The trigger glider then destroys the \texttt{CE} subroutine loop's input Snark, and is then redirected along a self-destruct chain toward the child's south corner, removing reflectors in four more locations along the way. Finally, it destroys (and is destroyed by) the Snark that directed it to \texttt{CE} in the first place. This final usage of the trigger glider occurs at $t = 438{\thousep}935{\thousep}522 \approx 0.8176 \times 2^{29}$ (see Figure~\ref{fig:0e0p_timeline_438935522}).
 
 \begin{figure}[!htb]
 	\centering
-	\embedlink{0e0p_timeline_405381090_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_405381090.pdf}}
-	\caption{The glider from Figure~\ref{fig:0e0p_timeline_402371523} makes it back to \texttt{S}, where it destroys (and is destroyed by) the Snark from that figure. A complete copy of the construction recipe from the parent metacell has now been used---the next copy will be directed into the nucleus of this child.}
-	\label{fig:0e0p_timeline_405381090}
+	\embedlink{0e0p_timeline_438935522_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_438935522.pdf}}
+	\caption{The glider from Figure~\ref{fig:0e0p_timeline_435925955} makes it back to \texttt{S}, where it destroys (and is destroyed by) the Snark from that figure. A complete copy of the construction recipe from the parent metacell has now been used---the next copy will be directed into the nucleus of this child.}
+	\label{fig:0e0p_timeline_438935522}
 \end{figure}
 
 Thanks to the removal of this Snark, the \emph{next} copy of the single-channel glider recipe that comes into this child metacell will be fed into the Snarks that make up the nucleus's walls, rather than to the \texttt{CN} or \texttt{CE} subroutine loops. Those nucleus walls are still being constructed by the subroutine loops, which won't complete for roughly $2^{29}$ more generations, but the nucleus construction process moves at roughly the same speed as the approaching recipe, so the construction will safely complete before the recipe gets there.
 
 
 %%%%%%%%%%%%%%%%%%%%%%
-\subsection{Generations $\mathbf{0.76 \times 2^{29}}$ to $\mathbf{1.94 \times 2^{29}}$: Activation of the Southeast Child}\label{sec:0e0p_timeline_nucleus_fill}
+\subsection{Generations $\mathbf{0.82 \times 2^{29}}$ to $\mathbf{2 \times 2^{29}}$: Activation of the Southeast Child}\label{sec:0e0p_timeline_nucleus_fill}
 %%%%%%%%%%%%%%%%%%%%%%
 
-Now both subroutine loops of the child metacell are filled and are building the repetitive Snark chains that will hold its copy of the single-channel glider recipe. When construction is done there will be 256 copies of 8 Snarks in long chains along the northwest and southeast walls of the nucleus. The sets of 8 Snarks and their associated self-destruct circuitry are not quite mirror-images of each other, so different recipes are needed in the \texttt{CN} and \texttt{CE} subroutine loops.
+Now both subroutine loops of the child metacell are filled and are building the repetitive Snark chains that will hold its copy of the single-channel glider recipe. When construction is done there will be 256 copies of 8 Snarks in long chains along the northwest and southeast walls of the nucleus. The sets of 8 Snarks and their associated self-destruct circuitry are not quite mirror images of each other, so different recipes are needed in the \texttt{CN} and \texttt{CE} subroutine loops.
 
 This construction and filling of the nucleus goes on for quite a while. The subroutine storage loops are period $2^{21}$, and they have to cycle $256$ times each before being shut down by the period $256 \times 2^{21} = 2^{29}$ clock guns. Splitters near the storage units duplicate the recipe several times, so that construction actually proceeds on four Snark pairs simultaneously. The unit of repetition that's constructed $256$ times is made up of eight gliders, offset in pairs from each other so that the simultaneous constructions don't get in each other's way.
 
-At generation $t = 935{\thousep}289{\thousep}088 \approx 1.7421 \times 2^{29}$, the northwest wall of Snarks is complete, and a Herschel is present in the \texttt{CN} subroutine clock's gun that will produce the glider that makes it through all of the twenty-one semi-Snarks in the loops below (see Figure~\ref{fig:0e0p_timeline_935289088}). That signal destroys a block in a syringe in that subroutine loop, so that all further recipe gliders in the loop will be harmlessly absorbed by the syringe's eater~2---no more building will occur.
+At generation $t = 968{\thousep}843{\thousep}520 \approx 1.8046 \times 2^{29}$, the northwest wall of Snarks is complete, and a Herschel is present in the \texttt{CN} subroutine clock's gun that will produce the glider that makes it through all of the twenty-one semi-Snarks in the loops below (see Figure~\ref{fig:0e0p_timeline_968843520}). That signal destroys a block in a syringe in that subroutine loop, so that all further recipe gliders in the loop will be harmlessly absorbed by the syringe's eater~2---no more building will occur.
 
 \begin{figure}[!htb]
 	\centering
-	\patternlink{0e0p_timeline_935289088_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_935289088.pdf}}
+	\patternlink{0e0p_timeline_968843520_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_968843520.pdf}}
 	\caption{A Herschel is present in the \texttt{CN} clock gun that will produce the glider that makes it through all of the twenty-one semi-Snarks in the loops below. That signal destroys a block in a syringe (circled in \bgbox{redback}{red}), so that the \texttt{CN} storage loop stops building the northwest wall of the nucleus. This same glider also destroys the three outermost semi-Snarks, making the clock gun $8$ times faster.}
-	\label{fig:0e0p_timeline_935289088}
+	\label{fig:0e0p_timeline_968843520}
 \end{figure}
 
 A side branch of that same signal also starts the gradual process of dismantling the subroutine clock gun. This first output glider destroys three of the clock gun's semi-Snarks, making it 8 times faster, and every subsequent output glider acts similarly. The result of this is that the clock gun did nothing for a long time ($2^{29}$ generations), and then its destruction happens faster and faster.
 
-For example, the \emph{next} three semi-Snarks are destroyed just $2^{26}$ generations later, by the Herschel that appears at $t = 1{\thousep}002{\thousep}397{\thousep}952 \approx 1.8671 \times 2^{29}$, and the clock gun vanishes completely just a bit more than $2^{24}$ generations after that, at $t = 1{\thousep}020{\thousep}511{\thousep}053 \approx 1.9008 \times 2^{29}$. The entirety of the \texttt{CN} storage loop is similarly gone just a few thousand generations later, at $t = 1{\thousep}020{\thousep}519{\thousep}136$. The \texttt{CE} subroutine clock and storage loop self-destruct in the exact same way shortly thereafter, and are gone as of $t = 1{\thousep}024{\thousep}931{\thousep}588 \approx 1.9091 \times 2^{29}$.
+For example, the \emph{next} three semi-Snarks are destroyed just $2^{26}$ generations later, by the Herschel that appears at $t = 1{\thousep}035{\thousep}952{\thousep}384 \approx 1.9296 \times 2^{29}$, and the clock gun vanishes completely just a bit more than $2^{24}$ generations after that, at $t = 1{\thousep}054{\thousep}065{\thousep}485 \approx 1.9633 \times 2^{29}$. The entirety of the \texttt{CN} storage loop is similarly gone just a few thousand generations later, at $t = 1{\thousep}054{\thousep}073{\thousep}568$. The \texttt{CE} subroutine clock and storage loop self-destruct in the exact same way shortly thereafter, and are gone as of $t = 1{\thousep}058{\thousep}486{\thousep}020 \approx 1.9716 \times 2^{29}$.
 
-Back in time slightly at $t = 940{\thousep}814{\thousep}085 \approx 1.7524 \times 2^{29}$, after construction of the Snark walls finished but before the subroutine storage loops self-destructed, the final glider in the single-channel recipe is about to enter the child's nucleus at the location just northwest of \texttt{LS} (see Figure~\ref{fig:0e0p_timeline_940814085}). Once this insertion is complete, the child's nucleus will be fully populated with a copy of the parent's DNA.
+Back in time slightly at $t = 974{\thousep}368{\thousep}517 \approx 1.8149 \times 2^{29}$, after construction of the Snark walls finished but before the subroutine storage loops self-destructed, the final glider in the single-channel recipe is about to enter the child's nucleus at the location just northwest of \texttt{LS} (see Figure~\ref{fig:0e0p_timeline_974368517}). Once this insertion is complete, the child's nucleus will be fully populated with a copy of the parent's DNA.
 
 \begin{figure}[!htb]
 	\centering
-	\patternlink{0e0p_timeline_940814085_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_940814085.pdf}}
+	\patternlink{0e0p_timeline_974368517_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_974368517.pdf}}
 	\caption{The final glider in the 0E0P's single-channel glider recipe is injected into the child's nucleus, at the location circled in \bgbox{redback}{red}.}
-	\label{fig:0e0p_timeline_940814085}
+	\label{fig:0e0p_timeline_974368517}
 \end{figure}
 
-After the first glider in the child's nucleus makes it all the way through the long back-and-forth Snark chains for the first time, it arrives at a splitter at the south corner at $t = 1{\thousep}040{\thousep}180{\thousep}152 \approx 1.9375 \times 2^{29}$. It then uses one-time circuitry to start up the child's clock gun (see Figure~\ref{fig:0e0p_timeline_1040180152}), aligned exactly with the timing of the parent's clock gun. However, the clock gun does not actually do anything until much later, when an eater is removed from its path.
+After the first glider in the child's nucleus makes it all the way through the long back-and-forth Snark chains for the first time, it arrives at a splitter at the south corner at $t = 1{\thousep}073{\thousep}734{\thousep}584 \approx 2.0000 \times 2^{29}$. It then uses one-time circuitry to start up the child's clock gun (see Figure~\ref{fig:0e0p_timeline_1073734584}), aligned exactly with the timing of the parent's clock gun. However, the clock gun does not actually do anything until much later, when an eater is removed from its path.
 
 \begin{figure}[!htb]
 	\centering
-	\patternlink{0e0p_timeline_1040180152_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_1040180152.pdf}}
+	\patternlink{0e0p_timeline_1073734584_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_1073734584.pdf}}
 	\caption{The first gliders in the child's single-channel glider recipe complete their first journey through its nucleus. The very first of these gliders hits a one-time reflector (circled in \bgbox{redback}{red}) that redirects it to start up that child metacell's clock gun (highlighted in \bgbox{aquaback}{aqua}).}
-	\label{fig:0e0p_timeline_1040180152}
+	\label{fig:0e0p_timeline_1073734584}
 \end{figure}
 
 %-- Or rather, this branch will be a temporary dead end (the eater at (199608,196195))! In a later timestamp this eater will be removed just long enough to copy a length-1024 chunk of the rule table glider stream out and use it (if it's non-empty) to record the new 0-7 state of the child metacell.
@@ -709,11 +707,11 @@ At this point, the southeast child is fully constructed and simply waits until t
 
 
 %%%%%%%%%%%%%%%%%%%%%%
-\subsection{Generations $\mathbf{1.94 \times 2^{29}}$ to $\mathbf{3.94 \times 2^{29}}$: Construction of the Northeast Child}\label{sec:0e0p_timeline_northeast_child}
+\subsection{Generations $\mathbf{2 \times 2^{29}}$ to $\mathbf{4.00 \times 2^{29}}$: Construction of the Northeast Child}\label{sec:0e0p_timeline_northeast_child}
 %%%%%%%%%%%%%%%%%%%%%%
 
-Stuff. First, add $2^{25}$ to all timestamps.
-% Next: 1040192000 (should this actually be 1040187392?)
+Stuff.
+% Next: 1040192000 (should this actually be 1040187392 + 2^25?)
 
 % Be careful with this figure -- timestamp stays the same, but figure itself needs to change when adding 2^25 to timestamp numbers
 \begin{figure}[!htb]
@@ -722,8 +720,6 @@ Stuff. First, add $2^{25}$ to all timestamps.
 	\caption{A full metageneration of the $2$-state Moore-neighborhood rule has passed. In the particular rule being emulated here, a single cell lives from one generation to the next, so this snapshot is identical to the one from Figure~\ref{fig:0e0p_timeline_0}: a Herschel is present in the clock gun which will release a glider that will destroy an eater~2, allowing the metacell to start construction of its southeast neighbor.}
 	\label{fig:0e0p_timeline_68719476736}
 \end{figure}
-
-% TODO: Check that the coordinates in the timestamp files themselves are correct (they were relative to linear_construct_canon.mc.gz, so they may have changed slightly)
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
