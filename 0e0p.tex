@@ -688,7 +688,7 @@ Back in time slightly at $t = 940{\thousep}814{\thousep}085 \approx 1.7524 \time
 	\label{fig:0e0p_timeline_940814085}
 \end{figure}
 
-T = 1040180152: The first glider in the child metacell's recipe finds its way through the long back-and-forth reflector chains in the nucleus, and makes its way back to a key splitter at (199708,196142). The first glider in this recipe passing through this splitter is what signals the child's main south control clock to activate, exactly on the right schedule -- though the clock has no outputs until a later timestamp removes a key eater. The clock start-up happens via a set of one-time turners on an otherwise dead-end branch of the splitter, starting at T = 1577051499 with the boat at (199640,196165).
+After the first glider in the child's nucleus makes it all the way through the long back-and-forth Snark chains for the first time, it arrives at a splitter at the south corner at $t = 1{\thousep}040{\thousep}180{\thousep}152 \approx 1.9375 \times 2^{29}$. It then uses one-time circuitry to start up the child's clock gun (see Figure~\ref{fig:0e0p_timeline_1040180152}), aligned exactly with the timing of the parent's clock gun. However, the clock gun does not actually do anything until much later, when an eater is removed from its path.
 
 \begin{figure}[!htb]
 	\centering
@@ -697,17 +697,16 @@ T = 1040180152: The first glider in the child metacell's recipe finds its way th
 	\label{fig:0e0p_timeline_1040180152}
 \end{figure}
 
--- Or rather, this branch will be a temporary dead end (the eater at (199608,196195))! In a later timestamp this eater will be removed just long enough to copy a length-1024 chunk of the rule table glider stream out and use it (if it's non-empty) to record the new 0-7 state of the child metacell.
+%-- Or rather, this branch will be a temporary dead end (the eater at (199608,196195))! In a later timestamp this eater will be removed just long enough to copy a length-1024 chunk of the rule table glider stream out and use it (if it's non-empty) to record the new 0-7 state of the child metacell.
 
-The second glider in the recipe also gets a copy sent elsewhere via one-time turner, the boat at T = 1577051631 at (199628,196174) -- this time, down to the far south corner, to turn off the incoming recipe from the parent, to prevent the second copy of the non-coding information sent from the parent's nucleus from attempting to overwrite the first copy already in the child nucleus (which would have disastrous consequences).
-
-The full replication cycle won't get started again for several billion ticks yet -- several communication and decision stages still have to be added to this list! However, at this point the child 0E0P metacell has reached a stable phase, where it will remain with (at most) minor internal adjustments through several full cycles of the memory tape through the nucleus.
+At this point, the southeast child is fully constructed and simply waits until the parent metacell's other neighbors are constructed before really doing anything. The single-channel glider recipe will cycle through its nucleus several times before they are actually made to do anything of note.
 
 
 %%%%%%%%%%%%%%%%%%%%%%
 \subsection{Generations $\mathbf{1.94 \times 2^{29}}$ to $\mathbf{3.94 \times 2^{29}}$: Construction of the Northeast Child}\label{sec:0e0p_timeline_northeast_child}
 %%%%%%%%%%%%%%%%%%%%%%
 
+Stuff. First, add $2^{25}$ to all timestamps.
 % Next: 1040192000 (should this actually be 1040187392?)
 
 \begin{figure}[!htb]
