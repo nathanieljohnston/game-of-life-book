@@ -522,16 +522,9 @@ If we break the $2^{35}$-generation lifecycle of the metacell down into $2^6 = 6
 
 We now describe what happens throughout the 0E0P's lifecycle in much more specific detail, and highlight key timestamps where interesting things happen or change in its circuitry.
 
-% Timeline of important moments down here. Need to lead-in and reference these figures.
-
 % To convert a timestamp from here to a timestamp from 0e0p_timeline.mc, add 138590856 = 33 * 2^22 + 178824
-
-% To convert a timestamp from here to rrocell_backup: t at start of RRO_file = 262144*RRO_NUM - 26375797384
-% Short version: t = 0 corresponds to rrocell_100615 at generation 178824
-% To get generation t, look in rrocell_X, where X = 100615 + floor((t+83320)/262144) at generation (t+83320) mod 262144
-% The above formula might be off by 95502?
-
-% For t = 7482638336, use generation 105727352 of rrocell_backup128756
+% T = 0 is generation 178824 of RRO_backup_100615.
+% To get generation t, look in rrocell_X, where X = 100615 + floor((t+178824)/262144) at generation (t+178824) mod 262144
 
 % Rule table goes in before anything else (at LW?). Copy of DNA goes in through Area 51.
 
@@ -666,7 +659,7 @@ Thanks to the removal of this Snark, the \emph{next} copy of the single-channel 
 
 
 %%%%%%%%%%%%%%%%%%%%%%
-\subsection{Generations $\mathbf{0.76 \times 2^{29}}$ to $\mathbf{1.94 \times 2^{29}}$: Nucleus Fills While Being Constructed}\label{sec:0e0p_timeline_nucleus_fill}
+\subsection{Generations $\mathbf{0.76 \times 2^{29}}$ to $\mathbf{1.94 \times 2^{29}}$: Activation of the Southeast Child}\label{sec:0e0p_timeline_nucleus_fill}
 %%%%%%%%%%%%%%%%%%%%%%
 
 Now both subroutine loops of the child metacell are filled and are building the repetitive Snark chains that will hold its copy of the single-channel glider recipe. When construction is done there will be 256 copies of 8 Snarks in long chains along the northwest and southeast walls of the nucleus. The sets of 8 Snarks and their associated self-destruct circuitry are not quite mirror-images of each other, so different recipes are needed in the \texttt{CN} and \texttt{CE} subroutine loops.
@@ -675,8 +668,6 @@ This construction and filling of the nucleus goes on for quite a while. The subr
 
 At generation $t = 935{\thousep}289{\thousep}088 \approx 1.7421 \times 2^{29}$, the northwest wall of Snarks is complete, and a Herschel is present in the \texttt{CN} subroutine clock's gun that will produce the glider that makes it through all of the twenty-one semi-Snarks in the loops below (see Figure~\ref{fig:0e0p_timeline_935289088}). That signal destroys a block in a syringe in that subroutine loop, so that all further recipe gliders in the loop will be harmlessly absorbed by the syringe's eater~2---no more building will occur.
 
-A side branch of that same signal also starts the gradual process of dismantling the subroutine clock gun. This first output glider destroys three of the clock gun's semi-Snarks, making it 8 times faster, and every subsequent output glider acts similarly. The result of this is that the clock gun did nothing for a long time ($2^{29}$ generations), and then its destruction happens faster and faster.
-
 \begin{figure}[!htb]
 	\centering
 	\patternlink{0e0p_timeline_935289088_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_935289088.pdf}}
@@ -684,14 +675,11 @@ A side branch of that same signal also starts the gradual process of dismantling
 	\label{fig:0e0p_timeline_935289088}
 \end{figure}
 
-For example, the \emph{next} three semi-Snarks are destroyed just $2^{26}$ generations later, by the Herschel that appears at $t = 1{\thousep}002{\thousep}397{\thousep}952 \approx 1.8671 \times 2^{29}$, and the clock gun vanishes completely at $t = ??$.
-% Argh these timestamps based on the RRO files might be off by 2 generations?? need to double-check.
+A side branch of that same signal also starts the gradual process of dismantling the subroutine clock gun. This first output glider destroys three of the clock gun's semi-Snarks, making it 8 times faster, and every subsequent output glider acts similarly. The result of this is that the clock gun did nothing for a long time ($2^{29}$ generations), and then its destruction happens faster and faster.
 
-At $t = 1020357437 \approx ??$, a boat acting as a one-time turner sends an extra signal off to initiate a self-destruct chain reaction in the entire storage loop (since by this time it will be safely empty).
+For example, the \emph{next} three semi-Snarks are destroyed just $2^{26}$ generations later, by the Herschel that appears at $t = 1{\thousep}002{\thousep}397{\thousep}952 \approx 1.8671 \times 2^{29}$, and the clock gun vanishes completely just a bit more than $2^{24}$ generations after that, at $t = 1{\thousep}020{\thousep}511{\thousep}053 \approx 1.9008 \times 2^{29}$. The entirety of the \texttt{CN} storage loop is similarly gone just a few thousand generations later, at $t = 1{\thousep}020{\thousep}519{\thousep}136$. The \texttt{CE} subroutine clock and storage loop self-destruct in the exact same way shortly thereafter, and are gone as of $t = 1{\thousep}024{\thousep}931{\thousep}588 \approx 1.9091 \times 2^{29}$.
 
-T = 1020519136: The NW storage loop cleanup job is complete -- the final spark is at T = 1020519135 at (13317,-131827) way off in the northwest. The clock gun finished cleaning itself up well before that long self-destruct chain reaction was complete.
-
-Back in time slightly, at $t = 940{\thousep}814{\thousep}085 \approx 1.7524 \times 2^{29}$, the final glider in the single-channel recipe is about to enter the child's nucleus at the location just northwest of \texttt{LS} (see Figure~\ref{fig:0e0p_timeline_940814085}). Once this insertion is complete, the child's nucleus will be fully populated with a copy of the parent's DNA.
+Back in time slightly at $t = 940{\thousep}814{\thousep}085 \approx 1.7524 \times 2^{29}$, after construction of the Snark walls finished but before the subroutine storage loops self-destructed, the final glider in the single-channel recipe is about to enter the child's nucleus at the location just northwest of \texttt{LS} (see Figure~\ref{fig:0e0p_timeline_940814085}). Once this insertion is complete, the child's nucleus will be fully populated with a copy of the parent's DNA.
 
 \begin{figure}[!htb]
 	\centering
@@ -700,9 +688,7 @@ Back in time slightly, at $t = 940{\thousep}814{\thousep}085 \approx 1.7524 \tim
 	\label{fig:0e0p_timeline_940814085}
 \end{figure}
 
-% Next section here
-
-* NJ calls this T = 1040180152: The first glider in the child metacell's recipe finds its way through the long back-and-forth reflector chains in the nucleus, and makes its way back to a key splitter at (199708,196142). The first glider in this recipe passing through this splitter is what signals the child's main south control clock to activate, exactly on the right schedule -- though the clock has no outputs until a later timestamp removes a key eater. The clock start-up happens via a set of one-time turners on an otherwise dead-end branch of the splitter, starting at T = 1577051499 with the boat at (199640,196165).
+T = 1040180152: The first glider in the child metacell's recipe finds its way through the long back-and-forth reflector chains in the nucleus, and makes its way back to a key splitter at (199708,196142). The first glider in this recipe passing through this splitter is what signals the child's main south control clock to activate, exactly on the right schedule -- though the clock has no outputs until a later timestamp removes a key eater. The clock start-up happens via a set of one-time turners on an otherwise dead-end branch of the splitter, starting at T = 1577051499 with the boat at (199640,196165).
 
 \begin{figure}[!htb]
 	\centering
@@ -716,6 +702,11 @@ Back in time slightly, at $t = 940{\thousep}814{\thousep}085 \approx 1.7524 \tim
 The second glider in the recipe also gets a copy sent elsewhere via one-time turner, the boat at T = 1577051631 at (199628,196174) -- this time, down to the far south corner, to turn off the incoming recipe from the parent, to prevent the second copy of the non-coding information sent from the parent's nucleus from attempting to overwrite the first copy already in the child nucleus (which would have disastrous consequences).
 
 The full replication cycle won't get started again for several billion ticks yet -- several communication and decision stages still have to be added to this list! However, at this point the child 0E0P metacell has reached a stable phase, where it will remain with (at most) minor internal adjustments through several full cycles of the memory tape through the nucleus.
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Generations $\mathbf{1.94 \times 2^{29}}$ to $\mathbf{3.94 \times 2^{29}}$: Construction of the Northeast Child}\label{sec:0e0p_timeline_northeast_child}
+%%%%%%%%%%%%%%%%%%%%%%
 
 % Next: 1040192000 (should this actually be 1040187392?)
 
