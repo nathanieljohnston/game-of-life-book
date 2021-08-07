@@ -536,14 +536,19 @@ We now describe what happens throughout the 0E0P's lifecycle in much more specif
 
 We start with an 0E0P metacell that is ready to start constructing its neighbors. We say that generation $t = 0$ is the one displayed in Figure~\ref{fig:0e0p_timeline_0}: the parent metacell has a Herschel in its clock gun that will create a glider that escapes past all of the semi-Snarks and removes an eater that is along another one of the clock gun's output paths (a path that receives a glider every $2^{25}$ generations, rather than just every $2^{29}$).
 
-% FIGURE
+\begin{figure}[!htb]
+	\centering
+	\embedlink{0e0p_timeline_0_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_0.pdf}}
+	\caption{A Herschel in the parent metacell's clock gun (highlighted in \bgbox{aquaback}{aqua}) is about to create a glider that will make it out of its period $2^{29}$ branch. That glider will destroy an eater (circled in \bgbox{redback}{red}) so that the next glider can escape along that path $2^{25}$ generations later.}
+	\label{fig:0e0p_timeline_0}
+\end{figure}
 
 A glider escapes via that new path $2^{25}$ generations later, at $t = 33{\thousep}554{\thousep}432 = 0.0625 \times 2^{29}$, and removes an eater~2 from a syringe (see Figure~\ref{fig:0e0p_timeline_33554432}). This unblocks a copy of the single-channel glider recipe, which now spirals outward through the kernel until it reaches the construction elbow at the metacell's south corner. That construction elbow is then pushed southeast, and is used to begin constructing the southeast child metacell's symmetric shell.
 
 \begin{figure}[!htb]
 	\centering
 	\embedlink{0e0p_timeline_33554432_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_33554432.pdf}}
-	\caption{A Herschel in the parent metacell's clock gun (highlighted in \bgbox{aquaback}{aqua}) is about to create a glider that will make it all the way out of the clock. It will use some one-time turners (circled in \bgbox{redback}{red}) and then destroy an eater~2 from a syringe, which will allow a copy of the single-channel glider recipe to escape from the nucleus and start constructing the southeast child metacell, starting with its shell.}
+	\caption{A Herschel in the parent metacell's clock gun (highlighted in \bgbox{aquaback}{aqua}) is about to create a glider that will escape via the path that was cleared in Figure~\ref{fig:0e0p_timeline_0}. It will use some one-time turners (circled in \bgbox{redback}{red}) and then destroy an eater~2 from a syringe, which will allow a copy of the single-channel glider recipe to escape from the nucleus and start constructing the southeast child metacell, starting with its shell.}
 	\label{fig:0e0p_timeline_33554432}
 \end{figure}
 
@@ -717,7 +722,7 @@ Stuff.
 \begin{figure}[!htb]
 	\centering
 	\patternlink{0e0p_timeline_0_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_68719476736.pdf}}
-	\caption{A full metageneration of the $2$-state Moore-neighborhood rule has passed. In the particular rule being emulated here, a single cell lives from one generation to the next, so this snapshot is identical to the one from Figure~\ref{fig:0e0p_timeline_0}: a Herschel is present in the clock gun which will release a glider that will destroy an eater~2, allowing the metacell to start construction of its southeast neighbor.}
+	\caption{A full metageneration of the $2$-state Moore-neighborhood rule has passed. In the particular rule being emulated here, a single cell lives from one generation to the next, so this snapshot is identical to the one from Figure~\ref{fig:0e0p_timeline_0}: a Herschel is present in the clock gun which will release a glider that will destroy an eater, eventually leading to the construction of its southeast neighbor.}
 	\label{fig:0e0p_timeline_68719476736}
 \end{figure}
 
