@@ -433,9 +433,8 @@ In order to control which lane the single-channel glider sequence enters, the 0E
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The lane-switching mechanisms described earlier are implemented by a \textbf{clock gun} that is located at the top-left corner of the ``\texttt{logic}'' component in Figures~\ref{fig:0e0p_schematic} and~\ref{fig:0e0p_itself}. This gun sends out a single glider every $2^{29}$ generations, thus matching exactly the period of the glider loop contained in the nucleus. It is made up of a p256 gun attached to a sequence of $21$ semi-Snarks, much like the clock gun of Figure~\ref{fig:p2to_the_20_gun} that was used by Chapter~\ref{chp:universal_computation}'s universal computer (though that gun used quadri-Snarks instead).\footnote{The 0E0P's clock gun uses the color-changing semi-Snark of Figure~\ref{fig:cc_semi_snark}, since it is Spartan and is thus easier to construct via a single-channel glider recipe than quadri-Snarks.}\index{semi-Snark}\index{Spartan}
-% Footnote that we lied a bit here? Sends out some gliders at p2^25 to destroy one-time circuitry, and self-destructs to be faster after a while
 
-The gliders that are released by the clock gun travel through sequences of one-time turners and splitters that are interspersed throughout the rest of the 0E0P's circuitry, so as to the trigger the appropriate lane-switching mechanisms at each step of its lifecycle. This method is illustrated at a much smaller scale in Figure~\ref{fig:clock_path_switcher}, where a clock gun is used to change what happens to the path of a single-channel glider sequence three times.
+The gliders that are released by the clock gun travel through sequences of one-time turners and splitters that are interspersed throughout the rest of the 0E0P's circuitry, so as to trigger the appropriate lane-switching mechanisms at each step of its lifecycle. This method is illustrated at a much smaller scale in Figure~\ref{fig:clock_path_switcher}, where a clock gun is used to change what happens to the path of a single-channel glider sequence three times.
 
 \begin{figure}[!htb]
 	\centering
@@ -443,6 +442,10 @@ The gliders that are released by the clock gun travel through sequences of one-t
 	\vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{4}{45} $2^{12}$}}$}} \vcenteredhbox{\patternimg{0.105}{clock_path_switcher_2}} \vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{4}{45} $2^{12}$}}$}} \vcenteredhbox{\patternimg{0.105}{clock_path_switcher_3}}}
 	\caption{A period~$2^{12} = 4{\thousep}096$ clock gun (highlighted in \bgbox{aquaback}{aqua}) using one-time turners and the reactions from Figures~\ref{fig:snark_seeded_destroy} and~\ref{fig:syringe_path_changer} to change the path of the single-channel glider stream coming from the northwest. Initially, that stream is reflected to the northeast, but the first glider from the clock gun blocks the reflector. Its second glider unblocks it and redirects the stream to the southwest via a Snark. Its third glider destroys the Snark, so the stream passes straight through to the southeast.}\label{fig:clock_path_switcher}
 \end{figure}
+
+In the actual 0E0P, the clock gun... % lead in to figure here, but have actual figure later
+
+% Footnote that we lied a bit here? Sends out some gliders at p2^25 to destroy one-time circuitry, and self-destructs to be faster after a while
 
 % EVERYTHING AFTER THIS POINT IS PLACEHOLDER and/or copied from forums and/or gibberish that will be changed
 
@@ -455,6 +458,7 @@ The kernel also contains, at its southern corner, the logic circuitry that is us
 
 % Discuss the logic circuitry.
 % We should have a big zoomed-in figure of the "logic" component.
+% Rule stored in sequence of up to 8 blocks at SW corner of logic component
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -502,23 +506,37 @@ So far, we have described how the 0E0P metacell works at a fairly high level: ev
 If we break the $2^{35}$-generation lifecycle of the metacell down into $2^6 = 64$ ``cycles'' of $2^{29}$ generations each, then they behave roughly as follows:\smallskip
 
 \begin{itemize}
-	\item Cycle 1: The metacell constructs its southeast neighbor.\smallskip
+	\item Cycle 0: The metacell constructs its southeast neighbor.\smallskip
 	
-	\item Cycle 2: It duplicates the contents of its nucleus into that of the southeast neighbor.\smallskip
+	\item Cycle 1: It duplicates the contents of its nucleus into that of the southeast neighbor.\smallskip
 	
-	\item Cycle 3: It constructs its northeast neighbor.\smallskip
+	\item Cycle 2: It constructs its northeast neighbor.\smallskip
 	
-	\item Cycle 4: It duplicates the contents of its nucleus into that of the northeast neighbor.\smallskip
+	\item Cycle 3: It duplicates the contents of its nucleus into that of the northeast neighbor.\smallskip
 	
-	\item Cycles 5--8: Repeat cycles 1--4 for the northwest and then southwest neighbors.\smallskip
+	\item Cycles 4--7: Repeat cycles 0--3 for the northwest and then southwest neighbors.\smallskip
 	
-	\item Cycles 9--13: Do nothing (just spend some time ``looking like a cell'').\smallskip
+	\item Cycles 8--12: Do nothing (just spend some time ``looking like a cell'').\smallskip
 	
-	\item Cycle 14: The single-channel glider stream is emptied out of the metacell's nucleus. The metacell's state is then sent to all four of its neighbors.\smallskip
+	\item Cycle 13: Empty the single-channel glider stream out of the metacell's nucleus.\smallskip
 	
-	\item Cycles 15--64: The parent metacell self-destructs and child metacells do nothing (they just spend some time ``looking like a cell'').\smallskip
+	\item Cycle 14: The parent metacell sends its state to all four of its children.\smallskip
+	
+	\item Cycle 15: The parent metacell self-destructs while the child metacells compute their states.\smallskip
+	
+	\item Cycles 16--63: Child metacells either self-destruct (if their state is $0$) or do nothing (if their state is non-zero, they just spend time ``looking like a cell'').\smallskip
 \end{itemize}
-% Can we be slightly more specific above? Does the self-destruction happen in cycle 15 exactly, for example?
+
+A bit more specifically, ...
+
+\begin{figure}[!htb]
+	\centering
+	\embedlink{clock_gun_full_small}{\includegraphics[width=1\textwidth]{0e0p/clock_gun_full.pdf}}
+	\caption{The clock gun.}
+	\label{fig:0e0p_clock_gun_full}
+\end{figure}
+
+% Maybe a figure showing that 2^29 output lane in the south control clock, labelling which cycles they correspond to? Eater 1 in there first while children wait, then is destroyed when state information arrives (right?), first output boat initializes state-reading clock, next boat does early death if computed state is 0 (by destroying the next slow-salvo block), that block absorbs 48 gliders (i.e., cycles), then 2 for SE child, 2 for NE child, etc, then empty out nucleus signal, then state-sending signal, then self-destruct signal
 
 We now describe what happens throughout the 0E0P's lifecycle in much more specific detail, and highlight key timestamps where interesting things happen or change in its circuitry.
 
@@ -712,7 +730,7 @@ At this point, the southeast child is fully constructed and simply waits until t
 
 
 %%%%%%%%%%%%%%%%%%%%%%
-\subsection{Generations $\mathbf{2 \times 2^{29}}$ to $\mathbf{4.00 \times 2^{29}}$: Construction of the Northeast Child}\label{sec:0e0p_timeline_northeast_child}
+\subsection{Generations $\mathbf{2 \times 2^{29}}$ to $\mathbf{8 \times 2^{29}}$: Construction of the Other Children}\label{sec:0e0p_timeline_other_child}
 %%%%%%%%%%%%%%%%%%%%%%
 
 Stuff.

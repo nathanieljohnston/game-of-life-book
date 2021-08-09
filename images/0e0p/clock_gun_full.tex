@@ -1,0 +1,88 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+\usepackage[outline]{contour}
+
+\definecolor{darkyellowback}{RGB}{96,96,0}
+\definecolor{darkgreenback}{RGB}{0,96,0}
+\definecolor{darkmagentaback}{RGB}{96,0,96}
+\definecolor{aquaback}{RGB}{192,255,255}
+\definecolor{darkaquaback}{RGB}{0,96,96}
+
+\newcommand{\ttapprox}{\raisebox{-0.5ex}{\textasciitilde}\hspace{-5.1pt}\raisebox{-0.9ex}{\textasciitilde}}
+
+\begin{document}
+	\begin{tikzpicture}%
+		%\clip (0,5.48) rectangle (16.02,10.02);
+		\newcommand\gp{3}
+		\newcommand\ygp{-1.5}
+	
+		\node[inner sep=0pt,anchor=north west] (ca) at (0,9.95) {\includegraphics[width=5.6cm]{clock_gun_full.png}};
+		
+		%\draw[gridgray,line width=0.6pt] (0,10) rectangle (3,7);
+		
+		% ZOOM RIGHT
+			\newcommand\smlx{2.75}
+			\newcommand\smrx{\smlx+0.1}
+			\newcommand\smby{4.38}
+			\newcommand\smty{\smby+0.1}
+			
+			\newcommand\bglx{5.5+\gp}
+			\newcommand\bgrx{\bglx+5.7}
+			\newcommand\bgty{10+\ygp}
+			\newcommand\bgby{\bgty-5.7}
+			
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
+			
+			\node[inner sep=0pt,anchor=north west] (zoom0) at (\bglx,\bgty) {\includegraphics[width=5.7cm]{clock_gun_full_zoom0.png}};
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (\smlx,\smty) -- (\smrx,\smty) -- (\smrx,\smby) -- (\smlx,\smby) -- (\bglx,\bgby) -- (\bglx,\bgty) -- cycle;
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\smlx,\smty) rectangle (\smrx,\smby);
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
+		% END ZOOM RIGHT
+		
+		% ZOOM BOTTOM
+			\renewcommand\smlx{6.55+\gp}
+			\renewcommand\smrx{\smlx+1.5}
+			\renewcommand\smby{7.44+\ygp}
+			\renewcommand\smty{\smby+1.5}
+			
+			\renewcommand\bglx{-1.8+\gp}
+			\renewcommand\bgrx{\bglx+12}
+			\renewcommand\bgty{3.2+\ygp}
+			\renewcommand\bgby{\bgty-12}
+			
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
+			
+			\node[inner sep=0pt,anchor=north west] (zoom1) at (\bglx,\bgty) {\includegraphics[width=12cm]{clock_gun_full_zoom1.png}};
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (\smlx,\smty) -- (\smlx,\smby) -- (\smrx,\smby) -- (\smrx,\smty) -- (\bgrx,\bgty) -- (\bglx,\bgty) -- cycle;
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\smlx,\smty) rectangle (\smrx,\smby);
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
+		% END ZOOM BOTTOM
+		
+		\draw[gray] (2.6,4.21) node {\small\texttt{S}};
+		
+		% GLIDER PATH ARROWS
+		\draw[color=gray,-stealth] (12.85,1.1) -- (12.35,0.6);
+		
+		% parent/child divider
+		\draw[color=gray,dashed] (8.5,-1.5) -- (10.5,-3.5);
+		\draw[color=gray] (10.2,-3.2) node[anchor=south,rotate=-45]{\small\texttt{child}};
+		\draw[color=gray] (10.2,-3.2) node[anchor=north,rotate=-45]{\small\texttt{parent}};
+		
+		% Numbers
+		\draw[color=gray] (12.35,0.38) node[anchor=north west,rotate=-45,fill=white,rounded corners=2pt,inner sep=1pt,fill opacity=0.8,text opacity=1]{\footnotesize\texttt{15:} \texttt{compute state}};
+		
+		\draw[color=gray] (11.8,-0.17) node[anchor=north west,rotate=-45,fill=white,rounded corners=2pt,inner sep=1pt,fill opacity=0.8,text opacity=1,align=left]{\footnotesize\texttt{16:} \texttt{die early}\\[-0.1cm]\footnotesize\texttt{ \ \ \ if state = 0}};
+		
+		\draw[color=gray,dashed] (9.3,-1.7) -- (10.5,-0.5) -- (11.1,-1.1) -- (9.9,-2.3) -- cycle;
+	\end{tikzpicture}
+\end{document}
