@@ -735,6 +735,55 @@ Stuff.
 % Next: 1040192000 (should this actually be 1040187392 + 2^25?)
 
 % Be careful with this figure -- timestamp stays the same, but figure itself needs to change when adding 2^25 to timestamp numbers
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Generations $\mathbf{8 \times 2^{29}}$ to $\mathbf{14 \times 2^{29}}$: Preliminary Clean-Up}\label{sec:0e0p_timeline_prelim_cleanup}
+%%%%%%%%%%%%%%%%%%%%%%
+
+Stuff.
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Generations $\mathbf{14 \times 2^{29}}$ to $\mathbf{15 \times 2^{29}}$: State Information is Sent to Children}\label{sec:0e0p_timeline_state}
+%%%%%%%%%%%%%%%%%%%%%%
+
+Parent metacells now send their state to their children, so that those children will be able to compute their states. This process is initiated at $t = 7{\thousep}516{\thousep}192{\thousep}768 = 14 \times 2^{29}$, when a Herschel is present in the parent metacell's clock gun that will release a burst of $2$--$8$ gliders (representing its state $1$--$7$), as illustrated in Figure~\ref{fig:0e0p_timeline_7516192768}.
+
+% FIGURE
+
+Those gliders travel counter-clockwise through the kernel and follow a spiral path into the south ``\texttt{logic}'' area of each of the children (regardless of whether or not this particular parent metacell built that child). When the state gliders arrive at a child metacell, the first glider hits one-time circuitry that erases the eater~1 blocking the clock gun's p$2^{29}$ output lane, while the remaining $1$--$7$ gliders are used to destroy $1$--$7$ blocks in the logic circuitry, thus storing the parent's state in the child. The state gliders arrive at the four child metacells at slightly different times, in the following order:\smallskip
+
+\begin{itemize}
+	\item \textbf{SW child}: at $t = 7{\thousep}517{\thousep}755{\thousep}585 \approx 14.0029 \times 2^{29}$ (see Figure~\ref{fig:0e0p_timeline_7517755585}).\smallskip
+	
+	\item \textbf{NE child}: just $2{\thousep}052$ generations later, at $t = 7{\thousep}517{\thousep}757{\thousep}637$.\smallskip
+	
+	\item \textbf{NW child}: at $t = 7{\thousep}518{\thousep}791{\thousep}855 \approx 14.0048 \times 2^{29}$.\smallskip
+	
+	\item \textbf{SE child}: just $2{\thousep}892$ generations later, at $t = 7{\thousep}518{\thousep}794{\thousep}747$.\smallskip
+\end{itemize}
+
+% FIGURE
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Generations $\mathbf{15 \times 2^{29}}$ to $\mathbf{16 \times 2^{29}}$: State Computation and Self-Destruction}\label{sec:0e0p_timeline_self_dest}
+%%%%%%%%%%%%%%%%%%%%%%
+
+Stuff.
+% TODO: To figure out state stuff, evolve rro_259517 a long ways to see what happens. Which state arrives at child first, second, etc.
+%Later, when the cell receives quasi-unary (a number of gliders in the set {0, 2, 3, 4, 5, 6, 7, 8}) input signals from its neighbours, the eater at (1792, 11732) is destroyed and the cell 'boots up'. The next glider from the clock triggers the indexer, which has been already been calibrated by the genuinely-unary (if nonzero, 1 glider has been subtracted at this point) inputs from the neighbours. This waits for an amount of time given by (a + 8*b + 64*c + 512*d)*1024 ticks, where (a,b,c,d) are the neighbour states, before copying a chunk of ~ 900 ticks from the tape at this point.
+%
+%This chunk contains the next state of the cell, in unary. It is upgraded to quasi-unary and deletes up to 8 blocks near (849, 11733). When the cell comes to signal its neighbours (assuming nonzero), this quasi-unary value is converted back into gliders by sending 8 gliders at those blocks, allowing the correct number of gliders to pass though. Of course, this doesn't happen for a while, because the cell first needs to wait for its parents to disappear and then construct its descendants. This waiting is exaggerated (there's a crystal annotated with '-48', which is bypassed if the new state is 0) so that during about 75% of the time, the non-empty regions of the Life plane correspond to live metacells. This means that at distant zooms in Golly, a metapattern should be indistinguishable from the original pattern.
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Generations $\mathbf{16 \times 2^{29}}$ to $\mathbf{128 \times 2^{29}}$: Waiting and Repeating}\label{sec:0e0p_timeline_wait_repeat}
+%%%%%%%%%%%%%%%%%%%%%%
+
+Stuff.
+
 \begin{figure}[!htb]
 	\centering
 	\patternlink{0e0p_timeline_0_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_68719476736.pdf}}
