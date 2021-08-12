@@ -721,8 +721,6 @@ After the first glider in the child's nucleus makes it all the way through the l
 	\label{fig:0e0p_timeline_1073734584}
 \end{figure}
 
-%-- Or rather, this branch will be a temporary dead end (the eater at (199608,196195))! In a later timestamp this eater will be removed just long enough to copy a length-1024 chunk of the rule table glider stream out and use it (if it's non-empty) to record the new 0-7 state of the child metacell.
-
 At this point, the southeast child is fully constructed and simply waits until the parent metacell's other neighbors are constructed before really doing anything. The single-channel glider recipe will cycle through its nucleus several times before it is actually made to do anything of note.
 
 
@@ -747,14 +745,20 @@ By generation $t = 3{\thousep}221{\thousep}225{\thousep}472 = 6 \times 2^{29}$, 
 \subsection{Generations $\mathbf{8 \times 2^{29}}$ to $\mathbf{14 \times 2^{29}}$: Preliminary Clean-Up}\label{sec:0e0p_timeline_prelim_cleanup}
 %%%%%%%%%%%%%%%%%%%%%%
 
-Stuff.
+Nothing of importance happens in either the parent or child metacells between generations $8 \times 2^{29}$ and $12 \times 2^{29}$---they both just loop the single-channel recipe their their nuclei for a few times. In the parent metacell, the output of the south clock gun hits a sequence of four blocks along period~$2^{29}$ output lane (which can be seen near the southwest end of that lane in Figure~\ref{fig:0e0p_clock_gun_full}), simply causing it to do nothing for these generations. In the child metacells, the output of the south clock gun is still being absorbed by an eater~1 (which is circled in red at the northeast end of the output lane in Figure~\ref{fig:0e0p_clock_gun_full}).
+
+At $t = 6{\thousep}442{\thousep}450{\thousep}944 = 12 \times 2^{29}$, the parent metacell's south clock gun is holding a Herschel that will release a glider, which destroys a single Snark elsewhere at its south corner. This Snark was used by the metacell when it was a child, after computing its state, to store that state in a sequence of up to 8 blocks.\footnote{This Snark is destroyed now, instead of during the ``main'' self-destruction stage at $t = 15 \times 2^{29}$, just as a minor convenience---the 0E0P metacell could be rewired to destroy it later instead.}
+
+More interesting things finally start happening $2^{29}$ generations later: at $t = 6{\thousep}979{\thousep}321{\thousep}856 = 13 \times 2^{29}$, a Herschel is present in the parent's south clock gun that will release a glider, which will use one-time circuitry to destroy a block from a syringe in the part of the nucleus memory loop that extends through the metacell's south corner (see Figure~\ref{fig:0e0p_timeline_6979321856}). On the next cycle of the single-channel glider recipe through the nucleus, all gliders will be absorbed by that syringe's eater~2, so the recipe will gradually empty out of the nucleus over the course of those $2^{29}$ generations, with the final glider being absorbed at $t = 7{\thousep}516{\thousep}189{\thousep}238 \approx 14.0000 \times 2^{29}$.
+
+% FIGURE
 
 
 %%%%%%%%%%%%%%%%%%%%%%
 \subsection{Generations $\mathbf{14 \times 2^{29}}$ to $\mathbf{15 \times 2^{29}}$: State Information is Sent to Children}\label{sec:0e0p_timeline_state}
 %%%%%%%%%%%%%%%%%%%%%%
 
-Parent metacells now send their state to their children, so that those children will be able to compute their states. This process is initiated at $t = 7{\thousep}516{\thousep}192{\thousep}768 = 14 \times 2^{29}$, when a Herschel is present in the parent metacell's clock gun that will release a burst of $2$--$8$ gliders (representing its state $1$--$7$), as illustrated in Figure~\ref{fig:0e0p_timeline_7516192768}.
+After their nuclei are empty, parent metacells send their state to their children, so that those children will be able to compute their states. This process is initiated at $t = 7{\thousep}516{\thousep}192{\thousep}768 = 14 \times 2^{29}$, when a Herschel is present in the parent metacell's clock gun that will release a burst of $2$--$8$ gliders (representing its state $1$--$7$), as illustrated in Figure~\ref{fig:0e0p_timeline_7516192768}.
 
 % FIGURE
 
@@ -1012,7 +1016,7 @@ Finally, Adam P.~Goucher spent 2014--2018 constructing the 0E0P metapixel, which
 	\begin{problem}\label{exer:0e0p_how_make_faster} \probdiff{3}
 		Describe at least three different ways that the 0E0P metacell could be modified so as to be smaller and/or faster, without sacrificing any of its functionality.
 	\end{problem}
-	% SOLUTION: Get rid of the various waiting stages, like stages 16-63. Optimize the single-channel construction recipe so as to use a better construction order. Update the single-channel construction recipe to use the c/4 wick-based elbow push instead of Cordership-based (may not be faster at distances used here, but certainly the 2-engine Cordership push would be an improvement over its 3-engine version). Likely a dozen other ways too.
+	% SOLUTION: Get rid of the various waiting stages, like stages 16-63. Optimize the single-channel construction recipe so as to use a better construction order. Update the single-channel construction recipe to use the c/4 wick-based elbow push instead of Cordership-based (may not be faster at distances used here, but certainly the 2-engine Cordership push would be an improvement over its 3-engine version). Likely a dozen other ways too. Another one: rewire so that nucleus is shut off at t = 8 * 2^29 instead of 13 * 2^29.
 	
 	
 	%% EXERCISE END COMMANDS
