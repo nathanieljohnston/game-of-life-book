@@ -545,7 +545,6 @@ These stages are each triggered by one-time circuitry that is placed along the p
 
 
 % TODO: Double-check the timestamps in the upcoming subsection. They might depend on the orientation of the 0E0P which seems to be off in linear_construct_canon
-% TODO: make central zoom boxes bolder
 %%%%%%%%%%%%%%%%%%%%%%
 \subsection{The First $\mathbf{0.26 \times 2^{29}}$ Generations: Construction of the Southeast Child's Shell}\label{sec:0e0p_timeline_shell}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -724,17 +723,24 @@ After the first glider in the child's nucleus makes it all the way through the l
 
 %-- Or rather, this branch will be a temporary dead end (the eater at (199608,196195))! In a later timestamp this eater will be removed just long enough to copy a length-1024 chunk of the rule table glider stream out and use it (if it's non-empty) to record the new 0-7 state of the child metacell.
 
-At this point, the southeast child is fully constructed and simply waits until the parent metacell's other neighbors are constructed before really doing anything. The single-channel glider recipe will cycle through its nucleus several times before they are actually made to do anything of note.
+At this point, the southeast child is fully constructed and simply waits until the parent metacell's other neighbors are constructed before really doing anything. The single-channel glider recipe will cycle through its nucleus several times before it is actually made to do anything of note.
 
 
 %%%%%%%%%%%%%%%%%%%%%%
 \subsection{Generations $\mathbf{2 \times 2^{29}}$ to $\mathbf{8 \times 2^{29}}$: Construction of the Other Children}\label{sec:0e0p_timeline_other_child}
 %%%%%%%%%%%%%%%%%%%%%%
 
-Stuff.
-% Next: 1040192000 (should this actually be 1040187392 + 2^25?)
+Back in the parent metacell, at $t = 1{\thousep}073{\thousep}741{\thousep}824 = 2 \times 2^{29}$, a Herschel is present in the south clock gun. This Herschel will produce a glider that removes an eater~1 blocking the period~$2^{25}$ branch of the clock gun (see Figure~\ref{fig:0e0p_timeline_1073741824}). Exactly $2^{25}$ generations later, at $t = 1{\thousep}107{\thousep}296{\thousep}256$, a Herschel in the same location uses one-time circuitry to switch over to building the northeast child metacell.
 
-% Be careful with this figure -- timestamp stays the same, but figure itself needs to change when adding 2^25 to timestamp numbers
+% FIGURE
+
+At $t = 1{\thousep}610{\thousep}612{\thousep}736 = 3 \times 2^{29}$, the next ``$2^{29}$'' Herschel appears in the clock gun. However, despite the resulting glider making it past all $21$ semi-Snarks in the clock gun, it does not actually do anything of note---there is a block along the period $2^{29}$ output lane that simply absorbs it. This block causes another $2^{29}$-generation cycle to occur, so that the single-channel glider recipe is sent to the northeast child metacell twice: once to do the construction, and once to populate the new child's nucleus with a copy of the recipe. Blocks along the clock gun's output lane are similarly used to absorb the output gliders that are produced by Hershels at $t = 2^{29}$, $t = 5 \times 2^{29}$, and $t = 7 \times 2^{29}$.
+
+By generation $t = 2{\thousep}147{\thousep}483{\thousep}648 = 4 \times 2^{29}$, the northeast child's nucleus has been filled and its clock gun has started up. A Herschel is present in the south clock gun that will produce a glider that removes an eater~1 from the period $2^{25}$ output lane of the clock gun, and then exactly $2^{25}$ generations later (at $t = 2{\thousep}181{\thousep}038{\thousep}080$) another Herschel is present in the block gun that will use one-time circuitry to switch over to construction of the northwest child metacell (see Figure~\ref{fig:0e0p_timeline_2147483648}).
+
+% FIGURE with 3 side-by-side zoomed OUT timestamps
+
+By generation $t = 3{\thousep}221{\thousep}225{\thousep}472 = 6 \times 2^{29}$, the northwest child has been constructed and had its nucleus filled, and another Herschel is present in the clock gun lead to the parent metacell starting construction of the southwest child. Finally, all four child metacells have been constructed and had their nuclei filled by $t = 4{\thousep}294{\thousep}967{\thousep}296 = 8 \times 2^{29}$.
 
 
 %%%%%%%%%%%%%%%%%%%%%%
@@ -810,11 +816,11 @@ Many metacells---patterns of size larger than $1 \times 1$ that emulate the beha
 \end{figure}
 
 \begin{itemize}
-	\item[1)] It is hard-wired to emulate Life, and cannot easily be modified to emulate most of the $2^{512}$ different non-isotropic Life-like cellular automata.\smallskip
+	\item \textbf{Rule emulation}: It is hard-wired to emulate Life, and cannot easily be modified to emulate most of the other $2^{511}$ different zero-preserving 2-state Moore-neighborhood cellular automata.\smallskip
 	
-	\item[2)] It is not easy to tell at a glance which ``cells'' are alive and which are dead---it is determined by the presence or absence of a single extra glider in the cell---and thus is not interesting to look at from a far-out zoom level.\smallskip
+	\item \textbf{Visualization}: It is not easy to tell at a glance which ``cells'' are alive and which are dead---it is determined by the presence or absence of a single extra glider in the cell---and it is thus not interesting to look at from a far-out zoom level.\smallskip
 	
-	\item[3)] ``Dead'' cells must be placed on the Life plane, which means that, for example, spaceships cannot be emulated by this metacell unless the pattern is infinitely large.\smallskip
+	\item \textbf{Background grid}: ``Dead'' metacells must be placed on the Life plane, which means that, for example, spaceships cannot be emulated by this metacell unless the pattern is infinitely large.\smallskip
 \end{itemize}
 
 The first two of these problems were solved by the \emph{OTCA metapixel},\index{OTCA metapixel} which was constructed by Brice Due from late 2005 to mid-2006. While this metacell is a bit larger and slower than the first metacell (it is $2048 \times 2048$ and has period $35{\thousep}328$), it can be used to emulate any of the $2^{18}$ different outer-totalistic Life-like cellular automata. Indeed, built into its circuitry is an easily-adjustable array of eaters that determine how many live neighboring OTCA metapixels should lead to the birth or survival of the current metapixel (see Figure~\ref{fig:otca_metapixel}). 
