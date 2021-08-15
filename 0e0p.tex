@@ -772,7 +772,7 @@ After their nuclei are empty, parent metacells send their state to their childre
 	\label{fig:0e0p_timeline_7516192768}
 \end{figure}
 
-Those gliders travel counter-clockwise through the kernel and follow a spiral path into the south ``\texttt{logic}'' area of each of the children (regardless of whether or not this particular parent metacell built that child). When the state gliders arrive at a child metacell, the first glider hits one-time circuitry that erases the eater~1 blocking the clock gun's p$2^{29}$ output lane, while the remaining $1$--$7$ gliders are used to destroy $1$--$7$ blocks in the logic circuitry, thus storing the parent's state in the child. The state gliders arrive at the four child metacells at slightly different times, in the following order:\smallskip
+Those gliders follow a spiral path through the kernel into the south ``\texttt{logic}'' area of each of the children (regardless of whether or not this particular parent metacell built that child). When the state gliders arrive at a child's ``\texttt{logic}'' area, the first glider (if it exists) hits one-time circuitry that erases the eater~1 blocking the clock gun's p$2^{29}$ output lane, while the remaining $0$--$7$ gliders are used to destroy $0$--$7$ blocks in the logic circuitry, thus storing the parent's state in the child. The state gliders arrive at the four child metacells at slightly different times, in the following order:\smallskip
 
 \begin{itemize}
 	\item \textbf{SW child}: at $t = 7{\thousep}517{\thousep}755{\thousep}585 \approx 14.0029 \times 2^{29}$ (see Figure~\ref{fig:0e0p_timeline_7517755585}).\smallskip
@@ -784,7 +784,14 @@ Those gliders travel counter-clockwise through the kernel and follow a spiral pa
 	\item \textbf{SE child}: just $2{\thousep}892$ generations later, at $t = 7{\thousep}518{\thousep}794{\thousep}747$.\smallskip
 \end{itemize}
 
-% FIGURE
+\begin{figure}[!htb]
+	\centering
+	\embedlink{0e0p_timeline_7517755585_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_7517755585.pdf}}
+	\caption{State gliders from parent metacells arrive at their southwest children. The first of these gliders hits a one-time turner and then destroys the eater~1 blocking the period~$2^{29}$ output lane of that child's south clock gun (circled in \bgbox{redback}{red}). The other $0$--$7$ state gliders destroy $0$--$7$ blocks along the path of the state-lookup clock gun (here, the parent metacell was in state $7$, so $7$ gliders destroy $7$ blocks).}
+	\label{fig:0e0p_timeline_7517755585}
+\end{figure}
+
+Since every child metacell has a parent, a non-zero state will be sent in from at least one the four possible directions, so the eater~1 blocking the south clock gun's period~$2^{29}$ output lane will always be destroyed.
 
 
 %%%%%%%%%%%%%%%%%%%%%%
@@ -792,6 +799,9 @@ Those gliders travel counter-clockwise through the kernel and follow a spiral pa
 %%%%%%%%%%%%%%%%%%%%%%
 
 Stuff.
+
+% Show timestamp 15 * 2^29, as well as one shortly after, when glider escapes from state computation clock
+
 % TODO: To figure out state stuff, evolve rro_259517 a long ways to see what happens. Which state arrives at child first, second, etc.
 %Later, when the cell receives quasi-unary (a number of gliders in the set {0, 2, 3, 4, 5, 6, 7, 8}) input signals from its neighbours, the eater at (1792, 11732) is destroyed and the cell 'boots up'. The next glider from the clock triggers the indexer, which has been already been calibrated by the genuinely-unary (if nonzero, 1 glider has been subtracted at this point) inputs from the neighbours. This waits for an amount of time given by (a + 8*b + 64*c + 512*d)*1024 ticks, where (a,b,c,d) are the neighbour states, before copying a chunk of ~ 900 ticks from the tape at this point.
 %
