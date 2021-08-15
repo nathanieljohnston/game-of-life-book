@@ -739,9 +739,14 @@ Back in the parent metacell, at $t = 1{\thousep}073{\thousep}741{\thousep}824 = 
 
 At $t = 1{\thousep}610{\thousep}612{\thousep}736 = 3 \times 2^{29}$, the next ``$2^{29}$'' Herschel appears in the clock gun. However, despite the resulting glider making it past all $21$ semi-Snarks in the clock gun, it does not actually do anything of note---there is a block along the period $2^{29}$ output lane that simply absorbs it. This block causes another $2^{29}$-generation cycle to occur, so that the single-channel glider recipe is sent to the northeast child metacell twice: once to do the construction, and once to populate the new child's nucleus with a copy of the recipe. Blocks along the clock gun's output lane are similarly used to absorb the output gliders that are produced by Hershels at $t = 2^{29}$, $t = 5 \times 2^{29}$, and $t = 7 \times 2^{29}$.
 
-By generation $t = 2{\thousep}147{\thousep}483{\thousep}648 = 4 \times 2^{29}$, the northeast child's nucleus has been filled and its clock gun has started up. A Herschel is present in the south clock gun that will produce a glider that removes an eater~1 from the period $2^{25}$ output lane of the clock gun, and then exactly $2^{25}$ generations later (at $t = 2{\thousep}181{\thousep}038{\thousep}080$) another Herschel is present in the block gun that will use one-time circuitry to switch over to construction of the northwest child metacell (see Figure~\ref{fig:0e0p_timeline_2147483648}).
+By generation $t = 2{\thousep}147{\thousep}483{\thousep}648 = 4 \times 2^{29}$, the northeast child's nucleus has been filled and its clock gun has started up. A Herschel is present in the south clock gun that will produce a glider that removes an eater~1 from the period $2^{25}$ output lane of the clock gun, and then exactly $2^{25}$ generations later (at $t = 2{\thousep}181{\thousep}038{\thousep}080$) another Herschel is present in the clock gun that will use one-time circuitry to switch over to construction of the northwest child metacell (see Figure~\ref{fig:0e0p_timeline_2147483648}).
 
-% FIGURE with 3 side-by-side zoomed OUT timestamps
+\begin{figure}[!htb]
+	\centering
+	\embedlink{0e0p_timeline_2147483648_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_2147483648.pdf}}
+	\caption{The parent metacell constructs its children in the following order: southeast, northeast, northwest, southwest. It takes $2 \times 2^{29}$ generations to build a single child and populate its nucleus.}
+	\label{fig:0e0p_timeline_2147483648}
+\end{figure}
 
 By generation $t = 3{\thousep}221{\thousep}225{\thousep}472 = 6 \times 2^{29}$, the northwest child has been constructed and had its nucleus filled, and another Herschel is present in the clock gun lead to the parent metacell starting construction of the southwest child. Finally, all four child metacells have been constructed and had their nuclei filled by $t = 4{\thousep}294{\thousep}967{\thousep}296 = 8 \times 2^{29}$.
 
@@ -750,13 +755,15 @@ By generation $t = 3{\thousep}221{\thousep}225{\thousep}472 = 6 \times 2^{29}$, 
 \subsection{Generations $\mathbf{8 \times 2^{29}}$ to $\mathbf{14 \times 2^{29}}$: Preliminary Clean-Up}\label{sec:0e0p_timeline_prelim_cleanup}
 %%%%%%%%%%%%%%%%%%%%%%
 
-Nothing of importance happens in either the parent or child metacells between generations $8 \times 2^{29}$ and $12 \times 2^{29}$---they both just loop the single-channel recipe their their nuclei for a few times. In the parent metacell, the output of the south clock gun hits a sequence of four blocks along period~$2^{29}$ output lane (which can be seen near the southwest end of that lane in Figure~\ref{fig:0e0p_clock_gun_full}), simply causing it to do nothing for these generations. In the child metacells, the output of the south clock gun is still being absorbed by an eater~1 (which is circled in red at the northeast end of the output lane in Figure~\ref{fig:0e0p_clock_gun_full}).
+Nothing of importance happens in either the parent or child metacells between generations $8 \times 2^{29}$ and $12 \times 2^{29}$---they both just loop the single-channel recipe through their nuclei a few times. In the parent metacell, the output of the south clock gun hits a sequence of four blocks along the period~$2^{29}$ output lane (which can be seen near the southwest end of that lane in Figure~\ref{fig:0e0p_clock_gun_full}), simply causing it to do nothing for these generations. In the child metacells, the output of the south clock gun is still being absorbed by an eater~1 (which is circled in red at the northeast end of the output lane in Figure~\ref{fig:0e0p_clock_gun_full}).
 
 At $t = 6{\thousep}442{\thousep}450{\thousep}944 = 12 \times 2^{29}$, the parent metacell's south clock gun is holding a Herschel that will release a glider, which destroys a single Snark elsewhere at its south corner. This Snark was used by the metacell when it was a child, after computing its state, to store that state in a sequence of up to 8 blocks.\footnote{This Snark is destroyed now, instead of during the ``main'' self-destruction stage at $t = 15 \times 2^{29}$, just as a minor convenience---the 0E0P metacell could be rewired to destroy it later instead.}
 
 More interesting things finally start happening $2^{29}$ generations later: at $t = 6{\thousep}979{\thousep}321{\thousep}856 = 13 \times 2^{29}$, a Herschel is present in the parent's south clock gun that will release a glider, which will use one-time circuitry to destroy a block from a syringe in the part of the nucleus memory loop that extends through the metacell's south corner (see Figure~\ref{fig:0e0p_timeline_6979321856}). On the next cycle of the single-channel glider recipe through the nucleus, all gliders will be absorbed by that syringe's eater~2, so the recipe will gradually empty out of the nucleus over the course of those $2^{29}$ generations, with the final glider being absorbed at $t = 7{\thousep}516{\thousep}189{\thousep}238 \approx 14.0000 \times 2^{29}$.
 
 % FIGURE
+
+% Exercise idea: At approximately what generation will (piece) of the (northwest) child be constructed? Can be figured out by combining various stages in this timeline
 
 
 %%%%%%%%%%%%%%%%%%%%%%
