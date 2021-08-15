@@ -730,7 +730,12 @@ At this point, the southeast child is fully constructed and simply waits until t
 
 Back in the parent metacell, at $t = 1{\thousep}073{\thousep}741{\thousep}824 = 2 \times 2^{29}$, a Herschel is present in the south clock gun. This Herschel will produce a glider that removes an eater~1 blocking the period~$2^{25}$ branch of the clock gun (see Figure~\ref{fig:0e0p_timeline_1073741824}). Exactly $2^{25}$ generations later, at $t = 1{\thousep}107{\thousep}296{\thousep}256$, a Herschel in the same location uses one-time circuitry to switch over to building the northeast child metacell.
 
-% FIGURE
+\begin{figure}[!htb]
+	\centering
+	\embedlink{0e0p_timeline_1073741824_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_1073741824.pdf}}
+	\caption{A Herschel is present in the south clock gun of the parent metacell (highlighted in \bgbox{aquaback}{aqua}), which releases a glider that uses a one-time turner to destroy an eater~1 (circled in \bgbox{redback}{red}), thus initiating construction of the northeast child.}
+	\label{fig:0e0p_timeline_1073741824}
+\end{figure}
 
 At $t = 1{\thousep}610{\thousep}612{\thousep}736 = 3 \times 2^{29}$, the next ``$2^{29}$'' Herschel appears in the clock gun. However, despite the resulting glider making it past all $21$ semi-Snarks in the clock gun, it does not actually do anything of note---there is a block along the period $2^{29}$ output lane that simply absorbs it. This block causes another $2^{29}$-generation cycle to occur, so that the single-channel glider recipe is sent to the northeast child metacell twice: once to do the construction, and once to populate the new child's nucleus with a copy of the recipe. Blocks along the clock gun's output lane are similarly used to absorb the output gliders that are produced by Hershels at $t = 2^{29}$, $t = 5 \times 2^{29}$, and $t = 7 \times 2^{29}$.
 
