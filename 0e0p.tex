@@ -763,9 +763,14 @@ More interesting things finally start happening $2^{29}$ generations later: at $
 \subsection{Generations $\mathbf{14 \times 2^{29}}$ to $\mathbf{15 \times 2^{29}}$: State Information is Sent to Children}\label{sec:0e0p_timeline_state}
 %%%%%%%%%%%%%%%%%%%%%%
 
-After their nuclei are empty, parent metacells send their state to their children, so that those children will be able to compute their states. This process is initiated at $t = 7{\thousep}516{\thousep}192{\thousep}768 = 14 \times 2^{29}$, when a Herschel is present in the parent metacell's clock gun that will release a burst of $2$--$8$ gliders (representing its state $1$--$7$), as illustrated in Figure~\ref{fig:0e0p_timeline_7516192768}.
+After their nuclei are empty, parent metacells send their state to their children, so that those children will be able to compute their own states. This process is initiated at $t = 7{\thousep}516{\thousep}192{\thousep}768 = 14 \times 2^{29}$, when a Herschel is present in the parent metacell's clock gun that will fire $8$ gliders at the $0$--$6$ or $8$ blocks that store its state. As a result, $0$ or $2$--$8$ gliders will escape (representing the metacell's state $0$ or $1$--$7$),\footnote{In the example that we are illustrating, the parent metacell is in state $7$, so there are $0$ blocks, and all $8$ gliders will escape.} as illustrated in Figure~\ref{fig:0e0p_timeline_7516192768}.
 
-% FIGURE
+\begin{figure}[!htb]
+	\centering
+	\embedlink{0e0p_timeline_7516192768_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_7516192768.pdf}}
+	\caption{A Herschel is present in the south clock gun of the parent metacell (highlighted in \bgbox{aquaback}{aqua}), which releases a glider that uses one-time circuitry to send its state (which is currently stored in a sequence of $0$--$8$ blocks) to its children (as a sequence of $0$--$8$ gliders). Some mild cleanup also happens at this stage---the four state-reading boats (if any of them still exist, highlighted in \bgbox{magentaback}{magenta}) from the upcoming Figure~\ref{fig:0e0p_timeline_7517755585} are destroyed.}
+	\label{fig:0e0p_timeline_7516192768}
+\end{figure}
 
 Those gliders travel counter-clockwise through the kernel and follow a spiral path into the south ``\texttt{logic}'' area of each of the children (regardless of whether or not this particular parent metacell built that child). When the state gliders arrive at a child metacell, the first glider hits one-time circuitry that erases the eater~1 blocking the clock gun's p$2^{29}$ output lane, while the remaining $1$--$7$ gliders are used to destroy $1$--$7$ blocks in the logic circuitry, thus storing the parent's state in the child. The state gliders arrive at the four child metacells at slightly different times, in the following order:\smallskip
 
