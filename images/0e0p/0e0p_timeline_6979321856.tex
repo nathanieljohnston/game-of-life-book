@@ -1,0 +1,59 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\definecolor{darkyellowback}{RGB}{96,96,0}
+\definecolor{darkgreenback}{RGB}{0,96,0}
+\definecolor{darkmagentaback}{RGB}{96,0,96}
+\definecolor{aquaback}{RGB}{192,255,255}
+\definecolor{darkaquaback}{RGB}{0,96,96}
+
+\newcommand{\ttapprox}{\raisebox{-0.5ex}{\textasciitilde}\hspace{-5.1pt}\raisebox{-0.9ex}{\textasciitilde}}
+
+\begin{document}
+	\begin{tikzpicture}%
+		\clip (-0.02,5.48) rectangle (16.02,10.02);
+		\newcommand\gp{1}
+	
+		\node[inner sep=0pt,anchor=north west] (ca) at (0.25,9.05) {\includegraphics[width=3.5cm]{0e0p_timeline_4294967296.png}};
+		
+		\draw[gridgray,line width=0.6pt] (0,5.5) rectangle (4,10);
+		
+		%\draw[gridgray,line width=0.6pt] (0,10) rectangle (3,7);
+		
+		% ZOOM MIDDLE
+			\newcommand\bglx{5+\gp}
+			\newcommand\bgrx{\bglx+4}
+			\newcommand\bgty{10}
+			\newcommand\bgby{\bgty-4.5}
+			
+			\node[inner sep=0pt,anchor=north west] (zoom0) at (\bglx+0.25,9.05) {\includegraphics[width=3.5cm]{0e0p_timeline_7247757312.png}};
+			
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+		% END ZOOM MIDDLE
+		
+		% ZOOM RIGHT
+			\renewcommand\bglx{10+\gp+\gp}
+			\renewcommand\bgrx{\bglx+4}
+			\renewcommand\bgty{10}
+			\renewcommand\bgby{\bgty-4.5}
+			
+			\node[inner sep=0pt,anchor=north west] (zoom1) at (\bglx+0.25,9.05) {\includegraphics[width=3.5cm]{0e0p_timeline_7516192768.png}};
+			
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+		% END ZOOM RIGHT
+		
+		\node[inner sep=0pt,anchor=north west] (genarr) at (4.18,8) {\color{black}{$\xrightarrow{\text{\clock{5}{43} $0.5 \times 2^{29}$}}$}};
+		
+		\node[inner sep=0pt,anchor=north west] (genarr) at (10.18,8) {\color{black}{$\xrightarrow{\text{\clock{5}{43} $0.5 \times 2^{29}$}}$}};
+
+		\draw[gray] (0,10) node[anchor=north west,align=left] {\texttt{t = 6}\ \texttt{979}\ \texttt{321}\ \texttt{856}\\ \texttt{{} \ = 13 × 2$^{\texttt{29}}$}};
+		
+		\draw[gray] (5+\gp,10) node[anchor=north west,align=left] {\texttt{t = 7}\ \texttt{247}\ \texttt{757}\ \texttt{312}\\ \texttt{{} \ = 13.5 × 2$^{\texttt{29}}$}};
+		
+		\draw[gray] (10+\gp+\gp,10) node[anchor=north west,align=left] {\texttt{t = 7}\ \texttt{516}\ \texttt{192}\ \texttt{768}\\ \texttt{{} \ = 14 × 2$^{\texttt{29}}$}};
+		
+		% CIRCLES
+		\draw[white,line width=1.5pt,opacity=0.6](7.0+\gp,6.45) circle (0.1);
+		\draw[redback2,line width=0.6pt](7.0+\gp,6.45) circle (0.1);
+	\end{tikzpicture}
+\end{document}
