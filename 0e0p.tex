@@ -473,10 +473,18 @@ Specifically, the child metacell uses a \textbf{state-lookup clock gun},\index{s
 
 % TODO: Go back to Figure 12.18 and highlight which part is the rule table and which part is the rest of the single-channel recipe.
 
+\begin{figure}[!htb]
+	\centering
+	\embedlink{state_lookup_clock_gun}{\includegraphics[width=\textwidth]{0e0p/state_lookup_clock_gun.pdf}}
+	\caption{A period~$1024$ clock gun (highlighted in \bgbox{aquaback}{aqua}) that has blocks along its path, delaying its first output glider. If there are $a$ blocks along the southwest edge, $b$ along the northwest edge, $c$ along the northeast edge, and $d$ along the southeast edge, then the clock gun's first escaping glider is produced by the Herschel that is present at generation $1024(a + 8b + 64c + 512d)$. That glider hits one-time circuitry (highlighted in \bgbox{magentaback}{magenta}) that unblocks and quickly re-blocks a glider stream, allowing its $(a + 8b + 64c + 512d)$-th glider to escape.}
+	\label{fig:state_lookup_clock_gun}
+\end{figure}
+
 %This waits for an amount of time given by (a + 8*b + 64*c + 512*d)*1024 ticks, where (a,b,c,d) are the neighbour states, before copying a chunk of ~ 900 ticks from the tape at this point.
 %
 %This chunk contains the next state of the cell, in unary. It is upgraded to quasi-unary and deletes up to 8 blocks near (849, 11733). When the cell comes to signal its neighbours (assuming nonzero), this quasi-unary value is converted back into gliders by sending 8 gliders at those blocks, allowing the correct number of gliders to pass though. Of course, this doesn't happen for a while, because the cell first needs to wait for its parents to disappear and then construct its descendants. This waiting is exaggerated (there's a crystal annotated with '-48', which is bypassed if the new state is 0) so that during about 75% of the time, the non-empty regions of the Life plane correspond to live metacells. This means that at distant zooms in Golly, a metapattern should be indistinguishable from the original pattern.
 
+% TODO: put more labels on wires on 0E0P schematic?
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
