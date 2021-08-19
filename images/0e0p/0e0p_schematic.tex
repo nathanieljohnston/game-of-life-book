@@ -41,7 +41,7 @@
 %		\fill[fill=black] (0,64) circle (0.3);
 %		\fill[fill=black] (64,64) circle (0.3);
 
-		\clip (-4,4) -- (-4,60) -- (4,68) -- (60,68) -- (68,60) -- (68,4) -- (60,-4) -- (4,-4) -- cycle;
+		\clip (-4,4) -- (-4,60) -- (28,92) -- (60,68) -- (68,60) -- (68,4) -- (60,-4) -- (4,-4) -- cycle;
 
 		% shell, kernel, and nucleus
 		\fill[greenpastel] ( 0.5,  0.5) rectangle (63.5, 63.5);
@@ -81,7 +81,7 @@
 		\draw[darkmagentaback,thick] (50,12) -- (52,12) -- (52,15);
 		\draw[darkmagentaback,thick,-{Latex[length=2mm,width=1.5mm]}] (52,12) -- (52,9) -- (36,9) -- (36,-0.5);
 		\draw[darkmagentaback,thick,-{Latex[length=2mm,width=1.5mm]}] (36,9) -- (9,9) -- (9,29) -- (-0.5,29);
-		\draw[darkmagentaback,thick,-{Latex[length=2mm,width=1.5mm]}] (9,29) -- (9,55) -- (30,55) -- (30,64.5);
+		\draw[darkmagentaback,thick,-{Latex[length=2mm,width=1.5mm]}] (9,29) -- (9,55) -- (30,55) -- (30,69.5) node[anchor=south,rotate=-45,shift={(-1.1,0)}]{\texttt{outgoing recipe}};
 		\draw[darkmagentaback,thick,-{Latex[length=2mm,width=1.5mm]}] (30,55) -- (55,55) -- (55,33) -- (64.5,33);
         \draw[darkmagentaback,thick] (55,33) -- (55,9);
 		\draw[darkyellowback,-{Latex[length=2mm,width=1.5mm]}] (48,36) -- (50.5,36);
@@ -108,7 +108,7 @@
 
         % Construction arms
 		\draw[darkmagentaback,dashed,thick,-{Latex[length=2mm,width=1.5mm]}] (55,9) -- (66, 9);
-		\draw[darkmagentaback,dashed,thick,-{Latex[length=2mm,width=1.5mm]}] (55,55) -- (55, 66);
+		\draw[darkmagentaback,dashed,thick,-{Latex[length=2mm,width=1.5mm]}] (55,55) -- (55, 67.75) node[anchor=south east,rotate=-45,shift={(0.5,0)}]{\texttt{construction}};
 		\draw[darkmagentaback,dashed,thick,-{Latex[length=2mm,width=1.5mm]}] (9, 55) -- (-2, 55);
 		\draw[darkmagentaback,dashed,thick,-{Latex[length=2mm,width=1.5mm]}] (9, 9) -- (9, -2);
 		
@@ -146,7 +146,7 @@
 		
 		
 		% Green wires
-		\draw[darkgreenback,thick,{angle 60 reversed[length=2mm,width=1.5mm]}-] (36,64.5) -- (36,63) -- (62,63) -- (62,29);
+		\draw[darkgreenback,thick,{angle 60 reversed[length=2mm,width=1.5mm]}-] (36,69.5) node[anchor=south,rotate=-45,shift={(1.1,0)}]{\texttt{incoming recipe}} -- (36,63) -- (62,63) -- (62,29);
 		\draw[darkgreenback,thick,{angle 60 reversed[length=2mm,width=1.5mm]}-] (64.5,29) -- (62,29) -- (62,3) -- (30,3);
 		\draw[darkgreenback,thick,{angle 60 reversed[length=2mm,width=1.5mm]}-] (30,-0.5) -- (30,3) -- (4,3) -- (4,33);
 		\draw[darkgreenback,thick,{angle 60 reversed[length=2mm,width=1.5mm]}-] (-0.5,33) -- (4,33) -- (4,59) -- (58,59) -- (58,7) -- (40,7) -- (40,8) -- (53,8) -- (53,19.5) -- (40,19.5) -- (40,20);

@@ -448,8 +448,9 @@ In the actual 0E0P, the control clock gun's output is redirected many more times
 
 % Exercise or explain: why is there a p2^25 output lane?
 
-% EVERYTHING AFTER THIS POINT IS PLACEHOLDER and/or copied from forums and/or gibberish that will be changed
 
+
+% TODO: Go back to Figure 12.18 and highlight which part is the rule lookup table and which part is the rest of the single-channel recipe.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Logic Circuitry and State Computation}\label{sec:0e0p_structure_logic}
@@ -467,11 +468,9 @@ The kernel also contains, at its southern corner, the logic circuitry that is us
 	\item \textbf{Long-term storage}: Those $0$ or $2$--$8$ gliders are aimed at a sequence of $8$ blocks at the westernmost edge of the child's ``\texttt{S}'' corner (see the upcoming Figure~\ref{fig:0e0p_timeline_7516192768} for the precise location). Its state is thus stored in the \emph{absense} of those blocks, with state $0$ corresponding to $8$ blocks and state $1 \leq s \leq 7$ corresponding to $7 - s$ blocks.\smallskip
 \end{itemize}
 
-To compute its state from those of its parents, a child metacell uses a lookup table: a collection of $8^4 - 1 = 4{\thousep}095$ sequences of $0$--$7$ gliders each, specifying what the new state should be given any possible combination of not-all-zero parent states. This lookup table is stored in the nucleus, and the child metacell uses the block absences to pluck out the correct piece of it.
+To compute its state from those of its parents, a child metacell uses a lookup table: a collection of $8^4 - 1 = 4{\thousep}095$ sequences of $0$--$7$ gliders each, arranged in $1{\thousep}024$-generation chunks, specifying what the new state should be given any possible combination of not-all-zero parent states. This lookup table is stored in the nucleus, and we can use the one-time switching techniques of Section~\ref{sec:0e0p_structure_shell} to extract a single $1{\thousep}024$-generation chunk from it. To extract the \emph{correct} chunk, however, we have to delay those one-time switching operations to the correct moment in time, based on the absence of the blocks representing parent metacells' states. To this end, the child metacell uses a \textbf{state-lookup clock gun}\index{state-lookup clock gun} like the one illustrated in Figure~\ref{fig:state_lookup_clock_gun}.\footnote{However, the gun illustrated here only plucks out a single glider. To have it pluck out up to $7$ gliders, its one-time circuitry has to be modified slightly (see Exercise~??).}
 
-Specifically, the child metacell uses a \textbf{state-lookup clock gun},\index{state-lookup clock gun} as illustrated in Figure~\ref{fig:state_lookup_clock_gun}, to ...
-
-% TODO: Go back to Figure 12.18 and highlight which part is the rule table and which part is the rest of the single-channel recipe.
+This mechanism works by placing blocks and semi-Snarks along a period~$1{\thousep}024$ clock guns's output path: each block destroys a single glider, thus delaying the glider that will trigger the one-time switching circuitry. However, if a semi-Snark is placed between the clock gun and the block, then \emph{two} additional gliders will be destroyed: one by the block and then another one by the semi-Snark. More generally, placing $k$ semi-Snarks between the clock gun and the block results in $2^k$ additional gliders being destroyed.
 
 \begin{figure}[!htb]
 	\centering
@@ -480,11 +479,19 @@ Specifically, the child metacell uses a \textbf{state-lookup clock gun},\index{s
 	\label{fig:state_lookup_clock_gun}
 \end{figure}
 
+It follows that if we place $0 \leq a,b,c,d \leq 7$ blocks ... then
+\[
+	a + 8b + 64c + 512d
+\]
+gliders will be absorbed before the first one escapes.
+% Footnote back to glider gun section -- we saw a similar binary trick back there.
+
+
+% EVERYTHING AFTER THIS POINT IS PLACEHOLDER and/or copied from forums and/or gibberish that will be changed
+
 %This waits for an amount of time given by (a + 8*b + 64*c + 512*d)*1024 ticks, where (a,b,c,d) are the neighbour states, before copying a chunk of ~ 900 ticks from the tape at this point.
 %
 %This chunk contains the next state of the cell, in unary. It is upgraded to quasi-unary and deletes up to 8 blocks near (849, 11733). When the cell comes to signal its neighbours (assuming nonzero), this quasi-unary value is converted back into gliders by sending 8 gliders at those blocks, allowing the correct number of gliders to pass though. Of course, this doesn't happen for a while, because the cell first needs to wait for its parents to disappear and then construct its descendants. This waiting is exaggerated (there's a crystal annotated with '-48', which is bypassed if the new state is 0) so that during about 75% of the time, the non-empty regions of the Life plane correspond to live metacells. This means that at distant zooms in Golly, a metapattern should be indistinguishable from the original pattern.
-
-% TODO: put more labels on wires on 0E0P schematic?
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -571,7 +578,6 @@ These stages are each triggered by one-time circuitry that is placed along the p
 % Rule table goes in before anything else (at LW?). Copy of DNA goes in through Area 51.
 
 
-% TODO: Double-check the timestamps in the upcoming subsection. They might depend on the orientation of the 0E0P which seems to be off in linear_construct_canon
 %%%%%%%%%%%%%%%%%%%%%%
 \subsection{The First $\mathbf{0.26 \times 2^{29}}$ Generations: Construction of the Southeast Child's Shell}\label{sec:0e0p_timeline_shell}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -839,11 +845,16 @@ Since every child metacell has a parent, a non-zero state will be sent in from a
 
 Now that child metacells have recorded the states of their parents (in the absence of certain blocks in their state-lookup clock guns), it is time for them to compute their own states. To do this, a Herschel is present in each child's south clock gun at $t = 8{\thousep}053{\thousep}063{\thousep}680 = 15 \times 2^{29}$ that triggers its state-lookup clock gun to start. That state-lookup gun will be ready to compute the metacell's state $8{\thousep}846$ generations later, at $t = 8{\thousep}053{\thousep}072{\thousep}526$ (see Figure~\ref{fig:0e0p_timeline_8053072526}).
 
-% FIGURE {fig:0e0p_timeline_8053072526}
+\begin{figure}[!htb]
+	\centering
+	\embedlink{0e0p_timeline_8053072526_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_8053072526.pdf}}
+	\caption{The state-lookup clock gun (highlighted in \bgbox{aquaback}{aqua}) has been started in the child metacells. In the southwest child metacell (magnified here), the parent metacell to the northeast had state $7$, which is encoded in the fact that $7$ blocks are missing along one of the clock gun's edges. The leftover arrangement of blocks make it so that the central period $1{\thousep}024$ gun releases $(7-s_{\textup{NW}}) + 8(7-s_{\textup{SE}}) + 64(7-s_{\textup{SW}}) + 512(7-s_{\textup{NE}}) = 511$ gliders before one escapes.}
+	\label{fig:0e0p_timeline_8053072526}
+\end{figure}
 
-This state-lookup gun works as described in Section~\ref{sec:0e0p_structure_logic}: if we label the states of the northwest, southeast, southwest, and northeast parents by $S_{\textup{NW}}$, $S_{\textup{SE}}$, $S_{\textup{SW}}$, and $S_{\textup{NE}}$, respectively, then the first glider that makes it all the way out of this gun is generated by the Herschel that is present in it at generation
+This state-lookup gun works as described in Section~\ref{sec:0e0p_structure_logic}: if we label the states of the northwest, southeast, southwest, and northeast parents by $s_{\textup{NW}}$, $s_{\textup{SE}}$, $s_{\textup{SW}}$, and $s_{\textup{NE}}$, respectively, then the first glider that makes it all the way out of this gun is generated by the Herschel that is present in it at generation
 \begin{align*}
-	t & = 15 \times 2^{29} + 8846 + 1024\big((7-S_{\textup{NW}}) + 8(7-S_{\textup{SE}}) + 64(7-S_{\textup{SW}}) + 512(7-S_{\textup{NE}})\big).
+	t & = 15 \times 2^{29} + 8846 + 1024\big((7-s_{\textup{NW}}) + 8(7-s_{\textup{SE}}) + 64(7-s_{\textup{SW}}) + 512(7-s_{\textup{NE}})\big).
 \end{align*}
 For example, consider the southwest child of the metacell that we have been tracking. It has a northeast parent in state $7$, and all other parents in state $0$ (since they do not exist), so the first glider to make it out of its state-lookup gun does so via the Herschel that is present at generation
 \begin{align*}
