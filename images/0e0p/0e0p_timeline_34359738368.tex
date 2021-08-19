@@ -11,45 +11,174 @@
 
 \begin{document}
 	\begin{tikzpicture}%
-		\clip (-0.02,5.48) rectangle (16.02,10.02);
-		\newcommand\gp{1}
+		%\clip (-0.02,5.48) rectangle (16.02,10.02);
+		\newcommand\gp{0.44}
 	
-		\node[inner sep=0pt,anchor=north west] (ca) at (0.25,9.05) {\includegraphics[width=3.5cm]{0e0p_timeline_34359738368.png}};
+		% TOP LEFT
+			\node[inner sep=0pt,anchor=north west] (ca) at (0.05,9.05) {\includegraphics[width=3.5cm]{0e0p_timeline_34359738368.png}};
+			
+			\draw[gridgray,line width=0.6pt] (0,5.5) rectangle (3.6,10);
+			
+			\draw[gray] (0,10) node[anchor=north west,align=left] {\texttt{t = 34}\ \texttt{359}\ \texttt{738}\ \texttt{368}\\ \texttt{{} \ = 64 × 2$^{\texttt{29}}$ = 2$^{\texttt{35}}$}};
+		% END TOP LEFT
 		
-		\draw[gridgray,line width=0.6pt] (0,5.5) rectangle (4,10);
+		\node[inner sep=0pt,anchor=north west] (genarr) at (4.01,8) {\color{black}{$\xrightarrow{\text{\clock{2}{55} $2^{29}$}}$}};
 		
-		%\draw[gridgray,line width=0.6pt] (0,10) rectangle (3,7);
-		
-		% ZOOM MIDDLE
+		% TOP MIDDLE
 			\newcommand\bglx{5+\gp}
-			\newcommand\bgrx{\bglx+4}
+			\newcommand\bgrx{\bglx+3.6}
 			\newcommand\bgty{10}
 			\newcommand\bgby{\bgty-4.5}
 			
-			\node[inner sep=0pt,anchor=north west] (zoom0) at (\bglx+0.25,9.05) {\includegraphics[width=3.5cm]{0e0p_timeline_7247757312.png}};
+			\node[inner sep=0pt,anchor=north west] (zoom0) at (\bglx+0.05,9.05) {\includegraphics[width=3.5cm]{0e0p_timeline_34896609280.png}};
 			
 			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
-		% END ZOOM MIDDLE
+			
+			\draw[gray] (5+\gp,10) node[anchor=north west,align=left] {\texttt{t = 34}\ \texttt{896}\ \texttt{609}\ \texttt{280}\\ \texttt{{} \ = 65 × 2$^{\texttt{29}}$}};
+		% END TOP MIDDLE
 		
-		% ZOOM RIGHT
+		\node[inner sep=0pt,anchor=north west] (genarr) at (9.45,8) {\color{black}{$\xrightarrow{\text{\clock{2}{55} $2^{29}$}}$}};
+		
+		% TOP RIGHT
 			\renewcommand\bglx{10+\gp+\gp}
-			\renewcommand\bgrx{\bglx+4}
+			\renewcommand\bgrx{\bglx+3.6}
 			\renewcommand\bgty{10}
 			\renewcommand\bgby{\bgty-4.5}
 			
-			\node[inner sep=0pt,anchor=north west] (zoom1) at (\bglx+0.25,9.05) {\includegraphics[width=3.5cm]{0e0p_timeline_7516192768.png}};
+			\node[inner sep=0pt,anchor=north west] (zoom1) at (\bglx+0.05,9.05) {\includegraphics[width=3.5cm]{0e0p_timeline_35433480192.png}};
 			
 			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
-		% END ZOOM RIGHT
+			
+			\draw[gray] (10+\gp+\gp,10) node[anchor=north west,align=left] {\texttt{t = 35}\ \texttt{433}\ \texttt{480}\ \texttt{192}\\ \texttt{{} \ = 66 × 2$^{\texttt{29}}$}};
+		% END TOP RIGHT
 		
-		\node[inner sep=0pt,anchor=north west] (genarr) at (4.18,8) {\color{black}{$\xrightarrow{\text{\clock{5}{43} $0.5 \times 2^{29}$}}$}};
 		
-		\node[inner sep=0pt,anchor=north west] (genarr) at (10.18,8) {\color{black}{$\xrightarrow{\text{\clock{5}{43} $0.5 \times 2^{29}$}}$}};
-
-		\draw[gray] (0,10) node[anchor=north west,align=left] {\texttt{t = 34}\ \texttt{359}\ \texttt{738}\ \texttt{368}\\ \texttt{{} \ = 64 × 2$^{\texttt{29}}$ = 2$^{\texttt{35}}$}};
+		% START ROW 2
+		\node[inner sep=0pt,anchor=north west] (genarr) at (-1.6,3) {\color{black}{$\xrightarrow{\text{\clock{5}{43} $2 \times 2^{29}$}}$}};
 		
-		\draw[gray] (5+\gp,10) node[anchor=north west,align=left] {\texttt{t = 7}\ \texttt{247}\ \texttt{757}\ \texttt{312}\\ \texttt{{} \ = 13.5 × 2$^{\texttt{29}}$}};
+		% LEFT
+			\node[inner sep=0pt,anchor=north west] (ca) at (0.05,4.05) {\includegraphics[width=3.5cm]{0e0p_timeline_36507222016.png}};
+			
+			\draw[gridgray,line width=0.6pt] (0,0.5) rectangle (3.6,5);
+			
+			\draw[gray] (0,5) node[anchor=north west,align=left] {\texttt{t = 36}\ \texttt{507}\ \texttt{222}\ \texttt{016}\\ \texttt{{} \ = 68 × 2$^{\texttt{29}}$}};
+		% END LEFT
 		
-		\draw[gray] (10+\gp+\gp,10) node[anchor=north west,align=left] {\texttt{t = 7}\ \texttt{516}\ \texttt{192}\ \texttt{768}\\ \texttt{{} \ = 14 × 2$^{\texttt{29}}$}};
+		\node[inner sep=0pt,anchor=north west] (genarr) at (3.8,3) {\color{black}{$\xrightarrow{\text{\clock{5}{43} $2 \times 2^{29}$}}$}};
+		
+		% MIDDLE
+			\renewcommand\bglx{5+\gp}
+			\renewcommand\bgrx{\bglx+3.6}
+			\renewcommand\bgty{5}
+			\renewcommand\bgby{\bgty-4.5}
+			
+			\node[inner sep=0pt,anchor=north west] (zoom0) at (\bglx+0.05,4.05) {\includegraphics[width=3.5cm]{0e0p_timeline_37580963840.png}};
+			
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+			
+			\draw[gray] (5+\gp,5) node[anchor=north west,align=left] {\texttt{t = 37}\ \texttt{580}\ \texttt{963}\ \texttt{840}\\ \texttt{{} \ = 70 × 2$^{\texttt{29}}$}};
+		% END MIDDLE
+		
+		\node[inner sep=0pt,anchor=north west] (genarr) at (9.24,3) {\color{black}{$\xrightarrow{\text{\clock{5}{43} $2 \times 2^{29}$}}$}};
+		
+		% RIGHT
+			\renewcommand\bglx{10+\gp+\gp}
+			\renewcommand\bgrx{\bglx+3.6}
+			\renewcommand\bgty{5}
+			\renewcommand\bgby{\bgty-4.5}
+			
+			\node[inner sep=0pt,anchor=north west] (zoom1) at (\bglx+0.05,4.05) {\includegraphics[width=3.5cm]{0e0p_timeline_38654705664.png}};
+			
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+			
+			\draw[gray] (10+\gp+\gp,5) node[anchor=north west,align=left] {\texttt{t = 38}\ \texttt{654}\ \texttt{705}\ \texttt{664}\\ \texttt{{} \ = 72 × 2$^{\texttt{29}}$}};
+		% END RIGHT
+		
+		% START ROW 3
+		\node[inner sep=0pt,anchor=north west] (genarr) at (-1.6,-2) {\color{black}{$\xrightarrow{\text{\clock{11}{45} $6 \times 2^{29}$}}$}};
+		
+		% LEFT
+			\node[inner sep=0pt,anchor=north west] (ca) at (0.05,-0.95) {\includegraphics[width=3.5cm]{0e0p_timeline_41875931136.png}};
+			
+			\draw[gridgray,line width=0.6pt] (0,-4.5) rectangle (3.6,0);
+			
+			\draw[gray] (0,0) node[anchor=north west,align=left] {\texttt{t = 41}\ \texttt{875}\ \texttt{931}\ \texttt{136}\\ \texttt{{} \ = 78 × 2$^{\texttt{29}}$}};
+		% END LEFT
+		
+		\node[inner sep=0pt,anchor=north west] (genarr) at (3.8,-2) {\color{black}{$\xrightarrow{\text{\clock{5}{43} $2 \times 2^{29}$}}$}};
+		
+		% MIDDLE
+			\renewcommand\bglx{5+\gp}
+			\renewcommand\bgrx{\bglx+3.6}
+			\renewcommand\bgty{0}
+			\renewcommand\bgby{\bgty-4.5}
+			
+			\node[inner sep=0pt,anchor=north west] (zoom0) at (\bglx+0.05,-0.95) {\includegraphics[width=3.5cm]{0e0p_timeline_42949672960.png}};
+			
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+			
+			\draw[gray] (5+\gp,0) node[anchor=north west,align=left] {\texttt{t = 42}\ \texttt{949}\ \texttt{672}\ \texttt{960}\\ \texttt{{} \ = 80 × 2$^{\texttt{29}}$}};
+		% END MIDDLE
+		
+		\node[inner sep=0pt,anchor=north west] (genarr) at (9.45,-2) {\color{black}{$\xrightarrow{\text{\clock{2}{55} $2^{29}$}}$}};
+		
+		% RIGHT
+			\renewcommand\bglx{10+\gp+\gp}
+			\renewcommand\bgrx{\bglx+3.6}
+			\renewcommand\bgty{0}
+			\renewcommand\bgby{\bgty-4.5}
+			
+			\node[inner sep=0pt,anchor=north west] (zoom1) at (\bglx+0.05,-0.95) {\includegraphics[width=3.5cm]{0e0p_timeline_43486543872.png}};
+			
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+			
+			\draw[gray] (10+\gp+\gp,0) node[anchor=north west,align=left] {\texttt{t = 43}\ \texttt{486}\ \texttt{543}\ \texttt{872}\\ \texttt{{} \ = 81 × 2$^{\texttt{29}}$}};
+		% END RIGHT
+		
+		% START ROW 4
+		\node[inner sep=0pt,anchor=north west] (genarr) at (-1.65,-7) {\color{black}{$\xrightarrow{\text{\clock{7}{25} $16 \times 2^{29}$}}$}};
+		
+		% LEFT
+			\node[inner sep=0pt,anchor=north west] (ca) at (0.05,-5.95) {\includegraphics[width=3.5cm]{0e0p_timeline_52076478464.png}};
+			
+			\draw[gridgray,line width=0.6pt] (0,-9.5) rectangle (3.6,-5);
+			
+			\draw[gray] (0,-5) node[anchor=north west,align=left] {\texttt{t = 52}\ \texttt{076}\ \texttt{478}\ \texttt{464}\\ \texttt{{} \ = 97 × 2$^{\texttt{29}}$}};
+		% END LEFT
+		
+		% MIDDLE AND RIGHT
+			\newcommand\smlx{7.18}
+			\newcommand\smrx{\smlx+0.12}
+			\newcommand\smby{-4.46}
+			\newcommand\smty{\smby+0.12}
+			
+			\renewcommand\bglx{5.5+\gp}
+			\renewcommand\bgrx{13.7+\gp}
+			\renewcommand\bgty{-5}
+			\renewcommand\bgby{-9.5}
+			
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
+			
+			\node[inner sep=0pt,anchor=north west] (zoom0) at (\bglx,\bgty) {\includegraphics[width=8.2cm]{0e0p_timeline_34359738368_zoom.png}};
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (\smlx,\smty) -- (\smlx,\smby) -- (\smrx,\smby) -- (\smrx,\smty) -- (\bgrx,\bgty) -- (\bglx,\bgty) -- cycle;
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\smlx,\smty) rectangle (\smrx,\smby);
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
+			
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgby) rectangle (\bgrx,\bgty);
+		% END MIDDLE AND RIGHT
+		
+		% CIRCLES
+		\draw[white,line width=1.5pt,opacity=0.6](8.01,-7.1) circle (0.1);
+		\draw[redback2,line width=0.6pt](8.01,-7.1) circle (0.1);
+		\draw[color=gray] (8.01,-7) node[anchor=south,fill=white,fill opacity=0.8,text opacity=1,rounded corners=2pt,inner sep=1pt]{\footnotesize\texttt{(a)}};
+		
+		\draw[white,line width=1.5pt,opacity=0.6](13.77,-9.09) circle (0.1);
+		\draw[redback2,line width=0.6pt](13.77,-9.09) circle (0.1);
+		\draw[color=gray] (13.77,-8.99) node[anchor=south,fill=white,fill opacity=0.8,text opacity=1,rounded corners=2pt,inner sep=1pt]{\footnotesize\texttt{(b)}};
 	\end{tikzpicture}
 \end{document}
