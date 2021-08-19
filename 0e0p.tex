@@ -864,21 +864,46 @@ For example, consider the southwest child of the metacell that we have been trac
 
 That glider escaping the state-lookup gun causes it to self-destruct and then emit a pair of gliders: one that destroys an eater~1 at $t = ??$, unblocking the single-channel glider stream, and one that destroys a block in a syringe at $t = ??$, re-blocking the single-channel glider stream. The effect of this is that a single $1{\thousep}024$-generation slice of the 0E0P's rule table is copied---a portion containing $0$--$7$ gliders that describe the new state of this child metacell (see Figure~??).
 
-% FIGURE
+% FIGURE: just before 2 gliders hit the state-extraction spot, after state-lookup gun self-destructs
 % For this figure, find 8053595790 and then go forward a bit.
 
 % Footnote about the above order being arbitrary and unimportant
 
 % Exercise: what generation does glider escape in some other configuration or for some other child?
 
-Meanwhile, parent metacells have served their purpose (they have built all of their children and sent state information to them), so they are free to die. The Herschel that is present in \emph{their} south clock guns at $t = 8{\thousep}053{\thousep}063{\thousep}680 = 15 \times 2^{29}$ trigger this self-destruction.% A bit more is needed here. Maybe a figure after south area is destroyed and mention where gliders have fired off to
+Meanwhile, parent metacells have served their purpose, so they are free to die. The Herschels that are present in \emph{their} south clock guns at generation $t = 8{\thousep}053{\thousep}063{\thousep}680 = 15 \times 2^{29}$ trigger this self-destruction. Much like the destruction of \texttt{CN} clock gun that was described in Figure~\ref{fig:0e0p_timeline_968843520}, this self-destruction takes place over multiple stages, with some semi-Snarks being destroyed in each stage so that subsequent stages occur more rapidly.
+
+During one of these intermediate stages, at $t = 8{\thousep}124{\thousep}366{\thousep}848 \approx 15.1328 \times 2^{29}$, a Herschel is present in the control clock gun that will produce a glider that escapes northwest towards \texttt{LS}, triggering the destruction of the entire southeast wall of the nucleus, as well as a few remaining pieces of the \texttt{CE} construction site (see Figure~\ref{fig:0e0p_timeline_8124366848}). It then continues travelling clockwise around the metacell, destroying the circuitry at \texttt{SW}, the northwest wall of the nucleus (and some remaining pieces of \texttt{CN}), \texttt{W}, \texttt{NW}, \texttt{N}, \texttt{NE}, \texttt{E}, and \texttt{SE}, before finally being stopped by a block back at \texttt{S} at $t = 8{\thousep}126{\thousep}433{\thousep}672 \approx 15.1367 \times 2^{29}$.
+
+% FIGURE {fig:0e0p_timeline_8124366848}
+% Get from 0E0P_131479
+
+Self-destruction continues through a few more stages past this point, with it being completely done at generation $t = 8{\thousep}129{\thousep}508{\thousep}130 \approx 15.1424 \times 2^{29}$; after this point, all parent metacells are gone, and only child metacells remain. The final clean-up step that occurs is a second glider escaping to the northwest from the south control clock, which destroys the area to the northwest of \texttt{LS} where the single-channel glider recipe was injected into the nucleus (i.e., the area depicted back in Figure~\ref{fig:0e0p_timeline_974368517}).
 
 
 %%%%%%%%%%%%%%%%%%%%%%
 \subsection{Generations $\mathbf{16 \times 2^{29}}$ to $\mathbf{128 \times 2^{29}}$: Waiting and Repeating}\label{sec:0e0p_timeline_wait_repeat}
 %%%%%%%%%%%%%%%%%%%%%%
 
-Stuff.
+If a child metacell's state is non-zero, it now spends an extraordinarily long time doing nothing of note---from generation $t = 16 \times 2^{29}$ until $t = 64 \times 2^{29}$ the gliders from the period $2^{29}$ control clock are blocked by a slow-salvo seed, so the contents of its nucleus simply cycle $48$ times without really doing anything.
+
+On the other hand, if its state equals $0$, then the Herschel that is present in its south control clock at $t = 8{\thousep}589{\thousep}934{\thousep}592 = 16 \times 2^{29}$ releases a glider that uses one-time circuitry to (a) destroy the aforementioned slow-salvo seed, and (b) empty the contents of its nucleus. The result of (b) is that this metacell will not construct any children of its own, and the result of (a) is that it will die $47 \times 2^{29}$ generations sooner than it would otherwise (i.e., it acts as a ``dead'' cell). In the example that we are illustrating, none of the child metacells have state $0$, so this early death will not occur yet. However, we will see it occur in the next half-metageneration in the upcoming Figure~??, $2^{35}$ generations from now.
+
+At generation $t = 34{\thousep}359{\thousep}738{\thousep}368 = 64 \times 2^{29} = 2^{35}$, a half-metageneration of the Moore-neighborhood rule (or equivalently, a full metageneration of the von-Neumann-neighborhood cellular automaton) has been completed, and child metacells are now in the same phase that the parent metacells were in at $t = 0$. All of the steps that we have seen so far now repeat, as these child metacells now start acting like parents (see Figure~\ref{fig:0e0p_timeline_34359738368}).
+
+% FIGURE {fig:0e0p_timeline_34359738368}
+
+Only two aspects of this second half-metageneration differ from what we saw in the first half-metageneration:\footnote{Both of these differences \emph{can} happen in the first half-metageneration, but did not for us since we are only emulating a single cell.}\smallskip
+
+\begin{itemize}
+	\item \textbf{Multiple parents}: Some children are now located in positions that are adjacent to two or more parents. In these cases, children are constructed...\smallskip% TODO: how exactly is construction blocked if a child already exists?
+	
+	\item \textbf{Early death}: Some children are constructed with state~$0$, so they die early (see Figure~??).\smallskip
+\end{itemize}
+
+% NEED: Figure depicting early death of children in second half-metageneration.
+
+After all of this is complete, at $t = 68{\thousep}719{\thousep}476{\thousep}736 = 128 \times 2^{29} = 2^{36}$, a complete metageneration of the Moore-neighborhood rule is complete. In the particular rule that we are emulating here, a single live cell simply lives from one generation to the next, so we are left with a single copy of the 0E0P metacell that is identical to the one that we had at $t = 0$ (see Figure~\ref{fig:0e0p_timeline_68719476736}).
 
 \begin{figure}[!htb]
 	\centering
