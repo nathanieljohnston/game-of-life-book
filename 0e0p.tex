@@ -866,7 +866,7 @@ For example, consider the southwest child of the metacell that we have been trac
 	t & = 15 \times 2^{29} + 8846 + 1024\big((7-0) + 8(7-0) + 64(7-0) + 512(7-7)\big) \\
 	& = 8{\thousep}053{\thousep}595{\thousep}790 \approx 15.0010 \times 2^{29}.
 \end{align*}
-That glider escaping the state-lookup gun causes it to self-destruct and then emit a pair of gliders: one that destroys an eater at $t = 8054286989 \approx 15.0023 \times 2^{29}$, unblocking the single-channel glider stream,\footnote{This timestamp is specific to the southwest child. Children with different parent state configurations will have this happen slightly earlier or later.} and one that destroys a block in a syringe just $972$ generations later, re-blocking the single-channel glider stream. The effect of this is that a single $1{\thousep}024$-generation slice of the 0E0P's rule table is copied---a portion containing $0$--$7$ gliders that describe the new state of this child metacell (see Figure~\ref{fig:0e0p_timeline_8054286989}).
+That glider escaping the state-lookup gun causes it to self-destruct and then emit a pair of gliders: one that destroys an eater at $t = 8054286989 \approx 15.0023 \times 2^{29}$, unblocking the single-channel glider stream,\footnote{This timestamp is specific to the southwest child. Children with different parent state configurations will have this happen slightly earlier or later.} and one that destroys a block in a syringe just $972$ generations later, re-blocking the stream. The result is that an approximately $900$-generation\footnote{The sequences of $0$--$7$ gliders in the lookup table are separated by $1{\thousep}024$ generations (the period of the state-lookup clock gun). However, roughly $10\%$ of that space is unusable and must remain empty so that it does not interfere with the unblocking and re-blocking reactions.} slice of the 0E0P's rule table is copied---a portion containing $0$--$7$ gliders that describe the new state of this child metacell (see Figure~\ref{fig:0e0p_timeline_8054286989}).
 
 \begin{figure}[!htb]
 	\centering
@@ -875,16 +875,30 @@ That glider escaping the state-lookup gun causes it to self-destruct and then em
 	\label{fig:0e0p_timeline_8054286989}
 \end{figure}
 
-The other three child metacells extract their new states from the lookup table similarly:\smallskip
+The state-lookup gun of this southwest child thus extracts the $512$th chunk of the lookup table, which contains $2$ gliders, indicating that its state is $2$. The other three children look at different chunks of the lookup table and thus extract different states:\smallskip
 
-% TODO: Finish this.
 \begin{itemize}
-	\item \textbf{NE child}:\smallskip% say how many gliders destroyed, when Herschel produces escaping glider, and when extraction started by hitting eater 1. Repeat for other 2 children.
+	\item \textbf{NE child}: The state-lookup clock gun extracts the
+	\[
+		1 + (7-0) + 8(7-0) + 64(7-7) + 512(7-0) = 3{\thousep}648\text{th}
+	\]
+	chunk of the lookup table, which contains $4$ gliders, so its state is $4$.\smallskip
+	
+	\item \textbf{NW child}: Extracts the $1 + (7-0) + 8(7-7) + 64(7-0) + 512(7-0) = 4{\thousep}040\text{th}$ chunk of the lookup table, which contains $1$ glider, so its state is $1$.\smallskip
+	
+	\item \textbf{SE child}: Extracts the $1 + (7-7) + 8(7-0) + 64(7-0) + 512(7-0) = 4{\thousep}089\text{th}$ chunk of the lookup table, which contains $6$ gliders, so its state is $6$.\smallskip
 \end{itemize}
 
-% Need 1 more paragraph or so, saying that after these gliders are extracted, they are redirected towards the blocks for storage. Figure is probably a good idea. No need to streamlife -- this happens just a couple thousand generations later.
+After the children's states are extracted in the form of $0$--$7$ gliders, the first glider (if it exists) is duplicated, resulting in a sequence of $0$ or $2$--$8$ gliders, and erases some one-time circuitry that would otherwise cause the metacell to die early. The resulting sequence of gliders is then redirected toward a sequence of $8$ blocks, so that the state can be stored for a long period of time in their absences. In the southwest child, this happens at $t = 8{\thousep}054{\thousep}294{\thousep}330$ (see Figure~\ref{fig:0e0p_timeline_8054294330}).
 
-% Exercise: what generation does glider escape in some other configuration or for some other child?
+\begin{figure}[!htb]
+	\centering
+	\embedlink{0e0p_timeline_8054294330_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_8054294330.pdf}}
+	\caption{The southwest child's $2$ state gliders erasing one-time circuitry that would otherwise cause the metacell to die early (highlighted in \bgbox{magentaback}{magenta}), and storing their state in the $8$-block sequence at the west edge of the south corner. The first of those $2$ state gliders was duplicated, so $3$ gliders (circled in \bgbox{redback}{red}) will hit the blocks, leaving $8-3 = 5$ blocks behind, corresponding to a the child's state $7 - 5 = 2$.}
+	\label{fig:0e0p_timeline_8054294330}
+\end{figure}
+
+% Exercise: what generation does glider escape in some other configuration or for some other child? e.g., what generation does northeast child extract its state? When are those state gliders stored in the blocks?
 
 Meanwhile, parent metacells have served their purpose, so they are free to die. The Herschels that are present in \emph{their} south clock guns at generation $t = 8{\thousep}053{\thousep}063{\thousep}680 = 15 \times 2^{29}$ trigger this self-destruction. Much like the destruction of \texttt{CN} clock gun that was described in Figure~\ref{fig:0e0p_timeline_968843520}, this self-destruction takes place over multiple stages, with some semi-Snarks being destroyed in each stage so that subsequent stages occur more rapidly.
 
