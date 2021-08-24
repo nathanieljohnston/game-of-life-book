@@ -361,7 +361,7 @@ In order to implement this behavior, the 0E0P metacell is made up of three compo
 
 \begin{figure}[!phtb]
 	\centering
-	\embedlink{0e0p}{\includegraphics[width=\textwidth]{0e0p/0e0p.pdf}}	\caption{The 0E0P metacell itself, which implements the schematic of Figure~\ref{fig:0e0p_schematic}. It contains a significant amount of empty space between 15 points of interest. The shell (highlighted in \bgbox{greenpastel}{green}) goes through points \texttt{SW}, \texttt{W}, \texttt{NW}, \texttt{N}, \texttt{NE}, \texttt{E}, \texttt{SE}, and \texttt{S}, as do the points where the glider paths are reflected in the kernel. The logic circuitry is also located at point \texttt{S}, and an elbow block that is used to construct a new metacell to the southeast is circled in \bgbox{redback}{red}. The nucleus (highlighted in \bgbox{yellowback2}{yellow}) has corners at points \texttt{LW}, \texttt{LN}, \texttt{LE}, and \texttt{LS}. The point \texttt{INS} is used to insert gliders into the nucleus during construction. The points \texttt{CN} and \texttt{CE} are not displayed in the schematic of Figure~\ref{fig:0e0p_schematic}---they contain temporary circuitry that is used to construct the sides of the nucleus.}\label{fig:0e0p_itself}
+	\embedlink{0e0p}{\includegraphics[width=\textwidth]{0e0p/0e0p.pdf}}	\caption{The 0E0P metacell itself, which implements the schematic of Figure~\ref{fig:0e0p_schematic}. It contains a significant amount of empty space between 15 points of interest. The shell (highlighted in \bgbox{greenpastel}{green}) goes through points \texttt{SW}, \texttt{W}, \texttt{NW}, \texttt{N}, \texttt{NE}, \texttt{E}, \texttt{SE}, and \texttt{S}, as do the points where the glider paths are reflected in the kernel. The logic circuitry is also located at point \texttt{S}, and an elbow block that is used to construct a new metacell to the southeast is circled in \bgbox{redback}{red}. The nucleus (highlighted in \bgbox{yellowback2}{yellow}) has corners at points \texttt{LW}, \texttt{LN}, \texttt{LE}, and \texttt{LS}. The point \texttt{INS} is used to insert gliders into the nucleus during construction. The points \texttt{CN} and \texttt{CE} are not displayed in the schematic of Figure~\ref{fig:0e0p_schematic}---they contain temporary circuitry that is used to construct the walls of the nucleus.}\label{fig:0e0p_itself}
 \end{figure}
 
 \begin{itemize}
@@ -476,38 +476,45 @@ gliders will be absorbed before the first one escapes.\footnote{This is similar 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{The Nucleus and Memory Tape}\label{sec:0e0p_structure_nucleus}\index{nucleus}
+\section{The Nucleus}\label{sec:0e0p_structure_nucleus}\index{nucleus}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% EVERYTHING AFTER THIS POINT IS PLACEHOLDER and/or copied from forums and/or gibberish that will be changed
+The 0E0P metacell's nucleus is a massive boustrophedonic loop that houses roughly $3.6$~million gliders. Its corners are located at the positions marked \texttt{LS}, \texttt{LW}, \texttt{LN}, and \texttt{LE} in Figure~\ref{fig:0e0p_itself}, and its walls between \texttt{LW} and \texttt{LN}, and between \texttt{LE} and \texttt{LS}, are each made up of $2^{10} = 1{\thousep}024$ two-Snark (i.e., $180$-degree) reflectors. The walls of the nucleus are separated by roughly $2^{16} = 65{\thousep}536$ full diagonals, so that altogether it takes a glider exactly
+\[
+	2^{16} \times 2^{10} \times 4 \times 2 = 2^{29}
+\]
+generations to loop through it.
 
-% The sides between \texttt{LW} and \texttt{LN}, and between \texttt{LE} and \texttt{LS}, are each made up of $1{\thousep}024$ two-Snark (i.e., $180$-degree) reflectors that create a path long enough to house the nucleus's 3.6 million gliders.
+However, a small fraction of these $2^{29}$ generations are spent with gliders outside of the nucleus. After cycling through the nucleus's Snark walls, gliders are directed southeast past the corner at \texttt{LE} to the locations marked \texttt{SE}, then \texttt{S}, and then back into the nucleus at \texttt{LW}. The important part of this process is the time spent with the logic circuitry at \texttt{S}, where the contents of the nucleus can be duplicated and redirected so as to construct a child metacell, or the metacell's state can be extracted from a copy of the nucleus's lookup table.
 
-This is one of the few optimisations I deemed necessary. (Without this idea of subroutines and parallel construction, the metacell's side-length would need to be increased by a factor of 8.)
-
-The 0E0P memory unit is a boustrophedonic tape loop composed of 180-degree reflectors (each of which is a pair of Snarks together with some nearby seeds of destruction). Each of those 180-degree reflectors is quite expensive; the single-channel recipe is somewhere between 1 and 2 million ticks. If the recipes for these reflectors were all individually stored in the memory unit, there would be a significant problem: adding more rows to the memory unit would linearly increase the total length of the recipe that needs to be stored in the memory unit. To break even, it would be necessary to increase the width of each row of the memory unit so that it takes 2 million ticks for gliders to travel from one 180-degree reflector to the next, making the memory unit 524288fd wide!
-
-A solution is to only store the recipe for a single 180-degree reflector in the tape, and to repeatedly invoke this 'subroutine' in a loop. Due to parity constraints, the north-west and south-east 180-degree reflectors have a different shape, so it is necessary to have two 2-million-tick subroutines: one for the north-west reflectors, and one for the south-east reflectors. In the last phase of constructing the daughter metacell, these subroutines are injected into two small temporary memory loops. The two subroutines run in parallel (giving a 2x speedup compared with constructing the reflectors sequentially), and each loop has a fourfold fanout to construct four copies of the same reflector simultaneously. The effect is that the memory loop is constructed in one-eighth of the time necessary for sequential synthesis, so the memory unit can be a mere 65536fd wide.
-
-This reduces the problem of constructing an immense ($2^{29}$-tick) memory loop to the problem of constructing two smaller memory loops ($2^{21}$ ticks each) to handle the subroutines. These smaller memory loops are small enough that they can be built in a naive sequential manner along with the remainder of the kernel of the 0E0P metacell. The small memory loops are each equipped with a binary counter which halts the subroutine after it has run for exactly 256 iterations and built 1024 reflectors (i.e. 2048 Snarks).
-
-These subroutine storage units are among the most complicated mechanisms in the 0E0P metacell. A lot of the rest of the 0E0P recipe is just simple single-channel recipes, building one thing after another after another. But for these two storage units it's necessary to extract two small pieces of the full recipe, and execute each one 512 times to build the Snark chains that make up the "nucleus". Adam mentioned that the 0E0P would have had to be a lot bigger if the recipes for all of those Snarks were included inline with no subroutines
-
-Incoming gliders entering the child metacell get a 'head start', being injected several rows beyond the start of the tape. This 'head start' exactly compensates for the delay incurred by the gliders spiralling through the circuitry to pass from the parent metacell to the child, so the tapes of the parent and child metacell end up in exactly the same phase. This injection point is what you called 'Area 51' on Ch91's thread:
+On the other hand, when a metacell's nucleus is being populated for the first time, gliders are instead inserted into it at the location marked \texttt{INS} in Figure~\ref{fig:0e0p_itself}, which is several rows ahead of the start of the loop at \texttt{LW}. This ``head start'' compensates for the fact that this first copy of the nucleus's contents is coming from farther away---the metacell that constructed it---and ensures that the memory loops of the parent and child metacells end up in exactly the same phase.
 
 
 %%%%%%%%%%%%%%%%%%%%%%
-\section{Construction}\label{sec:0e0p_construction}
+\section{Construction and Destruction}\label{sec:0e0p_construction}\index{single-channel synthesis}
 %%%%%%%%%%%%%%%%%%%%%%
 
-Ensuring all four metacells are built in the same orientation is by building the outer shell first (which is impossible to get wrong, because it's rotationally symmetric!) and then sending the remainder of the recipe through the correct pin to build the kernel in the correct orientation. If we'd counterfactually sent gliders down one of the other three pins, they'd end up in a different one of the four spiral arms and the resulting metacell would be in the wrong orientation.
+Copies of the 0E0P metacell construct each other via the single-channel glider synthesis techniques of Chapter~\ref{chp:universal_construction}. Indeed, the vast majority of the contents of the nucleus are a single-channel glider recipe that carries out this task. For the most part, this construction is straightforward, with long-distance elbow pushes via Corderships\index{Cordership} (as we described back in Section~\ref{sec:medium_demonoid}) being one of its most complicated pieces.\footnote{The 0E0P metacell uses 3-engine Corderships for these long-distance elbow pushes, since the single-channel recipe for the 2-engine Cordership from Figure~\ref{fig:2_engine_cordership_seed} and Appendix~\ref{sec:appendix_cordership_maker} was not known at the time of its completion in 2018. The faster crab-based elbow-pushing method of Section~\ref{sec:fast_demonoid_elbow_carry} was also not yet known.}
 
-% nucleus period 2^29, cycles 2^6 = 64 times to give full period of 2^35
-% Mention cordership-push stuff here
+However, there are two particular aspects of its construction that are somewhat unusual and thus worth clarifying and focusing on:\smallskip
 
-% TODO: Have a figure like Stage 0 (yellow) showing the construction of a metacell up close in this section
+\begin{itemize}
+	\item \textbf{Child orientation}: We need all metacells to be constructed in the same orientation, regardless of whether they are being constructed by a parent to the northwest, southwest, southeast, or northeast. This is ensured by first building the shell\index{shell} (which is impossible to get wrong, since it is rotationally symmetric) and then sending the remainder of the single-channel recipe through the correct recipe input lane so as to build the kernel in the correct orientation. If we'd counterfactually sent the recipe down one of the other three input lanes, it would end up in a different one of the four spiral arms and the resulting metacell would be constructed in the wrong orientation.\smallskip
+	
+	% Gibberish after here
+	
+	\item \textbf{Nucleus walls}: Each of the 180-degree reflectors along the walls of the nucleus is quite expensive, requiring somewhere between 1 and 2 million generations for a single-channel glider recipe to construct. If the recipes for these reflectors were all individually stored in the memory unit, there would be a significant problem: adding more rows to the memory unit would linearly increase the total length of the recipe that needs to be stored in the memory unit. To break even, it would be necessary to increase the width of each row of the memory unit so that it takes 2 million ticks for gliders to travel from one 180-degree reflector to the next, making the memory unit 524288fd wide!
+	
+	A solution is to only store the recipe for a single 180-degree reflector in the tape, and to repeatedly invoke this 'subroutine' in a loop. Due to parity constraints, the north-west and south-east 180-degree reflectors have a different shape, so it is necessary to have two 2-million-tick subroutines: one for the north-west reflectors, and one for the south-east reflectors. In the last phase of constructing the daughter metacell, these subroutines are injected into two small temporary memory loops. The two subroutines run in parallel (giving a 2x speedup compared with constructing the reflectors sequentially), and each loop has a fourfold fanout to construct four copies of the same reflector simultaneously. The effect is that the memory loop is constructed in one-eighth of the time necessary for sequential synthesis, so the memory unit can be a mere 65536fd wide.
+	
+	This reduces the problem of constructing an immense ($2^{29}$-tick) memory loop to the problem of constructing two smaller memory loops ($2^{21}$ ticks each) to handle the subroutines. These smaller memory loops are small enough that they can be built in a naive sequential manner along with the remainder of the kernel of the 0E0P metacell. The small memory loops are each equipped with a binary counter which halts the subroutine after it has run for exactly 256 iterations and built 1024 reflectors (i.e. 2048 Snarks).\smallskip
+	% Figure like Stage 0 (yellow) somewhere in here.
+	
+	%This is one of the few optimisations I deemed necessary. (Without this idea of subroutines and parallel construction, the metacell's side-length would need to be increased by a factor of 8.)
+\end{itemize}
 
-% TODO: Followed by the 15-stage glider figure
+Destruction next.
+% Talk about destruction by still lifes just like the speed demonoid here
 
 
 %%%%%%%%%%%%%%%%%%%%%%
@@ -580,7 +587,7 @@ A glider escapes via that new path $2^{25}$ generations later, at $t = 33{\thous
 	\label{fig:0e0p_timeline_33554432}
 \end{figure}
 
-Construction of the child's symmetric shell continues in several stages. A stage often begins with the construction of a Cordership, followed by a slow salvo to shoot down the Cordership once it has traveled the right distance and turn it into a new target ``hand'' block at the correct location.\footnote{The 0E0P metacell uses 3-engine Corderships, since the single-channel recipe for the 2-engine Cordership from Figure~\ref{fig:2_engine_cordership_seed} and Appendix~\ref{sec:appendix_cordership_maker} was not known at the time of its completion in 2018.} Another slow salvo recipe then follows, to build whatever is needed at the location of the new hand block. There are many visible gaps in the 0E0P's single-channel recipe, and most of them correspond to the flight time of a Cordership, while the recipe waits to shoot it down after it has travelled the right distance.
+Construction of the child's symmetric shell continues in several stages. A stage often begins with the construction of a Cordership, followed by a slow salvo to shoot down the Cordership once it has traveled the right distance and turn it into a new target ``hand'' block at the correct location. Another slow salvo recipe then follows, to build whatever is needed at the location of the new hand block. There are many visible gaps in the 0E0P's single-channel recipe, and most of them correspond to the flight time of a Cordership, while the recipe waits to shoot it down after it has travelled the right distance.
 
 The first such Cordership launch happens at generation $t = 50{\thousep}921{\thousep}682 \approx 0.0948 \times 2^{29}$ (see Figure~\ref{fig:0e0p_timeline_50921682}), where a Cordership is constructed at the child's south corner and is launched to its east corner.
 
