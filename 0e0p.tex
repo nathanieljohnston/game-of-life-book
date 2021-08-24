@@ -364,30 +364,26 @@ In order to implement this behavior, the 0E0P metacell is made up of three compo
 	\embedlink{0e0p}{\includegraphics[width=\textwidth]{0e0p/0e0p.pdf}}	\caption{The 0E0P metacell itself, which implements the schematic of Figure~\ref{fig:0e0p_schematic}. It contains a significant amount of empty space between 15 points of interest. The shell (highlighted in \bgbox{greenpastel}{green}) goes through points \texttt{SW}, \texttt{W}, \texttt{NW}, \texttt{N}, \texttt{NE}, \texttt{E}, \texttt{SE}, and \texttt{S}, as do the points where the glider paths are reflected in the kernel. The logic circuitry is also located at point \texttt{S}, and an elbow block that is used to construct a new metacell to the southeast is circled in \bgbox{redback}{red}. The nucleus (highlighted in \bgbox{yellowback2}{yellow}) has corners at points \texttt{LW}, \texttt{LN}, \texttt{LE}, and \texttt{LS}. The point \texttt{INS} is used to insert gliders into the nucleus during construction. The points \texttt{CN} and \texttt{CE} are not displayed in the schematic of Figure~\ref{fig:0e0p_schematic}---they contain temporary circuitry that is used to construct the sides of the nucleus.}\label{fig:0e0p_itself}
 \end{figure}
 
-% The sides between \texttt{LW} and \texttt{LN}, and between \texttt{LE} and \texttt{LS}, are each made up of $1{\thousep}024$ two-Snark (i.e., $180$-degree) reflectors that create a path long enough to house the nucleus's 3.6 million gliders.
-
 \begin{itemize}
 	\item The outermost part is the \textbf{shell},\index{shell} which directs information about the states of neighboring metacells. It has exact 90-degree rotational symmetry, consisting of four spiral arms which propagate gliders inwards. Only one of these arms is actually used; the other four exist only to enforce the rotational symmetry.\smallskip
 	
 	\item Inside the shell is the \textbf{kernel},\index{kernel} which does not have any symmetry constraints. The south corner of the kernel contains a clock gun for regulating the metacell's lifecycle and logic circuitry for computing the state of the metacell based on the states of its four neighboring cells. The kernel also contains an output path, shown in magenta in Figure~\ref{fig:0e0p_schematic}, which can connect to one of the four construction arms (dashed) or to the input shell of one of the four neighbours.\smallskip
 	
-	\item At its center is the largest region of the metacell: its \textbf{nucleus},\index{nucleus} which is a huge boustrophedonic glider loop\footnote{That is, a glider loop in which the gliders travel back and forth along antiparallel lanes.} with a period of exactly $2^{29}$. It is populated by over three million gliders, which together encode a complete single-channel glider synthesis of the 0E0P metacell, along with a lookup table for the rule that the metacell is emulating.\smallskip
+	\item At its center is the largest region of the metacell: its \textbf{nucleus},\index{nucleus} which is a huge boustrophedonic glider loop\footnote{That is, a glider loop in which the gliders travel back and forth along antiparallel lanes.} with a period of exactly $2^{29}$. It is populated by over three million gliders, consisting of a complete single-channel glider synthesis of the 0E0P metacell, as well as a state lookup table that encodes the rule that the metacell is emulating.\smallskip
 \end{itemize}
 
-We describe how these three components of the metacell function throughout its lifecycle in more detail in the next three sections, and we then talk about how they are constructed by parent metacells in Section~\ref{sec:0e0p_construction}. Due to the complexity and size of the 0E0P metacell, it is extremely important that the reader does not just read through the next few sections, but also explores the metacell's different components as we describe them via Life simulation software.\footnote{Unfortunately, no Life simulation software is currently fast enough to run the entire 0E0P metacell ``quickly''. However, bits and pieces of it can be evolved to see how they behave, and numerous snapshots that show the metacell's state at different timestamps are provided in Section~\ref{sec:0e0p_timeline} and at ??.}% TODO: Add URL for timestamp files.
+We describe how these three components of the metacell function throughout its lifecycle in more detail in the next three sections, and we then talk about how they are constructed by parent metacells in Section~\ref{sec:0e0p_construction}. Due to the complexity and size of the 0E0P metacell, it is extremely important that the reader does not just read through the next few sections, but also explores the metacell's different components as we describe them via Life simulation software.\footnote{Unfortunately, no Life simulation software is currently fast enough to run the entire 0E0P metacell ``quickly''. However, bits and pieces of it can be evolved to see how they behave, and numerous snapshots that show the metacell's state at different timestamps are provided in Section~\ref{sec:0e0p_timeline} and at \httpsurl{conwaylife.com/book/patterns.php?p=0e0p}.}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The Shell and Lane-Switching Circuitry}\label{sec:0e0p_structure_shell}\index{shell}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The rotationally symmetric shell that makes up the outermost edges of the 0E0P metacell is the simplest of its three components. Each of its four sides has four input lanes (in green and grey in Figure~\ref{fig:0e0p_schematic}). However, only one of these four input lanes is ever actually used (in green)---the one that connects to the output lane coming in from the kernel of the neighboring metacell (in solid magenta), if it exists.\footnote{This design is similar to that of a circuit on a motherboard---you can think of each side of the 0E0P metacell as having 8 ``pins'' (4 inputs pins and 4 output pins) that connect to the 8 pins of neighboring metacells.} The remaining input lanes (in grey) are unused, and only exist to enforce the shell's fourfold rotational symmetry.
+The rotationally symmetric shell that makes up the outermost edges of the 0E0P metacell is the simplest of its three components. At each of the locations marked \texttt{SW}, \texttt{NW}, \texttt{NE}, and \texttt{SE} in Figure~\ref{fig:0e0p_itself}, there are four recipe input lanes (in green and grey in Figure~\ref{fig:0e0p_schematic}). However, only one of those four lanes is ever actually used (in green)---the one that connects to the recipe output lane coming in from the kernel of the neighboring metacell (in solid magenta), if it exists.\footnote{This design is similar to that of a circuit on a motherboard---you can think of each side of the 0E0P metacell as having 8 ``pins'' (4 inputs pins and 4 output pins) that connect to the 8 pins of neighboring metacells.} The remaining input lanes (in grey) are unused, and only exist to enforce the shell's fourfold rotational symmetry.
 
-After the metacell has been constructed, these input lanes read in a copy of the 0E0P's single-channel construction recipe and rule lookup table from its neighbors. That (extremely long) sequence of gliders revolves clockwise all the way around the spiral arm of the shell, until it is finally injected into the nucleus at the 0E0P's center.
+After the metacell has been constructed, these input lanes read in a copy of the 0E0P's single-channel construction recipe and state lookup table from its neighbors. That (extremely long) sequence of gliders revolves clockwise all the way around the spiral arm of the shell, until it is finally injected into the nucleus (at the location called \texttt{INS} in Figure~\ref{fig:0e0p_itself}) at the 0E0P's center.
 
-To make sure that just one copy of the single-channel glider sequence is allowed to enter the shell, regardless of how many neighbors try to send in that glider sequence, the 0E0P strategically deletes part of its own circuitry after the nucleus is populated. By using a stray glider to delete a single block from a syringe, as demonstrated in Figure~\ref{fig:syringe_delete_block}, the 0E0P can change a syringe-based-reflector into a device that simply eats a glider stream. Another stray glider could also be used to destroy the syringe's eater~2, thus unblocking the stream as demonstrated in Figure~\ref{fig:syringe_delete_eater}, if desired.\footnote{This is not desired here, but we will see shortly that it is desired at another location in the 0E0P's circuitry.} These extra stray gliders are provided by its clock gun, which we discuss in the upcoming Section~\ref{sec:0e0p_structure_clock}.
-
-% TODO: Be more specific about "shortly" in the above footnote. Reference a figure or section or something.
+To make sure that just one copy of the single-channel glider sequence is allowed to enter the shell, regardless of how many neighbors try to send in that glider sequence, the 0E0P metacell strategically deletes part of its own circuitry after the nucleus is populated (as well as at numerous other times throughout its lifecycle). By using a stray glider to delete a single block from a syringe, as demonstrated in Figure~\ref{fig:syringe_delete_block}, the 0E0P can change a syringe-based-reflector into a device that simply eats a glider stream. Another stray glider could also be used to destroy the syringe's eater~2, thus unblocking the stream as demonstrated in Figure~\ref{fig:syringe_delete_eater}, if desired. Extra stray gliders like these ones are provided by the metacell's control clock gun, which we discuss in the upcoming Section~\ref{sec:0e0p_structure_clock}.
 
 \begin{figure}[!htb]
 	\centering
@@ -410,20 +406,20 @@ To make sure that just one copy of the single-channel glider sequence is allowed
 \section{The Kernel}\label{sec:0e0p_structure_kernel}\index{kernel}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The asymmetric kernel contains the paths that are used to feed the 0E0P's single-channel recipe into its neighbors (in magenta in Figure~\ref{fig:0e0p_schematic}). Along these paths, gliders spiral clockwise-and-outwards, and then bypass the shell and do one of two things: go into a construction lane (in dashed magenta) to construct a neighboring metacell, or go into an output lane (in solid magenta) that connects to an input lane of an already-constructed neighboring metacell.
+The asymmetric kernel contains the paths that are used to feed the 0E0P's single-channel recipe into its neighbors (in magenta in Figure~\ref{fig:0e0p_schematic}). Along these paths, gliders spiral clockwise-and-outwards, and then bypass the shell and do one of two things: go into a construction lane (in dashed magenta) to construct a neighboring metacell, or go into a recipe output lane (in solid magenta) that connects to a recipe input lane of an already-constructed neighboring metacell.
 
-One important aspect of how the output and input lanes (not the construction lanes) of neighboring metacells connect to each other is that, irrespective of the orientation of the neighbors that are communicating, the single-channel glider sequence performs exactly 6 spiral quarter-turns to get from the south corner of the parent metacell to the south corner of the child metacell. This is how child metacells always end up in the correct phase and orientation after they are constructed. There are also some trombone slides of different lengths on different edges of the kernel, designed to compensate for the ``Olympic running track'' effect---the fact that outer lanes of the spiral slightly longer than inner lanes. These trombone slides ensure that the communication time from the parent to each of the four children is exactly the same.
+One important aspect of how the recipe output and input lanes of neighboring metacells connect to each other is that, irrespective of the orientation of the neighbors that are communicating, the single-channel glider sequence performs exactly 6 spiral quarter-turns to get from the south corner of the parent metacell to the south corner of the child metacell. This is how child metacells always end up in the correct phase and orientation after they are constructed. There are also some trombone slides of different lengths on different edges of the kernel, designed to compensate for the ``Olympic running track'' effect---the fact that outer lanes of the spiral are slightly longer than inner lanes. These trombone slides ensure that the communication time from the parent to each of the four children is exactly the same.
 
-In order to control which lane the single-channel glider sequence enters, the 0E0P periodically destroys some of the kernel's Snarks. We saw one method of doing this back in Figure~\ref{fig:snark_seeded_destroy}---a single glider can be used to destroy a Snark (with the help of 3 extra pre-placed still lifes). The 0E0P metacell makes use of Snark-destroying reactions like this one\footnote{But not \emph{exactly} this one---see Exercise~\ref{exer:0e0p_snark_destroyer}.} so as to redirect copies of its single-channel glider sequence to eight different locations over the course of its lifespan. In order,\footnote{The single-channel glider sequence really does have to be sent along these $8$ paths one after another. If we just used glider duplicators to send it along all $8$ paths at the same time, there could be unwanted collisions when constructing child metacells (e.g., if two parent metacells tried to create a child in the same location at the same time).} they are:\smallskip
+In order to control which recipe output lane or construction lane the single-channel glider sequence enters, the 0E0P periodically destroys some of the kernel's Snarks. We saw one method of doing this back in Figure~\ref{fig:snark_seeded_destroy}---a single glider can be used to destroy a Snark (with the help of 3 extra pre-placed still lifes). The 0E0P metacell makes use of Snark-destroying reactions like this one\footnote{But not \emph{exactly} this one---see Exercise~\ref{exer:0e0p_snark_destroyer}.} so as to redirect copies of its single-channel glider sequence to eight different locations over the course of its lifespan. In order,\footnote{The single-channel glider sequence really does have to be sent along these $8$ paths one after another. If we just used glider duplicators to send it along all $8$ paths at the same time, there could be unwanted collisions when constructing child metacells (e.g., if two parent metacells tried to create a child in the same location at the same time).} they are:\smallskip
 
 \begin{itemize}
 	\item[1)] Along the southeast construction lane (in dashed magenta in Figure~\ref{fig:0e0p_schematic}), to construct the child metacell to the southeast.\smallskip
 	
-	\item[2)] Along the southeast output lane (in solid magenta), to copy the glider sequence into the (now constructed) southeast child's nucleus.\smallskip
+	\item[2)] Along the southeast recipe output lane (in solid magenta), to copy the glider sequence into the (now constructed) southeast child's nucleus.\smallskip
 	
 	\item[3)] Along the northeast construction lane (in dashed magenta), to construct the child metacell to the northeast.\smallskip
 	
-	\item[4) -- 8)] Along the northeast output lane, then the northwest construction lane, and so on counterclockwise.
+	\item[4) -- 8)] Along the northeast recipe output lane, then the northwest construction lane, and so on counterclockwise.
 \end{itemize}
 
 
@@ -442,20 +438,14 @@ The gliders that are released by the control clock gun travel through sequences 
 	\caption{A period~$2^{12} = 4{\thousep}096$ clock gun (highlighted in \bgbox{aquaback}{aqua}) using one-time turners and the reactions from Figures~\ref{fig:snark_seeded_destroy} and~\ref{fig:syringe_path_changer} to change the path of the single-channel glider stream coming from the northwest. Initially, that stream is reflected to the northeast, but the first glider from the clock gun blocks the reflector. Its second glider unblocks it and redirects the stream to the southwest via a Snark. Its third glider destroys the Snark, so the stream passes straight through to the southeast.}\label{fig:clock_path_switcher}
 \end{figure}
 
-In the actual 0E0P, the control clock gun's output is redirected many more times than this, and the one-time circuitry involved is much more complex. Jump ahead to Figure~\ref{fig:0e0p_clock_gun_full} to see what its output lane actually looks like.
-% Talk a bit about how we we lied a bit here? Sends out some gliders at p2^25 so that they are offset from other actions
+In the actual 0E0P, the control clock gun's output is redirected many more times than this, and the one-time circuitry involved is much more complex. Furthermore, it also has a period~$2^{25}$ output lane that spends most of its time blocked, but is periodically unblocked so that it can send out a glider with different timing than the main period~$2^{29}$ output lane. Jump ahead to Figure~\ref{fig:0e0p_clock_gun_full} to see what the period~$2^{29}$ output lane actually looks like.
 
-% Exercise or explain: why is there a p2^25 output lane?
-
-
-
-% TODO: Go back to Figure 12.18 and highlight which part is the rule lookup table and which part is the rest of the single-channel recipe.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Logic Circuitry and State Computation}\label{sec:0e0p_structure_logic}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The kernel also contains, at its southern corner, the logic circuitry that is used to compute the metacell's state from the states of its four neighboring parents. Metacells' states are transmitted via sequences of gliders, and are stored via \emph{absences} of blocks, as follows:\smallskip
+The kernel also contains, at its southern corner (i.e., the location called \texttt{S} in Figure~\ref{fig:0e0p_itself}), the logic circuitry that is used to compute the metacell's state from the states of its four neighboring parents. Metacells' states are transmitted via sequences of gliders, and are stored via \emph{absences} of blocks, as follows:\smallskip
 
 \begin{itemize}
 	\item \textbf{Transmission}: When a parent metacell sends its state to its children, it does so via a sequence of $0$ or $2$--$8$ gliders, representing state $0$ or $1$--$7$, respectively.\footnote{That is, it represents its state in unary, but with an extra glider if it is in any non-zero state.}\index{unary}\smallskip
@@ -464,43 +454,34 @@ The kernel also contains, at its southern corner, the logic circuitry that is us
 	
 	\item \textbf{Internal transmission}: After a child computes its state from its parents, it initially appears as a unary sequence of $0$--$7$ gliders. One-time circuitry is used to duplicate one of those gliders (if they exist), resulting in a sequence of $0$ or $2$--$8$ gliders.\smallskip
 	
-	\item \textbf{Long-term storage}: Those $0$ or $2$--$8$ gliders are aimed at a sequence of $8$ blocks at the westernmost edge of the child's ``\texttt{S}'' corner (see the upcoming Figure~\ref{fig:0e0p_timeline_7516192768} for the precise location). Its state is thus stored in the \emph{absense} of those blocks, with state $0$ corresponding to $8$ blocks and state $1 \leq s \leq 7$ corresponding to $7 - s$ blocks.\smallskip
+	\item \textbf{Long-term storage}: Those $0$ or $2$--$8$ gliders are aimed at a sequence of $8$ blocks at the westernmost edge of the child's ``\texttt{S}'' corner (see the upcoming Figure~\ref{fig:0e0p_timeline_8054294330} for the precise location). Its state is thus stored in the \emph{absence} of those blocks, with state $0$ corresponding to $8$ blocks and state $1 \leq s \leq 7$ corresponding to $7 - s$ blocks.\smallskip
 \end{itemize}
 
-To compute its state from those of its parents, a child metacell uses a lookup table: a collection of $8^4 - 1 = 4{\thousep}095$ sequences of $0$--$7$ gliders each, arranged in $1{\thousep}024$-generation chunks, specifying what the new state should be given any possible combination of not-all-zero parent states. This lookup table is stored in the nucleus, and we can use the one-time switching techniques of Section~\ref{sec:0e0p_structure_shell} to extract a single $1{\thousep}024$-generation chunk from it. To extract the \emph{correct} chunk, however, we have to delay those one-time switching operations to the correct moment in time, based on the absence of the blocks representing parent metacells' states. To this end, the child metacell uses a \textbf{state-lookup clock gun}\index{state-lookup clock gun} like the one illustrated in Figure~\ref{fig:state_lookup_clock_gun}.\footnote{However, the gun illustrated here only plucks out a single glider. To have it pluck out up to $7$ gliders, its one-time circuitry has to be modified slightly (see Exercise~??).}
-
-This mechanism works by placing blocks and semi-Snarks along a period~$1{\thousep}024$ clock guns's output path: each block destroys a single glider, thus delaying the glider that will trigger the one-time switching circuitry. However, if a semi-Snark is placed between the clock gun and the block, then \emph{two} additional gliders will be destroyed: one by the block and then another one by the semi-Snark. More generally, placing $k$ semi-Snarks between the clock gun and the block results in $2^k$ additional gliders being destroyed.
+To compute its state from those of its parents, a child metacell uses a lookup table: a collection of $8^4 - 1 = 4{\thousep}095$ sequences of $0$--$7$ gliders each, arranged in $1{\thousep}024$-generation chunks, specifying what the new state should be given any possible combination of not-all-zero parent states. This lookup table is stored in the nucleus, and we can use the one-time switching techniques of Section~\ref{sec:0e0p_structure_shell} to extract a single $1{\thousep}024$-generation chunk from it. To extract the \emph{correct} chunk, however, we have to delay those one-time switching operations to the correct moment in time, based on the absence of the blocks representing parent metacells' states. To this end, the child metacell uses a \textbf{state-lookup clock gun}\index{state-lookup clock gun} like the one illustrated in Figure~\ref{fig:state_lookup_clock_gun}.\footnote{However, the gun illustrated here only plucks out a single glider. To have it pluck out up to $7$ gliders, its one-time circuitry has to be modified slightly (see Exercise~\ref{exer:0e0p_state_lookup_wider}).}
 
 \begin{figure}[!htb]
 	\centering
 	\embedlink{state_lookup_clock_gun}{\includegraphics[width=\textwidth]{0e0p/state_lookup_clock_gun.pdf}}
-	\caption{A period~$1024$ clock gun (highlighted in \bgbox{aquaback}{aqua}) that has blocks along its path, delaying its first output glider. If there are $a$ blocks along the southwest edge, $b$ along the northwest edge, $c$ along the northeast edge, and $d$ along the southeast edge, then the clock gun's first escaping glider is produced by the Herschel that is present at generation $1024(a + 8b + 64c + 512d)$. That glider hits one-time circuitry (highlighted in \bgbox{magentaback}{magenta}) that unblocks and quickly re-blocks a glider stream, allowing its $(a + 8b + 64c + 512d)$-th glider to escape.}
+	\caption{A period~$1024$ clock gun (highlighted in \bgbox{aquaback}{aqua}) that has blocks along its path, delaying its first output glider. If there are $a$ blocks along the southwest edge, $b$ along the northwest edge, $c$ along the northeast edge, and $d$ along the southeast edge, then the clock gun's first escaping glider is produced by the Herschel that is present at generation $1024(a + 8b + 64c + 512d)$. That glider hits one-time circuitry (highlighted in \bgbox{magentaback}{magenta}) that unblocks and quickly re-blocks a glider stream, allowing its $(1 + a + 8b + 64c + 512d)$-th glider to escape.}
 	\label{fig:state_lookup_clock_gun}
 \end{figure}
 
-It follows that if we place $0 \leq a,b,c,d \leq 7$ blocks ... then
+This mechanism works by placing blocks and semi-Snarks along a period~$1{\thousep}024$ clock gun's output path: each block destroys a single glider, thus delaying the glider that will trigger the one-time switching circuitry. However, if a semi-Snark is placed between the clock gun and the block, then \emph{two} gliders will be destroyed: one by the block and then another one by the semi-Snark. More generally, placing $k$ semi-Snarks between the clock gun and the block results in the clock gun's first $2^k$ output gliders being destroyed.
+
+It follows that if we place $0 \leq a,b,c,d \leq 7$ blocks along the gun's output lane, with $3$ semi-Snarks between each of those groups of blocks, then
 \[
-	a + 8b + 64c + 512d
+	a + (2^3)b + (2^6)c + (2^9)d = a + 8b + 64c + 512d
 \]
-gliders will be absorbed before the first one escapes.
-% Footnote back to glider gun section -- we saw a similar binary trick back there.
-
-
-% EVERYTHING AFTER THIS POINT IS PLACEHOLDER and/or copied from forums and/or gibberish that will be changed
-
-%This waits for an amount of time given by (a + 8*b + 64*c + 512*d)*1024 ticks, where (a,b,c,d) are the neighbour states, before copying a chunk of ~ 900 ticks from the tape at this point.
-%
-%This chunk contains the next state of the cell, in unary. It is upgraded to quasi-unary and deletes up to 8 blocks near (849, 11733). When the cell comes to signal its neighbours (assuming nonzero), this quasi-unary value is converted back into gliders by sending 8 gliders at those blocks, allowing the correct number of gliders to pass though. Of course, this doesn't happen for a while, because the cell first needs to wait for its parents to disappear and then construct its descendants. This waiting is exaggerated (there's a crystal annotated with '-48', which is bypassed if the new state is 0) so that during about 75% of the time, the non-empty regions of the Life plane correspond to live metacells. This means that at distant zooms in Golly, a metapattern should be indistinguishable from the original pattern.
+gliders will be absorbed before the first one escapes.\footnote{This is similar to the method that we saw in Figure~\ref{fig:block_18_gliders} for blocking a specific number of gliders via semi-Snarks, but is easier to synthesize and configure.} That first escaping glider then hits one-time circuitry that unblocks a copy of the state lookup table, re-blocks it just over $900$ generations later,\footnote{The sequences of $0$--$7$ gliders in the state lookup table are separated by $1{\thousep}024$ generations (the period of the state-lookup clock gun). However, roughly $10\%$ of that space is unusable and must remain empty so that it does not interfere with the unblocking and re-blocking reactions.} and causes the state-lookup clock gun to self-destruct.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The Nucleus and Memory Tape}\label{sec:0e0p_structure_nucleus}\index{nucleus}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% In memory tape: roughly 3.5 million gliders in 3 groups
-% 2465 doing rule table, but that amount varies depending on the rule.
-% The other 15k or so at the very front encode the construction of 2 Snarks and some one-time stuff. Not sure why it's separated off on its own yet.
-% Note to self: big gap in nucleus corresponds to when child metacell is repeatedly creating its nucleus's Snark loops. (i.e., when the child C1 and C2 are in use)
+% EVERYTHING AFTER THIS POINT IS PLACEHOLDER and/or copied from forums and/or gibberish that will be changed
+
+% The sides between \texttt{LW} and \texttt{LN}, and between \texttt{LE} and \texttt{LS}, are each made up of $1{\thousep}024$ two-Snark (i.e., $180$-degree) reflectors that create a path long enough to house the nucleus's 3.6 million gliders.
 
 This is one of the few optimisations I deemed necessary. (Without this idea of subroutines and parallel construction, the metacell's side-length would need to be increased by a factor of 8.)
 
@@ -566,7 +547,7 @@ These stages are each triggered by one-time circuitry that is placed along the p
 \begin{figure}[!htbp]
 	\centering
 	\embedlink{clock_gun_full_small}{\includegraphics[width=1\textwidth]{0e0p/clock_gun_full.pdf}}
-	\caption{One-time circuitry is used to direct the output of the metacell's p$2^{29}$ clock gun (highlighted in \bgbox{aquaback}{aqua}) to trigger various stages of its lifecycle. The stages begin when the eater~1 circled in \bgbox{redback}{red} is removed. After that, the metacell computes its state and either dies (if its state is 0) or does nothing for a long time (if its state is non-zero). Stages $16$--$63$, where child cells do nothing, are implemented by a slow salvo seed along the output lane that eats $48$ gliders before being destroyed. It then begins acting as a parent metacell (rather than as a child): it starts building its own children in stage~0, it starts dying off in stage~12, and it sends its state to its children in stage 14.}
+	\caption{One-time circuitry is used to direct the output of the metacell's period~$2^{29}$ control clock gun (highlighted in \bgbox{aquaback}{aqua}) to trigger various stages of its lifecycle. The stages begin when the eater~1 circled in \bgbox{redback}{red} is removed. After that, the metacell computes its state and either dies (if its state is 0) or does nothing for a long time (if its state is non-zero). Stages $16$--$63$, where child cells do nothing, are implemented by a slow salvo seed along the output lane that eats $48$ gliders before being destroyed. It then begins acting as a parent metacell rather than as a child: it starts building its own children in stage~0, it starts dying off in stage~12, and it sends its state to its children in stage 14.}
 	\label{fig:0e0p_clock_gun_full}
 \end{figure}
 
@@ -735,7 +716,7 @@ A side branch of that same signal also starts the gradual process of dismantling
 
 For example, the \emph{next} three semi-Snarks are destroyed just $2^{26}$ generations later, by the Herschel that appears at $t = 1{\thousep}035{\thousep}952{\thousep}384 \approx 1.9296 \times 2^{29}$, and the clock gun vanishes completely just a bit more than $2^{24}$ generations after that, at $t = 1{\thousep}054{\thousep}065{\thousep}485 \approx 1.9633 \times 2^{29}$. The entirety of the \texttt{CN} storage loop is similarly gone just a few thousand generations later, at $t = 1{\thousep}054{\thousep}073{\thousep}568$. The \texttt{CE} subroutine clock and storage loop self-destruct in the exact same way shortly thereafter, and are gone as of $t = 1{\thousep}058{\thousep}486{\thousep}020 \approx 1.9716 \times 2^{29}$.
 
-Back in time slightly at $t = 974{\thousep}368{\thousep}517 \approx 1.8149 \times 2^{29}$, after construction of the Snark walls finished but before the subroutine storage loops self-destructed, the final glider in the single-channel recipe is about to enter the child's nucleus at the location just northwest of \texttt{LS} (see Figure~\ref{fig:0e0p_timeline_974368517}). Once this insertion is complete, the child's nucleus will be fully populated with a copy of the parent's DNA.
+Back in time slightly at $t = 974{\thousep}368{\thousep}517 \approx 1.8149 \times 2^{29}$, after construction of the Snark walls finished but before the subroutine storage loops self-destructed, the final glider in the single-channel recipe is about to enter the child's nucleus at \texttt{INS} (see Figure~\ref{fig:0e0p_timeline_974368517}). Once this insertion is complete, the child's nucleus will be fully populated with a copy of the parent's DNA.
 
 \begin{figure}[!htb]
 	\centering
@@ -865,7 +846,7 @@ For example, consider the southwest child of the metacell that we have been trac
 	t & = 15 \times 2^{29} + 8846 + 1024\big((7-0) + 8(7-0) + 64(7-0) + 512(7-7)\big) \\
 	& = 8{\thousep}053{\thousep}595{\thousep}790 \approx 15.0010 \times 2^{29}.
 \end{align*}
-That glider escaping the state-lookup gun causes it to self-destruct and then emit a pair of gliders: one that destroys an eater at $t = 8054286989 \approx 15.0023 \times 2^{29}$, unblocking the single-channel glider stream,\footnote{This timestamp is specific to the southwest child. Children with different parent state configurations will have this happen slightly earlier or later.} and one that destroys a block in a syringe just $972$ generations later, re-blocking the stream. The result is that an approximately $900$-generation\footnote{The sequences of $0$--$7$ gliders in the lookup table are separated by $1{\thousep}024$ generations (the period of the state-lookup clock gun). However, roughly $10\%$ of that space is unusable and must remain empty so that it does not interfere with the unblocking and re-blocking reactions.} slice of the 0E0P's rule table is copied---a portion containing $0$--$7$ gliders that describe the new state of this child metacell (see Figure~\ref{fig:0e0p_timeline_8054286989}).
+That glider escaping the state-lookup gun causes it to self-destruct and then emit a pair of gliders: one that destroys an eater at $t = 8054286989 \approx 15.0023 \times 2^{29}$, unblocking the single-channel glider stream,\footnote{This timestamp is specific to the southwest child. Children with different parent state configurations will have this happen slightly earlier or later.} and one that destroys a block in a syringe just $972$ generations later, re-blocking the stream. The result is that an approximately $900$-generation chunk of the 0E0P's rule table is copied---a portion containing $0$--$7$ gliders that describe the new state of this child metacell (see Figure~\ref{fig:0e0p_timeline_8054286989}).
 
 \begin{figure}[!htb]
 	\centering
@@ -910,7 +891,7 @@ During one of these intermediate stages, at $t = 8{\thousep}124{\thousep}366{\th
 	\label{fig:0e0p_timeline_8124366848}
 \end{figure}
 
-Self-destruction continues through a few more stages past this point, with it being completely done at generation $t = 8{\thousep}129{\thousep}508{\thousep}130 \approx 15.1424 \times 2^{29}$, after which all parent metacells are gone, and only child metacells remain. The final clean-up step that occurs is a second glider escaping to the northwest from the south control clock, which destroys the area to the northwest of \texttt{LS} where the single-channel glider recipe was injected into the nucleus (i.e., the area depicted back in Figure~\ref{fig:0e0p_timeline_974368517}).
+Self-destruction continues through a few more stages past this point, with it being completely done at generation $t = 8{\thousep}129{\thousep}508{\thousep}130 \approx 15.1424 \times 2^{29}$, after which all parent metacells are gone, and only child metacells remain. The final clean-up step that occurs is a second glider escaping to the northwest from the south control clock, which destroys \texttt{INS}, where the single-channel glider recipe was injected into the nucleus (i.e., the area depicted back in Figure~\ref{fig:0e0p_timeline_974368517}).
 
 
 %%%%%%%%%%%%%%%%%%%%%%
@@ -1135,6 +1116,14 @@ Finally, Adam P.~Goucher spent 2014--2018 constructing the 0E0P metapixel, which
 			\item Explain why the configuration of still lifes from part~(a) might be preferable to the one from Figure~\ref{fig:snark_seeded_destroy}, despite being larger.
 		\end{enumerate}
 	\end{problemstar}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:0e0p_state_lookup_wider} \probdiff{2}
+		The toy version of the state-lookup clock gun that we displayed in Figure~\ref{fig:state_lookup_clock_gun} extracts an approximately 100-generation chunk of a glider stream. Adjust its one-time circuitry so as to extract an approximately 900-generation chunk of a glider stream (which is large enough to store $0$--$7$ gliders, just like in the state-lookup mechanism of the 0E0P metacell itself).
+	\end{problem}
 
 
 	\mfilbreak
