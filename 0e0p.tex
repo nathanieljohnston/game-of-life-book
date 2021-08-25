@@ -369,7 +369,7 @@ In order to implement this behavior, the 0E0P metacell is made up of three compo
 	
 	\item Inside the shell is the \textbf{kernel},\index{kernel} which does not have any symmetry constraints. The south corner of the kernel contains a clock gun for regulating the metacell's lifecycle and logic circuitry for computing the state of the metacell based on the states of its four neighboring cells. The kernel also contains an output path, shown in magenta in Figure~\ref{fig:0e0p_schematic}, which can connect to one of the four construction arms (dashed) or to the input shell of one of the four neighbours.\smallskip
 	
-	\item At its center is the largest region of the metacell: its \textbf{nucleus},\index{nucleus} which is a huge boustrophedonic glider loop\footnote{That is, a glider loop in which the gliders travel back and forth along antiparallel lanes.} with a period of exactly $2^{29}$. It is populated by over three million gliders, consisting of a complete single-channel glider synthesis of the 0E0P metacell, as well as a state lookup table that encodes the rule that the metacell is emulating.\smallskip
+	\item At its center is the largest region of the metacell: its \textbf{nucleus},\index{nucleus} which is a huge glider loop with a period of exactly $2^{29}$. It is populated by over three million gliders, consisting of a complete single-channel glider synthesis of the 0E0P metacell, as well as a state lookup table that encodes the rule that the metacell is emulating.\smallskip
 \end{itemize}
 
 We describe how these three components of the metacell function throughout its lifecycle in more detail in the next three sections, and we then talk about how they are constructed by parent metacells in Section~\ref{sec:0e0p_construction}. Due to the complexity and size of the 0E0P metacell, it is extremely important that the reader does not just read through the next few sections, but also explores the metacell's different components as we describe them via Life simulation software.\footnote{Unfortunately, no Life simulation software is currently fast enough to run the entire 0E0P metacell ``quickly''. However, bits and pieces of it can be evolved to see how they behave, and numerous snapshots that show the metacell's state at different timestamps are provided in Section~\ref{sec:0e0p_timeline} and at \httpsurl{conwaylife.com/book/patterns.php?p=0e0p}.}
@@ -479,7 +479,7 @@ gliders will be absorbed before the first one escapes.\footnote{This is similar 
 \section{The Nucleus}\label{sec:0e0p_structure_nucleus}\index{nucleus}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The 0E0P metacell's nucleus is a massive boustrophedonic loop that houses roughly $3.6$~million gliders. Its corners are located at the positions marked \texttt{LS}, \texttt{LW}, \texttt{LN}, and \texttt{LE} in Figure~\ref{fig:0e0p_itself}, and its walls between \texttt{LW} and \texttt{LN}, and between \texttt{LE} and \texttt{LS}, are each made up of $2^{10} = 1{\thousep}024$ two-Snark (i.e., $180$-degree) reflectors. The walls of the nucleus are separated by roughly $2^{16} = 65{\thousep}536$ full diagonals, so that altogether it takes a glider exactly
+The 0E0P metacell's nucleus is a massive boustrophedonic loop\footnote{That is, a loop made up of numerous antiparallel lanes.} that houses roughly $3.6$~million gliders. Its corners are located at the positions marked \texttt{LS}, \texttt{LW}, \texttt{LN}, and \texttt{LE} in Figure~\ref{fig:0e0p_itself}, and its walls between \texttt{LW} and \texttt{LN}, and between \texttt{LE} and \texttt{LS}, are each made up of $2^{10} = 1{\thousep}024$ two-Snark (i.e., $180$-degree) reflectors. The walls of the nucleus are separated by roughly $2^{16} = 65{\thousep}536$ full diagonals, so that altogether it takes a glider exactly
 \[
 	2^{16} \times 2^{10} \times 4 \times 2 = 2^{29}
 \]
@@ -491,30 +491,32 @@ On the other hand, when a metacell's nucleus is being populated for the first ti
 
 
 %%%%%%%%%%%%%%%%%%%%%%
-\section{Construction and Destruction}\label{sec:0e0p_construction}\index{single-channel synthesis}
+\section{Construction and Self-Destruction}\label{sec:0e0p_construction}\index{single-channel synthesis}
 %%%%%%%%%%%%%%%%%%%%%%
 
 Copies of the 0E0P metacell construct each other via the single-channel glider synthesis techniques of Chapter~\ref{chp:universal_construction}. Indeed, the vast majority of the contents of the nucleus are a single-channel glider recipe that carries out this task. For the most part, this construction is straightforward, with long-distance elbow pushes via Corderships\index{Cordership} (as we described back in Section~\ref{sec:medium_demonoid}) being one of its most complicated pieces.\footnote{The 0E0P metacell uses 3-engine Corderships for these long-distance elbow pushes, since the single-channel recipe for the 2-engine Cordership from Figure~\ref{fig:2_engine_cordership_seed} and Appendix~\ref{sec:appendix_cordership_maker} was not known at the time of its completion in 2018. The faster crab-based elbow-pushing method of Section~\ref{sec:fast_demonoid_elbow_carry} was also not yet known.}
 
-However, there are two particular aspects of its construction that are somewhat unusual and thus worth clarifying and focusing on:\smallskip
+However, there are two particular problems that arise when trying to construct child metacells that are worth clarifying and focusing on:\smallskip
 
 \begin{itemize}
-	\item \textbf{Child orientation}: We need all metacells to be constructed in the same orientation, regardless of whether they are being constructed by a parent to the northwest, southwest, southeast, or northeast. This is ensured by first building the shell\index{shell} (which is impossible to get wrong, since it is rotationally symmetric) and then sending the remainder of the single-channel recipe through the correct recipe input lane so as to build the kernel in the correct orientation. If we'd counterfactually sent the recipe down one of the other three input lanes, it would end up in a different one of the four spiral arms and the resulting metacell would be constructed in the wrong orientation.\smallskip
+	\item \textbf{Child orientation}: We need all metacells to be constructed in the same orientation, regardless of whether they are being constructed by a parent to the northwest, southwest, southeast, or northeast. This is ensured by first building the child's shell\index{shell} (which is impossible to get wrong, since it is rotationally symmetric) and then sending the remainder of the single-channel recipe through the correct recipe input lane so as to build the kernel in the correct orientation. If we'd counterfactually sent the recipe down one of the other three input lanes, it would end up in a different one of the four spiral arms and the resulting metacell would be constructed in the wrong orientation.\smallskip
 	
-	% Gibberish after here
+	\item \textbf{Nucleus walls}: Each of the 180-degree reflectors along the walls of the nucleus is quite expensive, requiring somewhere between $2^{20}$ and $2^{21}$ generations for a single-channel glider recipe to construct. It follows that a recipe for the $2 \times 2^{10} = 2{\thousep}048$ reflectors used by the nucleus would be more than $2 \times 2^{10} \times 2^{20} = 2^{31}$ generations long, and would thus not fit inside the period $2^{29}$ nucleus.
 	
-	\item \textbf{Nucleus walls}: Each of the 180-degree reflectors along the walls of the nucleus is quite expensive, requiring somewhere between 1 and 2 million generations for a single-channel glider recipe to construct. If the recipes for these reflectors were all individually stored in the memory unit, there would be a significant problem: adding more rows to the memory unit would linearly increase the total length of the recipe that needs to be stored in the memory unit. To break even, it would be necessary to increase the width of each row of the memory unit so that it takes 2 million ticks for gliders to travel from one 180-degree reflector to the next, making the memory unit 524288fd wide!
-	
-	A solution is to only store the recipe for a single 180-degree reflector in the tape, and to repeatedly invoke this 'subroutine' in a loop. Due to parity constraints, the north-west and south-east 180-degree reflectors have a different shape, so it is necessary to have two 2-million-tick subroutines: one for the north-west reflectors, and one for the south-east reflectors. In the last phase of constructing the daughter metacell, these subroutines are injected into two small temporary memory loops. The two subroutines run in parallel (giving a 2x speedup compared with constructing the reflectors sequentially), and each loop has a fourfold fanout to construct four copies of the same reflector simultaneously. The effect is that the memory loop is constructed in one-eighth of the time necessary for sequential synthesis, so the memory unit can be a mere 65536fd wide.
-	
-	This reduces the problem of constructing an immense ($2^{29}$-tick) memory loop to the problem of constructing two smaller memory loops ($2^{21}$ ticks each) to handle the subroutines. These smaller memory loops are small enough that they can be built in a naive sequential manner along with the remainder of the kernel of the 0E0P metacell. The small memory loops are each equipped with a binary counter which halts the subroutine after it has run for exactly 256 iterations and built 1024 reflectors (i.e. 2048 Snarks).\smallskip
-	% Figure like Stage 0 (yellow) somewhere in here.
-	
-	%This is one of the few optimisations I deemed necessary. (Without this idea of subroutines and parallel construction, the metacell's side-length would need to be increased by a factor of 8.)
+	We could try getting around this problem by adding more rows to the nucleus, but this does not work: adding another $180$-degree reflector on each of its northwest and southeast sides increases the length of the glider sequence that it can store by approximately $2^{19}$ generations, but increases the length of its construction recipe by more than $2 \times 2^{20}$ generations. It thus becomes necessary to increase the \emph{width} of each row of the nucleus so that it takes $2^{21}$ generation for gliders to travel from one wall to the other, making it eight times as wide as in the actual 0E0P: $2^{19} = 524{\thousep}288$ full diagonals instead of $2^{16} = 65{\thousep}536$.\smallskip
 \end{itemize}
+
+In order to avoid the aforementioned factor-of-eight width increase, the 0E0P metacell only stores a construction recipe for a single 180-degree reflector, and builds temporary circuitry (which we call a \textbf{subroutine loop})\index{subroutine loop} that allows that reflector-building recipe to be copied and used over and over again. Due to parity constraints, the reflectors along the northwest and southeast walls have a different shape, so it is actually necessary to have \emph{two} period~$2^{21}$ subroutines: one for the northwest wall, and one for the southeast wall. In the terminology of Figure~\ref{fig:0e0p_itself}, these subroutine loops are located at points \texttt{CN} and \texttt{CE}, respectively.
+
+These subroutine loops reduce the problem of constructing an immense ($2^{29}$-generation) glider loop to the problem of constructing two smaller ($2^{21}$-generation) subroutine loops. Fortunately, the period~$2^{21}$ loops are small enough that they can be built without any special tricks, along with the rest of the metacell's kernel. Each subroutine loop is each equipped with its own clock gun that halts the subroutine after it has run for exactly 256 iterations. and built $256 \times 4 = 1{\thousep}024$ reflectors.
+% Figure like Stage 0 (yellow) somewhere in here.
 
 Destruction next.
 % Talk about destruction by still lifes just like the speed demonoid here
+% say the Snark and scorbie splitter are most complicated pieces (is it actually scorbie splitter in 0E0P?). Then show semi-Snark destruction picture here?
+
+% EXercise: Explain why 4 fanouts in CE and CN construction
+% Solution: to construct 8 times faster (since we want the nucleus 8 times skinnier). 2 times faster already gotten by doing both sides in parallel instead of sequential.
 
 
 %%%%%%%%%%%%%%%%%%%%%%
