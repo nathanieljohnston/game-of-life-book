@@ -521,8 +521,13 @@ The subroutine loops building the nucleus walls is the final step in the 0E0P me
 
 This self-destruction works in much the same way as that of the speed Demonoid from Section~\ref{sec:fast_demonoid_faster_destruction}: every single piece of circuitry in the 0E0P metacell has extra still lifes placed nearby that make it easy to destroy via a single glider. We saw how to do this explicitly with Snarks and Scorbie splitters in Figure~\ref{fig:snark_scorbie_seeded_destroy}, and none of the 0E0P's circuitry is any more complicated than that. Perhaps the only other object that it is useful to know how to destroy in this way is a semi-Snark. We illustrate a particularly efficient semi-Snark self-destruction trick that is used frequently by the 0E0P in Figure~\ref{fig:semi_snark_self_destruct}.
 
-% FIGURE {fig:semi_snark_self_destruct}
-% Furthermore, the output glider... this reaction can be chained together
+\begin{figure}[!htb]
+	\centering
+	\embedlink{semi_snark_self_destruct}{\vcenteredhbox{\patternimg{0.126}{semi_snark_self_destruct_0}} \vcenteredhbox{\genarrow{142}} \vcenteredhbox{\patternimg{0.126}{semi_snark_self_destruct_142}} \vcenteredhbox{\genarrow{81}} \vcenteredhbox{\patternimg{0.126}{semi_snark_self_destruct_223}} \vcenteredhbox{\genarrow{238}} \vcenteredhbox{\patternimg{0.126}{semi_snark_self_destruct_461}}}
+	\caption{Additional still lifes (displayed in \bgbox{redback}{red}) can be placed near a semi-Snark so that its output glider bounces back, cleanly destroying itself. The self-destruction also releases another output glider towards the southwest on exactly the correct lane so that this reaction can be chained together to destroy multiple semi-Snarks.}
+	\label{fig:semi_snark_self_destruct}
+\end{figure}
+% TODO: Add an exercise related to this? Chain a bunch together, with one-time turners first, so that... something happens?
 
 
 %%%%%%%%%%%%%%%%%%%%%%
