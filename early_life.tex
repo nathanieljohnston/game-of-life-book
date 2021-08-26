@@ -356,7 +356,7 @@ We could similarly ask what the longest-lived pattern with $n$ cells for $n = 6,
 	\end{center}
 \end{table}
 
-To highlight the difficulty of defining methuselahs in a rigorous way, note that there are 8- and 9-cell patterns that can be made to have lifespans as long as we like, since we can just aim a glider at a far away blinker or a block. However, these somewhat trivial examples can be avoided by requiring that a methuselah have a suitably small bounding box (which also rules out $8$-cell methuselahs like the one displayed in Exercise~\ref{exer:8cell_methuselah}). If we go this route and focus on the bounding box of a pattern, rather than its number of cells, then we find patterns like the one displayed in Figure~\ref{fig:47575m},\footnote{Found by Adam P.~Goucher in February 2019.} which fits within a $16 \times 16$ bounding box and has a lifespan of $47{\thousep}575$ generations, which is longer than any other known pattern of this size.
+To highlight the difficulty of defining methuselahs in a rigorous way, note that there are 8- and 9-cell patterns that can be made to have lifespans as long as we like, since we can just aim a glider at a far away blinker or a block. However, these somewhat trivial examples can be avoided by requiring that a methuselah have a suitably small bounding box (which also rules out $8$-cell methuselahs like the one displayed in Exercise~\ref{exer:8cell_methuselah}). If we go this route and focus on the bounding box of a pattern, rather than its number of cells, then we find patterns like the one displayed in Figure~\ref{fig:52513m},\footnote{Found by Dylan Chen in January 2021.} which fits within a $16 \times 16$ bounding box and has a lifespan of $52{\thousep}513$ generations, which is longer than any other known pattern of this size.
 
 Another potential problem that arises when discussing methuselahs and stability comes from the fact that we already saw patterns with just 12 cells that grow indefinitely: the block-laying and glider-producing switch engines\footnote{This can easily be reduced to 11 cells by removing one of the cells in the block in either pattern.} of Section~\ref{sec:switch_engine}. This is not too difficult to take care of: even though these patterns grow forever, they do so in a regular and predictable way. For example, to know what a block-laying switch engine looks like in generation $5{\thousep}000{\thousep}000$, we don't actually need to evolve it $5{\thousep}000{\thousep}000$ times: we could simply move the switch engine the correct number of spaces to the northeast and paste a trail of blocks behind it. We could thus say, for example, that the block-laying switch engine stabilizes once it enters the periodic portion of its evolution where it repeatedly lays $8$ blocks every $288$ generations.
 
@@ -365,8 +365,8 @@ These problems might seem simple enough to overcome by tweaking our definitions 
 \begin{figure}[!htb]
 	\centering
 	\begin{minipage}[b]{0.4\textwidth}
-		\centering\patternimglink{0.11}{47575m}
-		\caption{A methuselah that fits within a $16 \times 16$ bounding box and takes $47{\thousep}575$ generations to stabilize.}\label{fig:47575m}
+		\centering\patternimglink{0.11}{52513m}
+		\caption{A methuselah that fits within a $16 \times 16$ bounding box and takes $52{\thousep}513$ generations to stabilize.}\label{fig:52513m}
 	\end{minipage}\hfill
 	\begin{minipage}[b]{0.56\textwidth}
 		\centering\patternimglink{0.09}{ark_736692}
