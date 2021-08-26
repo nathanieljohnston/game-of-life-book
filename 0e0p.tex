@@ -463,7 +463,7 @@ To compute its state from those of its parents, a child metacell uses a lookup t
 
 \begin{figure}[!htb]
 	\centering
-	\embedlink{state_lookup_clock_gun}{\includegraphics[width=\textwidth]{0e0p/state_lookup_clock_gun.pdf}}
+	\embedlink{state_lookup_clock_gun}{\includegraphics[width=0.8\textwidth]{0e0p/state_lookup_clock_gun.pdf}}
 	\caption{A period~$1024$ clock gun (highlighted in \bgbox{aquaback}{aqua}) that has blocks along its path, delaying its first output glider. If there are $a$ blocks along the southwest edge, $b$ along the northwest edge, $c$ along the northeast edge, and $d$ along the southeast edge, then the clock gun's first escaping glider is produced by the Herschel that is present at generation $1024(a + 8b + 64c + 512d)$. That glider hits one-time circuitry (highlighted in \bgbox{magentaback}{magenta}) that unblocks and quickly re-blocks a glider stream, allowing its $(1 + a + 8b + 64c + 512d)$-th glider to escape.}
 	\label{fig:state_lookup_clock_gun}
 \end{figure}
@@ -510,17 +510,19 @@ However, there are two particular problems that arise when trying to construct c
 
 In order to avoid the aforementioned factor-of-eight width increase, the 0E0P metacell only stores a construction recipe for a single 180-degree reflector, and builds temporary circuitry (which we call a \textbf{subroutine loop})\index{subroutine loop} that allows that reflector-building recipe to be copied and used over and over again. Due to parity constraints, the reflectors along the northwest and southeast walls have a different shape, so it is actually necessary to have \emph{two} period~$2^{21}$ subroutines: one for the northwest wall, and one for the southeast wall. In the terminology of Figure~\ref{fig:0e0p_itself}, these subroutine loops are located at points \texttt{CN} and \texttt{CE}, respectively.
 
-These subroutine loops reduce the problem of constructing an immense ($2^{29}$-generation) glider loop to the problem of constructing two smaller ($2^{21}$-generation) subroutine loops. Fortunately, the period~$2^{21}$ loops are small enough that they can be built without any special tricks, along with the rest of the metacell's kernel. Each subroutine loop is each equipped with its own clock gun that halts the subroutine after it has run for exactly 256 iterations. and built $256 \times 4 = 1{\thousep}024$ reflectors.
-% TODO: Fix last sentence above, and talk about the 4 fanout (needed to explain why only runs 256 times instead of 1024)
+This technique reduce the problem of constructing an immense ($2^{29}$-generation) glider loop to the problem of constructing the two smaller ($2^{21}$-generation) subroutine loops. Fortunately, the period~$2^{21}$ loops are small enough that they can be built without any special tricks, along with the rest of the metacell's kernel. In order to make them each copy the subroutine recipe the correct number of times, each subroutine loop is each equipped with its own clock gun that triggers its self-destruction $2^{29}$ generations after it is built. Since the subroutine loop has period $2^{21}$, it runs for exactly $2^{29}/2^{21} = 2^8 = 256$ iterations. Each subroutine loop furthermore feeds into a fourfold fanout (see Figure~\ref{fig:0e0p_subroutine}), so that it constructs a total of $256 \times 4 = 1{\thousep}024$ reflectors, as desired.
 
-% Figure like Stage 0 (yellow) somewhere in here.
+\begin{figure}[!htb]
+	\centering
+	\embedlink{0e0p_subroutine}{\includegraphics[width=\textwidth]{0e0p/0e0p_subroutine.pdf}}	\caption{An 0E0P metacell that is currently using its pair of subroutine loops to construct the walls of its nucleus. Eight reflectors are constructed simultaneously, since the two loops run in parallel, and each loop uses glider duplicators to send four copies of its reflector-construction recipe southwest at a time.}\label{fig:0e0p_subroutine}
+\end{figure}
 
-Destruction next.
-% Talk about destruction by still lifes just like the speed demonoid here
-% say the Snark and scorbie splitter are most complicated pieces (is it actually scorbie splitter in 0E0P?). Then show semi-Snark destruction picture here?
+The subroutine loops building the nucleus walls is the final step in the 0E0P metacell's construction process. Afterwards, its nucleus is filled with a copy of its own construction recipe, it goes through its various stages of communicating with and constructing neighboring metacells, and then it finally self-destructs.
 
-% EXercise: Explain why 4 fanouts in CE and CN construction
-% Solution: to construct 8 times faster (since we want the nucleus 8 times skinnier). 2 times faster already gotten by doing both sides in parallel instead of sequential.
+This self-destruction works in much the same way as that of the speed Demonoid from Section~\ref{sec:fast_demonoid_faster_destruction}: every single piece of circuitry in the 0E0P metacell has extra still lifes placed nearby that make it easy to destroy via a single glider. We saw how to do this explicitly with Snarks and Scorbie splitters in Figure~\ref{fig:snark_scorbie_seeded_destroy}, and none of the 0E0P's circuitry is any more complicated than that. Perhaps the only other object that it is useful to know how to destroy in this way is a semi-Snark. We illustrate a particularly efficient semi-Snark self-destruction trick that is used frequently by the 0E0P in Figure~\ref{fig:semi_snark_self_destruct}.
+
+% FIGURE {fig:semi_snark_self_destruct}
+% Furthermore, the output glider... this reaction can be chained together
 
 
 %%%%%%%%%%%%%%%%%%%%%%
@@ -529,7 +531,7 @@ Destruction next.
 
 So far, we have described how the 0E0P metacell works at a fairly high level: every $2^{29}$ generations, the clock gun fires a glider that potentially changes what happens throughout the metacell. Some of these gliders direct the single-channel glider sequence from the nucleus to start constructing a neighboring metacell, some of them trigger a signal that sends the metacell's state to its children, and some of them trigger the self-destruction of the entire metacell.
 
-If we break the $2^{35}$-generation lifecycle of the metacell down into $2^6 = 64$ ``stages'' of $2^{29}$ generations each, then they behave roughly as follows:\smallskip
+If we break the $2^{35}$-generation lifecycle of the metacell down into $2^6 = 64$ ``stages'' of $2^{29}$ generations each, then they behave as follows:\smallskip
 
 \begin{itemize}
 	\item Stage 0: The metacell constructs its southeast neighbor.\smallskip
@@ -555,7 +557,7 @@ If we break the $2^{35}$-generation lifecycle of the metacell down into $2^6 = 6
 	\item Stages 16--63: Child metacells either self-destruct (if their state is $0$) or do nothing (if their state is non-zero, they just spend time ``looking like a cell'').\footnote{This wait time is only present so that patterns made up of metacells spend a decent amount of time looking, from a distance, like the patterns that they are emulating. When building the 0E0P metacell, Goucher underestimated how long it would take to run in Life simulation software---it could be modified to run $4$ times as quickly by removing this wait time.}\smallskip
 \end{itemize}
 
-These stages are each triggered by one-time circuitry that is placed along the period $2^{29}$ output lane of clock gun, as illustrated in Figure~\ref{fig:0e0p_clock_gun_full}. We now describe what happens throughout the 0E0P metacell's lifecycle in much more specific detail, and highlight key timestamps where interesting things happen or change in its circuitry.
+These stages are initiated by one-time circuitry that is placed along the period $2^{29}$ output lane of clock gun, as illustrated in Figure~\ref{fig:0e0p_clock_gun_full}. We now describe what happens throughout the 0E0P metacell's lifecycle in much more specific detail, and highlight key timestamps where interesting things happen or change in its circuitry.
 
 \begin{figure}[!htbp]
 	\centering

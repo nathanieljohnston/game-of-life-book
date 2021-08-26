@@ -1,0 +1,98 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\definecolor{darkyellowback}{RGB}{96,96,0}
+\definecolor{darkgreenback}{RGB}{0,96,0}
+\definecolor{darkmagentaback}{RGB}{96,0,96}
+\definecolor{aquaback}{RGB}{192,255,255}
+\definecolor{darkaquaback}{RGB}{0,96,96}
+
+\begin{document}
+	\begin{tikzpicture}%
+		%\clip (0.07,-4.69) rectangle (11.9,11.88);
+	
+		\node[inner sep=0pt,anchor=south west] (ca) at (0.05,0.05) {\includegraphics[width=11.9cm]{0e0p_subroutine.png}};
+		
+		\draw[gray,dashed] (3.42,9.03) -- (3.72,9.33) --node[rotate=-45,anchor=south,shift={(0.35,0)}]{\small\texttt{CN subroutine loop}} (5.41,7.64) -- (5.11,7.34) -- cycle;
+		
+		\newcommand\ceadj{4.15}
+		\newcommand\ceadjy{3.76}
+		\draw[gray,dashed] (3.42+\ceadj,9.03-\ceadjy) -- (3.72+\ceadj,9.33-\ceadjy) --node[rotate=-45,anchor=south,shift={(-0.35,0)}]{\small\texttt{CE subroutine loop}} (5.41+\ceadj,7.64-\ceadjy) -- (5.11+\ceadj,7.34-\ceadjy) -- cycle;
+		
+		\draw[color=gray,-stealth] (6.71,3.5) -- (6.01,2.8);
+		\draw[color=gray,-stealth] (3.51,6.7) -- (2.81,6);
+		
+		% ZOOM CN
+			\newcommand\smlx{4.77}
+			\newcommand\smrx{\smlx+0.25}
+			\newcommand\smby{7.7}
+			\newcommand\smty{\smby+0.25}
+			
+			\newcommand\bglx{-5.4}
+			\newcommand\bgrx{\bglx+5}
+			\newcommand\bgty{11.9}
+			\newcommand\bgby{\bgty-5}
+			
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
+			
+			\node[inner sep=0pt,anchor=north west] (zoom0) at (\bglx,\bgty) {\includegraphics[width=5cm]{0e0p_subroutine_zoom0.png}};
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (\smrx,\smty) -- (\bgrx,\bgty) -- (\bgrx,\bgby) -- (\smrx,\smby) -- (\smlx,\smby) -- (\smlx,\smty) -- cycle;
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\smlx,\smty) rectangle (\smrx,\smby);
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
+			
+			% Decorations
+			\fill[white,opacity=0.8] (-3.3,7.7) -- (-4.5,6.5) -- (-4.4,4.5) -- (-2.8,6.5) -- cycle;
+			\draw[color=gray,-stealth] (-3.3,7.5) --node[rotate=45,align=center,anchor=north]{\small\texttt{fourfold output}\\\small\texttt{to LW}} (-5.3,5.5);
+			
+			\draw[color=gray] (-2.5,10) node[rotate=-45,align=center,anchor=north]{\small\texttt{loop}};
+		% END ZOOM BOX CN
+		
+		% ZOOM LW
+			\renewcommand\smlx{1.64}
+			\renewcommand\smrx{\smlx+0.25}
+			\renewcommand\smby{4.57}
+			\renewcommand\smty{\smby+0.25}
+			
+			\renewcommand\bglx{-5.4}
+			\renewcommand\bgrx{\bglx+5}
+			\renewcommand\bgty{5.05}
+			\renewcommand\bgby{\bgty-5}
+			
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
+			
+			\node[inner sep=0pt,anchor=north west] (zoom1) at (\bglx,\bgty) {\includegraphics[width=5cm]{0e0p_subroutine_zoom1.png}};
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (\smrx,\smty) -- (\bgrx,\bgty) -- (\bgrx,\bgby) -- (\smrx,\smby) -- (\smlx,\smby) -- (\smlx,\smty) -- cycle;
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\smlx,\smty) rectangle (\smrx,\smby);
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
+			
+			% Decorations
+			\fill[white,opacity=0.8] (-0.05,5.7) -- (-1.05,4.7) -- (-2.9,4.7) -- (-1.05,5.7) -- cycle;
+			\draw[color=gray,-stealth] (-0.25,5.65) --node[rotate=45,align=center,anchor=south,shift={(0.1,0)}]{\small\texttt{fourfold input}\\\small\texttt{from CN}} (-2.05,3.85);
+		% END ZOOM BOX LW
+		
+		\draw[darkgreenback] (0.52,6.05) node {\texttt{W}};
+		\draw[darkgreenback] (12-0.5,6.03) node {\texttt{E}};
+		\draw[darkgreenback] (6,0.68) node {\texttt{S}};
+		\draw[darkgreenback] (6.01,12-0.5) node {\texttt{N}};
+		
+		\draw[darkgreenback] (2.89,2.89) node {\texttt{SW}};
+		\draw[darkgreenback] (12-2.84,2.93) node {\texttt{SE}};
+		%\draw[darkgreenback] (2.89,12-2.89) node {\texttt{NW}};
+		\draw[darkgreenback] (12.02-2.83,12.04-2.92) node {\texttt{NE}};
+		
+		%\draw[darkyellowback] (4.28,7.6) node {\texttt{LN}};
+		\draw[darkyellowback] (7.75,4.3) node {\texttt{LE}};
+		\draw[darkyellowback] (1.69,5.08) node {\texttt{LW}};
+		\draw[darkyellowback] (5.1,1.66) node {\texttt{LS}};
+	\end{tikzpicture}
+\end{document}
