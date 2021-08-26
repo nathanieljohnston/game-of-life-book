@@ -410,16 +410,18 @@ The asymmetric kernel contains the paths that are used to feed the 0E0P's single
 
 One important aspect of how the recipe output and input lanes of neighboring metacells connect to each other is that, irrespective of the orientation of the neighbors that are communicating, the single-channel glider sequence performs exactly 6 spiral quarter-turns to get from the south corner of the parent metacell to the south corner of the child metacell. This is how child metacells always end up in the correct phase and orientation after they are constructed. There are also some trombone slides of different lengths on different edges of the kernel, designed to compensate for the ``Olympic running track'' effect---the fact that outer lanes of the spiral are slightly longer than inner lanes. These trombone slides ensure that the communication time from the parent to each of the four children is exactly the same.
 
-In order to control which recipe output lane or construction lane the single-channel glider sequence enters, the 0E0P periodically destroys some of the kernel's Snarks. We saw one method of doing this back in Figure~\ref{fig:snark_seeded_destroy}---a single glider can be used to destroy a Snark (with the help of 3 extra pre-placed still lifes). The 0E0P metacell makes use of Snark-destroying reactions like this one\footnote{But not \emph{exactly} this one---see Exercise~\ref{exer:0e0p_snark_destroyer}.} to redirect copies of its single-channel glider sequence to eight different locations over the course of its lifespan. In order,\footnote{The single-channel glider sequence really does have to be sent along these $8$ paths one after another. If we just used glider duplicators to send it along all $8$ paths at the same time, there could be unwanted collisions when constructing child metacells (e.g., if two parent metacells tried to create a child in the same location at the same time).} they are:\smallskip
+In order to control which recipe output lane or construction lane the single-channel glider sequence enters, the 0E0P periodically destroys some of the kernel's Snarks. We saw one method of doing this back in Figure~\ref{fig:snark_seeded_destroy}---a single glider can be used to destroy a Snark (with the help of 3 extra pre-placed still lifes). The 0E0P metacell makes use of Snark-destroying reactions like this one\footnote{But not \emph{exactly} this one---see Exercise~\ref{exer:0e0p_snark_destroyer}.} to redirect copies of its single-channel glider sequence to eight different output lanes over the course of its lifespan. In order,\footnote{The single-channel glider sequence really does have to be sent along these $8$ paths one after another. If we just used glider duplicators to send it along all $8$ paths at the same time, there could be unwanted collisions when constructing child metacells (e.g., if two parent metacells tried to create a child in the same location at the same time).} they are:\smallskip
 
 \begin{itemize}
-	\item[1)] Along the southeast construction lane (in dashed magenta in Figure~\ref{fig:0e0p_schematic}), to construct the child metacell to the southeast.\smallskip
+	\item[1a)] The southeast construction lane (in dashed magenta in Figure~\ref{fig:0e0p_schematic}), to construct the child metacell to the southeast.\smallskip
 	
-	\item[2)] Along the southeast recipe output lane (in solid magenta), to copy the glider sequence into the (now constructed) southeast child's nucleus.\smallskip
+	\item[1b)] The southeast recipe output lane (in solid magenta), to copy the glider sequence into the (now constructed) southeast child's nucleus.\smallskip
 	
-	\item[3)] Along the northeast construction lane (in dashed magenta), to construct the child metacell to the northeast.\smallskip
+	\item[2a)] The northeast construction lane (in dashed magenta), to construct the child metacell to the northeast.\smallskip
 	
-	\item[4) -- 8)] Along the northeast recipe output lane, then the northwest construction lane, and so on counterclockwise.
+	\item[2b)] The northeast recipe output lane (in solid magenta), to copy the glider sequence into the (now constructed) northeast child's nucleus.\smallskip
+	
+	\item[3a) -- 4b)] The northwest construction lane, then the northwest recipe output lane, and so on counterclockwise.
 \end{itemize}
 
 
@@ -509,6 +511,8 @@ However, there are two particular problems that arise when trying to construct c
 In order to avoid the aforementioned factor-of-eight width increase, the 0E0P metacell only stores a construction recipe for a single 180-degree reflector, and builds temporary circuitry (which we call a \textbf{subroutine loop})\index{subroutine loop} that allows that reflector-building recipe to be copied and used over and over again. Due to parity constraints, the reflectors along the northwest and southeast walls have a different shape, so it is actually necessary to have \emph{two} period~$2^{21}$ subroutines: one for the northwest wall, and one for the southeast wall. In the terminology of Figure~\ref{fig:0e0p_itself}, these subroutine loops are located at points \texttt{CN} and \texttt{CE}, respectively.
 
 These subroutine loops reduce the problem of constructing an immense ($2^{29}$-generation) glider loop to the problem of constructing two smaller ($2^{21}$-generation) subroutine loops. Fortunately, the period~$2^{21}$ loops are small enough that they can be built without any special tricks, along with the rest of the metacell's kernel. Each subroutine loop is each equipped with its own clock gun that halts the subroutine after it has run for exactly 256 iterations. and built $256 \times 4 = 1{\thousep}024$ reflectors.
+% TODO: Fix last sentence above, and talk about the 4 fanout (needed to explain why only runs 256 times instead of 1024)
+
 % Figure like Stage 0 (yellow) somewhere in here.
 
 Destruction next.
