@@ -519,7 +519,7 @@ This technique reduce the problem of constructing an immense ($2^{29}$-generatio
 
 The subroutine loops building the nucleus walls is the final step in the 0E0P metacell's construction process. Afterwards, its nucleus is filled with a copy of its own construction recipe, it goes through its various stages of communicating with and constructing neighboring metacells, and then it finally self-destructs.
 
-This self-destruction works in much the same way as that of the speed Demonoid from Section~\ref{sec:fast_demonoid_faster_destruction}: every single piece of circuitry in the 0E0P metacell has extra still lifes placed nearby that make it easy to destroy via a single glider. We saw how to do this explicitly with Snarks and Scorbie splitters in Figure~\ref{fig:snark_scorbie_seeded_destroy}, and none of the 0E0P's circuitry is any more complicated than that. Perhaps the only other object that it is useful to know how to destroy in this way is a semi-Snark. We illustrate a particularly efficient semi-Snark self-destruction trick that is used frequently by the 0E0P in Figure~\ref{fig:semi_snark_self_destruct}.
+This self-destruction works in much the same way as that of the speed Demonoid from Section~\ref{sec:fast_demonoid_faster_destruction}: every single piece of circuitry in the 0E0P metacell has extra still lifes placed nearby that make it easy to destroy via a single glider. We saw how to do this explicitly with Snarks and Scorbie splitters in Figure~\ref{fig:snark_scorbie_seeded_destroy}, and none of the 0E0P's circuitry is any more complicated than that. Perhaps the only other object that it is useful to know how to destroy in this way is a semi-Snark. We illustrate a particularly efficient semi-Snark self-destruction trick that is used frequently by the 0E0P metacell in Figure~\ref{fig:semi_snark_self_destruct}.
 
 \begin{figure}[!htb]
 	\centering
@@ -527,7 +527,6 @@ This self-destruction works in much the same way as that of the speed Demonoid f
 	\caption{Additional still lifes (displayed in \bgbox{redback}{red}) can be placed near a semi-Snark so that its output glider bounces back, cleanly destroying itself. The self-destruction also releases another output glider towards the southwest on exactly the correct lane so that this reaction can be chained together to destroy multiple semi-Snarks.}
 	\label{fig:semi_snark_self_destruct}
 \end{figure}
-% TODO: Add an exercise related to this? Chain a bunch together, with one-time turners first, so that... something happens?
 
 
 %%%%%%%%%%%%%%%%%%%%%%
@@ -1144,6 +1143,22 @@ Finally, Adam P.~Goucher spent 2014--2018 constructing the 0E0P metapixel, which
 	\begin{problem}\label{exer:0e0p_state_lookup_wider} \probdiff{2}
 		The toy version of the state-lookup clock gun that we displayed in Figure~\ref{fig:state_lookup_clock_gun} extracts an approximately 100-generation chunk of a glider stream. Adjust its one-time circuitry so as to extract an approximately 900-generation chunk of a glider stream (which is large enough to store $0$--$7$ gliders, just like in the state-lookup mechanism of the 0E0P metacell itself).
 	\end{problem}
+
+
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:0e0p_clock_gun_destroy}
+		In this exercise, we explore how to use the semi-Snark-deletion technique of Figure~\ref{fig:semi_snark_self_destruct}.\smallskip
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item \probdiff{3} Modify the path-switching clock gun of Figure~\ref{fig:clock_path_switcher} so that, after the three path switches occur, the semi-Snarks all self-destruct.
+			
+			\item \probdiff{4} Modify that path-switching clock gun further so that, after the three path switches occur, \emph{everything} other than the gliders from the single-channel glider stream is destroyed.
+			
+			[Hint: You can find configurations of still lifes and gliders that destroy the clock gun and syringe-based reflector in the 0E0P metacell.]
+		\end{enumerate}
+	\end{problemstar}
 
 
 	\mfilbreak
