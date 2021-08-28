@@ -1,0 +1,80 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\definecolor{darkyellowback}{RGB}{96,96,0}
+\definecolor{darkgreenback}{RGB}{0,96,0}
+\definecolor{darkmagentaback}{RGB}{96,0,96}
+\definecolor{aquaback}{RGB}{192,255,255}
+\definecolor{darkaquaback}{RGB}{0,96,96}
+
+\begin{document}
+	\begin{tikzpicture}%
+		%\clip (0.07,-4.69) rectangle (11.9,11.88);
+	
+		\node[inner sep=0pt,anchor=south west] (ca) at (0.05,0.05) {\includegraphics[width=11.9cm]{otca_metapixel.png}};
+		
+		% ZOOM
+			\newcommand\smlx{0.74}
+			\newcommand\smrx{\smlx+0.5}
+			\newcommand\smby{3}
+			\newcommand\smty{\smby+1}
+			
+			\newcommand\bglx{-5.7}
+			\newcommand\bgrx{\bglx+4.5}
+			\newcommand\bgty{10.6}
+			\newcommand\bgby{\bgty-9}
+			
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
+			
+			\node[inner sep=0pt,anchor=north west] (zoom0) at (\bglx,\bgty) {\includegraphics[width=4.5cm]{otca_metapixel_rule.png}};
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (\smrx,\smty) -- (\bgrx,\bgty) -- (\bgrx,\bgby) -- (\smrx,\smby) -- (\smlx,\smby) -- (\smlx,\smty) -- cycle;
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\smlx,\smty) rectangle (\smrx,\smby);
+			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
+			
+			% Rule labels
+			%S
+			\draw[color=gray] (-2.76,9.69) node[anchor=north]{\Large\texttt{S}};
+			\draw[color=gray,dashed] (-3.3,9.12) rectangle (-2.25,2.42);
+			
+			\draw[color=gray] (-2.55,8.95) node[anchor=north]{\texttt{8}};
+			\draw[color=gray] (-2.55,8.42) node[anchor=north]{\texttt{7}};
+			\draw[color=gray] (-2.55,7.89) node[anchor=north]{\texttt{6}};
+			
+			\newcommand\yadj{-2.44}
+			\draw[color=gray] (-2.55,8.95+\yadj) node[anchor=north]{\texttt{5}};
+			\draw[color=gray] (-2.55,8.42+\yadj) node[anchor=north]{\texttt{4}};
+			\draw[color=gray] (-2.55,7.89+\yadj) node[anchor=north]{\texttt{3}};
+			
+			\renewcommand\yadj{-4.87}
+			\draw[color=gray] (-2.55,8.95+\yadj) node[anchor=north]{\texttt{2}};
+			\draw[color=gray] (-2.55,8.42+\yadj) node[anchor=north]{\texttt{1}};
+			\draw[color=gray] (-2.55,7.89+\yadj) node[anchor=north]{\texttt{0}};
+			
+			%B
+			\newcommand\xadj{-1.66}
+			\renewcommand\yadj{0.31}
+			
+			\draw[color=gray] (-4.02,10) node[anchor=north]{\Large\texttt{B}};
+			\draw[color=gray,dashed] (-2.89+\xadj,9.12+\yadj) rectangle (-1.84+\xadj,2.42+\yadj);
+			
+			\draw[color=gray] (-2.55+\xadj,8.95+\yadj) node[anchor=north]{\texttt{8}};
+			\draw[color=gray] (-2.55+\xadj,8.42+\yadj) node[anchor=north]{\texttt{7}};
+			\draw[color=gray] (-2.55+\xadj,7.89+\yadj) node[anchor=north]{\texttt{6}};
+			
+			\renewcommand\yadj{0.31-2.44}
+			\draw[color=gray] (-2.55+\xadj,8.95+\yadj) node[anchor=north]{\texttt{5}};
+			\draw[color=gray] (-2.55+\xadj,8.42+\yadj) node[anchor=north]{\texttt{4}};
+			\draw[color=gray] (-2.55+\xadj,7.89+\yadj) node[anchor=north]{\texttt{3}};
+			
+			\renewcommand\yadj{0.31-4.88}
+			\draw[color=gray] (-2.55+\xadj,8.95+\yadj) node[anchor=north]{\texttt{2}};
+			\draw[color=gray] (-2.55+\xadj,8.42+\yadj) node[anchor=north]{\texttt{1}};
+			\draw[color=gray] (-2.55+\xadj,7.89+\yadj) node[anchor=north]{\texttt{0}};
+		% END ZOOM BOX
+	\end{tikzpicture}
+\end{document}

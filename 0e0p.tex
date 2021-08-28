@@ -4,7 +4,7 @@
 
 \renewcommand{\chapterfolder}{0e0p/}
 \chapterimage{cover/0e0p}
-\chapter{The 0E0P Metacell}\label{chp:0e0p}\index{0E0P metacell}
+\chapter{The 0E0P Metacell}\label{chp:0e0p}\index{0E0P metacell}\index{metacell}
 
 
 \vspace*{-0.4in}
@@ -899,8 +899,6 @@ The state-lookup gun of this southwest child thus extracts the $512$th chunk of 
 	\item \textbf{SE child}: Extracts the $1 + (7-7) + 8(7-0) + 64(7-0) + 512(7-0) = 4{\thousep}089\text{th}$ chunk of the lookup table, which contains $6$ gliders, so its state is $6$.\smallskip
 \end{itemize}
 
-% NJ is here
-
 After the children's states are extracted in the form of $0$--$7$ gliders, the first glider (if it exists) is duplicated, resulting in a sequence of $0$ or $2$--$8$ gliders, and erases some one-time circuitry that would otherwise cause the metacell to die early. The resulting sequence of gliders is then redirected toward a sequence of $8$ blocks, so that the state can be stored for a long period of time in their absences. In the southwest child, this happens at $t = 8{\thousep}054{\thousep}294{\thousep}330$ (see Figure~\ref{fig:0e0p_timeline_8054294330}).
 
 \begin{figure}[!htb]
@@ -910,9 +908,7 @@ After the children's states are extracted in the form of $0$--$7$ gliders, the f
 	\label{fig:0e0p_timeline_8054294330}
 \end{figure}
 
-% Exercise: what generation does glider escape in some other configuration or for some other child? e.g., what generation does northeast child extract its state? When are those state gliders stored in the blocks?
-
-Meanwhile, parent metacells have served their purpose, so they are free to die. The Herschels that are present in \emph{their} south clock guns at generation $t = 8{\thousep}053{\thousep}063{\thousep}680 = 15 \times 2^{29}$ trigger this self-destruction. Much like the destruction of \texttt{CN} clock gun that was described in Figure~\ref{fig:0e0p_timeline_968843520}, this self-destruction takes place over multiple stages, with some semi-Snarks being destroyed in each stage so that subsequent stages occur more rapidly.
+Meanwhile, the parent metacell has served its purpose, so it is free to die. The Herschel that is present in \emph{its} control clock gun at generation $t = 8{\thousep}053{\thousep}063{\thousep}680 = 15 \times 2^{29}$ trigger this self-destruction. Much like the destruction of \texttt{CN} clock gun that was described in Figure~\ref{fig:0e0p_timeline_968843520}, this self-destruction takes place over multiple stages, with some semi-Snarks being destroyed in each stage so that subsequent stages occur more rapidly.
 
 During one of these intermediate stages, at $t = 8{\thousep}124{\thousep}366{\thousep}848 \approx 15.1328 \times 2^{29}$, a Herschel is present in the control clock gun that will produce a glider that escapes northwest towards \texttt{LS}, triggering the destruction of the entire southeast wall of the nucleus, as well as a few remaining pieces of the \texttt{CE} construction site (see Figure~\ref{fig:0e0p_timeline_8124366848}). It then continues travelling clockwise around the metacell, destroying the circuitry at \texttt{SW}, the northwest wall of the nucleus (and some remaining pieces of \texttt{CN}), \texttt{W}, \texttt{NW}, \texttt{N}, \texttt{NE}, \texttt{E}, and \texttt{SE}, before finally being stopped by a block back at \texttt{S} at $t = 8{\thousep}126{\thousep}433{\thousep}672 \approx 15.1367 \times 2^{29}$.
 
@@ -923,21 +919,29 @@ During one of these intermediate stages, at $t = 8{\thousep}124{\thousep}366{\th
 	\label{fig:0e0p_timeline_8124366848}
 \end{figure}
 
-Self-destruction continues through a few more stages past this point, with it being completely done at generation $t = 8{\thousep}129{\thousep}508{\thousep}130 \approx 15.1424 \times 2^{29}$, after which all parent metacells are gone, and only child metacells remain. The final clean-up step that occurs is a second glider escaping to the northwest from the south control clock, which destroys \texttt{INS}, where the single-channel glider recipe was injected into the nucleus (i.e., the area depicted back in Figure~\ref{fig:0e0p_timeline_974368517}).
+Self-destruction continues through a few more stages past this point, with it being completely done at generation $t = 8{\thousep}129{\thousep}508{\thousep}130 \approx 15.1424 \times 2^{29}$, after which the parent metacell is gone, and only child metacells remain. The final clean-up step that occurs is a second glider escaping to the northwest from the control clock, which destroys the nucleus insertion location \texttt{INS}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%
 \subsection{Generations $\mathbf{16 \times 2^{29}}$ to $\mathbf{128 \times 2^{29}}$: Waiting and Repeating}\label{sec:0e0p_timeline_wait_repeat}
 %%%%%%%%%%%%%%%%%%%%%%
 
-If a child metacell's state is non-zero, it now spends an extraordinarily long time doing nothing of note---from generation $t = 16 \times 2^{29}$ until $t = 64 \times 2^{29}$ the gliders from the period $2^{29}$ control clock are blocked by a slow-salvo seed, so the contents of its nucleus simply cycle $48$ times without really doing anything.
+If a child metacell's state is non-zero, it now spends an extraordinarily long time doing nothing of note---from generation $t = 16 \times 2^{29}$ until $t = 64 \times 2^{29}$ the gliders from the period $2^{29}$ control clock are blocked by a slow-salvo seed, so the contents of its nucleus simply cycle $48$ times without really doing anything (see Figure~\ref{fig:0e0p_timeline_17179869184}).
+
+% TODO: Put the correct figure here, once the timestamp has finished computing. This is just here for spacing reasons.
+\begin{figure}[!htb]
+	\centering
+	\patternlink{0e0p_timeline_8124366848_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_8124366848.pdf}}
+	\caption{One of the blocks on the control clock gun's period~$2^{29}$ output lane acts as a slow salvo seed that destroys $48$ gliders, and thus halts the metacell for $48 \times 2^{29}$ generations. In the phase shown here, it has already absorbed $16$ gliders, it is about to absorb another one, and it will then absorb $31$ more much later.}
+	\label{fig:0e0p_timeline_17179869184}
+\end{figure}
 
 On the other hand, if its state equals $0$, then the Herschel that is present in its south control clock at $t = 8{\thousep}589{\thousep}934{\thousep}592 = 16 \times 2^{29}$ releases a glider that uses one-time circuitry to (a) destroy the aforementioned slow-salvo seed, and (b) empty the contents of its nucleus. The result of (b) is that this metacell will not construct any children of its own, and the result of (a) is that it will self-destruct $47 \times 2^{29}$ generations sooner than it would otherwise (i.e., it acts as a ``dead'' cell). In the example that we are illustrating, none of the child metacells have state $0$, so this early death does not occur. However, we will see it occur in the next half-metageneration in Figure~\ref{fig:0e0p_timeline_34359738368}, $2^{35}$ generations from now.
 
 \begin{figure}[!htb]
 	\centering
 	\embedlink{0e0p_timeline_34359738368_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_34359738368.pdf}}
-	\caption{The four children are now parents, so they construct their own children via the exact same stages that their parents used. In this example, $8$ of the $9$ grandchildren have state $0$, so they die early thanks to the Herschel that is present in the control clock gun at generation $80 \times 2^{29}$. That Herschel creates a glider that destroys (a) a block that would otherwise cause the grandchild to wait for $48 \times 2^{29}$ generations, and (b) a block in a syringe, so that the contents of the nucleus are absorbed by an eater~2.}
+	\caption{The four children are now parents, so they construct their own children via the exact same stages that their parents used. In this example, $8$ of the $9$ grandchildren have state $0$, so they die early thanks to the Herschels that are present in their control clock guns at generation $80 \times 2^{29}$. Those Herschels create gliders that destroy (a) blocks that would otherwise cause the grandchildren to wait for $48 \times 2^{29}$ generations, and (b) blocks in syringes, so that the contents of their nuclei are absorbed by those syringes' eater~2s.}
 	\label{fig:0e0p_timeline_34359738368}
 \end{figure}
 
@@ -956,7 +960,7 @@ After all of this is complete, at $t = 68{\thousep}719{\thousep}476{\thousep}736
 \begin{figure}[!htb]
 	\centering
 	\patternlink{0e0p_timeline_0_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_68719476736.pdf}}
-	\caption{A full metageneration of the $2$-state Moore-neighborhood rule has passed. In the particular rule being emulated here, a single cell lives from one generation to the next, so this snapshot is identical to the one from Figure~\ref{fig:0e0p_timeline_0}: a Herschel is present in the clock gun which will release a glider that will destroy an eater, eventually leading to the construction of its southeast neighbor.}
+	\caption{A full metageneration of the $2$-state Moore-neighborhood rule has passed. In the particular rule being emulated here, a single cell lives from one generation to the next, so this snapshot is identical to the one from Figure~\ref{fig:0e0p_timeline_0}: a Herschel is present in the clock gun which will release a glider that will destroy an eater, eventually leading to the construction of its southeast child.}
 	\label{fig:0e0p_timeline_68719476736}
 \end{figure}
 
@@ -965,17 +969,17 @@ After all of this is complete, at $t = 68{\thousep}719{\thousep}476{\thousep}736
 \section{Notes and Historical Remarks}\label{sec:0e0p_history}\index{metacell}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Many metacells---patterns of size larger than $1 \times 1$ that emulate the behavior of a single cell---were constructed prior to 0E0P. The first one was the \textbf{p5760~metacell}, which was constructed by David Bell in January 1996. This metacell is much smaller and faster than 0E0P, with a period of just $5{\thousep}760$~generations and a bounding box size of just $500 \times 500$ (see Figure~\ref{fig:p5760_metacell}). However, there are numerous trade-offs that make this metacell less useful:\smallskip
+Many \textbf{metacells}---patterns of size larger than $1 \times 1$ that emulate the behavior of a single cell---were constructed prior to 0E0P. The first one was the \textbf{p5760~metacell},\index{p5760~metacell} which was constructed by David Bell in January 1996. This metacell is much smaller and faster than 0E0P, with a period of just $5{\thousep}760$~generations and a bounding box size of just $500 \times 500$ (see Figure~\ref{fig:p5760_metacell}). However, there are numerous trade-offs that make this metacell less useful:\smallskip
 
 \begin{figure}[!htb]
 	\centering
-	\begin{tikzpicture}
+	\begin{tikzpicture}[scale=0.85, every node/.style={transform shape}]
 		\node[inner sep=0pt,anchor=south west] at (0,0) {\embedlink{p5760_metacell}{\patternimg{0.15}{p5760_metacell}}};
 	
 		\draw[white,line width=2.5pt,opacity=0.6](2.63,8.15) circle (0.2);
 		\draw[redback2,line width=1pt](2.63,8.15) circle (0.2);
 	\end{tikzpicture}
-	\caption{The \emph{p$5760$~metacell}. Whether the cell is considered ``alive'' or ``dead'' is determined by the presence or absence of a glider at the location circled in \bgbox{redback}{red}. That glider, if present, is duplicated $8$ times and sent to its neighbors along the $8$ output paths highlighted in \bgbox{aquaback}{aqua}, signaling to them that it is alive. Similarly, neighboring alive cells send their signals to this one along the input paths highlighted in \bgbox{magentaback}{magenta}.}\label{fig:p5760_metacell}
+	\caption{The \textbf{p5760~metacell}. Whether the cell is considered ``alive'' or ``dead'' is determined by the presence or absence of a glider at the location circled in \bgbox{redback}{red}. That glider, if present, is duplicated $8$ times and sent to its neighbors along the $8$ output paths highlighted in \bgbox{aquaback}{aqua}, signaling to them that it is alive. Similarly, neighboring alive cells send their signals to this one along the input paths highlighted in \bgbox{magentaback}{magenta}.}\label{fig:p5760_metacell}
 \end{figure}
 
 \begin{itemize}
@@ -983,40 +987,40 @@ Many metacells---patterns of size larger than $1 \times 1$ that emulate the beha
 	
 	\item \textbf{Visualization}: It is not easy to tell at a glance which ``cells'' are alive and which are dead---it is determined by the presence or absence of a single extra glider in the cell---and it is thus not interesting to look at from a far-out zoom level.\smallskip
 	
-	\item \textbf{Background grid}: ``Dead'' metacells must be placed on the Life plane, which means that, for example, spaceships cannot be emulated by this metacell unless the pattern is infinitely large.\smallskip
+	\item \textbf{Background grid}: ``Dead'' metacells must be placed on the Life plane, which means that, for example, spaceships cannot be emulated by this metacell unless infinitely many copies of it are used.\smallskip
 \end{itemize}
 
-The first two of these problems were solved by the \emph{OTCA metapixel},\index{OTCA metapixel} which was constructed by Brice Due from late 2005 to mid-2006. While this metacell is a bit larger and slower than the first metacell (it is $2048 \times 2048$ and has period $35{\thousep}328$), it can be used to emulate any of the $2^{18}$ different outer-totalistic Life-like cellular automata. Indeed, built into its circuitry is an easily-adjustable array of eaters that determine how many live neighboring OTCA metapixels should lead to the birth or survival of the current metapixel (see Figure~\ref{fig:otca_metapixel}). 
-% Introduce Life-like CA, since no introduction earlier
+The first two of these problems were solved by the \textbf{OTCA metapixel},\index{OTCA metapixel}\index{metapixel|see {metacell}} which was constructed by Brice Due from late 2005 to mid-2006. While this metacell is a bit larger and slower than the first metacell (it is $2048 \times 2048$ and has period $35{\thousep}328$), it can be used to emulate any of the $2^{18}$ different outer-totalistic (i.e., Life-like) cellular automata\index{Life-like cellular automaton} that were described in Section~\ref{sec:lifelike_rules}.\footnote{This property is what gives it its name: it is the \textbf{O}uter-\textbf{T}otalistic \textbf{C}ellular \textbf{A}utomata metapixel.} Indeed, built into its circuitry is an easily-adjustable array of eaters that determine how many live neighboring OTCA metapixels should lead to the birth or survival of the current metacell (see Figure~\ref{fig:otca_metapixel}). 
 % mention out of the blue/honey bit/demultiplexer?
 
-% FIGURE HERE, SHOWING PIXEL AND RULE ENCODINGS
+\begin{figure}[!htb]
+	\centering
+	\embedlink{otca_metapixel}{\includegraphics[width=1\textwidth]{0e0p/otca_metapixel.pdf}}
+	\caption{The \textbf{OTCA metapixel}, with orthogonal rows of lightweight spaceships filling up its central region, making it look ``alive''. By adjusting which eaters are present on its left edge, it can be made to emulate any Life-like cellular automaton. The eaters displayed in \bgbox{redback}{light red} are not actually present---they are just displayed so as to show their potential locations---so this metacell is emulating the rule B3/S23 (i.e., Life).}
+	\label{fig:otca_metapixel}
+\end{figure}
 
 The OTCA metapixel also has the remarkable feature that its alive and dead states look, from a distance, like alive and dead cells. This feature is achieved by the ``alive'' version of the cell releasing $43$ pairs of perpendicular lightweight spaceship streams that mutually annihilate each other, thus partially filling in the otherwise empty center of the metacell. For example, arranging a $1 \times 3$ row of ``alive'' metapixels (and a suitably large ``dead'' array of metapixels around its edges) results in a pattern that looks and evolves like a blinker, but $2{\thousep}048$ times as long and wide and $35{\thousep}328$ times as slow (see Figure~\ref{fig:metablinker}).
 
 \begin{figure}[!htb]
 	\centering
 	\embedlink{metablinker}{\vcenteredhbox{\patternimg{0.104}{metablinker_0}} \vcenteredhbox{\color{black}{$\xrightarrow{\text{\clock{5}{46} 35328}}$}} \vcenteredhbox{\patternimg{0.104}{metablinker_35328}}}
-	\caption{A \emph{metablinker}: an arrangement of OTCA metapixels that emulates a blinker, but with period $2 \times 35{\thousep}328$.}\label{fig:metablinker}\index{metablinker}
+	\caption{A \textbf{metablinker}: an arrangement of OTCA metapixels that emulates a blinker, but with period $2 \times 35{\thousep}328$.}\label{fig:metablinker}\index{metablinker}
 \end{figure}
 
-The next notable metacell to be constructed was the \emph{p1 megacell},\index{p1 megacell} by Adam P.~Goucher in 2008. This metacell was, again, larger and slower than the metacells that came before it, with a bounding box of $2^{15} \times 2^{15}$ and a period of $2^{24}$. The new features this time that warranted the extra size and delay were twofold:\smallskip
+The next notable metacell to be constructed was the \textbf{p1 megacell},\index{p1 megacell}\index{megacell|see {metacell}} by Adam P.~Goucher in 2008. This metacell was, again, larger and slower than the metacells that came before it, with a bounding box of $2^{15} \times 2^{15}$ and a period of $2^{24} = 16{\thousep}777{\thousep}216$. The new features this time that warranted the extra size and delay were twofold:\smallskip
 
 \begin{itemize}
-	\item This metacell was built entirely out of stable (p$1$) components like Herschel tracks, with the exception of a single period~$2^{24}$ gun used to regulate its timing.\footnote{This gun could be swapped out for a gun of another period, but periods that are multiples of $2$ help the pattern run quicker under the HashLife algorithm in Life simulation software like Golly.}\index{HashLife}\smallskip
+	\item \textbf{Stable construction:} This metacell was built entirely out of stable (p$1$) components like Herschel tracks, with the exception of a single period~$2^{24}$ gun used to regulate its timing.\footnote{This gun could be swapped out for a gun of another period, but periods that are multiples of $2$ help the pattern run quicker under the HashLife algorithm in Life simulation software like Golly. This is the same reason that most of the 0E0P metacell's mechanisms are aligned to periods that are powers of $2$.}\index{HashLife} This contrasts with the OTCA metapixel, which is based almost entirely on p$46$ circuitry.\smallskip
 	
-	\item All $2^{512}$ non-outer-totalistic Life-like cellular automata can be emulated by this metacell, versus the $2^{18}$ outer-totalistic Life-like cellular automata that can be emulated by the OTCA metapixel.\smallskip% Maybe not-necessarily-outer-totalistic, instead of non-outer-totalistic?
+	\item \textbf{Non-outer-totalistic rules:} The p1 megacell can emulate all $2^{512}$ Moore-neighborhood $2$-state cellular automata on a square grid, versus the $2^{18}$ outer-totalistic cellular automata that can be emulated by the OTCA metapixel.\footnote{The p1 megacell can even emulate rules in which an all-dead neighborhood leads to a birth, unlike the 0E0P metacell. However, this requires that the entire Life plane be tiled with ``dead'' p1 megacells.}\smallskip
 \end{itemize}
 
-% Figure of p1 megacell? Have had a lot of big figures bunched up closely here, so maybe not.
+% Figure of p1 megacell.
+% Add footnotes describing where scripts can be found for metafier and megafier
 
-Finally, Adam P.~Goucher spent 2014--2018 constructing the 0E0P metapixel, which solved problem~(3) described earlier---it does not require a background grid of ``dead'' cells to be placed on the Life plane.
+Finally, Adam P.~Goucher spent 2014 through 2018 designing and constructing the 0E0P metacell, which solved the final problem described earlier---it does not require a background grid of ``dead'' cells to be placed on the Life plane. It achieves this extra feat by not just sending its state to its neighbors and then computing its own, but by also using universal construction to \emph{build} those neighbors in the first place. Methods of universal construction made significant progress throughout the 0E0P metacell's development, and the advent of single-channel glider synthesis in 2017 provided the key breakthrough that made its completion possible.
 
-%https://www.conwaylife.com/forums/viewtopic.php?f=15&t=4117#p82954
-%https://cp4space.hatsya.com/2018/11/12/fully-self-directed-replication/
-%https://www.conwaylife.com/forums/viewtopic.php?f=2&t=3835
-%https://www.conwaylife.com/forums/viewtopic.php?t=3968
-%https://www.conwaylife.com/forums/viewtopic.php?p=72241
 
 % EXERCISE: Give reactions in HighLife-replicator-ship.rle from Golly and ask reader to make ship out of it
 % EXERCISE: Logarithmic replicator from B36/S245, found by Mark Niemiec in July 1994. Do... something with it. Pop in generation 300*4^n - 127 is 64 for all n >= 0.
@@ -1198,6 +1202,8 @@ Finally, Adam P.~Goucher spent 2014--2018 constructing the 0E0P metapixel, which
 			\item The northwest child metacell's kernel finishes construction.
 			
 			\item The final glider in the single-channel glider recipe enters the southwest child's nucleus via its \texttt{INS} location.
+			
+			\item The northeast (instead of southwest) child metacell of Figure~\ref{fig:0e0p_timeline_8054294330} stores its state by destroying $5$ of its $8$ state-storing blocks.
 		\end{enumerate}
 	\end{problem}
 
@@ -1208,6 +1214,23 @@ Finally, Adam P.~Goucher spent 2014--2018 constructing the 0E0P metapixel, which
 	\begin{problemstar}\label{exer:0e0p_extra_south_glider} \probdiff{2}
 		In Figure~\ref{fig:0e0p_timeline_1040180152}, there is a one-time-turner that emits a glider to the south (first to the southeast, but it is then redirected to the southwest). What does this glider do, and what purpose does it serve?
 	\end{problemstar}
+
+
+	\mfilbreak
+
+
+	\begin{problem}\label{exer:p5760_why_magenta} \probdiff{2}
+		In Figure~\ref{fig:p5760_metacell}, the p5760~metacell is shown with $8$ (aqua) output lanes, but more than $8$ (magenta) input lanes. Explain this apparent discrepancy.
+	\end{problem}
+	% SOLUTION: Some magenta input lanes are coming from a diagonal neighbor that cross over multiple metacells' bounding boxes, giving "dangling" magenta paths.
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:explain_otca_metapixel} \probdiff{4}
+		Describe how the OTCA metapixel works. In particular, explain the mechanisms that it uses to sends its state (``alive'' or ``dead'') to its neighbors, and explain how those neighbors use the incoming states and the lookup table of Figure~\ref{fig:otca_metapixel} to compute their states.
+	\end{problem}
 
 
 	\mfilbreak
