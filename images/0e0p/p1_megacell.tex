@@ -11,9 +11,11 @@
 	\begin{tikzpicture}%
 		%\clip (0.07,-4.69) rectangle (11.9,11.88);
 	
-		\node[inner sep=0pt,anchor=south west] (ca) at (0.05,0.05) {\includegraphics[width=11.9cm]{otca_metapixel.png}};
+		\node[inner sep=0pt,anchor=south west] (ca) at (0.05,0.05) {\includegraphics[width=11.9cm]{p1_megacell.png}};
 		
 		\newcommand\yshft{-0.3}
+		
+		\draw[color=gray,dashed] (2.72,4.02) -- (2.98,4.28) -- (5.55,1.71) -- (5.29,1.45) --node[rotate=-45,anchor=north,fill=white,fill opacity=0.8,text opacity=1]{\small\texttt{lookup table}} cycle;
 		
 		% ZOOM
 			\newcommand\smlx{0.74}
@@ -39,11 +41,8 @@
 			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
 			
 			% Rule labels
-			\draw[color=gray] (-3.4,11.2+\yshft) node[anchor=north]{\large\texttt{lookup table}};
-			
 			%S
 			\draw[color=gray] (-2.76,9.69+\yshft) node[anchor=north]{\Large\texttt{S}};
-			\draw[color=gray,dashed] (-3.3,9.12+\yshft) rectangle (-2.25,2.42+\yshft);
 			
 			\draw[color=gray] (-2.55,8.95+\yshft) node[anchor=north]{\texttt{8}};
 			\draw[color=gray] (-2.55,8.42+\yshft) node[anchor=north]{\texttt{7}};
@@ -58,27 +57,6 @@
 			\draw[color=gray] (-2.55,8.95+\yadj+\yshft) node[anchor=north]{\texttt{2}};
 			\draw[color=gray] (-2.55,8.42+\yadj+\yshft) node[anchor=north]{\texttt{1}};
 			\draw[color=gray] (-2.55,7.89+\yadj+\yshft) node[anchor=north]{\texttt{0}};
-			
-			%B
-			\newcommand\xadj{-1.66}
-			\renewcommand\yadj{0.31}
-			
-			\draw[color=gray] (-4.02,10+\yshft) node[anchor=north]{\Large\texttt{B}};
-			\draw[color=gray,dashed] (-2.89+\xadj,9.12+\yadj+\yshft) rectangle (-1.84+\xadj,2.42+\yadj+\yshft);
-			
-			\draw[color=gray] (-2.55+\xadj,8.95+\yadj+\yshft) node[anchor=north]{\texttt{8}};
-			\draw[color=gray] (-2.55+\xadj,8.42+\yadj+\yshft) node[anchor=north]{\texttt{7}};
-			\draw[color=gray] (-2.55+\xadj,7.89+\yadj+\yshft) node[anchor=north]{\texttt{6}};
-			
-			\renewcommand\yadj{0.31-2.44}
-			\draw[color=gray] (-2.55+\xadj,8.95+\yadj+\yshft) node[anchor=north]{\texttt{5}};
-			\draw[color=gray] (-2.55+\xadj,8.42+\yadj+\yshft) node[anchor=north]{\texttt{4}};
-			\draw[color=gray] (-2.55+\xadj,7.89+\yadj+\yshft) node[anchor=north]{\texttt{3}};
-			
-			\renewcommand\yadj{0.31-4.88}
-			\draw[color=gray] (-2.55+\xadj,8.95+\yadj+\yshft) node[anchor=north]{\texttt{2}};
-			\draw[color=gray] (-2.55+\xadj,8.42+\yadj+\yshft) node[anchor=north]{\texttt{1}};
-			\draw[color=gray] (-2.55+\xadj,7.89+\yadj+\yshft) node[anchor=north]{\texttt{0}};
 		% END ZOOM BOX
 	\end{tikzpicture}
 \end{document}

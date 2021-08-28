@@ -932,7 +932,7 @@ If a child metacell's state is non-zero, it now spends an extraordinarily long t
 \begin{figure}[!htb]
 	\centering
 	\patternlink{0e0p_timeline_8124366848_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_8124366848.pdf}}
-	\caption{One of the blocks on the control clock gun's period~$2^{29}$ output lane acts as a slow salvo seed that destroys $48$ gliders, and thus halts the metacell for $48 \times 2^{29}$ generations. In the phase shown here, it has already absorbed $16$ gliders, it is about to absorb another one, and it will then absorb $31$ more much later.}
+	\caption{PLACEHOLDER. One of the blocks on the control clock gun's period~$2^{29}$ output lane acts as a slow salvo seed that destroys $48$ gliders, and thus halts the metacell for $48 \times 2^{29}$ generations. In the phase shown here, it has already absorbed $16$ gliders, it is about to absorb another one, and it will then absorb $31$ more much later.}
 	\label{fig:0e0p_timeline_17179869184}
 \end{figure}
 
@@ -1008,16 +1008,22 @@ The OTCA metapixel also has the remarkable feature that its alive and dead state
 	\caption{A \textbf{metablinker}: an arrangement of OTCA metapixels that emulates a blinker, but with period $2 \times 35{\thousep}328$.}\label{fig:metablinker}\index{metablinker}
 \end{figure}
 
-The next notable metacell to be constructed was the \textbf{p1 megacell},\index{p1 megacell}\index{megacell|see {metacell}} by Adam P.~Goucher in 2008. This metacell was, again, larger and slower than the metacells that came before it, with a bounding box of $2^{15} \times 2^{15}$ and a period of $2^{24} = 16{\thousep}777{\thousep}216$. The new features this time that warranted the extra size and delay were twofold:\smallskip
+The next notable metacell to be constructed was the \textbf{p1 megacell},\index{p1 megacell}\index{megacell|see {metacell}} by Adam P.~Goucher in 2008 (see Figure~\ref{fig:p1_megacell}). This metacell was, again, larger and slower than the metacells that came before it, with a bounding box of $2^{15} \times 2^{15}$ and a period of $2^{24} = 16{\thousep}777{\thousep}216$. The new features this time that warranted the extra size and delay were twofold:\smallskip
+
+\begin{figure}[!bht]
+	\centering
+	\embedlink{p1_megacell}{\includegraphics[width=1\textwidth]{0e0p/p1_megacell.pdf}}
+	\caption{The \textbf{p1~megacell}, stuff. PLACEHOLDER.}
+	\label{fig:p1_megacell}
+\end{figure}
 
 \begin{itemize}
 	\item \textbf{Stable construction:} This metacell was built entirely out of stable (p$1$) components like Herschel tracks, with the exception of a single period~$2^{24}$ gun used to regulate its timing.\footnote{This gun could be swapped out for a gun of another period, but periods that are multiples of $2$ help the pattern run quicker under the HashLife algorithm in Life simulation software like Golly. This is the same reason that most of the 0E0P metacell's mechanisms are aligned to periods that are powers of $2$.}\index{HashLife} This contrasts with the OTCA metapixel, which is based almost entirely on p$46$ circuitry.\smallskip
 	
-	\item \textbf{Non-outer-totalistic rules:} The p1 megacell can emulate all $2^{512}$ Moore-neighborhood $2$-state cellular automata on a square grid, versus the $2^{18}$ outer-totalistic cellular automata that can be emulated by the OTCA metapixel.\footnote{The p1 megacell can even emulate rules in which an all-dead neighborhood leads to a birth, unlike the 0E0P metacell. However, this requires that the entire Life plane be tiled with ``dead'' p1 megacells.}\smallskip
+	\item \textbf{Non-outer-totalistic rules:} The p1 megacell can emulate all $2^{512}$ Moore-neighborhood $2$-state cellular automata on a square grid, versus the $2^{18}$ outer-totalistic cellular automata that can be emulated by the OTCA metapixel.\footnote{The p1 megacell can even emulate rules in which an all-dead neighborhood leads to a birth, unlike the 0E0P metacell. However, this requires that the entire Life plane be tiled with ``dead'' p1 megacells.} It encodes these rules in a sequence of up to 512 eaters along one of its edges, with the presence or absence of those eaters indicating which of its $512$ possible neighborhoods should lead to the megacell being ``alive'' in the next generation.\smallskip
 \end{itemize}
-
-% Figure of p1 megacell.
-% Add footnotes describing where scripts can be found for metafier and megafier
+% Add footnotes describing where scripts can be found for metafier and megafier (https://www.conwaylife.com/forums/viewtopic.php?f=2&t=2708#p40105 for megafier)
+% ordering: https://www.conwaylife.com/forums/viewtopic.php?f=2&t=2708&start=25#p40271
 
 Finally, Adam P.~Goucher spent 2014 through 2018 designing and constructing the 0E0P metacell, which solved the final problem described earlier---it does not require a background grid of ``dead'' cells to be placed on the Life plane. It achieves this extra feat by not just sending its state to its neighbors and then computing its own, but by also using universal construction to \emph{build} those neighbors in the first place. Methods of universal construction made significant progress throughout the 0E0P metacell's development, and the advent of single-channel glider synthesis in 2017 provided the key breakthrough that made its completion possible.
 
@@ -1036,6 +1042,8 @@ Finally, Adam P.~Goucher spent 2014 through 2018 designing and constructing the 
 % With 8 states we have 7 colors. Doing this with 6 or fewer colours is absolutely impossible, and with 7 colours is difficult (there are only 200 distinct solutions, or 13 up to rotation/reflection).
 % EXERCISE: Describe positions of replicators in HashLife replicator? Connect to Sierpinski triangle maybe (same pattern as n-th row of it)
 % Maybe exercise about 89-rotational RRO (https://www.conwaylife.com/forums/viewtopic.php?f=15&t=4116&p=131063#p131063). Or a part (b) of the already-planned RRO exercise?
+% EXERCISE: in which chunk of 0E0P lookup table would you find the state for a child with parents (describe 4 parent states)
+% EXERCISE: modify rule table of p1 megacell to emulate (some rule).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1228,8 +1236,16 @@ Finally, Adam P.~Goucher spent 2014 through 2018 designing and constructing the 
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:explain_otca_metapixel} \probdiff{4}
+	\begin{problem}\label{exer:explain_otca_metapixel} \probdiff{3}
 		Describe how the OTCA metapixel works. In particular, explain the mechanisms that it uses to sends its state (``alive'' or ``dead'') to its neighbors, and explain how those neighbors use the incoming states and the lookup table of Figure~\ref{fig:otca_metapixel} to compute their states.
+	\end{problem}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:explain_p1_megacell} \probdiff{4}
+		Describe how the p1 megacell works. In particular, explain the mechanisms that it uses to sends its state (``alive'' or ``dead'') to its neighbors, and explain how those neighbors use the incoming states and the lookup table of Figure~\ref{fig:p1_megacell} to compute their states.
 	\end{problem}
 
 
