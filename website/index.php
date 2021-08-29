@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<?php
+	$book_size = filesize('conway_life_book.pdf');
+
+	$book_size_readable = round($book_size / 1048576, 2);
+?><!DOCTYPE html>
 <html lang="en">
 <head>
 
@@ -95,7 +99,7 @@
       <h6 class="docs-header">Download the Book</h6>
       <p>Whether you are using it for self-study or a course, the textbook can be downloaded as a PDF file free of charge. We recommend that you view the PDF in a stand-alone PDF reader like <a href="https://get.adobe.com/reader/">Adobe Acrobat</a> (which is also free), <em>not</em> your in-browser PDF viewer, so that you can click on pattern images to view their <a href="http://www.conwaylife.com/wiki/RLE">RLE encodings</a> (which you can then copy and paste into Life software like <a href="http://golly.sourceforge.net/">Golly</a>).</p>
       <center>
-        <a class="button button-primary" href="conway_life_book.pdf" style="padding-left:15px;"><img src="images/pdf.png" style="vertical-align:middle;padding-bottom:3px;padding-right:15px;">Book in PDF Format (?? pages, ?? Mb)</a>
+        <a class="button button-primary" href="conway_life_book.pdf" style="padding-left:15px;"><img src="images/pdf.png" style="vertical-align:middle;padding-bottom:3px;padding-right:15px;">Book in PDF Format (<?php echo $book_size_readable; ?> Mb)</a>
       </center>
     </div>
 
