@@ -9,7 +9,7 @@
 
 \begin{document}
 	\begin{tikzpicture}%
-		%\clip (0.07,-4.69) rectangle (11.9,11.88);
+		\clip (-6.35,0) rectangle (12,12);
 	
 		\node[inner sep=0pt,anchor=south west] (ca) at (0.05,0.05) {\includegraphics[width=11.9cm]{p1_megacell.png}};
 		
@@ -23,20 +23,20 @@
 			
 			\newcommand\bglx{-5.7}
 			\newcommand\bgrx{\bglx+4.5}
-			\newcommand\bgty{10.5}
+			\newcommand\bgty{6}
 			\newcommand\bgby{\bgty-4.5}
 			
 			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
 			
 			\node[inner sep=0pt,anchor=north west] (zoom0) at (\bglx,\bgty) {\includegraphics[width=4.5cm]{p1_megacell_rule.png}};
 			
-			\path[fill,white,opacity=0.4,line width=0pt] (\smrx,\smty) -- (\bgrx,\bgty) -- (\bgrx,\bgby) -- (\bglx,\bgby) -- (\smlx,\smby) -- (\smlx,\smty) -- cycle;
+			\path[fill,white,opacity=0.4,line width=0pt] (\smrx,\smty) -- (\bgrx,\bgty) -- (\bgrx,\bgby) -- (\smrx,\smby) -- (\smlx,\smby) -- (\smlx,\smty) -- cycle;
 			
 			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\smlx,\smty) rectangle (\smrx,\smby);
 			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
 			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
 			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
-			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
 			
 			% Rule labels
 			\draw[color=dred!50!white] (\bglx+0.9,\bgty+0.55) node[anchor=north,rotate=45,fill=white,fill opacity=0.8,text opacity=1]{\small\texttt{000000000}};
@@ -84,6 +84,24 @@
 			\draw[color=gray] (\bglx+0.84+\ruleshft,\bgty+0.6-\ruleshft) node[anchor=north,rotate=45,fill=white,fill opacity=0.8,text opacity=1,inner sep=1pt]{\small\texttt{$\vdots$}};
 		% END ZOOM BOX
 		
-		\draw[color=gray] (-3.3,3) node[anchor=north,align=center]{\underline{\texttt{Bit order:}}\\\small\texttt{center, SE, S, SW, W,}\\\small\texttt{{} \ \ \ \ \ \ NW, N, NE, E}};
+		\draw[gray] (\bglx+0.41,\bgty+0.07) to[out=135,in=180] (\bglx+0.9,\bgty+5) node[anchor=west,shift={(0,0.02)}]{\texttt{center}};
+		
+		\draw[gray] (\bglx+0.53,\bgty+0.19) to[out=135,in=180] (\bglx+1.1,\bgty+4.6) node[anchor=west]{\texttt{SE}};
+		
+		\draw[gray] (\bglx+0.65,\bgty+0.31) to[out=135,in=180] (\bglx+1.3,\bgty+4.2) node[anchor=west]{\texttt{S}};
+		
+		\draw[gray] (\bglx+0.77,\bgty+0.43) to[out=135,in=180] (\bglx+1.5,\bgty+3.8) node[anchor=west]{\texttt{SW}};
+		
+		\draw[gray] (\bglx+0.89,\bgty+0.55) to[out=135,in=180] (\bglx+1.7,\bgty+3.4) node[anchor=west]{\texttt{W}};
+		
+		\draw[gray] (\bglx+1.01,\bgty+0.67) to[out=135,in=180] (\bglx+1.9,\bgty+3) node[anchor=west]{\texttt{NW}};
+		
+		\draw[gray] (\bglx+1.13,\bgty+0.79) to[out=135,in=180] (\bglx+2.1,\bgty+2.6) node[anchor=west]{\texttt{N}};
+		
+		\draw[gray] (\bglx+1.25,\bgty+0.91) to[out=135,in=180] (\bglx+2.3,\bgty+2.2) node[anchor=west]{\texttt{NE}};
+		
+		\draw[gray] (\bglx+1.37,\bgty+1.03) to[out=135,in=180] (\bglx+2.5,\bgty+1.8) node[anchor=west]{\texttt{E}};
+		
+		%\draw[color=gray] (-3.3,3) node[anchor=north,align=center]{\underline{\texttt{Bit order:}}\\\small\texttt{center, SE, S, SW, W,}\\\small\texttt{{} \ \ \ \ \ \ NW, N, NE, E}};
 	\end{tikzpicture}
 \end{document}

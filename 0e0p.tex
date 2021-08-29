@@ -208,7 +208,7 @@ By changing the evolution rule even more, a single cell can also act in a variet
 
 Indeed, if we restrict non-isotropic cellular automata to a single dimension (e.g., by having every cell survive and having births only occur to the south of live cells, as we did in Figure~\ref{fig:single_cell_sierpinski}) then we get exactly what are called \textbf{elementary cellular automata} \cite{Wolfram2002}. There are $2^8 = 256$ automata of this type, and the Sierpi\'{n}ski-triangle-generating rule works by emulating the one called \textbf{Rule 18}\index{Rule 18} (see Exercise~\ref{exer:rule_18}).
 
-There are $2^{512}$ different 2D not-necessarily-isotropic cellular automata, and the 0E0P metacell can emulate the $2^{511}$ of them that send a dead cell with no live neighbors to a dead cell. It can thus be used to embed all of the patterns from this section into Life, except for the knightship from Figure~\ref{fig:single_cell_knightship}, though at a much larger and slower scale. Of particular note is the fact that this method gave the first explicit construction of a spaceships made of spaceships\index{spaceship made of spaceships} in Life (and thus the first SMOSMOS in Life as well). This method also gave the first reflectorless rotating oscillator\index{reflectorless rotating oscillator} in Life, but there are minor technicalities that must be overcome in this case (see Exercise~\ref{exer:0e0p_rro_technicalities}).\footnote{However, ConwayLife.com forums user ``Goldtiger997'' used single-channel construction techniques to ``directly'' construct a SMOS and an RRO in Life in August 2021.}
+There are $2^{512}$ different 2D not-necessarily-isotropic cellular automata, and the 0E0P metacell can emulate the $2^{511}$ of them that send a dead cell with no live neighbors to a dead cell. It can thus be used to embed all of the patterns from this section into Life, except for the knightship from Figure~\ref{fig:single_cell_knightship}, though at a much larger and slower scale. Of particular note is the fact that this method gave the first explicit construction of a spaceships made of spaceships\index{spaceship made of spaceships} in Life (and thus the first SMOSMOS in Life as well). This method also gave the first reflectorless rotating oscillator\index{reflectorless rotating oscillator} in Life, but there are minor technicalities that must be overcome in this case (see Exercise~\ref{exer:0e0p_rro_technicalities}).\footnote{However, ConwayLife.com forums user ``Goldtiger997'' used single-channel construction techniques to ``directly'' construct an SMOS and an RRO in Life in August 2021.}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -1033,8 +1033,6 @@ Finally, Adam P.~Goucher spent 2014 through 2018 designing and constructing the 
 
 % EXERCISE: There is *almost* an RRO in a Life-like, but just give a footnote/exercise about it. Exercise could ask why it's not a true RRO.
 % EXERCISE: Show how iso in Moore neighborhood can emulate outer totalistic in von Neumann neighborhood
-% EXERCISE: Give iso rulestring for (some rule)
-% EXERCISE: Create a non-iso rule in which a single cell acts as... (diagonal spaceship, what else?)
 % Exercise about emulating an elementary cellular automaton
 
 % EXERCISE(S) about transition rules for rule emulation: find another one. Also:

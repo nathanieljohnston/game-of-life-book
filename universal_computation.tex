@@ -155,7 +155,7 @@ On its surface, this APGsembly code looks quite different from the pseudocode th
 	
 	\item There are no longer any explicit ``if'' statements in the code, since each state (pair of lines sharing an ID label) acts implicitly as an ``if'' statement. \emph{If} the return value (from the previous action) is \texttt{Z}, perform the actions given on the first (\texttt{Z}) line; \emph{otherwise} perform the actions given in the second (\texttt{NZ}) line.\smallskip
 	
-	\item Sometimes, a particular state can only ever be reached by a \texttt{Z} input, so it does not need a corresponding \texttt{NZ} substate. In this case, the \texttt{NZ} substate can be omitted from the APGsembly code, and the \texttt{Z} substate is instead denoted by \texttt{ZZ} so that the compiler knows that the \texttt{NZ} omission was intentional. The \texttt{INITIAL} state is always assumed to have a \texttt{Z} input (just because the computer has to start in \emph{some} substate) and thus the first line of APGsembly code always starts with \texttt{INITIAL;ZZ}.\footnote{Similarly, if a state performs the exact same actions and jump operation regardless of whether it receives a \texttt{Z} or \texttt{NZ} return value, we can just list a single line for that state with \texttt{*} as its input value, instead of two otherwise identical lines with \texttt{Z} and \texttt{NZ} as their input values. We will not see an example of this in the main text, but it appears in Appendix~\ref{chp:appendix_apg}.}\smallskip
+	\item Sometimes, a particular state can only ever be reached by a \texttt{Z} input, so it does not need a corresponding \texttt{NZ} substate. In this case, the \texttt{NZ} substate can be omitted from the APGsembly code, and the \texttt{Z} substate is instead denoted by \texttt{ZZ} so that the compiler knows that the \texttt{NZ} omission was intentional. The \texttt{INITIAL} state is always assumed to have a \texttt{Z} input (just because the computer has to start in \emph{some} substate) and thus the first line of APGsembly code always starts with \texttt{INITIAL;ZZ}.\footnote{Similarly, if a state performs the exact same actions and jump operation regardless of whether it receives a \texttt{Z} or \texttt{NZ} return value, we can just list a single line for that state with \texttt{*} as its input value, instead of two otherwise identical lines with \texttt{Z} and \texttt{NZ} as their input values. We will not see an example of this in the main text, but it appears in Appendix~\ref{sec:appendix_apg}.}\smallskip
 	
 	\item Each line contains four items, separated by semicolons: state ID, input value, next state ID, and a comma-separated list of actions. The ``next state'' ID tells the program which state ID to jump to after performing the actions listed on the current line.\smallskip
 	
@@ -392,7 +392,7 @@ We use \texttt{Bn} to denote the \texttt{n}-th binary register (where we start c
 	\caption{APGsembly code for storing the value $139$ in the binary register \texttt{B0}, and then returning its read head to the least significant bit.}\label{apg:store_139}
 \end{apgsembly}
 
-This APGsembly also contains one new action that we have not yet seen: \texttt{NOP}.\index{NOP} This is an old standard programming abbreviation, short for ``No OPeration''; it tells the computer not to change anything right now, but emit a \texttt{Z} return value anyway. It is typically used in conjunction with other actions that don't have a return value (\texttt{SET B0} and \texttt{INC B0} in this case), since exactly one action in every state's list of actions must return a value of either \texttt{Z} or \texttt{NZ}.\footnote{It may be tempting to merge multiple lines of APGsembly~\ref{alg:store_139} together so as to get rid of the \texttt{NOP} actions. For example, we might want to have an action list for a particular state that says something like \texttt{INC B0, INC B0, SET B0, NOP}. However, there are two problems with this: (1) we cannot call the same action twice in a single line of APGsembly (clock tick), and (2) it is not a good idea to perform two actions on the same register (\texttt{B0}) in the same clock tick. Indeed, it is not clear which one will be performed first (or even worse, they might interfere with each other and cause the register to self-destruct).}
+This APGsembly also contains one new action that we have not yet seen: \texttt{NOP}.\index{NOP} This is an old standard programming abbreviation, short for ``No OPeration''; it tells the computer not to change anything right now, but emit a \texttt{Z} return value anyway. It is typically used in conjunction with other actions that don't have a return value (\texttt{SET B0} and \texttt{INC B0} in this case), since exactly one action in every state's list of actions must return a value of either \texttt{Z} or \texttt{NZ}.\footnote{It may be tempting to merge multiple lines of APGsembly~\ref{apg:store_139} together so as to get rid of the \texttt{NOP} actions. For example, we might want to have an action list for a particular state that says something like \texttt{INC B0, INC B0, SET B0, NOP}. However, there are two problems with this: (1) we cannot call the same action twice in a single line of APGsembly (clock tick), and (2) it is not a good idea to perform two actions on the same register (\texttt{B0}) in the same clock tick. Indeed, it is not clear which one will be performed first (or even worse, they might interfere with each other and cause the register to self-destruct).}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -871,7 +871,7 @@ However, one piece of Pseudocode~\ref{alg:pseudocode_pi_calc} that is tricky to 
 
 In order to implement step~(1) above in APGsembly, we need to know how to subtract the value of one binary register from another, and how to compare the values of two binary registers (so that we know whether or not we can do the subtraction in the first place). Fortunately, we saw how to do the former of these tasks in APGsembly~\ref{alg:apgsembly_binary_add_sub}, and the latter task is somewhat simpler and left to Exercise~\ref{exer:universal_computation_apgsembly_binary_compare}. Similarly, we saw how to do the multiplication by $10$ that step~(2) requires us to do back in APGsembly~\ref{alg:apgsembly_mul_ten}.
 
-We have thus seen all of the pieces that we need to finally construct our $\pi$-calculating Life pattern. The APGsembly code that implements Pseudocode~\ref{alg:pseudocode_pi_calc} is quite long, so we leave it to Appendix~\ref{chp:appendix_apg}. The resulting calculator that is compiled from that APGsembly code is presented in Figure~\ref{fig:pi_calc}.
+We have thus seen all of the pieces that we need to finally construct our $\pi$-calculating Life pattern. The APGsembly code that implements Pseudocode~\ref{alg:pseudocode_pi_calc} is quite long, so we leave it to Appendix~\ref{sec:appendix_apg}. The resulting calculator that is compiled from that APGsembly code is presented in Figure~\ref{fig:pi_calc}.
 
 % NJ TODO: Replace this image with smaller version of the calculator once Dave has completed the new compilation script. Then highlight/annotate the figure.
 \begin{figure}[!htbp]
@@ -925,7 +925,7 @@ More generally, to turn Pseudocode~\ref{alg:pseudocode_pi_calc} into pseudocode 
 	\item Replace line~8 with ``\texttt{set U0 = U0 + p, U1 = U1 + r}''.\smallskip
 \end{itemize}
 
-Indeed, modifying the APGsembly code for the $\pi$ calculator from Appendix~\ref{chp:appendix_apg} is similarly straightforward. It can be turned into APGsembly for an $e$ calculator by just change $3$ lines of code: the \texttt{\#REGISTERS} line, \texttt{ITER6;NZ} line, and \texttt{ITER7;ZZ} line (see Exercise~\ref{exer:universal_computation_e_calc}). Other constants like $\sqrt{2}$ can similarly be computed by making analogous minimal changes (see Exercise~\ref{exer:universal_computation_sqrt2_calc}).
+Indeed, modifying the APGsembly code for the $\pi$ calculator from Appendix~\ref{sec:appendix_apg} is similarly straightforward. It can be turned into APGsembly for an $e$ calculator by just change $3$ lines of code: the \texttt{\#REGISTERS} line, \texttt{ITER6;NZ} line, and \texttt{ITER7;ZZ} line (see Exercise~\ref{exer:universal_computation_e_calc}). Other constants like $\sqrt{2}$ can similarly be computed by making analogous minimal changes (see Exercise~\ref{exer:universal_computation_sqrt2_calc}).
 
 
 
@@ -1426,7 +1426,7 @@ Each of these computational devices used different Life mechanisms to implement 
 	
 	
 	\begin{problemstar}\label{exer:universal_computation_e_calc}
-		Modify just $3$ lines of the APGsembly code from Appendix~\ref{chp:appendix_apg} to turn the $\pi$ calculator into an $e$ calculator.
+		Modify just $3$ lines of the APGsembly code from Appendix~\ref{sec:appendix_apg} to turn the $\pi$ calculator into an $e$ calculator.
 		
 		\noindent [Hint: We described the changes that need to be made in Section~\ref{sec:pi_calc_other}.]
 	\end{problemstar}
@@ -1445,7 +1445,7 @@ Each of these computational devices used different Life mechanisms to implement 
 			\item The above series representation of $\sqrt{2}$ can be put in the general form~\eqref{eq:generalized_pi_series}. What are the values of $a$, $b$, $p$, $q$, $r$, and $s$?
 			% SOLUTION: a = 1, b = 2, p = 2, q = 1, r = 4, s = 0
 			
-			\item Change just a few lines of the APGsembly for the $\pi$ calculator (from Appendix~\ref{chp:appendix_apg}) to account for these different values of $a$, $b$, $p$, $q$, $r$, and $s$.
+			\item Change just a few lines of the APGsembly for the $\pi$ calculator (from Appendix~\ref{sec:appendix_apg}) to account for these different values of $a$, $b$, $p$, $q$, $r$, and $s$.
 			
 			\item If you compile the APGsembly code that you made in part~(b), the resulting pattern will not compute the digits of $\sqrt{2}$ correctly. Why not? What additional change must you make to the introductory lines of that APGsembly code to make it function properly?
 			% SOLUTION: The entries of the B matrix grow more quickly for sqrt(2) than for pi or e, so we need to allocate more bits of memory to the binary registers. If we intialize U6 = 10 (instead of U6 = 6) then the computation works.
