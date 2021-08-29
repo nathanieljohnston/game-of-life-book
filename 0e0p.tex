@@ -459,12 +459,12 @@ The kernel also contains, at its southern corner (i.e., the location called \tex
 	\item \textbf{Long-term storage}: Those $0$ or $2$--$8$ gliders are aimed at a sequence of $8$ blocks at the westernmost edge of the child's ``\texttt{S}'' corner (see the upcoming Figure~\ref{fig:0e0p_timeline_8054294330} for the precise location). Its state is thus stored in the \emph{absence} of those blocks, with state $0$ corresponding to $8$ blocks and state $1 \leq s \leq 7$ corresponding to $7 - s$ blocks.\smallskip
 \end{itemize}
 
-To compute its state from those of its parents, a child metacell uses a lookup table: a collection of $8^4 - 1 = 4{\thousep}095$ sequences of $0$--$7$ gliders each, arranged in $1{\thousep}024$-generation chunks, specifying what the new state should be given any possible combination of not-all-zero parent states. This lookup table is stored in the nucleus, and we can use the one-time switching techniques of Section~\ref{sec:0e0p_structure_shell} to extract a single $1{\thousep}024$-generation chunk from it. To extract the \emph{correct} chunk, however, we have to delay those one-time switching operations to the correct moment in time, based on the absence of the blocks representing parent metacells' states. To this end, the child metacell uses a \textbf{state-lookup clock gun}\index{state-lookup clock gun} like the one illustrated in Figure~\ref{fig:state_lookup_clock_gun}.\footnote{However, the gun illustrated here only plucks out a single glider. To have it pluck out up to $7$ gliders, its one-time circuitry has to be modified slightly (see Exercise~\ref{exer:0e0p_state_lookup_wider}).}
+To compute its state from those of its parents, a child metacell uses a lookup table: a single-channel glider sequence consisting of $8^4 - 1 = 4{\thousep}095$ subsequences of $0$--$7$ gliders each, arranged in $1{\thousep}024$-generation chunks, specifying what the new state should be given any possible combination of not-all-zero parent states. This lookup table is stored in the nucleus, and we can use the one-time switching techniques of Section~\ref{sec:0e0p_structure_shell} to extract a single $1{\thousep}024$-generation chunk from it. To extract the \emph{correct} chunk, however, we have to delay those one-time switching operations to the correct moment in time, based on the absence of the blocks representing parent metacells' states. To this end, the child metacell uses a \textbf{state-lookup clock gun}\index{state-lookup clock gun} like the one illustrated in Figure~\ref{fig:state_lookup_clock_gun}.%\footnote{However, the gun illustrated here only plucks out a single glider. To have it pluck out up to $7$ gliders, its one-time circuitry has to be modified slightly (see Exercise~\ref{exer:0e0p_state_lookup_wider}).}
 
 \begin{figure}[!htb]
 	\centering
-	\embedlink{state_lookup_clock_gun}{\includegraphics[width=0.8\textwidth]{0e0p/state_lookup_clock_gun.pdf}}
-	\caption{A period~$1024$ clock gun (highlighted in \bgbox{aquaback}{aqua}) that has blocks along its path, delaying its first output glider. If there are $a$ blocks along the southwest edge, $b$ along the northwest edge, $c$ along the northeast edge, and $d$ along the southeast edge, then the clock gun's first escaping glider is produced by the Herschel that is present at generation $1024(a + 8b + 64c + 512d)$. That glider hits one-time circuitry (highlighted in \bgbox{magentaback}{magenta}) that unblocks and quickly re-blocks a glider stream, allowing its $(1 + a + 8b + 64c + 512d)$-th glider to escape.}
+	\embedlink{state_lookup_clock_gun}{\includegraphics[width=\textwidth]{0e0p/state_lookup_clock_gun.pdf}}
+	\caption{A period~$1024$ clock gun (highlighted in \bgbox{aquaback}{aqua}) that has blocks along its path, delaying its first output glider. If there are $a$ blocks along the southwest edge, $b$ along the northwest edge, $c$ along the northeast edge, and $d$ along the southeast edge, then the clock gun's first escaping glider is produced by the Herschel that is present at generation $1024(a + 8b + 64c + 512d)$. That glider hits one-time circuitry (highlighted in \bgbox{magentaback}{magenta}) that unblocks and quickly re-blocks a glider stream, allowing roughly 900 generations of its $(1 + a + 8b + 64c + 512d)$-th $1{\thousep}024$-generation chunk to escape.}
 	\label{fig:state_lookup_clock_gun}
 \end{figure}
 
@@ -474,7 +474,7 @@ It follows that if we place $0 \leq a,b,c,d \leq 7$ blocks along the gun's outpu
 \[
 	a + (2^3)b + (2^6)c + (2^9)d = a + 8b + 64c + 512d
 \]
-gliders will be absorbed before the first one escapes.\footnote{This is similar to the method that we saw in Figure~\ref{fig:block_18_gliders} for blocking a specific number of gliders via semi-Snarks, but is easier to synthesize and configure.} That first escaping glider then hits one-time circuitry that unblocks a copy of the state lookup table, re-blocks it just over $900$ generations later,\footnote{The sequences of $0$--$7$ gliders in the state lookup table are separated by $1{\thousep}024$ generations (the period of the state-lookup clock gun). However, roughly $10\%$ of that space is unusable and must remain empty so that it does not interfere with the unblocking and re-blocking reactions.} and causes the state-lookup clock gun to self-destruct.
+gliders will be absorbed before the first one escapes.\footnote{This is similar to the method that we saw in Figure~\ref{fig:block_18_gliders} for blocking a specific number of gliders via semi-Snarks, but is easier to synthesize and configure.} That first escaping glider then hits one-time circuitry that unblocks a copy of the state lookup table, re-blocks it just over $900$ generations later,\footnote{The sequences of $0$--$7$ gliders in the state lookup table are separated by $1{\thousep}024$ generations (the period of the state-lookup clock gun). However, roughly 100 of those generations are unusable and must remain empty so that the glider stream does not interfere with the unblocking and re-blocking reactions.} and causes the state-lookup clock gun to self-destruct.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -996,11 +996,11 @@ The first two of these problems were solved by the \textbf{OTCA metapixel},\inde
 \begin{figure}[!htb]
 	\centering
 	\embedlink{otca_metapixel}{\includegraphics[width=1\textwidth]{0e0p/otca_metapixel.pdf}}
-	\caption{The \textbf{OTCA metapixel}, with orthogonal rows of lightweight spaceships filling up its central region, making it look ``alive''. By adjusting which eaters are present on its left edge, it can be made to emulate any Life-like cellular automaton. The eaters displayed in \bgbox{redback}{light red} are not actually present---they are just displayed so as to show their potential locations---so this metacell is emulating the rule B3/S23 (i.e., Life).}
+	\caption{The \textbf{OTCA metapixel}, with orthogonal rows of lightweight spaceships filling up its central region, making it look ``alive''. By adjusting which eaters are present on its west edge, it can be made to emulate any Life-like cellular automaton. The eaters displayed in \bgbox{redback}{light red} are not actually present---they are just displayed so as to show their potential locations---so this metacell is emulating the rule B3/S23 (i.e., Life).}
 	\label{fig:otca_metapixel}
 \end{figure}
 
-The OTCA metapixel also has the remarkable feature that its alive and dead states look, from a distance, like alive and dead cells. This feature is achieved by the ``alive'' version of the cell releasing $43$ pairs of perpendicular lightweight spaceship streams that mutually annihilate each other, thus partially filling in the otherwise empty center of the metacell. For example, arranging a $1 \times 3$ row of ``alive'' metapixels (and a suitably large ``dead'' array of metapixels around its edges) results in a pattern that looks and evolves like a blinker, but $2{\thousep}048$ times as long and wide and $35{\thousep}328$ times as slow (see Figure~\ref{fig:metablinker}).
+The OTCA metapixel also has the remarkable feature that its alive and dead states look, from a distance, like alive and dead cells. This feature is achieved by the ``alive'' version of the cell releasing $43$ pairs of perpendicular lightweight spaceship streams that mutually annihilate each other, thus partially filling in the otherwise empty center of the metacell. For example, arranging a $1 \times 3$ row of ``alive'' metapixels (and a suitably large ``dead'' array of metapixels around its edges) results in a pattern that looks and evolves like a blinker, but $2{\thousep}048$ times as long and wide and $35{\thousep}328$ times as slow (see Figure~\ref{fig:metablinker}).\footnote{Golly (\httpurl{golly.sourceforge.net/}) comes with a Lua script called \texttt{metafier.lua} that automatically compiles metapatterns like these out of OTCA metapixels.}
 
 \begin{figure}[!htb]
 	\centering
@@ -1008,22 +1008,22 @@ The OTCA metapixel also has the remarkable feature that its alive and dead state
 	\caption{A \textbf{metablinker}: an arrangement of OTCA metapixels that emulates a blinker, but with period $2 \times 35{\thousep}328$.}\label{fig:metablinker}\index{metablinker}
 \end{figure}
 
-The next notable metacell to be constructed was the \textbf{p1 megacell},\index{p1 megacell}\index{megacell|see {metacell}} by Adam P.~Goucher in 2008 (see Figure~\ref{fig:p1_megacell}). This metacell was, again, larger and slower than the metacells that came before it, with a bounding box of $2^{15} \times 2^{15}$ and a period of $2^{24} = 16{\thousep}777{\thousep}216$. The new features this time that warranted the extra size and delay were twofold:\smallskip
-
-\begin{figure}[!bht]
-	\centering
-	\embedlink{p1_megacell}{\includegraphics[width=1\textwidth]{0e0p/p1_megacell.pdf}}
-	\caption{The \textbf{p1~megacell}, stuff. PLACEHOLDER.}
-	\label{fig:p1_megacell}
-\end{figure}
+The next notable metacell to be constructed was the \textbf{p1 megacell},\index{p1 megacell}\index{megacell|see {metacell}} by Adam P.~Goucher in 2008. This metacell was, again, larger and slower than the metacells that came before it, with a bounding box of $2^{15} \times 2^{15}$ and a period of $2^{24} = 16{\thousep}777{\thousep}216$. The new features this time that warranted the extra size and delay were twofold:\smallskip
 
 \begin{itemize}
 	\item \textbf{Stable construction:} This metacell was built entirely out of stable (p$1$) components like Herschel tracks, with the exception of a single period~$2^{24}$ gun used to regulate its timing.\footnote{This gun could be swapped out for a gun of another period, but periods that are multiples of $2$ help the pattern run quicker under the HashLife algorithm in Life simulation software like Golly. This is the same reason that most of the 0E0P metacell's mechanisms are aligned to periods that are powers of $2$.}\index{HashLife} This contrasts with the OTCA metapixel, which is based almost entirely on p$46$ circuitry.\smallskip
 	
-	\item \textbf{Non-outer-totalistic rules:} The p1 megacell can emulate all $2^{512}$ Moore-neighborhood $2$-state cellular automata on a square grid, versus the $2^{18}$ outer-totalistic cellular automata that can be emulated by the OTCA metapixel.\footnote{The p1 megacell can even emulate rules in which an all-dead neighborhood leads to a birth, unlike the 0E0P metacell. However, this requires that the entire Life plane be tiled with ``dead'' p1 megacells.} It encodes these rules in a sequence of up to 512 eaters along one of its edges, with the presence or absence of those eaters indicating which of its $512$ possible neighborhoods should lead to the megacell being ``alive'' in the next generation.\smallskip
+	\item \textbf{Non-outer-totalistic rules:} The p1 megacell can emulate all $2^{512}$ Moore-neighborhood $2$-state cellular automata on a square grid, versus the $2^{18}$ outer-totalistic cellular automata that can be emulated by the OTCA metapixel.\footnote{The p1 megacell can even emulate rules in which an all-dead neighborhood leads to a birth, unlike the 0E0P metacell. However, this requires that the entire Life plane be tiled with ``dead'' p1 megacells.} It encodes these rules in a sequence of up to 512 eaters along one of its edges, with the presence or absence of those eaters indicating which of its $512$ possible neighborhoods should lead to the megacell being ``alive'' in the next generation (see Figure~\ref{fig:p1_megacell}).\smallskip
 \end{itemize}
-% Add footnotes describing where scripts can be found for metafier and megafier (https://www.conwaylife.com/forums/viewtopic.php?f=2&t=2708#p40105 for megafier)
-% ordering: https://www.conwaylife.com/forums/viewtopic.php?f=2&t=2708&start=25#p40271
+
+\begin{figure}[!htb]
+	\centering
+	\embedlink{p1_megacell}{\includegraphics[width=1\textwidth]{0e0p/p1_megacell.pdf}}
+	\caption{The \textbf{p1~megacell}, with numerous rows of gliders filling in a diamond-shaped region, making it look ``alive''. By adjusting which eaters are present on its southwest edge, it can be made to emulate any (not necessarily isotropic) $2$-state Moore-neighborhood cellular automaton. The eaters displayed in \bgbox{redback}{light red} are not actually present---they are just displayed so as to show their $512$ potential locations, which are indexed by $9$-bit bitstrings. Each bit corresponds to the state of a neighboring metacell, with the first (i.e., most significant) bit corresponding to its own state, the second bit corresponding to the southeast neighbor's state, and so on clockwise. The presence of an eater~1 indicates that the metacell will be ``alive'' in the next generation if its neighborhood states match that bitstring. Here, the eaters are encoding Life, and the first eater that is present at the ``\texttt{000000111}'' location indicates that the metacell will be born if its north, northeast, and east neighbors are the only ones that are alive.}
+	\label{fig:p1_megacell}
+\end{figure}
+
+When the diamond-shaped p1~megacell emulates another cellular automaton, it does so rotated 45~degrees clockwise (this is similar to how the 0E0P metacell emulates a von-Neumann-neighborhood CA, but \emph{not} how it emulates a Moore-neighborhood CA).\footnote{A Lua script (for use in Golly) that ``metafies'' a pattern via the p1~megacell can be found at \httpsurl{conwaylife.com/forums/viewtopic.php?p=40105\#p40105}.}
 
 Finally, Adam P.~Goucher spent 2014 through 2018 designing and constructing the 0E0P metacell, which solved the final problem described earlier---it does not require a background grid of ``dead'' cells to be placed on the Life plane. It achieves this extra feat by not just sending its state to its neighbors and then computing its own, but by also using universal construction to \emph{build} those neighbors in the first place. Methods of universal construction made significant progress throughout the 0E0P metacell's development, and the advent of single-channel glider synthesis in 2017 provided the key breakthrough that made its completion possible.
 
@@ -1165,8 +1165,21 @@ Finally, Adam P.~Goucher spent 2014 through 2018 designing and constructing the 
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:0e0p_state_lookup_wider} \probdiff{2}
-		The toy version of the state-lookup clock gun that we displayed in Figure~\ref{fig:state_lookup_clock_gun} extracts an approximately 100-generation chunk of a glider stream. Adjust its one-time circuitry so as to extract an approximately 900-generation chunk of a glider stream (which is large enough to store $0$--$7$ gliders, just like in the state-lookup mechanism of the 0E0P metacell itself).
+	\begin{problem}\label{exer:0e0p_state_lookup_gun}
+		Recall the state-lookup clock gun from Figure~\ref{fig:state_lookup_clock_gun}, which extracts two gliders from the single-channel glider sequence in its current configuration.\smallskip
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item \probdiff{2} If you remove a single block from the ``\texttt{a}'' side of the gun, how many gliders are extracted from the single-channel glider sequence?
+			
+			\item \probdiff{2} If you remove two, three, four, five, six, or all seven blocks from that same ``\texttt{a}'' side, how many gliders are extracted? How could you have predicted these answers without actually removing those blocks?
+			
+			\item \probdiff{2} Which configuration of blocks can you remove to extract the next earliest glider subsequence, which contains zero gliders?
+			
+			\item \probdiff{3} Which configuration of blocks can you remove to extract the $3{\thousep}427$th glider subsequence?
+			% SOLUTION: 3427 = 3+8*4+64*5+512*6
+			
+			\item \probdiff{3} Alter the single-channel glider sequence so that its $1{\thousep}838$th glider subsequence contains $7$ gliders instead of just $1$, and then alter the configuration of blocks so that the gun extracts those $7$ gliders?
+		\end{enumerate}
 	\end{problem}
 
 

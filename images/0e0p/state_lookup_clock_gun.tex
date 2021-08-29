@@ -12,32 +12,40 @@
 
 \begin{document}
 	\begin{tikzpicture}%
-		\clip (-0.02,-0.02) rectangle (8.02,5.82104712042);
+		\clip (-0.02,-0.02) rectangle (9.02,5.825);
 	
-		\node[inner sep=0pt,anchor=south west] (ca) at (0,0) {\includegraphics[width=8cm]{state_lookup_clock_gun.png}};
+		\node[inner sep=0pt,anchor=south west] (ca) at (0,0) {\includegraphics[width=9cm]{state_lookup_clock_gun.png}};
 		
-		\draw[gridgray,line width=0.6pt] (0,0) rectangle (8,5.80104712042);
+		\draw[gridgray,line width=0.6pt] (0,0) rectangle (9,5.82476635514);
 		
 		% GLIDER PATH ARROWS
-		\draw[color=gray,-stealth] (0.35,5.7) -- (0.85+0.59,5.2-0.59);
-		\draw[color=gray,-stealth] (3.33-0.4,5.2-0.4) -- (3.83,5.7);
-		\draw[color=gray,-stealth] (2.95,1.75) -- (2.45,2.25);
+		\draw[color=gray,-stealth] (1.4,5.75) -- (1.9+0.93,5.25-0.93);
+		\draw[color=gray,-stealth] (3.98-0.3,4.8-0.3) -- (4.88,5.7);
+		\draw[color=gray,-stealth] (4,1.8) -- (3.5,2.3);
 		
 		% Text
-		\draw[color=gray] (0.66,5.9) node[anchor=north west,rotate=-45]{\tiny\texttt{4}\ \texttt{096 gliders}};
-		\draw[color=gray] (2.71,5.05) node[anchor=north west,align=center,rotate=45]{\tiny\texttt{one glider}};
+		\draw[color=gray] (1.66,5.9) node[anchor=north west,rotate=-45]{\tiny\texttt{4}\ \texttt{096 subsequences}};
+		\draw[color=gray] (3.45,4.7) node[anchor=north west,align=center,rotate=45]{\tiny\texttt{one subsequence}};
 		
 		% Boxes
-		\draw[color=gray,dashed] (4.6,1.7) -- (4.78,1.88) -- (3.58,3.08) -- (3.4,2.9) -- cycle;%a
-		\draw[color=gray] (4.2,2.15) node[anchor=north east,align=center,rotate=-45]{\scriptsize\texttt{a}};
+		\newcommand{\boxx}{1.09};
+		\newcommand{\boxy}{-0.01};
+		\draw[color=gray,dashed] (4.6+\boxx,1.7+\boxy) -- (4.78+\boxx,1.88+\boxy) -- (3.58+\boxx,3.08+\boxy) -- (3.4+\boxx,2.9+\boxy) -- cycle;%a
+		\draw[color=gray] (4.2+\boxx,2.15+\boxy) node[anchor=north east,align=center,rotate=-45]{\scriptsize\texttt{a}};
 		
-		\draw[color=gray,dashed] (4.65,4.32) -- (4.83,4.14) -- (3.63,2.94) -- (3.45,3.12) -- cycle;%b
-		\draw[color=gray] (3.9,4.15) node[anchor=north east,align=center,rotate=45]{\scriptsize\texttt{b}};
+		\renewcommand{\boxx}{1.06};
+		\renewcommand{\boxy}{-0.01};
+		\draw[color=gray,dashed] (4.67+\boxx,4.34+\boxy) -- (4.85+\boxx,4.16+\boxy) -- (3.66+\boxx,2.97+\boxy) -- (3.48+\boxx,3.15+\boxy) -- cycle;%b
+		\draw[color=gray] (3.9+\boxx,4.15+\boxy) node[anchor=north east,align=center,rotate=45]{\scriptsize\texttt{b}};
 		
-		\draw[color=gray,dashed] (6.15,2.7) -- (6.33,2.88) -- (5.13,4.08) -- (4.95,3.9) -- cycle;%c
-		\draw[color=gray] (6.1,3.6) node[anchor=north east,align=center,rotate=-45]{\scriptsize\texttt{c}};
+		\renewcommand{\boxx}{1.08};
+		\renewcommand{\boxy}{0.01};
+		\draw[color=gray,dashed] (6.15+\boxx,2.7+\boxy) -- (6.33+\boxx,2.88+\boxy) -- (5.13+\boxx,4.08+\boxy) -- (4.95+\boxx,3.9+\boxy) -- cycle;%c
+		\draw[color=gray] (6.1+\boxx,3.6+\boxy) node[anchor=north east,align=center,rotate=-45]{\scriptsize\texttt{c}};
 		
-		\draw[color=gray,dashed] (6.11,2.36) -- (6.29,2.18) -- (5.09,0.98) -- (4.91,1.16) -- cycle;%d
-		\draw[color=gray] (5.83,1.75) node[anchor=north east,align=center,rotate=45]{\scriptsize\texttt{d}};
+		\renewcommand{\boxx}{1.1};
+		\renewcommand{\boxy}{0.01};
+		\draw[color=gray,dashed] (6.11+\boxx,2.36+\boxy) -- (6.29+\boxx,2.18+\boxy) -- (5.09+\boxx,0.98+\boxy) -- (4.91+\boxx,1.16+\boxy) -- cycle;%d
+		\draw[color=gray] (5.83+\boxx,1.75+\boxy) node[anchor=north east,align=center,rotate=45]{\scriptsize\texttt{d}};
 	\end{tikzpicture}
 \end{document}

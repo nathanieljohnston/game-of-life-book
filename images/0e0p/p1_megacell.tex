@@ -13,50 +13,77 @@
 	
 		\node[inner sep=0pt,anchor=south west] (ca) at (0.05,0.05) {\includegraphics[width=11.9cm]{p1_megacell.png}};
 		
-		\newcommand\yshft{-0.3}
-		
 		\draw[color=gray,dashed] (2.72,4.02) -- (2.98,4.28) -- (5.55,1.71) -- (5.29,1.45) --node[rotate=-45,anchor=north,fill=white,fill opacity=0.8,text opacity=1]{\small\texttt{lookup table}} cycle;
 		
 		% ZOOM
-			\newcommand\smlx{0.74}
-			\newcommand\smrx{\smlx+0.5}
-			\newcommand\smby{3}
-			\newcommand\smty{\smby+1}
+			\newcommand\smlx{3.01}
+			\newcommand\smrx{\smlx+0.3}
+			\newcommand\smby{3.71}
+			\newcommand\smty{\smby+0.3}
 			
 			\newcommand\bglx{-5.7}
 			\newcommand\bgrx{\bglx+4.5}
-			\newcommand\bgty{10.6+\yshft}
-			\newcommand\bgby{\bgty-9}
+			\newcommand\bgty{10.5}
+			\newcommand\bgby{\bgty-4.5}
 			
-			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
 			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
 			
-			\node[inner sep=0pt,anchor=north west] (zoom0) at (\bglx,\bgty) {\includegraphics[width=4.5cm]{otca_metapixel_rule.png}};
+			\node[inner sep=0pt,anchor=north west] (zoom0) at (\bglx,\bgty) {\includegraphics[width=4.5cm]{p1_megacell_rule.png}};
 			
-			\path[fill,white,opacity=0.4,line width=0pt] (\smrx,\smty) -- (\bgrx,\bgty) -- (\bgrx,\bgby) -- (\smrx,\smby) -- (\smlx,\smby) -- (\smlx,\smty) -- cycle;
+			\path[fill,white,opacity=0.4,line width=0pt] (\smrx,\smty) -- (\bgrx,\bgty) -- (\bgrx,\bgby) -- (\bglx,\bgby) -- (\smlx,\smby) -- (\smlx,\smty) -- cycle;
 			
 			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\smlx,\smty) rectangle (\smrx,\smby);
 			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
 			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
 			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
 			
 			% Rule labels
-			%S
-			\draw[color=gray] (-2.76,9.69+\yshft) node[anchor=north]{\Large\texttt{S}};
+			\draw[color=dred!50!white] (\bglx+0.9,\bgty+0.55) node[anchor=north,rotate=45,fill=white,fill opacity=0.8,text opacity=1]{\small\texttt{000000000}};
 			
-			\draw[color=gray] (-2.55,8.95+\yshft) node[anchor=north]{\texttt{8}};
-			\draw[color=gray] (-2.55,8.42+\yshft) node[anchor=north]{\texttt{7}};
-			\draw[color=gray] (-2.55,7.89+\yshft) node[anchor=north]{\texttt{6}};
+			\newcommand\ruleshft{0.3}
+			\draw[color=dred!50!white] (\bglx+0.9+\ruleshft,\bgty+0.55-\ruleshft) node[anchor=north,rotate=45,fill=white,fill opacity=0.8,text opacity=1]{\small\texttt{000000001}};
 			
-			\newcommand\yadj{-2.44}
-			\draw[color=gray] (-2.55,8.95+\yadj+\yshft) node[anchor=north]{\texttt{5}};
-			\draw[color=gray] (-2.55,8.42+\yadj+\yshft) node[anchor=north]{\texttt{4}};
-			\draw[color=gray] (-2.55,7.89+\yadj+\yshft) node[anchor=north]{\texttt{3}};
+			\renewcommand\ruleshft{0.6}
+			\draw[color=dred!50!white] (\bglx+0.9+\ruleshft,\bgty+0.55-\ruleshft) node[anchor=north,rotate=45,fill=white,fill opacity=0.8,text opacity=1]{\small\texttt{000000010}};
 			
-			\renewcommand\yadj{-4.87}
-			\draw[color=gray] (-2.55,8.95+\yadj+\yshft) node[anchor=north]{\texttt{2}};
-			\draw[color=gray] (-2.55,8.42+\yadj+\yshft) node[anchor=north]{\texttt{1}};
-			\draw[color=gray] (-2.55,7.89+\yadj+\yshft) node[anchor=north]{\texttt{0}};
+			\renewcommand\ruleshft{0.9}
+			\draw[color=dred!50!white] (\bglx+0.9+\ruleshft,\bgty+0.55-\ruleshft) node[anchor=north,rotate=45,fill=white,fill opacity=0.8,text opacity=1]{\small\texttt{000000011}};
+			
+			\renewcommand\ruleshft{1.2}
+			\draw[color=dred!50!white] (\bglx+0.9+\ruleshft,\bgty+0.55-\ruleshft) node[anchor=north,rotate=45,fill=white,fill opacity=0.8,text opacity=1]{\small\texttt{000000100}};
+			
+			\renewcommand\ruleshft{1.5}
+			\draw[color=dred!50!white] (\bglx+0.9+\ruleshft,\bgty+0.55-\ruleshft) node[anchor=north,rotate=45,fill=white,fill opacity=0.8,text opacity=1]{\small\texttt{000000101}};
+			
+			\renewcommand\ruleshft{1.8}
+			\draw[color=dred!50!white] (\bglx+0.9+\ruleshft,\bgty+0.55-\ruleshft) node[anchor=north,rotate=45,fill=white,fill opacity=0.8,text opacity=1]{\small\texttt{000000110}};
+			
+			\renewcommand\ruleshft{2.1}
+			\draw[color=gray] (\bglx+0.9+\ruleshft,\bgty+0.55-\ruleshft) node[anchor=north,rotate=45,fill=white,fill opacity=0.8,text opacity=1]{\small\texttt{000000111}};
+			
+			\renewcommand\ruleshft{2.4}
+			\draw[color=dred!50!white] (\bglx+0.9+\ruleshft,\bgty+0.55-\ruleshft) node[anchor=north,rotate=45,fill=white,fill opacity=0.8,text opacity=1]{\small\texttt{000001000}};
+			
+			\renewcommand\ruleshft{2.7}
+			\draw[color=dred!50!white] (\bglx+0.9+\ruleshft,\bgty+0.55-\ruleshft) node[anchor=north,rotate=45,fill=white,fill opacity=0.8,text opacity=1]{\small\texttt{000001001}};
+			
+			\renewcommand\ruleshft{3}
+			\draw[color=dred!50!white] (\bglx+0.9+\ruleshft,\bgty+0.55-\ruleshft) node[anchor=north,rotate=45,fill=white,fill opacity=0.8,text opacity=1]{\small\texttt{000001010}};
+			
+			\renewcommand\ruleshft{3.3}
+			\draw[color=gray] (\bglx+0.9+\ruleshft,\bgty+0.55-\ruleshft) node[anchor=north,rotate=45,fill=white,fill opacity=0.8,text opacity=1]{\small\texttt{000001011}};
+			
+			\renewcommand\ruleshft{3.6}
+			\draw[color=dred!50!white] (\bglx+0.9+\ruleshft,\bgty+0.55-\ruleshft) node[anchor=north,rotate=45,fill=white,fill opacity=0.8,text opacity=1]{\small\texttt{000001100}};
+			
+			\renewcommand\ruleshft{3.9}
+			\draw[color=gray] (\bglx+0.9+\ruleshft,\bgty+0.55-\ruleshft) node[anchor=north,rotate=45,fill=white,fill opacity=0.8,text opacity=1]{\small\texttt{000001101}};
+			
+			\renewcommand\ruleshft{4.2}
+			\draw[color=gray] (\bglx+0.84+\ruleshft,\bgty+0.6-\ruleshft) node[anchor=north,rotate=45,fill=white,fill opacity=0.8,text opacity=1,inner sep=1pt]{\small\texttt{$\vdots$}};
 		% END ZOOM BOX
+		
+		\draw[color=gray] (-3.3,3) node[anchor=north,align=center]{\underline{\texttt{Bit order:}}\\\small\texttt{center, SE, S, SW, W,}\\\small\texttt{{} \ \ \ \ \ \ NW, N, NE, E}};
 	\end{tikzpicture}
 \end{document}
