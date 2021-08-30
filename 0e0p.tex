@@ -309,7 +309,7 @@ These $16$ evolution rules are displayed in Figure~\ref{fig:0e0p_rule_em}, and t
 \end{figure}
 
 The reason for choosing these seemingly-random transition rules is that they lead to the function
-\[
+\begin{align}\label{eq:0e0p_injective_transition}
 	\begin{pmatrix}
 		a_{1,1} & a_{1,2} & a_{1,3} \\
 		a_{2,1} & a_{2,2} & a_{2,3} \\
@@ -330,7 +330,7 @@ The reason for choosing these seemingly-random transition rules is that they lea
 		a_{3,2} & a_{3,3}
 		\end{pmatrix}
 	\end{pmatrix}
-\]
+\end{align}
 from $\{0,7\}^9$ to $\{0,1,2,3,4,5,6\}^4$ being injective (i.e., each output of the function corresponds to a \emph{unique} input).\footnote{However, the choices we made in Equation~\eqref{eq:0e0p_N_from_even} (or equivalently, Figure~\ref{fig:0e0p_rule_em}) are not the only ones that lead to this function being injective. This collection of outputs, and many others, can be found by computer search---see Exercise~??.} That is, given any $2 \times 2$ arrangement of states $0$, $1$, $\ldots$, $6$, we can figure out which $3 \times 3$ arrangement of $0$ and $7$ states (if any) gave rise to it. We can thus define $N$ on inputs from $\{0,1,2,3,4,5,6\}^4$ so that Equation~\eqref{eq:0e0p_N_from_M} holds (i.e., the cellular automaton defined by $N$ emulates the cellular automaton defined by $M$ at half speed).
 
 The resulting function $N$ is typically quite messy to write out in full detail (as it would just be an explicit list of how the $2^9 = 512$ possible arrangements of $2 \times 2$ grids of states $0$, $1$, $\ldots$, $6$ should evolve), even if the rule $M$ describes a relatively simple cellular automaton like Life. However, it can be constructed straightforwardly by a computer script,\footnote{One such script is available at \httpsurl{conwaylife.com/forums/viewtopic.php?p=38032}.} and the emulation of a glider in this way is illustrated in Figure~\ref{fig:0e0p_rule_em_glider}.
@@ -459,7 +459,7 @@ The kernel also contains, at its southern corner (i.e., the location called \tex
 	\item \textbf{Long-term storage}: Those $0$ or $2$--$8$ gliders are aimed at a sequence of $8$ blocks at the westernmost edge of the child's ``\texttt{S}'' corner (see the upcoming Figure~\ref{fig:0e0p_timeline_8054294330} for the precise location). Its state is thus stored in the \emph{absence} of those blocks, with state $0$ corresponding to $8$ blocks and state $1 \leq s \leq 7$ corresponding to $7 - s$ blocks.\smallskip
 \end{itemize}
 
-To compute its state from those of its parents, a child metacell uses a lookup table: a single-channel glider sequence consisting of $8^4 - 1 = 4{\thousep}095$ subsequences of $0$--$7$ gliders each, arranged in $1{\thousep}024$-generation chunks, specifying what the new state should be given any possible combination of not-all-zero parent states. This lookup table is stored in the nucleus, and we can use the one-time switching techniques of Section~\ref{sec:0e0p_structure_shell} to extract a single $1{\thousep}024$-generation chunk from it. To extract the \emph{correct} chunk, however, we have to delay those one-time switching operations to the correct moment in time, based on the absence of the blocks representing parent metacells' states. To this end, the child metacell uses a \textbf{state-lookup clock gun}\index{state-lookup clock gun} like the one illustrated in Figure~\ref{fig:state_lookup_clock_gun}.%\footnote{However, the gun illustrated here only plucks out a single glider. To have it pluck out up to $7$ gliders, its one-time circuitry has to be modified slightly (see Exercise~\ref{exer:0e0p_state_lookup_wider}).}
+To compute its state from those of its parents, a child metacell uses a lookup table:\index{lookup table} a single-channel glider sequence consisting of $8^4 - 1 = 4{\thousep}095$ subsequences of $0$--$7$ gliders each, arranged in $1{\thousep}024$-generation chunks, specifying what the new state should be given any possible combination of not-all-zero parent states. This lookup table is stored in the nucleus, and we can use the one-time switching techniques of Section~\ref{sec:0e0p_structure_shell} to extract a single $1{\thousep}024$-generation chunk from it. To extract the \emph{correct} chunk, however, we have to delay those one-time switching operations to the correct moment in time, based on the absence of the blocks representing parent metacells' states. To this end, the child metacell uses a \textbf{state-lookup clock gun}\index{state-lookup clock gun} like the one illustrated in Figure~\ref{fig:state_lookup_clock_gun}.%\footnote{However, the gun illustrated here only plucks out a single glider. To have it pluck out up to $7$ gliders, its one-time circuitry has to be modified slightly (see Exercise~\ref{exer:0e0p_state_lookup_wider}).}
 
 \begin{figure}[!htb]
 	\centering
@@ -1035,13 +1035,7 @@ Finally, Adam P.~Goucher spent 2014 through 2018 designing and constructing the 
 % EXERCISE: Show how iso in Moore neighborhood can emulate outer totalistic in von Neumann neighborhood
 % Exercise about emulating an elementary cellular automaton
 
-% EXERCISE(S) about transition rules for rule emulation: find another one. Also:
-% the different cell states, there are 200 different such functions sending 0 to 0.
-% With 8 states we have 7 colors. Doing this with 6 or fewer colours is absolutely impossible, and with 7 colours is difficult (there are only 200 distinct solutions, or 13 up to rotation/reflection).
-% EXERCISE: Describe positions of replicators in HashLife replicator? Connect to Sierpinski triangle maybe (same pattern as n-th row of it)
 % Maybe exercise about 89-rotational RRO (https://www.conwaylife.com/forums/viewtopic.php?f=15&t=4116&p=131063#p131063). Or a part (b) of the already-planned RRO exercise?
-% EXERCISE: in which chunk of 0E0P lookup table would you find the state for a child with parents (describe 4 parent states)
-% EXERCISE: modify rule table of p1 megacell to emulate (some rule).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1119,11 +1113,19 @@ Finally, Adam P.~Goucher spent 2014 through 2018 designing and constructing the 
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item \probdiff{2} Find an RRO in this rule.
 			
-			\item \probdiff{3} Use multiple copies of the 0E0P metacell (each emulating this rule) so as to create an RRO in Life.
+			\item \probdiff{3} Describe how you could use multiple copies of the 0E0P metacell (each emulating this rule) so as to create an RRO in Life.
 			
 			\noindent [Hint: Be careful and recall the solution of Exercise~\ref{exer:0e0p_rro_technicalities}.]
 		\end{enumerate}
 	\end{problem}
+
+
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:non_isotropic_rulestring_life} \probdiff{3}
+		What is the non-isotropic rulestring (in the sense of Appendix~\ref{sec:non_isotropic_rulestrings}) for Conway's Game of Life?
+	\end{problemstar}
 
 
 	\mfilbreak
@@ -1135,16 +1137,25 @@ Finally, Adam P.~Goucher spent 2014 through 2018 designing and constructing the 
 		\noindent [Hint: Make a cell in one state move south, a cell in another state move east, and something else happen when they collide.]
 	\end{problem}
 	% SOLUTION: https://www.conwaylife.com/forums/viewtopic.php?p=72241#p72170
-
-
+	
+	
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:non_isotropic_rulestring_life} \probdiff{3}
-		What is the non-isotropic rulestring (in the sense of Appendix~\ref{sec:non_isotropic_rulestrings}) for Conway's Game of Life?
+	\begin{problem}\label{exer:0e0p_even_gen_transition_rule} \probdiff{5}
+		The transition rule described by Figure~\ref{fig:0e0p_rule_em} (or equivalently Equation~\eqref{eq:0e0p_N_from_even}) is not the only one that leads to the function from Equation~\eqref{eq:0e0p_injective_transition} being injective, and thus not the only one that can be used to emulate 2-state Moore-neighborhood CA via 8-state von-Neumann-neighborhood CA.\smallskip
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Find another transition rule that could be used instead, which cannot be obtained from the one in Figure~\ref{fig:0e0p_rule_em} via rotation, reflection, and/or renumbering the states.
+			
+			[Hint: Write a computer script to help you.]
+			
+			\item How many distinct (i.e., inequivalent up to rotation, reflection, and renumbering the states) transition rules are there that lead to the function from Equation~\eqref{eq:0e0p_injective_transition} being injective?
+			
+			\item Show that we really needed $8$ states: show that if another transition rule is used in place of the one from Figure~\ref{fig:0e0p_rule_em} that only has output states $0$--$5$, then the function from Equation~\eqref{eq:0e0p_injective_transition} is not injective.
+		\end{enumerate}
 	\end{problem}
-	% SOLUTION: MAPARYXfhZofugWaH7oaIDogBZofuhogOiAaIDogIAAgAAWaH7oaIDogGiA6ICAAIAAaIDogIAAgACAAIAAAAAAAA
-	
+	% Quotes from Adam (not double-checked): the different cell states, there are 200 different such functions sending 0 to 0. With 8 states we have 7 colors. Doing this with 6 or fewer colours is absolutely impossible, and with 7 colours is difficult (there are only 200 distinct solutions, or 13 up to rotation/reflection).
 	
 	\mfilbreak
 	
@@ -1238,6 +1249,30 @@ Finally, Adam P.~Goucher spent 2014 through 2018 designing and constructing the 
 	\mfilbreak
 
 
+	\begin{problemstar}\label{exer:0e0p_which_lookup_subsequence} \probdiff{3}
+		Suppose a newly-constructed child 0E0P metacell has parent neighbors to the northeast, southeast, southwest, and northwest in states $2$, $3$, $4$, and $5$, respectively. Which $0$--$7$ glider subsequence of its lookup table contains its state?
+	\end{problemstar}
+
+
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:0e0p_which_parent_states} \probdiff{3}
+		Suppose a newly-constructed child 0E0P metacell extracts its state from the $1{\thousep}141$th subsequence of its lookup table. What were its four parent neighbor's states?
+	\end{problemstar}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:0e0p_highlife_how_many_lookup_table} \probdiff{4}
+		How many gliders would be present in the lookup table (i.e., all $4{\thousep}095$ subsequences together) of an 0E0P metacell that is programmed to emulate HighLife (i.e., B36/S23)?
+	\end{problem}
+
+
+	\mfilbreak
+
+
 	\begin{problem}\label{exer:p5760_why_magenta} \probdiff{2}
 		In Figure~\ref{fig:p5760_metacell}, the p5760~metacell is shown with $8$ (aqua) output lanes, but more than $8$ (magenta) input lanes. Explain this apparent discrepancy.
 	\end{problem}
@@ -1257,6 +1292,14 @@ Finally, Adam P.~Goucher spent 2014 through 2018 designing and constructing the 
 	
 	\begin{problem}\label{exer:explain_p1_megacell} \probdiff{4}
 		Describe how the p1 megacell works. In particular, explain the mechanisms that it uses to sends its state (``alive'' or ``dead'') to its neighbors, and explain how those neighbors use the incoming states and the lookup table of Figure~\ref{fig:p1_megacell} to compute their states.
+	\end{problem}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:modify_p1_megacell_rule} \probdiff{3}\index{HighLife}
+		If you were to modify the p1~megacell's lookup table from Figure~\ref{fig:p1_megacell} so as to emulate HighLife (i.e., B36/S23) instead of Life, how many eater~1s would be present in it?
 	\end{problem}
 
 
