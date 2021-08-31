@@ -12,7 +12,7 @@
 \vspace*{0.4in}
 
 
-\noindent In this chapter, we investigate the simplest possible objects in Life: those which do not move at all, but rather stay exactly the same from one generation to the next. As we have already learned, such objects are called \emph{still lifes}, and we have seen several examples of them, including the block, tub, boat, ship, beehive, and loaf. Some additional small still lifes are the \emph{aircraft carrier}\index{aircraft carrier}, \emph{barge}\index{barge}, \emph{snake}\index{snake}, \emph{long boat}\index{long boat}, \emph{long snake}\index{long snake}, and \emph{eater~1}\index{eater!1} (see Figure~\ref{fig:small_still_lifes}). In fact, we have just listed every single still life with $7$ or fewer live cells.
+\noindent In this chapter, we investigate the simplest possible objects in Life: those which do not move at all, but rather stay exactly the same from one generation to the next. As we have already learned, such objects are called \textbf{still lifes}, and we have seen several examples of them, including the block, tub, boat, ship, beehive, and loaf. Some additional small still lifes are the \textbf{aircraft carrier}\index{aircraft carrier}, \textbf{barge}\index{barge}, \textbf{snake}\index{snake}, \textbf{long boat}\index{long boat}, \textbf{long snake}\index{long snake}, and \textbf{eater~1}\index{eater!1} (see Figure~\ref{fig:small_still_lifes}). In fact, we have just listed every single still life with $7$ or fewer live cells.
 \begin{figure}[!htb]
 	\centering\begin{tikzpicture}[scale=0.9, every node/.style={transform shape}]%
 	\node[inner sep=0pt,anchor=south west] at (0,0) {\patternimglink{0.135}{small_still_lifes}};
@@ -22,7 +22,7 @@
 	\colorletternode{gray}{0.65}{1.7}{5}
 	\colorletternode{gray}{4.55}{1.7}{7}
 	\end{tikzpicture}
-	\caption{All still lifes with $7$ or fewer live cells, arranged by their cell count. From left to right: ($4$ cells) block, tub, ($5$ cells) boat, ($6$ cells), snake, ship, beehive, aircraft carrier, barge, ($7$ cells) long snake, long boat, loaf, and eater~1 (which is sometimes called \emph{fishhook}\index{fishhook}).}\label{fig:small_still_lifes}
+	\caption{All still lifes with $7$ or fewer live cells, arranged by their cell count. From left to right: ($4$ cells) block, tub, ($5$ cells) boat, ($6$ cells), snake, ship, beehive, aircraft carrier, barge, ($7$ cells) long snake, long boat, loaf, and eater~1 (which is sometimes called \textbf{fishhook}\index{fishhook|see {eater 1}}).}\label{fig:small_still_lifes}
 \end{figure}
 
 While it might seem like there is not much to say about such simple objects, they actually have a somewhat complicated structure and some interesting connections to other areas of mathematics. Furthermore, familiarity with still lifes, especially the small common ones, will be extremely important when constructing larger and more complicated patterns---we already saw this in the previous chapter, where we strategically used blocks to turn queen bees and twin bees into oscillators and glider guns.
@@ -35,14 +35,14 @@ While it might seem like there is not much to say about such simple objects, the
 
 We saw in Figure~\ref{fig:small_still_lifes} a complete list of all still lifes with $7$ or fewer cells. We would like to continue in this way and create exhaustive lists of all still lifes with $8, 9, 10, \ldots$ live cells as well, but something strange happens in these cases---we have the freedom to place multiple disjoint copies of still lifes at various places in the plane. For example, we could place two blocks far away from each other at various locations, thus creating an infinite collection of (trivial) $8$-cell still lifes.
 
-Still lifes constructed in this way are in a sense not really any different from their component still lifes, so we would like to ignore them when creating exhaustive lists like this. With this in mind, we define a \emph{strict still life} to be a still life that is either connected, or is disconnected but its different connected components cannot be partitioned into two or more sets that are still lifes by themselves (see Figure~\ref{fig:strict_non_strict}). The reason for not solely restricting our attention to connected still lifes is that some still lifes, like the aircraft carrier, are disconnected yet really are non-trivial---if we separate their two pieces, they are no longer stable.
+Still lifes constructed in this way are in a sense not really any different from their component still lifes, so we would like to ignore them when creating exhaustive lists like this. With this in mind, we define a \textbf{strict still life} to be a still life that is either connected, or is disconnected but its different connected components cannot be partitioned into two or more sets that are still lifes by themselves (see Figure~\ref{fig:strict_non_strict}). The reason for not solely restricting our attention to connected still lifes is that some still lifes, like the aircraft carrier, are disconnected yet really are non-trivial---if we separate their two pieces, they are no longer stable.
 
 \begin{figure}[!htb]
 	\centering\patternimglink{0.1}{strict_non_strict}
-	\caption{From left to right, these still lifes are the beehive, aircraft carrier, \emph{block on table}\index{block on table}, \emph{bi-block}\index{bi-block}, and honey farm\index{honey!farm}. The beehive is a strict still life because it is connected, the aircraft carrier is a strict still life because its two halves are not still lifes by themselves but together they overpopulate the cells highlighted in \bgbox{redback}{red}, and the block on table is a strict still life for the same reason. However, the bi-block and honey farm are \emph{not} strict still lifes, since they are made up of non-interacting simpler still lifes.}\label{fig:strict_non_strict}
+	\caption{From left to right, these still lifes are the beehive, aircraft carrier, \textbf{block on table}\index{block on table}, \textbf{bi-block}\index{bi-block}, and honey farm\index{honey!farm}. The beehive is a strict still life because it is connected, the aircraft carrier is a strict still life because its two halves are not still lifes by themselves but together they overpopulate the cells highlighted in \bgbox{redback}{red}, and the block on table is a strict still life for the same reason. However, the bi-block and honey farm are \emph{not} strict still lifes, since they are made up of non-interacting simpler still lifes.}\label{fig:strict_non_strict}
 \end{figure}
 
-However, there is a somewhat weaker notion of whether or not a still life is ``trivial'', and it is highlighted in the difference between the bi-block and the honey farm from Figure~\ref{fig:strict_non_strict}. In the bi-block, the two blocks are close enough to each other that they are ``almost touching'' and their Moore neighborhoods overlap, whereas the beehives in the honey farm are far enough away from each other that they simply do not interact with each other at all. To capture this difference, we define a \emph{pseudo still life}\index{pseudo!still life} to be a disconnected still life with the property that its connected components can be partitioned into two or more sets that are individually still lifes,\footnote{In the early days of Life, it was not uncommon to define pseudo still lifes as requiring that they can be partitioned into \emph{exactly} two individual still lifes. Matthew Cook demonstrated that the difference between these two definitions is actually quite important, since determining whether or not a pattern can be split into exactly two individual still lifes is relatively easy, whereas determining whether or not it can be split into two \emph{or more} still lifes is quite hard \cite{Coo03}.} and furthermore at least one dead cell has more than $3$ live neighbors in the overall pattern but has fewer than $3$ live neighbors in the subpatterns\footnote{This final restriction is made to capture the notion of the individual connected components ``almost touching''.} (see Figure~\ref{fig:pseudo_not_pseudo} for some examples).
+However, there is a somewhat weaker notion of whether or not a still life is ``trivial'', and it is highlighted in the difference between the bi-block and the honey farm from Figure~\ref{fig:strict_non_strict}. In the bi-block, the two blocks are close enough to each other that they are ``almost touching'' and their Moore neighborhoods overlap, whereas the beehives in the honey farm are far enough away from each other that they simply do not interact with each other at all. To capture this difference, we define a \textbf{pseudo still life}\index{pseudo!still life} to be a disconnected still life with the property that its connected components can be partitioned into two or more sets that are individually still lifes,\footnote{In the early days of Life, it was not uncommon to define pseudo still lifes as requiring that they can be partitioned into \emph{exactly} two individual still lifes. Matthew Cook demonstrated that the difference between these two definitions is actually quite important, since determining whether or not a pattern can be split into exactly two individual still lifes is relatively easy, whereas determining whether or not it can be split into two \emph{or more} still lifes is quite hard \cite{Coo03}.} and furthermore at least one dead cell has more than $3$ live neighbors in the overall pattern but has fewer than $3$ live neighbors in the subpatterns\footnote{This final restriction is made to capture the notion of the individual connected components ``almost touching''.} (see Figure~\ref{fig:pseudo_not_pseudo} for some examples).
 
 \begin{figure}[!htb]
 	\centering\patternimglink{0.1}{pseudo_not_pseudo}
@@ -171,7 +171,7 @@ As a simple first example, we note that many still lifes that we have seen come 
 
 \begin{figure}[!htb]
 	\centering\patternimglink{0.1}{tub_boat_ship}
-	\caption{From left to right, these still lifes are the tub, barge, \emph{long barge}\index{long barge}, boat, long boat, \emph{long long boat}\index{long long boat}, ship, \emph{long ship}\index{long ship}, and \emph{long long ship}\index{long long ship}. Each of these still lifes can be made as long as we like by continuing the patterns in the obvious way.}\label{fig:tub_boat_ship}
+	\caption{From left to right, these still lifes are the tub, barge, \textbf{long barge}\index{long barge}, boat, long boat, \textbf{long long boat}\index{long long boat}, ship, \textbf{long ship}\index{long ship}, and \textbf{long long ship}\index{long long ship}. Each of these still lifes can be made as long as we like by continuing the patterns in the obvious way.}\label{fig:tub_boat_ship}
 \end{figure}
 
 Some similar families of still lifes come from the snake and long snake, where now we only have to add a single extra diagonal cell every time that we want to lengthen it, as in Figure~\ref{fig:snake_canoe}.\footnote{These elongated versions of still lifes are denoted by using the ``long'' prefix the number of times that it has been lengthened (e.g., a ``long long snake'' is a snake elongated by $2$ cells). Alternatively, ``very''  and ``extra'' imply $1$ and $2$ extra levels of longness: $(n+1)$-th smallest $=$ long${}^n$ = very${}^{n-1}$ long = extra${}^{n-2}$ long. For example, a long${}^3$ snake is a long long long snake is a very very long snake is an extra long snake.}\index{long}\index{very long}\index{extra long}
@@ -184,17 +184,17 @@ Some similar families of still lifes come from the snake and long snake, where n
 	
 	\draw (9.67,0.68) node[cross=13,red] {};
 	\end{tikzpicture}
-	\caption{From left to right, these objects are the snake, long snake, \emph{long long snake}\index{long long snake}, \emph{long$^3$ snake}\index{long$^3$ snake}, ship, an object that is not a still life due to the \bgbox{greenpastel}{green} cell coming to life, \emph{canoe}\index{canoe}, and \emph{long canoe}\index{long canoe}. Again, each of these still lifes can be made as long as we like by continuing the patterns.}\label{fig:snake_canoe}
+	\caption{From left to right, these objects are the snake, long snake, \textbf{long long snake}\index{long long snake}, \textbf{long$^{\mathbf{3}}$ snake}\index{long$^3$ snake}, ship, an object that is not a still life due to the \bgbox{greenpastel}{green} cell coming to life, \textbf{canoe}\index{canoe}, and \textbf{long canoe}\index{long canoe}. Again, each of these still lifes can be made as long as we like by continuing the patterns.}\label{fig:snake_canoe}
 \end{figure}
 
-In all of these examples, the still lifes are made up from two very different components: the central portion that can be repeated indefinitely, and the stabilizing end pieces. The $3$-cell pre-block on the ends of each side of the long snakes and long canoes is one commonly-used end piece, and another one is the $4$-cell \emph{tail}\index{tail} depicted in Figure~\ref{fig:hook_tail}. When naming still lifes that use this component, we typically use the ``with tail'' suffix so that the 4th still life in Figure~\ref{fig:hook_tail_examples}, for example, is called the \emph{tub with tail}.\index{tub!with tail}\index{boat!with tail}\index{cis}\index{trans}\footnote{Some objects, like the boat, can have a tail added to them in two different ways, so names like \emph{boat with tail} become insufficient for distinguishing between them. We thus use the \emph{cis} and \emph{trans} prefixes (borrowed from organic chemistry) to distinguish cases like this where they were two possible tail orientations. For example, the two boats with tails displayed in the 9-cell strict still life row of Table~\ref{tab:small_still_lifes} are called the \emph{cis-boat with tail} and the \emph{trans-boat with tail}.}
+In all of these examples, the still lifes are made up from two very different components: the central portion that can be repeated indefinitely, and the stabilizing end pieces. The $3$-cell pre-block on the ends of each side of the long snakes and long canoes is one commonly-used end piece, and another one is the $4$-cell \textbf{tail}\index{tail} depicted in Figure~\ref{fig:hook_tail}. When naming still lifes that use this component, we typically use the ``with tail'' suffix so that the 4th still life in Figure~\ref{fig:hook_tail_examples}, for example, is called the \textbf{tub with tail}.\index{tub!with tail}\index{boat!with tail}\index{cis}\index{trans}\footnote{Some objects, like the boat, can have a tail added to them in two different ways, so names like \textbf{boat with tail} become insufficient for distinguishing between them. We thus use the \textbf{cis} and \textbf{trans} prefixes (borrowed from organic chemistry) to distinguish cases like this where they were two possible tail orientations. For example, the two boats with tails displayed in the 9-cell strict still life row of Table~\ref{tab:small_still_lifes} are called the \textbf{cis-boat with tail} and the \textbf{trans-boat with tail}.}
 
 \begin{figure}[!htb]
 	\centering
 	\begin{minipage}[b]{.31\textwidth}
 		\centering
 		\patternimg{0.1}{hook_tail}
-		\caption{A pre-block (left) and a \emph{tail} (right) are two common ways of stabilizing objects (typically when the cells highlighted in \bgbox{aquaback}{aqua} are alive).}
+		\caption{A pre-block (left) and a \textbf{tail} (right) are two common ways of stabilizing objects (typically when the cells highlighted in \bgbox{aquaback}{aqua} are alive).}
 		\label{fig:hook_tail}
 	\end{minipage} \quad %
 	\begin{minipage}[b]{.64\textwidth}
@@ -205,7 +205,7 @@ In all of these examples, the still lifes are made up from two very different co
 	\end{minipage}
 \end{figure}
 
-In order to construct larger still lifes, we use the fact that if every cell in a $2 \times 2$ square is alive, then every cell that is an immediate neighbor of that $2 \times 2$ square must be dead (i.e., the $2 \times 2$ square must in fact be a block with a border of dead cells around it) in order for the resulting pattern to be a still life. The reason for this is that each cell in the $2 \times 2$ square already has $3$ live neighbors in that $2 \times 2$ square, so adding another one will overcrowd it, causing it to not be stable.\footnote{The term \emph{stable}\index{stable} is sometimes used to refer to still lifes, and it is sometimes used to refer to both still lifes and oscillators. Which of these two cases is meant is usually clear from context or irrelevant.}
+In order to construct larger still lifes, we use the fact that if every cell in a $2 \times 2$ square is alive, then every cell that is an immediate neighbor of that $2 \times 2$ square must be dead (i.e., the $2 \times 2$ square must in fact be a block with a border of dead cells around it) in order for the resulting pattern to be a still life. The reason for this is that each cell in the $2 \times 2$ square already has $3$ live neighbors in that $2 \times 2$ square, so adding another one will overcrowd it, causing it to not be stable.\footnote{The term \textbf{stable}\index{stable} is sometimes used to refer to still lifes, and it is sometimes used to refer to both still lifes and oscillators. Which of these two cases is meant is usually clear from context or irrelevant.}
 
 This tells us that still lifes never have ``thick'' sections---they are made up of single-cell-thick ``paths'' of live cells that potentially curve and loop around on themselves, possibly plus some isolated blocks. Furthermore, it is often\footnote{But not always---see Exercise~\ref{exer:still_life_impossible}.} possible to take a single-cell-thick path (which does not have overpopulated cells like in Figure~\ref{fig:invalid_path}) and add extra junk around it to suppress the birth of nearby dead cells, thus resulting in a still life (see Figure~\ref{fig:still_life_path} for an example).
 
@@ -225,7 +225,7 @@ This tells us that still lifes never have ``thick'' sections---they are made up 
 	\end{minipage}
 \end{figure}
 
-While there is no completely foolproof way of carrying out this procedure (some trial-and-error is typically used), some general rules of thumb include using pre-blocks or tails on the ends of the path, doubling the thickness of diagonal sections of the path, and stabilizing orthogonal sections of the path with either orthogonal sections of a new path or with other still lifes like blocks or snakes. When objects are used to stabilize other (non-touching) nearby objects, like how we used the blocks and the snake in Figure~\ref{fig:still_life_path} to stabilize the top-right section of our original path, they are called \emph{induction coils}.\index{induction coil}
+While there is no completely foolproof way of carrying out this procedure (some trial-and-error is typically used), some general rules of thumb include using pre-blocks or tails on the ends of the path, doubling the thickness of diagonal sections of the path, and stabilizing orthogonal sections of the path with either orthogonal sections of a new path or with other still lifes like blocks or snakes. When objects are used to stabilize other (non-touching) nearby objects, like how we used the blocks and the snake in Figure~\ref{fig:still_life_path} to stabilize the top-right section of our original path, they are called \textbf{induction coils}.\index{induction coil}
 
 Induction coils are most frequently used along long sections of orthogonally connected live cells. For example, a section of $5$ orthogonally connected live cells can be stabilized by any still life that has a single cell farther in one direction than any of its other cells, such as a tub or an eater~1 (or almost any other still life with a tail), since this single cell overpopulates all $3$ dead cells that would otherwise be born---see Figure~\ref{fig:5_cell_induction}. Blocks and snakes are useful because they can be placed next to each other with gaps of $1$ or $2$ dead cells between them, to stabilize rows of connected cells of any length, as in Figure~\ref{fig:induction_coil_examples} (which also illustrates several other common induction coils).
 
@@ -240,7 +240,7 @@ Induction coils are most frequently used along long sections of orthogonally con
 	\begin{minipage}{.64\textwidth}
 		\centering
 		\patternimglink{0.1}{induction_coil_examples}
-		\caption{A demonstration of several induction coils being used to stabilize an object. The induction coil at the top-right corner is the \emph{cap}\index{cap}, in the bottom-middle are a \emph{table}\index{table} and a way of extending it, and at the bottom-right is a \emph{bookend}\index{bookend}.}
+		\caption{A demonstration of several induction coils being used to stabilize an object. The induction coil at the top-right corner is the \textbf{cap}\index{cap}, in the bottom-middle are a \textbf{table}\index{table} and a way of extending it, and at the bottom-right is a \textbf{bookend}\index{bookend}.}
 		\label{fig:induction_coil_examples}
 	\end{minipage}
 \end{figure}
@@ -251,9 +251,9 @@ Induction coils are most frequently used along long sections of orthogonally con
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Eaters}\label{sec:eaters}\index{eater}
 
-Many of the complex patterns that we construct in later sections of this book will be based on sending gliders from one place to another, so we will need simple ways of creating, moving, and deleting gliders. Deleting gliders is the simplest of these tasks, and it can be done with objects called \emph{eaters}: still lifes\footnote{Strictly speaking, an eater does not need to be a still life, but still life eaters are used so much more frequently than other types of eaters that it is often assumed.} with the property that if a glider (or another object) collides with them in the right away, the glider is deleted and the eater suffers no permanent damage.
+Many of the complex patterns that we construct in later sections of this book will be based on sending gliders from one place to another, so we will need simple ways of creating, moving, and deleting gliders. Deleting gliders is the simplest of these tasks, and it can be done with objects called \textbf{eaters}: still lifes\footnote{Strictly speaking, an eater does not need to be a still life, but still life eaters are used so much more frequently than other types of eaters that it is often assumed.} with the property that if a glider (or another object) collides with them in the right away, the glider is deleted and the eater suffers no permanent damage.
 
-The smallest, first discovered,\footnote{Eater~1 itself was almost immediately discovered independently by several Life enthusiasts as the smallest asymmetric still life, but its eating properties were discovered by Bill Gosper's group at MIT in 1971.} and most widely-used glider eater is the 7-cell still life called eater~1, whose glider-eating reaction is displayed in Figure~\ref{fig:eater_1}. The reason for eater~1's widespread use is not only due to its small size, but also because it returns to its original state only $4$ generations after being hit by the glider (we thus say that it has a \emph{recovery time}\index{recovery time} of $4$ generations), making it the fastest-recovering known glider eater.\footnote{There are also other glider eaters that tie its recovery time of $4$ generations---see Exercise~\ref{exer:fast_glider_eater}.}
+The smallest, first discovered,\footnote{Eater~1 itself was almost immediately discovered independently by several Life enthusiasts as the smallest asymmetric still life, but its eating properties were discovered by Bill Gosper's group at MIT in 1971.} and most widely-used glider eater is the 7-cell still life called eater~1, whose glider-eating reaction is displayed in Figure~\ref{fig:eater_1}. The reason for eater~1's widespread use is not only due to its small size, but also because it returns to its original state only $4$ generations after being hit by the glider (we thus say that it has a \textbf{recovery time}\index{recovery time} of $4$ generations), making it the fastest-recovering known glider eater.\footnote{There are also other glider eaters that tie its recovery time of $4$ generations---see Exercise~\ref{exer:fast_glider_eater}.}
 
 \begin{figure}[!htb]
 	\centering
@@ -268,9 +268,9 @@ In addition to eating gliders, eater~1 can also be used to eat lightweight space
 	\caption{Eater 1 can be used to eat a glider, a lightweight spaceship, a middleweight spaceship, a pre-beehive, and many other objects.}\label{fig:eater_1_multi}
 \end{figure}
 
-In spite of the versatility of eater~1, there are other eaters that are sometimes more useful in certain situations. One example is \emph{eater~2} (see Figure~\ref{fig:eater_2}): although it is quite a bit larger than eater~1 and has a recovery time of 5 generations (instead of 4), it has the advantages of being symmetric and being able to eat gliders traveling along 4 different parallel paths.
+In spite of the versatility of eater~1, there are other eaters that are sometimes more useful in certain situations. One example is \textbf{eater~2} (see Figure~\ref{fig:eater_2}): although it is quite a bit larger than eater~1 and has a recovery time of 5 generations (instead of 4), it has the advantages of being symmetric and being able to eat gliders traveling along 4 different parallel paths.
 
-Similarly, \emph{eater~5} (sometimes called the \emph{tub with tail eater}\index{tub!with tail eater}, or \emph{TWIT}\index{TWIT|see {tub with tail eater}} for short) is a small eater\footnote{There are indeed eaters called ``eater~3'' and ``eater~4'' (as well as dozens of other known eaters), but they are somewhat less useful than eaters~1, 2, and~5, so we just introduce these others as we need them.} with a recovery time of 6 generations that is made up of two still lifes and is capable of eating gliders traveling along 2 different perpendicular paths. Eater~5 is is especially useful for the fact that it can eat gliders traveling so close to its edge (in particular, the glider coming from the top-right corner in Figure~\ref{fig:eater_5}), so it can often be used to eat gliders in tight places where other eaters will not fit.
+Similarly, \textbf{eater~5} (sometimes called the \textbf{tub with tail eater}\index{tub!with tail eater}, or \textbf{TWIT}\index{TWIT|see {tub with tail eater}} for short) is a small eater\footnote{There are indeed eaters called ``eater~3'' and ``eater~4'' (as well as dozens of other known eaters), but they are somewhat less useful than eaters~1, 2, and~5, so we just introduce these others as we need them.} with a recovery time of 6 generations that is made up of two still lifes and is capable of eating gliders traveling along 2 different perpendicular paths. Eater~5 is is especially useful for the fact that it can eat gliders traveling so close to its edge (in particular, the glider coming from the top-right corner in Figure~\ref{fig:eater_5}), so it can often be used to eat gliders in tight places where other eaters will not fit.
 
 \begin{figure}[!htb]
 	\begin{subfigure}{.5\textwidth}
@@ -294,19 +294,19 @@ Similarly, \emph{eater~5} (sometimes called the \emph{tub with tail eater}\index
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Rocks and ``Almost'' Eaters}\label{sec:rocks_almost_eaters}
 
-All of the eaters that we have seen so far are temporarily disturbed when the glider hits them, and then return to their initial state after a few generations. However, there is no fundamental reason that an eater has to be disturbed by the object that it eats at all---an eater is called a \emph{rock} if it does not even suffer temporary damage during the eating process. While there are no known rocks that eat gliders, there are rocks that eat other objects, and there are objects that can act as rocks for \emph{multiple} gliders.
+All of the eaters that we have seen so far are temporarily disturbed when the glider hits them, and then return to their initial state after a few generations. However, there is no fundamental reason that an eater has to be disturbed by the object that it eats at all---an eater is called a \textbf{rock} if it does not even suffer temporary damage during the eating process. While there are no known rocks that eat gliders, there are rocks that eat other objects, and there are objects that can act as rocks for \emph{multiple} gliders.
 
-Here we present an example of the latter kind---an object that can destroy two gliders, suffer no damage in the process, yet cannot completely destroy just a single glider. In fact, this object is simply the snake\index{snake}, which is capable of turning a single glider into a boat\index{boat}, which then destroys (and is destroyed by) a second glider coming in from the same direction as the first. This reaction is called the \emph{boat bit},\index{boat!bit}\footnote{Its name comes from the fact that this reaction can be used to store a single bit of memory. We will explore methods like this one for simulating computation in Chapter~\ref{chp:universal_computation}.} and is displayed in Figure~\ref{fig:boat_bit}.
+Here we present an example of the latter kind---an object that can destroy two gliders, suffer no damage in the process, yet cannot completely destroy just a single glider. In fact, this object is simply the snake\index{snake}, which is capable of turning a single glider into a boat\index{boat}, which then destroys (and is destroyed by) a second glider coming in from the same direction as the first. This reaction is called the \textbf{boat bit},\index{boat!bit}\footnote{Its name comes from the fact that this reaction can be used to store a single bit of memory. We will explore methods like this one for simulating computation in Chapter~\ref{chp:universal_computation}.} and is displayed in Figure~\ref{fig:boat_bit}.
 
 \begin{figure}[!htb]
 	\centering
 	\embedlink{boat_bit}{\vcenteredhbox{\patternimg{0.1}{boat_bit_0}} \vcenteredhbox{\genarrow{4}} \vcenteredhbox{\patternimg{0.1}{boat_bit_4}} \vcenteredhbox{\genarrow{20}} \vcenteredhbox{\patternimg{0.1}{boat_bit_24}}}
-	\caption{A \emph{boat-bit} is a reaction in which a snake (or any other still life containing a pre-block) is used to turn a glider into a boat which then destroys a second glider coming in from the same position. Furthermore, the snake is not even temporarily disturbed at any point throughout this reaction.}\label{fig:boat_bit}
+	\caption{A \textbf{boat-bit} is a reaction in which a snake (or any other still life containing a pre-block) is used to turn a glider into a boat which then destroys a second glider coming in from the same position. Furthermore, the snake is not even temporarily disturbed at any point throughout this reaction.}\label{fig:boat_bit}
 \end{figure}
 
 While the snake is not technically an eater since it does not destroy each glider that hits it, but rather only destroys pairs of gliders, this is a technicality that is often unimportant. Typically when eating gliders, an entire stream of gliders (perhaps from a glider gun) are fired from the same position, and this boat-bit reaction gives the smallest known way of erasing such a glider stream (in particular, it contains only $6$ cells and is slightly more compact than the $7$-cell eater~1).
 
-There are also many other reactions that use gliders to toggle a Life object between two or more different states, and they can almost all be used to eat multiple glider streams (though they are often useful for much more than this). For example, a single glider can be used to flip the orientation of a loaf\index{loaf}, so a loaf can use this reaction twice to eat two gliders and end up back where it started, as in Figure~\ref{fig:glider_loaf_flip}. Again, a loaf by itself is not technically an eater since it cannot reconstruct itself after destroying a \emph{single} glider, but we can turn it into an eater by placing a stable object next to it that will flip it back over after a glider hits it. One way of doing this results in the eater called \emph{eater~3}\index{eater!3}, which is displayed in Figure~\ref{fig:eater_3}.
+There are also many other reactions that use gliders to toggle a Life object between two or more different states, and they can almost all be used to eat multiple glider streams (though they are often useful for much more than this). For example, a single glider can be used to flip the orientation of a loaf\index{loaf}, so a loaf can use this reaction twice to eat two gliders and end up back where it started, as in Figure~\ref{fig:glider_loaf_flip}. Again, a loaf by itself is not technically an eater since it cannot reconstruct itself after destroying a \emph{single} glider, but we can turn it into an eater by placing a stable object next to it that will flip it back over after a glider hits it. One way of doing this results in the eater called \textbf{eater~3}\index{eater!3}, which is displayed in Figure~\ref{fig:eater_3}.
 
 \begin{figure}[!htb]
 	\centering
@@ -318,19 +318,19 @@ There are also many other reactions that use gliders to toggle a Life object bet
 	\begin{minipage}{.33\textwidth}
 		\centering
 		\patternimglink{0.092899408284}{eater_3}
-		\caption{\emph{Eater 3} is based on the loaf-flipping reaction.}
+		\caption{\textbf{Eater 3} is based on the loaf-flipping reaction.}
 		\label{fig:eater_3}
 	\end{minipage}
 \end{figure}
 
-Finally, recall from Section~\ref{sec:queen_bee} that a block\index{block} is the smallest eater of all, as it can be used to eat a beehive (and for that matter, it can also eat a loaf). It can't be used to eat a single glider or even a single glider stream, but it can be used (like a loaf) to eat two gliders coming from opposite directions. This is possible because of the \emph{(2,1) block pull} reaction\index{(2,1) block pull} displayed in Figure~\ref{fig:glider_block_move}, in which a glider is destroyed while moving a block by $2$ cells horizontally and $1$ cell vertically. A second glider coming from the opposite direction then moves the block back to where it started.
+Finally, recall from Section~\ref{sec:queen_bee} that a block\index{block} is the smallest eater of all, as it can be used to eat a beehive (and for that matter, it can also eat a loaf). It can't be used to eat a single glider or even a single glider stream, but it can be used (like a loaf) to eat two gliders coming from opposite directions. This is possible because of the \textbf{(2,1) block pull} reaction\index{(2,1) block pull} displayed in Figure~\ref{fig:glider_block_move}, in which a glider is destroyed while moving a block by $2$ cells horizontally and $1$ cell vertically. A second glider coming from the opposite direction then moves the block back to where it started.
 
 While this reaction is perhaps of limited use when it comes to eating gliders (since the opposing gliders have to be positioned exactly right in order to return the block to its starting point), the general idea of using gliders to move blocks around the Life plane is a very useful one that we will explore in depth in Sections~\ref{sec:slow_salvo} and~\ref{sec:slide_guns}.\footnote{We will also see another use of colliding gliders with a block in Exercise~\ref{exer:rephaser}.}
 
 \begin{figure}[!htb]
 	\centering
 	\embedlink{glider_block_move}{\vcenteredhbox{\patternimg{0.1}{glider_block_move}} \vcenteredhbox{\genarrow{14}} \vcenteredhbox{\patternimg{0.1}{glider_block_move_14}} \vcenteredhbox{\genarrow{8}} \vcenteredhbox{\patternimg{0.1}{glider_block_move_22}}}
-	\caption{A \emph{(2,1) block pull} is a reaction in which a glider pulls a block by $2$ cells in one direction and $1$ cell in the other. A block can thus be used to eat two gliders coming from opposite directions.}\label{fig:glider_block_move}
+	\caption{A \textbf{(2,1) block pull} is a reaction in which a glider pulls a block by $2$ cells in one direction and $1$ cell in the other. A block can thus be used to eat two gliders coming from opposite directions.}\label{fig:glider_block_move}
 \end{figure}
 
 
@@ -339,7 +339,7 @@ While this reaction is perhaps of limited use when it comes to eating gliders (s
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Welded and Constrained Still Lifes}\label{sec:welding}
 
-We saw in Section~\ref{sec:still_life_grammar} that there are many general methods for constructing a wide variety of still lifes of almost any size. We now focus on using these methods to combine multiple still lifes into a single still life that retains the properties of each of its components (such as the ability to eat gliders that are on specific paths)---a process that is called \emph{welding}.\index{welding}
+We saw in Section~\ref{sec:still_life_grammar} that there are many general methods for constructing a wide variety of still lifes of almost any size. We now focus on using these methods to combine multiple still lifes into a single still life that retains the properties of each of its components (such as the ability to eat gliders that are on specific paths)---a process that is called \textbf{welding}.\index{welding}
 
 To give an example of why we might want to weld two still lifes, suppose that we want to erase two gliders that are in the position shown in Figure~\ref{fig:unstable_eater_1s_a}. Since those gliders are so close to each other, there is no way to eat each of them with individual eaters such as eater~1---they will interfere with each other and no longer be stable, as shown in Figure~\ref{fig:unstable_eater_1s_b}.
 
@@ -440,25 +440,25 @@ From the very early days of Life, many examples of infinite still lifes were kno
 	\begin{subfigure}{.32\textwidth}
 		\centering
 		\patternimglink{0.1}{zebra_stripes}
-		\caption{\emph{Zebra stripes}.\index{zebra stripes}}
+		\caption{\textbf{Zebra stripes}.\index{zebra stripes}}
 		\label{fig:zebra_stripes}
 	\end{subfigure} \ \ %
 	\begin{subfigure}{.32\textwidth}
 		\centering
 		\patternimglink{0.1}{chicken_wire}
-		\caption{\emph{Chicken wire}.\index{chicken wire}}
+		\caption{\textbf{Chicken wire}.\index{chicken wire}}
 		\label{fig:chicken_wire}
 	\end{subfigure} \ \ % 
 	\begin{subfigure}{.32\textwidth}
 		\centering
 		\patternimglink{0.1}{onion_rings}
-		\caption{\emph{Onion rings}.\index{onion rings}}
+		\caption{\textbf{Onion rings}.\index{onion rings}}
 		\label{fig:onion_rings}
 	\end{subfigure}
 	\caption{When the plane is tiled with these patterns, they create infinite still lifes with density $1/2$.}\label{fig:dense_still_lifes}
 \end{figure}
 
-It was a long-standing question whether or not an asymptotic density of greater than $1/2$ is attainable, or if $1/2$ really is the upper limit.\footnote{The conjecture that the asymptotic density of still lifes does not exceed $1/2$ was called the \emph{still life conjecture}, which was first considered in \emph{Lifeline} vol. 3 in September 1971. In 1992, an upper bound of $6/11$ on the density of an infinite still life was proved by Dean Hickerson using the method outlined in Exercise~\ref{exer:sl_density_611}. This bound was then improved to $15/28$ by Hartmut Holzwart, and finally to $1/2$, hence proving the conjecture, by Noam Elkies in 1998 \cite{Elk98}.} The following theorem shows that the latter is the case: there are no stable configurations that are more dense than those presented in Figure~\ref{fig:dense_still_lifes} (though there are others that also attain density~$1/2$).\footnote{The original proof presented in \cite{Elk98} is somewhat complicated and requires a decent amount of casework, but also finds the maximum asymptotic density of still lifes in many other Life-like cellular automata. The simpler proof provided here, which is specific to the Game of Life, was first presented in \cite{CSB09}.}
+It was a long-standing question whether or not an asymptotic density of greater than $1/2$ is attainable, or if $1/2$ really is the upper limit.\footnote{The conjecture that the asymptotic density of still lifes does not exceed $1/2$ was called the \textbf{still life conjecture}, which was first considered in \emph{Lifeline} vol. 3 in September 1971. In 1992, an upper bound of $6/11$ on the density of an infinite still life was proved by Dean Hickerson using the method outlined in Exercise~\ref{exer:sl_density_611}. This bound was then improved to $15/28$ by Hartmut Holzwart, and finally to $1/2$, hence proving the conjecture, by Noam Elkies in 1998 \cite{Elk98}.} The following theorem shows that the latter is the case: there are no stable configurations that are more dense than those presented in Figure~\ref{fig:dense_still_lifes} (though there are others that also attain density~$1/2$).\footnote{The original proof presented in \cite{Elk98} is somewhat complicated and requires a decent amount of casework, but also finds the maximum asymptotic density of still lifes in many other Life-like cellular automata. The simpler proof provided here, which is specific to the Game of Life, was first presented in \cite{CSB09}.}
 
 \begin{theorem}[Still Life Density (version 1)]\label{thm:still_life_density}
 	A still life contained in an $n \times n$ bounding box has no more than $\lfloor n^2/2 \rfloor + 2n$ live cells. In particular, the asymptotic density of still lifes as $n \rightarrow \infty$ is no greater than $1/2$.
@@ -753,7 +753,7 @@ Finally, Simon Ekström wrote a program to search for still lifes in January 201
 	\setlength{\parskip}{0pt}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
-	\begin{problemstar}\label{exer:classify_still_lifes}
+	\begin{problemstar}\label{exer:classify_still_lifes} \probdiff{1}
 		Classify each of the following still lifes as either a strict still life, a pseudo still life, or neither.\setlength{\columnsep}{0pt}\vspace*{-0.25cm}
 		
 		\begin{multicols}{2}
@@ -777,8 +777,8 @@ Finally, Simon Ekström wrote a program to search for still lifes in January 201
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:quasi_still_life}
-		A \emph{quasi still life}\index{quasi still life} is a still life that can be partitioned into two or more disjoint still lifes with overlapping Moore neighborhoods (just like pseudo still lifes), but with all cells that stay dead from underpopulation in the constituent still lifes remaining underpopulated in the overall pattern. For example, the cell highlighted in \bgbox{yellowback2}{yellow} in Figure~\ref{fig:pseudo_not_pseudo} makes that configuration of two blocks a quasi still life.\smallskip
+	\begin{problem}\label{exer:quasi_still_life} \probdiff{2}
+		A \textbf{quasi still life}\index{quasi still life} is a still life that can be partitioned into two or more disjoint still lifes with overlapping Moore neighborhoods (just like pseudo still lifes), but with all cells that stay dead from underpopulation in the constituent still lifes remaining underpopulated in the overall pattern. For example, the cell highlighted in yellow in Figure~\ref{fig:pseudo_not_pseudo} makes that configuration of two blocks a quasi still life.\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item Which of the still lifes from Exercise~\ref{exer:classify_still_lifes} is a quasi still life?
@@ -803,7 +803,7 @@ Finally, Simon Ekström wrote a program to search for still lifes in January 201
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:pseudo_few_colors}
+	\begin{problemstar}\label{exer:pseudo_few_colors} \probdiff{2}
 		Partition each of the following pseudo still lifes into the smallest number (either $2$, $3$, or $4$) of still lifes possible.\setlength{\columnsep}{0pt}\vspace*{-0.25cm}
 		
 		\begin{multicols}{2}
@@ -827,7 +827,7 @@ Finally, Simon Ekström wrote a program to search for still lifes in January 201
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:still_life_add_dead}
+	\begin{problemstar}\label{exer:still_life_add_dead} \probdiff{2}
 		For each of the following patterns, find a way of changing some nearby dead cells into alive cells so that the resulting pattern is a still life (similarly to how we turned in the path in Figure~\ref{fig:still_life_path} into a still life).\vspace*{-0.25cm}
 		
 		\begin{multicols}{2}
@@ -845,7 +845,7 @@ Finally, Simon Ekström wrote a program to search for still lifes in January 201
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:small_strict_still_lifes}
+	\begin{problem}\label{exer:small_strict_still_lifes} \probdiff{3}
 		Find all strict still lifes, distinct up to rotation and reflection, with:\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
@@ -859,7 +859,7 @@ Finally, Simon Ekström wrote a program to search for still lifes in January 201
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:small_pseudo_still_lifes}
+	\begin{problem}\label{exer:small_pseudo_still_lifes} \probdiff{3}
 		Find all pseudo still lifes, distinct up to rotation and reflection, with:\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
@@ -873,7 +873,7 @@ Finally, Simon Ekström wrote a program to search for still lifes in January 201
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:still_life_add_coil}
+	\begin{problemstar}\label{exer:still_life_add_coil} \probdiff{2}
 		For each of the following patterns, find a way of adding induction coils so as to create a still life.\vspace*{-0.25cm}
 		
 		\begin{multicols}{2}\setlength{\columnsep}{1pt}
@@ -891,7 +891,7 @@ Finally, Simon Ekström wrote a program to search for still lifes in January 201
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:gosper_oscillator}
+	\begin{problem}\label{exer:gosper_oscillator} \probdiff{1}
 		Use the Gosper glider gun and an eater of your choice to create a period~30 oscillator.
 	\end{problem}
 	
@@ -899,7 +899,7 @@ Finally, Simon Ekström wrote a program to search for still lifes in January 201
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:eater_weld}
+	\begin{problemstar}\label{exer:eater_weld} \probdiff{2}
 		For each of the following configurations, weld or modify eater~1s and/or eater~2s so as to create a single eater that can destroy all of the displayed gliders, yet lives entirely within the region specified by the light gray cells.\vspace*{-0.25cm}
 		
 		\begin{enumerate}
@@ -925,7 +925,7 @@ Finally, Simon Ekström wrote a program to search for still lifes in January 201
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:eater_2_lwss_mwss}
+	\begin{problem}\label{exer:eater_2_lwss_mwss} \probdiff{2}
 		Show how a single eater~2\index{eater!2} can be used to eat...\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
@@ -940,14 +940,14 @@ Finally, Simon Ekström wrote a program to search for still lifes in January 201
 	
 	
 	\begin{problem}\label{exer:eater_3}
-		Recall \emph{eater~3}\index{eater!3} from Figure~\ref{fig:eater_3}.\smallskip
+		Recall eater~3\index{eater!3} from Figure~\ref{fig:eater_3}.\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item Find a way to use eater~3 to eat a glider.
+			\item \probdiff{1} Demonstrate how eater~3 can eat a glider.
 			
-			\item Find at least two still lifes that eater~3 can also eat when they are placed near its loaf.
+			\item \probdiff{2} Find at least two still lifes that eater~3 can also eat when they are placed near its loaf.
 			
-			\item Use two copies of the loaf-flipping reaction in eater~3 to create a period~$8$ oscillator.
+			\item \probdiff{2} Use two copies of the loaf-flipping reaction in eater~3 to create a period~$8$ oscillator.
 		\end{enumerate}
 		% SOLUTION:
 		% x = 100, y = 43, rule = B3/S23
@@ -971,7 +971,7 @@ Finally, Simon Ekström wrote a program to search for still lifes in January 201
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:still_life_impossible}
+	\begin{problem}\label{exer:still_life_impossible} \probdiff{4}
 		Prove that it is not possible to stabilize the path of live cells displayed below into a still life, no matter what dead cells you change to alive.
 		
 		\begin{center}
@@ -983,7 +983,7 @@ Finally, Simon Ekström wrote a program to search for still lifes in January 201
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:fast_glider_eater}
+	\begin{problemstar}\label{exer:fast_glider_eater} \probdiff{2}
 		Show how each of the following still lifes can be used to eat a glider in only $4$ generations, tying them with eater~1 as the fastest-known glider eaters.\vspace*{-0.25cm}
 		
 		\begin{multicols}{2}
@@ -999,8 +999,8 @@ Finally, Simon Ekström wrote a program to search for still lifes in January 201
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:loaf_eater}
-		Use a single loaf to eat both of the gliders displayed in Exercise~\ref{exer:eater_weld}(a), (b), and (d).
+	\begin{problem}\label{exer:loaf_eater} \probdiff{1}
+		Show how a single loaf can eat both of the gliders displayed in Exercise~\ref{exer:eater_weld}(a).
 	\end{problem}
 	% x = 73, y = 15, rule = B3/S23
 	% 2bo19bo$obo17bobo19bo19bo$b2o18b2o17bobo17bobo$25b2o14b2o18b2o$24bo2bo
@@ -1011,7 +1011,7 @@ Finally, Simon Ekström wrote a program to search for still lifes in January 201
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:incomplete_glider_eater}
+	\begin{problemstar}\label{exer:incomplete_glider_eater} \probdiff{3}
 		Complete the incomplete glider eater displayed below in such a way that it lives entirely within the region specified by the light gray cells.
 		
 		\begin{center}
@@ -1023,7 +1023,7 @@ Finally, Simon Ekström wrote a program to search for still lifes in January 201
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:still_lifes_6_neigh}
+	\begin{problemstar}\label{exer:still_lifes_6_neigh} \probdiff{3}
 		Prove that in a still life, a dead cell can have no more than six live neighbors. Provide an example of a still life that attains this bound.
 	\end{problemstar}
 	
@@ -1031,7 +1031,7 @@ Finally, Simon Ekström wrote a program to search for still lifes in January 201
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:densest_still_lifes}
+	\begin{problem}\label{exer:densest_still_lifes} \probdiff{3}
 		Find maximum-density still lifes in $n \times n$ bounding boxes for $n = 4, 6,$ and $8$ that are different from those displayed in Table~\ref{tab:still_life_n10}.
 	\end{problem}
 	
@@ -1039,7 +1039,7 @@ Finally, Simon Ekström wrote a program to search for still lifes in January 201
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:still_life_tokens}
+	\begin{problem}\label{exer:still_life_tokens} \probdiff{2}
 		In the proof of Theorem~\ref{thm:still_life_density}, we described a procedure for distributing tokens on the Life grid in such a way that every live cell in a still life ends up with at least $4$ tokens. Use this procedure to determine how many tokens end up on each live cell of the following still lifes:\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
@@ -1057,11 +1057,13 @@ Finally, Simon Ekström wrote a program to search for still lifes in January 201
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:sl_density_611}
+	\begin{problemstar}\label{exer:sl_density_611} \probdiff{3}
 		In the proof of Theorem~\ref{thm:still_life_density}, we described a procedure for distributing tokens on the Life grid that allowed us to prove that the asymptotic density of still lifes is no greater than $1/2$. If we instead use the much simpler token distribution scheme of ``every dead cell gives each live neighbor (in the Moore neighborhood sense) one token'', then we get a weaker upper bound, which you will now derive.\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item Using this new token distribution scheme, how many tokens should each cell start with to ensure that no cell ends up with a negative number of tokens? [Hint: Use Exercise~\ref{exer:still_lifes_6_neigh}.]
+			\item Using this new token distribution scheme, how many tokens should each cell start with to ensure that no cell ends up with a negative number of tokens?
+			
+			[Hint: Use Exercise~\ref{exer:still_lifes_6_neigh}.]
 			
 			\item Find a lower bound on the number of tokens that each live cell receives.
 			
@@ -1073,11 +1075,13 @@ Finally, Simon Ekström wrote a program to search for still lifes in January 201
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:still_life_density_rectangle}
-		In this question, we will consider the problem of finding the maximum density still life in a rectangular $m \times n$ bounding box.\smallskip
+	\begin{problem}\label{exer:still_life_density_rectangle} \probdiff{4}
+		In this question, we consider the problem of finding the maximum density still life in a rectangular $m \times n$ bounding box.\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item Prove that a still life with an $m \times n$ bounding box cannot have more than $\lfloor mn/2 \rfloor + m + n$ live cells. [Hint: Use the token distribution scheme from the proof of Theorem~\ref{thm:still_life_density}.]
+			\item Prove that a still life with an $m \times n$ bounding box cannot have more than $\lfloor mn/2 \rfloor + m + n$ live cells.
+			
+			[Hint: Use the token distribution scheme from the proof of Theorem~\ref{thm:still_life_density}.]
 			
 			\item Prove that a still life with an $m \times n$ bounding box cannot have more than $$\Big\lfloor mn/2 + \frac{1}{2}\lceil 2m/3 \rceil + \frac{1}{2}\lceil 2n/3 \rceil \Big\rfloor$$ live cells. [Hint: Use the argument that was used to prove Theorem~\ref{thm:still_life_density_better}.]
 			
@@ -1097,7 +1101,7 @@ Finally, Simon Ekström wrote a program to search for still lifes in January 201
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:dense_oscillator}
+	\begin{problem}\label{exer:dense_oscillator} \probdiff{3}
 		Construct an (infinitely large) oscillator of period at least $2$ with average density over all of its phases equal to exactly $1/2$.
 	\end{problem}
 	
