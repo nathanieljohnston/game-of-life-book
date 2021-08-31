@@ -206,7 +206,7 @@ By changing the evolution rule even more, a single cell can also act in a variet
 	\caption{In the non-isotropic rule in which all cells survive, but are only born as in (a), a single cell produces the Sierpi\'{n}ski triangle as in (b).}\label{fig:single_cell_weird}
 \end{figure}
 
-Indeed, if we restrict non-isotropic cellular automata to a single dimension (e.g., by having every cell survive and having births only occur to the south of live cells, as we did in Figure~\ref{fig:single_cell_sierpinski}) then we get exactly what are called \textbf{elementary cellular automata} \cite{Wolfram2002}. There are $2^8 = 256$ automata of this type, and the Sierpi\'{n}ski-triangle-generating rule works by emulating the one called \textbf{Rule 18}\index{Rule 18} (see Exercise~\ref{exer:rule_18}).
+Indeed, if we restrict non-isotropic cellular automata to a single dimension (e.g., by having every cell survive and having births only occur to the south of live cells, as we did in Figure~\ref{fig:single_cell_sierpinski}) then we get exactly what are called \textbf{elementary cellular automata}\index{elementary cellular automaton} \cite{Wolfram2002}. There are $2^8 = 256$ cellular automata of this type, and the Sierpi\'{n}ski-triangle-generating rule works by emulating the one called \textbf{Rule 18}.\index{Rule 18}
 
 There are $2^{512}$ different 2D not-necessarily-isotropic cellular automata, and the 0E0P metacell can emulate the $2^{511}$ of them that send a dead cell with no live neighbors to a dead cell. It can thus be used to embed all of the patterns from this section into Life, except for the knightship from Figure~\ref{fig:single_cell_knightship}, though at a much larger and slower scale. Of particular note is the fact that this method gave the first explicit construction of a spaceships made of spaceships\index{spaceship made of spaceships} in Life (and thus the first SMOSMOS in Life as well). This method also gave the first reflectorless rotating oscillator\index{reflectorless rotating oscillator} in Life, but there are minor technicalities that must be overcome in this case (see Exercise~\ref{exer:0e0p_rro_technicalities}).\footnote{However, ConwayLife.com forums user ``Goldtiger997'' used single-channel construction techniques to ``directly'' construct an SMOS and an RRO in Life in August 2021.}
 
@@ -1028,16 +1028,6 @@ When the diamond-shaped p1~megacell emulates another cellular automaton, it does
 Finally, Adam P.~Goucher spent 2014 through 2018 designing and constructing the 0E0P metacell, which solved the final problem described earlier---it does not require a background grid of ``dead'' cells to be placed on the Life plane. It achieves this extra feat by not just sending its state to its neighbors and then computing its own, but by also using universal construction to \emph{build} those neighbors in the first place. Methods of universal construction made significant progress throughout the 0E0P metacell's development, and the advent of single-channel glider synthesis in 2017 provided the key breakthrough that made its completion possible.
 
 
-% EXERCISE: Give reactions in HighLife-replicator-ship.rle from Golly and ask reader to make ship out of it
-% EXERCISE: Logarithmic replicator from B36/S245, found by Mark Niemiec in July 1994. Do... something with it. Pop in generation 300*4^n - 127 is 64 for all n >= 0.
-
-% EXERCISE: There is *almost* an RRO in a Life-like, but just give a footnote/exercise about it. Exercise could ask why it's not a true RRO.
-% EXERCISE: Show how iso in Moore neighborhood can emulate outer totalistic in von Neumann neighborhood
-% Exercise about emulating an elementary cellular automaton
-
-% Maybe exercise about 89-rotational RRO (https://www.conwaylife.com/forums/viewtopic.php?f=15&t=4116&p=131063#p131063). Or a part (b) of the already-planned RRO exercise?
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Exercises \hfill \normalfont\textsf{\small solutions to starred exercises on \hyperlink{solutions_0e0p}{page \pageref{solutions_0e0p}}}}
 \label{sec:solutions_0e0p}
@@ -1047,7 +1037,7 @@ Finally, Adam P.~Goucher spent 2014 through 2018 designing and constructing the 
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	
-	\begin{problem}\label{exer:replicator_rule_really_replicates}
+	\begin{problem}\label{exer:replicator_rule_really_replicates}\index{replicator (rule)}
 		Recall the replicator rule \texttt{B1357/S1357} that was illustrated in Figure~\ref{fig:replicator_smile}.\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
@@ -1123,6 +1113,18 @@ Finally, Adam P.~Goucher spent 2014 through 2018 designing and constructing the 
 	\mfilbreak
 	
 	
+	\begin{problemstar}\label{exer:life_like_almost_rro} \probdiff{3}
+		There are currently no RROs known in any Life-like cellular automaton. The period $272$ oscillator from the rule \texttt{B02348/S0123} that is displayed below is \emph{almost} an RRO, but is not quite. Explain why not.
+		
+		\begin{center}
+			\patternlink{life_like_almost_rro}{\vcenteredhbox{\patternimg{0.083}{life_like_almost_rro}} \vcenteredhbox{\genarrow{68}} \vcenteredhbox{\patternimg{0.083}{life_like_almost_rro_68}}}
+		\end{center}
+	\end{problemstar}
+
+
+	\mfilbreak
+	
+	
 	\begin{problemstar}\label{exer:non_isotropic_rulestring_life} \probdiff{3}
 		What is the non-isotropic rulestring (in the sense of Appendix~\ref{sec:non_isotropic_rulestrings}) for Conway's Game of Life?
 	\end{problemstar}
@@ -1156,6 +1158,21 @@ Finally, Adam P.~Goucher spent 2014 through 2018 designing and constructing the 
 		\end{enumerate}
 	\end{problem}
 	% Quotes from Adam (not double-checked): the different cell states, there are 200 different such functions sending 0 to 0. With 8 states we have 7 colors. Doing this with 6 or fewer colours is absolutely impossible, and with 7 colours is difficult (there are only 200 distinct solutions, or 13 up to rotation/reflection).
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:0e0p_iso_in_moore_emulate_von} \probdiff{4}
+		We saw in this chapter that cellular automata using the von Neumann neighborhood can sometimes emulate cellular automata using the Moore neighborhood. In this exercise, we show that the converse is also true.\smallskip
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Explain how (2-state, on a 2D square grid) isotropic cellular automata that use the Moore neighborhood can emulate arbitrary (2-state, on a 2D square grid) outer totalistic cellular automata that use the von Neumann neighborhood.
+			
+			\item Provide the isotropic rulestring of a Moore-neighborhood CA that emulates the von-Neumann-neighborhood rule \texttt{B23/S2V}.\footnote{The ``\texttt{V}'' at the end of this rulestring just indicates that the CA uses the von Neumann neighborhood.}
+		\end{enumerate}
+	\end{problem}
+	
 	
 	\mfilbreak
 	
