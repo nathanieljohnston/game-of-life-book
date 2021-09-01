@@ -22,7 +22,7 @@ In this chapter, we develop a systematic method of constructing patterns that tu
 	\caption{Three gliders colliding in such a way as to create a lightweight spaceship.}\label{fig:lwss_3_gliders}
 \end{figure}
 
-We call this a \emph{3-glider synthesis} of the lightweight spaceship, and it is useful because we already know of some patterns (i.e., glider guns) that generate gliders, so we can now create patterns that generate lightweight spaceships: we can just aim the output of three glider guns so as to collide with each other in the right way. For example, Figure~\ref{fig:lwss_gun} uses three Gosper glider guns to create a period~30 lightweight spaceship\index{lightweight!spaceship} gun.
+We call this a \textbf{3-glider synthesis} of the lightweight spaceship, and it is useful because we already know of some patterns (i.e., glider guns) that generate gliders, so we can now create patterns that generate lightweight spaceships: we can just aim the output of three glider guns so as to collide with each other in the right way. For example, Figure~\ref{fig:lwss_gun} uses three Gosper glider guns to create a period~30 lightweight spaceship\index{lightweight!spaceship} gun.
 
 \begin{figure}[!htb]
 	\centering\patternimglink{0.1}{lwss_gun}
@@ -74,11 +74,11 @@ To begin down this road, we look at the simplest type of glider synthesis we can
 			
 			\specialcell{nothing} & \multicolumn{4}{l}{\specialcell{\\[-0.75em]\patternlink{2_glider_syntheses}{\patternimg{0.1}{2_glider_nothing}}}} \\\bottomrule
 		\end{tabular}
-		\caption{A summary of the results of all $71$ possible $2$-glider collisions. The four ``misc'' collisions yield somewhat messy combinations of common objects like blocks and blinkers. The rightmost of the ``misc'' collisions (highlighted in \bgbox{redback}{red}) is sometimes called the \emph{two-glider mess}\index{two-glider mess}, as it takes 530 generations to stabilize---more than any of the other collisions. The left glider-producing collision (highlighted in \bgbox{yellowback2}{yellow}) is called the  \emph{kickback reaction},\index{kickback reaction} since it produces an output glider traveling in a different direction than either of the input gliders.}\label{tab:2_glider_synth}
+		\caption{A summary of the results of all $71$ possible $2$-glider collisions. The four ``misc'' collisions yield somewhat messy combinations of common objects like blocks and blinkers. The rightmost of the ``misc'' collisions (highlighted in \bgbox{redback}{red}) is sometimes called the \textbf{two-glider mess}\index{two-glider mess}, as it takes 530 generations to stabilize---more than any of the other collisions. The left glider-producing collision (highlighted in \bgbox{yellowback2}{yellow}) is called the  \textbf{kickback reaction},\index{kickback reaction} since it produces an output glider traveling in a different direction than either of the input gliders.}\label{tab:2_glider_synth}
 	\end{center}
 \end{table}
 
-While the objects that we can create with just two gliders are not particularly exciting, many of them are essential building blocks of complex patterns, such as eater~1 and the B-heptomino (which we recall evolves into a Herschel). It is also worth pointing out that the two collisions that result in a single glider can in fact sometimes be useful. In particular, the one of these collisions that is on the left in Table~\ref{tab:2_glider_synth} is called the \emph{kickback reaction}, and it is useful for that fact that the output glider travels in a different direction than either of the two input gliders. This feature can help us navigate gliders around tight spots and simplify many complicated glider syntheses (see Exercise~\ref{exer:glider_synth_two_directions}, for example).
+While the objects that we can create with just two gliders are not particularly exciting, many of them are essential building blocks of complex patterns, such as eater~1 and the B-heptomino (which we recall evolves into a Herschel). It is also worth pointing out that the two collisions that result in a single glider can in fact sometimes be useful. In particular, the one of these collisions that is on the left in Table~\ref{tab:2_glider_synth} is called the \textbf{kickback reaction}, and it is useful for that fact that the output glider travels in a different direction than either of the two input gliders. This feature can help us navigate gliders around tight spots and simplify many complicated glider syntheses (see Exercise~\ref{exer:glider_synth_two_directions}, for example).
 
 
 \section{Syntheses Involving Three or More Gliders}\label{sec:3glidersynth}
@@ -116,7 +116,7 @@ On the other hand, being unable to catalog all of these three-glider collisions 
 	\end{center}
 \end{table}
 
-Although the $3$-glider syntheses of a single glider from Table~\ref{tab:3_glider_synth} (which are called \emph{tees}\index{tee}) might seem somewhat silly at first glance, they have the useful property that the synthesized glider travels perpendicular to each of the input gliders\footnote{The first two of these syntheses work by colliding two of the gliders so as to create a banana spark\index{banana spark}, which then reflects the third glider as in Figure~\ref{fig:spark_glider_reflect}.}---a property that is not shared by any of its $2$-glider syntheses. For this reason, these syntheses are actually quite useful when trying to manipulate glider positions or reduce the number of directions used in glider syntheses of more complicated objects (see Exercise~\ref{exer:glider_synth_tee}, for example).
+Although the $3$-glider syntheses of a single glider from Table~\ref{tab:3_glider_synth} (which are called \textbf{tees}\index{tee}) might seem somewhat silly at first glance, they have the useful property that the synthesized glider travels perpendicular to each of the input gliders\footnote{The first two of these syntheses work by colliding two of the gliders so as to create a banana spark\index{banana spark}, which then reflects the third glider as in Figure~\ref{fig:spark_glider_reflect}.}---a property that is not shared by any of its $2$-glider syntheses. For this reason, these syntheses are actually quite useful when trying to manipulate glider positions or reduce the number of directions used in glider syntheses of more complicated objects (see Exercise~\ref{exer:glider_synth_tee}, for example).
 
 The three-glider collision that creates a glider-producing switch engine is quite exciting, as it is our first example of a synthesis of an infinitely-growing pattern. Being able to synthesize queen bees is similarly exciting, since a Gosper glider gun is made up of nothing more than two blocks and two queen bees, all of which we now know how to synthesize. By simply synthesizing all of these objects in the correct positions and phases, we are now able to use gliders to synthesize a pattern that creates additional gliders (see Figure~\ref{fig:gosper_glider_synth}),\footnote{Synthesizing the Gosper glider gun ``piece-by-piece'' like this is the quite straightforward, and requires 10 gliders. However, slightly smaller syntheses of the Gosper glider gun are known, requiring as few as 8 gliders.} and we could conceivably use rakes to create Gosper glider guns that in turn create other patterns.
 
@@ -151,7 +151,7 @@ For this reason, we often prefer glider syntheses that use widely-spaced gliders
 
 Glider syntheses can quickly become cumbersome to use as the number of gliders involved increases. While the guns and rakes that we have already developed let us fire two streams of gliders that collide in any of the 71 possible ways illustrated in Table~\ref{tab:2_glider_synth}, as soon as three or more gliders are involved, it can be quite difficult to coordinate them so that they all arise at the desired time. For example, it would be challenging to implement the ten-glider synthesis of a Gosper glider gun from Figure~\ref{fig:gosper_glider_synth} ``directly'', as it would require to coordinate the precise positioning and timing of all ten gliders.
 
-To get around this problem, we make use of \emph{incremental synthesis}: we build up complicated patterns by first synthesizing a small stable pattern (like a block or a pond), and then collide only a few gliders with that stable pattern to create a slightly more complicated stable pattern, and so on until we arrive at the pattern we actually want. The main benefit of this type of synthesis is that we do not need to be particularly precise with the timing of the gliders---the different stages of synthesis can take place as many generations apart from each other as we like, so we only need to coordinate a few gliders at a time.
+To get around this problem, we make use of \textbf{incremental synthesis}: we build up complicated patterns by first synthesizing a small stable pattern (like a block or a pond), and then collide only a few gliders with that stable pattern to create a slightly more complicated stable pattern, and so on until we arrive at the pattern we actually want. The main benefit of this type of synthesis is that we do not need to be particularly precise with the timing of the gliders---the different stages of synthesis can take place as many generations apart from each other as we like, so we only need to coordinate a few gliders at a time.
 
 As an example, consider the incremental synthesis of the fumarole\index{fumarole} that is presented in Figure~\ref{fig:fumarole_sequential}. While there is a glider synthesis for the fumarole that involves only $7$~gliders (see Exercise~\ref{exer:glider_cleanup}), this $12$-glider synthesis is somewhat easier to make use of, since each stage of its synthesis requires no more than $3$ synchronized gliders.
 
@@ -333,7 +333,7 @@ The only somewhat tricky part of synthesizing this collection of objects is crea
 
 \section{A Gosper Glider Gun Breeder}\label{sec:gosper_breeder}
 
-We have now learned quite a few recipes for synthesizing different objects with gliders. To demonstrate how useful these glider syntheses can be, we now switch focus a bit and start \emph{using} these glider syntheses to create new types of patterns. In particular, we now construct our first \emph{breeder}\index{breeder}: a object that grows quadratically (as opposed to objects like guns or rakes, which grow linearly). In other words, we will construct an object that does not just fill up some \emph{strip} of the Life plane, but instead fills an ever-expanding \emph{region} of the Life plane.
+We have now learned quite a few recipes for synthesizing different objects with gliders. To demonstrate how useful these glider syntheses can be, we now switch focus a bit and start \emph{using} these glider syntheses to create new types of patterns. In particular, we now construct our first \textbf{breeder}\index{breeder}: a object that grows quadratically (as opposed to objects like guns or rakes, which grow linearly). In other words, we will construct an object that does not just fill up some \emph{strip} of the Life plane, but instead fills an ever-expanding \emph{region} of the Life plane.
 
 The idea behind this breeder is simple enough: we use the rakes that we introduced in Section~\ref{sec:rakes} to fire gliders in such a way that those gliders synthesize Gosper glider guns (using the incremental synthesis from Figure~\ref{fig:gosper_sequential}). Since the rakes will create Gosper glider guns at a linear rate, and the Gosper glider guns will then each create gliders at a linear rate, the overall growth of our pattern will be quadratic.
 
@@ -368,9 +368,9 @@ While this breeder is quite large, we have purposely not optimized it all, in or
 
 \section{Slow Salvo Synthesis}\label{sec:slow_salvo}
 
-In Section~\ref{sec:incremental_synthesis}, we saw that we can often break glider syntheses down into bits and pieces that are individually easy to understand and make use of. In this section, we take this idea to its most extreme by considering \emph{slow salvos}\index{salvo}, which are collections of gliders\footnote{Technically, a salvo can be made up of any spaceships, but the term almost always refers to gliders.} that (a) are \emph{slow}: only one glider interacts in the synthesis at a time, and (b) form a \emph{salvo}: all of the gliders come from the same direction.
+In Section~\ref{sec:incremental_synthesis}, we saw that we can often break glider syntheses down into bits and pieces that are individually easy to understand and make use of. In this section, we take this idea to its most extreme by considering \textbf{slow salvos}\index{salvo}, which are collections of gliders\footnote{Technically, a salvo can be made up of any spaceships, but the term almost always refers to gliders.} that (a) are \textbf{slow}: only one glider interacts in the synthesis at a time, and (b) form a \textbf{salvo}: all of the gliders come from the same direction.
 
-In order for the gliders in a slow salvo to be able to actually synthesize anything, we need another object (called a \emph{seed}\index{seed}) for it to crash into. While we could in principle use any object, it is typical to use a block\index{block} as a starting point, since it is the simplest and most symmetric stationary object. Furthermore, it is typical to only consider either \emph{p1 slow salvos} or \emph{p2 slow salvos}, which are slow salvos in which the intermediate objects that are created after every glider collision are still lifes or some combination of still lifes and period~2 oscillators, respectively.\footnote{P2 salvos are advantageous because blinkers are so easy to synthesize, and we will see shortly that the clock\index{clock} is also a useful tool when working with slow salvos. We could analogously consider p$n$ slow salvos for some $n \geq 3$, but in practice not much is gained by doing so, since objects with period~3 or higher typically aren't any easier to create in intermediate stages of synthesis than objects period~1 or period~2.} This perhaps seems like quite an extensive list of restrictions, but we have in fact already seen a few objects that can be created via p1 slow salvos. For example, we saw in Table~\ref{tab:sequential_synth} that we could use a pond as a seed in a p1~slow salvo to produce a ship, and then a queen bee.% As a less trivial example, consider the p1 slow salvo synthesis presented in Figure~??, which uses a total of 12 gliders to gradually change the starting block into more and more complicated still lifes, eventually resulting in an eater~1. Compare this synthesis with the one presented in Figure~\ref{fig:17_cell_synthesis}, which was neither slow (multiple gliders are involved in most stages of synthesis) nor a salvo (gliders approach from all four directions).
+In order for the gliders in a slow salvo to be able to actually synthesize anything, we need another object (called a \textbf{seed}\index{seed}) for it to crash into. While we could in principle use any object, it is typical to use a block\index{block} as a starting point, since it is the simplest and most symmetric stationary object. Furthermore, it is typical to only consider either \textbf{p1 slow salvos} or \textbf{p2 slow salvos}, which are slow salvos in which the intermediate objects that are created after every glider collision are still lifes or some combination of still lifes and period~2 oscillators, respectively.\footnote{P2 salvos are advantageous because blinkers are so easy to synthesize, and we will see shortly that the clock\index{clock} is also a useful tool when working with slow salvos. We could analogously consider p$n$ slow salvos for some $n \geq 3$, but in practice not much is gained by doing so, since objects with period~3 or higher typically aren't any easier to create in intermediate stages of synthesis than objects period~1 or period~2.} This perhaps seems like quite an extensive list of restrictions, but we have in fact already seen a few objects that can be created via p1 slow salvos. For example, we saw in Table~\ref{tab:sequential_synth} that we could use a pond as a seed in a p1~slow salvo to produce a ship, and then a queen bee.% As a less trivial example, consider the p1 slow salvo synthesis presented in Figure~??, which uses a total of 12 gliders to gradually change the starting block into more and more complicated still lifes, eventually resulting in an eater~1. Compare this synthesis with the one presented in Figure~\ref{fig:17_cell_synthesis}, which was neither slow (multiple gliders are involved in most stages of synthesis) nor a salvo (gliders approach from all four directions).
 
 Despite how restrictive slow salvos seem at first, it is a remarkable fact that they are exactly as general as standard glider syntheses. That is, if we can synthesize an object with gliders at all then we can synthesize it with a p2 slow salvo.\footnote{However, the slow salvo might contain considerably more gliders than other glider syntheses.} In order to pin down exactly why this is the case, we now introduce several new reactions that allow us to systematically create slow salvo syntheses from standard glider syntheses.
 
@@ -421,7 +421,7 @@ If we repeat these two reactions then we can move a block a single cell up, down
 	\item To move a block down by a single cell, we could first move it left by a single cell and then perform the movement in Figure~\ref{fig:block_move_6_gliders}.\smallskip
 \end{itemize}
 
-Now that we know how to use p1 slow salvos to move a block by a single cell in any direction, we can easily repeat these reactions over and over until the block is moved to whatever position we desire. However, there are a few other block-moving slow salvos that are worth making note of, since they help us move blocks around the plane a bit more quickly. In particular, if we are willing to make use of p2 salvos instead of just p1 ones, then we gain access to the salvos displayed in Figure~\ref{fig:p2_block_movers}. There are hundreds of salvos of this type known.\footnote{A collection of them is available at \httpsurl{conwaylife.com/forums/viewtopic.php?f=7\&t=1072\#p8182}.} It is worth noting that the \emph{$(2,1)$ block push}\index{(2,1) block push} of Figure~\ref{fig:block_push_2_1} \emph{pushes} the block by the same amount that the $(2,1)$ block pull of Figure~\ref{fig:block_move_1_glider} pulls it.
+Now that we know how to use p1 slow salvos to move a block by a single cell in any direction, we can easily repeat these reactions over and over until the block is moved to whatever position we desire. However, there are a few other block-moving slow salvos that are worth making note of, since they help us move blocks around the plane a bit more quickly. In particular, if we are willing to make use of p2 salvos instead of just p1 ones, then we gain access to the salvos displayed in Figure~\ref{fig:p2_block_movers}. There are hundreds of salvos of this type known.\footnote{A collection of them is available at \httpsurl{conwaylife.com/forums/viewtopic.php?f=7\&t=1072\#p8182}.} It is worth noting that the \textbf{(2,1) block push}\index{(2,1) block push} of Figure~\ref{fig:block_push_2_1} \emph{pushes} the block by the same amount that the $(2,1)$ block pull of Figure~\ref{fig:block_move_1_glider} pulls it.
 
 % General note now about pushes being more expensive than pulls?
 
@@ -439,7 +439,7 @@ Now that we know how to use p1 slow salvos to move a block by a single cell in a
 				\colorletternode{green}{0.4}{4.55}{4}
 				\colorletternode{green}{3.95}{6.15}{5}
 				\end{tikzpicture}}
-			\caption{$(2,1)$ \emph{block push}.}\label{fig:block_push_2_1}
+			\caption{$(2,1)$ block push.}\label{fig:block_push_2_1}
 		\end{subfigure} &
 		\begin{subfigure}[b]{.21\textwidth}
 			\centering
@@ -453,7 +453,7 @@ Now that we know how to use p1 slow salvos to move a block by a single cell in a
 				\colorletternode{green}{2.3}{5.7}{5}
 				\colorletternode{green}{0.5}{6.2}{6}
 				\end{tikzpicture}}
-			\caption{$(1,-1)$ \emph{block move}.}\label{fig:block_move_1_neg1}
+			\caption{$(1,-1)$ block move.}\label{fig:block_move_1_neg1}
 		\end{subfigure} &
 		\begin{subfigure}[b]{.27\textwidth}
 			\centering
@@ -465,7 +465,7 @@ Now that we know how to use p1 slow salvos to move a block by a single cell in a
 				\colorletternode{green}{0.68}{3.82}{3}
 				\colorletternode{green}{1.25}{5.72}{4}
 				\end{tikzpicture}}
-			\caption{$(11,0)$ \emph{block pull}.\index{(11,0) block pull}}\label{fig:block_move_11_0}
+			\caption{$(11,0)$ block pull.\index{(11,0) block pull}}\label{fig:block_move_11_0}
 		\end{subfigure} &
 		\begin{subfigure}[b]{.23\textwidth}
 			\centering
@@ -479,7 +479,7 @@ Now that we know how to use p1 slow salvos to move a block by a single cell in a
 				\colorletternode{green}{0.35}{5.05}{5}
 				\colorletternode{green}{4.65}{6.35}{6}
 				\end{tikzpicture}}
-			\caption{$(11,0)$ \emph{block push}.\index{(11,0) block push}}\label{fig:block_push_11_0}
+			\caption{$(11,0)$ block push.\index{(11,0) block push}}\label{fig:block_push_11_0}
 		\end{subfigure}
 	\end{tabular}
 	\caption{Some p2 slow salvos that move a block by various amounts. The output location of the block is highlighted in \bgbox{greenpastel}{green}.}
@@ -492,11 +492,11 @@ Now that we know how to use p1 slow salvos to move a block by a single cell in a
 
 Just like we can use gliders to create and move blocks around the Life plane, we can also use blocks to move gliders around the Life plane. We can thus use a p1 slow salvo to create arrangements of blocks that then change the direction of other gliders in the salvo, thus creating salvos that come from multiple directions.
 
-To be a bit more explicit, consider the arrangement of blocks presented in Figure~\ref{fig:one_time_turner}, which can be used to rotate a glider by 90 degrees, but is destroyed in the process (contrast this with reflectors like the Snark\index{Snark}, which rotate gliders but remain unchanged). Reflectors like this are called \emph{one-time turners}\index{one-time turner}, and they are one of the key ingredients that let us emulate arbitrary glider syntheses via slow salvos. There are also numerous other 90-degree one-time turners involving various numbers of blocks (and sometimes other small still lifes---see Exercise~\ref{exer:boat_one_time_turner}), but this turner involving just two blocks is perhaps the simplest, and for now it is enough for our purposes.
+To be a bit more explicit, consider the arrangement of blocks presented in Figure~\ref{fig:one_time_turner}, which can be used to rotate a glider by 90 degrees, but is destroyed in the process (contrast this with reflectors like the Snark\index{Snark}, which rotate gliders but remain unchanged). Reflectors like this are called \textbf{one-time turners}\index{one-time turner}, and they are one of the key ingredients that let us emulate arbitrary glider syntheses via slow salvos. There are also numerous other 90-degree one-time turners involving various numbers of blocks (and sometimes other small still lifes---see Exercise~\ref{exer:boat_one_time_turner}), but this turner involving just two blocks is perhaps the simplest, and for now it is enough for our purposes.
 
 \begin{figure}[!htb]
 	\centering\embedlink{one_time_turner}{\vcenteredhbox{\patternimg{0.14}{one_time_turner_0}} \vcenteredhbox{\genarrow{35}} \vcenteredhbox{\patternimg{0.14}{one_time_turner_35}}}
-	\caption{A \emph{one-time turner} composed of two blocks that rotates a glider by 90 degrees and destroys the blocks at the same time.}\label{fig:one_time_turner}
+	\caption{A \textbf{one-time turner} composed of two blocks that rotates a glider by 90 degrees and destroys the blocks at the same time.}\label{fig:one_time_turner}
 \end{figure}
 
 Importantly, because this one-time turner is made up of nothing other than blocks, we can construct it using a p1 slow salvo via the techniques that we developed in the previous section. An explicit $12$-glider p1 slow salvo that does the job (and also leaves us with an extra block that we can then use to construct additional turners) is displayed in Figure~\ref{fig:create_one_time_turner}. This salvo works by using 2 gliders to duplicate the initial block (as in Figure~\ref{fig:slow_salvo_splitter}), 8 gliders to move one of these blocks to a new position, and then 2 more gliders to duplicate this block again.% (and due to the clever way we repositioned the second block, this second duplication leaves a pair of blocks in exactly the one-time turner configuration).
@@ -546,11 +546,11 @@ Unfortunately, this construction does not give us a true p1 slow salvo for const
 % table of blockic splitters: http://conwaylife.com/forums/viewtopic.php?f=2&t=1065#p7661
 \subsection{Splitters and Timing}\label{sec:slow_salvo_splitters}
 
-The first ingredient that we need in order avoid having to send synchronized gliders at our one-time turners is a method of turning one glider into many gliders. Just like our one-time turner, we would like this pattern to be composed entirely of blocks, and we would like it to be cleanly destroyed during the glider-duplicating reaction. Patterns with these properties are called \emph{blockic splitters}\index{blockic splitter},\footnote{The term \emph{blockic} refers to the fact that it is composed entirely of blocks. There are also splitters (and one-time turners) made up of other still lifes (or even blinkers), but we do not consider them here since blocks are enough for our purposes.} and one example is provided in Figure~\ref{fig:one_time_splitter}.
+The first ingredient that we need in order avoid having to send synchronized gliders at our one-time turners is a method of turning one glider into many gliders. Just like our one-time turner, we would like this pattern to be composed entirely of blocks, and we would like it to be cleanly destroyed during the glider-duplicating reaction. Patterns with these properties are called \textbf{blockic splitters}\index{blockic splitter},\footnote{The term \textbf{blockic} refers to the fact that it is composed entirely of blocks. There are also splitters (and one-time turners) made up of other still lifes (or even blinkers), but we do not consider them here since blocks are enough for our purposes.} and one example is provided in Figure~\ref{fig:one_time_splitter}.
 
 \begin{figure}[!htb]
 	\centering\embedlink{one_time_splitter}{\vcenteredhbox{\patternimg{0.15}{one_time_splitter_0}} \vcenteredhbox{\genarrow{202}} \vcenteredhbox{\patternimg{0.09}{one_time_splitter_202}}}
-	\caption{A \emph{blockic splitter}, which uses three blocks to turn one glider into four gliders (while destroying the blocks in the process).}\label{fig:one_time_splitter}
+	\caption{A \textbf{blockic splitter}, which uses three blocks to turn one glider into four gliders (while destroying the blocks in the process).}\label{fig:one_time_splitter}
 \end{figure}
 
 This splitter \emph{almost} gets us what we need---it lets us turn one glider into four, and we could chain multiple splitters together to turn one glider into as many as we desire. We can use one-time turners to move these gliders around the Life plane, with the intention of emulating multi-direction glider syntheses, but unfortunately we are faced with two brand new problems:\smallskip
@@ -588,24 +588,24 @@ We now have a complete set of glider-preserving or glider-changing turners capab
 \begin{figure}[!htb]
 	\centering
 	\patternimglinkwidth{\textwidth}{clock_slow_salvo}
-	\caption{A \emph{blockic seed} for a clock: The blockic splitter at the top-center (highlighted in \bgbox{orangeback2}{orange}) turns the single incoming glider into four gliders whose paths are outlined in \bgbox{yellowback2}{yellow}, \bgbox{greenpastel}{green}, \bgbox{aquaback}{aqua}, and \bgbox{magentaback}{magenta}. Those gliders are repeatedly reflected via one-time turners in such a way that they end up in the indicated positions required to synthesize a clock after $537$ generations. We could probably get away with using fewer one-time turners, but by placing a 180-degree turner in the path of every glider it is much easier to get their timing right.}
+	\caption{A \textbf{blockic seed} for a clock: The blockic splitter at the top-center (highlighted in \bgbox{orangeback2}{orange}) turns the single incoming glider into four gliders whose paths are outlined in \bgbox{yellowback2}{yellow}, \bgbox{greenpastel}{green}, \bgbox{aquaback}{aqua}, and \bgbox{magentaback}{magenta}. Those gliders are repeatedly reflected via one-time turners in such a way that they end up in the indicated positions required to synthesize a clock after $537$ generations. We could probably get away with using fewer one-time turners, but by placing a 180-degree turner in the path of every glider it is much easier to get their timing right.}
 	\label{fig:clock_slow_salvo}
 \end{figure}
 
-A configuration of simple still lifes, like the one in Figure~\ref{fig:clock_slow_salvo}, that synthesizes an particular object when hit by a glider (or gliders) is called a \emph{seed}\index{seed} (and a seed made up entirely of blocks is called a \emph{blockic seed}).\index{blockic seed} Seeds are particularly useful since they immediately give us a p1 slow salvo for constructing an object---a clock in this case---since we ``just'' have to use a p1 slow salvo to construct the still lifes in the seed and then fire one additional glider to trigger the synthesis.
+A configuration of simple still lifes, like the one in Figure~\ref{fig:clock_slow_salvo}, that synthesizes an particular object when hit by a glider (or gliders) is called a \textbf{seed}\index{seed} (and a seed made up entirely of blocks is called a \textbf{blockic seed}).\index{blockic seed} Seeds are particularly useful since they immediately give us a p1 slow salvo for constructing an object---a clock in this case---since we ``just'' have to use a p1 slow salvo to construct the still lifes in the seed and then fire one additional glider to trigger the synthesis.
 
 However, actually building a slow salvo synthesis for a seed is a tedious process. The $31$-block seed for a clock from Figure~\ref{fig:clock_slow_salvo} requires hundreds of slow gliders to construct (see Exercise~\ref{exer:create_clock_turners_nonsync})---recall that we already needed 12 gliders just to create a single $2$-block one-time turner in Figure~\ref{fig:create_one_time_turner}. For this reason, slow salvo syntheses of seeds are typically built by computer scripts, with \emph{slsparse}\index{slsparse}\index{slmake|see {slsparse}} (see \httpsurl{conwaylife.com/wiki/Slsparse} for tutorials and a download link) being the most widely used.% Even very small syntheses can require hundreds or thousands of gliders to emulate in a p1 slow salvo.\footnote{As an example, Dave Greene constructed an explicit p1 slow salvo consisting of 997 gliders that constructs a configuration of 81 blocks that, when hit by one additional glider, transforms into an 8-glider synthesis of the loafer\index{loafer} spaceship. This salvo can be seen at \httpsurl{conwaylife.com/forums/viewtopic.php?f=2\&t=1006\&p=7574\#p7574}.}
 
 
 \subsection{Tight Packings of Gliders}\label{sec:slow_salvo_tight}
 
-There is still one final problem that might arise when trying to emulate an arbitrary glider synthesis via a slow salvo synthesis, and that is the fact that some syntheses involve packings of gliders coming from the same direction that are too close together for us to place with our one-time turners. This was not a problem for the clock synthesis in Figure~\ref{fig:clock_slow_salvo} since each of the gliders in the synthesis comes from a different direction. However, if we were to try to use a p1 slow salvo to emulate the 3-glider synthesis of a HWSS displayed in Table~\ref{tab:3_glider_synth}, it is not obvious that we can position the two gliders that are heading southwest close enough to each other (since one of the gliders might interfere with any one-time turner that we try to use to position the other glider). To fix this glider-packing problem, we introduce one final reaction: the \emph{clock inserter}\index{clock!inserter},\footnote{Found by Martin Grant in December 2014.} which uses two opposing gliders to transform a clock\index{clock} into a perpendicular glider, as in Figure~\ref{fig:clock_inserter}.
+There is still one final problem that might arise when trying to emulate an arbitrary glider synthesis via a slow salvo synthesis, and that is the fact that some syntheses involve packings of gliders coming from the same direction that are too close together for us to place with our one-time turners. This was not a problem for the clock synthesis in Figure~\ref{fig:clock_slow_salvo} since each of the gliders in the synthesis comes from a different direction. However, if we were to try to use a p1 slow salvo to emulate the 3-glider synthesis of a HWSS displayed in Table~\ref{tab:3_glider_synth}, it is not obvious that we can position the two gliders that are heading southwest close enough to each other (since one of the gliders might interfere with any one-time turner that we try to use to position the other glider). To fix this glider-packing problem, we introduce one final reaction: the \textbf{clock inserter}\index{clock!inserter},\footnote{Found by Martin Grant in December 2014.} which uses two opposing gliders to transform a clock\index{clock} into a perpendicular glider, as in Figure~\ref{fig:clock_inserter}.
 
 \begin{figure}[!htb]
 	\centering
 	\embedlink{clock_inserter}{\vcenteredhbox{\phantom{$\cdots$ \genarrow{1}}} \vcenteredhbox{\patternimg{0.1}{clock_inserter_0}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.1}{clock_inserter_1}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.1}{clock_inserter_2}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.1}{clock_inserter_3}} \vcenteredhbox{\phantomarrowa{} $\cdots$} \\[1em]
 		\vcenteredhbox{$\cdots$ \genarrow{1}} \vcenteredhbox{\patternimg{0.1}{clock_inserter_4}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.1}{clock_inserter_5}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.1}{clock_inserter_6}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.1}{clock_inserter_7}} \vcenteredhbox{\phantom{\phantomarrowa{} $\cdots$}}}
-	\caption{The \emph{clock inserter} is a reaction that very cleanly collides two gliders in such a way as to transform a clock into a perpendicular glider. The two-glider collision produces a domino spark in generation~5 (shown in \bgbox{orangeback}{orange}) and then dies off, while the domino spark\index{domino spark} initiates the clock-to-glider transformation. The debris at the bottom-right in generation~8 dies off in 5 more generations.}\label{fig:clock_inserter}
+	\caption{The \textbf{clock inserter} is a reaction that very cleanly collides two gliders in such a way as to transform a clock into a perpendicular glider. The two-glider collision produces a domino spark in generation~5 (shown in \bgbox{orangeback}{orange}) and then dies off, while the domino spark\index{domino spark} initiates the clock-to-glider transformation. The debris at the bottom-right in generation~8 dies off in 5 more generations.}\label{fig:clock_inserter}
 \end{figure}
 
 The key facts that make this reaction so useful for us are (1) that the output glider appears at a small offset and moves through the space just vacated by the colliding input gliders, and (2) the reaction is almost effortless---it does not disrupt any other cells around the clock and output glider, and thus does not disrupt other nearby gliders either. This reaction can thus be used to place a glider very close in front of, or to the side of, another already-placed glider (see Figure~\ref{fig:clock_inserter_effective} for an illustration of how closely it can place a new glider to other gliders). Because of this, we can use this reaction to build any arrangement of gliders, no matter how tight, as long as we start by placing the gliders in the back first. Actually \emph{proving} that the clock inserter reaction can be used to build any arrangement of gliders is somewhat technical and messy,\footnote{Chris Cain wrote a script that automatically uses clock inserters to build glider arrangements in 2014, and then he and Dave Greene used the script to build such a wide array of tight glider arrangements that this could probably be considered the first proof that p2 slow salvos can build any configuration of gliders. Cain's script can be found at \httpsurl{conwaylife.com/forums/viewtopic.php?f=2\&t=1512\&start=25\#p15133}.} since there are many possible ways for gliders to be near each other, so we defer the proof to Appendix~\ref{chp:appendix_salvo}.
@@ -717,7 +717,6 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 %\clearpage % move "Exercises" header to next page, so not empty on page
 
 
-% TODO(?): Mention more-or-less complete recent computer search for 3-glider syntheses and recently found such syntheses
 % One-time glider to LWSS: http://conwaylife.com/forums/viewtopic.php?f=2&t=1134&p=8489#p8488
 % one-time LWSS turner: http://conwaylife.com/forums/viewtopic.php?f=2&t=1134&p=8489#p8519
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -728,20 +727,20 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	\setlength{\parskip}{0pt}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
-	\begin{problemstar}\label{exer:glider_cleanup}
+	\begin{problem}\label{exer:glider_cleanup} \probdiff{1}
 		Many glider syntheses work by using a small number of gliders to create the desired object plus some debris, and then additional gliders to clean up the debris. In each of the following syntheses, identify which gliders are used to clean up debris.
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{exercise_glider_cleanup_1}}
 			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{tumbler_synthesis}}
 			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{snacker_synthesis}}\\
 		\end{enumerate}
-	\end{problemstar}
+	\end{problem}
 	
 	
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:single_glider_cleanup}
+	\begin{problemstar}\label{exer:single_glider_cleanup} \probdiff{1}
 		Gliders can be used to destroy essentially any unwanted debris that is left over after a synthesis. Use a single glider to destroy each of the following objects (and also destroy the glider in the process):
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item A block.
@@ -754,13 +753,13 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 			
 			\item An LWSS.
 		\end{enumerate}
-	\end{problem}
+	\end{problemstar}
 	
 	
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:multiple_glider_cleanup}
+	\begin{problem}\label{exer:multiple_glider_cleanup} \probdiff{2}
 		Use multiple gliders to completely destroy each of the following objects.
 		
 		\noindent [Hint: Use one or two gliders to break the object down into simple ash objects like those from Exercise~\ref{exer:single_glider_cleanup} and then use additional gliders to clean up those simpler objects.]
@@ -779,7 +778,7 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:glider_block_collisions}
+	\begin{problemstar}\label{exer:glider_block_collisions} \probdiff{1}
 		There are exactly $6$~distinct ways for a glider to collide with a block. List them all and describe the result of each collision.
 	\end{problemstar}
 	% pi, honey farm, move block, final 3 annihilate both glider and block
@@ -788,7 +787,7 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:twit_synthesis}
+	\begin{problemstar}\label{exer:twit_synthesis} \probdiff{2}
 		Use the syntheses from this chapter to create a 7-glider synthesis of eater~5\index{eater!5}.
 	\end{problemstar}
 	
@@ -797,7 +796,7 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	
 	
 	% Solution: p60_lwss_backrake.txt
-	\begin{problem}\label{exer:p60_lwss_backrake}
+	\begin{problem}\label{exer:p60_lwss_backrake} \probdiff{3}
 		Use a lightweight spaceship synthesis from this chapter to construct a backrake that creates a period~$120$ stream of lightweight spaceships.
 	\end{problem}
 	
@@ -805,7 +804,7 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:mwss_gun}
+	\begin{problem}\label{exer:mwss_gun} \probdiff{2}
 		Use three Gosper glider guns to create a middleweight spaceship gun.
 	\end{problem}
 	
@@ -813,12 +812,13 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:hwss_gun}
-		Consider the heavyweight spaceship synthesis in Table~\ref{tab:3_glider_synth}.
+	\begin{problem}\label{exer:hwss_gun} \probdiff{3}
+		Consider the heavyweight spaceship synthesis in Table~\ref{tab:3_glider_synth}.\smallskip
+		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item Why can't you use three Gosper glider guns and this synthesis to create a heavyweight spaceship gun?
 			
-			\item One way to overcome this problem is to use \emph{glider pushers}\footnote{Found by Dietrich Leithner in December 1993.}\index{glider!pusher} (displayed below) to repeatedly push one glider stream closer to another. How many glider pushers would you need to use to fix the problem from part~(a)?\smallskip
+			\item One way to overcome this problem is to use \textbf{glider pushers}\footnote{This glider pusher was found by Dietrich Leithner in December 1993.}\index{glider!pusher} (displayed below) to repeatedly push one glider stream closer to another. How many glider pushers would you need to use to fix the problem from part~(a)?\smallskip
 			
 			\begin{minipage}{\linewidth}
 				\centering
@@ -831,7 +831,7 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:queen_bee_synth}
+	\begin{problem}\label{exer:queen_bee_synth} \probdiff{2}
 		Use a two-glider synthesis of a block and a three-glider synthesis of a queen bee to create a $7$-glider synthesis of a queen bee shuttle\index{queen bee!shuttle}.
 	\end{problem}
 	
@@ -843,9 +843,9 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 		Consider the four-glider synthesis of the twin bees\index{twin bees} presented in Figure~\ref{tab:other_glider_synth}.\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item Use this synthesis to synthesize a twin bees shuttle.
+			\item \probdiff{2} Use this synthesis to synthesize a twin bees shuttle.
 			
-			\item Use this synthesis to synthesize the twin bees gun from Figure~\ref{fig:twin_bees_gun}.
+			\item \probdiff{3} Use this synthesis to synthesize the twin bees gun from Figure~\ref{fig:twin_bees_gun}.
 		\end{enumerate}
 	\end{problem}
 	
@@ -853,7 +853,7 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:synthesize_glider_pusher}
+	\begin{problem}\label{exer:synthesize_glider_pusher} \probdiff{3}
 		Create a glider synthesis of the glider pusher from Exercise~\ref{exer:hwss_gun}.
 	\end{problem}
 	
@@ -861,7 +861,7 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:oscillator_syntheses}
+	\begin{problem}\label{exer:oscillator_syntheses} \probdiff{3}
 		Construct a glider synthesis of the period~36 oscillator from Figure~\ref{fig:period_36}.
 	\end{problem}
 	
@@ -869,15 +869,15 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	\mfilbreak
 	
 	
-	% TODO: double check switch engine synth here uses 3-glider synth, not 4
 	\begin{problemstar}\label{exer:glider_synth_two_directions}\index{kickback reaction}
-		By using the $2$-glider \emph{kickback reaction} from Table~\ref{tab:2_glider_synth} that changes the direction of a glider, we can decrease the number of directions used in many glider syntheses at the expense of increasing the number of gliders required. Use this technique to create glider syntheses for each of the following patterns with the property that all gliders come from just two different directions.
+		By using the $2$-glider \textbf{kickback reaction} from Table~\ref{tab:2_glider_synth} that changes the direction of a glider, we can decrease the number of directions used in many glider syntheses at the expense of increasing the number of gliders required. Use this technique to create glider syntheses for each of the following patterns with the property that all gliders come from just two different directions.\smallskip
+		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item A switch engine.\index{switch engine}
+			\item \probdiff{2} A switch engine.\index{switch engine}
 			
-			\item A clock.\index{clock}
+			\item \probdiff{2} A clock.\index{clock}
 			
-			\item A $3$-engine Cordership.\index{Cordership}
+			\item \probdiff{3} A $3$-engine Cordership.\index{Cordership}
 		\end{enumerate}
 	\end{problemstar}
 	
@@ -885,7 +885,7 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:2_engine_cordership_synthesis}
+	\begin{problemstar}\label{exer:2_engine_cordership_synthesis} \probdiff{4}
 		Recall the $2$-engine Cordership from Exercise~\ref{exer:2_engine_cordership}.\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
@@ -901,8 +901,9 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:glider_synth_tee}
-		By using one of the $3$-glider \emph{tee}\index{tee} collisions from Table~\ref{tab:3_glider_synth}, which produce a glider perpendicular to each of the input gliders, we can modify many glider syntheses so that all input gliders come from two directions that are opposite each other. Use this technique to create glider syntheses of each of the following patterns, with the property that all gliders come from two opposing directions.
+	\begin{problemstar}\label{exer:glider_synth_tee} \probdiff{2}
+		By using one of the $3$-glider \textbf{tee}\index{tee} collisions from Table~\ref{tab:3_glider_synth}, which produce a glider perpendicular to each of the input gliders, we can modify many glider syntheses so that all input gliders come from two antiparallel directions. Use this technique to create glider syntheses of each of the following patterns, with the property that all gliders come from two opposing directions.\smallskip
+		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item A switch engine.
 			
@@ -916,19 +917,33 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:ggg_stabilized_by_eater_synthesis}
+	\begin{problem}\label{exer:ggg_stabilized_by_eater_synthesis} \probdiff{3}
 		Construct a glider synthesis for a Gosper glider gun that is stabilized on one end by an eater~$1$ instead of a block (as in the buckaroo of Figure~\ref{fig:buckaroo}).
 	\end{problem}
+
+
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:make_space_rake_synth} \probdiff{3}
+		In Figure~\ref{fig:space_rake_synth}, we showed how to use gliders to turn an ecologist into a forward space rake.\smallskip
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Complete this incremental glider synthesis of the space rake (i.e., construct it in its entirety from an arrangement of gliders).
+			
+			\item Show how to synthesize a period~$60$ space rake. [Hint: Recall the synthesis of the Schick engine from Figure~\ref{fig:schick_engine_synth}.]
+		\end{enumerate}
+	\end{problemstar}
 	
 	
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:ecologist_synth}
-		For incremental syntheses of moving objects, like this ecologist from Figure~\ref{fig:ecologist_synth_b}, there tend to be more choices to be made, since individual components may be constructed earlier or later in time, and the location where they must be constructed will change accordingly.\smallskip
+	\begin{problem}\label{exer:ecologist_synth} \probdiff{4}
+		For incremental syntheses of moving objects like the ecologist from Figure~\ref{fig:ecologist_synth_b}, there tend to be many choices that can be made, since individual components may be constructed earlier or later in time, and the location where they must be constructed will change accordingly.\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item Complete this glider synthesis (i.e., construct the ecologist its entirety from an arrangement of gliders). This synthesis should only use gliders coming from the bottom-left and bottom-right.
+			\item Make a two-direction incremental glider synthesis of the ecologist in which every glider comes from the southwest or southeast.
 			
 			\noindent [Hint: You can use two gliders to create a block and then two more gliders to turn the block into a LWSS.]
 			
@@ -945,20 +960,7 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:make_space_rake_synth}
-		In Figure~\ref{fig:space_rake_synth} we showed how to use gliders to turn an ecologist into a forward space rake.
-		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item Complete this incremental glider synthesis of the space rake (i.e., construct it in its entirety from an arrangement of gliders).
-			
-			\item Show how to synthesize a period~$60$ space rake. [Hint: Recall the synthesis of the Schick engine from Figure~\ref{fig:schick_engine_synth}.]
-		\end{enumerate}
-	\end{problemstar}
-	
-	
-	\mfilbreak
-	
-	
-	\begin{problemstar}\label{exer:space_rake_synth}
+	\begin{problemstar}\label{exer:space_rake_synth} \probdiff{3}
 		In Figure~\ref{fig:space_rake_synth} we showed how to use gliders to turn an ecologist into a forward space rake. Use similar techniques to turn an ecologist into a backward space rake.
 	\end{problemstar}
 	
@@ -966,15 +968,25 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:synthesize_ffff}
+	\begin{problem}\label{exer:synthesize_ffff} \probdiff{3}
 		Create an arrangement of guns that synthesizes the fast forward force field\index{fast forward force field} from Figure~\ref{fig:fast_forward_force_field}. Use another gun to fire lightweight spaceships that are teleported through this fast forward force field.
+	\end{problem}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:glider_producing_switch_breeder} \probdiff{3}
+		Create a breeder that uses three rakes to synthesize glider-producing switch engines via the $3$-glider collision displayed in Table~\ref{tab:3_glider_synth}.
+		
+		\noindent [Hint: You will need to use rakes with very high period.]
 	\end{problem}
 	
 	
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:rich_p16_16}
+	\begin{problem}\label{exer:rich_p16_16} \probdiff{2}
 		Use the following $3$-glider collision to reduce the $18$-glider synthesis of Rich's p16\index{Rich's p16} in Figure~\ref{fig:richs_p16_synthesis} down to 16 gliders:\footnote{This $16$-glider synthesis was found by Martin Grant.}
 		\begin{center}
 			\vcenteredhbox{\patternimg{0.1}{exercise_rich_p16_16}}
@@ -985,18 +997,8 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:glider_producing_switch_breeder}
-		Create a breeder that uses three rakes to synthesize glider-producing switch engines via the $3$-glider collision displayed in Table~\ref{tab:3_glider_synth}.
-		
-		\noindent [Hint: You will need to use rakes with very high period.]
-	\end{problem}
 	
-	
-	\mfilbreak
-	
-	
-	
-	\begin{problem}\label{exer:breeder_minimize}
+	\begin{problem}\label{exer:breeder_minimize} \probdiff{3}
 		The breeder from Figure~\ref{fig:breeder_done} can be made quite a bit smaller by moving its space rakes closer together (and rephasing them as necessary). Use this technique to reduce the breeder's width by at least $50$ cells.
 	\end{problem}
 	
@@ -1005,7 +1007,7 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	
 	
 	% Solution: Shift the bottom half west by 4 cells
-	\begin{problem}\label{exer:breeder_done_northwest}
+	\begin{problem}\label{exer:breeder_done_northwest} \probdiff{3}
 		Modify the breeder from Figure~\ref{fig:breeder_done} so that the space rakes still move to the east, but the Gosper glider guns shoot gliders to the northwest instead of the northeast.
 	\end{problem}
 	
@@ -1013,7 +1015,7 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:ggg_eater_side_breeder}
+	\begin{problem}\label{exer:ggg_eater_side_breeder} \probdiff{2}
 		Construct a breeder that creates Gosper glider guns that are stabilized on at least one side by eater~1s instead of blocks. [Hint: Use the glider synthesis from Exercise~\ref{exer:ggg_stabilized_by_eater_synthesis}.]
 	\end{problem}
 	
@@ -1021,15 +1023,17 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:block_laying_switch_breeder}
-		Create a breeder that uses several rakes to synthesize block-laying switch engines as they move. [Hint: Use a $3$-glider synthesis of a switch engine together with the reaction from Figure~\ref{fig:switch_engine_block}.]
+	\begin{problem}\label{exer:block_laying_switch_breeder} \probdiff{3}
+		Create a breeder that uses several rakes to synthesize block-laying switch engines as they move.
+		
+		\noindent [Hint: Use a $3$-glider synthesis of a switch engine together with the reaction from Figure~\ref{fig:switch_engine_block}.]
 	\end{problem}
 	
 	
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:new_gun_breeder}
+	\begin{problem}\label{exer:new_gun_breeder} \probdiff{3}
 		Create a breeder that uses several rakes to synthesize twin bees guns as they move, using the glider synthesis that you constructed in Exercise~\ref{exer:twin_bee_shuttle_synth}.
 	\end{problem}
 	
@@ -1037,7 +1041,7 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:slow_salvo_8_blocks}
+	\begin{problem}\label{exer:slow_salvo_8_blocks} \probdiff{4}
 		Use a p1 slow salvo to create the arrangement of $8$ blocks in Figure~\ref{fig:unidirection_clock_synthesis}.
 	\end{problem}
 	
@@ -1053,9 +1057,9 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 			\vcenteredhbox{\patternimg{0.1}{boatstretcher_synth}}
 		\end{center}
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item Remove some gliders so as to produce a glider synthesis of the crab.\index{crab}
+			\item \probdiff{2} Remove some gliders so as to produce a glider synthesis of the crab.\index{crab}
 			
-			\item Add some extra gliders to destroy the boatstretcher (but not the boat itself) after it has been synthesized. Use this method to show that a fixed number of gliders (say 30 or so) can be used to synthesize arbitrarily-large strict still lifes.\index{strict still life}
+			\item \probdiff{3} Add some extra gliders to destroy the boatstretcher (but not the boat itself) after it has been synthesized. Use this method to show that a fixed number of gliders (say 30 or so) can be used to synthesize arbitrarily-large strict still lifes.\index{strict still life}
 		\end{enumerate}
 	\end{problemstar}
 	
@@ -1063,8 +1067,8 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:large_oscillator_synth}
-		The 7-glider reaction below attaches a period-$2$ oscillator called a \emph{barberpole}\index{barperpole} to the end of a stretched tub or boat. Show how this reaction can be combined with the method of Exercise~\ref{exer:large_still_life_synth} to synthesize arbitrarily-large oscillators with a fixed number of gliders (say 40 or so).
+	\begin{problem}\label{exer:large_oscillator_synth} \probdiff{2}
+		The 7-glider reaction below attaches a period-$2$ oscillator called a \textbf{barberpole}\index{barperpole} to the end of a stretched tub or boat. Show how this reaction can be combined with the method of Exercise~\ref{exer:large_still_life_synth} to synthesize arbitrarily-large oscillators with a fixed number of gliders (say 40 or so).
 		
 		\begin{center}
 			\vcenteredhbox{\patternimg{0.1}{boat_append_barberpole}}
@@ -1076,8 +1080,10 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	
 	
 	% Part (a) of this exercise is referenced in Chapter 12. Do not re-order or re-label!
-	\begin{problemstar}\label{exer:boat_one_time_turner}
-		In this exercise, you will construct some limited-use turners that are different from the blockic one-time turners that we saw in this chapter.
+	% Part (d) also referenced in-text.
+	\begin{problemstar}\label{exer:boat_one_time_turner} \probdiff{2}
+		In this exercise, you will construct some limited-use turners that are different from the blockic one-time turners that we saw in this chapter.\smallskip
+		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item Show that a single boat\index{boat} can be used as a 90-degree one-time turner.
 			
@@ -1097,16 +1103,17 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	
 	
 	\begin{problemstar}\label{exer:turner_tracks}
-		In this exercise, we practice moving gliders around one-time tracks.
+		In this exercise, we practice moving gliders around one-time tracks.\smallskip
+		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item Use four boats to move a glider around a square track once, and then leave the track in the same direction that it started in (destroying the track in the process).
+			\item \probdiff{2} Use four boats to move a glider around a square track once, and then leave the track in the same direction that it started in (destroying the track in the process).
 			
-			\item The following pattern might be called a ``two-time turner'',\index{two-time turner} since it can be used to turn two gliders (by firing the second glider at the boat that the first glider produces). Explain why it is \emph{not} possible to use four copies of this pattern to move a single glider around a square track twice (destroying the track in the process).
+			\item \probdiff{3} The following pattern might be called a ``two-time turner'',\index{two-time turner} since it can be used to turn two gliders (by firing the second glider at the boat that the first glider produces). Explain why it is \emph{not} possible to use four copies of this pattern to move a single glider around a square track twice (destroying the track in the process).
 			\begin{center}
 				\embedlink{two_time_turner}{\vcenteredhbox{\patternimg{0.1}{two_time_turner_0}} \vcenteredhbox{\genarrow{143}} \vcenteredhbox{\patternimg{0.1}{two_time_turner_143}}}
 			\end{center}
 			
-			\item Use three copies of the two-time turner, together with some additional one-time-turners, to move a glider around a square track twice, and then leave the track in the same direction that it started in (destroying the track in the process).
+			\item \probdiff{3} Use three copies of the two-time turner, together with some additional one-time-turners, to move a glider around a square track twice, and then leave the track in the same direction that it started in (destroying the track in the process).
 		\end{enumerate}
 	\end{problemstar}
 	
@@ -1114,8 +1121,8 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:one_time_track}
-		One-time turners can be used as tracks for gliders, allowing us to create objects that move at a different speed at the front than at the back (such patterns are called \emph{growing spaceships}\index{growing spaceship}).
+	\begin{problemstar}\label{exer:one_time_track} \probdiff{3}
+		One-time turners can be used as tracks for gliders, allowing us to create moving objects that travel at a different speed at the front than at the back (such patterns are called \textbf{growing spaceships}\index{growing spaceship}).\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item Use two copies of the blinker puffer from Exercise~\ref{exer:blinker_ship} to lay two blinker fuses that a glider bounces back and forth between, using the reaction from Exercise~\ref{exer:boat_one_time_turner}(d).
@@ -1128,7 +1135,7 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:clock_inserter_block}
+	\begin{problemstar}\label{exer:clock_inserter_block} \probdiff{3}
 		Find a way of placing a block near a clock so that a single glider (rather than a pair of gliders, as in Figure~\ref{fig:clock_inserter}) can trigger the clock inserter reaction.
 	\end{problemstar}
 	
@@ -1136,8 +1143,8 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:clock_inserter_use}
-		Use a clock inserter to insert the orange glider into each of these glider salvos, similar to how we inserted the orange glider into the salvo in Figure~\ref{fig:clock_inserter_effective}. In all cases, the input gliders to the clock inserter must come only from the lower-left and the upper-right.
+	\begin{problemstar}\label{exer:clock_inserter_use} \probdiff{2}
+		Use a clock inserter to insert the orange glider into each of these glider salvos, similar to how we inserted the orange glider into the salvo in Figure~\ref{fig:clock_inserter_effective}. In all cases, the input gliders to the clock inserter must come only from the southwest and northeast.
 		\vspace*{-0.3cm}\begin{multicols}{2}
 			\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 				\item[\bf\color{ocre}(a)] \raisebox{-\height+0.5em}{\patternimglink{0.1}{clock_inserter_use_b}}
@@ -1153,14 +1160,15 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:other_inserters}
-		Many reactions can be used as inserters other than the clock inserter from Figure~\ref{fig:clock_inserter} (however, none are quite as good as the clock inserter itself).
+	\begin{problemstar}\label{exer:other_inserters} \probdiff{2}
+		Many reactions can be used as inserters other than the clock inserter from Figure~\ref{fig:clock_inserter} (however, none are quite as good as the clock inserter itself).\smallskip
+		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item Use one of the ``tee''\index{tee} $3$-glider collisions from Table~\ref{tab:3_glider_synth} to insert a glider $15$~generations in front of another glider.
 			
 			\item Use an eater~1 to insert a glider $15$~generations in front of another glider.
 			
-			\noindent [Hint: Refer to Exercise~\ref{exer:boat_one_time_turner}(b).]
+			[Hint: Refer back to Exercise~\ref{exer:boat_one_time_turner}(b).]
 			
 			\item Use the clock inserter to insert a glider $14$~generations in front of another glider.
 		\end{enumerate}
@@ -1170,10 +1178,11 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:other_blockic}
+	\begin{problem}\label{exer:other_blockic} \probdiff{4}
 		Create blockic seeds\index{blockic seed} for each of the following objects.
 		
-		\noindent [Hint: These can all be created using the same techniques that we used to make the blockic seed in Figure~\ref{fig:clock_slow_salvo}.]
+		\noindent [Hint: These can all be created using the same techniques that we used to make the blockic seed in Figure~\ref{fig:clock_slow_salvo}.]\smallskip
+		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item A lightweight spaceship.
 			
@@ -1187,17 +1196,17 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:create_clock_turners}
+	\begin{problem}\label{exer:create_clock_turners} \probdiff{5}
 		Create a slow salvo that turns a single block into the configuration of $8$~blocks displayed in Figure~\ref{fig:unidirection_clock_synthesis}.
 		
-		\noindent [Hint: You can do this by hand via $60$ or so gliders by repeating the method of Figure\ref{fig:create_one_time_turner}. However, there is a search program called \emph{slsparse}\index{slsparse} that builds slow salvos like this automatically. Tutorials and a download link can be found at \httpsurl{conwaylife.com/wiki/Slsparse}.]
+		\noindent [Hint: You can do this by hand via $60$ or so gliders by repeating the method of Figure~\ref{fig:create_one_time_turner}. However, there is a search program called \emph{slsparse}\index{slsparse} that builds slow salvos like this automatically. Tutorials and a download link can be found at \httpsurl{conwaylife.com/wiki/Slsparse}.]
 	\end{problem}
 	
 	
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:create_clock_turners_nonsync}
+	\begin{problem}\label{exer:create_clock_turners_nonsync} \probdiff{5}
 		Use slsparse (\httpsurl{conwaylife.com/wiki/Slsparse}) to create a slow salvo that constructs the blockic seed for a clock from Figure~\ref{fig:clock_slow_salvo}, and thus a slow salvo for the clock itself.
 	\end{problem}
 	
@@ -1205,7 +1214,7 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:new_splitter}
+	\begin{problem}\label{exer:new_splitter} \probdiff{4}
 		A commonly-used blockic splitter that turns one glider into four gliders is displayed below. This splitter has the advantage of being much faster and cleaner than the one in Figure~\ref{fig:one_time_splitter}, but the disadvantage of requiring 9 blocks instead of just 3. Use this splitter as part of a blockic seed for a clock.
 		\begin{center}
 			\embedlink{blockic_splitter}{\vcenteredhbox{\patternimg{0.085}{blockic_splitter}} \vcenteredhbox{\genarrow{39}} \vcenteredhbox{\patternimg{0.085}{blockic_splitter_39}}}
@@ -1216,7 +1225,7 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:blockic_splitter_chain}
+	\begin{problem}\label{exer:blockic_splitter_chain} \probdiff{2}
 		By chaining together multiple blockic splitters, we can turn one glider into any number of gliders. Create a blockic seed that turns one glider into exactly...
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item $7$ gliders.
@@ -1231,7 +1240,7 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:p2_salvo_reduce_to_p1}
+	\begin{problemstar}\label{exer:p2_salvo_reduce_to_p1} \probdiff{3}
 		The argument that we used to improve Theorem~\ref{thm:p2_slow_salvo} to Theorem~\ref{thm:p1_slow_salvo} relied on us being able to use blockic splitters to create three gliders: one to trigger a clock seed and two to trigger the clock insertion reaction. How can we ensure that the clock is in the correct phase when the latter two gliders arrive to trigger the clock insertion?
 	\end{problemstar}
 	
@@ -1239,10 +1248,10 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:slow_salvo_clock_slope}
+	\begin{problemstar}\label{exer:slow_salvo_clock_slope} \probdiff{5}
 		In the proof of universality of the clock inserter in Appendix~\ref{chp:appendix_salvo}, we defined a glider's ``rank'' as its lane number plus its timing. Let $w$ be a real number and suppose that we instead defined a glider's rank as its lane number plus $w$ times its timing.
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item What parts of this proof change if we use $w = 2$? Does the proof still work?
+			\item What parts of this proof change if we use $w = 2$?
 			
 			\item What is the slope of the lines of constant rank in the Life plane when $w = 2$ (recall that the lines of constant rank have slope $3$ when $w = 1$)?
 			
@@ -1261,20 +1270,21 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 	
 	
 	\begin{problemstar}\label{exer:2_engine_corder_seed}\index{seed}
-		In this exercise, we demonstrate how to construct seeds for Corderships.
+		In this exercise, we demonstrate how to construct seeds for Corderships.\smallskip
+		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item Show how a single glider can be fired at the following pair of boats so as to synthesize (generation~$2$ of) a switch engine.
+			\item \probdiff{2} Show how a single glider can be fired at the following pair of boats so as to synthesize (generation~$2$ of) a switch engine.
 			\begin{center}
 				\patternimg{0.1}{2_boat_se_seed}
 			\end{center}
 			
-			\item Create a glider synthesis that first creates the pair of boats displayed in part~(a) and then creates a switch engine from them.
+			\item \probdiff{2} Create a glider synthesis that first creates the pair of boats displayed in part~(a) and then creates a switch engine from them.
 			
-			\item Use your solution to part~(a) to construct a seed that, when hit by $2$~gliders, synthesizes a $2$-engine Cordership (refer back to Exercise~\ref{exer:2_engine_cordership}).
+			\item \probdiff{5} Use your solution to part~(a) to construct a seed that, when hit by $2$~gliders, synthesizes a $2$-engine Cordership (refer back to Exercise~\ref{exer:2_engine_cordership}).
 			
 			[Hint: The seed will need to include two copies of this boat configuration, some blocks on the side, and also some blocks in the middle to stabilize the first period of each switch engine. It might be helpful to write a computer program to find a configuration of central blocks that works.]
 			
-			\item Create a glider synthesis that first creates your seed from part~(c) and then creates a $2$-engine Cordership from it.
+			\item \probdiff{3} Create a glider synthesis that first creates your seed from part~(c) and then creates a $2$-engine Cordership from it.
 		\end{enumerate}
 	\end{problemstar}
 	
