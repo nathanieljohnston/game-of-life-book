@@ -106,7 +106,7 @@ One simple method of implementing this inversion (which works at any period) is 
 	\label{fig:inverter_non_inline}
 \end{figure}
 
-At period~30, there is a modification of this reaction that has the advantage that the irregular input stream and its inversion travel in the same direction. Recall that the Gosper glider gun works by colliding two queen bees with each other so that they create a small explosion that then generates a glider. If we carefully fire a glider at that small explosion, we can suppress its creation of a glider, resulting in a reaction called an \emph{inline inverter}\index{inline inverter}.\footnote{Discovered by David Bell. There are also inline inverters based on some other glider guns---see the upcoming Figure~\ref{fig:tanners_p46_inline_inverter}.} The output stream travels in the same direction as the input stream, but is slightly offset (see Figure~\ref{fig:inline_inverter_both}).
+At period~30, there is a modification of this reaction that has the advantage that the irregular input stream and its inversion travel in the same direction. Recall that the Gosper glider gun works by colliding two queen bees with each other so that they create a small explosion that then generates a glider. If we carefully fire a glider at that small explosion, we can suppress its creation of a glider, resulting in a reaction called an \textbf{inline inverter}\index{inline inverter}.\footnote{Discovered by David Bell. There are also inline inverters based on some other glider guns---see the upcoming Figure~\ref{fig:tanners_p46_inline_inverter}.} The output stream travels in the same direction as the input stream, but is slightly offset (see Figure~\ref{fig:inline_inverter_both}).
 
 \begin{figure}[!htb]
 	\centering
@@ -124,7 +124,7 @@ At period~30, there is a modification of this reaction that has the advantage th
 			\label{fig:inline_inverter_p120}
 		\end{subfigure}	
 	\end{tabular}
-	\caption{An \emph{inline inverter} is a reaction involving the Gosper glider gun in which the gun fails to produce a glider if it receives a glider as input at the same time.}
+	\caption{An \textbf{inline inverter} is a reaction involving the Gosper glider gun in which the gun fails to produce a glider if it receives a glider as input at the same time.}
 	\label{fig:inline_inverter_both}
 \end{figure}
 
@@ -178,7 +178,7 @@ Another particularly useful inversion reaction is provided in Figure~\ref{fig:st
 	\caption{A stream inverter that splits the glider stream coming in from the northeast based on which gliders are present in the stream coming in from the northwest. This reaction can be used with any glider stream of period~$20$ or higher. The output stream going to the southeast is a duplicate of the input stream coming from the northwest, whereas the output stream going to the southwest is its inverse.}\label{fig:stream_inverter}
 \end{figure}
 
-This reaction can thus be used as a \emph{non-destructive} inverter: it produces an inverted glider stream, but does not use up the original irregular stream in the process. By applying another inverter to the inverted stream that this reaction produces, we can now duplicate arbitrary glider streams (even irregular ones), as in Figure~\ref{fig:periodic_glider_duplicator}. Patterns like this one are called \emph{glider duplicators}\index{glider!duplicator}, and they are extremely important because they let us use a single input signal (i.e., a glider) to trigger multiple different reactions.
+This reaction can thus be used as a \emph{non-destructive} inverter: it produces an inverted glider stream, but does not use up the original irregular stream in the process. By applying another inverter to the inverted stream that this reaction produces, we can now duplicate arbitrary glider streams (even irregular ones), as in Figure~\ref{fig:periodic_glider_duplicator}. Patterns like this one are called \textbf{glider duplicators}\index{glider!duplicator}, and they are extremely important because they let us use a single input signal (i.e., a glider) to trigger multiple different reactions.
 
 \begin{figure}[!htb]
 	\centering
@@ -189,7 +189,7 @@ This reaction can thus be used as a \emph{non-destructive} inverter: it produces
 
 \subsection{Miscellaneous Period~30 Circuits}\label{sec:p30_misc_circuits}
 
-There are also a few other useful tricks that can be done with period~$30$ glider streams in order to make them easier to work with. For example, one object that can be used to help push glider streams closer together (which is extremely useful when trying to implement some tight glider syntheses) is a \emph{glider pusher}\index{glider!pusher},\footnote{Found by Dietrich Leithner in December 1993.} which is a combination of a (half-stabilized) queen bee and a pentadecathlon that push a glider over by a single lane (see Figure~\ref{fig:glider_pusher_main}).\footnote{We first saw this glider pusher in Exercise~\ref{exer:hwss_gun}(b).}
+There are also a few other useful tricks that can be done with period~$30$ glider streams in order to make them easier to work with. For example, one object that can be used to help push glider streams closer together (which is extremely useful when trying to implement some tight glider syntheses) is a \textbf{glider pusher}\index{glider!pusher},\footnote{Found by Dietrich Leithner in December 1993.} which is a combination of a (half-stabilized) queen bee and a pentadecathlon that push a glider over by a single lane (see Figure~\ref{fig:glider_pusher_main}).\footnote{We first saw this glider pusher in Exercise~\ref{exer:hwss_gun}(b).}
 
 Two other simple reactions that make use of the debris and sparks left behind by queen bees and pentadecathlons are shown in Figures~\ref{fig:glider_to_lwss} and~\ref{fig:lwss_to_glider}. These reactions let us convert gliders directly into lightweight spaceships (rather than having to synthesize them via $3$ gliders) and then convert them back into gliders if desired. Note, however, that the former reaction can only be used with streams of period at least~$60$, since otherwise the output LWSS collides with the next input glider.
 
@@ -198,7 +198,7 @@ Two other simple reactions that make use of the debris and sparks left behind by
 	\begin{minipage}{0.27\textwidth}
 		\centering
 		\patternimglink{0.075}{glider_pusher}
-		\caption{A \emph{glider pusher} pushes a glider away by one lane.}\label{fig:glider_pusher_main}
+		\caption{A \textbf{glider pusher} pushes a glider away by one lane.}\label{fig:glider_pusher_main}
 	\end{minipage}\quad
 	\begin{minipage}{0.4\textwidth}
 		\centering\vspace*{-0.1cm}
@@ -214,19 +214,19 @@ Two other simple reactions that make use of the debris and sparks left behind by
 
 It is worth comparing the the LWSS-to-glider converter of Figure~\ref{fig:lwss_to_glider} to the pentadecathlon-based reflectors of Figures~\ref{fig:p30_180_reflect} and~\ref{fig:p30_90_reflect_penta}. In all three cases, the reaction is made up of two pentadecathlons, the first of which converts the input object (either an LWSS or a glider) into a block and the second of which converts that block into the output glider.
 
-One final piece of machinery that is a bit more heavy-duty than the other period~$30$ reactions that we have illustrated is the \emph{toggle}\index{toggle},\footnote{Constructed by Dean Hickerson in April 1996.} which is a glider gun that can be switched on and off by firing a single glider into it (contrast this with the inline inverter, which is a glider gun that can be switched off by firing a \emph{constant stream} of gliders into it). The toggle works by exploiting the fact that a glider can strike a particular phase of an LWSS in a way that destroys the LWSS and creates a perpendicular output glider---but if the incoming glider is delayed by $30$~generations then both are simply destroyed.
+One final piece of machinery that is a bit more heavy-duty than the other period~$30$ reactions that we have illustrated is the \textbf{toggle}\index{toggle},\footnote{Constructed by Dean Hickerson in April 1996.} which is a glider gun that can be switched on and off by firing a single glider into it (contrast this with the inline inverter, which is a glider gun that can be switched off by firing a \emph{constant stream} of gliders into it). The toggle works by exploiting the fact that a glider can strike a particular phase of an LWSS in a way that destroys the LWSS and creates a perpendicular output glider---but if the incoming glider is delayed by $30$~generations then both are simply destroyed.
 
 \begin{figure}[!htb]
 	\centering
 	\patternimglink{0.135}{toggle}
-	\caption{A \emph{toggle} that bounces gliders from a Gosper glider gun (highlighted in \bgbox{yellowback2}{yellow}) off of a stream of lightweight spaceships (highlighted in \bgbox{aquaback}{aqua}). The first incoming glider on the \bgbox{greenpastel}{green} stream from the northwest turns off the output stream of gliders (highlighted in \bgbox{orangeback2}{orange}) until another glider comes in behind it to turn the stream back on.}
+	\caption{A \textbf{toggle} that bounces gliders from a Gosper glider gun (highlighted in \bgbox{yellowback2}{yellow}) off of a stream of lightweight spaceships (highlighted in \bgbox{aquaback}{aqua}). The first incoming glider on the \bgbox{greenpastel}{green} stream from the northwest turns off the output stream of gliders (highlighted in \bgbox{orangeback2}{orange}) until another glider comes in behind it to turn the stream back on.}
 	\label{fig:toggle}
 \end{figure}
 
 
 \section{Primer}\label{sec:primer}
 
-We now have enough circuitry and tools at our disposal that we can start to construct some really unusual and interesting patterns. To illustrate how to put these pieces together in non-trivial ways, we now construct a pattern that computes prime numbers.\index{prime number} More specifically, we build a pattern that emits a stream of lightweight spaceships with the property that the $n$-th spaceship in the stream is present if and only if $n$ is prime. That is, we construct a gun that emits a stream of lightweight spaceships with spacing as in Figure~\ref{fig:prime_lwss_stream}. We call guns of this type \emph{primers}.\index{primer}\footnote{The first primer was constructed by Dean Hickerson in November 1991. It used the same techniques that we will demonstrate here, but some of the component reactions were slightly different (e.g., instead of the inline inverter, it used the stream inversion method of Figure~\ref{fig:inverter_non_inline}).}
+We now have enough circuitry and tools at our disposal that we can start to construct some really unusual and interesting patterns. To illustrate how to put these pieces together in non-trivial ways, we now construct a pattern that computes prime numbers.\index{prime number} More specifically, we build a pattern that emits a stream of lightweight spaceships with the property that the $n$-th spaceship in the stream is present if and only if $n$ is prime. That is, we construct a gun that emits a stream of lightweight spaceships with spacing as in Figure~\ref{fig:prime_lwss_stream}. We call guns of this type \textbf{primers}.\index{primer}\footnote{The first primer was constructed by Dean Hickerson in November 1991. It used the same techniques that we will demonstrate here, but some of the component reactions were slightly different (e.g., instead of the inline inverter, it used the stream inversion method of Figure~\ref{fig:inverter_non_inline}).}
 
 \begin{figure}[!htb]
 	\centering\begin{tikzpicture}[scale=0.93, every node/.style={transform shape}]%
@@ -404,7 +404,7 @@ One of the advantages of these new reflections over the old reflection based on 
 	\label{fig:twin_bees_weird_guns}
 \end{figure}
 
-There are also a few other useful reactions involving the twin bees that can do things like emit two side-by-side streams of gliders (guns like this are called \emph{double-barreled guns}\index{double-barreled gun}). We explore some of these reactions in Exercise~\ref{exer:twin_bees_large_spark}.
+There are also a few other useful reactions involving the twin bees that can do things like emit two side-by-side streams of gliders (guns like this are called \textbf{double-barreled guns}\index{double-barreled gun}). We explore some of these reactions in Exercise~\ref{exer:twin_bees_large_spark}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -432,7 +432,7 @@ One interesting thing that we can do with a glider duplicator is attach it to a 
 	\end{tabular}
 \end{figure}
 
-By placing several of these guns near each other (with different sequences of gliders in their glider loops), we can even create \emph{ticker tape guns}\index{ticker tape gun}, which emit any \emph{visual} message of our choosing, rather than just messages encoded in binary. To do this, we think of lightweight spaceships as pixels, with the presence of a ship being black and the absence of a ship being white. Each of the loop-based guns emits the pixels (ships) in a single row of the image being produced, so we use $n$ of the guns with $m$ gliders each in the loops to create an $n \times m$ image. For example, Figure~\ref{fig:ticker_tape_hi_gun} illustrates a ticker tape gun that repeatedly produces an $8 \times 21$ array of lightweight spaceships that spells out ``HI!''.\footnote{Alan Hensel put together the first ticker tape gun in June 1994, which printed out the digits ``0123456789''. It was adapted by Brice Due and Dave Greene in 2005 and 2006 to print out the Golly logo, and has been used as the header of the Golly homepage (\httpurl{golly.sourceforge.net/}) ever since.}
+By placing several of these guns near each other (with different sequences of gliders in their glider loops), we can even create \textbf{ticker tape guns}\index{ticker tape gun}, which emit any \emph{visual} message of our choosing, rather than just messages encoded in binary. To do this, we think of lightweight spaceships as pixels, with the presence of a ship being black and the absence of a ship being white. Each of the loop-based guns emits the pixels (ships) in a single row of the image being produced, so we use $n$ of the guns with $m$ gliders each in the loops to create an $n \times m$ image. For example, Figure~\ref{fig:ticker_tape_hi_gun} illustrates a ticker tape gun that repeatedly produces an $8 \times 21$ array of lightweight spaceships that spells out ``HI!''.\footnote{Alan Hensel put together the first ticker tape gun in June 1994, which printed out the digits ``0123456789''. It was adapted by Brice Due and Dave Greene in 2005 and 2006 to print out the Golly logo, and has been used as the header of the Golly homepage (\httpurl{golly.sourceforge.net/}) ever since.}
 
 \begin{figure}[!htb]
 	\centering
@@ -442,7 +442,7 @@ By placing several of these guns near each other (with different sequences of gl
 
 Once we start talking about building things like computers in the Game of Life (which we will do in Chapter~\ref{chp:universal_computation}), loops like this will be quite useful since they can serve as pieces of memory for the computer to make use of (for example, the gun in Figure~\ref{fig:ticker_tape_gun} stores the bitstring ``100111000011111000000'', which we can read from memory by detecting the spaceships that are constantly emitted from the gun). To make loops like this truly useful for storing pieces of information though, we need to be able to easily alter the state of the memory (i.e., delete gliders from the loop and also insert new gliders into it).
 
-Deleting a glider from the loop is simple, since we can just fire another glider from elsewhere in the Life plane so as to collide with it, thus deleting them both. To turn this deletion operation into an \emph{insertion} operation, we can simply place two stream inverters along the loop and apply the deletion operation somewhere along its inverted portion. A pattern that makes use of these ideas is called a \emph{memory cell}\index{memory cell}, and one is illustrated in Figure~\ref{fig:p46_memory_cell} along with the mechanisms for altering the contents of its memory.
+Deleting a glider from the loop is simple, since we can just fire another glider from elsewhere in the Life plane so as to collide with it, thus deleting them both. To turn this deletion operation into an \emph{insertion} operation, we can simply place two stream inverters along the loop and apply the deletion operation somewhere along its inverted portion. A pattern that makes use of these ideas is called a \textbf{memory cell}\index{memory cell}, and one is illustrated in Figure~\ref{fig:p46_memory_cell} along with the mechanisms for altering the contents of its memory.
 
 \begin{figure}[!htb]
 	\centering
@@ -456,9 +456,9 @@ Deleting a glider from the loop is simple, since we can just fire another glider
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Tanner's p46}\label{sec:p46_tanner}
 
-One of the most useful tools for extending our period~$46$ toolset beyond just things that can be done with twin bees is the extremely sparky period~$46$ oscillator called \emph{Tanner's p46}\index{Tanner's p46} that we saw back in Figure~\ref{fig:tanners_p46}. As is typical of extremely sparky oscillators, Tanner's p46 can be combined with other sparkers, or additional copies of itself, to create numerous useful objects. For example, it can be combined with a twin bees shuttle to create a new p$46$ glider gun (see Exercise~\ref{exer:tanners_p46_twin_bee_gun}), or it can be used to reflect a glider by 180~degrees (see Exercise~\ref{exer:tanners_p46_reflect}), but neither of these facts are too exciting since we already know how to construct p$46$ glider guns and reflectors of roughly the same size via twin bees.
+One of the most useful tools for extending our period~$46$ toolset beyond just things that can be done with twin bees is the extremely sparky period~$46$ oscillator called \textbf{Tanner's p46}\index{Tanner's p46} that we saw back in Figure~\ref{fig:tanners_p46}. As is typical of extremely sparky oscillators, Tanner's p46 can be combined with other sparkers, or additional copies of itself, to create numerous useful objects. For example, it can be combined with a twin bees shuttle to create a new p$46$ glider gun (see Exercise~\ref{exer:tanners_p46_twin_bee_gun}), or it can be used to reflect a glider by 180~degrees (see Exercise~\ref{exer:tanners_p46_reflect}), but neither of these facts are too exciting since we already know how to construct p$46$ glider guns and reflectors of roughly the same size via twin bees.
 
-What is slightly more interesting is that we can carefully place two copies of Tanner's p46 next to each other so as to construct an \emph{edge-shooting glider gun},\footnote{Found by David Bell just three days after Tanner's p$46$ itself was found.}\index{edge shooter} as illustrated in Figure~\ref{fig:tanners_p46_edge}. Edge shooters like this one are particularly useful when trying to line up streams of gliders in tight positions, since they can be positioned as close as we like to existing glider streams on one side (compare this with guns like the Gosper glider gun and twin bees guns, which produce the stream of gliders near their center and thus require some clearance on either side of the other glider stream).
+What is slightly more interesting is that we can carefully place two copies of Tanner's p46 next to each other so as to construct an \textbf{edge-shooting glider gun},\footnote{Found by David Bell just three days after Tanner's p$46$ itself was found.}\index{edge shooter} as illustrated in Figure~\ref{fig:tanners_p46_edge}. Edge shooters like this one are particularly useful when trying to line up streams of gliders in tight positions, since they can be positioned as close as we like to existing glider streams on one side (compare this with guns like the Gosper glider gun and twin bees guns, which produce the stream of gliders near their center and thus require some clearance on either side of the other glider stream).
 
 Furthermore, this glider gun can act as a p$46$ inline inverter (see Figure~\ref{fig:tanners_p46_inline_inverter}) just like the Gosper glider gun can act as a p$30$ inline inverter.\footnote{This inline inverter, just like the original p$30$ one, was found by David Bell.} Even more remarkably, two of these oscillators can be placed next to each other so as to create the p$46$ middleweight spaceship gun displayed in Figure~\ref{fig:tanners_p46_mwss_gun},\footnote{Found by Matthias Merzenich just one day after Tanner's p$46$ was found.} which is currently the smallest known MWSS gun of any period, and also the smallest known gliderless gun of any period.
 
@@ -505,7 +505,7 @@ As an example of what can be done with the edge-shooting gun of Figure~\ref{fig:
 
 We saw back in Figure~\ref{fig:periodic_glider_duplicator} that it is possible to construct periodic circuits that duplicate gliders, though the timing and positioning of the output gliders typically do not match those of the input glider.\footnote{In fact, we saw that there are \emph{stationary} circuits that duplicate gliders way back in Figure~\ref{fig:silver_reflector}, but these circuits will remain a bit more mysterious until the next chapter.} We could of course use various other circuits to correct the positioning and timing of one of the output gliders, but remarkably there exist duplicators for which this is not necessary, as the input glider is not actually affected at all (even temporarily) by the duplication process.
 
-Duplicators of this type are called \emph{Heisenburps}\index{Heisenburp}\footnote{Named for Heisenberg's uncertainty principle, which says that it is impossible to detect a particle without affecting it in some way. Heisenburps show that this principle does \emph{not} hold in Conway's Game of Life, since we can detect and duplicate a particle (glider) without affecting it at all.}, and by far the simplest one known is displayed in Figure~\ref{fig:p46_natural_heisenburp}.\footnote{Found by Brice Due in January 2005.} In this configuration, the spark from two perpendicular twin bees is suppressed slightly by a passing glider so that instead of dying off, the spark turns into another glider. Importantly, the passing glider itself is not affected at all in the process, but rather just serves to overpopulate other nearby cells (much like how we used induction coils to overpopulate and stabilize objects in Section~\ref{sec:still_life_grammar}).
+Duplicators of this type are called \textbf{Heisenburps}\index{Heisenburp}\footnote{Named for Heisenberg's uncertainty principle, which says that it is impossible to detect a particle without affecting it in some way. Heisenburps show that this principle does \emph{not} hold in Conway's Game of Life, since we can detect and duplicate a particle (glider) without affecting it at all.}, and by far the simplest one known is displayed in Figure~\ref{fig:p46_natural_heisenburp}.\footnote{Found by Brice Due in January 2005.} In this configuration, the spark from two perpendicular twin bees is suppressed slightly by a passing glider so that instead of dying off, the spark turns into another glider. Importantly, the passing glider itself is not affected at all in the process, but rather just serves to overpopulate other nearby cells (much like how we used induction coils to overpopulate and stabilize objects in Section~\ref{sec:still_life_grammar}).
 
 \begin{figure}[!htb]
 	\centering
@@ -513,12 +513,12 @@ Duplicators of this type are called \emph{Heisenburps}\index{Heisenburp}\footnot
 	\caption{A small period~$92$ Heisenburp that uses two twin bees shuttles (highlighted in \bgbox{yellowback2}{yellow}) to copy a glider (highlighted in \bgbox{greenpastel}{green}) without affecting it. The first $46$ generations are used to create a block (highlighted in \bgbox{orangeback2}{orange}) from the glider, and the next $46$ generations are used to turn the block into another glider.}\label{fig:p46_natural_heisenburp}
 \end{figure}
 
-There are also Heisenburps that can copy other spaceships, or even use one type of passing spaceship to create a completely different kind of object---all that is needed is a spark whose evolution is changed sufficiently by the passing spaceship that it turns into something that moves out of the way. For example, the configuration of two twin bees shuttles in Figure~\ref{fig:mwss_out_of_the_blue}, called the \emph{MWSS out of the blue}\index{MWSS out of the blue},\footnote{Found by Peter Rott in November 1997.} detects a passing lightweight spaceship and releases a middleweight spaceship travelling in the opposite direction in response.
+There are also Heisenburps that can copy other spaceships, or even use one type of passing spaceship to create a completely different kind of object---all that is needed is a spark whose evolution is changed sufficiently by the passing spaceship that it turns into something that moves out of the way. For example, the configuration of two twin bees shuttles in Figure~\ref{fig:mwss_out_of_the_blue}, called the \textbf{MWSS out of the blue}\index{MWSS out of the blue},\footnote{Found by Peter Rott in November 1997.} detects a passing lightweight spaceship and releases a middleweight spaceship travelling in the opposite direction in response.
 
 \begin{figure}[!htb]
 	\centering
 	\embedlink{mwss_out_of_the_blue}{\vcenteredhbox{\patternimg{0.11}{mwss_out_of_the_blue_0}} \vcenteredhbox{\genarrow{46}} \vcenteredhbox{\patternimg{0.11}{mwss_out_of_the_blue_46}}}
-	\caption{The \emph{MWSS out of the blue} is a reaction in which two twin bees shuttles are triggered to create a middleweight spaceship when a lightweight spaceship passes by. The LWSS is not affected at all by the reaction.}\label{fig:mwss_out_of_the_blue}
+	\caption{The \textbf{MWSS out of the blue} is a reaction in which two twin bees shuttles are triggered to create a middleweight spaceship when a lightweight spaceship passes by. The LWSS is not affected at all by the reaction.}\label{fig:mwss_out_of_the_blue}
 \end{figure}
 
 There are also some reactions that can be used to construct Heisenburps via other periodic circuitry that we have already seen. One of the simplest such reactions is the one displayed in Figure~\ref{fig:heisenburp_reaction_p35},\footnote{Found by Jason Summers in June 1999, as was the first-known period~$46$ Heisenburp based on it.} in which a middleweight and heavyweight spaceship collide with a glider in such a way that if another passing glider is present, then the three colliding spaceships cleanly destroy each other, but if that passing glider is absent then they produce a single glider. This reaction has a repeat time of $35$~generations and thus can be used to construct Heisenburps of any period~$35$ or greater.
@@ -555,7 +555,7 @@ In fact, it is even possible to construct \emph{stable} Heisenburps (i.e., Heise
 
 Some periodic circuitry works based only on the existence of certain sparks, and thus can be made to work at any period for which we know of oscillators that emit that spark. For example, the glider-reflecting reactions of Figure~\ref{fig:spark_glider_reflect} fall into this category, since any oscillator that produces the correct banana spark (such as a buckaroo) or duoplet spark (such as the twin bees shuttle) can be used to implement the reflection. However, most of the oscillators that emit these sparks have rather large period, so we now introduce two other spark-based glider reflectors that can make use of low-period oscillators.
 
-The first of these reactions is called the \emph{bumper}\index{bumper} (displayed in Figure~\ref{fig:bumper}),\footnote{The p$3$ bumper was found in April 2018 by Arie Paap, but the reaction itself and most of the other bumpers were found in April 2016 by Tanner Jacobi.} which consists of an eater~1, a loaf, and a spark\index{spark} of almost any type. This reflector is versatile enough that it can be used with a wide variety of sparkers, including some with period as low as~$3$ (see Figure~\ref{fig:bumper} for numerous examples). Since this reflector is color-preserving\index{glider!color}, just like the Snark, it perhaps does not seem too exciting at first glance (after all, stable reflectors work at \emph{any} period). However, there are at least three reasons why bumpers are still useful:\smallskip
+The first of these reactions is called the \textbf{bumper}\index{bumper} (displayed in Figure~\ref{fig:bumper}),\footnote{The p$3$ bumper was found in April 2018 by Arie Paap, but the reaction itself and most of the other bumpers were found in April 2016 by Tanner Jacobi.} which consists of an eater~1, a loaf, and a spark\index{spark} of almost any type. This reflector is versatile enough that it can be used with a wide variety of sparkers, including some with period as low as~$3$ (see Figure~\ref{fig:bumper} for numerous examples). Since this reflector is color-preserving\index{glider!color}, just like the Snark, it perhaps does not seem too exciting at first glance (after all, stable reflectors work at \emph{any} period). However, there are at least three reasons why bumpers are still useful:\smallskip
 
 \begin{figure}[!htb]
 	\centering
@@ -627,7 +627,7 @@ The first of these reactions is called the \emph{bumper}\index{bumper} (displaye
 	\item[3)] Its reflected gliders have different timing than those reflected by the Snark. Specifically, a bumper produces a glider that has timing\index{glider!timing} exactly $5$~generations delayed from that of a glider reflected by a Snark. This is a useful feature when fine-tuning the positioning of gliders along glider tracks, as we can replace Snarks by bumpers to rephase the gliders (similar to how we used a wide variety of different one-time reflectors in Table~\ref{tab:180_degree_one_time_turners} to get precise glider timings).\smallskip
 \end{enumerate}
 
-There is another closely-related reaction called the \emph{bouncer}\index{bouncer} (displayed in Figure~\ref{fig:bouncer_reflector}),\footnote{The bouncer, as well as most of the low-period pipsquirters that it can use, were found by Noam Elkies in September 1998.} which consists of an eater~1, a boat, a block, and a domino spark that is typically provided by a pipsquirter\index{pipsquirter}. The bouncer is somewhat less versatile than the bumper since the domino spark is tricky to position correctly, but it also has the advantage of having a repeat time of just $22$~generations (versus the bumper's $34$ and the Snark's $43$). Furthermore, these reflectors are color-changing,\footnote{Their names are designed to help us remember which reaction is color-preserving and which one is color-changing---the bum\textbf{p}er is color-\textbf{p}reserving while the boun\textbf{c}er is color-\textbf{c}hanging.} which provides us with some extra flexibility that we did not yet have (recall that both the Snark and the bumper are color-preserving).\footnote{For a more complete and up-to-date collection of bumpers and bouncers, see \httpsurl{conwaylife.com/wiki/Bumper_and_bouncer_gallery}.}
+There is another closely-related reaction called the \textbf{bouncer}\index{bouncer} (displayed in Figure~\ref{fig:bouncer_reflector}),\footnote{The bouncer, as well as most of the low-period pipsquirters that it can use, were found by Noam Elkies in September 1998.} which consists of an eater~1, a boat, a block, and a domino spark that is typically provided by a pipsquirter\index{pipsquirter}. The bouncer is somewhat less versatile than the bumper since the domino spark is tricky to position correctly, but it also has the advantage of having a repeat time of just $22$~generations (versus the bumper's $34$ and the Snark's $43$). Furthermore, these reflectors are color-changing,\footnote{Their names are designed to help us remember which reaction is color-preserving and which one is color-changing---the bum\textbf{p}er is color-\textbf{p}reserving while the boun\textbf{c}er is color-\textbf{c}hanging.} which provides us with some extra flexibility that we did not yet have (recall that both the Snark and the bumper are color-preserving).\footnote{For a more complete and up-to-date collection of bumpers and bouncers, see \httpsurl{conwaylife.com/wiki/Bumper_and_bouncer_gallery}.}
 
 \begin{figure}[!htb]
 	\centering
@@ -659,7 +659,7 @@ There is another closely-related reaction called the \emph{bouncer}\index{bounce
 		\begin{subfigure}{.33\textwidth}
 			\centering
 			\patternimglink{0.125}{p15_bouncer}
-			\caption{A p$15$ bouncer based on an oscillator called \emph{Karel's p15}\index{Karel's p15}.}
+			\caption{A p$15$ bouncer based on an oscillator called \textbf{Karel's p15}\index{Karel's p15}.}
 			\label{fig:p15_bouncer}
 		\end{subfigure} &
 		\begin{subfigure}{.32\textwidth}
@@ -711,7 +711,7 @@ What if we go one step further and suppose that we do not know \emph{anything at
 	\item We cannot simply reflect the input gliders to get whatever timing we want, as we can only arrange reflectors so as to get the first glider on the input stream to have the correct timing---not subsequent gliders (e.g., if two gliders come in along the input stream with a separation of $58$ gliders, there is no way to use just Snarks so as to widen that gap to $60$ generations).\smallskip
 \end{itemize}
 
-What we need instead is a reaction that always works the same way, producing an output glider aligned to a particular period, no matter what the precise timing of the input glider is (as long as the separation between consecutive input gliders is no smaller than the output period). A mechanism that accomplishes this for a particular output period is called a \emph{regulator}\index{regulator}, and a mechanism that can be adjusted to work at any period is known as a \emph{universal regulator}\index{universal regulator}.
+What we need instead is a reaction that always works the same way, producing an output glider aligned to a particular period, no matter what the precise timing of the input glider is (as long as the separation between consecutive input gliders is no smaller than the output period). A mechanism that accomplishes this for a particular output period is called a \textbf{regulator}\index{regulator}, and a mechanism that can be adjusted to work at any period is known as a \textbf{universal regulator}\index{universal regulator}.
 
 
 \subsection{A Universal Regulator}\label{sec:chapman_universal_regulator}
@@ -835,7 +835,7 @@ Because of their simplicity, many of the period~$30$ and period~$46$ mechanisms 
 	\]
 \end{itemize}
 
-In fact, John Conway and Bill Gosper used little more than some basic period~$30$ circuitry way back in the 1970s and 1980s \cite[Chapter~25]{BCG82} to demonstrate that the Game of Life is \emph{universal}---anything that can be computed (by a regular computer, for example), can be computed in the Game of Life by cleverly arranging some period~$30$ circuitry and manipulating gliders. Thus, for example, we knew that prime numbers could be computed in the Game of Life for several years before the first primer was explicitly constructed.
+In fact, John Conway and Bill Gosper used little more than some basic period~$30$ circuitry way back in the 1970s and 1980s \cite[Chapter~25]{BCG82} to demonstrate that the Game of Life is \textbf{universal}---anything that can be computed (by a regular computer, for example), can be computed in the Game of Life by cleverly arranging some period~$30$ circuitry and manipulating gliders. Thus, for example, we knew that prime numbers could be computed in the Game of Life for several years before the first primer was explicitly constructed.
 
 The advantage of the new circuitry and constructions that we have available to us now is that they are significantly smaller than the ones that would result from implementing the construction outlined by Conway and Gosper's universality proof \index{computational universality} (which require sending gliders across absolutely vast distances for even the simplest of computations). There is also something quite appealing about having \emph{explicit} constructions of these patterns. Actually arranging components as required by Conway and Gosper's proofs would typically be infeasible in practice, and the resulting patterns would not be terribly interesting to look at. We'll return to the topic of computational universality in Chapter~\ref{chp:universal_computation}.
 
@@ -961,13 +961,13 @@ The advantage of the new circuitry and constructions that we have available to u
 	
 	
 	\begin{problem}\label{exer:twin_primer} \probdiff{3}
-		The collision of a glider with an LWSS shown below is called a \emph{filter}\index{filter}. It results in a single block that destroys the next incoming glider, letting the next incoming LWSS pass by unharmed, thus doubling the period of an LWSS stream.
+		The collision of a glider with an LWSS shown below is called a \textbf{filter}\index{filter}. It results in a single block that destroys the next incoming glider, letting the next incoming LWSS pass by unharmed, thus doubling the period of an LWSS stream.
 		
 		\begin{center}
 			\embedlink{exercise_lwss_filter}{\vcenteredhbox{\patternimg{0.1}{exercise_lwss_filter_0}} \vcenteredhbox{\genarrow{6}} \vcenteredhbox{\patternimg{0.1}{exercise_lwss_filter_6}}}
 		\end{center}
 		
-		\noindent Add this reaction (and potentially some guns and eaters, as necessary) to the primer to create a \emph{twin primer}\index{twin primer}---a pattern that creates a stream of lightweight spaceships for which the $n$-th LWSS in the stream is present if and only if $n-2$ and $n$ are both prime.
+		\noindent Add this reaction (and potentially some guns and eaters, as necessary) to the primer to create a \textbf{twin primer}\index{twin primer}---a pattern that creates a stream of lightweight spaceships for which the $n$-th LWSS in the stream is present if and only if $n-2$ and $n$ are both prime.
 	\end{problem}
 
 
@@ -975,7 +975,7 @@ The advantage of the new circuitry and constructions that we have available to u
 	
 	
 	\begin{problem}\label{exer:rewind_primer} \probdiff{4}
-		One method of making a pattern smaller is to change it into the form that it would have looked several generations earlier (this is called \emph{rewinding}\index{rewind} the pattern). Use this technique, along with moving its various components closer together, to reduce the area of the bounding box of the primer from Figure~\ref{fig:primer} from $951 \times 696 = 661{\thousep}896$ to $500{\thousep}000$ or less.
+		One method of making a pattern smaller is to change it into the form that it would have looked several generations earlier (this is called \textbf{rewinding}\index{rewind} the pattern). Use this technique, along with moving its various components closer together, to reduce the area of the bounding box of the primer from Figure~\ref{fig:primer} from $951 \times 696 = 661{\thousep}896$ to $500{\thousep}000$ or less.
 	\end{problem}
 	
 	
@@ -1183,7 +1183,7 @@ The advantage of the new circuitry and constructions that we have available to u
 	
 	
 	\begin{problemstar}\label{exer:p29_pipsquirter} \probdiff{2}
-		Use the \emph{skewed p$29$ pre-pulsar shuttle}\index{pre-pulsar shuttle} displayed below to create a p$29$ bouncer reflector.\footnote{This reflector was originally found by Matthias Merzenich in August 2013.}
+		Use the \textbf{skewed p29 pre-pulsar shuttle}\index{pre-pulsar shuttle} displayed below to create a p$29$ bouncer reflector.\footnote{This reflector was originally found by Matthias Merzenich in August 2013.}
 		
 		\begin{center}
 			\patternimglink{0.1}{skewed_p29}
