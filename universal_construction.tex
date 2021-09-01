@@ -18,7 +18,7 @@
 
 \noindent In the previous chapter, we learned that we can often stabilize unstable reactions (like the $31c/240$~reaction of Figure~\ref{fig:31c_240_reaction}, or the $17c/45$~reaction of Figure~\ref{fig:17c45_reaction}) by using them to create gliders, and then using those gliders to synthesize stabilizing components. In this chapter, we take this idea one step further and show that similar behavior can be achieved without the need for the initial unstable reaction---we can use gliders to create or move some component in the Life plane, while simultaneously moving or recreating those gliders so that they can be re-used.
 
-seeWe refer to these techniques as \emph{universal construction},\index{universal construction} and a pattern that implements them as a \emph{universal constructor},\index{universal constructor} with ``universal'' referring to the fact that they can build any Life pattern that is synthesizable via gliders.\footnote{Some patterns, like Gardens of Eden and the grandparentless pattern from Figure~\ref{fig:grandparentless}, cannot be synthesized by gliders.} Although most universal constructors only fire slow glider salvos, we know from Theorem~\ref{thm:p2_slow_salvo} that this is enough to implement arbitrary glider syntheses. Most useful universal constructors are built out of simple stable components like blocks, beehives, and eater~1s, so that it is relatively straightforward to synthesize them via gliders, and thus they can even be used to build copies of themselves.
+We refer to these techniques as \textbf{universal construction},\index{universal construction} and a pattern that implements them as a \textbf{universal constructor},\index{universal constructor} with ``universal'' referring to the fact that they can build any Life pattern that is synthesizable via gliders.\footnote{Some patterns, like Gardens of Eden and the grandparentless pattern from Figure~\ref{fig:grandparentless}, cannot be synthesized by gliders.} Although most universal constructors only fire slow glider salvos, we know from Theorem~\ref{thm:p2_slow_salvo} that this is enough to implement arbitrary glider syntheses. Most useful universal constructors are built out of simple stable components like blocks, beehives, and eater~1s, so that it is relatively straightforward to synthesize them via gliders, and thus they can even be used to build copies of themselves.
 
 The applications of universal construction that we will present in this chapter are a wide variety of spaceships with speeds and slopes that we have not yet seen. Indeed, we start off by first showing how to construct spaceships with any rational slope (but not necessarily any rational speed), and then we flip things around so as to construct spaceships with any rational speed (but fixed at a diagonal slope of $1$).\footnote{Well, any rational speed below $c/4$, which is the diagonal speed limit from Theorem~\ref{thm:speed_limits}.}
 
@@ -29,7 +29,7 @@ The applications of universal construction that we will present in this chapter 
 
 We have seen the basic idea behind universal construction several times now, starting back in Section~\ref{sec:slide_guns}. By using a sliding block (or other small still life) as a construction elbow, we can fire gliders at any location in the Life plane, thus allowing a sequence of gliders to encode the construction or destruction of essentially any pattern (via the slow salvo techniques of Section~\ref{sec:slow_salvo}, for example).
 
-As our first illustration of the utility of universal computation, we now construct a spaceship called \emph{Gemini} that is primarily made up of long sequences of gliders that encode its own construction. Much like the silverfish and caterpillar spaceships of Chapter~\ref{chp:self_support_spaceships}, Gemini works by reaching out in front of itself to construct a track along which it can travel. This time, the track that it travels along is simply a series of Herschel tracks that manipulate the glider trails that then construct those Herschel tracks.
+As our first illustration of the utility of universal computation, we now construct a spaceship called \textbf{Gemini} that is primarily made up of long sequences of gliders that encode its own construction. Much like the silverfish and caterpillar spaceships of Chapter~\ref{chp:self_support_spaceships}, Gemini works by reaching out in front of itself to construct a track along which it can travel. This time, the track that it travels along is simply a series of Herschel tracks that manipulate the glider trails that then construct those Herschel tracks.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -66,7 +66,7 @@ We already saw gliders salvos that push or pull a sliding block back in Figure~\
 	\caption{A collection of reactions that can be used to fire perpendicular gliders (to the southwest) along any lane of our choosing. All four reactions use the same initial pair of gliders (highlighted in \bgbox{orangeback2}{orange}).}\label{fig:gemini_glider_operations}
 \end{figure}
 
-By using some Herschel circuitry to create these glider configurations, we can straightforwardly construct the \emph{construction arm}\index{construction arm} displayed in Figure~\ref{fig:construction_arm} that takes an input glider on one of four different lanes and performs the corresponding operation on the sliding block. This particular construction arm uses some slightly old conduits like the Callahan G-to-H\index{Callahan G-to-H} (refer back to Figure~\ref{fig:callahan_g_to_h}) rather than more recent conduits for two reasons:\smallskip
+By using some Herschel circuitry to create these glider configurations, we can straightforwardly construct the \textbf{construction arm}\index{construction arm} displayed in Figure~\ref{fig:construction_arm} that takes an input glider on one of four different lanes and performs the corresponding operation on the sliding block. This particular construction arm uses some slightly old conduits like the Callahan G-to-H\index{Callahan G-to-H} (refer back to Figure~\ref{fig:callahan_g_to_h}) rather than more recent conduits for two reasons:\smallskip
 
 \begin{itemize}
 	\item It will be useful for us to have this component built entirely out of pieces like blocks and eater~1s (and unlike Snarks) that are ``simple'' to synthesize.\smallskip
@@ -77,7 +77,7 @@ By using some Herschel circuitry to create these glider configurations, we can s
 \begin{figure}[!htb]
 	\centering
 	\embedlink{construction_arm}{\includegraphics[width=\textwidth]{universal_construction/construction_arm.pdf}}
-	\caption{A \emph{construction arm}, which takes a glider on one or two of four input glider lanes and as a result either pulls or pushes the sliding elbow block (circled in \bgbox{redback}{red}), or uses it to fire a perpendicular glider of either color to the southwest. Note that all four actions require the \texttt{PULL} circuit to be activated, as it produces the frontmost pair of gliders in all four operations (see Exercise~\ref{exer:construction_arm_lanes_timed}). Constructed by Paul Chapman and Dave Greene in 2004.}\label{fig:construction_arm}
+	\caption{A \textbf{construction arm}, which takes a glider on one or two of four input glider lanes and as a result either pulls or pushes the sliding elbow block (circled in \bgbox{redback}{red}), or uses it to fire a perpendicular glider of either color to the southwest. Note that all four actions require the \texttt{PULL} circuit to be activated, as it produces the frontmost pair of gliders in all four operations (see Exercise~\ref{exer:construction_arm_lanes_timed}). Constructed by Paul Chapman and Dave Greene in 2004.}\label{fig:construction_arm}
 \end{figure}
 
 By making use of this construction arm, we can use slow salvo syntheses in which gliders come in from just one or two out of four specified lanes to simulate general slow salvo glider syntheses (in which the gliders can come from any lane). For example, by aiming the output gliders of two construction arms at each other, we can encode any two-direction slow salvo synthesis in the sequence of $4$ input lanes that are used, much like we used armless construction to encode the synthesis of a $2$-engine Cordership in some glider sequences back in Figure~\ref{fig:armless_cordership_gun}.
@@ -98,7 +98,7 @@ The pattern displayed in Figure~\ref{fig:mwss_universal_constructor} illustrates
 We can use arrangements of construction arms like the one in Figure~\ref{fig:mwss_universal_constructor} to construct anything that has a glider synthesis. In particular, because these construction arms are made up of such simple components (mostly blocks and eater~1s, with the most difficult piece to synthesize being a tub), they can even be used to synthesize copies of \emph{themselves}. Indeed, this is the key idea behind the Gemini spaceship: use an extremely long chain of gliders to have two construction arms build copies of themselves somewhere else in the plane. To turn this idea into a \emph{spaceship} though (i.e., to make the construction propagate from one location in the Life plane to another, without leaving anything behind itself), we need to make two additions:\smallskip
 
 \begin{itemize}
-	\item We need to destroy the original pair of construction arms after they have constructed the new ones. To do this, we simply use a third construction arm (which we will instead call the \emph{destruction arm}),\index{destruction arm} which is constructed alongside the original pair. After all three arms are constructed, the first two start construction again while the third one starts destroying the no-longer-needed circuitry from the spaceship's previous period. Since objects like blocks and eater~1s can easily be destroyed by a single glider each, it is straightforward to find a glider recipe that destroys these old circuits.\smallskip
+	\item We need to destroy the original pair of construction arms after they have constructed the new ones. To do this, we simply use a third construction arm (which we will instead call the \textbf{destruction arm}),\index{destruction arm} which is constructed alongside the original pair. After all three arms are constructed, the first two start construction again while the third one starts destroying the no-longer-needed circuitry from the spaceship's previous period. Since objects like blocks and eater~1s can easily be destroyed by a single glider each, it is straightforward to find a glider recipe that destroys these old circuits.\smallskip
 	
 	\item We need to be able to re-use the glider recipes that store the construction and destruction recipes. Since we cannot use a static loop (we need the glider recipes to move along with the construction arms), we instead have the glider recipes bounce back and forth between \emph{two} copies of the entire three-arm circuit that we have described.\footnote{In fact, the two ends of the spaceship that we construct will be exactly identical. This is the reason for its name ``Gemini''---it is Latin for ``twins''.}\smallskip
 \end{itemize}
@@ -108,7 +108,7 @@ After we put all of these ideas together, we get the Gemini spaceship that is di
 \begin{figure}[!htb]
 	\centering
 	\embedlink{gemini}{\includegraphics[width=\textwidth]{universal_construction/gemini.pdf}}
-	\caption{The self-constructing \emph{Gemini} spaceship, which simply looks like a long, thin diagonal line when zoomed out far enough to see in its entirety. The bulk of the spaceship of made up of 24 parallel glider lanes (12 travelling in each direction), which carry a recipe for building the ship. The ends of the spaceship, which are zoomed in on here, are identical arrangements of stable glider reflectors, glider duplicators, and three construction/destruction arms whose sliding blocks are circled in \bgbox{redback}{red}. The construction arms highlighted in \bgbox{aquaback}{aqua} and \bgbox{greenpastel}{green} build the next copy of the spaceship (highlighted in \bgbox{yellowback2}{yellow}), while the destruction arm higlighted in \bgbox{magentaback}{magenta} destroys the previous copy of the spaceship (highlighted in \bgbox{orangeback2}{orange}).}\label{fig:gemini}
+	\caption{The self-constructing \textbf{Gemini} spaceship, which simply looks like a long, thin diagonal line when zoomed out far enough to see in its entirety. The bulk of the spaceship of made up of 24 parallel glider lanes (12 travelling in each direction), which carry a recipe for building the ship. The ends of the spaceship, which are zoomed in on here, are identical arrangements of stable glider reflectors, glider duplicators, and three construction/destruction arms whose sliding blocks are circled in \bgbox{redback}{red}. The construction arms highlighted in \bgbox{aquaback}{aqua} and \bgbox{greenpastel}{green} build the next copy of the spaceship (highlighted in \bgbox{yellowback2}{yellow}), while the destruction arm higlighted in \bgbox{magentaback}{magenta} destroys the previous copy of the spaceship (highlighted in \bgbox{orangeback2}{orange}).}\label{fig:gemini}
 \end{figure}
 
 
@@ -116,7 +116,7 @@ After we put all of these ideas together, we get the Gemini spaceship that is di
 \subsection{Geminoids}\label{sec:geminoids}\index{geminoid}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The Gemini spaceship travels at a speed of $(1024,5120)c/33699586$, but it can be modified in numerous ways to produce closely-related spaceships, called \emph{Geminoids}, that have a wide variety of different speeds and directions. We now explore some of these alterations, and discuss what their theoretical limits are.
+The Gemini spaceship travels at a speed of $(1024,5120)c/33699586$, but it can be modified in numerous ways to produce closely-related spaceships, called \textbf{Geminoids}, that have a wide variety of different speeds and directions. We now explore some of these alterations, and discuss what their theoretical limits are.
 
 The simplest way to change the speed of the Gemini is to change the distance between its two identical ends, without changing any of the glider recipes that bounce back and forth between them. Each additional cell (i.e., full diagonal) by which we separate the ends increases the travel time of each glider by $8$~generations per period ($4$~generations in each direction). Since this change does not affect how far the Gemini travels over the course of its period, this lets us build Geminoids that are arbitrarily slow, having any speed of the form $(1024,5120)c/(33699586 + 8k)$, where $k \geq 0$ is an integer.\footnote{For some values of $k$, we will have to adjust the spacing of the gliders along the track. This is because one of the construction arms at the Gemini's southeast end crosses over the $24$ glider lanes, which can lead to unwanted collisions if we are not careful. Any value of $k$ that is a multiple of $144$ is safe though, as that is the spacing between gliders on those lanes.} We can similarly squeeze the ends of the Gemini closer together, which \emph{decreases} its period by $8$ generation per full diagonal, but only by a bit. The glider sequence still has to fit between the two ends---if we squeeze them too close together then gliders will try to use circuitry before it is constructed (see Exercise~\ref{exer:squeeze_gemini_how_far}).
 
@@ -290,7 +290,7 @@ With these block-moving sequences at our disposal, we are now able to use glider
 \subsection{Creating and Using a Hand}\label{sec:single_channel_hand}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The only extra ingredient that we need in order to show that single-channel glider synthesis with a 90-degree elbow block is universal (i.e., can implement any glider synthesis) is a way of creating a target block (which we refer to as a \emph{hand}\footnote{It is connected to an elbow, after all.})\index{hand} that the perpendicular slow gliders will be fired at. One sequence of gliders that works to create such a hand block is
+The only extra ingredient that we need in order to show that single-channel glider synthesis with a 90-degree elbow block is universal (i.e., can implement any glider synthesis) is a way of creating a target block (which we refer to as a \textbf{hand}\footnote{It is connected to an elbow, after all.})\index{hand} that the perpendicular slow gliders will be fired at. One sequence of gliders that works to create such a hand block is
 \begin{align}\begin{split}\label{eq:make_hand_90_deg}
 & \text{\texttt{109, 91, 93, 90, 132, 115, 127, 91, 90, 91, 95, 90, 114,}} \\
 & \text{\texttt{~~~~~~~~~162, 233, 159, 90, 155, 126, 93, 118, 90, 91, 90, {\color{gray}(90)},}}
@@ -351,7 +351,7 @@ When we put all of this together, we get the following single-lane sequence of 1
 \section{Single-Channel Glider Synthesis with a Zero-Degree Elbow}\label{sec:single_channel_synth_0}\index{zero-degree elbow}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-While the single-channel syntheses of the previous subsection are very useful, it is sometimes desirable to use single-channel glider recipes to build an object directly in front of them, rather than off to their side. For example, it will be useful for us to be able to use gliders from a single lane to construct a Snark that accepts gliders on that same lane as input. To make this possible, instead of using a 90-degree elbow we use a \emph{zero-degree elbow}:\index{zero-degree elbow} a small stable object (like a block) that several gliders are fired at on a particular lane so as to produce a single glider going in the \emph{same direction} but on a different lane.\footnote{Here, ``zero-degree'' refers to the fact that the input glider stream is being ``reflected'' by zero degrees (i.e., not reflected at all, but just shifted to a different lane).}
+While the single-channel syntheses of the previous subsection are very useful, it is sometimes desirable to use single-channel glider recipes to build an object directly in front of them, rather than off to their side. For example, it will be useful for us to be able to use gliders from a single lane to construct a Snark that accepts gliders on that same lane as input. To make this possible, instead of using a 90-degree elbow we use a \textbf{zero-degree elbow}:\index{zero-degree elbow} a small stable object (like a block) that several gliders are fired at on a particular lane so as to produce a single glider going in the \emph{same direction} but on a different lane.\footnote{Here, ``zero-degree'' refers to the fact that the input glider stream is being ``reflected'' by zero degrees (i.e., not reflected at all, but just shifted to a different lane).}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -443,7 +443,7 @@ Unlike a $90$-degree elbow, we typically do not care about the exact position of
 \subsection{Creating and Using a Hand}\label{sec:single_channel_zero_make_hand}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Now that we can create output gliders on a wide variety of different lanes, we need to be able to create a target for those output gliders to hit. Once again, this target (typically a block) is called a \emph{hand},\index{hand} but this time we must build it in front of the elbow rather than off to its side.\footnote{Technically, we \emph{could} use the same hand block~\eqref{eq:make_hand_90_deg} that we used with the $90$-degree elbow, since that hand is within the $-100$ to $+100$ lane range that we can fire output gliders on via the zero-degree elbow. However, it is much more convenient to use a more centered hand instead.} One sequence that creates a suitable hand block is provided below and illustrated in Figure~\ref{fig:0degree_hand}:
+Now that we can create output gliders on a wide variety of different lanes, we need to be able to create a target for those output gliders to hit. Once again, this target (typically a block) is called a \textbf{hand},\index{hand} but this time we must build it in front of the elbow rather than off to its side.\footnote{Technically, we \emph{could} use the same hand block~\eqref{eq:make_hand_90_deg} that we used with the $90$-degree elbow, since that hand is within the $-100$ to $+100$ lane range that we can fire output gliders on via the zero-degree elbow. However, it is much more convenient to use a more centered hand instead.} One sequence that creates a suitable hand block is provided below and illustrated in Figure~\ref{fig:0degree_hand}:
 \begin{center}
 	\texttt{\small 109, 90, 93, 91, 91, 90, 90, 100, 90, 90, 146, 96, 90, 90, 90, 92, 156, 144, {\color{gray}(90)}}.
 \end{center}
@@ -499,7 +499,7 @@ When we put all of this together, we get the following single-lane sequence of $
 
 Now that we know how to build things with single-channel glider recipes, we would like to be able to manipulate them. In particular, it is going to be important that we are able to reflect these recipes and also duplicate them, so that we can use one copy of the recipe to build something while potentially saving the other copy for later use.
 
-Thanks to the fact that these recipes are single-channel, a single Snark can be used to reflect the entire recipe. However, if there is not already a Snark at the location we would like the reflection to take place, we have to be a bit more clever. In this situation, we can use a single-channel recipe to build a Snark directly in the path of the recipe itself, then let an arbitrary number of gliders be reflected by the Snark, and then use another single-channel recipe to destroy the Snark once it is done being useful. The recipes that create and destroy this in-lane Snark are appropriately called the \emph{Snarkmaker} and \emph{Snarkbreaker}.
+Thanks to the fact that these recipes are single-channel, a single Snark can be used to reflect the entire recipe. However, if there is not already a Snark at the location we would like the reflection to take place, we have to be a bit more clever. In this situation, we can use a single-channel recipe to build a Snark directly in the path of the recipe itself, then let an arbitrary number of gliders be reflected by the Snark, and then use another single-channel recipe to destroy the Snark once it is done being useful. The recipes that create and destroy this in-lane Snark are appropriately called the \textbf{Snarkmaker} and \textbf{Snarkbreaker}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -539,7 +539,7 @@ After stringing together 95 recipes of this type (one for each glider in the slo
 	\item Finally, we can use the elbow-moving recipes of Table~\ref{fig:90_degree_block_move} to adjust the relative positioning of the three different elbows that are used throughout all of these operations.\smallskip
 \end{itemize}
 
-After we put all of this together, we get a single-channel glider recipe containing a grand total of $2{\thousep}427$ gliders that creates a Snark, and also moves the elbow to its far side so that subsequent glider recipes on that lane hit the elbow after passing through the Snark. This \emph{Snarkmaker} is displayed in Figure~\ref{fig:snarkmaker}, and the complete sequence of glider timings that make it up is provided in Appendix~\ref{sec:appendix_snarkmaker}.
+After we put all of this together, we get a single-channel glider recipe containing a grand total of $2{\thousep}427$ gliders that creates a Snark, and also moves the elbow to its far side so that subsequent glider recipes on that lane hit the elbow after passing through the Snark. This \textbf{Snarkmaker} is displayed in Figure~\ref{fig:snarkmaker}, and the complete sequence of glider timings that make it up is provided in Appendix~\ref{sec:appendix_snarkmaker}.
 
 \begin{figure}[!htb]
 	\centering
@@ -562,7 +562,7 @@ The Snarkbreaker, which destroys a Snark that is in the path a single-channel gl
 	\centering
 	\embedlink{snarkbreaker}{\phantom{\vcenteredhbox{\gliderarrow{1}}} \vcenteredhbox{\patternimg{0.1}{snarkbreaker_0}} \vcenteredhbox{\gliderarrow{17}} \vcenteredhbox{\patternimg{0.1}{snarkbreaker_17}} \\[1em] \vcenteredhbox{\gliderarrow{1}} \vcenteredhbox{\patternimg{0.1}{snarkbreaker_18}} \,\! \vcenteredhbox{\gliderarrow{2}} \,\! \vcenteredhbox{\patternimg{0.1}{snarkbreaker_20}}}
 	
-	\caption{The \emph{Snarkbreaker} is a $20$-glider single-channel recipe that destroys a Snark and turns it back into an elbow block.}\label{fig:snarkbreaker}
+	\caption{The \textbf{Snarkbreaker} is a $20$-glider single-channel recipe that destroys a Snark and turns it back into an elbow block.}\label{fig:snarkbreaker}
 \end{figure}
 
 Altogether, the Snarkbreaker consists of 20 gliders, with the following timing gaps:
@@ -580,12 +580,12 @@ The exact timing of the glider that is labelled ``varies'' depends on how far aw
 
 The final piece of machinery that we will need for our upcoming constructions is a method of making a single-channel recipe duplicate itself. We have seen numerous methods of duplicating glider streams (e.g., the periodic duplicator of Figure~\ref{fig:periodic_glider_duplicator}, and the stable duplicators of Figure~\ref{fig:glider_multipliers}), but we cannot assume that such mechanisms are already in the path of the single-channel recipe. Instead, we would like to use a single-channel recipe to build a duplicating mechanism in such a way that further recipes along the same lane can make use of it.
 
-The simplest such mechanism to synthesize is called a \emph{Scorbie splitter},\footnote{Named after Dongook Lee, who uses the ConwayLife.com forums username ``Scorbie''. They were partially responsible for the identification of this conduit and its prominent usage in self-constructing circuitry.} which is displayed in Figure~\ref{fig:scorbie_splitter}. This conduit uses the left half of the large easier-to-synthesize version of the syringe from Figure~\ref{fig:syringe_modified} to convert the input glider into a Herschel, and then another conduit to convert that Herschel into two output gliders (this is the exact same method that was used to create the syringe variant in Exercise~\ref{exer:syringe_Lx200}, and it has the exact same repeat time of $90$~generations as that pattern).
+The simplest such mechanism to synthesize is called a \textbf{Scorbie splitter},\footnote{Named after Dongook Lee, who uses the ConwayLife.com forums username ``Scorbie''. They were partially responsible for the identification of this conduit and its prominent usage in self-constructing circuitry.} which is displayed in Figure~\ref{fig:scorbie_splitter}. This conduit uses the left half of the large easier-to-synthesize version of the syringe from Figure~\ref{fig:syringe_modified} to convert the input glider into a Herschel, and then another conduit to convert that Herschel into two output gliders (this is the exact same method that was used to create the syringe variant in Exercise~\ref{exer:syringe_Lx200}, and it has the exact same repeat time of $90$~generations as that pattern).
 
 \begin{figure}[!htb]
 	\centering
 	\patternimglink{0.12}{scorbie_splitter}
-	\caption{The \emph{Scorbie splitter} is a stable glider duplicator that is made up of the left half of a syringe, followed by an H-to-2G conduit on the right that was found by Aidan F.~Pierce in January 2016.}
+	\caption{The \textbf{Scorbie splitter} is a stable glider duplicator that is made up of the left half of a syringe, followed by an H-to-2G conduit on the right that was found by Aidan F.~Pierce in January 2016.}
 	\label{fig:scorbie_splitter}
 \end{figure}
 
@@ -600,7 +600,7 @@ We can also use single-channel recipes to synthesize Scorbie splitters in any ot
 
 The downside of single-channel glider synthesis versus slow salvo synthesis is that the former requires somewhere around $25$ to $40$ times as many gliders to synthesize the same object (roughly the length of an average elbow-moving sequence followed by a glider-firing sequence). However, the upside of it is that the surrounding circuitry that makes use of the synthesis can be considerably simpler, since it just needs to be able to manipulate gliders along a single lane.
 
-We now demonstrate the utility of single-channel glider synthesis by creating another self-constructing spaceship. This spaceship, which is called a \emph{Demonoid}\footnote{The name \emph{Demonoid} is a portmanteau of ``diagonal'' and ``Geminoid''.},\index{Demonoid} is smaller than the Gemini by roughly one order of magnitude---it has approximately $7 \times 10^4$ live cells instead of $8 \times 10^5$, and its bounding box has a side length of approximately $3 \times 10^5$ cells instead of $4 \times 10^6$.
+We now demonstrate the utility of single-channel glider synthesis by creating another self-constructing spaceship. This spaceship, which is called a \textbf{Demonoid}\footnote{The name \textbf{Demonoid} is a portmanteau of ``diagonal'' and ``Geminoid''.},\index{Demonoid} is smaller than the Gemini by roughly one order of magnitude---it has approximately $7 \times 10^4$ live cells instead of $8 \times 10^5$, and its bounding box has a side length of approximately $3 \times 10^5$ cells instead of $4 \times 10^6$.
 
 Much like the Gemini works by bouncing 12 glider streams back and forth between two identical ends that they construct and destroy, this Demonoid works by bouncing a single-channel recipe back and forth between two mirror-image ends that they construct and destroy. This time, the ends consist just of a Scorbie splitter (to duplicate the single-channel recipe, so that one copy can be used for construction purposes while the other copy is preserved) and a Snark (to send the preserved copy of the single-channel recipe back toward the other end of the Demonoid), as illustrated in Figure~\ref{fig:slow_demonoid}.
 
@@ -750,7 +750,7 @@ It's important to notice that these destruction recipes produce output gliders, 
 \subsection{The Speed Demonoid Itself}\label{sec:speed_demonoid}\index{Speed Demonoid}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Now that we have faster elbow-moving and circuit-destroying techniques, we can build a much faster Demonoid, appropriately named the \emph{Speed Demonoid}.\footnote{Constructed by Pavel Grankovskiy in September 2020.} The general layout of this Demonoid is very similar to that of the other Demonoids that we have seen---it is mostly made up of its single-channel glider recipe, which creates Snarks and Scorbie splitters that it zig-zags back and forth between.
+Now that we have faster elbow-moving and circuit-destroying techniques, we can build a much faster Demonoid, appropriately named the \textbf{Speed Demonoid}.\footnote{Constructed by Pavel Grankovskiy in September 2020.} The general layout of this Demonoid is very similar to that of the other Demonoids that we have seen---it is mostly made up of its single-channel glider recipe, which creates Snarks and Scorbie splitters that it zig-zags back and forth between.
 
 The only additional wrinkle that we add to this Demonoid design is that we use the crab as a \emph{double} boatstretcher instead of just as a single boatstretcher. That is, we will have the crab create and stretch two boat wicks, as illustrated in Figure~\ref{fig:double_boatstretcher_shoot_down}. The reason for making this change is that we want to use the crab to create two construction elbows, not just one---an elbow for making the next Scorbie splitter, and another elbow for making the next Snark. The two boat wicks can be burned independently so as to create those elbow blocks whenever we like (though we must be careful that the crab is only destroyed by the second fuse, not the first).
 
@@ -826,17 +826,17 @@ That one insight allowed Andrew J.~Wade, who was a complete newcomer to the Life
 The Gemini's completion, and its accompanying philosophy of storing information in glider streams instead of sequences of still lifes, marked the start of a new era of Life construction. In addition to the Geminoids and Demonoids that we saw in this chapter, a flood of other self-constructing spaceships and bizarre patterns based on universal construction were built in the 2010s. Some of the more notable examples include:\smallskip
 
 \begin{itemize}
-	\item In October 2010, Paul Tooke constructed numerous \emph{pianola breeders}:\index{pianola breeders} breeders that work by using universal constructors to synthesize objects that then synthesize other objects.\index{breeder} Because of the flexibility of universal construction, these breeders could be configured to behave in extremely unusual ways. For example, one of these breeders consists of a stationary object (a pair of universal constructors) that synthesizes stationary objects (slide guns), which then synthesize more stationary objects (lines of beehives).\footnote{See \httpsurl{conwaylife.com/wiki/Pianola_breeder}, and contrast this with the other breeders that we have seen, which all require some of the synthesized objects to move.}\smallskip
+	\item In October 2010, Paul Tooke constructed numerous \textbf{pianola breeders}:\index{pianola breeders} breeders that work by using universal constructors to synthesize objects that then synthesize other objects.\index{breeder} Because of the flexibility of universal construction, these breeders could be configured to behave in extremely unusual ways. For example, one of these breeders consists of a stationary object (a pair of universal constructors) that synthesizes stationary objects (slide guns), which then synthesize more stationary objects (lines of beehives).\footnote{See \httpsurl{conwaylife.com/wiki/Pianola_breeder}, and contrast this with the other breeders that we have seen, which all require some of the synthesized objects to move.}\smallskip
 	
-	\item In November 2013, Dave Greene built a pattern called a \emph{linear propagator}\footnote{See \httpsurl{conwaylife.com/wiki/Linear_propagator}.}\index{linear propagator} that repeatedly makes copies of itself---something that had been known to be possible since the early 1970s, but had eluded construction for the intervening four decades.\smallskip
+	\item In November 2013, Dave Greene built a pattern called a \textbf{linear propagator}\footnote{See \httpsurl{conwaylife.com/wiki/Linear_propagator}.}\index{linear propagator} that repeatedly makes copies of itself---something that had been known to be possible since the early 1970s, but had eluded construction for the intervening four decades.\smallskip
 	
 	\item In August 2014, Dave Greene constructed a pattern that grows outward in a spiral fashion by laying ever-expanding tracks around itself. The original version of this pattern had a bounding box with side length of approximately $1.6$~million cells, but has since between reduced to approximately $2{\thousep}000$ cells (see Figure~\ref{fig:spiral_growth}\index{spiral growth} and Exercise~\ref{exer:snark_spiral_weld}).\smallskip
 	
 	\item In November 2015, Chris Cain and Dave Greene completed the first Demonoid, which used somewhat more complicated circuitry than the Demonoids that we investigated in this chapter. Most notably, it used pairs of gliders separated by $10$hd to implement slow glider syntheses instead of single-channel glider recipes, which doubled the amount of circuitry that had to be constructed at each end.\smallskip
 	
-	\item In June 2017, Dave Greene constructed an \emph{Orthogonoid}\index{Orthogonoid} spaceship,\footnote{See \httpsurl{conwaylife.com/wiki/Orthogonoid}.} which works similarly to Demonoids, except uses middleweight spaceships (instead of gliders) to achieve a slow orthogonal (instead of diagonal) speed of travel. Adam P.~Goucher then helped build faster Orthogonoids with speeds up to $65536c/951573 \approx 0.06887c$ in October 2018.\smallskip
+	\item In June 2017, Dave Greene constructed an \textbf{Orthogonoid}\index{Orthogonoid} spaceship,\footnote{See \httpsurl{conwaylife.com/wiki/Orthogonoid}.} which works similarly to Demonoids, except uses middleweight spaceships (instead of gliders) to achieve a slow orthogonal (instead of diagonal) speed of travel. Adam P.~Goucher then helped build faster Orthogonoids with speeds up to $65536c/951573 \approx 0.06887c$ in October 2018.\smallskip
 	
-	\item In December 2018, Chris Cain completed a\index{camelship} \emph{camelship}\footnote{See \httpsurl{conwaylife.com/wiki/Camelship}.} by modifying an earlier \emph{volatility~1 oscillator}\footnote{See \httpsurl{conwaylife.com/wiki/Volatility}.} design. The oscillator ensures that all its cells oscillate at the pattern's full period, by using single-channel glider recipes to destroy then rebuild its own circuitry. The camelship consists of a very similar single-channel signal loop, but the circuit reconstruction happens at a $(3,1)$ offset.\smallskip
+	\item In December 2018, Chris Cain completed a\index{camelship} \textbf{camelship}\footnote{See \httpsurl{conwaylife.com/wiki/Camelship}.} by modifying an earlier \textbf{volatility~1 oscillator}\footnote{See \httpsurl{conwaylife.com/wiki/Volatility}.} design. The oscillator ensures that all its cells oscillate at the pattern's full period, by using single-channel glider recipes to destroy then rebuild its own circuitry. The camelship consists of a very similar single-channel signal loop, but the circuit reconstruction happens at a $(3,1)$ offset.\smallskip
 \end{itemize}
 
 The development of single-channel glider synthesis mostly took place in 2017, when another relative newcomer, Simon Ekstr{\"o}m, cavalierly disregarded accumulated prejudices from the previous decade, tried a search, and found that it worked.\footnote{This is not unlike Wade's construction of the Gemini in 2010, or when ConwayLife.com forums user ``zdr'' found the copperhead spaceship in 2016. In all of these cases, a newcomer simply looked where the members of the Life community thought there wasn't anything to find.} It was already known in 2015 how to emulate arbitrary glider synthesis via gliders on a single lane, but Ekstr{\"o}m was the first to show that it is possible even when the gliders are far enough apart from each other that they can be fed through standard components like Snarks and syringes.
@@ -861,7 +861,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\setlength{\parskip}{0pt}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
-	\begin{problem}\label{exer:rebuild_construction_arm}
+	\begin{problem}\label{exer:rebuild_construction_arm} \probdiff{3}
 		Rebuild the construction arm from Figure~\ref{fig:construction_arm} via modern components like Snarks and syringes.
 	\end{problem}
 	
@@ -870,12 +870,12 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	
 	
 	\begin{problem}\label{exer:construction_arm_lanes_timed}
-		The construction arm of Figure~\ref{fig:construction_arm} requires two synchronized input gliders to trigger each of the \texttt{PUSH}, \texttt{FIRE WHITE}, and \texttt{FIRE BLACK} operations---one to create the frontmost pair of gliders via the \texttt{PULL} input, and one to create the additional glider(s) via one of the other three inputs.
+		The construction arm of Figure~\ref{fig:construction_arm} requires two synchronized input gliders to trigger each of the \texttt{PUSH}, \texttt{FIRE WHITE}, and \texttt{FIRE BLACK} operations---one to create the frontmost pair of gliders via the \texttt{PULL} input, and one to create the additional glider(s) via one of the other three inputs.\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item Find the correct timing for the pair of input gliders to trigger each of the \texttt{PUSH}, \texttt{FIRE WHITE}, and \texttt{FIRE BLACK} operations.
+			\item \probdiff{2} Find the correct timing for the pair of input gliders to trigger each of the \texttt{PUSH}, \texttt{FIRE WHITE}, and \texttt{FIRE BLACK} operations.
 			
-			\item Add additional Herschel conduits to that arm (or the one from Exercise~\ref{exer:rebuild_construction_arm}) so that each of the four operations can be triggered by just a single input glider.
+			\item \probdiff{3} Add additional Herschel conduits to that arm (or the one from Exercise~\ref{exer:rebuild_construction_arm}) so that each of the four operations can be triggered by just a single input glider.
 		\end{enumerate}
 	\end{problem}
 	
@@ -883,7 +883,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:construction_arm_fire_white_different}
+	\begin{problem}\label{exer:construction_arm_fire_white_different} \probdiff{1}
 		The arrangement of two gliders that the \texttt{FIRE WHITE} circuit in Figure~\ref{fig:construction_arm} makes is slightly different than the pair of \texttt{FIRE WHITE} gliders highlighted in green in Figure~\ref{fig:gemini_fire_white}. Why is this not a problem?
 	\end{problem}
 	% SOLUTION: The first 3 gliders create a one-time-turner boat. It doesn't matter when the fourth glider hits that boat, as long as it is one the right lane.
@@ -892,8 +892,8 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:mwss_universal_constructor_turn_into_gun}
-		The pattern in Figure~\ref{fig:mwss_universal_constructor} uses two universal constructors to synthesize a middleweight spaceship.
+	\begin{problem}\label{exer:mwss_universal_constructor_turn_into_gun} \probdiff{3}
+		The pattern in Figure~\ref{fig:mwss_universal_constructor} uses two universal constructors to synthesize a middleweight spaceship.\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item Add a loop gun to each of the 8 input lanes, so that universal constructor \emph{repeatedly} constructs middleweight spaceships.
@@ -908,14 +908,14 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	
 	
 	\begin{problem}\label{exer:mwss_universal_constructor_turn_into_other}
-		Adjust the input glider sequences for the pattern from Figure~\ref{fig:mwss_universal_constructor} so that instead of constructing an MWSS, it constructs...
+		Adjust the input glider sequences for the pattern from Figure~\ref{fig:mwss_universal_constructor} so that instead of constructing an MWSS, it constructs...\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item a lightweight spaceship,
+			\item \probdiff{3} a lightweight spaceship,
 			
-			\item a line of blocks (of any slope and spacing of your choosing), and
+			\item \probdiff{3} a line of blocks (of any slope and spacing of your choosing), and
 			
-			\item a $2$-engine Cordership.
+			\item \probdiff{5} a $2$-engine Cordership.
 			
 			[Hint: You can use the $2$-direction slow synthesis from Figure~\ref{fig:armless_cordership_gun}.]
 		\end{enumerate}
@@ -925,7 +925,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:gemini_unhighlighted_reflectors}
+	\begin{problemstar}\label{exer:gemini_unhighlighted_reflectors} \probdiff{2}
 		The two zoom boxes in Figure~\ref{fig:gemini} each have two rows of unhighlighted reflectors that never reflect a single glider. What is their purpose?
 	\end{problemstar}
 	
@@ -933,7 +933,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:gemini_which_lane_operations}
+	\begin{problem}\label{exer:gemini_which_lane_operations} \probdiff{3}
 		The 12 glider lanes in the Gemini spaceship from Figure~\ref{fig:gemini} each implement one of the 4 basic operations from Figure~\ref{fig:gemini_glider_operations} (i.e., \texttt{PULL}, \texttt{PUSH}, \texttt{FIRE WHITE}, and \texttt{FIRE BLACK}). Determine which lanes implement which of those operations.
 	\end{problem}
 	
@@ -941,7 +941,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:gemini_separate_ends_slow}
+	\begin{problem}\label{exer:gemini_separate_ends_slow} \probdiff{3}
 		Move the two identical ends of the Gemini spaceship farther apart, so as to create a spaceship that travels slower than $(1024,5120)c/50000000$.
 	\end{problem}
 	
@@ -949,8 +949,8 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:squeeze_gemini_how_far}
-		By moving the two identical ends of the Gemini spaceship closer together, we can make it slightly faster.
+	\begin{problemstar}\label{exer:squeeze_gemini_how_far} \probdiff{4}
+		By moving the two identical ends of the Gemini spaceship closer together, we can make it slightly faster.\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item Move the ends $1$~full diagonal closer together. What is the speed of the resulting spaceship?
@@ -964,7 +964,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:gemini_slope_n_fixed}
+	\begin{problemstar}\label{exer:gemini_slope_n_fixed} \probdiff{3}
 		The slope-$2$ Geminoid from Figure~\ref{fig:gemini_knightship} was created by just adding additional \texttt{PUSH} operations to the northwest construction elbow (i.e., we increased the value that we called ``$m$'' in that section, while leaving ``$n$'' fixed at $n = 2{\thousep}048$). What Geminoid slopes are attainable by making this type of change to Gemini? That is, what slopes can be attained by increasing $m$, but not changing $n$?
 	\end{problemstar}
 	
@@ -973,13 +973,13 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	
 	
 	\begin{problem}\label{exer:gemini_slope_3}
-		Recall that the Gemini itself travels at slope $5$, and the Geminoid knightship travels at slope $2$.
+		Recall that the Gemini itself travels at slope $5$, and the Geminoid knightship travels at slope $2$.\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item To create a Geminoid that travels at a slope of $3$, how many \texttt{PUSH} operations should we add to the path of the northwest construction elbow?
+			\item \probdiff{2} To create a Geminoid that travels at a slope of $3$, how many \texttt{PUSH} operations should we add to the path of the northwest construction elbow?
 			% SOLUTION: 1024, which gives a displacement in that direction of m = 4096 instead of 3072.
 			
-			\item Construct a Geminoid that travels at a slope of $3$.
+			\item \probdiff{5} Construct a Geminoid that travels at a slope of $3$.
 		\end{enumerate} Gemini)
 	\end{problem}
 	
@@ -988,8 +988,8 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	
 	
 	% TODO: Give solution? Easy one to give solutions to.
-	\begin{problem}\label{exer:move_single_channel_elbow}
-		String together multiple elbow-moving single-channel glider recipes from Table~\ref{tab:single_lane_elbow_movers} so as to make a recipe that moves the elbow forward by exactly...
+	\begin{problem}\label{exer:move_single_channel_elbow} \probdiff{2}
+		String together multiple elbow-moving single-channel glider recipes from Table~\ref{tab:single_lane_elbow_movers} so as to make a recipe that moves the elbow forward by exactly...\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item $11$ half diagonals,
@@ -1005,8 +1005,8 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	
 	
 	% TODO: Give solution? Easy one to give solutions to.
-	\begin{problem}\label{exer:single_channel_90_degree_fire}
-		String together multiple single-channel glider recipes from Tables~\ref{tab:single_lane_90deg_glider_timings} and~\ref{tab:single_lane_elbow_movers} so as to fire a single glider on output lane...
+	\begin{problem}\label{exer:single_channel_90_degree_fire} \probdiff{3}
+		String together multiple single-channel glider recipes from Tables~\ref{tab:single_lane_90deg_glider_timings} and~\ref{tab:single_lane_elbow_movers} so as to fire a single glider on output lane...\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item $3x$,
@@ -1021,7 +1021,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:block_pull_pond}
+	\begin{problem}\label{exer:block_pull_pond} \probdiff{2}
 		The single-channel elbow-pulling sequence displayed in Figure~\ref{fig:0_degree_block_pull} turns an elbow block into a pond (rather than another block). Why is this not a problem?
 	\end{problem}
 	% Pond acts as an elbow in the same way (also explodes into a pi-heptomino)
@@ -1030,7 +1030,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:single_lane_glider_final_glider_explain}
+	\begin{problemstar}\label{exer:single_lane_glider_final_glider_explain} \probdiff{2}
 		The 185-glider single-lane sequence illustrated in Figure~\ref{fig:90_degree_block_move} makes use of two copies of the glider sequence that moves the elbow forward by $10$ half-diagonals. In the first sequence the final glider arrives after 90~generations, whereas in the second sequence it arrives after 91~generations. Explain the reason for this discrepancy---why can't the final glider in the second sequence also arrive after just 90~generations?
 	\end{problemstar}
 	
@@ -1157,7 +1157,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	
 	
 	\begin{problem}\label{exer:syringe_xwss_destroy} \probdiff{3}
-		The fact that Snarks and Scorbie splitters can be destroyed by xWSS slow salvos is not surprising---most objects can be similarly destroyed.
+		The fact that Snarks and Scorbie splitters can be destroyed by xWSS slow salvos is not surprising---most objects can be similarly destroyed.\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item Construct an xWSS slow salvo that destroys the syringe from Figure~\ref{fig:syringe_main}.
@@ -1181,7 +1181,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	
 	
 	\begin{problemstar}\label{exer:44hd_elbow_push} \probdiff{4}
-		The following single-lane glider recipe (called the \emph{44hd elbow push}\index{44hd elbow push}) is the fastest-known elbow-pushing recipe---it moves the elbow block forward by $44$ half-diagonals in $2{\thousep}107$ generations:
+		The following single-lane glider recipe (called the \textbf{44hd elbow push}\index{44hd elbow push}) is the fastest-known elbow-pushing recipe---it moves the elbow block forward by $44$ half-diagonals in $2{\thousep}107$ generations:
 		\begin{align*}
 		& \text{\texttt{\footnotesize 109, 90, 93, 91, 90, 95, 91, 91, 138, 157,}} \\
 		& \text{\texttt{\footnotesize~96, 90, 120, 91, 97, 107, 90, 90, 93, {\color{gray}(188)}.}}
@@ -1292,7 +1292,7 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	
 	% TODO: Give solution? Easy one to give solutions to.
 	\begin{problem}\label{exer:speed_demonoid_parameters} \probdiff{2}
-		Find values of the separation parameters $n$ and $m$ that lead to a Speed Demonoid having speed...
+		Find values of the separation parameters $n$ and $m$ that lead to a Speed Demonoid having speed...\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item $6c/25$,
