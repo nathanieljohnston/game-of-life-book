@@ -9,13 +9,15 @@
 
 % TODO: Add note about this other emulator somewhere?
 % TODO: change single quotes to double quotes in APGsembly? Satoshi suggested this. Would it cause any problems with, e.g., Dave's compiler?
+% TODO: In chapter 8, give exercise to build the universal regulator used in this computer?
+
 
 \vspace*{-0.4in}
 \epigraph{Becoming sufficiently familiar with something is a substitute for understanding it.}{John H. Conway}
 \vspace*{0.4in}
 
 
-\noindent At the end of Chapter~\ref{chp:periodic_circuitry}, we briefly introduced the concept of \emph{computational universality}---the ability of Life (or other data manipulation rules in general) to simulate any computation that a computer can accomplish. It has been known since the early days of Life that it is computationally universal (also sometimes referred to as ``Turing complete'') \cite{Wain74,BCG82}. \index{Turing complete}\index{computational universality} However, the constructions that were used to originally demonstrate this fact were monstrously large and only mostly pieced together. Actually constructing an explicit pattern that works as a universal computer that can be simulated in standard Life software still requires some additional work.
+\noindent At the end of Chapter~\ref{chp:periodic_circuitry}, we briefly introduced the concept of \textbf{computational universality}---the ability of Life (or other data manipulation rules in general) to simulate any computation that a computer can accomplish. It has been known since the early days of Life that it is computationally universal (also sometimes referred to as ``Turing complete'') \cite{Wain74,BCG82}. \index{Turing complete}\index{computational universality} However, the constructions that were used to originally demonstrate this fact were monstrously large and only mostly pieced together. Actually constructing an explicit pattern that works as a universal computer that can be simulated in standard Life software still requires some additional work.
 
 In this chapter, we dive into the details of one particularly flexible computation toolkit\footnote{Developed by Adam~P.~Goucher in 2009 and 2010.} that can be used to construct patterns to perform arbitrary computations, and even print the output of those computations in a font made up of blocks. For example, the culmination of this chapter will be a pattern in Section~\ref{sec:pi_calc} that computes and prints the decimal digits of the mathematical constant $\pi$.
 
@@ -45,7 +47,7 @@ All of this may seem like a big leap in complexity from what we have covered so 
 
 To construct our first usable computational logic component, we observe that we can store a non-negative integer in the position of a block that is moved forward and backward via the block-moving operations that we used to make slide guns (see Section~\ref{sec:slide_guns}). It is straightforward to use the techniques of Chapter~\ref{chp:stationary_circuitry} to build a stable conduit that turns a glider into the arrangement of three gliders from Figure~\ref{fig:synchronized_block_mover_5} that pushes a block diagonally away by $1$~cell. We call this an \texttt{INC}\index{INC} operation, since it corresponds to increasing the value that the block represents by $1$. We can similarly construct a conduit that turns a glider into the arrangement of two gliders from Figure~\ref{fig:synchronized_block_mover_4} that pulls the block diagonally closer by $1$~cell---a ``\texttt{DEC}''\index{DEC} operation that decreases the value of the block by $1$.
 
-However, in order for this mechanism to actually be useful in a computer, we need a way of reading its value (i.e., checking where the block is without disturbing it). To this end, we note that it suffices to be able to check whether or not the block is in the ``zero'' (\texttt{Z})\index{Z} position,\footnote{We could equally well call this the ``one'' position and store positive integers instead of non-negative integers, but it's more traditional to have the block's starting position be zero.} since we could repeatedly decrease the value of the block and perform that test after every decrement until we get a positive answer, and then increment the block back to its original position. Once we solve this problem of testing whether or not a block is in the ``zero'' position, we will have a memory device called a \emph{sliding block register (SBR)}\index{sliding block register}\index{SBR|see {sliding block register}}.
+However, in order for this mechanism to actually be useful in a computer, we need a way of reading its value (i.e., checking where the block is without disturbing it). To this end, we note that it suffices to be able to check whether or not the block is in the ``zero'' (\texttt{Z})\index{Z} position,\footnote{We could equally well call this the ``one'' position and store positive integers instead of non-negative integers, but it's more traditional to have the block's starting position be zero.} since we could repeatedly decrease the value of the block and perform that test after every decrement until we get a positive answer, and then increment the block back to its original position. Once we solve this problem of testing whether or not a block is in the ``zero'' position, we will have a memory device called a \textbf{sliding block register (SBR)}\index{sliding block register}\index{SBR|see {sliding block register}}.
 
 The trick that we will use for performing this test is based on the $(2,1)$ block pull\index{(2,1) block pull} reaction that we first saw way back in Figure~\ref{fig:glider_block_move}. Indeed, this reaction is the one that happens when a glider just barely grazes a block, so we can position that glider so that it performs this $(2,1)$ block pull if the sliding block is in the ``zero'' position, and it simply passes by the block without any interaction at all if it is in any other position. In the latter case, we can simply use the unaffected glider as the ``non-zero'' (\texttt{NZ})\index{NZ} output of our test-if-zero (\texttt{TEST})\index{TEST} circuit. However, if the glider was destroyed by the $(2,1)$ block pull reaction (since the sliding block was in the ``zero'' position), we have some additional work to do: we have to arrange some circuitry so as to create a ``zero'' (\texttt{Z})\index{Z} output signal and also restore the moved sliding block to the ``zero'' position.
 
@@ -89,7 +91,7 @@ We now have a mechanism that can store integer values, with two simple inputs (\
 
 To give a rough idea of how we could carry out a computation of this type, consider the task of just checking which of two registers contains a smaller value. We can solve this problem by repeatedly decrementing the value of the registers, and stopping once either of them is storing a value of \texttt{0}. Whichever one hits \texttt{0} first is determined to be the register that started off storing the smaller value. Pseudocode that implements this algorithm is provided by Pseudocode~\ref{alg:pseudocode_test_leq_or_ge}.
 
-When we write pseudocode like this, we use labels like \texttt{U0}, \texttt{U1}, \texttt{U2}, $\ldots$ to denote the various registers used by the computer program.\footnote{The ``\texttt{U}'' stands for the word \emph{unary}, since these sliding block registers stores integers in unary (i.e., the base-$1$ numeral system). We will see a different type of register that instead stores integers in binary a bit later, in Section~\ref{sec:binary_register}.} Also, for this pseudocode it is intended that the computer starts by executing the first line of code, then automatically moves to the following line and executes that, and so on---unless it encounters an instruction that tells it to jump to some other line of the program.
+When we write pseudocode like this, we use labels like \texttt{U0}, \texttt{U1}, \texttt{U2}, $\ldots$ to denote the various registers used by the computer program.\footnote{The ``\texttt{U}'' stands for the word \textbf{unary}, since these sliding block registers stores integers in unary (i.e., the base-$1$ numeral system). We will see a different type of register that instead stores integers in binary a bit later, in Section~\ref{sec:binary_register}.} Also, for this pseudocode it is intended that the computer starts by executing the first line of code, then automatically moves to the following line and executes that, and so on---unless it encounters an instruction that tells it to jump to some other line of the program.
 
 \begin{pseudocode}[!htb]
 	\begin{algorithmic}[1]\small
@@ -106,7 +108,7 @@ When we write pseudocode like this, we use labels like \texttt{U0}, \texttt{U1},
 	\caption{Test which of the registers \texttt{U0} or \texttt{U1} contains a smaller value.}\label{alg:pseudocode_test_leq_or_ge}
 \end{pseudocode}
 
-Our next goal is to simplify and standardize our pseudocode so as to make it simpler to implement as a Life pattern. With this in mind, a \emph{finite-state machine}\index{finite-state machine} is a model of computation in which the computer can be in one of a finite number of states at any given time, and its state can change based on inputs that it receives. We can implement a finite-state machine with $n$ possible states via a Life pattern that has a single glider traversing a set of $n$ parallel lanes connected by other circuitry.  At any given computer clock tick, the glider will be on exactly one of the ``state'' lanes. It will then run through structures that send gliders to various inputs of various register circuits, and also send a glider to the lane representing the next state in the program.
+Our next goal is to simplify and standardize our pseudocode so as to make it simpler to implement as a Life pattern. With this in mind, a \textbf{finite-state machine}\index{finite-state machine} is a model of computation in which the computer can be in one of a finite number of states at any given time, and its state can change based on inputs that it receives. We can implement a finite-state machine with $n$ possible states via a Life pattern that has a single glider traversing a set of $n$ parallel lanes connected by other circuitry.  At any given computer clock tick, the glider will be on exactly one of the ``state'' lanes. It will then run through structures that send gliders to various inputs of various register circuits, and also send a glider to the lane representing the next state in the program.
 
 In order for our pseudocode to more accurately reflect this finite-state machine that our Life program will implement, we require $2$ additional things of all pseudocode that we write from this point forward:\smallskip
 
@@ -131,7 +133,7 @@ By making the changes outlined in points (1) and (2) above, our original Pseudoc
 	\caption{Test which of the registers \texttt{U0} or \texttt{U1} contains a smaller value---second version.}\label{alg:fsm_test_leq_or_ge}
 \end{pseudocode}
 
-We now refine this pseudocode even further and standardize it into what we call\index{APGsembly} \emph{APGsembly code}---the programming language that we will use to write and compile programs in Life patterns.\footnote{The name ``APGsembly'' is a play on the word ``assembly'' (low-level code for programming computer instructions) and the initials of its author, Adam~P. Goucher. Indeed, APGsembly was used by Goucher to construct the original $\pi$ calculator in 2010.} In order to make the conditional statements of our pseudocode even easier to implement, we split each state of the finite state machine (i.e., our ``computer'') into two substates: one corresponding to the most recent return value being \texttt{Z}, and one corresponding to the most recent return value being \texttt{NZ}. These substates may result in completely different actions being taken and may cause the program to subsequently jump to completely different states (just as in a regular conditional statement).\footnote{In the actual Life implementation of the finite-state machine, this will mean that a glider will appear on one of two different parallel lanes during any given state, depending on whether the last output value received from a register was \texttt{Z} or \texttt{NZ}.}
+We now refine this pseudocode even further and standardize it into what we call\index{APGsembly} \textbf{APGsembly code}---the programming language that we will use to write and compile programs in Life patterns.\footnote{The name ``APGsembly'' is a play on the word ``assembly'' (low-level code for programming computer instructions) and the initials of its author, Adam~P. Goucher. Indeed, APGsembly was used by Goucher to construct the original $\pi$ calculator in 2010.} In order to make the conditional statements of our pseudocode even easier to implement, we split each state of the finite state machine (i.e., our ``computer'') into two substates: one corresponding to the most recent return value being \texttt{Z}, and one corresponding to the most recent return value being \texttt{NZ}. These substates may result in completely different actions being taken and may cause the program to subsequently jump to completely different states (just as in a regular conditional statement).\footnote{In the actual Life implementation of the finite-state machine, this will mean that a glider will appear on one of two different parallel lanes during any given state, depending on whether the last output value received from a register was \texttt{Z} or \texttt{NZ}.}
 
 Once we make the above change, we no longer really need logical instructions in our pseudocode at all: every program can be specified by listing what action should be taken (e.g., \texttt{INC} or \texttt{TDEC}) when a particular state and substate is encountered, along with which state should then be jumped to next. See APGsembly~\ref{alg:apgsembly_test_leq_or_ge} for our first concrete example of APGsembly code---it implements the same ``does \texttt{U0} contain a small value than \texttt{U1}?'' test that we saw in Pseudocode~\ref{alg:fsm_test_leq_or_ge}.
 
@@ -256,7 +258,7 @@ The gun that we attach to this universal regulator has period $2^{20}$, which we
 	\end{minipage}
 \end{figure}
 
-The high-period universal regulator that results from stitching together Figures~\ref{fig:stable_universal_regulator} and~\ref{fig:p2to_the_20_gun} is called the \emph{clock gun}, and it determines the speed at which the pattern computes whatever it has been programmed to compute. We think of the period of this clock gun as the clock speed of the computer, and one period of the regulator as one clock tick or computational cycle.\footnote{Some computations may take longer than one clock tick to complete, but that's okay. For example, if a sliding block register is storing an extremely large value then its sliding block will be extremely far away from the computer, so it will take a long time to \texttt{INC} or \texttt{TDEC}. In this case, the clock gun halts the computer for one or more clock ticks until an output signal is received from the component stack.}
+The high-period universal regulator that results from stitching together Figures~\ref{fig:stable_universal_regulator} and~\ref{fig:p2to_the_20_gun} is called the \textbf{clock gun}, and it determines the speed at which the pattern computes whatever it has been programmed to compute. We think of the period of this clock gun as the clock speed of the computer, and one period of the regulator as one clock tick or computational cycle.\footnote{Some computations may take longer than one clock tick to complete, but that's okay. For example, if a sliding block register is storing an extremely large value then its sliding block will be extremely far away from the computer, so it will take a long time to \texttt{INC} or \texttt{TDEC}. In this case, the clock gun halts the computer for one or more clock ticks until an output signal is received from the component stack.}
 
 In summary, the calculator patterns that we compile from APGsembly work as follows:\smallskip
 
@@ -336,9 +338,9 @@ Just like we can multiply two registers via repeated addition, we can divide two
 
 One of the unfortunate features of sliding block registers is that the only actions they have available to them are addition and subtraction by \texttt{1}, so arithmetic operations involving large numbers stored in these registers take a long time to complete. For example, the addition code of APGsembly~\ref{alg:apgsembly_add_same_register} takes \texttt{U0+1} clock ticks to add the value of \texttt{U0} to \texttt{U1}, and the multiplication code of APGsembly~\ref{apg:mult_unary_reg} takes roughly \texttt{2 * U0 * U1} clock ticks to multiply \texttt{U0} by \texttt{U1}.\footnote{In fact, even the addition and subtraction by \texttt{1} operations take longer to complete the larger the value of the register is, since the sliding block takes longer to interact with when it is farther away.}
 
-While larger inputs leading to longer times to perform arithmetic operations is inevitable, we can save a lot of time by representing non-negative integers in a more efficient way than just as the position of a sliding block. While a sliding block register can be thought of as storing a non-negative integer in \emph{unary}\index{unary} (i.e., the base-$1$ numeral system, in which each number is represented by tally marks or a distance from a fixed point), the register that we now introduce instead encodes non-negative integers in \emph{binary} (i.e., the base-$2$ numeral system).\footnote{Other bases larger than $2$ would also be quicker to work with than unary, but they would be even more complicated to implement.} Performing operations on such a register is somewhat more complicated, but it has the advantage of being much quicker because, for example, the non-negative integer $n$ can be stored in $O(\log(n))$ space instead of $O(n)$ space.
+While larger inputs leading to longer times to perform arithmetic operations is inevitable, we can save a lot of time by representing non-negative integers in a more efficient way than just as the position of a sliding block. While a sliding block register can be thought of as storing a non-negative integer in \textbf{unary}\index{unary} (i.e., the base-$1$ numeral system, in which each number is represented by tally marks or a distance from a fixed point), the register that we now introduce instead encodes non-negative integers in \textbf{binary} (i.e., the base-$2$ numeral system).\footnote{Other bases larger than $2$ would also be quicker to work with than unary, but they would be even more complicated to implement.} Performing operations on such a register is somewhat more complicated, but it has the advantage of being much quicker because, for example, the non-negative integer $n$ can be stored in $O(\log(n))$ space instead of $O(n)$ space.
 
-We call a register that stores a non-negative integer in this way a \emph{binary register},\index{binary register} and the one that we make use of is displayed in Figure~\ref{fig:binary_register}. It uses block-moving shotguns similar to the ones in sliding block registers, except that they move a block~$6$ cells diagonally at a time instead of just~$1$. This wider spacing leaves room for additional reactions to place boats on one side of the sliding block. Indeed, every~$6$ cells along the sliding block's path is a designated bit location, which can contain either an empty space or a single boat, corresponding to the bits \texttt{0} and \texttt{1}, respectively.
+We call a register that stores a non-negative integer in this way a \textbf{binary register},\index{binary register} and the one that we make use of is displayed in Figure~\ref{fig:binary_register}. It uses block-moving shotguns similar to the ones in sliding block registers, except that they move a block~$6$ cells diagonally at a time instead of just~$1$. This wider spacing leaves room for additional reactions to place boats on one side of the sliding block. Indeed, every~$6$ cells along the sliding block's path is a designated bit location, which can contain either an empty space or a single boat, corresponding to the bits \texttt{0} and \texttt{1}, respectively.
 
 \begin{figure}[!htb]
 	\centering
@@ -352,7 +354,7 @@ We call a register that stores a non-negative integer in this way a \emph{binary
 The four actions available to this binary register are a bit more abstract than the actions of the sliding block register, since they work on the individual bits of the register rather than the value that those bits represent:\smallskip
 
 \begin{itemize}
-	\item An \texttt{INC}\index{INC} action moves the pointer block (called the \emph{read head}\index{read head} of the register) to the next bit location, one step farther away.\smallskip
+	\item An \texttt{INC}\index{INC} action moves the pointer block (called the \textbf{read head}\index{read head} of the register) to the next bit location, one step farther away.\smallskip
 	
 	\item A \texttt{TDEC}\index{TDEC} action moves the read head to the previous bit location (or keeps it in the same place if it's already at the zero position). This action also returns either \texttt{Z} or \texttt{NZ}, depending on whether or not the read head was already at the location of the least significant bit when this action was called.\footnote{This behavior is in complete analogy with the \texttt{TDEC} action for the sliding block register---it tests and \emph{then} it decrements (if possible). In fact, the binary register from Figure~\ref{fig:binary_register} has a sliding block register baked into it for exactly this reason.}\smallskip
 	
@@ -432,7 +434,7 @@ This method is implemented in APGsembly~\ref{alg:apgsembly_binary_ruler}, which 
 		\State \verb|LSB2;      Z;       CHECK1;       READ B0|
 		\State \verb|LSB2;      NZ;      LSB2;         TDEC B0|
 	\end{algorithmic}
-	\caption{APGsembly code for a \emph{binary ruler}---a pattern that counts in binary.}\label{alg:apgsembly_binary_ruler}
+	\caption{APGsembly code for a \textbf{binary ruler}---a pattern that counts in binary.}\label{alg:apgsembly_binary_ruler}
 \end{apgsembly}
 
 One interesting feature of the pattern that results from compiling this APGsembly code (see Figure~\ref{fig:binary_ruler}) is that it exhibits a new type of slow growth that we have not yet seen. We explored patterns with slowly-growing \emph{population} in Section~\ref{sec:irreg_guns}, but this pattern instead has a slowly-growing \emph{bounding box}.\index{bounding box} In particular, its \emph{diameter}\index{diameter} (i.e., longest bounding box side length) in generation~$t$ is $O(\log(t))$, since this is the rate at which new most significant bits are added to the end of the binary register.
@@ -660,12 +662,12 @@ Similarly, Figure~\ref{fig:char_printer_salvos}(b) shows a 14-glider unidirectio
 	\caption{Glider salvos that can be used to print block pixels at a separation of $32$~full diagonals.}\label{fig:char_printer_salvos}
 \end{figure}
 
-To create the salvos that implement these pixel-printing and cursor-moving operations, we just use the stable circuitry like Snarks, syringes, and edge-shooting Herschel conduits that we saw in Chapter~\ref{chp:stationary_circuitry}. If we want the next pixel in the current row to be empty, we just push the cursor block by creating the glider salvo from Figure~\ref{fig:char_printer_salvos}(b). If we want to print the next pixel in the current row, we instead create the salvo from Figure~\ref{fig:char_printer_salvos}(a) and then trigger the cursor-pushing mechanism. A device called a \emph{row printer}\index{row printer} that implements both of these operations is displayed in Figure~\ref{fig:row_printer}.
+To create the salvos that implement these pixel-printing and cursor-moving operations, we just use the stable circuitry like Snarks, syringes, and edge-shooting Herschel conduits that we saw in Chapter~\ref{chp:stationary_circuitry}. If we want the next pixel in the current row to be empty, we just push the cursor block by creating the glider salvo from Figure~\ref{fig:char_printer_salvos}(b). If we want to print the next pixel in the current row, we instead create the salvo from Figure~\ref{fig:char_printer_salvos}(a) and then trigger the cursor-pushing mechanism. A device called a \textbf{row printer}\index{row printer} that implements both of these operations is displayed in Figure~\ref{fig:row_printer}.
 
 \begin{figure}[!htb]
 	\centering
 	\embedlink{row_printer}{\includegraphics[width=\textwidth]{universal_computation/row_printer.pdf}}
-	\caption{A \emph{row printer} that can be used to either push a cursor block forward by $32$ full diagonals (highlighted in \bgbox{orangeback2}{orange}), or print a pixel block (highlighted in \bgbox{greenpastel}{green}) and \emph{then} push the cursor block.}\label{fig:row_printer}
+	\caption{A \textbf{row printer} that can be used to either push a cursor block forward by $32$ full diagonals (highlighted in \bgbox{orangeback2}{orange}), or print a pixel block (highlighted in \bgbox{greenpastel}{green}) and \emph{then} push the cursor block.}\label{fig:row_printer}
 \end{figure}
 
 The row printer lets us easily print an arbitrary sequence of pixels (blocks) along a single (northwest-to-southeast diagonal) row. To construct a more general printer that lets us print characters that are several pixels tall, we simply use one cursor block and one row of pixels in the characters. For example, if we wish to print characters that are $10$~pixels tall, we use $10$ cursor blocks that are offset from each other diagonally in the southwest-to-northeast direction, and we aim a separate row printer at each of them.
@@ -1043,7 +1045,7 @@ The way that we construct the fractal is to imagine walking along some path in t
 
 The above procedure results in a path that, on average, moves straight to the right. After all, every time we increase the total number of steps $s$ by one, exactly one digit rolls over to either \texttt{1}, \texttt{2}, or \texttt{3}. Two of those three possibilities result in our orientation rotating $45$ degrees counter-clockwise, and the other one of those three possibilities results in our orientation rotating $90$ degrees counter-clockwise, for a total average of no rotation at all.
 
-The fractal-like behavior of this path comes from the repetitive nature of digit strings that are encountered when counting. Indeed, if we ever encounter a particular (base 4) string of digits in $s$ when counting, we will encounter that exact same string of digits infinitely many times later on too, as additional leading digits are added to $s$. Indeed, this fractal is one half of an $8$-pointed version of a well-known fractal called the \emph{Koch snowflake} (which is usually $6$-pointed).
+The fractal-like behavior of this path comes from the repetitive nature of digit strings that are encountered when counting. Indeed, if we ever encounter a particular (base 4) string of digits in $s$ when counting, we will encounter that exact same string of digits infinitely many times later on too, as additional leading digits are added to $s$. Indeed, this fractal is one half of an $8$-pointed version of a well-known fractal called the \textbf{Koch snowflake} (which is usually $6$-pointed).
 
 APGsembly code that implements this algorithm is displayed in APGsembly~\ref{alg:apgsembly_koch}. Although it is somewhat long, it is reasonably straightforward and makes use of $5$ sliding block (unary) registers and one binary register to keep track of the following quantities:\medskip
 
@@ -1290,7 +1292,7 @@ Each of these computational devices used different Life mechanisms to implement 
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	
-	\begin{problem}\label{exer:universal_computation_apgsembly_le_ge_eq}
+	\begin{problem}\label{exer:universal_computation_apgsembly_le_ge_eq} \probdiff{2}
 		Add some additional lines of APGsembly code to APGsembly~\ref{alg:apgsembly_test_leq_or_ge} so as to make it have $3$ possible outputs instead of just $2$: one corresponding to \texttt{U0 < U1}, one to \texttt{U1 < U0}, and one to \texttt{U0 = U1}.
 	\end{problem}
 	
@@ -1298,7 +1300,7 @@ Each of these computational devices used different Life mechanisms to implement 
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:universal_computation_apgsembly_leq_ge_reset}
+	\begin{problem}\label{exer:universal_computation_apgsembly_leq_ge_reset} \probdiff{2}
 		Modify APGsembly~\ref{alg:apgsembly_test_leq_or_ge}, with the help of additional registers, so that the \texttt{U0} and \texttt{U1} registers return to their original values at the end of the program. How many additional registers do you need to accomplish this task?
 	\end{problem}
 	% SOLUTION: four additional registers would make it easy---DEC U0 and U1 while INCing U2 and U3, then DEC U2 and U3 while INCing U4 and U5 and re-INCing U0 and U1, then leave U0 and U1 untouched after that and revise the above code to operate on U4 and U5. It can be done with only two additional registers, or even only one, with increasingly unreasonable amounts of extra code.
@@ -1307,7 +1309,7 @@ Each of these computational devices used different Life mechanisms to implement 
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:universal_computation_mult_preserve_r0}
+	\begin{problem}\label{exer:universal_computation_mult_preserve_r0} \probdiff{2}
 		Modify APGsembly~\ref{apg:mult_unary_reg} for multiplying two sliding block registers so as to complete the same computation without erasing the value of \texttt{U0}.
 		
 		\noindent [Hint: Add another temporary register.]
@@ -1317,7 +1319,7 @@ Each of these computational devices used different Life mechanisms to implement 
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:division_by_subtraction}
+	\begin{problem}\label{exer:division_by_subtraction} \probdiff{3}
 		In this exercise, we implement the division-by-subtraction algorithm that was described at the end of Section~\ref{sec:multiply_two_registers}.\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
@@ -1327,7 +1329,7 @@ Each of these computational devices used different Life mechanisms to implement 
 			
 			\item What happens in your code if \texttt{U1 = 0} and you try to divide by it? Modify your code, if necessary, so that it halts and provides some sort of error code in this case (e.g., maybe it could set some designated ``error register'' \texttt{U4} to \texttt{1}).
 			
-			\item Use the APGsembly compiler that is linked at \httpsurl{conwaylife.com/wiki/APGsembly} to compile a Life pattern that implements your APGsembly code from part~(b).
+			\item Use the APGsembly compiler that is linked from \httpsurl{conwaylife.com/wiki/APGsembly} to compile a Life pattern that implements your APGsembly code from part~(b).
 		\end{enumerate}
 	\end{problem}
 	
@@ -1335,7 +1337,7 @@ Each of these computational devices used different Life mechanisms to implement 
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:universal_computation_apgsembly_set_binary_value}
+	\begin{problem}\label{exer:universal_computation_apgsembly_set_binary_value} \probdiff{1}
 		Write APGsembly code that stores the value $241$ in a binary register \texttt{B0} (using \texttt{INC} and \texttt{SET} actions as in APGsembly~\ref{alg:store_139}, not via the \texttt{\#REGISTERS} header).
 	\end{problem}
 	
@@ -1343,7 +1345,7 @@ Each of these computational devices used different Life mechanisms to implement 
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:universal_computation_apgsembly_multiply_binary}
+	\begin{problem}\label{exer:universal_computation_apgsembly_multiply_binary} \probdiff{3}
 		Suppose that \texttt{U0} and \texttt{B0} are a sliding block and binary register, respectively, storing some values. Write APGsembly code that computes \texttt{U0 * B0} and stores it in \texttt{B0}.
 	\end{problem}
 	
@@ -1354,13 +1356,13 @@ Each of these computational devices used different Life mechanisms to implement 
 		In this exercise, suppose that \texttt{U0} is a sliding block register whose value has already been set.\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item Write APGsembly code that stores the value $2^{\texttt{U0}}$ in the binary register \texttt{B0}.
+			\item \probdiff{2} Write APGsembly code that stores the value $2^{\texttt{U0}}$ in the binary register \texttt{B0}.
 			% Solution: Just do it bitwise. Easy.
 			
-			\item Write APGsembly code that stores the value $10^{\texttt{U0}}$ in the binary register \texttt{B0}.
+			\item \probdiff{3} Write APGsembly code that stores the value $10^{\texttt{U0}}$ in the binary register \texttt{B0}.
 			% Solution: Use MUL 10 code U0 times. Easy-ish.
 			
-			\item Write APGsembly code that stores the value $3^{\texttt{U0}}$ in the binary register \texttt{B0}.
+			\item \probdiff{4} Write APGsembly code that stores the value $3^{\texttt{U0}}$ in the binary register \texttt{B0}.
 			% Solution: Repeat the multiplication code from Exercise~\ref{exer:universal_computation_apgsembly_multiply_binary}. A bit harder.
 		\end{enumerate}
 	\end{problem}
@@ -1369,7 +1371,7 @@ Each of these computational devices used different Life mechanisms to implement 
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:universal_computation_apgsembly_binary_compare}
+	\begin{problem}\label{exer:universal_computation_apgsembly_binary_compare} \probdiff{4}
 		Write APGsembly code that determines which of two binary registers \texttt{B0} and \texttt{B1} is storing a larger value (i.e., code that outputs different results depending on whether \texttt{B0 <= B1} or \texttt{B1 < B0}, analogous to APGsembly~\ref{alg:apgsembly_test_leq_or_ge} for unary registers).
 	\end{problem}
 	% SOLUTION: can be extracted from pi calc
@@ -1379,7 +1381,7 @@ Each of these computational devices used different Life mechanisms to implement 
 	
 	
 	% TODO: Add hint/note here that you can move it much closer in Koch snowflake, but not in Osqrtlogt (since former has no READs). Maybe reword to "why is it so much farther away in Fig?? than in Fig??".
-	\begin{problem}\label{exer:universal_computation_b2d_why_far}
+	\begin{problem}\label{exer:universal_computation_b2d_why_far} \probdiff{2}
 		Explain why the 2d printer (displayed in Figure~\ref{fig:osqrtlogt}) prints its bits so far away from the computer and other logical circuitry.
 		
 		\noindent [Hint: You can move the sliding block at the top-left corner a bit closer to the logical circuitry without breaking anything, but something goes wrong if you move it, for example, $5{\thousep}000$ cells closer.]
@@ -1390,13 +1392,13 @@ Each of these computational devices used different Life mechanisms to implement 
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:universal_computation_derive_pi_series}
+	\begin{problemstar}\label{exer:universal_computation_derive_pi_series} \probdiff{4}
 		In this exercise, we explore where the series~\eqref{eq:pi_series} for $\pi$ comes from.\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item Explain why $\pi = 4 - 4/3 + 4/5 - 4/7 + 4/9 - \cdots$.
 			
-			[Hint: We did this already in the ``Notes and Historical Remarks'' section of Chapter~\ref{chp:periodic_circuitry}.]
+			[Hint: We did this already in Section~\ref{sec:periodic_circuits_notes}.]
 			
 			\item Manipulate the series from part~(a) to show that
 			\[
@@ -1417,7 +1419,7 @@ Each of these computational devices used different Life mechanisms to implement 
 			
 			\item Finally, repeatedly factor the series from part~(d) to obtain the series~\eqref{eq:pi_series}.
 			
-			[Side note: This method of converting an alternating series into one with non-negative terms is called the \emph{Euler transform}.]
+			[Side note: This method of converting an alternating series into one with non-negative terms is called the \textbf{Euler transform}.]
 		\end{enumerate}
 	\end{problemstar}
 	
@@ -1425,7 +1427,7 @@ Each of these computational devices used different Life mechanisms to implement 
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:universal_computation_e_calc}
+	\begin{problemstar}\label{exer:universal_computation_e_calc} \probdiff{3}
 		Modify just $3$ lines of the APGsembly code from Appendix~\ref{sec:appendix_apg} to turn the $\pi$ calculator into an $e$ calculator.
 		
 		\noindent [Hint: We described the changes that need to be made in Section~\ref{sec:pi_calc_other}.]
@@ -1442,12 +1444,12 @@ Each of these computational devices used different Life mechanisms to implement 
 		\end{align*}
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item The above series representation of $\sqrt{2}$ can be put in the general form~\eqref{eq:generalized_pi_series}. What are the values of $a$, $b$, $p$, $q$, $r$, and $s$?
+			\item \probdiff{2} The above series representation of $\sqrt{2}$ can be put in the general form~\eqref{eq:generalized_pi_series}. What are the values of $a$, $b$, $p$, $q$, $r$, and $s$?
 			% SOLUTION: a = 1, b = 2, p = 2, q = 1, r = 4, s = 0
 			
-			\item Change just a few lines of the APGsembly for the $\pi$ calculator (from Appendix~\ref{sec:appendix_apg}) to account for these different values of $a$, $b$, $p$, $q$, $r$, and $s$.
+			\item \probdiff{3} Change just a few lines of the APGsembly for the $\pi$ calculator (from Appendix~\ref{sec:appendix_apg}) to account for these different values of $a$, $b$, $p$, $q$, $r$, and $s$.
 			
-			\item If you compile the APGsembly code that you made in part~(b), the resulting pattern will not compute the digits of $\sqrt{2}$ correctly. Why not? What additional change must you make to the introductory lines of that APGsembly code to make it function properly?
+			\item \probdiff{3} If you compile the APGsembly code that you made in part~(b), the resulting pattern will not compute the digits of $\sqrt{2}$ correctly. Why not? What additional change must you make to the introductory lines of that APGsembly code to make it function properly?
 			% SOLUTION: The entries of the B matrix grow more quickly for sqrt(2) than for pi or e, so we need to allocate more bits of memory to the binary registers. If we intialize U6 = 10 (instead of U6 = 6) then the computation works.
 		\end{enumerate}
 	\end{problem}
@@ -1456,8 +1458,8 @@ Each of these computational devices used different Life mechanisms to implement 
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:universal_computation_fast_e_calc}
-		The $e$ calculator from Exercise~\ref{exer:universal_computation_e_calc} can be sped us so as to compute digits considerably quicker, since the series~\eqref{eq:e_series} for $e$ is so much simpler and converges so much quicker than the series~\eqref{eq:pi_series} for $\pi$.
+	\begin{problem}\label{exer:universal_computation_fast_e_calc} \probdiff{4}
+		The $e$ calculator from Exercise~\ref{exer:universal_computation_e_calc} can be sped us so as to compute digits considerably quicker, since the series~\eqref{eq:e_series} for $e$ is so much simpler and converges so much quicker than the series~\eqref{eq:pi_series} for $\pi$.\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item In the $\pi$ series~\eqref{eq:pi_series}, each term is roughly half as large as the term that came before it, so we need to iterate on average $\log_2(10) \approx 3.3219$ times per decimal place of $\pi$. How many times do we need to iterate per decimal place of $e$?
@@ -1478,7 +1480,7 @@ Each of these computational devices used different Life mechanisms to implement 
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:universal_computation_determine_digits}
+	\begin{problem}\label{exer:universal_computation_determine_digits} \probdiff{4}
 		Write APGsembly code that determines how many decimal digits the integer stored in a sliding block register has.
 	\end{problem}
 	
@@ -1487,7 +1489,7 @@ Each of these computational devices used different Life mechanisms to implement 
 	
 	
 	% TODO: Also give a hint pointer to integer division by 10? Is that an exercise or in the main text?
-	\begin{problem}\label{exer:universal_computation_print_register}
+	\begin{problem}\label{exer:universal_computation_print_register} \probdiff{5}
 		We saw APGsembly code for printing the contents of a sliding block register, as long as that register contains a value no larger than $9$, in APGsembly~\ref{alg:apgsembly_print_sbr}. Now write APGsembly code that prints the contents of a sliding block register, regardless of how many decimal digits it has.
 		
 		\noindent [Hint: This is much more difficult. Make use of the code from Exercise~\ref{exer:universal_computation_determine_digits}]
@@ -1497,7 +1499,7 @@ Each of these computational devices used different Life mechanisms to implement 
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:universal_computation_print_integers}
+	\begin{problem}\label{exer:universal_computation_print_integers} \probdiff{4}
 		Write APGsembly code for a Life pattern that prints all positive integers, one after another, separated by dots. That is, its output should begin
 		\begin{center}
 			\texttt{1.2.3.4.5.6.7.8.9.10.11.12.13.14.15.}
@@ -1510,7 +1512,7 @@ Each of these computational devices used different Life mechanisms to implement 
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:universal_computation_print_prime}\index{prime number}
+	\begin{problem}\label{exer:universal_computation_print_prime}\index{prime number} \probdiff{5}
 		Write APGsembly code for a Life pattern that prints the prime numbers, separated by dots. That is, its output should begin
 		\begin{center}
 			\texttt{2.3.5.7.11.13.17.19.23.29.31.37.41.}
@@ -1523,15 +1525,13 @@ Each of these computational devices used different Life mechanisms to implement 
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:universal_computation_print_fibonacci}\index{Fibonacci number}
+	\begin{problem}\label{exer:universal_computation_print_fibonacci}\index{Fibonacci number} \probdiff{4}
 		Write APGsembly code for a Life pattern that prints the Fibonacci numbers, separated by dots. That is, its output should begin
 		\begin{center}
 			\texttt{0.1.1.2.3.5.8.13.21.34.55.89.144.}
 		\end{center}
 		\noindent with each integer being the sum of the previous two integers.
 	\end{problem}
-	
-	% TODO: In chapter 8, give exercise to build the universal regulator used in this computer
 	
 	
 	%% EXERCISE END COMMANDS

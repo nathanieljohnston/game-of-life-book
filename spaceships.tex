@@ -325,7 +325,7 @@ On the other hand, it is also often useful to have other objects destroy these s
 % There is an LWSS eater made up of 2 blocks (ss-eaters.rle in Golly)
 
 
-\subsection{Flotillas and Tagalongs}\label{sec:flotillas}\index{tagalong}
+\subsection{Flotillae and Tagalongs}\label{sec:flotillas}\index{tagalong}
 
 Just like we could attach various tagalongs to the back of a glider, we can also use tagalongs to extend the light, middle, and heavyweight spaceships. Some of these tagalongs are presented in Figure~\ref{fig:lwss_tagalongs}. The \textbf{hivenudger} of Figure~\ref{fig:hivenudger} (whose name comes from the fact that it pushes a pre-beehive\index{pre-beehive}) is somewhat versatile in that any of the lightweight spaceships at its corners can be replaced by a middleweight or heavyweight spaceship (see Exercise~\ref{exer:hivenudger_modify}).
 
@@ -363,7 +363,7 @@ Just like we could attach various tagalongs to the back of a glider, we can also
 
 The MWSS tagalong in Figure~\ref{fig:pushalong} is somewhat special for the fact that it attaches to the front end of a spaceship, rather than its side or rear. Tagalongs with this property are sometimes called \textbf{pushalongs}\index{pushalong}, and they are quite a bit rarer than other types of tagalongs, since it is not common for spaceships to have accessible sparks near their front that can support another object (for example, no pushalongs for the glider are known). There are two other particularly useful tagalongs for the light, middle, and heavyweight spaceships, called the \textbf{Schick engine} and \textbf{Coe ship}. We will introduce and thoroughly investigate these tagalongs in Section~\ref{sec:rakes}.
 
-Just like we distinguished between strict still lifes and pseudo still lifes in Section~\ref{sec:pseudo_strict_still_lifes}, we similarly distinguish between spaceships\footnote{The term ``strict spaceship'' is not used in practice, and if the term ``spaceship'' is used unqualified then it is typically assumed that it cannot be broken down into smaller spaceships.} and \textbf{pseudo spaceships}\index{pseudo!spaceship}, which are flotillas in which none of the component spaceships actually change their evolution at all, but at least one dead cell has more than $3$ live neighbours in the flotilla but has fewer than $3$ live neighbors when only one of the component spaceships is present. Some pseudo spaceships involving lightweight and heavyweight spaceships are displayed in Figure~\ref{fig:lwss_hwss_pseudo}.
+Just like we distinguished between strict still lifes and pseudo still lifes in Section~\ref{sec:pseudo_strict_still_lifes}, we similarly distinguish between spaceships\footnote{The term ``strict spaceship'' is not used in practice, and if the term ``spaceship'' is used unqualified then it is typically assumed that it cannot be broken down into smaller spaceships.} and \textbf{pseudo spaceships}\index{pseudo!spaceship}, which are flotillae in which none of the component spaceships actually change their evolution at all, but at least one dead cell has more than $3$ live neighbours in the flotilla but has fewer than $3$ live neighbors when only one of the component spaceships is present. Some pseudo spaceships involving lightweight and heavyweight spaceships are displayed in Figure~\ref{fig:lwss_hwss_pseudo}.
 
 \begin{figure}[!htb]
 	\centering
@@ -371,9 +371,9 @@ Just like we distinguished between strict still lifes and pseudo still lifes in 
 	\caption{There are three ways of placing a LWSS, MWSS, and/or HWSS next to each other so as to create a pseudo spaceship. In all three of these cases, the component spaceships evolve in the exact same way as they would individually, yet in some of their phases the flotilla overpopulates some cells (highlighted in \bgbox{redback}{red}) that the spaceships individually do not.}\label{fig:lwss_hwss_pseudo}
 \end{figure}
 
-It is also possible for the sparks of two light, middle, and heavyweight spaceships to interact with each other as they move, similar to how we used the sparks of two oscillators to interact with each other in Section~\ref{sec:composite_periods}. Objects created from multiple smaller interacting spaceships like this are called \textbf{flotillas}\index{flotilla}, and some examples involving a lightweight spaceship and a middleweight spaceship are presented in Figure~\ref{fig:lwss_mwss_flotillae}. Since flotillae can be made up of multiple copies of any of these three standard $c/2$ orthogonal spaceships--LWSS, MWSS, or HWSS--it is often convenient to refer to them as an \textbf{xWSS}.\index{xWSS} This term comes from the idea of ``x'' being an unknown, which can be replaced by one of the other letters, ``L'', ``M'', or ``H''.
+It is also possible for the sparks of two light, middle, and heavyweight spaceships to interact with each other as they move, similar to how we used the sparks of two oscillators to interact with each other in Section~\ref{sec:composite_periods}. Objects created from multiple smaller interacting spaceships like this are called \textbf{flotillae}\index{flotilla}, and some examples involving a lightweight spaceship and a middleweight spaceship are presented in Figure~\ref{fig:lwss_mwss_flotillae}. Since flotillae can be made up of multiple copies of any of these three standard $c/2$ orthogonal spaceships--LWSS, MWSS, or HWSS--it is often convenient to refer to them as an \textbf{xWSS}.\index{xWSS} This term comes from the idea of ``x'' being an unknown, which can be replaced by one of the other letters, ``L'', ``M'', or ``H''.
 
-Although there are numerous\footnote{To be explicit, the number of flotillas involving two xWSSes are: 1 LWSS on LWSS (pseudo), 3 LWSS on MWSS, 8 LWSS on HWSS ($1$ is pseudo), 5 MWSS on MWSS, 15 MWSS on HWSS, and 10 HWSS on HWSS ($1$ is pseudo).} ways of creating flotillas, they are a bit less satisfying than what we got when we combined oscillator sparks in Section~\ref{sec:composite_periods}. The main reason these flotillas do not really get us too much that is genuinely ``new'' is that each of the light, middle, and heavyweight spaceships have the same period and speed, so every flotilla constructed from them will also have the same period and speed.
+Although there are numerous\footnote{To be explicit, the number of flotillae involving two xWSSes are: 1 LWSS on LWSS (pseudo), 3 LWSS on MWSS, 8 LWSS on HWSS ($1$ is pseudo), 5 MWSS on MWSS, 15 MWSS on HWSS, and 10 HWSS on HWSS ($1$ is pseudo).} ways of creating flotillae, they are a bit less satisfying than what we got when we combined oscillator sparks in Section~\ref{sec:composite_periods}. The main reason these flotillae do not really get us too much that is genuinely ``new'' is that each of the light, middle, and heavyweight spaceships have the same period and speed, so every flotilla constructed from them will also have the same period and speed.
 
 \begin{figure}[!htb]
 	\centering
@@ -392,7 +392,7 @@ Although there are numerous\footnote{To be explicit, the number of flotillas inv
 	\caption{There are three ways of placing a LWSS and an MWSS next to each other in order to create a flotilla. The \bgbox{orangeback}{orange} sparks interact in such a way as to give birth to the \bgbox{greenback}{green} cells that would not be born in either ship individually.}\label{fig:lwss_mwss_flotillae}
 \end{figure}
 
-One way to construct flotillas that are a bit less trivial is to consider what might happen if we were to construct a spaceship that followed the same pattern as the light, middle, and heavyweight spaceships, but is even longer than the heavyweight spaceship, such as the one displayed in Figure~\ref{fig:overweight_spaceship}. This object is called an \textbf{overweight spaceship}\index{overweight spaceship} (or \textbf{OWSS}\index{OWSS|see {overweight spaceship}} for short), but its name is deceiving---it is not actually a spaceship at all. The reason for this is that the $3$-cell ``spark'' that it emits is not actually a spark, as it survives to subsequent generations and leads to the OWSS's destruction.
+One way to construct flotillae that are a bit less trivial is to consider what might happen if we were to construct a spaceship that followed the same pattern as the light, middle, and heavyweight spaceships, but is even longer than the heavyweight spaceship, such as the one displayed in Figure~\ref{fig:overweight_spaceship}. This object is called an \textbf{overweight spaceship}\index{overweight spaceship} (or \textbf{OWSS}\index{OWSS|see {overweight spaceship}} for short), but its name is deceiving---it is not actually a spaceship at all. The reason for this is that the $3$-cell ``spark'' that it emits is not actually a spark, as it survives to subsequent generations and leads to the OWSS's destruction.
 
 \begin{figure}[!htb]
 	\centering
@@ -408,7 +408,7 @@ One way to construct flotillas that are a bit less trivial is to consider what m
 	\end{minipage}
 \end{figure}
 
-However, we can use sparks from light, middle, and heavyweight spaceships to prevent those three cells from being born in the first place, thus creating flotillas involving overweight spaceships, as in Figure~\ref{fig:owss_flotilla}. That is, we can use two light, middle, and/or heavyweight spaceships to turn an overweight spaceship into an object that is \emph{actually} a spaceship. An overweight spaceship can thus be thought of as a tagalong for the light, middle, and heavyweight spaceships, and in fact is one of the most versatile tagalongs that exists. Overweight spaceships of any length can be stabilized by using an appropriate arrangement of smaller spaceships along their sides. It is even possible to stabilize a large overweight spaceship by a smaller overweight spaceship, which is then stabilized by a true spaceship, as long as the outermost layer of this flotilla consists of true light, middle, and/or heavyweight spaceships (see Exercises~\ref{exer:owss_flotilla} and~\ref{exer:large_owss_flotilla}).
+However, we can use sparks from light, middle, and heavyweight spaceships to prevent those three cells from being born in the first place, thus creating flotillae involving overweight spaceships, as in Figure~\ref{fig:owss_flotilla}. That is, we can use two light, middle, and/or heavyweight spaceships to turn an overweight spaceship into an object that is \emph{actually} a spaceship. An overweight spaceship can thus be thought of as a tagalong for the light, middle, and heavyweight spaceships, and in fact is one of the most versatile tagalongs that exists. Overweight spaceships of any length can be stabilized by using an appropriate arrangement of smaller spaceships along their sides. It is even possible to stabilize a large overweight spaceship by a smaller overweight spaceship, which is then stabilized by a true spaceship, as long as the outermost layer of this flotilla consists of true light, middle, and/or heavyweight spaceships (see Exercises~\ref{exer:owss_flotilla} and~\ref{exer:large_owss_flotilla}).
 
 
 
@@ -1073,7 +1073,7 @@ Another method of constructing adjustable-period spaceships,\footnote{Developed 
 \section{Notes and Historical Remarks}\label{sec:spaceships_notes}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-While the glider, lightweight spaceship, middleweight spaceship, and heavyweight spaceship were all found by hand in 1970, very little was known about spaceships for the first two decades of Life. All early spaceship discoveries were simple modifications of those $4$ standard spaceships, such as flotillas\index{flotilla} and tagalongs like the Schick engine.\index{Schick engine} The first \emph{truly} new spaceships to be found were several period~$2$ spaceships by Dean Hickerson in July 1989, including the one that we saw in Figure~\ref{fig:p2_spaceship}.\footnote{It is not known exactly which period~$2$ spaceship was found first---they were all found very close together by the same computer searches.}
+While the glider, lightweight spaceship, middleweight spaceship, and heavyweight spaceship were all found by hand in 1970, very little was known about spaceships for the first two decades of Life. All early spaceship discoveries were simple modifications of those $4$ standard spaceships, such as flotillae\index{flotilla} and tagalongs like the Schick engine.\index{Schick engine} The first \emph{truly} new spaceships to be found were several period~$2$ spaceships by Dean Hickerson in July 1989, including the one that we saw in Figure~\ref{fig:p2_spaceship}.\footnote{It is not known exactly which period~$2$ spaceship was found first---they were all found very close together by the same computer searches.}
 
 Hickerson's search program continued to find new types of spaceships throughout the year, including the first $c/3$ spaceship (in Figure~\ref{fig:c3_orthogonal}) in August, the first $c/4$ orthogonal spaceship in December, and the first diagonal spaceship other than the glider in December (see Figure~\ref{fig:big_glider}). It also found the first $2c/5$ spaceship in 1991, and his same algorithm continues to be used to this day to find new spaceships and oscillators.\footnote{His algorithm is now implemented in programs called lifesrc and JavaLifeSearch. See \httpsurl{conwaylife.com/wiki/Lifesrc} for documentation and download locations.}
 
@@ -1250,7 +1250,7 @@ Interest in wires has dwindled in recent years, simply because signals on wires 
 	
 	
 	\begin{problem}\label{exer:mwss_flotilla} \probdiff{3}
-		There are $5$ different flotillas that consist of exactly two middleweight spaceships. Find them all.
+		There are $5$ different flotillae that consist of exactly two middleweight spaceships. Find them all.
 	\end{problem}
 	% Niemiec's site or catagolue
 	
@@ -1259,7 +1259,7 @@ Interest in wires has dwindled in recent years, simply because signals on wires 
 	
 	
 	\begin{problemstar}\label{exer:owss_flotilla} \probdiff{2}
-		Use exactly two heavyweight spaceships to stabilize each of the following overweight spaceships, turning them into flotillas.\setlength{\columnsep}{-15pt}\vspace*{-0.25cm}
+		Use exactly two heavyweight spaceships to stabilize each of the following overweight spaceships, turning them into flotillae.\setlength{\columnsep}{-15pt}\vspace*{-0.25cm}
 		
 		\begin{multicols}{2}
 			\begin{enumerate}
