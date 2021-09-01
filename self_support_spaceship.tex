@@ -21,19 +21,19 @@ We will cover this topic in much more depth in Chapter~\ref{chp:universal_constr
 \section{The Silverfish}\label{sec:silverfish}\index{silverfish}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Most self-supporting spaceships rely on a core reaction that moves an object forward with the help of another object that is in its path. One such reaction (simply called the \emph{$31c/240$~reaction}) is displayed in Figure~\ref{fig:31c_240_reaction}, in which a Herschel collides with a block in such a way that it moves forward by $31$~cells over the course of $240$ generations.\footnote{We saw another such reaction back in Figure~\ref{fig:17c45_reaction}. We explore the consequences of this reaction a bit later, in Section~\ref{sec:caterpillar}, since building a spaceship out of it is somewhat more technical than the reaction that we use here.} At the same time, the block is moved back by $22$~cells, a second block is created, and two gliders are released.\index{31c/240 reaction}
+Most self-supporting spaceships rely on a core reaction that moves an object forward with the help of another object that is in its path. One such reaction (simply called the \textbf{31c/240~reaction}) is displayed in Figure~\ref{fig:31c_240_reaction}, in which a Herschel collides with a block in such a way that it moves forward by $31$~cells over the course of $240$ generations.\footnote{We saw another such reaction back in Figure~\ref{fig:17c45_reaction}. We explore the consequences of this reaction a bit later, in Section~\ref{sec:caterpillar}, since building a spaceship out of it is somewhat more technical than the reaction that we use here.} At the same time, the block is moved back by $22$~cells, a second block is created, and two gliders are released.\index{31c/240 reaction}
 
 \begin{figure}[!htb]
 	\centering\embedlink{31c_240_reaction}{\vcenteredhbox{\patternimg{0.12}{31c_240_reaction_0}} \vcenteredhbox{\genarrow{240}} \vcenteredhbox{\patternimg{0.12}{31c_240_reaction_240}}}
-	\caption{The $31c/240$~reaction. A Herschel collides with a block so as to move forward by $31$~cells (and move the block back by $22$~cells) over the course of $240$~generations. This reaction also produces a second block (at the top-center) and two gliders as by-products.}\label{fig:31c_240_reaction}
+	\caption{The \textbf{31c/240~reaction}. A Herschel collides with a block so as to move forward by $31$~cells (and move the block back by $22$~cells) over the course of $240$~generations. This reaction also produces a second block (at the top-center) and two gliders as by-products.}\label{fig:31c_240_reaction}
 \end{figure}
 
-The first major goal of this chapter is to use this reaction to create a $31c/240$ spaceship, which we call the \emph{silverfish}. The major obstacles that we will have to overcome are cleaning up the extra objects (blocks and gliders) left behind by the Herschel as it moves, and using the Herschel to create a block in front of itself before it gets there.
+The first major goal of this chapter is to use this reaction to create a $31c/240$ spaceship, which we call the \textbf{silverfish}. The major obstacles that we will have to overcome are cleaning up the extra objects (blocks and gliders) left behind by the Herschel as it moves, and using the Herschel to create a block in front of itself before it gets there.
 
 
 \subsection{Herschel Crawlers and Rakes}\label{sec:silverfish_herschel_crawler}
 
-If we place blocks in a straight line with a spacing of $31$ cells, a Herschel is able to crawl along them (via the $31c/240$ reaction of Figure~\ref{fig:31c_240_reaction}) at a speed of $31c/240$. Furthermore, if we place two of these tracks next to each other, we can use one of the output gliders from one of the Herschels to cleanly erase the extra block that is produced by the other Herschel, as illustrated in Figure~\ref{fig:31c_240_herschel_pair}. When we do this, we get a track for two Herschels called a \emph{reburnable wick}:\index{reburnable wick} a wick that is not used up (but is potentially repositioned and/or rephased) after its fuse (the pair of Herschels) burns through it.
+If we place blocks in a straight line with a spacing of $31$ cells, a Herschel is able to crawl along them (via the $31c/240$ reaction of Figure~\ref{fig:31c_240_reaction}) at a speed of $31c/240$. Furthermore, if we place two of these tracks next to each other, we can use one of the output gliders from one of the Herschels to cleanly erase the extra block that is produced by the other Herschel, as illustrated in Figure~\ref{fig:31c_240_herschel_pair}. When we do this, we get a track for two Herschels called a \textbf{reburnable wick}:\index{reburnable wick} a wick that is not used up (but is potentially repositioned and/or rephased) after its fuse (the pair of Herschels) burns through it.
 
 \begin{figure}[!htb]
 	\centering
@@ -47,9 +47,9 @@ To this end, we need a way of constructing the blocks in front of the Herschel p
 
 Unfortunately, getting gliders (or any other spaceships) in front of the Herschel pair is quite tricky, as it does not seem like it should be possible to reflect the gliders that the Herschel pair emits without making use of stationary components like Snarks or other small spaceships (none of which travel at $31c/240$). One technique that works to at least let us send gliders forward (instead of backward, as in Figure~\ref{fig:31c_240_herschel_pair}) is to use the two-glider kickback reaction from Table~\ref{tab:2_glider_synth}. Unfortunately, to make use of this reaction, we have to place even more of these tracks next to each other. One configuration that works is displayed in Figure~\ref{fig:31c_240_forward_rake}---it makes use of six Herschels and six block tracks instead of just two.
 
-We call this pattern a \emph{forward rake}\index{forward rake} even though it is not \emph{technically} a rake due to its reliance on the supporting block tracks. Since firing gliders backward via these Herschels is so straightforward (they fire gliders backward all on their own, after all), it is not difficult to construct the \emph{backward rake}\index{backward rake} in Figure~\ref{fig:31c_240_back_rake} that works on this same set of six block tracks (instead of the one that works on two block tracks, which we saw in Figure~\ref{fig:31c_240_herschel_pair}).
+We call this pattern a \textbf{forward rake}\index{forward rake} even though it is not \emph{technically} a rake due to its reliance on the supporting block tracks. Since firing gliders backward via these Herschels is so straightforward (they fire gliders backward all on their own, after all), it is not difficult to construct the \textbf{backward rake}\index{backward rake} in Figure~\ref{fig:31c_240_back_rake} that works on this same set of six block tracks (instead of the one that works on two block tracks, which we saw in Figure~\ref{fig:31c_240_herschel_pair}).
 
-These rakes have one big limitation, however---we can only use them to place an output glider on every $31$st lane. If we want to make sure that a glider is fired on a \emph{particular} lane, we need a mechanism for moving the block track (and thus any subsequent rakes) slightly forward or backward. Fortunately, this is also straightforward---the \emph{rephaser} displayed in Figure~\ref{fig:31c_240_rephaser} moves the block tracks backward by $22$~cells (or equivalently, forward by $9$~cells) simply by having a Herschel burn through each track in such a way that their output gliders annihilate one another. Importantly, since $\mathrm{gcd}(22,31) = 1$, we can use multiple copies of this rephaser so as to make subsequent rakes output gliders on any lanes of our choosing.
+These rakes have one big limitation, however---we can only use them to place an output glider on every $31$st lane. If we want to make sure that a glider is fired on a \emph{particular} lane, we need a mechanism for moving the block track (and thus any subsequent rakes) slightly forward or backward. Fortunately, this is also straightforward---the \textbf{rephaser} displayed in Figure~\ref{fig:31c_240_rephaser} moves the block tracks backward by $22$~cells (or equivalently, forward by $9$~cells) simply by having a Herschel burn through each track in such a way that their output gliders annihilate one another. Importantly, since $\mathrm{gcd}(22,31) = 1$, we can use multiple copies of this rephaser so as to make subsequent rakes output gliders on any lanes of our choosing.
 
 \begin{figure}[!htb]
 	\centering
@@ -258,7 +258,7 @@ If we use two copies of this entire sequence of rakes and rephasers (since we ne
 \begin{figure}[!htbp]
 	\centering
 	\embedlink{silverfish}{\includegraphics[width=\textwidth]{self_support_spaceships/silverfish.pdf}}
-	\caption{The \emph{silverfish}: a $31c/240$ orthogonal spaceship oriented so that it travels up. The track-building mechanism from Figure~\ref{fig:31c_240_track_builder} is highlighted in \bgbox{yellowback2}{yellow}, a track-destroying mechanism like the one from Figure~\ref{fig:31c_240_track_destroyer} is highlighted in \bgbox{magentaback}{magenta}, and the double-glider forward rakes from Figure~\ref{fig:31c_240_double_gun} are highlighted in \bgbox{aquaback}{aqua}. The remaining un-highlighted rakes implement the 13-step slow salvo synthesis of a heavyweight spaceship from Figure~\ref{fig:hwss_from_toad_beehive}.}\label{fig:silverfish}
+	\caption{The \textbf{silverfish}: a $31c/240$ orthogonal spaceship oriented so that it travels up. The track-building mechanism from Figure~\ref{fig:31c_240_track_builder} is highlighted in \bgbox{yellowback2}{yellow}, a track-destroying mechanism like the one from Figure~\ref{fig:31c_240_track_destroyer} is highlighted in \bgbox{magentaback}{magenta}, and the double-glider forward rakes from Figure~\ref{fig:31c_240_double_gun} are highlighted in \bgbox{aquaback}{aqua}. The remaining un-highlighted rakes implement the 13-step slow salvo synthesis of a heavyweight spaceship from Figure~\ref{fig:hwss_from_toad_beehive}.}\label{fig:silverfish}
 \end{figure}
 
 
@@ -275,7 +275,7 @@ We saw another reaction that can be used to construct a self-supporting spaceshi
 	\caption{A reburnable blinker wick, along which a pi-heptomino fuse (highlighted in \bgbox{greenpastel}{green}) can move at a speed of $17c/45$. The cells displayed in \bgbox{redback}{red} make up a large spark that simply dies without affecting anything else.}\label{fig:reburnable_blinker_wick}
 \end{figure}
 
-A single pi-heptomino shifts the blinker wick backward by $6$~cells and rephases it,\footnote{Since the blinker wick is infinitely long, it is perhaps better to think of the pi-heptomino as shifting the wick forward by $11$~cells and \emph{not} rephasing it.} so if we were to place 34 pi-heptominoes on this reburnable wick then it would be moved back by $6 \times 34 = 204$ cells, which, due to the spacing of the blinkers, leaves them all exactly where they would be if no pi-heptominoes burned through them at all.\footnote{If we used just $17$ pi-heptominoes instead, the blinkers would return to their original positions, but in the opposite phases.} This gives us an infinitely-long pattern that moves at a speed of $17c/45$. Our goal is to turn this into a finite configuration (i.e., a spaceship) called the \emph{caterpillar} that moves at the same speed, just like we turned the Herschel-crawling reaction of Figure~\ref{fig:31c_240_herschel_pair} into the $31c/240$ silverfish spaceship.
+A single pi-heptomino shifts the blinker wick backward by $6$~cells and rephases it,\footnote{Since the blinker wick is infinitely long, it is perhaps better to think of the pi-heptomino as shifting the wick forward by $11$~cells and \emph{not} rephasing it.} so if we were to place 34 pi-heptominoes on this reburnable wick then it would be moved back by $6 \times 34 = 204$ cells, which, due to the spacing of the blinkers, leaves them all exactly where they would be if no pi-heptominoes burned through them at all.\footnote{If we used just $17$ pi-heptominoes instead, the blinkers would return to their original positions, but in the opposite phases.} This gives us an infinitely-long pattern that moves at a speed of $17c/45$. Our goal is to turn this into a finite configuration (i.e., a spaceship) called the \textbf{caterpillar} that moves at the same speed, just like we turned the Herschel-crawling reaction of Figure~\ref{fig:31c_240_herschel_pair} into the $31c/240$ silverfish spaceship.
 
 To this end, we need a way of constructing the blinkers in front of the pi-heptominoes that burn through them, and also a way of cleaning them up behind those pi-heptominoes. Fortunately, most of the same ideas that we used when constructing the silverfish still apply: we can use multiple pi-heptominoes on multiple reburnable blinker wicks to create rakes, we can use gliders to clean up the blinker trails, and we can use parallel xWSS streams to help us synthesize the front ends of the blinker wicks.
 
@@ -318,7 +318,7 @@ We can thus use a single pair of blinker tracks to create as many additional pai
 
 Just as was the case with the silverfish, synthesizing the front of the track is the trickiest part of the caterpillar. Our goal is to use rakes on blinker track pairs to synthesize xWSSes that reach out in front so as to then synthesize the front of the first pair of blinker tracks. However, there is one additional wrinkle here that was not present in the silverfish: because the $17c/45$ reaction that we are using travels faster than $c/4$,\footnote{Unlike the $31c/240$ reaction at the heart of the silverfish, which is slower than $c/4$.} we cannot fire gliders forward at those xWSSes to change their direction (we used this trick from Figure~\ref{fig:g_2h_to_m} at the top-right corner of the silverfish in Figure~\ref{fig:silverfish}).
 
-The way around this problem is to use a \emph{helix}:\footnote{The name ``helix'' comes from the helical shape that these patterns often end up having---see the upcoming Figure~\ref{fig:caterpillar_helix}.} a configuration of xWSSes that has a burning front end that causes it to (a) travel at a speed slower than $c/2$ (in our case, we want a speed of $17c/45$), and (b) periodically fire gliders off to at least one side. One way to make a helix is to have a glider do the burning---the three reactions displayed in Figure~\ref{fig:helix_operations} show how a glider can destroy and be repositioned (and possibly duplicated) by small xWSS flotillae.\footnote{These reactions were found by Paul Callahan's \emph{gencols} search program---see \httpsurl{conwaylife.com/wiki/LifeWiki:Life_links\#Downloadable_Computation_and/or_Search_Software}.}\index{gencols}
+The way around this problem is to use a \textbf{helix}:\footnote{The name ``helix'' comes from the helical shape that these patterns often end up having---see the upcoming Figure~\ref{fig:caterpillar_helix}.} a configuration of xWSSes that has a burning front end that causes it to (a) travel at a speed slower than $c/2$ (in our case, we want a speed of $17c/45$), and (b) periodically fire gliders off to at least one side. One way to make a helix is to have a glider do the burning---the three reactions displayed in Figure~\ref{fig:helix_operations} show how a glider can destroy and be repositioned (and possibly duplicated) by small xWSS flotillae.\footnote{These reactions were found by Paul Callahan's \emph{gencols}\index{gencols} search program---see \httpsurl{conwaylife.com/wiki/LifeWiki:Life_links\#Downloadable_Computation_and/or_Search_Software}.}\index{gencols}
 
 \begin{figure}[!htb]
 	\centering
@@ -391,7 +391,7 @@ Putting all of these ideas together finally gives us the caterpillar spaceship,\
 \begin{figure}[!htbp]
 	\centering
 	\embedlink{caterpillar}{\includegraphics[width=\textwidth]{self_support_spaceships/caterpillar.pdf}}
-	\caption{The $17c/45$ orthogonal \emph{caterpillar} spaceship, travelling up. The helix along its right side (highlighted in \bgbox{aquaback}{aqua}) periodically fires a glider that hits numerous glider duplicators (highlighted in \bgbox{yellowback2}{yellow}) so as to synthesize the frontmost pair of blinker tracks (highlighted in \bgbox{magentaback}{magenta}). Those two blinker tracks then synthesize $38$ more blinker tracks so that numerous pi-crawler rakes can travel on them and synthesize the afore-mentioned helix and glider duplicators.}\label{fig:caterpillar}
+	\caption{The $17c/45$ orthogonal \textbf{caterpillar} spaceship, travelling up. The helix along its right side (highlighted in \bgbox{aquaback}{aqua}) periodically fires a glider that hits numerous glider duplicators (highlighted in \bgbox{yellowback2}{yellow}) so as to synthesize the frontmost pair of blinker tracks (highlighted in \bgbox{magentaback}{magenta}). Those two blinker tracks then synthesize $38$ more blinker tracks so that numerous pi-crawler rakes can travel on them and synthesize the afore-mentioned helix and glider duplicators.}\label{fig:caterpillar}
 \end{figure}
 
 Actually, it's worse than this---because the caterpillar's helix has period $102 = 6 \times 17$, it seems like we should need $24$ copies of this helix ($6$ on each side for each of the $2$ blinker tracks that they need to synthesize). However, the caterpillar uses some glider-duplication tricks so that it ``only'' needs an extra 30 or so xWSSes on each side (see Exercise~\ref{exer:caterpillar_glider_duplicate}). To synthesize this extreme number of xWSSes on its sides a bit more efficiently, the caterpillar uses several columns of rakes on parallel tracks to implement non-slow synthesis, whereas the silverfish used just a single column of rakes down its center to implement slow salvo synthesis.\footnote{Also, slow salvo synthesis was not as fully developed when the caterpillar was constructed, so non-slow synthesis was the only realistic option at the time.}
@@ -401,12 +401,12 @@ Actually, it's worse than this---because the caterpillar's helix has period $102
 \section{Oblique Helices and the Waterbear}\label{sec:waterbear}\index{waterbear}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Another self-supporting spaceship that works in much the same way as the silverfish and caterpillar is the \emph{waterbear}. The reaction\index{(23,5)/79 reaction} at the heart of this spaceship is displayed in Figure~\ref{fig:23_5c_79_reaction}, and consists of a Herschel colliding with a glider so as to displace itself by $(23,5)$ over the course of $79$ generations while duplicating the glider.
+Another self-supporting spaceship that works in much the same way as the silverfish and caterpillar is the \textbf{waterbear}. The reaction\index{(23,5)/79 reaction} at the heart of this spaceship is displayed in Figure~\ref{fig:23_5c_79_reaction}, and consists of a Herschel colliding with a glider so as to displace itself by $(23,5)$ over the course of $79$ generations while duplicating the glider.
 
 \begin{figure}[!htb]
 	\centering
 	\patternimglink{0.0768}{23_5c_79_reaction}
-	\caption{The \emph{$(23,5)c/79$ reaction}, in which a Herschel (displayed in \bgbox{greenpastel}{green}) moves obliquely along a glider track while duplicating that track. The cells displayed in \bgbox{redback}{red} simply die off in two more generations.}\label{fig:23_5c_79_reaction}
+	\caption{The \textbf{(23,5)c/79 reaction}, in which a Herschel (displayed in \bgbox{greenpastel}{green}) moves obliquely along a glider track while duplicating that track. The cells displayed in \bgbox{redback}{red} simply die off in two more generations.}\label{fig:23_5c_79_reaction}
 \end{figure}
 
 Much like the $31c/240$ reaction from Figure~\ref{fig:31c_240_reaction} and the $17c/45$ reaction from Figure~\ref{fig:reburnable_blinker_wick}, this $(23,5)c/79$ reaction is a prime candidate for the central spine of a self-supporting spaceship. We ``just'' need to find a way to use its output gliders to synthesize the necessary input gliders from the front. We do not explore most of the techniques that make this possible---instead, we leave some of the ideas to Exercises~??--??. However, we do note that, since this reaction moves faster than a glider (i.e., $c/4$), we again need to use the backward gliders to synthesize a helix that travels to the front of the spaceship.
@@ -454,7 +454,7 @@ The waterbear's helix makes use of slightly different components than the ones w
 \begin{figure}[!htbp]
 	\centering
 	\embedlink{waterbear}{\includegraphics[width=\textwidth]{self_support_spaceships/waterbear.pdf}}
-	\caption{The $(23,5)c/79$ oblique \emph{waterbear} spaceship. The helix along its southeast side (highlighted in \bgbox{aquaback}{aqua}) periodically fires a backward glider that supports a Herschel via the $(23,5)c/79$ reaction on its northeast side (highlighted in \bgbox{magentaback}{magenta}). The output gliders from that reaction are then used to synthesize additional tracks and the afore-mentioned helix. Constructed by Brett Berger in December 2014, based on numerous reactions (such as the helix) that were found by Ivan Fomichev.}\label{fig:waterbear}
+	\caption{The $(23,5)c/79$ oblique \textbf{waterbear} spaceship. The helix along its southeast side (highlighted in \bgbox{aquaback}{aqua}) periodically fires a backward glider that supports a Herschel via the $(23,5)c/79$ reaction on its northeast side (highlighted in \bgbox{magentaback}{magenta}). The output gliders from that reaction are then used to synthesize additional tracks and the afore-mentioned helix. Constructed by Brett Berger in December 2014, based on numerous reactions (such as the helix) that were found by Ivan Fomichev.}\label{fig:waterbear}
 \end{figure}
 
 Unlike the caterpillar, in which the primary $17c/45$ reaction moved parallel to the helix, the waterbear's $(23,5)c/79$ reaction runs at a different angle than the helix. The result of this change is that, instead of being long and thin like the caterpillar, the simplest waterbear to construct is triangular, with the helix along one side of the triangle and the $(23,5)c/79$ reaction along another. To keep its size down a bit, the $(23,5)/79$ Herschel-and-glider track on one of the sides is ``reset'' at two points, so that the resulting waterbear looks like it is made up of $3$ much smaller triangles instead. As a result, it has $197{\thousep}896$ live cells and fits in a $13{\thousep}295 \times 28{\thousep}010$ bounding box, making it comparable in size to the silverfish.
@@ -465,7 +465,7 @@ Unlike the caterpillar, in which the primary $17c/45$ reaction moved parallel to
 \section{Caterloopillars}\label{sec:caterloopillar}\index{caterloopillar}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The final family of self-supporting spaceships that we look at are called \emph{caterloopillars}. The basic idea behind these spaceships is the same as it was for the silverfish, caterpillar, and waterbear: many copies of a central moving reaction are used to produce gliders that collaborate so as to send signals forward and build their own support structures ahead of themselves. However, we now flip this idea on its head---what if instead of using an infinite trail of stable objects like blocks or blinkers to support a naturally-moving object like a Herschel or pi-heptomino, we use an infinite trail of spaceships to move a stable object?\footnote{This basic idea for the construction of a caterloopillar spaceship was originally proposed by David Bell in October 2006. It wasn't until April 2016 that slow-salvo technology had advanced to the point that it was actually constructed.}
+The final family of self-supporting spaceships that we look at are called \textbf{caterloopillars}. The basic idea behind these spaceships is the same as it was for the silverfish, caterpillar, and waterbear: many copies of a central moving reaction are used to produce gliders that collaborate so as to send signals forward and build their own support structures ahead of themselves. However, we now flip this idea on its head---what if instead of using an infinite trail of stable objects like blocks or blinkers to support a naturally-moving object like a Herschel or pi-heptomino, we use an infinite trail of spaceships to move a stable object?\footnote{This basic idea for the construction of a caterloopillar spaceship was originally proposed by David Bell in October 2006. It wasn't until April 2016 that slow-salvo technology had advanced to the point that it was actually constructed.}
 
 
 \subsection{Loaf Tracks}\label{sec:caterloopillar_loaf_track}
@@ -487,7 +487,7 @@ For a still-life-moving reaction to actually be usable at the core of a self-sup
 
 We will thus use a track of loaves as the central spine of a self-supporting spaceship, with this 9-xWSS flotilla being used to push it forward. As the flotilla pushes the loaves, it also releases gliders that can be used to synthesize supporting mechanisms via unidirectional slow salvo synthesis (in almost exactly the same way as the silverfish used unidirectional slow salvo synthesis to synthesize two HWSSes on each side).
 
-Perhaps the simplest supporting mechanism to synthesize is an xWSS flotilla travelling in the opposite direction that \emph{pulls} a second loaf track by the same amount that the first loaf track is \emph{pushed}. By arranging these two flotillae so that they run on parallel tracks in opposite directions, we can have the loaf-pulling and loaf-pulling flotillae synthesize each other, as illustrated in Figure~\ref{fig:caterloopillar_schematic}.\footnote{The fact that these two flotillae synthesize each other is what gives caterloopillars their name (besides the obvious analogy with the caterpillar)---the xWSSes form a long loop that seems to be synthesizing itself. The name is also a reference to the term ``strange loop'', a concept explored in Douglas Hofstadter's famous book \emph{Gödel, Escher, Bach}.}\index{strange loop}
+Perhaps the simplest supporting mechanism to synthesize is an xWSS flotilla travelling in the opposite direction that \emph{pulls} a second loaf track by the same amount that the first loaf track is \emph{pushed}. By arranging these two flotillae so that they run on parallel tracks in opposite directions, we can have the loaf-pulling and loaf-pulling flotillae synthesize each other, as illustrated in Figure~\ref{fig:caterloopillar_schematic}.\footnote{The fact that these two flotillae synthesize each other is what gives caterloopillars their name (besides the obvious analogy with the caterpillar)---the xWSSes form a long loop that seems to be synthesizing itself. The name is also a reference to the term ``strange loop'', a concept explored in Douglas Hofstadter's famous book \emph{G\"{o}del, Escher, Bach}.}\index{strange loop}
 
 \begin{figure}[!htbp]
 	\centering
@@ -554,14 +554,14 @@ Unlike the loaf-moving flotillae, we need the xWSSes in these flotillae to be de
 
 \subsection{Putting It All Together}\label{sec:caterloopillar_itself}
 
-All that is left now to complete the caterloopillar is task (3)---coming up with a unidirectional slow-salvo glider synthesis of the xWSS flotillae from Figure~\ref{fig:caterloopillar_front_back} that will travel antiparallel to each other. In fact, we even need this glider synthesis to be \emph{monochromatic}---consisting entirely of gliders of just one color.\index{monochromatic} Indeed, the locations from which gliders are fired is determined by the spacing of the loaves on the loaf track, and that spacing is orthogonal (i.e., the loaves and hence gliders in the slow salvo are separated by full diagonals, not half diagonals).
+All that is left now to complete the caterloopillar is task (3)---coming up with a unidirectional slow-salvo glider synthesis of the xWSS flotillae from Figure~\ref{fig:caterloopillar_front_back} that will travel antiparallel to each other. In fact, we even need this glider synthesis to be \textbf{monochromatic}---consisting entirely of gliders of just one color.\index{monochromatic} Indeed, the locations from which gliders are fired is determined by the spacing of the loaves on the loaf track, and that spacing is orthogonal (i.e., the loaves and hence gliders in the slow salvo are separated by full diagonals, not half diagonals).
 
 Such a glider synthesis will consist of hundreds of steps, so actually coming up with it is best left to a computer script.\footnote{Such a script, which was made by Michael Simkin and used to construct the first caterloopillars in April 2016, is available at \httpsurl{conwaylife.com/forums/viewtopic.php?p=30104\#p30089}.} Once we have that glider synthesis, though, we are done, and get a completed caterloopillar like the one displayed in Figure~\ref{fig:caterloopillar}.
 
 \begin{figure}[!htbp]
 	\centering
 	\embedlink{caterloopillar}{\includegraphics[width=\textwidth]{self_support_spaceships/caterloopillar.pdf}}
-	\caption{A $c/24$ orthogonal \emph{caterloopillar} spaceship, travelling up. At the top, the loaf-pushing flotillae (highlighted in \bgbox{aquaback}{aqua}) and their destroyers (highlighted in \bgbox{greenpastel}{green}) begin synthesizing the loaf-pulling flotillae (highlighted in \bgbox{yellowback2}{yellow}) and their destroyers (highlighted in \bgbox{magentaback}{magenta}). At the bottom, the loaf-pullers begin synthesizing the loaf-pushers. In the middle, these flotillae simply pass by each other.}\label{fig:caterloopillar}
+	\caption{A $c/24$ orthogonal \textbf{caterloopillar} spaceship, travelling up. At the top, the loaf-pushing flotillae (highlighted in \bgbox{aquaback}{aqua}) and their destroyers (highlighted in \bgbox{greenpastel}{green}) begin synthesizing the loaf-pulling flotillae (highlighted in \bgbox{yellowback2}{yellow}) and their destroyers (highlighted in \bgbox{magentaback}{magenta}). At the bottom, the loaf-pullers begin synthesizing the loaf-pushers. In the middle, these flotillae simply pass by each other.}\label{fig:caterloopillar}
 \end{figure}
 
 This particular caterloopillar pushes and pulls the loaf track by $98$~cells per period, and the forward-travelling xWSS flotillae are separated by $1{\thousep}078$~cells, for a speed of $98c/(2(1078 + 98)) = 98c/2352 = c/24$.\footnote{The speed is $98c/(2(1078 + 98))$ instead of just $98c/(2 \cdot 1078)$ because of a ``doppler effect'': the flotillae do not have to travel just $1{\thousep}078$ cells per period, but also the extra $98$ cells that the still lifes were pushed.}\index{doppler effect} Caterloopillars of many other speeds can be straightforwardly created from this one, though. For example, we could straightforwardly (though tediously!) move the flotillae farther apart, resulting in larger caterloopillars that travel much more slowly.
@@ -604,19 +604,19 @@ The fastest caterloopillar that has been explicitly constructed so far has speed
 \section{Notes and Historical Remarks}\label{sec:self_support_history}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Despite its monstrous size, the silverfish displayed in Figure~\ref{fig:silverfish} is currently the smallest $31c/240$ orthogonal spaceship known in Life. About six years prior to its construction, two other spaceships of this same speed were built using most of the same reactions. These spaceships, called the shield bug\index{shield bug} and the centipede,\index{centipede} are displayed in Figure~\ref{fig:centipede_shield_bug}. They were completed on the same day---September 4, 2014---by Dave Greene and Chris Cain, respectively, with help from Kiho Park, Ivan Fomichev and Adam P.~Goucher.
+Despite its monstrous size, the silverfish displayed in Figure~\ref{fig:silverfish} is currently the smallest $31c/240$ orthogonal spaceship known in Life. About six years prior to its construction, two other spaceships of this same speed were built using most of the same reactions. These spaceships, called the \textbf{shield bug}\index{shield bug} and the \textbf{centipede},\index{centipede} are displayed in Figure~\ref{fig:centipede_shield_bug}. They were completed on the same day---September 4, 2014---by Dave Greene and Chris Cain, respectively, with help from Kiho Park, Ivan Fomichev and Adam P.~Goucher.
 
 \begin{figure}[!htbp]
 	\centering
 	\begin{tabular}{@{}cc@{}}
 		\begin{subfigure}{0.5333\textwidth}
 			\embedlink{shield_bug}{\includegraphics[width=\textwidth]{self_support_spaceships/shield_bug.pdf}}
-			\caption{The \emph{shield bug}, travelling to the left.}\label{fig:shield_bug}
+			\caption{The \textbf{shield bug}, travelling to the left.}\label{fig:shield_bug}
 		\end{subfigure} &
 		\begin{subfigure}{0.4267\textwidth}
 			\centering
 			\embedlink{centipede}{\includegraphics[width=\textwidth]{self_support_spaceships/centipede.pdf}}
-			\caption{The \emph{centipede}, travelling up.}\label{fig:centipede}
+			\caption{The \textbf{centipede}, travelling up.}\label{fig:centipede}
 		\end{subfigure}
 	\end{tabular}
 	\caption{A pair of (huge) $31c/240$ spaceships based on the same Herschel-crawling reaction as the silverfish. They each use six-block tracks that carry Herschel-based rakes down their center, and the same double-HWSS slow salvo synthesis on their sides to stabilize the front end.}
@@ -625,7 +625,7 @@ Despite its monstrous size, the silverfish displayed in Figure~\ref{fig:silverfi
 
 When measuring size according to number of live cells, these spaceships are roughly $16$ and $3$ times as large as the silverfish, respectively. The reason that the silverfish could be so much smaller is that it uses a new front end (which was found by Chris Cain just 16 days after he completed the centipede) that is supported by just two heavyweight spaceships on each side instead of six.
 
-Besides the $31c/240$, $17c/45$, and $(23,5)c/79$ reactions that we saw in this chapter, there are numerous other known reactions that involve an object moving through a stable or glider-based wick---such reactions are called \emph{crawlers}\index{crawler} or \emph{climbers}).\index{climber|see {crawler}} Four such crawlers are displayed in Figure~\ref{fig:self_support_climbers}, and each one of them could potentially be used to construct a self-supporting spaceship using the same techniques from this chapter.
+Besides the $31c/240$, $17c/45$, and $(23,5)c/79$ reactions that we saw in this chapter, there are numerous other known reactions that involve an object moving through a stable or glider-based wick---such reactions are called \textbf{crawlers}\index{crawler} or \textbf{climbers}).\index{climber|see {crawler}} Four such crawlers are displayed in Figure~\ref{fig:self_support_climbers}, and each one of them could potentially be used to construct a self-supporting spaceship using the same techniques from this chapter.
 
 \begin{figure}[!htb]
 	\centering
@@ -665,12 +665,12 @@ The way it works is based on the fact that two copies of this half-bakery reacti
 
 These reactions give us the freedom to generate gliders travelling in any direction, and in particular they allow us to send gliders back to the start of the half-bakery trails. Those gliders can then use slow salvo synthesis to recreate the gliders that follow the half-bakery trails. In other words, we can use a handful of gliders travelling along half-bakery trails to implement armless construction (as introduced in Section~\ref{sec:armless}) of that handful of gliders.
 
-Spaceships that use these ideas based on the half-bakery crawler are called \emph{half-baked knightships},\index{half-baked knightship} and the one displayed in Figure~\ref{fig:parallel_hbk}, which was constructed by Chris Cain in July 2014,\footnote{The first half-baked knightship was built by Adam P.~Goucher just $5$ days earlier, and was roughly $10$ times as long, wide, and populous. Dave Greene and Ivan Fomichev helped come up with some of the component reactions and syntheses used in each of these knightships.} is called the \emph{parallel half-baked knightship}\index{parallel half-baked knightship} (or \emph{parallel HBK}\index{parallel HBK|see {parallel half-baked knightship}} for short).
+Spaceships that use these ideas based on the half-bakery crawler are called \textbf{half-baked knightships},\index{half-baked knightship} and the one displayed in Figure~\ref{fig:parallel_hbk}, which was constructed by Chris Cain in July 2014,\footnote{The first half-baked knightship was built by Adam P.~Goucher just $5$ days earlier, and was roughly $10$ times as long, wide, and populous. Dave Greene and Ivan Fomichev helped come up with some of the component reactions and syntheses used in each of these knightships.} is called the \textbf{parallel half-baked knightship}\index{parallel half-baked knightship} (or \textbf{parallel HBK}\index{parallel HBK|see {parallel half-baked knightship}} for short).
 
 \begin{figure}[!htb]
 	\centering
 	\embedlink{parallel_hbk}{\includegraphics[width=\textwidth]{self_support_spaceships/parallel_hbk.pdf}}
-	\caption{The \emph{parallel half-baked knightship}. Its sides are tracks of half-bakeries that a total of $7$ gliders follow along ($4$ on the northwest tracks, circled in \bgbox{redback}{red}, and $3$ on the southeast tracks). Those gliders move the half-bakeries by $(3,6)$ per period via the half-bakery crawler of Figure~\ref{fig:half_bakery_reaction}, while producing backward-firing gliders via the reactions of Figure~\ref{fig:hbk_reactions} (highlighted in \bgbox{greenpastel}{green}). Those gliders go all the way back to the start of the half-bakery tracks and re-synthesize the original $7$ gliders via a seed highlighted in \bgbox{aquaback}{aqua}.}\label{fig:parallel_hbk}
+	\caption{The \textbf{parallel half-baked knightship}. Its sides are tracks of half-bakeries that a total of $7$ gliders follow along ($4$ on the northwest tracks, circled in \bgbox{redback}{red}, and $3$ on the southeast tracks). Those gliders move the half-bakeries by $(3,6)$ per period via the half-bakery crawler of Figure~\ref{fig:half_bakery_reaction}, while producing backward-firing gliders via the reactions of Figure~\ref{fig:hbk_reactions} (highlighted in \bgbox{greenpastel}{green}). Those gliders go all the way back to the start of the half-bakery tracks and re-synthesize the original $7$ gliders via a seed highlighted in \bgbox{aquaback}{aqua}.}\label{fig:parallel_hbk}
 \end{figure}
 
 The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} have not yet been turned into self-supporting spaceships. One of the main reasons for this is simply that constructing a self-supporting spaceship is a monumental task. However, they are also all slightly more difficult to work with than, for example, the $(23,5)c/79$ reaction from Figure~\ref{fig:23_5c_79_reaction} at the core of the waterbear:\smallskip
@@ -693,7 +693,7 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	
-	\begin{problem}\label{exer:self_support_spaceships_track_layer_rephaser}
+	\begin{problem}\label{exer:self_support_spaceships_track_layer_rephaser} \probdiff{2}
 		There are some non-highlighted cells near the center of the block-laying pattern displayed in Figure~\ref{fig:31c_240_track_builder}. What is their purpose?
 	\end{problem}
 	% SOLUTION: They are a rephaser (really they are there since we will turn them into a forward rake in the completed silverfish, but for this exercise it's fine to just say that they adjust the lanes of the gliders so that the proper kickback/synthesis reactions happen).
@@ -703,14 +703,14 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 	
 	
 	\begin{problemstar}\label{exer:self_support_spaceships_r4l1}\index{double kickback}
-		One way of creating rakes for Herschel crawlers (used by the silverfish) that output gliders on different lanes is to use a \emph{double kickback} reaction: the two-glider kickback reaction twice. For example, the \texttt{R6L17} rake from Figure~\ref{fig:R6L17} uses two double kickback reactions.
+		One way of creating rakes for Herschel crawlers (used by the silverfish) that output gliders on different lanes is to use a \textbf{double kickback} reaction: the two-glider kickback reaction twice. For example, the \texttt{R6L17} rake from Figure~\ref{fig:R6L17} uses two double kickback reactions.\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item Modify the rake from Figure~\ref{fig:R6L17} so as to use just \emph{one} double kickback reaction.
+			\item \probdiff{2} Modify the rake from Figure~\ref{fig:R6L17} so as to use just \emph{one} double kickback reaction.
 			
-			\item What is the name (in the \texttt{R\#L\#} format) of the rake that you created in part~(a)?
+			\item \probdiff{1} What is the name (in the \texttt{R\#L\#} format) of the rake that you created in part~(a)?
 			
-			\item Explain why the rake that you constructed in part~(a) is not useful when constructing the silverfish.
+			\item \probdiff{1} Explain why the rake that you constructed in part~(a) is not useful when constructing the silverfish.
 		\end{enumerate}
 	\end{problemstar}
 	
@@ -718,7 +718,7 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:self_support_spaceships_r6l21}
+	\begin{problem}\label{exer:self_support_spaceships_r6l21} \probdiff{1}
 		Another forward rake that crawls along $6$~block tracks and could be used in the construction of the silverfish is displayed below.
 		\begin{center}
 			\gridbox{0.5pt}{\patternimglink{0.063}{R6L21}}
@@ -737,8 +737,8 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:self_support_spaceships_r2l16}
-		In this exercise, we create another rake that crawls along $6$~block tracks and could be used in the construction of the silverfish.
+	\begin{problemstar}\label{exer:self_support_spaceships_r2l16} \probdiff{3}
+		In this exercise, we create another rake that crawls along $6$~block tracks and could be used in the construction of the silverfish.\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item Adjust the positions of the two outermost Herschels in the rephaser from Figure~\ref{fig:31c_240_rephaser} so that the gliders on the outside of the tracks do not annihilate each other. Doing so should create a forward-and-backward rake.
@@ -766,17 +766,17 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 		\end{center}
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item What is the name (in the \texttt{R\#L\#} format) of this rake?
+			\item \probdiff{1} What is the name (in the \texttt{R\#L\#} format) of this rake?
 			% R3L28
 			
-			\item Create an updated version of Table~\ref{tab:silverfish_forward_rakes} that takes this rake into account. Which rake from Figure~\ref{fig:31c_240_forerakes} is no longer useful in the construction of the silverfish?
+			\item \probdiff{2} Create an updated version of Table~\ref{tab:silverfish_forward_rakes} that takes this rake into account. Which rake from Figure~\ref{fig:31c_240_forerakes} is no longer useful in the construction of the silverfish?
 			% Table: https://www.conwaylife.com/forums/viewtopic.php?f=2&t=1274&start=375#p98852
 			% R6L6
 			
-			\item On page~\pageref{page:silverfish_rake_seq}, we gave a sequence of rakes that would fire 13 gliders as efficiently as possible using the rakes we had at that time. Update this sequence now that we have this new rake.
+			\item \probdiff{3} On page~\pageref{page:silverfish_rake_seq}, we gave a sequence of rakes that would fire 13 gliders as efficiently as possible using the rakes we had at that time. Update this sequence now that we have this new rake.
 			% Also https://www.conwaylife.com/forums/viewtopic.php?f=2&t=1274&start=375#p98852
 			
-			\item Reconstruct the silverfish according to the sequence of rakes that you compiled in part~(c).
+			\item \probdiff{5} Reconstruct the silverfish according to the sequence of rakes that you compiled in part~(c).
 			
 			[Hint: Most of the silverfish from Figure~\ref{fig:silverfish} can be left as-is. All that needs to be changed is which rakes crawl along its central block tracks.]
 		\end{enumerate}
@@ -786,10 +786,8 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 	\mfilbreak
 	
 	
-	\begin{problemstar}\label{exer:silverfish_list_of_lanes}
-		On page~\pageref{page:silverfish_lanes} we listed a sequence of mod~$31$ lane numbers for implementing the slow salvo synthesis from Figure~\ref{fig:hwss_from_toad_beehive}. The list of lanes that can be used is actually much more flexible than indicated there. For example, we can fire the first two gliders on lanes $0$ and $11$ in either order, since the first two gliders in that slow salvo do not interact with each other.
-		
-		Provide a complete description of all possible sequences of mod~$31$ lane numbers that implement the synthesis from Figure~\ref{fig:hwss_from_toad_beehive}.
+	\begin{problemstar}\label{exer:silverfish_list_of_lanes} \probdiff{3}
+		On page~\pageref{page:silverfish_lanes} we listed a sequence of mod~$31$ lane numbers for implementing the slow salvo synthesis from Figure~\ref{fig:hwss_from_toad_beehive}. The list of lanes that can be used is actually much more flexible than indicated there. For example, we can fire the first two gliders on lanes $0$ and $11$ in either order, since the first two gliders in that slow salvo do not interact with each other. Provide a complete description of \emph{all} possible sequences of mod~$31$ lane numbers that implement that synthesis.
 	\end{problemstar}
 	
 	
@@ -797,12 +795,12 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 	
 	
 	\begin{problem}\label{exer:silverfish_backward_glider_destroy}
-		Two of the gliders from the slow salvo synthesis of Figure~\ref{fig:hwss_from_toad_beehive} are just used to destroy a beehive and a block.
+		Two of the gliders from the slow salvo synthesis of Figure~\ref{fig:hwss_from_toad_beehive} are just used to destroy a beehive and a block.\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item Adjust the synthesis so that those two gliders come from the northwest instead of the northeast.
+			\item \probdiff{2} Adjust the synthesis so that those two gliders come from the northwest instead of the southwest.
 			
-			\item Construct a silverfish that is at least 100 rows shorter than the one from Figure~\ref{fig:silverfish} by using a backrake to produce one or both of the gliders that were repositioned in part~(a).
+			\item \probdiff{5} Construct a silverfish that is at least 100 rows shorter than the one from Figure~\ref{fig:silverfish} by using a backrake to produce one or both of the gliders that were repositioned in part~(a).
 			
 			[Hint: A rephaser from near the front of the silverfish can be turned into a backrake whose stream crosses that of the forward rakes.]
 		\end{enumerate}
@@ -813,7 +811,7 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:pi_forward_rake_break_apart}
+	\begin{problem}\label{exer:pi_forward_rake_break_apart} \probdiff{2}
 		Break down the forward rake from Figure~\ref{fig:pi_forward_rake}, which is made up of six pi crawlers, into separate non-interacting pieces that each consist of fewer pi crawlers.
 	\end{problem}
 
@@ -822,14 +820,14 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 	
 	
 	\begin{problem}\label{exer:two_pi_tracks_synth_objects}
-		Use a backward and forward rake on a pair of blinker tracks (as in Figure~\ref{fig:blinker_trail_synth}), along with some rephasers, to synthesize a parallel track of...
+		Use a backward and forward rake on a pair of blinker tracks (as in Figure~\ref{fig:blinker_trail_synth}), along with some rephasers, to synthesize a parallel track of...\smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item blocks,
+			\item \probdiff{2} blocks,
 			
-			\item eater~1s, and
+			\item \probdiff{2} eater~1s, and
 			
-			\item gliders, with the synthesized gliders coming back and destroying one of the blinker tracks.
+			\item \probdiff{3} gliders, with the synthesized gliders coming back and destroying one of the blinker tracks.
 		\end{enumerate}
 	\end{problem}
 % SOLUTION: First two are easy. Last one:
@@ -944,8 +942,8 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 \mfilbreak
 
 
-\begin{problemstar}\label{exer:two_pi_tracks_synth_spacing}
-	In this exercise, we investigate how to synthesize blinker tracks like in Figure~\ref{fig:blinker_trail_synth}, but at any location and spacing of our choosing.
+\begin{problemstar}\label{exer:two_pi_tracks_synth_spacing} \probdiff{4}
+	In this exercise, we investigate how to synthesize blinker tracks like in Figure~\ref{fig:blinker_trail_synth}, but at any location and spacing of our choosing.\smallskip
 	
 	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 		\item If you move the forward rake back by $34$~generations, how many cells farther away is the blinker track synthesized?
@@ -962,7 +960,7 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 \mfilbreak
 
 
-\begin{problemstar}\label{exer:caterpillar_helix_when_minimal}
+\begin{problemstar}\label{exer:caterpillar_helix_when_minimal} \probdiff{3}
 	Recall that the values of $m$ and $n$ from Equation~\eqref{eq:orth_helix_parameters} are typically not the smallest positive integers for which
 	\[
 		\frac{(20m + 20)c}{40m + n + 101} = \frac{p}{q}.
@@ -975,14 +973,14 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 
 
 \begin{problem}\label{exer:construct_orthogonal_helix}
-	Construct an orthogonal helix that fires gliders forward on one side and travels at...
+	Construct an orthogonal helix that fires gliders forward on one side and travels at...\smallskip
 	
 	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item $120c/301$,% SOLUTION: m = 5, n = 0, ell = 0
+		\item \probdiff{2} $120c/301$,% SOLUTION: m = 5, n = 0, ell = 0
 		
-		\item $12c/31$, and% SOLUTION: m = 5, n = 9, ell = 0
+		\item \probdiff{3} $12c/31$, and% SOLUTION: m = 5, n = 9, ell = 0
 		
-		\item $124c/323$.% SOLUTION: m = 5, n = 6, ell = 2
+		\item \probdiff{4} $124c/323$.% SOLUTION: m = 5, n = 6, ell = 2
 	\end{enumerate}
 \end{problem}
 
@@ -990,7 +988,7 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 \mfilbreak
 
 
-\begin{problemstar}\label{exer:caterpillar_glider_slopes}
+\begin{problemstar}\label{exer:caterpillar_glider_slopes} \probdiff{2}
 	Compute the slopes of the lines of forward and backward gliders in the caterpillar (i.e., in Figure~\ref{fig:caterpillar}). Do not just read the slopes off of that figure -- explain where they come from.
 \end{problemstar}
 
@@ -998,7 +996,7 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 \mfilbreak
 
 
-\begin{problem}\label{exer:caterpillar_glider_duplicate}
+\begin{problem}\label{exer:caterpillar_glider_duplicate} \probdiff{2}
 	In Figure~\ref{fig:caterpillar}, we highlighted in yellow a two-MWSS flotilla that can be used to duplicate a glider. Find at least 2 other xWSS flotillae that are used to duplicate gliders in the caterpillar, and explain why it is useful to have so many different flotillae that seem to perform the same task.
 \end{problem}
 % Solution: different timing/positioning of the output gliders.
@@ -1008,14 +1006,14 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 
 
 \begin{problem}\label{exer:construct_oblique_helix}
-	Construct an oblique helix that fires gliders forward on one side and travels at...
+	Construct an oblique helix that fires gliders forward on one side and travels at...\smallskip
 	
 	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-		\item $(70,13)c/201$,% SOLUTION: k = 3, m = 2, n = 0
+		\item \probdiff{2} $(70,13)c/201$,% SOLUTION: k = 3, m = 2, n = 0
 		
-		\item $(40,13)c/111$, and% SOLUTION: k = 4, m = 2, n = 1
+		\item \probdiff{3} $(40,13)c/111$, and% SOLUTION: k = 4, m = 2, n = 1
 		
-		\item $(13,2)c/35$.% SOLUTION: k = 4, m = 3, n = 0, ell = 1 in the same direction as k, but ell = 0 in other direction (we didn't talk about ell explicitly in main text, but it again is just diagonal free fly cells for gliders)
+		\item \probdiff{4} $(13,2)c/35$.% SOLUTION: k = 4, m = 3, n = 0, ell = 1 in the same direction as k, but ell = 0 in other direction (we didn't talk about ell explicitly in main text, but it again is just diagonal free fly cells for gliders)
 	\end{enumerate}
 \end{problem}
 
@@ -1023,7 +1021,7 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 \mfilbreak
 
 
-\begin{problem}\label{exer:backward_helix}
+\begin{problem}\label{exer:backward_helix} \probdiff{2}
 	Two additional helix components are displayed below---the one on the left is a reflector, while the one on the right is a duplicator that fires a glider backwards.
 	
 	\noindent\begin{center}
@@ -1042,7 +1040,7 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 \mfilbreak
 
 
-\begin{problem}\label{exer:backward_helix_universal}
+\begin{problem}\label{exer:backward_helix_universal} \probdiff{4}
 	Consider the two helix components from Exercise~\ref{exer:backward_helix} and the glider-shifting component from Figure~\ref{fig:helix_shift}.\smallskip
 	
 	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
@@ -1057,15 +1055,15 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 \mfilbreak
 
 
-\begin{problemstar}\label{exer:waterbear_what_slope}
-	In the waterbear, what is the slope of the line of Herschels and gliders along its northeast edge (i.e., what is the slope of the magenta line in Figure~\ref{fig:waterbear}). In particular, explain why the slope is \emph{not} $5/23$.
+\begin{problemstar}\label{exer:waterbear_what_slope} \probdiff{2}
+	In the waterbear, what is the slope of the line of Herschels and gliders along its northeast edge (i.e., what is the slope of the magenta line in Figure~\ref{fig:waterbear})? In particular, explain why the slope is \emph{not} $5/23$.
 \end{problemstar}
 
 
 \mfilbreak
 
 
-\begin{problemstar}\label{exer:waterbear_one_more_helix_component}
+\begin{problemstar}\label{exer:waterbear_one_more_helix_component} \probdiff{2}
 	The helix used by the waterbear contains a $3$-xWSS reflector. Find that reflector, and explain why it is used instead of either of the $2$-xWSS reflectors that we saw in Figure~\ref{fig:helix_reflect} and Exercise~\ref{exer:backward_helix}.
 \end{problemstar}
 
@@ -1073,7 +1071,7 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 \mfilbreak
 
 
-\begin{problemstar}\label{exer:waterbear_why_loaf}
+\begin{problemstar}\label{exer:waterbear_why_loaf} \probdiff{3}
 	Directly beside its $6$-xWSS helix, the waterbear has a pair of xWSSes that convert the helix's backward glider into a backwards glider and a loaf. Explain why---what purpose does this loaf serve?
 \end{problemstar}
 
@@ -1081,7 +1079,7 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 \mfilbreak
 
 
-\begin{problem}\label{exer:loaf_move_adjust}
+\begin{problem}\label{exer:loaf_move_adjust} \probdiff{2}
 	Recall the loaf-moving xWSS flotillae from Figures~\ref{fig:caterloopillar_loaf_pusher} and~\ref{fig:caterloopillar_loaf_puller}.\smallskip
 	
 	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
@@ -1095,7 +1093,7 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 \mfilbreak
 
 
-\begin{problem}\label{exer:loaf_move_and_destroy_adjust}
+\begin{problem}\label{exer:loaf_move_and_destroy_adjust} \probdiff{2}
 	Recall the xWSS flotillae from Figure~\ref{fig:caterloopillar_front_back} that push or pull a loaf and then self-destruct with the help of another still life.\smallskip
 	
 	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
@@ -1109,7 +1107,7 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 \mfilbreak
 
 
-\begin{problemstar}\label{exer:caterloopillar_front_end_glider}
+\begin{problemstar}\label{exer:caterloopillar_front_end_glider} \probdiff{3}
 	The flotilla from Figure~\ref{fig:caterloopillar_front_end} that destroys the loaf-pusher also releases a backward glider, whereas the flotilla from Figure~\ref{fig:caterloopillar_front_end} that destroys the loaf-puller does not. Explain why.
 	
 	\noindent [Hint: Look at the front and back ends of the caterloopillar from Figure~\ref{fig:caterloopillar}.]
@@ -1119,7 +1117,7 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 \mfilbreak
 
 
-\begin{problemstar}\label{exer:helix_components_from_caterloopillar}
+\begin{problemstar}\label{exer:helix_components_from_caterloopillar} \probdiff{2}
 	The xWSS flotillae displayed in Figure~\ref{fig:caterloopillar_front_back} contain two different 2-xWSS flotillae that can reflect a glider while firing one backward. Explain why the 3-xWSS component from Exercise~\ref{exer:backward_helix} that performs this same task would often be preferable when building a backward-firing helix.
 \end{problemstar}
 
@@ -1127,7 +1125,7 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 \mfilbreak
 
 
-\begin{problemstar}\label{exer:caterloopillar_lonely_lwss}
+\begin{problemstar}\label{exer:caterloopillar_lonely_lwss} \probdiff{2}
 	In the zoomed-in middle section of caterloopillar in Figure~\ref{fig:caterloopillar}, there is a single LWSS that is not highlighted (i.e., it is not part of either of the loaf-moving flotillae). What is its purpose?
 \end{problemstar}
 
@@ -1135,7 +1133,7 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 \mfilbreak
 
 
-\begin{problem}\label{exer:caterloopillar_adjust_one_flotilla}
+\begin{problem}\label{exer:caterloopillar_adjust_one_flotilla} \probdiff{3}
 	What happens to the caterloopillar from Figure~\ref{fig:caterloopillar} if you adjust one or two of the flotillae at its front so that they are slightly closer together? In particular, does its speed increase, decrease, or stay the same?
 \end{problem}
 % SOLUTION: Its speed stays the same -- the spacehsip "corrects" itself after one period and undoes the change.
@@ -1144,7 +1142,7 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 \mfilbreak
 
 
-\begin{problem}\label{exer:caterloopillar_calc_flotillae_spacing}
+\begin{problem}\label{exer:caterloopillar_calc_flotillae_spacing} \probdiff{3}
 	In a caterloopillar spaceship, the displacement per period, separation of the loaf-pushing flotillae, and separation of the loaf-pulling flotillae are not independent of each other: given two of these quantities, we can compute the third.\smallskip
 	
 	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
@@ -1160,7 +1158,7 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 \mfilbreak
 
 
-\begin{problem}\label{exer:caterloopillar_make_via_script}
+\begin{problem}\label{exer:caterloopillar_make_via_script} \probdiff{3}
 	Use the computer script from \httpsurl{conwaylife.com/forums/viewtopic.php?p=30104\#p30089} to create a $c/21$ caterloopillar spaceship.
 \end{problem}
 
@@ -1168,7 +1166,7 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 \mfilbreak
 
 
-\begin{problem}\label{exer:27_1c_72_why_two}
+\begin{problem}\label{exer:27_1c_72_why_two} \probdiff{2}
 	Explain why the $(27,1)c/72$ Herschel-pair crawler from Figure~\ref{fig:27_1c_72_herschel_climber} uses a \emph{pair} of gliders and Herschels, rather than just a single Herschel on a single glider track.
 \end{problem}
 % SOLUTION: Just one herschel on this glider track leaves a lot of junk behind. The second Herschel is placed strategically so that their junks destroy each other.
@@ -1177,7 +1175,7 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 \mfilbreak
 
 
-\begin{problemstar}\label{exer:34_7c_156_with_blocks}
+\begin{problemstar}\label{exer:34_7c_156_with_blocks} \probdiff{3}
 	Recall the $(34,7)c/156$ Herschel crawler from Figure~\ref{fig:34_7c_156_herschel_climber}, in which a Herschel travels along a trail of gliders.\smallskip
 	
 	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
@@ -1191,7 +1189,7 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 \mfilbreak
 
 
-\begin{problem}\label{exer:34_7c_156_cleanup}
+\begin{problem}\label{exer:34_7c_156_cleanup} \probdiff{4}
 	In Figure~\ref{fig:31c_240_herschel_pair}, we placed two $31c/240$~Herschel crawlers next to each other so as to clean up their extra leftover debris (i.e., blocks). Now similarly place multiple $(34,7)c/156$ Herschel crawlers (on block tracks, as in Exercise~\ref{exer:34_7c_156_with_blocks}) next to each other so as to clean up their extra leftover debris (i.e., blocks and beehives).
 \end{problem}
 % SOLUTION: https://www.conwaylife.com/forums/viewtopic.php?f=2&t=1299&p=13114#p13114
@@ -1200,7 +1198,7 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 \mfilbreak
 
 
-\begin{problem}\label{exer:27_1c_72_rakes}
+\begin{problem}\label{exer:27_1c_72_rakes} \probdiff{4}
 	In Section~\ref{sec:caterpillar_pi_rakes}, we constructed forward and backward rakes out of pi crawlers by placing them next to each other so that their sparks synthesized gliders. Now similarly construct forward and backward rakes out of multiple copies of the $(27,1)c/72$ Herschel-pair crawler from Figure~\ref{fig:27_1c_72_herschel_climber}.
 \end{problem}
 % SOLUTION:
@@ -1212,7 +1210,7 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 \mfilbreak
 
 
-\begin{problemstar}\label{exer:make_self_support_need_helix}
+\begin{problemstar}\label{exer:make_self_support_need_helix} \probdiff{2}
 	Suppose you were to create a self-supporting spaceship from the three crawlers displayed in Figures~\ref{fig:self_support_climbers}(a--c). Which of those spaceships would require a helix?
 \end{problemstar}
 
@@ -1220,7 +1218,7 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 \mfilbreak
 
 
-\begin{problemstar}\label{exer:13_1c_31_helix_large}
+\begin{problemstar}\label{exer:13_1c_31_helix_large} \probdiff{4}
 	Consider the problem of constructing a helix that travels at $(13,1)c/31$ (i.e., the same speed as the B-heptomino crawler from Figure~\ref{fig:13_1c_31_b_heptomino_climber}).\smallskip
 	
 	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
@@ -1233,17 +1231,16 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 		\item Show that any such helix consisting only of those three components must actually contain at least 35 xWSSes.
 		
 		\item Construct such a helix consisting only of those three components that contains fewer than 75 xWSSes.
-		
-		[Hint: There is one that consists of $61$ xWSSes.]
 	\end{enumerate}
 \end{problemstar}
+% 61-xWSS with these components is possible
 % 40-xWSS helix making use of different ends: https://www.conwaylife.com/forums/viewtopic.php?f=2&t=1182&start=25#p128599
 
 
 \mfilbreak
 
 
-\begin{problem}\label{exer:construct_oblique_helix_for_crawlers}
+\begin{problem}\label{exer:construct_oblique_helix_for_crawlers} \probdiff{3}
 	In Exercise~\ref{exer:13_1c_31_helix_large}, we constructed a helix that fires gliders forward on one side and travels at the same speed as the $(13,1)c/31$ B-heptomino crawler from Figure~\ref{fig:13_1c_31_b_heptomino_climber}. Now construct such a helix that travels at the same speed as...\smallskip
 	
 	\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
