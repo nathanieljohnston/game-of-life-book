@@ -303,9 +303,11 @@
 		\patternimglink{0.1}{solution_traffic_jam_reflect} \\
 		
 		
-		\item[\bf\color{ocre}\sffamily\ref{exer:p4_oscillator}] Suppose that there is a single cell (which we will call X) that oscillates with period~$4$. Thus cell X must either be alive in $3$ of its phases or dead in $3$ of its phases. Suppose without loss of generality that cell X has the same state (alive or dead) in generations $0$, $1$, $2$, and the opposite state in generation $3$.
+		\item[\bf\color{ocre}\sffamily\ref{exer:p4_oscillator}] Suppose that there is a single cell (which we will call X) that oscillates with period~$4$. There are two possibilities: either X has the same state (alive or dead) in $3$ consecutive phases and the other state in the fourth phase, or X has the same state for two consecutive phases and then the opposite state for the other two.
 		
-		Since all other cells are either stable or oscillate with period~$2$, all of X's neighbors have the same state in generations~$0$ and~$2$. Since X itself also has the same state in generations~$0$ and~$2$, it must also have the same state in generations~$1$ and~$3$, which is a contradiction that shows it cannot oscillate at period~$4$. \\
+		To see that the first possibility cannot happen, suppose without loss of generality that X has the same state in generations $0$, $1$, $2$, and the opposite state in generation $3$. Since all other cells are either stable or oscillate with period~$2$, all of X's neighbors have the same state in generations~$0$ and~$2$. Since X itself also has the same state in generations~$0$ and~$2$, it must also have the same state in generations~$1$ and~$3$, which is a contradiction that shows it cannot oscillate at period~$4$.
+		
+		To see that the second possibility cannot happen, suppose without loss of generality that X is alive in generations~$0$ and~$1$, and dead in generations~$2$ and $3$. Since all other cells are either stable or oscillate with period~$2$, all of X's neighbors have the same state in generations~$1$ and~$3$. Since X is dead and born after generation~$3$, it must have exactly $3$ live neighbors at generation $3$, and thus at generation~$1$ as well. This contradicts the fact that X is alive at generation $1$ and then dies.\\
 		
 		
 		\item[\bf\color{ocre}\sffamily\ref{exer:period_3_volatile}] One possibility is as follows: \\[-0.6em]
