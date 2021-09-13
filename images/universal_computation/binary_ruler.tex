@@ -1,0 +1,102 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\begin{document}
+	\begin{tikzpicture}%
+		\node[inner sep=0pt,anchor=south west] (sbr) at (0,0) {\includegraphics[width=12cm]{../universal_computation/binary_ruler.png}};
+		
+%		% Z OUT
+%		\newcommand\zoutx{5.63}
+%		\newcommand\zouty{8.62}
+%		\draw[gray] (\zoutx-0.1,\zouty-0.1) node[rotate=45] {\tiny \texttt{Z}};
+%		\draw[color=gray,-stealth] (\zoutx-0.15,\zouty-0.3) -- (\zoutx+0.15,\zouty+0);
+%		
+%		% NZ OUT
+%		\newcommand\nzoutx{6.56}
+%		\newcommand\nzouty{9.14}
+%		\draw[gray] (\nzoutx,\nzouty) node[rotate=45] {\tiny \texttt{NZ out}};
+%		\draw[color=gray,-stealth] (\nzoutx-0.27,\nzouty-0.4) -- (\nzoutx+0.43,\nzouty+0.3);
+%		
+		
+		\newcommand\cmdx{3.6}
+		\newcommand\cmdy{-0.995}
+		% NOP
+		\newcommand\haltx{4.24+\cmdx}
+		\newcommand\halty{3.77+\cmdy}
+		\draw[gray] (\haltx-0.15,\halty-0.15) node[rotate=-45] {\tiny \texttt{NOP}};
+		\draw[color=gray,stealth-] (\haltx-0.35,\halty+0.21) -- (\haltx+0.17,\halty-0.31);
+		
+		% INC B0
+		\newcommand\incrtx{4.47+\cmdx}
+		\newcommand\incrty{3.97+\cmdy}
+		\draw[gray] (\incrtx-0.15,\incrty-0.15) node[rotate=-45] {\tiny \texttt{INC B0}};
+		\draw[color=gray,stealth-] (\incrtx-0.45,\incrty+0.31) -- (\incrtx+0.24,\incrty-0.38);
+		
+		% SET B0
+		\newcommand\tdecrtx{4.68+\cmdx}
+		\newcommand\tdecrty{4.19+\cmdy}
+		\draw[gray] (\tdecrtx-0.15,\tdecrty-0.15) node[rotate=-45] {\tiny \texttt{SET B0}};
+		\draw[color=gray,stealth-] (\tdecrtx-0.45,\tdecrty+0.31) -- (\tdecrtx+0.24,\tdecrty-0.38);
+		
+		% READ B0
+		\newcommand\incrtwx{4.89+\cmdx}
+		\newcommand\incrtwy{4.41+\cmdy}
+		\draw[gray] (\incrtwx-0.15,\incrtwy-0.15) node[rotate=-45] {\tiny \texttt{READ B0}};
+		\draw[color=gray,stealth-] (\incrtwx-0.45,\incrtwy+0.31) -- (\incrtwx+0.24,\incrtwy-0.38);
+		
+		% TDEC B0
+		\newcommand\tdecrtwx{5.1+\cmdx}
+		\newcommand\tdecrtwy{4.63+\cmdy}
+		\draw[gray] (\tdecrtwx-0.15,\tdecrtwy-0.15) node[rotate=-45] {\tiny \texttt{TDEC B0}};
+		\draw[color=gray,stealth-] (\tdecrtwx-0.45,\tdecrtwy+0.31) -- (\tdecrtwx+0.24,\tdecrtwy-0.38);
+		
+		% COMPONENT STACK
+		\draw[gridgray,dashed] (-0.05,5) -- (-0.05,8.45) -- (2.2,10.7) -- (7.2,5.7) -- (7.2,4) -- (0.95,4) -- cycle;
+		%\draw[gray] (3.3,5) node[rotate=45] {\scriptsize \texttt{Component Stack}};
+		
+		% COMPUTER
+		\draw[gridgray,dashed] (9.1,3.4) -- (9.7,4) -- (10.9,4) -- (12.15,2.75) -- (12.15,2.15) -- (9.85,-0.15) -- (9.25,-0.15) -- (7.85,1.25) -- (7.85,2.25);
+		\draw[gray] (11.2,0.8) node[rotate=45] {\scriptsize \texttt{Computer}};
+		
+		% BORDER
+		\draw[gridgray] (-0.05,-0.15) rectangle (12.15,10.7);
+		
+		% ZOOM BOX B0
+			\newcommand\rzsmlx{1.85}
+			\newcommand\rzsmrx{\rzsmlx+0.1945}
+			\newcommand\rzsmby{9.78}
+			\newcommand\rzsmty{\rzsmby+0.1945}
+			
+			\newcommand\rzbglx{7.95}
+			\newcommand\rzbgrx{\rzbglx+3.7}
+			\newcommand\rzbgty{10.2}
+			\newcommand\rzbgby{\rzbgty-3.7}
+			
+			\path[draw,gridgray,line width=0.45pt] (\rzsmrx,\rzsmty) -- (\rzbgrx,\rzbgty);
+			\path[draw,gridgray,line width=0.45pt] (\rzsmrx,\rzsmby) -- (\rzbgrx,\rzbgby);
+			
+			\node[inner sep=0pt,anchor=north west] (zoom1) at (\rzbglx,\rzbgty) {\includegraphics[width=3.7cm]{../universal_computation/binary_ruler_zoom.png}};
+			
+			\path[fill,white,opacity=0.4,line width=0pt] (\rzsmlx,\rzsmty) -- (\rzsmrx,\rzsmty) -- (\rzsmrx,\rzsmby) -- (\rzsmlx,\rzsmby) -- (\rzbglx,\rzbgby) -- (\rzbglx,\rzbgty) -- cycle;
+			
+			\path[draw,gridgray,line width=0.45pt] (\rzsmlx,\rzsmby) -- (\rzbglx,\rzbgby);
+			\path[draw,gridgray,line width=0.45pt] (\rzsmlx,\rzsmty) -- (\rzbglx,\rzbgty);
+			
+			%\node[inner sep=0pt] (zoom1_3x) at (3.35,7.95) {\includegraphics[width=0.21cm]{../mag.png} \footnotesize 8x};
+			
+			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\rzsmlx,\rzsmty) rectangle (\rzsmrx,\rzsmby);
+			\draw[gridgray,line width=0.6pt] (\rzbglx,\rzbgty) rectangle (\rzbgrx,\rzbgby);
+			
+			\draw[dred,opacity=0.5] (\rzbglx+2.5,\rzbgby+0.2) node[anchor=south west] {\footnotesize \texttt{0}};
+			\draw[dred,opacity=0.5] (\rzbglx+2.16,\rzbgby+0.54) node[anchor=south west] {\footnotesize \texttt{1}};
+			\draw[dred,opacity=0.5] (\rzbglx+1.82,\rzbgby+0.88) node[anchor=south west] {\footnotesize \texttt{2}};
+			\draw[dred,opacity=0.5] (\rzbglx+1.47,\rzbgby+1.23) node[anchor=south west] {\footnotesize \texttt{3}};
+			\draw[dred,opacity=0.5] (\rzbglx+1.13,\rzbgby+1.57) node[anchor=south west] {\footnotesize \texttt{4}};
+			\draw[dred,opacity=0.5] (\rzbglx+0.78,\rzbgby+1.92) node[anchor=south west] {\footnotesize \texttt{5}};
+			\draw[dred,opacity=0.5] (\rzbglx+0.44,\rzbgby+2.26) node[anchor=south west] {\footnotesize \texttt{6}};
+			\draw[dred,opacity=0.5] (\rzbglx+0.05,\rzbgby+2.52) node[anchor=south west] {\footnotesize $\ddots$};
+		% END ZOOM BOX B0
+		
+		\draw[gray] (0.6,9.65) node[anchor=north west,rotate=45] {\footnotesize \texttt{B0}};
+	\end{tikzpicture}
+\end{document}

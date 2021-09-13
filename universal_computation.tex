@@ -412,7 +412,7 @@ Fortunately, since we are just increasing the value of the register by \texttt{1
 	\item[2)] Read the value of the current bit (setting it equal to \texttt{0} in the process). If it equaled \texttt{0}, set it to \texttt{1} and then return the read head to the least significant bit. If it equaled \texttt{1}, move the read head to the next most significant bit (i.e., increase its position) and then return to step~(1).\smallskip
 \end{enumerate}
 
-This method is implemented in APGsembly~\ref{alg:apgsembly_binary_ruler}, which counts in binary by repeatedly adding \texttt{1} to the value of a binary register \texttt{B0}.
+This method is implemented in APGsembly~\ref{alg:apgsembly_binary_ruler}, which counts in binary by repeatedly adding \texttt{1} to the value of a binary register \texttt{B0}.\index{binary ruler}
 
 \begin{apgsembly}
 	\begin{algorithmic}\small
@@ -439,8 +439,11 @@ This method is implemented in APGsembly~\ref{alg:apgsembly_binary_ruler}, which 
 
 One interesting feature of the pattern that results from compiling this APGsembly code (see Figure~\ref{fig:binary_ruler}) is that it exhibits a new type of slow growth that we have not yet seen. We explored patterns with slowly-growing \emph{population} in Section~\ref{sec:irreg_guns}, but this pattern instead has a slowly-growing \emph{bounding box}.\index{bounding box} In particular, its \emph{diameter}\index{diameter} (i.e., longest bounding box side length) in generation~$t$ is $O(\log(t))$, since this is the rate at which new most significant bits are added to the end of the binary register.
 
-% ?? Figure~\ref{fig:binary_ruler} here.
-% Waiting for the new compiler script to be completed.
+\begin{figure}[!htb]
+	\centering
+	\embedlink{binary_ruler}{\includegraphics[width=\textwidth]{universal_computation/binary_ruler.pdf}}
+	\caption{A \textbf{binary ruler} that counts in binary via APGsembly~\ref{alg:apgsembly_binary_ruler}. Its component stack consists of just a single component---the binary register \texttt{B0}, which places boats that act as bits in the locations highlighted in \bgbox{redback}{red}.}\label{fig:binary_ruler}
+\end{figure}
 
 This diametric growth rate is much slower than any other unbounded pattern that we have seen so far (all of which have been $O(t)$). We will return to this idea of patterns with slowly-growing bounding boxes, and push it to its ultimate limit, in Section~\ref{sec:Osqrtlogt}.
 
