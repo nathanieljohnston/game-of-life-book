@@ -895,6 +895,11 @@
 
 \begin{multicols}{2}
 	\begin{itemize}[leftmargin=0em]
+		\item[\bf\color{ocre}\sffamily\ref{exer:binary_ruler_when_big}] Each bit that is stored in the binary register increases its bounding box by $6 \times 6$, except for the first few bits that are not right at the edge. Some trial and error and manipulation by hand shows that it takes 115 bits for the bounding box to be $4{\thousep}000 \times 4{\thousep}000$ or larger, so it will take $1{\thousep}000$ more bits (i.e., $1{\thousep}115$ in total) for it to be $10{\thousep}000 \times 10{\thousep}000$ or larger.
+		
+		We are thus left with the question of how long it takes before the binary register stores the value $2^{1114}$. Each clock tick takes $2^{20}$ generations, and some investigation of APGsembly~\ref{alg:apgsembly_binary_ruler} reveals that it requires approximately $3 \times 2^{n+1}$ clock ticks to store $2^n$ in the binary register. It thus takes approximately $2^{20} \times 3 \times 2^{1115} = 3 \times 2^{1135}$ generations for the size of the bounding box to exceed $10{\thousep}000 \times 10{\thousep}000$ cells.\\
+		
+		
 		\item[\bf\color{ocre}\sffamily\ref{exer:universal_computation_derive_pi_series}] \begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
 			\item Just recall that the Taylor series for $\arctan(x)$ centered at $x = 0$ is
 			\[
@@ -955,6 +960,7 @@
 			\end{align*}
 			Multiplying through by $2$ then (finally!) gives exactly the desired series~\eqref{eq:pi_series}.\\
 		\end{enumerate}
+	
 		
 		\item[\bf\color{ocre}\sffamily\ref{exer:universal_computation_e_calc}] We change the first 12 lines of that APGsembly to the following:
 		\begin{center}
