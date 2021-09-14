@@ -443,7 +443,7 @@ This diametric growth rate is much slower than any other unbounded pattern that 
 
 While addition and subtraction of values that are stored in sliding block (unary) registers is reasonably straightforward (refer back to Section~\ref{sec:compiled_add_two_registers}), these operations are more complicated for binary registers. Even just adding \texttt{1} to the value of a binary register and then resetting its read head makes use of seven lines of code (refer back to APGsembly~\ref{alg:apgsembly_binary_ruler}). The reason for the increase in complexity in this case is that when we add or subtract two binary numbers, we have to keep track of bits that are carried from one bit to the next, possibly many times in a row.
 
-In order to make arithmetic operations easier to perform, we introduce additional components that are custom-made for storing these carry bits. For example, the \texttt{ADD} and \texttt{SUB} components displayed in Figures~\ref{fig:add_component} and~\ref{fig:sub_component}, respectively, perform bitwise operations to assist in the addition and subtraction of binary registers.\footnote{These components were designed in 2009 or so, before the discovery of the Snark or the syringe. If desired, they could be rebuilt much smaller nowadays with modern Life technology.} The \texttt{ADD} component performs the addition of two bits, outputting the least significant bit of the addition and storing the carry bit in its own internal memory, and the \texttt{SUB} component similarly performs the subtraction of two bits while keeping track of the borrow bit.\footnote{Unlike the sliding block and binary registers, we only ever need one \texttt{ADD} or \texttt{SUB} component. In fact, every component that we see from this point on is limited to just a single one per Life pattern---the two types of registers are the only ones we can use multiple copies of.}
+In order to make these arithmetic operations easier to perform, we introduce additional components that are custom-made for storing carry bits. In particular, the \texttt{ADD} and \texttt{SUB} components displayed in Figures~\ref{fig:add_component} and~\ref{fig:sub_component}, respectively, perform bitwise operations to assist in the addition and subtraction of binary registers.\footnote{These components were designed in 2009 or so, before the discovery of the Snark or the syringe. If desired, they could be rebuilt much smaller nowadays with modern Life technology.} The \texttt{ADD} component performs the addition of two bits, outputting the least significant bit of the addition and storing the carry bit in its own internal memory, and the \texttt{SUB} component similarly performs the subtraction of two bits while keeping track of the borrow bit.\footnote{Unlike the sliding block and binary registers, we only ever need one \texttt{ADD} or \texttt{SUB} component. In fact, every component that we see from this point on is limited to just a single copy per Life pattern---the sliding block and binary registers are the only components that we can use multiple copies of.}
 
 \begin{figure}[!htb]
 	\centering
@@ -472,7 +472,7 @@ For example, to add binary registers containing the numbers $104 = 1101000_2$ an
 		\texttt{ADD B1}, \ & \texttt{ADD B0}, \ & \texttt{ADD B0}, \ & \texttt{ADD B1}, \ & \texttt{ADD B1}, \ & \texttt{ADD B1}, \ & \texttt{ADD B0}, \ & \texttt{ADD B0}.
 	\end{tabular}
 \end{center}
-Notice that these \texttt{ADD} actions are performed ``backwards'': they start from the least significant bits of the numbers that we are adding. Also, we need to append an extra \texttt{ADD B0} command at the very end to account for the fact that the sum may have one more bit than the summands.\footnote{It is also a good idea to call \texttt{ADD B0} after adding two registers, since this clears the internal memory of the \texttt{ADD} component.} These actions would return the outputs
+Notice that these \texttt{ADD} actions are performed ``backwards'': they start from the least significant bits of the numbers that we are adding. Also, we need to append an extra \texttt{ADD B0} command at the very end to account for the fact that the sum may have one more bit than the summands.\footnote{Another reason that it is a good idea to call \texttt{ADD B0} after adding two registers is that it clears the internal memory of the \texttt{ADD} component.} These actions would return the outputs
 \begin{center}
 	\begin{tabular}{llllllll}
 		\leavevmode\hphantom{\texttt{CD}}\texttt{NZ},\hphantom{\texttt{CD}} \ & \hphantom{\texttt{AB}}\texttt{Z},\hphantom{\texttt{CDE}} \ & \hphantom{\texttt{AB}}\texttt{Z},\hphantom{\texttt{CDE}} \ & \hphantom{\texttt{AB}}\texttt{Z},\hphantom{\texttt{CDE}} \ & \hphantom{\texttt{AB}}\texttt{Z},\hphantom{\texttt{CDE}} \ & \hphantom{\texttt{AB}}\texttt{NZ},\hphantom{\texttt{CD}} \ & \hphantom{\texttt{AB}}\texttt{Z},\hphantom{\texttt{CDE}} \ & \hphantom{\texttt{AB}}\texttt{NZ}\hphantom{\texttt{CD}}
@@ -601,12 +601,13 @@ We can thus now multiply a binary register by $10$ just as quickly and easily as
 \end{apgsembly}
 
 
+% NJ is here in the clean-up process. The intro paragraph here needs work.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%   SECTION: DECIMAL PRINTER
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{A Character Printer}\label{sec:decimal_printer}
 
-We demonstrate how to construct a component that is capable of printing any characters (e.g., digits or letters) of our choosing, by placing blocks in empty space at its current cursor position. Fortunately, we have already seen most of the reactions that we need to assemble a printer of this type. Very much along the lines of the unary sliding-block register and the binary tape register in previous sections, a printer needs to use a variant of slide gun technology to move some kind of placeholder object (a block) that marks the current cursor position. Furthermore, it needs to be able to optionally place other objects (more blocks) nearby to serve as the pixels in printed characters.
+We now demonstrate how to construct a component that is capable of printing any characters (e.g., digits or letters) of our choosing, by placing blocks in empty space at its current cursor position. Fortunately, we have already seen most of the reactions that we need to assemble a printer of this type. Very much along the lines of the unary sliding-block register and the binary tape register in previous sections, a printer needs to use a variant of slide gun technology to move some kind of placeholder object (a block) that marks the current cursor position. Furthermore, it needs to be able to optionally place other objects (more blocks) nearby to serve as the pixels in printed characters.
 
 In order to make our printer somewhat simpler to construct, we will have it move and position blocks via slow salvos like the ones that we introduced back in Section~\ref{sec:slow_salvo}. Indeed, doing so lets us not have to worry about the precise timing of the gliders that we use to move and duplicate blocks---we just have to position them correctly (which is trivial via an array of edge-shooting Herschel conduits\footnote{This is the same technique that we used to construct the binary register in Figure~\ref{fig:binary_register}, which has a long diagonal line of $26$~edge shooters along its northeast edge.}). One particular salvo for placing a pixel block is displayed in Figure~\ref{fig:char_printer_salvos}(a). While this salvo is not quite slow (the first $3$ of its $7$ gliders must be synchronized, and the $4$th glider must have the correct mod~$8$ timing), it has the added benefit of being unidirectional.\footnote{We have already seen the slow portion of this salvo---the first slow glider is the $(2,1)$ block pull from Figure~\ref{fig:glider_block_move}, and the second and third gliders duplicate the block as in Figure~\ref{fig:slow_salvo_splitter}. The first four (synchronized) gliders just reposition the cursor block so that these later (slow) gliders duplicate it in the correct positions.}
 
@@ -670,6 +671,7 @@ The end result of using multiple row printers in this way is that each row alway
 	\embedlink{abracadabra_printer}{\includegraphics[width=\textwidth]{universal_computation/abracadabra_printer.pdf}}
 	\caption{A printer with five input glider lanes that direct it to print one of the letters \texttt{A}, \texttt{B}, \texttt{C}, \texttt{D}, or \texttt{R} in a font made up of blocks, shown here having already printed the word ``\texttt{ABRACADABRA}''. The font used is $8$ pixels (blocks) high, so $8$ row printers and $8$ cursor blocks (circled in \bgbox{redback}{red}) are used. The row printer highlighted in \bgbox{yellowback2}{yellow} takes care of all printing on the second-from-the-top row, for example. The rectangular array of splitters below the row printers encodes which pixels should be printed in each row. For example, the arrangement of splitters highlighted in \bgbox{aquaback}{aqua} encodes which pixels should be printed by each row printer when an ``\texttt{A}'' input is received.}\label{fig:abracadabra_printer}
 \end{figure}
+% Note that the zoomed-in splitter is the same one used by our earlier computers?
 
 This very simple printer design adapts readily to any character height or width, and any number of characters.\footnote{A script that builds a printer pattern for any specified set of characters can be downloaded from~??.} There is no requirement that all characters have the same width. They are technically all the same height, though they may appear to be different heights if some characters are padded with empty pixels at the top or bottom.
 
@@ -1391,6 +1393,22 @@ Each of these computational devices used different Life mechanisms to implement 
 	
 	\begin{problem}\label{exer:binary_ruler_label} \probdiff{2}
 		Label the northeast--southwest lines in the computer portion of the binary ruler from Figure~\ref{fig:binary_ruler} (like we labelled those lines in the multiplication computer of Figure~\ref{fig:mult_computer}). Which substate do each of these lines correspond to in APGsembly~\ref{alg:apgsembly_binary_ruler}?
+	\end{problem}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:update_add_sub_mult} \probdiff{5}
+		The \texttt{ADD}, \texttt{SUB}, and \texttt{MUL} components of Figures~\ref{fig:add_component}--\ref{fig:mul_component} were designed over a decade ago, and could be made much smaller via modern components like Snarks and syringes.\smallskip
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Rebuild the \texttt{ADD} component, without sacrificing or changing any of its high-level functionality, so that it fits within an $800 \times 800$ bounding box.
+			
+			\item Rebuild the \texttt{SUB} component so that it fits within an $800 \times 800$ bounding box.
+			
+			\item Rebuild the \texttt{MUL} component so that it fits within a $1{\thousep}500 \times 1{\thousep}500$ bounding box.
+		\end{enumerate}
 	\end{problem}
 	
 	
