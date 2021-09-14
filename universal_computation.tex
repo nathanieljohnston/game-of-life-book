@@ -7,11 +7,6 @@
 \chapter{Universal Computation}\label{chp:universal_computation}
 
 
-% TODO: Add note about this other emulator somewhere?
-% TODO: change single quotes to double quotes in APGsembly? Satoshi suggested this. Would it cause any problems with, e.g., Dave's compiler?
-% TODO: In chapter 8, give exercise to build the universal regulator used in this computer?
-
-
 \vspace*{-0.4in}
 \epigraph{Becoming sufficiently familiar with something is a substitute for understanding it.}{John H. Conway}
 \vspace*{0.4in}
@@ -182,7 +177,7 @@ Our first step toward building such a computer is to write APGsembly code that i
 
 \begin{apgsembly}
 	\begin{algorithmic}\small
-		\State \verb|#COMPONENTS U0-1, HALT_OUT|
+		\State \verb|#COMPONENTS U0-1,HALT_OUT|
 		\State \verb|#REGISTERS {'U0':7, 'U1':5}|
 		\State \verb|# State    Input    Next state    Actions|
 		\State \verb|# ---------------------------------------|
@@ -214,31 +209,31 @@ The computer is an implementation of a finite-state machine, so when it is at re
 
 If the computer is currently in state \texttt{ID1}, for example, then the two demultiplexers representing the \texttt{ID1} state both contain boats. If a \texttt{Z} signal comes in, the \texttt{Z} boat turns a glider onto the \texttt{ID1;Z} lane, and the \texttt{NZ} boat is cleaned up by a following glider. Conversely, if an \texttt{NZ} signal comes in, the \texttt{NZ} boat turns a glider onto the \texttt{ID1;NZ} lane, and the \texttt{Z} boat gets cleaned up instead.
 
-The glider heading southwest then passes through one or more \emph{splitters}.\index{splitter} These are glider duplicators that create a perpendicular glider while also sending another glider to continue along the exact same lane. As many splitters as we desire can thus be added along these lanes without changing the final destination of the southwest-traveling glider. Each splitter sends a glider on an output lane corresponding to an action from the current line of APGsembly code: \texttt{TDEC U0}, \texttt{INC U1}, and so on.
+The glider heading southwest then passes through one or more splitters---glider duplicators\index{splitter} that create a perpendicular glider while also sending another glider to continue along the exact same lane. As many splitters as we desire can thus be added along these lanes without changing the final destination of the southwest-travelling glider. Each splitter sends a glider on an output lane corresponding to an action from the current line of APGsembly code: \texttt{TDEC U0}, \texttt{INC U1}, and so on.
 
-After going through the sequence of splitters, the southwest-bound glider hits a merge circuit, which is simply a reflector that is transparent to signals passing through it on its output lane. This implements the ``jump to'' part of each APGsembly line, and the transparency allows multiple lines of APGsembly to jump to the same state. Indeed, multiple merge circuits on the same northwest-to-southeast diagonal all produce gliders on the same lane, which are routed around to trigger the pair of demultiplexers for the next target state.\footnote{The computer in Figure~\ref{fig:add_computer} only has one path around its southeast corner along which gliders can be reflected back into the demultiplexers. This is just because every single line of APGsembly that generated that computer tells it to jump to the same state (\texttt{ID1}). We will see other computers shortly that can jump to multiple different states and thus have more glider paths at the southeast.} The two boats then wait in the demultiplexer for the next \texttt{Z} or \texttt{NZ} signal from the clock.
+After going through the sequence of splitters, the southwest-bound glider hits a merge circuit---a reflector that is transparent to signals passing through it on its output lane. This implements the ``jump to'' part of each APGsembly line, and the transparency allows multiple lines of APGsembly to jump to the same state. Indeed, multiple merge circuits on the same northwest-to-southeast diagonal all produce gliders on the same lane, which are routed around to trigger the pair of demultiplexers for the next target state.\footnote{The computer in Figure~\ref{fig:add_computer} only has one path around its southern corner along which gliders can be reflected back into the demultiplexers. This is because every single line of APGsembly~\ref{alg:apgsembly_add_same_register} that generated that computer tells it to jump to the same state (\texttt{ID1}). We will see other computers shortly that can jump to multiple different states and thus have more glider paths down there.} The two boats then wait in the demultiplexer for the next \texttt{Z} or \texttt{NZ} signal from the clock.
 
-As one technical implementation note, recall that the \texttt{INITIAL} state is always assumed to have a \texttt{Z} input. That \texttt{Z} input is hard-coded into the Life pattern in order to start the computation. The computer displayed in Figure~\ref{fig:add_computer} does not even have an \texttt{INITIAL;NZ} substate, since it would be impossible to reach anyway---recall that this is why the \texttt{INITIAL;Z} substate was listed as \texttt{INITIAL;ZZ} in APGsembly~\ref{alg:apgsembly_add_same_register}.
+As a technical implementation note, recall that the \texttt{INITIAL} state is always assumed to have a \texttt{Z} input. That \texttt{Z} input is hard-coded into the Life pattern in order to start the computation. The computer displayed in Figure~\ref{fig:add_computer} does not even have an \texttt{INITIAL;NZ} substate, since it would be impossible to reach anyway---recall that this is why the \texttt{INITIAL;Z} substate was listed as \texttt{INITIAL;ZZ} in APGsembly~\ref{alg:apgsembly_add_same_register}.
 
 
 \subsection{The Component Stack}
 
-In these calculator patterns, information is stored separately from the computer, in an array of ``components''. These components each have a finite number of inputs (called ``actions'' in APGsembly code) that can be used to manipulate or retrieve that information, and they potentially have a single \texttt{Z}/\texttt{NZ} output bit. The first example we have seen is the sliding block register, which has two action inputs (\texttt{INC Un} and \texttt{TDEC Un}) and the two standard outputs (\texttt{Z} and \texttt{NZ}). Since their output lanes are transparent, any number of sliding block registers \texttt{U0}, \texttt{U1}, \texttt{U2},$\ldots$ can be stacked side-by-side, and APGsembly code can \texttt{INC} or \texttt{TDEC} any one of them. If there are a lot of registers, the computer part of the pattern has to be stretched a little wider to accommodate spaces for more splitters. The computer has to be wide enough to hold two splitters for each sliding-block register---one for each \texttt{INC} action and one for each \texttt{TDEC} action.
+In these calculator patterns, information is stored separately from the computer, in an array of ``components''. These components each have a finite number of inputs (called ``actions'' in APGsembly code) that can be used to manipulate or retrieve that information, and they potentially provide a single \texttt{Z}/\texttt{NZ} output bit. The first example that we have seen is the sliding block register, which has two action inputs (\texttt{INC Un} and \texttt{TDEC Un}) and the two standard outputs (\texttt{Z} and \texttt{NZ}). Since their output lanes are transparent, any number of sliding block registers \texttt{U0}, \texttt{U1}, \texttt{U2},$\ldots$ can be stacked side-by-side, and APGsembly code can \texttt{INC} or \texttt{TDEC} any one of them. If there are a lot of registers, the computer part of the pattern has to be stretched a little wider to accommodate spaces for more splitters. The computer has to be wide enough to hold two splitters for each sliding-block register---one for each \texttt{INC} action and one for each \texttt{TDEC} action.
 
-Other components may have more or fewer registers. For example, we will see a binary register in Section~\ref{sec:binary_register} that has four actions: \texttt{INC Bn}, \texttt{TDEC Bn}, \texttt{READ Bn}, and \texttt{SET Bn}. New components could be designed to perform any logical function or store any amount of information that we might want; we will see an example of this in Section~\ref{sec:Osqrtlogt}, with the two-dimensional memory storage ``\texttt{SQ}'' component.
+Other components may have more or fewer action inputs. For example, we will see a binary register in Section~\ref{sec:binary_register} that has four actions: \texttt{INC Bn}, \texttt{TDEC Bn}, \texttt{READ Bn}, and \texttt{SET Bn}. New components could be designed to perform any logical function or store any amount of information that we might want; we will see an example of this in Section~\ref{sec:Osqrtlogt}, with the two-dimensional memory storage ``\texttt{B2D}'' component.
 
-No matter how many components are added to the stack, they're all called in the same way, by a single glider traveling northwest on an ``action'' lane. Multiple actions can be triggered simultaneously, though each component may be activated at slightly different times depending on where it is placed in the stack. It is perfectly okay for a single line of code in APGsembly to trigger multiple different actions, even if they make use of the same component. It is the responsibility of the programmer to know when this can be done safely, and when this would cause the component's circuitry to fail. Two incompatible actions have to be triggered from separate states (i.e., in separate computer clock ticks).
+No matter how many components are added to the stack, they're all called in the same way, by a single glider travelling northwest on an ``action'' lane. Multiple actions can be triggered simultaneously, though each component may be activated at slightly different times depending on where it is placed in the stack. Since the precise timing of the actions depends heavily on how the computer and component stack are wired together, it is strongly recommended that a single line of code in APGsembly never triggers more than one action in a particular component. While it does not always cause problems, calling two simultaneous actions would cause many of the components that we consider here to fail. This problem can be avoided simply by calling the two incompatible actions from separate states (i.e., lines of APGsembly code).
 
 
 \subsection{The Clock Gun}
 
-Once a \texttt{Z} or \texttt{NZ} output signal is generated by the component stack, it is fed back into the computer in order to jump to the next state. However, we have to be slightly careful about when this glider arrives at the computer---we have to be sure that it does not arrive before the next state's demultiplexers are set in the computer (i.e., before the computer's glider has had a chance to go through the merge circuits and find its way all the way around the perimeter of the computer part of the pattern).\footnote{This is not much of a concern in the pattern from Figure~\ref{fig:add_computer} since the path around the computer is so short, but it becomes an issue for patterns with larger computers (i.e., patterns generated by more lines of APGsembly).}
+Once a \texttt{Z} or \texttt{NZ} output signal is generated by the component stack, it is fed back into the computer in order to jump to the next state. However, we have to be slightly careful about when this glider arrives at the computer---we have to be sure that it does not arrive before the next state's demultiplexers are set in the computer (i.e., before the computer's glider has had a chance to go through the merge circuits and find its way all the way around the southern perimeter of the computer part of the pattern).\footnote{This is not much of a concern in the pattern from Figure~\ref{fig:add_computer} since the path around the computer is so short, but it becomes an issue for patterns with larger computers (i.e., patterns generated by more lines of APGsembly).}
 
 To delay the component stack's output glider, we could simply extend the length of the path that it must follow back to the computer. However, we instead make use of a very high-period universal regulator.\index{universal regulator} The advantage of this method is that several pieces of the pattern then repeat predictably at the period of the universal regulator, which lets Life simulation software evolve it much quicker than it could if the glider timing was less regular. In particular, if we choose the universal regulator to align to some high power-of-two period, then Golly's \emph{HashLife}\index{HashLife} algorithm is able to evolve these patterns extremely quickly.\footnote{HashLife is an algorithm for simulating Life that was developed by Bill Gosper in 1984 \cite{Gos84}. It works by creating a lookup table that keeps track of how the $2^{n} \times 2^{n}$ center of certain repetitive $2^{n+1} \times 2^{n+1}$ chunks of a pattern evolve over $2^{n-1}$ generations. Since nothing outside of that $2^{n+1} \times 2^{n+1}$ square can affect its $2^{n} \times 2^{n}$ center within those $2^{n-1}$ generations, the results of that computation can simply be re-used whenever that same square is encountered in the future.}
 
-The universal regulator that we use\footnote{This universal regulator was constructed by ConwayLife.com forums user ``Jormungant'' in April 2020.} is conceptually very simple. A stream of gliders coming from a gun of any (sufficiently large) period of our choosing comes in from the northeast and is split into two streams that destroy each other. However, if a glider comes in from the northwest then it is fed into a syringe and then one of the Herschel-to-boat factories from Figure~\ref{fig:H_to_boat}. The resulting boat suppresses a single glider from the gun's duplicated stream, letting a glider that is aligned to the period of that gun escape, as illustrated in Figure~\ref{fig:stable_universal_regulator}.
+The universal regulator that we use\footnote{Constructed by ConwayLife.com forums user ``Jormungant'' in April 2020.} is conceptually very simple. A stream of gliders coming from a gun of any (sufficiently large) period of our choosing comes in from the northeast and is split into two streams that destroy each other. However, if a glider comes in from the northwest then it is fed into a syringe and then one of the Herschel-to-boat factories from Figure~\ref{fig:H_to_boat}. The resulting boat suppresses a single glider from the gun's duplicated stream, letting a glider that is aligned to the period of that gun escape, as illustrated in Figure~\ref{fig:stable_universal_regulator}.
 
-The gun that we attach to this universal regulator has period $2^{20}$, which we choose simply because it is a power of $2$ that is large enough to handle most of the calculators that we will construct in this chapter, but small enough that it can be simulated quickly in software like Golly. To actually construct this gun, we just do exactly what we did in Section~\ref{sec:large_glider_guns}; we attach period multipliers to another gun. This particular gun (displayed in Figure~\ref{fig:p2to_the_20_gun}) uses quadri-Snarks (see Exercise~\ref{exer:quadri_snark}) \index{quadri-Snark} attached to a p$256$ machine gun,\index{machine gun} but semi-Snarks could have been used instead at the expense of the gun being slightly larger.
+The gun that we attach to this universal regulator has period $2^{20}$, which we choose simply because it is a power of $2$ that is large enough to handle most of the calculators that we will construct in this chapter, but small enough that it can be simulated quickly in software like Golly. To actually construct this gun, we just do exactly what we did in Section~\ref{sec:large_glider_guns}: we attach period multipliers to another gun. This particular gun (displayed in Figure~\ref{fig:p2to_the_20_gun}) uses quadri-Snarks (see Exercise~\ref{exer:quadri_snark}) \index{quadri-Snark} attached to a p$256$ machine gun,\index{machine gun} but semi-Snarks could have been used instead at the expense of the gun being slightly larger.
 
 \begin{figure}[!htb]
 	\centering
@@ -254,14 +249,14 @@ The gun that we attach to this universal regulator has period $2^{20}$, which we
 	\end{minipage}
 \end{figure}
 
-The high-period universal regulator that results from stitching together Figures~\ref{fig:stable_universal_regulator} and~\ref{fig:p2to_the_20_gun} is called the \textbf{clock gun}, and it determines the speed at which the pattern computes whatever it has been programmed to compute. We think of the period of this clock gun as the clock speed of the computer, and one period of the regulator as one clock tick or computational cycle.\footnote{Some computations may take longer than one clock tick to complete, but that's okay. For example, if a sliding block register is storing an extremely large value then its sliding block will be extremely far away from the computer, so it will take a long time to \texttt{INC} or \texttt{TDEC}. In this case, the clock gun halts the computer for one or more clock ticks until an output signal is received from the component stack.}
+The high-period universal regulator that results from stitching together Figures~\ref{fig:stable_universal_regulator} and~\ref{fig:p2to_the_20_gun} is called the \textbf{clock gun}, and it determines the speed at which the pattern computes whatever it has been programmed to compute. We think of the period of this clock gun as the clock speed of the computer, and one period of the regulator as one clock tick or computational cycle.\footnote{Some computations may take longer than one clock tick to complete, but that's okay. For example, if a sliding block register is storing an extremely large value then its sliding block will be extremely far away from the computer, so it will take a long time to \texttt{INC} or \texttt{TDEC}. In this case, the clock gun simply waits for one or more clock ticks until an output signal is received from the component stack.}
 
 In summary, the calculator patterns that we compile from APGsembly work as follows:\smallskip
 
 \begin{itemize}
-	\item The computer in the southeast corner keeps track of the state of the calculator and feeds into the component stack.\smallskip
+	\item The computer in the southeast corner keeps track of the state and sends action commands to the component stack.\smallskip
 	
-	\item The component stack keeps track of the calculator's memory and performs actions on that memory. It then feeds into the clock gun.\smallskip
+	\item The action commands alter the contents of the components in the component stack, which serve as the computer's memory. Exactly one of these components then sends an output signal (glider) to the clock gun.\smallskip
 	
 	\item The clock gun regulates the glider signal coming from the component stack and feeds it back into the computer.
 \end{itemize}
@@ -272,7 +267,7 @@ In summary, the calculator patterns that we compile from APGsembly work as follo
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Multiplying and Re-Using Registers}\label{sec:multiply_two_registers}
 
-Now that we understand how to add the value of two sliding block registers, we ramp up to the problem of multiplying their values. If we wish to multiply \texttt{U0} by \texttt{U1} and store the result in \texttt{U2} then we would like to simply repeatedly add the register \texttt{U1} to \texttt{U2} a total of \texttt{U0} times. However, there is a slightly problem with this idea---our method of adding two registers from APGsembly~\ref{alg:apgsembly_add_same_register} zeroes out one of the registers while adding it to the other. Indeed, the only way that we have of looping over one register is based on \texttt{TDEC}ing it until it hits \texttt{0}, thus erasing the value that register contained.
+Now that we understand how to \emph{add} the value of two sliding block registers, we ramp up to the problem of \emph{multiplying} their values. One seemingly simple method of multiplying \texttt{U0} by \texttt{U1} and storing the result in \texttt{U2} would be to repeatedly add the register \texttt{U1} to \texttt{U2} a total of \texttt{U0} times. However, there is a slightly problem with this idea---our method of adding two registers from APGsembly~\ref{alg:apgsembly_add_same_register} zeroes out one of the registers while adding it to the other. Indeed, the only method that we have of looping over one register is based on \texttt{TDEC}ing it until it hits \texttt{0}, thus erasing the value that register contained.
 
 To get around this problem, we introduce a temporary register into which we copy the value of one of the registers that we wish to loop over, and then we loop over that temporary register instead. In this particular case of setting \texttt{U2 = U0 * U1}, every time we add \texttt{U1} to \texttt{U2}, we do so by first copying \texttt{U1} to a new temporary register \texttt{U3} (zeroing out \texttt{U1} in the process), and then looping over \texttt{U3} so as to add it to each of \texttt{U1} \emph{and} \texttt{U2}. Pseudocode for carrying out this task, as well as the corresponding APGsembly code, is presented in APGsembly~\ref{apg:mult_unary_reg}.\footnote{After this code is executed, the value of \texttt{U1} is preserved, but the value of \texttt{U0} is not. If we want to preserve the value of \texttt{U0}, we can use \emph{another} temporary register (see Exercise~\ref{exer:universal_computation_mult_preserve_r0}).}
 
@@ -295,7 +290,7 @@ To get around this problem, we introduce a temporary register into which we copy
 	\begin{minipage}[t]{.49\textwidth}
 		\begin{algorithmic}\tiny
 			\State \verb|#COMPONENTS U0-3,HALT_OUT|
-			\State \verb|#REGISTERS {"U0":7, "U1":5}|
+			\State \verb|#REGISTERS {'U0':7, 'U1':5}|
 			\State \verb|# State    Input    Next state    Actions|
 			\State \verb|# ---------------------------------------|
 			\State \verb|INITIAL;   ZZ;      ID1;          TDEC U0|
@@ -316,7 +311,7 @@ To get around this problem, we introduce a temporary register into which we copy
 	\caption{Pseudocode (left) and APGsembly code (right) to set \texttt{U2 = U0 * U1} and zero out \texttt{U0}. The register \texttt{U3} is used just temporarily (it starts and ends at the value of \texttt{0}) to store the value of \texttt{U1}. After this computation completes, the registers will have the values \texttt{U0 = 0}, \texttt{U1 = 5}, \texttt{U2 = 35}, and \texttt{U3 = 0}.}\label{apg:mult_unary_reg}
 \end{apgsembly}
 
-A Life pattern that is compiled from APGsembly~\ref{apg:mult_unary_reg} is displayed in Figure~\ref{fig:mult_computer}. This multiplication pattern has the same general shape and structure as the addition pattern from Figure~\ref{fig:add_computer}, but with slightly more of everything---$4$ sliding block registers instead of $2$, $7$ subtates in the computer (corresponding to the $7$ lines of APGsembly code) instead of $3$, and so on. Perhaps the most notable change in this calculator pattern is that there are now $3$ glider lanes looping around the southeast end of the computer, whereas there was only $1$ such lane in Figure~\ref{fig:add_computer}. These extra lanes correspond to the fact that there are lines of APGsembly code in the multiplication program that jump to each of three different states (\texttt{ID1}, \texttt{ID2}, and \texttt{ID3}), whereas every line in the addition program jumped to the same state (\texttt{ID1}).
+A Life pattern that was compiled from APGsembly~\ref{apg:mult_unary_reg} is displayed in Figure~\ref{fig:mult_computer}. This multiplication pattern has the same general shape and structure as the addition pattern from Figure~\ref{fig:add_computer}, but with slightly more of everything---$4$ sliding block registers instead of $2$, $7$ subtates in the computer (corresponding to the $7$ lines of APGsembly code) instead of $3$, and so on. Perhaps the most notable change in this calculator pattern is that there are now $3$ glider lanes looping around the southern perimeter of the computer, whereas there was only $1$ such lane in Figure~\ref{fig:add_computer}. These extra lanes correspond to the fact that there are lines of APGsembly code in the multiplication program that jump to each of three different states (\texttt{ID1}, \texttt{ID2}, and \texttt{ID3}), whereas every line in the addition program jumped to the same state (\texttt{ID1}).
 
 \begin{figure}[!htb]
 	\centering
@@ -324,7 +319,7 @@ A Life pattern that is compiled from APGsembly~\ref{apg:mult_unary_reg} is displ
 	\caption{A compiled Life pattern that multiplies the values of the registers \texttt{U0} and \texttt{U1} (which have been pre-loaded with the values \texttt{7} and \texttt{5}, respectively) and stores the result in \texttt{U2}, as in APGsembly~\ref{apg:mult_unary_reg}. The color scheme and general structure of this pattern is the same as in Figure~\ref{fig:add_computer}.}\label{fig:mult_computer}
 \end{figure}
 
-Just like we can multiply two registers via repeated addition, we can divide two registers via repeated subtraction. In particular, to compute the integer part of \texttt{U0 / U1} we repeatedly subtract \texttt{U1} from \texttt{U0} until \texttt{U0 = 0}. The number of times that we were able to completely subtract \texttt{U1} is the integer part of \texttt{U0 / U1}, and the value that was contained in \texttt{U0} when we started our final subtraction is the remainder of that division. Implementing this division-by-subtraction algorithm in APGsembly is very similar to the multiplication-by-addition APGsembly~\ref{apg:mult_unary_reg}, so we leave it to Exercise~\ref{exer:division_by_subtraction}.
+Just like we can multiply two registers via repeated addition, we can divide two registers via repeated subtraction. In particular, to compute the integer part of \texttt{U0 / U1} we can repeatedly subtract \texttt{U1} from \texttt{U0} until \texttt{U0 = 0}. The number of times that we were able to completely subtract \texttt{U1} is the integer part of \texttt{U0 / U1}, and the value that was contained in \texttt{U0} when we started our final subtraction is the remainder of that division. Implementing this division-by-subtraction algorithm in APGsembly is very similar to the multiplication-by-addition APGsembly~\ref{apg:mult_unary_reg}, so we leave it to Exercise~\ref{exer:division_by_subtraction}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -334,7 +329,7 @@ Just like we can multiply two registers via repeated addition, we can divide two
 
 One of the unfortunate features of sliding block registers is that the only actions they have available to them are addition and subtraction by \texttt{1}, so arithmetic operations involving large numbers stored in these registers take a long time to complete. For example, the addition code of APGsembly~\ref{alg:apgsembly_add_same_register} takes \texttt{U0+1} clock ticks to add the value of \texttt{U0} to \texttt{U1}, and the multiplication code of APGsembly~\ref{apg:mult_unary_reg} takes roughly \texttt{2 * U0 * U1} clock ticks to multiply \texttt{U0} by \texttt{U1}.\footnote{In fact, even the addition and subtraction by \texttt{1} operations take longer to complete the larger the value of the register is, since the sliding block takes longer to interact with when it is farther away.}
 
-While larger inputs leading to longer times to perform arithmetic operations is inevitable, we can save a lot of time by representing non-negative integers in a more efficient way than just as the position of a sliding block. While a sliding block register can be thought of as storing a non-negative integer in \textbf{unary}\index{unary} (i.e., the base-$1$ numeral system, in which each number is represented by tally marks or a distance from a fixed point), the register that we now introduce instead encodes non-negative integers in \textbf{binary} (i.e., the base-$2$ numeral system).\footnote{Other bases larger than $2$ would also be quicker to work with than unary, but they would be even more complicated to implement.} Performing operations on such a register is somewhat more complicated, but it has the advantage of being much quicker because, for example, the non-negative integer $n$ can be stored in $O(\log(n))$ space instead of $O(n)$ space.
+While larger inputs leading to longer times to perform arithmetic operations is inevitable, we can save a lot of time by representing non-negative integers in a more efficient way than just as the position of a sliding block. While a sliding block register can be thought of as storing a non-negative integer in \textbf{unary}\index{unary} (i.e., the base-$1$ numeral system, in which each number is represented by tally marks or a distance from a fixed point), the register that we now introduce instead encodes non-negative integers in \textbf{binary} (i.e., the base-$2$ numeral system). Performing operations on such a register is somewhat more complicated, but it has the advantage of being much quicker because, for example, the non-negative integer $n$ can be stored in $\Theta(\log(n))$ space instead of $\Theta(n)$ space.%\footnote{Other bases larger than $2$ would also be quicker to work with than unary, but they would be even more complicated to implement.}
 
 We call a register that stores a non-negative integer in this way a \textbf{binary register},\index{binary register} and the one that we make use of is displayed in Figure~\ref{fig:binary_register}. It uses block-moving shotguns similar to the ones in sliding block registers, except that they move a block~$6$ cells diagonally at a time instead of just~$1$. This wider spacing leaves room for additional reactions to place boats on one side of the sliding block. Indeed, every~$6$ cells along the sliding block's path is a designated bit location, which can contain either an empty space or a single boat, corresponding to the bits \texttt{0} and \texttt{1}, respectively.
 
@@ -344,15 +339,12 @@ We call a register that stores a non-negative integer in this way a \textbf{bina
 	\caption{A binary register that uses a sliding block to keep track of the location of the read head (circled in \bgbox{redback}{red} at the \texttt{0} location) and boats to represent bits (shown here storing the value $3065 = 101111111001_2$). The sliding block and boat bits are manipulated by four different slow salvos corresponding to the register's four actions \texttt{INC}, \texttt{TDEC}, \texttt{READ}, and \texttt{SET}, which are generated by the circuitry highlighted in \bgbox{greenpastel}{green}, \bgbox{magentaback}{magenta}, \bgbox{aquaback}{aqua}, and \bgbox{yellowback2}{yellow}, respectively.}\label{fig:binary_register}
 \end{figure}
 
-% ?? Paragraph or two here describing how the various pieces of this register work, roughly.
-% Say that we do not go into as much depth regarding this component, or future components, since we have used the same techniques repeatedly to construct these types of devices. They all use similar sort of logic to the SBR.
-
 The four actions available to this binary register are a bit more abstract than the actions of the sliding block register, since they work on the individual bits of the register rather than the value that those bits represent:\smallskip
 
 \begin{itemize}
 	\item An \texttt{INC}\index{INC} action moves the pointer block (called the \textbf{read head}\index{read head} of the register) to the next bit location, one step farther away.\smallskip
 	
-	\item A \texttt{TDEC}\index{TDEC} action moves the read head to the previous bit location (or keeps it in the same place if it's already at the zero position). This action also returns either \texttt{Z} or \texttt{NZ}, depending on whether or not the read head was already at the location of the least significant bit when this action was called.\footnote{This behavior is in complete analogy with the \texttt{TDEC} action for the sliding block register---it tests and \emph{then} it decrements (if possible). In fact, the binary register from Figure~\ref{fig:binary_register} has a sliding block register baked into it for exactly this reason.}\smallskip
+	\item A \texttt{TDEC}\index{TDEC} action moves the read head to the previous bit position (or keeps it in the same place if it's already at the zero position). This action also returns either \texttt{Z} or \texttt{NZ}, depending on whether or not the read head was already at the location of the least significant bit when this action was called.\footnote{This behavior is in complete analogy with the \texttt{TDEC} action for the sliding block register---it tests and \emph{then} it decrements (if possible). In fact, the \texttt{INC} and \texttt{TDEC} portions of the binary register from Figure~\ref{fig:binary_register} alone make up a sliding block register (they just manipulate the read head, not the boats that represent bits).}\smallskip
 	
 	\item A \texttt{READ}\index{READ} action sets the value of the bit at the current read head location to ``\texttt{0}''. This action returns either \texttt{Z} or \texttt{NZ}, depending on the original value of that bit.\smallskip
 	
@@ -361,7 +353,7 @@ The four actions available to this binary register are a bit more abstract than 
 
 Unlike a simple sliding block register, where there's no way to damage the mechanism by sending action signals to it, there are indeed ways to program a binary register that will cause it to explode catastrophically. In particular, if you send a \texttt{SET} action while there's already a \texttt{1} stored at the current read head location, it will cause irrecoverable damage. There's no built-in safety mechanism to prevent this, but this problem can easily be avoided by always sending a \texttt{READ} signal just before any \texttt{SET} signal.
 
-We use \texttt{Bn} to denote the \texttt{n}-th binary register (where we start counting at \texttt{n = 0}), just like we use \texttt{Un} to denote the \texttt{n}-th sliding block register. To illustrate how to make use of these actions to perform bitwise operations, APGsembly~\ref{apg:store_139} shows how to store the value $139 = 10001011_2$ in a binary register \texttt{B0}.\footnote{The subscript ``$2$'' indicates that we are writing the number in binary.} Another way of storing the value $139$ in a binary register would be to change the appropriate line of the APGsembly header to \texttt{\#REGISTERS \{"B0":[0,'11010001']\}}. However, the header-based method only works if you want to set \texttt{B0} to $139$ at the start of the computation and not partway through it.
+We use \texttt{Bn} to denote the \texttt{n}-th binary register (where we start counting at \texttt{n = 0}), just like we use \texttt{Un} to denote the \texttt{n}-th sliding block register. To illustrate how to make use of these actions to perform bitwise operations, APGsembly~\ref{apg:store_139} shows how to store the value $139 = 10001011_2$ in a binary register \texttt{B0}.\footnote{The subscript ``$2$'' indicates that we are writing the number in binary.} Another way of storing the value $139$ in a binary register would be to change the appropriate line of the APGsembly header to \texttt{\#REGISTERS \{'B0':[0,'11010001']\}}. However, the header-based method only works if you want to set \texttt{B0} to $139$ at the start of the computation and not partway through it.
 % NJ question for Dave: Is the #REGISTERS syntax for the B0 register above correct?
 
 \begin{apgsembly}
@@ -390,7 +382,7 @@ We use \texttt{Bn} to denote the \texttt{n}-th binary register (where we start c
 	\caption{APGsembly code for storing the value $139$ in the binary register \texttt{B0}, and then returning its read head to the least significant bit.}\label{apg:store_139}
 \end{apgsembly}
 
-This APGsembly also contains one new action that we have not yet seen: \texttt{NOP}.\index{NOP} This is an old standard programming abbreviation, short for ``No OPeration''; it tells the computer not to change anything right now, but emit a \texttt{Z} return value anyway. It is typically used in conjunction with other actions that don't have a return value (\texttt{SET B0} and \texttt{INC B0} in this case), since exactly one action in every state's list of actions must return a value of either \texttt{Z} or \texttt{NZ}.\footnote{It may be tempting to merge multiple lines of APGsembly~\ref{apg:store_139} together so as to get rid of the \texttt{NOP} actions. For example, we might want to have an action list for a particular state that says something like \texttt{INC B0, INC B0, SET B0, NOP}. However, there are two problems with this: (1) we cannot call the same action twice in a single line of APGsembly (clock tick), and (2) it is not a good idea to perform two actions on the same register (\texttt{B0}) in the same clock tick. Indeed, it is not clear which one will be performed first (or even worse, they might interfere with each other and cause the register to self-destruct).}
+This APGsembly also contains one new action that we have not yet seen: \texttt{NOP}.\index{NOP} This is an old standard programming abbreviation, short for ``\textbf{N}o \textbf{OP}eration''; it tells the computer not to change anything right now, but emit a \texttt{Z} return value anyway. It is typically used in conjunction with other actions that don't have a return value (\texttt{SET B0} and \texttt{INC B0} in this case), since exactly one action in every state's list of actions must return a value of either \texttt{Z} or \texttt{NZ}.\footnote{It may be tempting to merge multiple lines of APGsembly~\ref{apg:store_139} together so as to get rid of the \texttt{NOP} actions. For example, we might want to have an action list for a particular state that says something like \texttt{INC B0, INC B0, SET B0, NOP}. However, there are two problems with this: (1) we cannot call the same action twice in a single line of APGsembly (clock tick), and (2) it is not a good idea to perform two actions on the same register (\texttt{B0}) in the same clock tick. Indeed, it is not clear which one will be performed first (or even worse, they might interfere with each other and cause the register to self-destruct).}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -398,7 +390,7 @@ This APGsembly also contains one new action that we have not yet seen: \texttt{N
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{A Binary Ruler}\label{sec:binary_ruler}
 
-To illustrate how to perform some basic arithmetic operations with our binary register, consider the simple problem of increasing the value of the register by \texttt{1}. Unlike the sliding block register, there is no single action that performs this operation---we can only perform actions on one bit at a time, but increasing the value of a binary register by \texttt{1} may affect several of its bits due to carries.
+To illustrate how to perform some basic arithmetic operations with our binary register, consider the simple problem of increasing the value (i.e., the number that is stored in binary) of the register by \texttt{1}. Unlike the sliding block register, there is no single action that performs this operation---we can only perform actions on one bit at a time, but increasing the value of a binary register by \texttt{1} may affect several of its bits due to carries.
 
 Fortunately, since we are just increasing the value of the register by \texttt{1}, the carry bits are not difficult to take care of: we look for the least significant \texttt{0} bit and set it to \texttt{1}, and we set all bits that are less significant than it (which are necessarily currently equal to \texttt{1}) to \texttt{0}. Slightly more explicitly, we can increase the value of a binary register by \texttt{1} via the following procedure:\smallskip
 
@@ -433,15 +425,15 @@ This method is implemented in APGsembly~\ref{alg:apgsembly_binary_ruler}, which 
 	\caption{APGsembly code for a \textbf{binary ruler}---a pattern that counts in binary.}\label{alg:apgsembly_binary_ruler}
 \end{apgsembly}
 
-One interesting feature of the pattern that results from compiling this APGsembly code (see Figure~\ref{fig:binary_ruler}) is that it exhibits a new type of slow growth that we have not yet seen. We explored patterns with slowly-growing \emph{population} in Section~\ref{sec:irreg_guns}, but this pattern instead has a slowly-growing \emph{bounding box}.\index{bounding box} In particular, its \emph{diameter}\index{diameter} (i.e., longest bounding box side length) in generation~$t$ is $O(\log(t))$, since this is the rate at which new most significant bits are added to the end of the binary register.
+One interesting feature of the pattern that results from compiling this APGsembly code (see Figure~\ref{fig:binary_ruler}) is that it exhibits a new type of slow growth that we have not yet seen. We explored patterns with slowly-growing \emph{population} in Section~\ref{sec:irreg_guns}, but this pattern instead has a slowly-growing \emph{bounding box}.\index{bounding box} In particular, its \textbf{diameter}\index{diameter} (i.e., its longest bounding box side length) in generation~$t$ is $\Theta(\log(t))$, since this is the rate at which new most significant bits are added to the end of the binary register.
 
 \begin{figure}[!htb]
 	\centering
 	\embedlink{binary_ruler}{\includegraphics[width=\textwidth]{universal_computation/binary_ruler.pdf}}
-	\caption{A \textbf{binary ruler} that counts in binary via APGsembly~\ref{alg:apgsembly_binary_ruler}. Its component stack consists of just a single component---the binary register \texttt{B0}, which places boats that act as bits in the locations highlighted in \bgbox{redback}{red}.}\label{fig:binary_ruler}
+	\caption{A \textbf{binary ruler} that counts in binary via APGsembly~\ref{alg:apgsembly_binary_ruler}. As a result, it grows very slowly, with its diameter in generation~$t$ being $\Theta(\log(t))$. Its component stack consists of just a single component---the binary register \texttt{B0}, which places boats that act as bits in the locations highlighted in \bgbox{redback}{red}.}\label{fig:binary_ruler}
 \end{figure}
 
-This diametric growth rate is much slower than any other unbounded pattern that we have seen so far (all of which have been $O(t)$). We will return to this idea of patterns with slowly-growing bounding boxes, and push it to its ultimate limit, in Section~\ref{sec:Osqrtlogt}.
+This diametric growth rate is much slower than any other unbounded pattern that we have seen so far (all of which have been $\Theta(t)$). We will return to this idea of patterns with slowly-growing bounding boxes, and push it to its ultimate limit, in Section~\ref{sec:Osqrtlogt}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -493,7 +485,7 @@ corresponding to the fact that $104 + 57 = 161 = 10100001_2$. Complete APGsembly
 	\begin{minipage}[t]{.49\textwidth}
 		\begin{algorithmic}\tiny
 			\State \verb|#COMPONENTS B0-1,U0-2,ADD,NOP,HALT_OUT|
-			\State \verb|#REGISTERS {"B0":[0,'0001011'], "B1":[0,'100111'], "U0":8}|
+			\State \verb|#REGISTERS {'B0':[0,'0001011'], 'B1':[0,'100111'], 'U0':8}|
 			\State \verb|# State    Input    Next state    Actions|
 			\State \verb|# ---------------------------------------|
 			\State \verb|INITIAL;   ZZ;      ADD1;         TDEC U0|
@@ -524,7 +516,7 @@ corresponding to the fact that $104 + 57 = 161 = 10100001_2$. Complete APGsembly
 	\begin{minipage}[t]{.49\textwidth}
 		\begin{algorithmic}\tiny
 			\State \verb|#COMPONENTS B0-1,U0-2,SUB,NOP,HALT_OUT|
-			\State \verb|#REGISTERS {"B0":[0,'0001011'], "B1":[0,'100111'], "U0":8}|
+			\State \verb|#REGISTERS {'B0':[0,'0001011'], 'B1':[0,'100111'], 'U0':8}|
 			\State \verb|# State    Input    Next state    Actions|
 			\State \verb|# ---------------------------------------|
 			\State \verb|INITIAL;   ZZ;      SUB1;         TDEC U0|
@@ -582,7 +574,7 @@ We can thus now multiply a binary register by $10$ just as quickly and easily as
 \begin{apgsembly}
 	\begin{algorithmic}\small
 		\State \verb|#COMPONENTS B0,U0-2,MUL,NOP,HALT_OUT|
-		\State \verb|#REGISTERS {"B0":[0,'01011'], "U0":9}|
+		\State \verb|#REGISTERS {'B0':[0,'01011'], 'U0':9}|
 		\State \verb|# State    Input    Next state    Actions|
 		\State \verb|# ---------------------------------------|
 		\State \verb|INITIAL;   ZZ;      MUL1;         TDEC U0|
@@ -687,7 +679,7 @@ While APGsembly requires us to explicitly specify which digit we want to print (
 \begin{apgsembly}
 	\begin{algorithmic}\small
 		\State \verb|#COMPONENTS U0,OUTPUT,HALT_OUT|
-		\State \verb|#REGISTERS {"U0":7}|
+		\State \verb|#REGISTERS {'U0':7}|
 		\State \verb|# State    Input    Next state    Actions|
 		\State \verb|# ---------------------------------------|
 		\State \verb|INITIAL;   ZZ;      OUT0;         TDEC U0|
@@ -1053,7 +1045,7 @@ APGsembly code that implements this algorithm is displayed in APGsembly~\ref{alg
 	\begin{minipage}[t]{.49\textwidth}
 		\begin{algorithmic}\tiny
 			\State \verb|#COMPONENTS U0-5,B0,B2D,NOP|
-			\State \verb|#REGISTERS {"U4":6, "U5":8}|
+			\State \verb|#REGISTERS {'U4':6, 'U5':8}|
 			\State \verb|# State   Input   Next state   Actions|
 			\State \verb|# ---------------------------------------|
 			\State \verb|INITIAL;  ZZ;     DIR0;        TDEC U2|
@@ -1331,6 +1323,14 @@ Each of these computational devices used different Life mechanisms to implement 
 			
 			\item Use the APGsembly compiler that is linked from \httpsurl{conwaylife.com/wiki/APGsembly} to compile a Life pattern that implements your APGsembly code from part~(b).
 		\end{enumerate}
+	\end{problem}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:describe_binary_register} \probdiff{2}
+		Describe how the \texttt{READ} and \texttt{SET} actions of the binary register from Figure~\ref{fig:binary_register} are implemented. For example, what glider salvos implement these operations, and how are those salvos constructed?
 	\end{problem}
 	
 	
