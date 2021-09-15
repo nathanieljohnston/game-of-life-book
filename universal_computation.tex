@@ -601,17 +601,16 @@ We can thus now multiply a binary register by $10$ just as quickly and easily as
 \end{apgsembly}
 
 
-% NJ is here in the clean-up process. The intro paragraph here needs work.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%   SECTION: DECIMAL PRINTER
+%%   SECTION: CHARACTER PRINTER
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{A Character Printer}\label{sec:decimal_printer}
+\section{A Character Printer}\label{sec:decimal_printer}\index{character printer}
 
-We now demonstrate how to construct a component that is capable of printing any characters (e.g., digits or letters) of our choosing, by placing blocks in empty space at its current cursor position. Fortunately, we have already seen most of the reactions that we need to assemble a printer of this type. Very much along the lines of the unary sliding-block register and the binary tape register in previous sections, a printer needs to use a variant of slide gun technology to move some kind of placeholder object (a block) that marks the current cursor position. Furthermore, it needs to be able to optionally place other objects (more blocks) nearby to serve as the pixels in printed characters.
+We now demonstrate how to construct a component that is capable of printing any characters (e.g., digits or letters) of our choosing on the Life plane, in a font made up of blocks. Fortunately, we have already seen most of the reactions that we need to assemble a printer of this type. Very much along the same lines as the binary register of the previous section, our character printer will use a variant of slide gun technology to move a block that marks the current cursor position. We will also need a reaction that can use that cursor block to place another block nearby to serve as the pixels in printed characters (much like the read head block in the binary register can be used to place boats nearby to serve as bits in the register's memory).
 
-In order to make our printer somewhat simpler to construct, we will have it move and position blocks via slow salvos like the ones that we introduced back in Section~\ref{sec:slow_salvo}. Indeed, doing so lets us not have to worry about the precise timing of the gliders that we use to move and duplicate blocks---we just have to position them correctly (which is trivial via an array of edge-shooting Herschel conduits\footnote{This is the same technique that we used to construct the binary register in Figure~\ref{fig:binary_register}, which has a long diagonal line of $26$~edge shooters along its northeast edge.}). One particular salvo for placing a pixel block is displayed in Figure~\ref{fig:char_printer_salvos}(a). While this salvo is not quite slow (the first $3$ of its $7$ gliders must be synchronized, and the $4$th glider must have the correct mod~$8$ timing), it has the added benefit of being unidirectional.\footnote{We have already seen the slow portion of this salvo---the first slow glider is the $(2,1)$ block pull from Figure~\ref{fig:glider_block_move}, and the second and third gliders duplicate the block as in Figure~\ref{fig:slow_salvo_splitter}. The first four (synchronized) gliders just reposition the cursor block so that these later (slow) gliders duplicate it in the correct positions.}
+In order to make our printer somewhat simpler to construct, we will have it move and position blocks via slow salvos like the ones that we introduced back in Section~\ref{sec:slow_salvo}. Indeed, doing so lets us not have to worry about the precise timing of the gliders that we use to move and duplicate blocks---we just have to position them correctly (which is trivial via an array of edge-shooting Herschel conduits). This is the same technique that we used to construct the binary register in Figure~\ref{fig:binary_register}, which has a long diagonal line of $26$~edge shooters along its northeast edge.
 
-Similarly, Figure~\ref{fig:char_printer_salvos}(b) shows a 14-glider unidirectional slow salvo that pushes the cursor block 32 full diagonals farther away from the glider source. Importantly, this cursor-pushing reaction can be used regardless of whether or not the pixel-placing reaction was used, since the pixel is placed in a location that is never touched by the cursor-pushing reaction.
+One particular salvo for placing a pixel block is displayed in Figure~\ref{fig:char_printer_place_pixel}. While this salvo is not quite slow (the first $3$ of its $7$ gliders must be synchronized, and the $4$th glider must have the correct mod~$8$ timing), it has the added benefit of being unidirectional.\footnote{We have already seen the slow portion of this salvo---the first slow glider is the $(2,1)$ block pull from Figure~\ref{fig:glider_block_move}, and the second and third gliders duplicate the block as in Figure~\ref{fig:slow_salvo_splitter}. The first four (synchronized) gliders just reposition the cursor block so that these later (slow) gliders, when duplicating the block, move it back to where it started.} Similarly, Figure~\ref{fig:char_printer_push_cursor} shows a 14-glider unidirectional slow salvo that pushes the cursor block 32 full diagonals farther away from the glider source. Importantly, this cursor-pushing reaction can be used regardless of whether or not the pixel-placing reaction was used, since the pixel is placed in a location that is never touched by the cursor-pushing reaction.
 
 \begin{figure}[!htb]
 	\centering
@@ -654,7 +653,7 @@ Similarly, Figure~\ref{fig:char_printer_salvos}(b) shows a 14-glider unidirectio
 	\caption{Glider salvos that can be used to print block pixels at a separation of $32$~full diagonals.}\label{fig:char_printer_salvos}
 \end{figure}
 
-To create the salvos that implement these pixel-printing and cursor-moving operations, we just use the stable circuitry like Snarks, syringes, and edge-shooting Herschel conduits that we saw in Chapter~\ref{chp:stationary_circuitry}. If we want the next pixel in the current row to be empty, we just push the cursor block by creating the glider salvo from Figure~\ref{fig:char_printer_salvos}(b). If we want to print the next pixel in the current row, we instead create the salvo from Figure~\ref{fig:char_printer_salvos}(a) and then trigger the cursor-pushing mechanism. A device called a \textbf{row printer}\index{row printer} that implements both of these operations is displayed in Figure~\ref{fig:row_printer}.
+To create the salvos that implement these pixel-printing and cursor-moving operations, we just use stable circuitry like Snarks, syringes, and the edge-shooting Herschel conduits that we saw in Chapter~\ref{chp:stationary_circuitry}. If we want the next pixel in the current row to be empty, we just push the cursor block by creating the glider salvo from Figure~\ref{fig:char_printer_push_cursor}. If we want to print the next pixel in the current row, we instead create the salvo from Figure~\ref{fig:char_printer_place_pixel} and \emph{then} trigger the cursor-pushing mechanism. A device called a \textbf{row printer}\index{row printer} that implements both of these operations is displayed in Figure~\ref{fig:row_printer}.
 
 \begin{figure}[!htb]
 	\centering
@@ -662,20 +661,18 @@ To create the salvos that implement these pixel-printing and cursor-moving opera
 	\caption{A \textbf{row printer} that can be used to either push a cursor block forward by $32$ full diagonals (highlighted in \bgbox{orangeback2}{orange}), or print a pixel block (highlighted in \bgbox{greenpastel}{green}) and \emph{then} push the cursor block.}\label{fig:row_printer}
 \end{figure}
 
-The row printer lets us easily print an arbitrary sequence of pixels (blocks) along a single (northwest-to-southeast diagonal) row. To construct a more general printer that lets us print characters that are several pixels tall, we simply use one cursor block and one row of pixels in the characters. For example, if we wish to print characters that are $10$~pixels tall, we use $10$ cursor blocks that are offset from each other diagonally in the southwest-to-northeast direction, and we aim a separate row printer at each of them.
+This row printer lets us easily print an arbitrary sequence of pixels (blocks) along a single (northwest-to-southeast diagonal) row. To construct a more general printer that lets us print characters that are several pixels tall, we simply use multiple row printers---one cursor block and one row printer per pixel of height in the characters. For example, if we wish to print characters that are $10$~pixels tall, we use $10$ cursor blocks that are offset from each other diagonally in the southwest-to-northeast direction, and we aim a separate row printer at each of them.
 
-The end result of using multiple row printers in this way is that each row always advances its cursor block by the same distance ($32$ full diagonals), regardless of whether or not a pixel has been placed in that row. Instructions for which pixels to print in each row (and thus which characters to print overall) can be encoded straightforwardly in circuitry that sends a glider into the appropriate input slot of each row printer. To illustrate this idea, Figure~\ref{fig:abracadabra_printer} presents a pattern that is capable of printing the characters \texttt{A}, \texttt{B}, \texttt{C}, \texttt{D}, and \texttt{R} in a font made up of blocks, and which has had glider signals fed into it to print the word ``\texttt{ABRACADABRA}''.
+The end result of using multiple row printers in this way is that each row always advances its cursor block by the same distance ($32$ full diagonals), regardless of whether or not a pixel has been placed in that row. Instructions for which pixels to print in each row (and thus which characters to print overall) can be encoded straightforwardly in circuitry that sends a glider into the appropriate input slot of each row printer. To illustrate this idea, Figure~\ref{fig:abracadabra_printer} presents a pattern that is capable of printing the characters \texttt{A}, \texttt{B}, \texttt{C}, \texttt{D}, and \texttt{R} in a font made up of blocks, and which has had $11$ glider signals fed into it, instructing it to print the word ``\texttt{ABRACADABRA}''.
 
 \begin{figure}[!htb]
 	\centering
 	\embedlink{abracadabra_printer}{\includegraphics[width=\textwidth]{universal_computation/abracadabra_printer.pdf}}
 	\caption{A printer with five input glider lanes that direct it to print one of the letters \texttt{A}, \texttt{B}, \texttt{C}, \texttt{D}, or \texttt{R} in a font made up of blocks, shown here having already printed the word ``\texttt{ABRACADABRA}''. The font used is $8$ pixels (blocks) high, so $8$ row printers and $8$ cursor blocks (circled in \bgbox{redback}{red}) are used. The row printer highlighted in \bgbox{yellowback2}{yellow} takes care of all printing on the second-from-the-top row, for example. The rectangular array of splitters below the row printers encodes which pixels should be printed in each row. For example, the arrangement of splitters highlighted in \bgbox{aquaback}{aqua} encodes which pixels should be printed by each row printer when an ``\texttt{A}'' input is received.}\label{fig:abracadabra_printer}
 \end{figure}
-% Note that the zoomed-in splitter is the same one used by our earlier computers?
 
-This very simple printer design adapts readily to any character height or width, and any number of characters.\footnote{A script that builds a printer pattern for any specified set of characters can be downloaded from~??.} There is no requirement that all characters have the same width. They are technically all the same height, though they may appear to be different heights if some characters are padded with empty pixels at the top or bottom.
+This very simple printer design adapts readily to any character height or width, and any number of characters.\footnote{A script that builds a printer pattern for any specified set of characters can be downloaded from \httpsurl{conwaylife.com/forums/viewtopic.php?p=93420\#p93420}.} There is no requirement that all characters have the same width. They are technically all the same height, though they may appear to be different heights if some characters are padded with empty pixels at the top or bottom.
 
-% This next bit might need to be rewritten a bit, depending on what Dave does with his printer.
 While APGsembly requires us to explicitly specify which digit we want to print (e.g., we cannot print the contents of a sliding block register \texttt{U0} via the command \texttt{OUTPUT U0}), we can get around this limitation by repeatedly \texttt{TDEC}ing that register to determine its value, and then printing out that value. This idea is made explicit by APGsembly~\ref{alg:apgsembly_print_sbr}. Note that this APGsembly requires that \texttt{U0} is storing a value between $0$ and $9$, inclusive, but it could be modified straightforwardly to handle any fixed upper bound just by adding additional \texttt{TDEC} statements. It is even possible to print the contents of a sliding block register regardless of how many decimal digits it has, but this is much more complicated---see Exercise~\ref{exer:universal_computation_print_register}.
 
 \begin{apgsembly}
@@ -704,7 +701,7 @@ While APGsembly requires us to explicitly specify which digit we want to print (
 		\State \verb|OUT8;      Z;       OUT8;         OUTPUT 8, HALT_OUT|
 		\State \verb|OUT8;      NZ;      OUT8;         OUTPUT 9, HALT_OUT|
 	\end{algorithmic}
-	\caption{APGsembly code for printing the contents of the sliding block register \texttt{U0} (which is pre-loaded with a value of \texttt{7} here) and setting \texttt{U0 = 0} at the same time.}\label{alg:apgsembly_print_sbr}
+	\caption{APGsembly code for printing the contents of the sliding block register \texttt{U0}, which is assumed to contain a value between \texttt{0} and \texttt{9} inclusive, and setting \texttt{U0 = 0} at the same time.}\label{alg:apgsembly_print_sbr}
 \end{apgsembly}
 
 
@@ -719,12 +716,12 @@ We now put all of the pieces that we have developed so far in this chapter toget
 Before we can start writing APGsembly code for our calculator, we have to choose which algorithm we will use to compute $\pi$. There are hundreds of known algorithms for this purpose, but because of how APGsembly works, we would like one that has the following two features:\smallskip
 
 \begin{itemize}
-	\item It makes use entirely of integer arithmetic, rather than floating-point arithmetic (i.e., arithmetic involving numbers that have no non-zero digits after the decimal point).\footnote{We can turn floating-point arithmetic into integer arithmetic by multiplying all numbers involved by large powers of $10$, but we then have to be very careful to deal with numerical accuracy concerns, and the integers we would have to use would be monstrously large. It will be better to use an algorithm that is \emph{designed} to only use integer arithmetic.} This is important because the computational mechanisms that we have developed only work with non-negative integers.\smallskip
+	\item It makes use entirely of integer arithmetic, rather than floating-point arithmetic.\footnote{We can turn floating-point arithmetic into integer arithmetic by multiplying all numbers involved by large powers of $10$, but we then have to be very careful to deal with numerical accuracy concerns, and the integers we would have to use would be monstrously large. It will be better to use an algorithm that is \emph{designed} to only use integer arithmetic.} This is important because the computational mechanisms that we have developed only work with non-negative integers.\smallskip
 	
 	\item It is ``streaming'': after producing a particular digit of $\pi$, it can carry on to produce its next digit without having to start over from scratch. This is important because we want our calculator to just keep on printing out digits of $\pi$ forever, without us having to specify how many digits we want ahead of time.\smallskip
 \end{itemize}
 
-We now describe one algorithm for computing the digits of $\pi$ (originally developed in \cite{Gib06}) that satisfies the criteria outlined above. This algorithm is based on the following series representation for $\pi$ (see Exercise~\ref{exer:universal_computation_derive_pi_series} for an explanation of where this series comes from):
+We now describe one algorithm for computing the digits of $\pi$ (originally developed in \cite{Gib06}) that satisfies the criteria outlined above. This algorithm is based on the following infinite series representation for $\pi$ (see Exercise~\ref{exer:universal_computation_derive_pi_series} for an explanation of where this series comes from):
 \begin{align}\label{eq:pi_series}
 	\pi = 2\left(1 + \frac{1}{3}\left( 1 + \frac{2}{5}\left( 1 + \frac{3}{7}\left( \cdots \left( 1 + \frac{k}{2k+1}\Big( \cdots \Big) \right)\right)\right)\right)\right).
 \end{align}
@@ -737,9 +734,9 @@ Indeed, if you truncate the above series after a finite number of additions, you
 \end{equation}
 and so on, with these terms getting closer and closer to $\pi \approx 3.14159\ldots$.
 
-As-written, using these approximations to compute digits of $\pi$ satisfies neither the streaming property that we wanted---it is not clear how to compute one of the approximations based on previous approximations without starting over from scratch---nor the property that it only uses integer arithmetic. To fix these problems and get an algorithm that it is reasonable to implement in APGsembly, we now introduce a slightly different way of computing these exact same approximations of $\pi$.
+As-written, using these approximations to compute digits of $\pi$ satisfies neither the streaming property that we wanted---it is not clear how to compute one of the approximations based on previous approximations without starting over from scratch---nor the property that it only uses integer arithmetic. To fix these problems and get an algorithm that is reasonable to implement in APGsembly, we now introduce a slightly different way of computing these exact same approximations of $\pi$.
 
-To this end, define the following $2 \times 2$ matrix that depends on a positive integer $k$:
+To this end, we define the following sequence of $2 \times 2$ matrices:
 \begin{align}\label{eq:Ak_matrices}
 	A_0 = \begin{bmatrix}
 		2 & 0 \\ 0 & 1
@@ -750,13 +747,13 @@ To this end, define the following $2 \times 2$ matrix that depends on a positive
 For example,
 \[
 A_1 = \begin{bmatrix}
-1 & 6 \\ 0 & 3
+1 & 3 \\ 0 & 3
 \end{bmatrix}, \ \ A_2 = \begin{bmatrix}
-2 & 10 \\ 0 & 5
+2 & 5 \\ 0 & 5
 \end{bmatrix}, \ \ A_3 = \begin{bmatrix}
-3 & 14 \\ 0 & 7
+3 & 7 \\ 0 & 7
 \end{bmatrix}, \quad \text{and} \quad A_4 = \begin{bmatrix}
-4 & 18 \\ 0 & 9
+4 & 9 \\ 0 & 9
 \end{bmatrix},
 \]
 and so on. In particular, the entries of each $A_k$ are all non-negative integers.
@@ -785,7 +782,7 @@ If we let $q_n$ and $r_n$ denote the top-right and bottom-right entries of $B_n$
 	\frac{q_1}{r_1} = \frac{6}{3} & = 2.0000, & \frac{q_2}{r_2} = \frac{40}{15} & \approx 2.6667, \\
 	\frac{q_3}{r_3} = \frac{308}{105} & \approx 2.9333, &  \text{and} \qquad\qquad\quad \frac{q_4}{r_4} = \frac{2880}{945} & \approx 3.0476.
 \end{align*}
-This gives us a way of computing better and better approximations of $\pi$ using just integer arithmetic until the very last step (where we divide $q_n$ by $r_n$), and which is streaming (since each $B_n$ can be computed straightforwardly from $B_{n-1}$).
+This gives us a way of computing better and better approximations of $\pi$ using just integer arithmetic (except for the very last step, where we divide $q_n$ by $r_n$), and which is streaming (since each $B_n$ can be computed straightforwardly from $B_{n-1}$).
 
 Since each term in the series~\eqref{eq:pi_series} is approximately $1/2$ as large as the term that came before it, the distance between $\pi$ and our approximation $q_n/r_n$ decreases by roughly a factor of $2$ every time we increase $n$ by $1$. We thus need to iterate the above procedure an average of $\log_2(10) \approx 3.3219$ times for each decimal place of accuracy that we would like. For simplicity, we simply round this quantity up to $4$ and thus note that if we want $n$ decimals places of $\pi$, it suffices to use the approximation based on $B_{4n}$.\footnote{There is actually an extraordinarily small chance that this algorithm computes an incorrect digit of $\pi$ at some point. The argument we just gave guarantees that we extract its $n$-digit from an approximation that is within about $2^{-4n}$ of the true value of $\pi$. Since $2^{-4n} = 16^{-n} < 10^{-n}$, the $n$-th digit of this approximation matches the $n$-th digit of $\pi$ as long as $\pi$ does not have an exceptionally long string of consecutive $0$s in its decimal expansion significantly before we would expect to see one (since that could cause a long string of $9$s in one approximation that turns into a string of $0$s in the next approximation and $\pi$ itself). However, over $62{\thousep}000{\thousep}000{\thousep}000{\thousep}000$ decimal places of $\pi$ are known, and this algorithm computes them all correctly.} For example,
 \begin{align*}
@@ -802,24 +799,24 @@ Since each term in the series~\eqref{eq:pi_series} is approximately $1/2$ as lar
 		0 & 7905853580625
 	\end{bmatrix}, & \frac{q_{12}}{r_{12}} = \frac{24835120128000}{7905853580625} & \approx \mathbf{3.14}14,
 \end{align*}
-are approximations of $\pi$ that are accurate to at least $1$, $2$, and $3$ decimal places.
+are approximations of $\pi$ that are accurate to at least $1$, $2$, and $3$ decimal places, respectively.
 
 We can now put all of this together into the reasonably APGsembly-friendly Pseudocode~\ref{alg:pseudocode_pi_calc} for computing and printing the decimal digits of $\pi$. In this pseudocode, the registers \texttt{U0}, \texttt{U1}, \texttt{U2}, \texttt{U3}, \texttt{B0}, \texttt{B1}, and \texttt{B2} store the following quantities:\smallskip
 
 \begin{itemize}
-	\item[\texttt{U0}:] top-left corner of $A_n$ matrix
+	\item[\texttt{U0}:] top-left corner of the $A_n$ matrix
 	
-	\item[\texttt{U1}:] top-right and bottom-right corners of $A_n$ matrix
+	\item[\texttt{U1}:] top-right and bottom-right corners of the $A_n$ matrix
 	
 	\item[\texttt{U2}:] the current digit being computed
 	
 	\item[\texttt{U3}:] the index of the current digit (\texttt{U3}${} = 0$ for ``3'', \texttt{U3}${} = 1$ for ``1'', \texttt{U3}${} = 2$ for ``4'', and so on)\smallskip
 	
-	\item[\texttt{B0}:] top-left corner of $B_n$ matrix
+	\item[\texttt{B0}:] top-left corner of the $B_n$ matrix
 	
-	\item[\texttt{B1}:] top-right corner of $B_n$ matrix ($= q_n$)
+	\item[\texttt{B1}:] top-right corner of the $B_n$ matrix ($= q_n$)
 	
-	\item[\texttt{B2}:] bottom-right corner of $B_n$ matrix ($= r_n$)\smallskip
+	\item[\texttt{B2}:] bottom-right corner of the $B_n$ matrix ($= r_n$)\smallskip
 \end{itemize}
 
 \begin{pseudocode}
@@ -849,12 +846,12 @@ We can now put all of this together into the reasonably APGsembly-friendly Pseud
 		\State\texttt{~~~~set U3 = U3 + 1}
 		\State\texttt{end loop}
 	\end{algorithmic}
-	\caption{Pseudocode for computing and printing the decimal digits of $\pi$. If any variable is used before it is set, it is assumed to start at a value of $0$.}\label{alg:pseudocode_pi_calc}
+	\caption{Pseudocode for computing and printing the decimal digits of $\pi$. Any variable that is used before it is set is assumed to start at a value of $0$.}\label{alg:pseudocode_pi_calc}
 \end{pseudocode}
 
-The reason that we use the ``\texttt{B}'' labels for the entries of $B_n$ and ``\texttt{U}'' labels for other quantities is that the entries of $B_n$ grow quite large as $n$ increases, so they should be stored in binary registers. On the other hand, all other quantities used in this algorithm are comparatively small, so they can simply be stored in sliding block (unary) registers.
+The reason that we use the ``\texttt{B}'' labels for the entries of $B_n$ and ``\texttt{U}'' labels for other quantities is that the entries of $B_n$ grow quite large as $n$ increases, so they should be stored in binary registers, while all other quantities used in this algorithm are comparatively small, so they can simply be stored in sliding block (unary) registers.
 
-We have seen how to implement most of the pieces of Pseudocode~\ref{alg:pseudocode_pi_calc} in APGsembly already. Adding fixed values to sliding block (unary) registers is as straightforward as using their \texttt{INC} command the corresponding number of times. Looping over a code section $4$ times can be done by setting a register's value to $4$ and then using a \texttt{TDEC} command to decide whether to restart the loop or exit it. Finally, adding binary registers together and multiplying them by unary registers can be done via the code that we saw in APGsembly~\ref{alg:apgsembly_binary_add_sub} and Exercise~\ref{exer:universal_computation_apgsembly_multiply_binary}, respectively.
+We have seen how to implement most of the pieces of Pseudocode~\ref{alg:pseudocode_pi_calc} in APGsembly already. Adding fixed values to sliding block (unary) registers is as straightforward as using their \texttt{INC} command the corresponding number of times. Looping over a code section four times can be done by setting a register's value to $4$ and then using a \texttt{TDEC} command to decide whether to restart the loop or exit it. Finally, adding binary registers together and multiplying them by unary registers can be done via the code that we saw in APGsembly~\ref{alg:apgsembly_binary_add_sub} and Exercise~\ref{exer:universal_computation_apgsembly_multiply_binary}, respectively.
 
 However, one piece of Pseudocode~\ref{alg:pseudocode_pi_calc} that is tricky to implement is the digit extraction at line~15. In order to carry out this step using just integer arithmetic, we do the following variant of integer division:\smallskip
 
@@ -869,6 +866,7 @@ In order to implement step~(1) above in APGsembly, we need to know how to subtra
 We have thus seen all of the pieces that we need to finally construct our $\pi$-calculating Life pattern. The APGsembly code that implements Pseudocode~\ref{alg:pseudocode_pi_calc} is quite long, so we leave it to Appendix~\ref{sec:appendix_apg}. The resulting calculator that is compiled from that APGsembly code is presented in Figure~\ref{fig:pi_calc}.
 
 % NJ TODO: Replace this image with smaller version of the calculator once Dave has completed the new compilation script. Then highlight/annotate the figure.
+% This is the last todo thing in the book!
 \begin{figure}[!htbp]
 	\centering\begin{tikzpicture}%
 	\node[inner sep=0pt,anchor=south west] (pi_calc_main) at (0,0) {\patternimglink{0.096}{pi_calc}};
@@ -883,7 +881,7 @@ We have thus seen all of the pieces that we need to finally construct our $\pi$-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Computing Other Constants}\label{sec:pi_calc_other}
 
-This same algorithm that we used in our $\pi$ calculator can also be used to compute many other mathematical constants of interest. In particular, we can use that same method to construct patterns that print the digits of any number that can be represented by a series of the following form, where $a$, $b$, $p$, $q$, $r$, and $s$ are non-negative integers:\footnote{If $k = 0$ then the term $\frac{(p+q)(2p+q)\cdots(kp+q)}{(r+s)(2r+s)\cdots(kr+s)}$ is an ``empty product'', which equals $1$.}
+This same algorithm that we used in our $\pi$ calculator can also be used to compute many other well-known mathematical constants. In particular, we can use that same method to construct patterns that print the digits of any number that can be represented by a series of the following form, where $a$, $b$, $p$, $q$, $r$, and $s$ are non-negative integers:\footnote{If $k = 0$ then the term $\frac{(p+q)(2p+q)\cdots(kp+q)}{(r+s)(2r+s)\cdots(kr+s)}$ is an ``empty product'', which equals $1$.}
 \begin{align}\begin{split}\label{eq:generalized_pi_series}
 		& \frac{a}{b}\sum_{k=0}^\infty \frac{(p+q)(2p+q)\cdots(kp+q)}{(r+s)(2r+s)\cdots(kr+s)} \\
 		& \qquad\qquad = \frac{a}{b}\left(1 + \frac{p+q}{r+s}\left( 1 + \frac{2p+q}{2r+s}\left( 1 + \frac{3p+q}{3r+s}\left( \cdots \left( 1 + \frac{kp+q}{kr+s}\Big( \cdots \Big) \right)\right)\right)\right)\right).
@@ -920,7 +918,7 @@ More generally, to turn Pseudocode~\ref{alg:pseudocode_pi_calc} into pseudocode 
 	\item Replace line~8 with ``\texttt{set U0 = U0 + p, U1 = U1 + r}''.\smallskip
 \end{itemize}
 
-Indeed, modifying the APGsembly code for the $\pi$ calculator from Appendix~\ref{sec:appendix_apg} is similarly straightforward. It can be turned into APGsembly for an $e$ calculator by just change $3$ lines of code: the \texttt{\#REGISTERS} line, \texttt{ITER6;NZ} line, and \texttt{ITER7;ZZ} line (see Exercise~\ref{exer:universal_computation_e_calc}). Other constants like $\sqrt{2}$ can similarly be computed by making analogous minimal changes (see Exercise~\ref{exer:universal_computation_sqrt2_calc}).
+Indeed, modifying the APGsembly code for the $\pi$ calculator from Appendix~\ref{sec:appendix_apg} is similarly straightforward. It can be turned into APGsembly for an $e$ calculator by just changing two or three lines of code: the \texttt{\#REGISTERS} line, the \texttt{ITER6;NZ} line, and optionally the \texttt{ITER7;ZZ} line (see Exercise~\ref{exer:universal_computation_e_calc}). Other constants like $\sqrt{2}$ can similarly be computed by making analogous minimal changes (see Exercise~\ref{exer:universal_computation_sqrt2_calc}).
 
 
 
@@ -929,7 +927,7 @@ Indeed, modifying the APGsembly code for the $\pi$ calculator from Appendix~\ref
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{A 2D Printer}\label{sec:2dprinter}
 
-While the decimal printer is quite flexible in that we can re-tool it to print any finite set of digits of our choosing, it is still limited by the fact that it can only print them linearly. The final component that we introduce, which we denote by \texttt{B2D}, solves this problem by being able to print an arbitrary pattern in an infinite 2D quadrant of the Life plane. Alternatively, this component can be thought of as a 2D generalization of the binary register from Section~\ref{sec:binary_register}: while that component kept track of an infinite 1D list of bits, this one keeps track of an infinite 2D array of bits.\footnote{This interpretation explains the abbreviation \texttt{B2D} for this component; it stands for ``binary 2-dimensional''.}
+While the character printer that we introduced in Section~\ref{sec:decimal_printer} is quite flexible in that we can re-tool it to print any finite set of digits of our choosing, it is still limited by the fact that it can only print them linearly. The final component that we introduce, which we denote by \texttt{B2D}, solves this problem by being able to print an arbitrary pattern in an infinite 2D quadrant of the Life plane. Alternatively, this component can be thought of as a 2D generalization of the binary register from Section~\ref{sec:binary_register}: while that component kept track of an infinite 1D \emph{list} of bits, this one keeps track of an infinite 2D \emph{array} of bits.\footnote{This interpretation explains the abbreviation \texttt{B2D} for this component; it stands for ``binary 2-dimensional''.}
 
 The way that this 2D printer works is almost the exact same as the binary register, but with two perpendicular sliding blocks to read and write the desired bits instead of just one. In particular, those sliding blocks are used to fire gliders at each other so as to synthesize or destroy boats that are laid out in a diagonal grid with a separation of $16$ full diagonals. These boats can either be interpreted as bits in some sort of computation (with a boat representing a \texttt{1} and an empty space representing a \texttt{0}), or they can be thought of as pixels in an image that can be viewed by zooming far out in Life simulation software.
 
@@ -944,11 +942,10 @@ The APGsembly actions themselves are listed below, and since these are the last 
 	
 	\item \texttt{READ B2D}, which sets the value of the bit at the current read head location to ``\texttt{0}''. This action returns either \texttt{Z} or \texttt{NZ}, depending on the original value of this bit.\smallskip
 	
-	\item \texttt{SET B2D}, which places a ``\texttt{1}'' bit at the current read head location.\footnote{Just like the binary register's \texttt{SET} action, this mechanism will self-destruct if a pixel is \texttt{SET} when a boat is already present at the current pointer location.}\smallskip
+	\item \texttt{SET B2D}, which places a ``\texttt{1}'' bit at the current read head location.\footnote{Just like the binary register's \texttt{SET} action, this mechanism will self-destruct if a pixel is \texttt{SET} when a boat is already present at the current read head location.}\smallskip
 \end{itemize}
 
 \begin{table}[!htb]
-	\begin{center}
 		\begin{tabular}{lll}
 			\toprule
 			Component & Actions & Functionality and return value \\\midrule
@@ -997,14 +994,13 @@ The APGsembly actions themselves are listed below, and since these are the last 
 			\texttt{HALT\_OUT} & \texttt{HALT\_OUT} & halts the entire computation and emits a glider\\
 			\bottomrule
 		\end{tabular}
-	\end{center}
 	\caption{A summary of the standard components that APGsembly can make use of and the actions that they can perform.}\label{tab:universal_computation_components}
 \end{table}
 
-The 2D printer is extremely large, so we do not display it here. However, we will see it in each of the upcoming Figures~\ref{fig:koch_computer} and~\ref{fig:osqrtlogt}. It is worth noting that this component is so slow and large that we actually have to use a slightly slower clock gun whenever it is present---one with period at least $2^{22}$ (instead of period $2^{20}$, like we have used until now). 
+The 2D printer is extremely large, so we do not display it here. However, we will see it in each of the upcoming Figures~\ref{fig:koch_computer} and~\ref{fig:osqrtlogt}. It is worth noting that this component is so slow and large that we actually have to use a slightly slower clock gun whenever it is present---one with period at least $2^{22}$ (instead of period $2^{20}$, like we have used until now). Indeed, if we use a clock gun that is too fast then a return value from another component might arrive back at the clock gun, starting the next clock tick, while the \texttt{B2D} component is still working on its previous action. If another action is then sent to the \texttt{B2D} component, it could lead to an unwanted collision.
 
-%NJ TODO: I haven't looked into why we need a slower clock for this component yet. Explain why here.
 
+% NJ is here in the clean-up process
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%   SECTION: KOCH SNOWFLAKE
@@ -1153,8 +1149,6 @@ The Life pattern\footnote{Originally constructed by Michael Simkin in 2019.} tha
 
 % FIGURE
 % Can compile this one with the far-away sliding block really close. Make sure to do this, and have an exercise asking why this cannot be done for Osqrtlogt
-
-% Mention that B2D can print other letters/symbols if desired
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1410,12 +1404,20 @@ Each of these computational devices used different Life mechanisms to implement 
 			\item Rebuild the \texttt{MUL} component so that it fits within a $1{\thousep}500 \times 1{\thousep}500$ bounding box.
 		\end{enumerate}
 	\end{problem}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:row_printer_six_not_seven} \probdiff{2}
+		In the green pixel-printing portion of the row printer from Figure~\ref{fig:row_printer}, there are only 6 Herschel edge-shooters, yet they produce all 7 of the pixel-printing gliders from Figure~\ref{fig:char_printer_place_pixel}. Explain where the extra glider comes from.
+	\end{problem}
 	
 	
 	\mfilbreak
 	
 	
-	% TODO: Add hint/note here that you can move it much closer in Koch snowflake, but not in Osqrtlogt (since former has no READs). Maybe reword to "why is it so much farther away in Fig?? than in Fig??".
+	% TODO: Add hint/note here that you can move it much closer in Koch snowflake, but not in Osqrtlogt (since former has no READs). Maybe reword to "why is it so much farther away in Fig?? than in Fig??". Probably should be 3-difficulty, not 2
 	\begin{problem}\label{exer:universal_computation_b2d_why_far} \probdiff{2}
 		Explain why the 2d printer (displayed in Figure~\ref{fig:osqrtlogt}) prints its bits so far away from the computer and other logical circuitry.
 		
@@ -1463,7 +1465,7 @@ Each of these computational devices used different Life mechanisms to implement 
 	
 	
 	\begin{problemstar}\label{exer:universal_computation_e_calc} \probdiff{3}
-		Modify just $3$ lines of the APGsembly code from Appendix~\ref{sec:appendix_apg} to turn the $\pi$ calculator into an $e$ calculator.
+		Modify just $2$ or $3$ lines of the APGsembly code from Appendix~\ref{sec:appendix_apg} to turn the $\pi$ calculator into an $e$ calculator.
 		
 		\noindent [Hint: We described the changes that need to be made in Section~\ref{sec:pi_calc_other}.]
 	\end{problemstar}
@@ -1566,6 +1568,14 @@ Each of these computational devices used different Life mechanisms to implement 
 			\texttt{0.1.1.2.3.5.8.13.21.34.55.89.144.}
 		\end{center}
 		\noindent with each integer being the sum of the previous two integers.
+	\end{problem}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:osqrt_logt_sbr_order} \probdiff{2}
+		The extremely slowly-growing pattern from Figure~\ref{fig:osqrtlogt} makes use of three sliding block registers (highlighted in green): \texttt{U0}, \texttt{U1}, and \texttt{U2}, as described by APGsembly~\ref{alg:apgsembly_slow_growth}. Identify which register is which.
 	\end{problem}
 	
 	
