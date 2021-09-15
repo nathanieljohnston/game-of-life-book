@@ -997,10 +997,8 @@ The APGsembly actions themselves are listed below, and since these are the last 
 	\caption{A summary of the standard components that APGsembly can make use of and the actions that they can perform.}\label{tab:universal_computation_components}
 \end{table}
 
-The 2D printer is extremely large, so we do not display it here. However, we will see it in each of the upcoming Figures~\ref{fig:koch_computer} and~\ref{fig:osqrtlogt}. It is worth noting that this component is so slow and large that we actually have to use a slightly slower clock gun whenever it is present---one with period at least $2^{22}$ (instead of period $2^{20}$, like we have used until now). Indeed, if we use a clock gun that is too fast then a return value from another component might arrive back at the clock gun, starting the next clock tick, while the \texttt{B2D} component is still working on its previous action. If another action is then sent to the \texttt{B2D} component, it could lead to an unwanted collision.
+The 2D printer is extremely large, so we do not display it here, but we will see it in the upcoming Figure~\ref{fig:osqrtlogt}. It is worth noting that this component is so slow and large that we actually have to use a slightly slower clock gun whenever it is present---one with period at least $2^{22}$ (instead of period $2^{20}$, like we have used until now). Indeed, if we use a clock gun that is too fast then a return value from another component might arrive back at the clock gun, starting the next clock tick, while the \texttt{B2D} component is still working on its previous action. If another action is then sent to the \texttt{B2D} component, it could lead to an unwanted collision.
 
-
-% NJ is here in the clean-up process
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%   SECTION: KOCH SNOWFLAKE
@@ -1036,7 +1034,23 @@ The above procedure results in a path that, on average, moves straight to the ri
 
 The fractal-like behavior of this path comes from the repetitive nature of digit strings that are encountered when counting. Indeed, if we ever encounter a particular (base 4) string of digits in $s$ when counting, we will encounter that exact same string of digits infinitely many times later on too, as additional leading digits are added to $s$. Indeed, this fractal is one half of an $8$-pointed version of a well-known fractal called the \textbf{Koch snowflake} (which is usually $6$-pointed).
 
-APGsembly code that implements this algorithm is displayed in APGsembly~\ref{alg:apgsembly_koch}. Although it is somewhat long, it is reasonably straightforward and makes use of $5$ sliding block (unary) registers and one binary register to keep track of the following quantities:\medskip
+APGsembly code that implements this algorithm is displayed in APGsembly~\ref{alg:apgsembly_koch}. Although it is somewhat long, it is reasonably straightforward and makes use of $5$ sliding block (unary) registers and one binary register to keep track of the following quantities:\smallskip
+
+\begin{itemize}
+	\item[\texttt{U0}:] stores the $x$-direction to move (\texttt{0} = none, \texttt{1} = right, \texttt{2} = left)
+	
+	\item[\texttt{U1}:] stores the $y$-direction to move (\texttt{0} = none, \texttt{1} = up, \texttt{2} = down)
+	
+	\item[\texttt{U2}:] a value that determines which of the 8 possible directions to move in at the next step (\texttt{0} = right, \texttt{1} = up-right, \texttt{2} = up, ..., \texttt{7} = down-right)---\texttt{U0} and \texttt{U1} are computed based on this
+	
+	\item[\texttt{U3}:] a temporary helper register
+	
+	\item[\texttt{U4}:] the amount to add to \texttt{U2} after we encounter an extra ``\texttt{2}'' when counting in base~$4$ (stays constant at \texttt{6}, corresponding to a clockwise turn by $90$ degrees)
+	
+	\item[\texttt{U5}:] how much to mod \texttt{U2} by after adding to it (stays constant at \texttt{8})\smallskip
+	
+	\item[\texttt{B0}:] keeps track of the number of steps that we have taken in base~$4$ ($= s$)\smallskip
+\end{itemize}
 
 \begin{apgsembly}
 	\centering
@@ -1129,26 +1143,7 @@ APGsembly code that implements this algorithm is displayed in APGsembly~\ref{alg
 	\caption{APGsembly code for the $8$-pointed Koch snowflake printer.}\label{alg:apgsembly_koch}
 \end{apgsembly}
 
-\begin{itemize}
-	\item[\texttt{U0}:] stores the $x$-direction to move (\texttt{0} = none, \texttt{1} = right, \texttt{2} = left)
-	
-	\item[\texttt{U1}:] stores the $y$-direction to move (\texttt{0} = none, \texttt{1} = up, \texttt{2} = down)
-	
-	\item[\texttt{U2}:] a value that determines which of the 8 possible directions to move in at the next step (\texttt{0} = right, \texttt{1} = up-right, \texttt{2} = up, ..., \texttt{7} = down-right)---\texttt{U0} and \texttt{U1} are computed based on this
-	
-	\item[\texttt{U3}:] a temporary helper register
-	
-	\item[\texttt{U4}:] the amount to add to \texttt{U2} after we encounter an extra ``\texttt{2}'' when counting in base~$4$ (stays constant at \texttt{6}, corresponding to a clockwise turn by $90$ degrees)
-	
-	\item[\texttt{U5}:] how much to mod \texttt{U2} by after adding to it (stays constant at \texttt{8})\medskip
-	
-	\item[\texttt{B0}:] keeps track of the number of steps that we have taken in base~$4$ ($= s$)\medskip
-\end{itemize}
-
-The Life pattern\footnote{Originally constructed by Michael Simkin in 2019.} that results from compiling this APGsembly is displayed in Figure~??. Since the 2D printer component prints on a diagonal grid, the image that is printed by this pattern is rotated counter-clockwise by $45$ degrees from the one in Figure~\ref{fig:koch_algorithm}.
-
-% FIGURE
-% Can compile this one with the far-away sliding block really close. Make sure to do this, and have an exercise asking why this cannot be done for Osqrtlogt
+Since the 2D printer component prints on a diagonal grid, the Life pattern that implements this APGsembly code\footnote{Originally constructed by Michael Simkin in 2019.} prints the image from Figure~\ref{fig:koch_algorithm} rotated counter-clockwise by $45$ degrees. We leave the actual compilation of this Life pattern to Exercise~\ref{exer:universal_computation_b2d_why_far}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1156,14 +1151,11 @@ The Life pattern\footnote{Originally constructed by Michael Simkin in 2019.} tha
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{An Extremely Slowly-Growing Pattern}\label{sec:Osqrtlogt}
 
-%There is one final APGsembly command that is particularly useful when interpreting this component's printed boats as bits in a computation: a \texttt{READ} action that determines whether or not a boat is present at the read head's current $(x,y)$ coordinate. This action 
-% "READ B2D"
+We now return to the problem of creating a pattern with a very slowly-growing bounding box, which we first considered via a binary ruler in Section~\ref{sec:binary_ruler}. In an $n \times n$ bounding box, there are $n^2$ different cells that can each be in one of $2$ states, for a total of $2^{n^2}$ possible different patterns. It follows that if a pattern exhibits infinite growth then it cannot stay within an $n \times n$ bounding box past generation $t = 2^{n^2}$, since after that point in time its phases would necessarily start repeating.
 
-We now return to the problem of creating a pattern with a very slowly-growing bounding box, which we introduced via a binary ruler in Section~\ref{sec:binary_ruler}. In an $n \times n$ bounding box, there are $n^2$ different cells that can each be in one of $2$ states, for a total of $2^{n^2}$ possible different patterns. It follows that if a pattern exhibits infinite growth then it cannot stay within an $n \times n$ bounding box past generation $t = 2^{n^2}$, since after that point in time its phases would necessarily start repeating.
+If we flip this argument around and solve for $n$ in terms of $t$, we see that in generation~$t$, the bounding box of an infinitely-growing pattern can be no smaller than $\sqrt{\log_2(t)} \times \sqrt{\log_2(t)}$.\footnote{This contrasts with our results of Section~\ref{sec:recursive_filter}: even though there is no limit on how slowly the \emph{population} of a pattern can grow, there is a limit on how slowly its \emph{bounding box} can grow.} We now construct a pattern that attains this minimum possible bounding box growth rate, at least asymptotically---its diameter in generation~$t$ is $\Theta(\sqrt{\log(t)})$.
 
-If we flip this argument around and solve for $n$ in terms of $t$, we see that in generation~$t$, the bounding box of an infinitely-growing pattern can be no smaller than $\sqrt{\log_2(t)} \times \sqrt{\log_2(t)}$.\footnote{This contrasts with our results of Section~\ref{sec:recursive_filter}: even though there is no limit on how slowly the population of a pattern can grow, there is a limit on how slowly its bounding box can grow.} We now construct a pattern that attains this minimum possible bounding box growth rate, at least asymptotically---its bounding box side lengths in generation~$t$ are both $\Theta(\sqrt{\log(t)})$.
-
-The basic idea behind this slowly-growing pattern is the same as it was for the $O(\log(t))$ binary ruler from Section~\ref{sec:binary_ruler}. We count in binary, except instead of placing the bits of the resulting number in a single 1D row via a (\texttt{B}) binary register, we arrange them in a 2D triangular array via a (\texttt{B2D}) 2D printer. In particular, we place the least significant bit of the number in one row, the next $2$ least significant bits in the next row, the next $3$ least significant bits in the next row, and so on. The APGsembly code that performs this task is presented in APGsembly~\ref{alg:apgsembly_slow_growth}.
+The basic idea behind this slowly-growing pattern is the same as it was for the binary ruler from Section~\ref{sec:binary_ruler}, which had diameter $\Theta(\log(t))$. We count in binary, except instead of placing the bits of the resulting number in a single 1D row via a binary register, we arrange them in a 2D triangular array via a 2D printer. In particular, we place the least significant bit of the number in one row, the next $2$ least significant bits in the next row, the next $3$ least significant bits in the next row, and so on. The APGsembly code that performs this task is presented in APGsembly~\ref{alg:apgsembly_slow_growth}.
 
 \begin{apgsembly}
 	\begin{algorithmic}\small
@@ -1228,7 +1220,7 @@ This APGsembly code is quite a bit longer, but not much more complicated, than A
 	\item[\texttt{U2}:] a helper register used to copy \texttt{U1} into \texttt{U0} when we start a new row\smallskip
 \end{itemize}
 
-The pattern that results from compiling this APGsembly code is displayed in Figure~\ref{fig:osqrtlogt}. To give an idea of how slowly the diameter of this pattern grows, note in the $7.5 \times 10^{11}$ generations after printing it first bit (i.e., boat), its computer goes through roughly $44{\thousep}700$ clock ticks and the pattern's bounding box increases in size by only $64$ cells in one direction and $96$ cells in the other.\footnote{The boats that the 2d printer prints are offset from each other by $16$ full diagonals.} We could slow this growth down even more by decreasing the speed of this pattern's clock gun, but this will not change the growth rate's asymptotics.
+The pattern that results from compiling this APGsembly code is displayed in Figure~\ref{fig:osqrtlogt}. To give an idea of how slowly the diameter of this pattern grows, note in the $7.5 \times 10^{11}$ generations after printing its first bit (i.e., boat), its computer goes through roughly $44{\thousep}700$ clock ticks and the pattern's bounding box increases in size by only $64$ cells in one direction and $96$ cells in the other.\footnote{The boats that the 2d printer prints are offset from each other by $16$ full diagonals.} We could slow down this pattern even more by decreasing the speed of its clock gun, but that would not change the asymptotic growth rate of its diameter.
 
 \begin{figure}[!htb]
 	\centering
@@ -1385,6 +1377,14 @@ Each of these computational devices used different Life mechanisms to implement 
 	\mfilbreak
 	
 	
+	\begin{problem}\label{exer:osqrtlogt_ruler_when_big} \probdiff{3}
+		The extremely slowly-growing pattern displayed in Figure~\ref{fig:osqrtlogt} has a bounding box that is roughly $24{\thousep}300 \times 26{\thousep}500$ cells. At approximately what generation will the size of its bounding box first exceed $30{\thousep}000 \times 30{\thousep}000$?
+	\end{problem}
+
+
+	\mfilbreak
+	
+	
 	\begin{problem}\label{exer:binary_ruler_label} \probdiff{2}
 		Label the northeast--southwest lines in the computer portion of the binary ruler from Figure~\ref{fig:binary_ruler} (like we labelled those lines in the multiplication computer of Figure~\ref{fig:mult_computer}). Which substate do each of these lines correspond to in APGsembly~\ref{alg:apgsembly_binary_ruler}?
 	\end{problem}
@@ -1417,13 +1417,16 @@ Each of these computational devices used different Life mechanisms to implement 
 	\mfilbreak
 	
 	
-	% TODO: Add hint/note here that you can move it much closer in Koch snowflake, but not in Osqrtlogt (since former has no READs). Maybe reword to "why is it so much farther away in Fig?? than in Fig??". Probably should be 3-difficulty, not 2
-	\begin{problem}\label{exer:universal_computation_b2d_why_far} \probdiff{2}
-		Explain why the 2d printer (displayed in Figure~\ref{fig:osqrtlogt}) prints its bits so far away from the computer and other logical circuitry.
+	\begin{problem}\label{exer:universal_computation_b2d_why_far}
+		Recall APGsembly~\ref{alg:apgsembly_koch} for printing the Koch snowflake fractal.\smallskip
 		
-		\noindent [Hint: You can move the sliding block at the top-left corner a bit closer to the logical circuitry without breaking anything, but something goes wrong if you move it, for example, $5{\thousep}000$ cells closer.]
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item \probdiff{2} Use a compiler that is linked from \httpsurl{conwaylife.com/wiki/APGsembly} to compile this APGsembly code into a Life pattern.
+			
+			\item \probdiff{3} The \texttt{B2D} component of this pattern can print pixels much closer to the rest of the circuitry than the \texttt{B2D} component in the extremely slowly-growing pattern of Figure~\ref{fig:osqrtlogt}. Explain why.
+		\end{enumerate}
 	\end{problem}
-	% SOLUTION: Return value from READ operations comes in too soon at right side.
+	% SOLUTION: Return value from READ operations comes in too soon at right side. Koch snowflake has no READ operations.
 	
 	
 	\mfilbreak
@@ -1570,14 +1573,6 @@ Each of these computational devices used different Life mechanisms to implement 
 		\noindent with each integer being the sum of the previous two integers.
 	\end{problem}
 
-
-	\mfilbreak
-	
-	
-	\begin{problem}\label{exer:osqrt_logt_sbr_order} \probdiff{2}
-		The extremely slowly-growing pattern from Figure~\ref{fig:osqrtlogt} makes use of three sliding block registers (highlighted in green): \texttt{U0}, \texttt{U1}, and \texttt{U2}, as described by APGsembly~\ref{alg:apgsembly_slow_growth}. Identify which register is which.
-	\end{problem}
-	
 	
 	%% EXERCISE END COMMANDS
 \end{multicols}
