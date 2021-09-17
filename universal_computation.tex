@@ -2,6 +2,8 @@
 %%   CHAPTER: UNIVERSAL COMPUTATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% TODO: Double-check pi APGsembly. It preloads B0 to be 2, for example. I assume this means pre-loading the position of the read head, not the value in memory? Compiled pattern doesn't seem to do either yet, so I'll have to manually adjust.
+
 \renewcommand{\chapterfolder}{universal_computation/}
 \chapterimage{cover/universal_computation}
 \chapter{Universal Computation}\label{chp:universal_computation}
@@ -14,7 +16,7 @@
 
 \noindent At the end of Chapter~\ref{chp:periodic_circuitry}, we briefly introduced the concept of \textbf{computational universality}---the ability of Life (or other data manipulation rules in general) to simulate any computation that a computer can accomplish. It has been known since the early days of Life that it is computationally universal (also sometimes referred to as ``Turing complete'') \cite{Wain74,BCG82}. \index{Turing complete}\index{computational universality} However, the constructions that were used to originally demonstrate this fact were monstrously large and only \emph{mostly} pieced together. Actually constructing an explicit pattern that works as a universal computer that can be simulated in standard Life software still requires some additional work.
 
-In this chapter, we dive into the details of one particularly flexible computation toolkit\footnote{Developed by Adam~P.~Goucher in 2009 and 2010.} that can be used to construct patterns that perform arbitrary computations, and even print the output of those computations in a font made up of blocks. For example, one of the major results of this chapter will be a pattern in Section~\ref{sec:pi_calc} that computes and prints the decimal digits of the mathematical constant $\pi$.
+In this chapter, we dive into the details of one particularly flexible computation toolkit\footnote{Developed by Adam~P.~Goucher in 2009 and 2010 \cite{Gou10}.} that can be used to construct patterns that perform arbitrary computations, and even print the output of those computations in a font made up of blocks. For example, one of the major results of this chapter will be a pattern in Section~\ref{sec:pi_calc} that computes and prints the decimal digits of the mathematical constant $\pi$.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -777,7 +779,7 @@ Next, for each integer $n \geq 1$ define $B_n$ to be the product of the first $n
 \end{align*}
 Again, each $B_n$ is an integer matrix with a $0$ in its bottom-left corner. Importantly, each $B_n$ can be easily obtained from the previous one, since $B_n = B_{n-1}A_n$ for all $n \geq 2$.
 
-If we let $q_n$ and $r_n$ denote the top-right and bottom-right entries of $B_n$, respectively, then $q_n / r_n$ is exactly the $n$-th approximation of $\pi$ from Equation~\eqref{eq:pi_approx}. For example,
+If we let $q_n$ and $r_n$ denote the top-right and bottom-right entries of $B_n$, respectively, then $q_n / r_n$ is exactly the $n$-th approximation of $\pi$ from Equation~\eqref{eq:pi_approx} (a fact that we will prove in Exercise~\ref{exer:pi_calc_prove_correct}). For example,
 \begin{align*}
 	\frac{q_1}{r_1} = \frac{6}{3} & = 2.0000, & \frac{q_2}{r_2} = \frac{40}{15} & \approx 2.6667, \\
 	\frac{q_3}{r_3} = \frac{308}{105} & \approx 2.9333, &  \text{and} \qquad\qquad\quad \frac{q_4}{r_4} = \frac{2880}{945} & \approx 3.0476.
@@ -856,23 +858,23 @@ We have seen how to implement most of the pieces of Pseudocode~\ref{alg:pseudoco
 However, one piece of Pseudocode~\ref{alg:pseudocode_pi_calc} that is tricky to implement is the digit extraction at line~15. In order to carry out this step using just integer arithmetic, we do the following variant of integer division:\smallskip
 
 \begin{enumerate}
-	\item[1)] Subtract \texttt{B2} from \texttt{B1} until we cannot do so anymore. The number of subtractions that we performed is the $s$-th digit of \texttt{B1 / B2} after its decimal point, where $s$ is the number of times that we have already performed step~(1) ($s = 0$ the first time we perform this step). If this is the digit that we are currently interested in, we can stop. Otherwise, we proceed to step~(2) below.\smallskip
+	\item[1)] Set $s = 0$.\smallskip
 	
-	\item[2)] Multiply \texttt{B1} by $10$ and then return to step~(1) above.\smallskip
+	\item[2)] Subtract \texttt{B2} from \texttt{B1} until we cannot do so anymore. The number of subtractions that we performed is the $s$-th digit of \texttt{B1 / B2} after its decimal point. If this is the digit that we are currently interested in, we can stop. Otherwise, we proceed to step~(2) below.\smallskip
+	
+	\item[3)] Multiply \texttt{B1} by $10$, increment $s$ by $1$, and then return to step~(2) above.\smallskip
 \end{enumerate}
 
 In order to implement step~(1) above in APGsembly, we need to know how to subtract the value of one binary register from another, and how to compare the values of two binary registers (so that we know whether or not we can do the subtraction in the first place). Fortunately, we saw how to do the former of these tasks in APGsembly~\ref{alg:apgsembly_binary_add_sub}, and the latter task is somewhat simpler and left to Exercise~\ref{exer:universal_computation_apgsembly_binary_compare}. Similarly, we saw how to do the multiplication by $10$ that step~(2) requires us to do back in APGsembly~\ref{alg:apgsembly_mul_ten}.
 
 We have thus seen all of the pieces that we need to finally construct our $\pi$-calculating Life pattern. The APGsembly code that implements Pseudocode~\ref{alg:pseudocode_pi_calc} is quite long, so we leave it to Appendix~\ref{sec:appendix_apg}. The resulting calculator that is compiled from that APGsembly code is presented in Figure~\ref{fig:pi_calc}.
 
-% NJ TODO: Replace this image with smaller version of the calculator once Dave has completed the new compilation script. Then highlight/annotate the figure.
-% This is the last todo thing in the book!
-\begin{figure}[!htbp]
+\begin{figure}[!htb]
 	\centering\begin{tikzpicture}%
 	\node[inner sep=0pt,anchor=south west] (pi_calc_main) at (0,0) {\patternimglink{0.096}{pi_calc}};
 	\end{tikzpicture}
 	
-	\caption{After about 168 trillion generations, the $\pi$ calculator has computed and displayed the first $16$ digits of $\pi$: $3.1415926535897932$. Placeholder for now. Will add annotations and highlighting later.}\label{fig:pi_calc}
+	\caption{A $\pi$ calculator that uses a computer (highlighted in \bgbox{aquaback}{aqua}) based on the APGsembly code from Appendix~\ref{sec:appendix_apg}. Shown here at generation $8 \times 10^{13}$, at which point it has printed the first $13$ digits of $\pi$: $3.1415926535897$.}\label{fig:pi_calc}
 \end{figure}
 
 
@@ -1228,32 +1230,34 @@ The pattern that results from compiling this APGsembly code is displayed in Figu
 	\caption{A pattern with minimal asymptotic diametric growth rate $\Theta(\sqrt{\log(t)})$, compiled from APGsembly~\ref{alg:apgsembly_slow_growth}. The computer at the bottom-right, highlighted in \bgbox{aquaback}{aqua}, feeds into three sliding block registers (highlighted in \bgbox{greenpastel}{green}) and a 2D printer (highlighted in \bgbox{magentaback}{magenta}). The 2D printer makes use of three sliding blocks (circled in \bgbox{redback}{red}) to create and read a 2D array of boats at the top that can in principle extend arbitrarily far to the northwest and northeast. This particular computer counts in binary and instructs the 2D printer to arrange the bits of the current number as boats in a triangle (which gets larger as the number of bits increases). After $7.5 \times 10^{11}$ generations, it has counted to $3065 = 101111111001_2$.}\label{fig:osqrtlogt}
 \end{figure}
 
-% Exercise todo: identify the 6 inputs to the 2d printer from left-to-right.
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Notes and Historical Remarks}\label{sec:universal_computation_history}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Mostly just random snippets in this section so far. Will organize once the rest of the chapter is done.
+Conway's and Gosper's groups showed in the early 1970s that it was theoretically possible to assemble a Life pattern to complete any computational task that a standard programmable computer could accomplish \cite{Wain74,BCG82}. However, it wasn't until almost three decades later that Life technology advanced far enough to allow for universal computer patterns that were small enough to be simulated on a desktop computer.
 
-Conway's and Gosper's groups showed in the early 1970s that it was theoretically possible to assemble a Life pattern to complete any computational task that a Turing machine could accomplish \cite{Wain74,BCG82}. But it wasn't until almost three decades later that Life technology advanced far enough to allow for universal-computer patterns that were small enough to be simulated on a desktop computer: Paul Rendell's Turing machines in 2000--2011, Paul Chapman's Minsky Register Machines in 2002, Adam~P.~Goucher's Spartan universal computer-constructor in 2009 \cite{Gou10} (which was the basis for almost all of the components that we investigated in this chapter), and Nicolas Loizeau's 8-bit programmable computer in 2016.
+Paul Rendell developed the first such device in April 2000 \cite{RenBook}---a Turing machine based on period~30 circuitry (stable circuitry was not nearly as well-developed at the time). Then developed...% two other follow-up turing machines.
+
+Paul Chapman's Minsky Register Machines in 2002, Adam~P.~Goucher's Spartan universal computer-constructor in 2009 \cite{Gou10} (which was the basis for almost all of the components that we investigated in this chapter), and Nicolas Loizeau's 8-bit programmable computer in 2016.
 
 Each of these computational devices used different Life mechanisms to implement logic gates, memory, program storage, and so on.
 
-% John Conway speculated about pi calculator four decades earlier.
+The original $\pi$ calculator that Adam P.~Goucher built in February~2010 had a bounding box that was roughly $12$ times as large as the one that we displayed in Figure~\ref{fig:pi_calc}, since many of the small components that we used (like Snarks and syringes) were not available at that time. However, the actual functionality of our calculator is almost identical to that of the original one, as is the speed at which it runs.
 
-% Mention phi calculator that came before pi calculator, to put it into context. NJ question: Do we know exactly what algorithm the phi calc used? I probably don't care, but I think it was simpler than the pi alg.
-
-% The original $\pi$ calculator was constructed by Adam P. Goucher in February 2010. The one we construct here uses all of the same ideas and algorithms, but with some slightly newer technology to reduce its size.
+About one week prior to building his $\pi$ calculator, Goucher built a similar calculator for the mathematical constant $\varphi = (1+\sqrt{5})/2 = 1.61803\ldots$. While the techniques of Section~\ref{sec:pi_calc_other} are general enough to build a $\varphi$ calculator, the original one used a much simpler algorithm that caused it to run significantly faster---it could compute the first $n$ digits of $\varphi$ in $\Theta(n^3)$ generations, where as the $\pi$~calculator requires $\Theta(n^6)$ generations.
+% Binary registers are allocated with Theta(n^2) bits of memory in pi calc
+% Multiplication steps like U0 * B0 thus require Theta(n^3) operations (Theta(n) additions, each of which requires Theta(n^2) bit operations)
+% Digit extraction also requires Theta(n^3) operations, since we do no more than 10n subtractions to extract the n-th bit. Each of those subtractions again requires Theta(n^2) bit operations).
+% Altogether, Theta(n^3) operations (i.e., states) to compute n-th digit, so Theta(n^4) operations to compute ALL first n digits. However, once n gets big enough, it takes more than 1 clock tick to perform a bit operation. This pushes us up to Theta(n^6).
 
 % When the phi and pi calculators first appeared in 2010 the printer component was something of a Life engineering marvel. Ticker-tape patterns had previously been constructed, which displayed pre-set messages as patterns of spaceships, and there were also various mechanisms that produced a changing display of stationary large large digits.* The new printer simply dropped blocks into empty space at its current cursor position to make readable digits, and the blocks stayed out of the way of future digits printed farther along.
 
 %This recipe (2 recipes used in character printer) is part of a database of slow-salvo recipes compiled for the 0E0P metacell project (which we'll cover in detail in Chapter 12) by an automated search script. There are many similar reactions with approximately the same cost in gliders.
 
+% History: http://www.igblan.free-online.co.uk/igblan/ca/ (mostly about Paul Chapman's MRM 2002)
 
 
-% History: http://www.igblan.free-online.co.uk/igblan/ca/
 % TODO:  Exercise: 1) In APGsembly 1.1, if the INITIAL state were removed, what line of code would the program have to start on to make its behavior the same as before?  (Answer: it would work to start execution on the ID3 NZ line.) 2) Why can't we remove the INITIAL state and produce re-ordered APGsembly code that performs the same algorithm with one less state?  (Answer: to start the program we have to run a command to produce an initial return value.  We could reorder the states to make ID3 the initial state, but then we'd also have to start the program with an initial ``NZ'' return value.  We could certainly set up the Life pattern to work that way, but it's traditional to not assume a specific return value until we run an INITIAL instruction to generate it.)
 
 % TODO?: Exercise -- Why/how do ADD/SUB differ? How do they store a memory bit?
@@ -1261,6 +1265,7 @@ Each of these computational devices used different Life mechanisms to implement 
 % TODO: Exercise to compile the "store 139" APGsembly into a real pattern.
 
 % TODO: Exercise to create APGsembly that prints an elementary cellular automaton (https://www.conwaylife.com/forums/viewtopic.php?f=2&t=4196&hilit=textbook&start=75#p104465)
+% Exercise todo: identify the 6 inputs to the 2d printer from left-to-right.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1412,21 +1417,14 @@ Each of these computational devices used different Life mechanisms to implement 
 	\begin{problem}\label{exer:row_printer_six_not_seven} \probdiff{2}
 		In the green pixel-printing portion of the row printer from Figure~\ref{fig:row_printer}, there are only 6 Herschel edge-shooters, yet they produce all 7 of the pixel-printing gliders from Figure~\ref{fig:char_printer_place_pixel}. Explain where the extra glider comes from.
 	\end{problem}
-	
-	
+
+
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:universal_computation_b2d_why_far}
-		Recall APGsembly~\ref{alg:apgsembly_koch} for printing the Koch snowflake fractal.\smallskip
-		
-		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item \probdiff{2} Use a compiler that is linked from \httpsurl{conwaylife.com/wiki/APGsembly} to compile this APGsembly code into a Life pattern.
-			
-			\item \probdiff{3} The \texttt{B2D} component of this pattern can print pixels much closer to the rest of the circuitry than the \texttt{B2D} component in the extremely slowly-growing pattern of Figure~\ref{fig:osqrtlogt}. Explain why.
-		\end{enumerate}
-	\end{problem}
-	% SOLUTION: Return value from READ operations comes in too soon at right side. Koch snowflake has no READ operations.
+	\begin{problemstar}\label{exer:pi_calc_distant_merge} \probdiff{2}
+		In the $\pi$ calculator of Figure~\ref{fig:pi_calc}, one of the computer's merge circuits (i.e., transparent reflectors) is significantly farther west than any of the others. Why? Which substate (i.e., line of APGsembly code from Appendix~\ref{sec:appendix_apg}) does this correspond to?
+	\end{problemstar}
 	
 	
 	\mfilbreak
@@ -1461,6 +1459,18 @@ Each of these computational devices used different Life mechanisms to implement 
 			
 			[Side note: This method of converting an alternating series into one with non-negative terms is called the \textbf{Euler transform}.]
 		\end{enumerate}
+	\end{problemstar}
+
+
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:pi_calc_prove_correct} \probdiff{5}
+		We claimed in the text that if the matrix $A_k$ is as defined in Equation~\eqref{eq:Ak_matrices}, $B_n = A_0A_1A_2\cdots A_n$, $q_n$ is the top-right entry of $B_n$, and $r_n$ is the bottom-right entry of $B_n$, then
+		\[
+			\frac{q_n}{r_n} = 2\left(1 + \frac{1}{3}\left( 1 + \frac{2}{5}\left( 1 + \frac{3}{7}\left( \cdots \left( 1 + \frac{n-1}{2n-1}\right)\right)\right)\right)\right),
+		\]
+		so the entries of $B_n$ can be used to approximate $\pi$. Prove this formula. [Hint: You can find fairly explicit formulas for the entries of $B_n$.]
 	\end{problemstar}
 	
 	
@@ -1515,6 +1525,21 @@ Each of these computational devices used different Life mechanisms to implement 
 			\item Use the simplifications and speed-ups suggested by parts~(a--d) to compile an $e$ calculator that prints \texttt{2.718} before generation $2\times 10^{10}$ (instead of around generation $10^{12}$, like the $e$ calculator from Exercise~\ref{exer:universal_computation_e_calc}).
 		\end{enumerate}
 	\end{problem}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:universal_computation_b2d_why_far}
+		Recall APGsembly~\ref{alg:apgsembly_koch} for printing the Koch snowflake fractal.\smallskip
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item \probdiff{2} Use a compiler that is linked from \httpsurl{conwaylife.com/wiki/APGsembly} to compile this APGsembly code into a Life pattern.
+			
+			\item \probdiff{3} The \texttt{B2D} component of this pattern can print pixels much closer to the rest of the circuitry than the \texttt{B2D} component in the extremely slowly-growing pattern of Figure~\ref{fig:osqrtlogt}. Explain why.
+		\end{enumerate}
+	\end{problem}
+	% SOLUTION: Return value from READ operations comes in too soon at right side. Koch snowflake has no READ operations.
 	
 	
 	\mfilbreak
