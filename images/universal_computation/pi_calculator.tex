@@ -1,0 +1,24 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\begin{document}
+	\begin{tikzpicture}%
+		\node[inner sep=0pt,anchor=south west] (sbr) at (0,0) {\includegraphics[width=12cm]{pi_calculator.png}};
+		
+		% BORDER
+		\draw[gridgray] (-0.05,-0.05) rectangle (12.05,10.8995867769);
+		
+		% COMPONENT STACK LABELS
+		\draw[gray] (2.13,7.83) node[anchor=north west,rotate=45] {\footnotesize \texttt{B3}};
+		\draw[gray] (2.53,8.23) node[anchor=north west,rotate=45] {\footnotesize \texttt{B2}};
+		\draw[gray] (2.92,8.62) node[anchor=north west,rotate=45] {\footnotesize \texttt{B1}};
+		\draw[gray] (3.32,9.02) node[anchor=north west,rotate=45] {\footnotesize \texttt{B0}};
+		
+		\draw[gray] (1.3,6.2) node[anchor=north west,rotate=45] {\footnotesize \texttt{ADD}};
+		\draw[gray] (0.83,5.73) node[anchor=north west,rotate=45] {\footnotesize \texttt{SUB}};
+		\draw[gray] (0.2,5.95) node[anchor=north west] {\footnotesize \texttt{MUL}};
+		
+		\draw[gray,decorate,decoration={brace,amplitude=6pt}]
+		(1.58,6.88) --node [anchor=north,xshift=-11pt,yshift=13pt,rotate=45]{\footnotesize \texttt{U9$\rightarrow$U0}} (2.33,7.63);
+	\end{tikzpicture}
+\end{document}

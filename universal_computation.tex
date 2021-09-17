@@ -870,11 +870,9 @@ In order to implement step~(1) above in APGsembly, we need to know how to subtra
 We have thus seen all of the pieces that we need to finally construct our $\pi$-calculating Life pattern. The APGsembly code that implements Pseudocode~\ref{alg:pseudocode_pi_calc} is quite long, so we leave it to Appendix~\ref{sec:appendix_apg}. The resulting calculator that is compiled from that APGsembly code is presented in Figure~\ref{fig:pi_calc}.
 
 \begin{figure}[!htb]
-	\centering\begin{tikzpicture}%
-	\node[inner sep=0pt,anchor=south west] (pi_calc_main) at (0,0) {\patternimglink{0.096}{pi_calc}};
-	\end{tikzpicture}
-	
-	\caption{A $\pi$ calculator that uses a computer (highlighted in \bgbox{aquaback}{aqua}) based on the APGsembly code from Appendix~\ref{sec:appendix_apg}. Shown here at generation $8 \times 10^{13}$, at which point it has printed the first $13$ digits of $\pi$: $3.1415926535897$.}\label{fig:pi_calc}
+	\centering
+	\embedlink{pi_calculator}{\includegraphics[width=\textwidth]{universal_computation/pi_calculator.pdf}}
+	\caption{A $\pi$ calculator that uses a massive computer (highlighted in \bgbox{aquaback}{aqua}) based on the APGsembly code from Appendix~\ref{sec:appendix_apg}. It feeds into a component stack (highlighted in \bgbox{greenpastel}{green}) that contains every component that we have seen so far: $10$ sliding block registers, $4$ binary registers, and one each of the \texttt{ADD}, \texttt{SUB}, and \texttt{MUL} components. It also feeds into a character printer (highlighted in \bgbox{yellowback2}{yellow}) which, as of generation $8.3 \times 10^{13}$, has printed the first $13$ digits of $\pi$: $3.1415926535897$.}\label{fig:pi_calc}
 \end{figure}
 
 
