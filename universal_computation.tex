@@ -872,7 +872,7 @@ We have thus seen all of the pieces that we need to finally construct our $\pi$-
 \begin{figure}[!htb]
 	\centering
 	\embedlink{pi_calculator}{\includegraphics[width=\textwidth]{universal_computation/pi_calculator.pdf}}
-	\caption{A $\pi$ calculator that uses a massive computer (highlighted in \bgbox{aquaback}{aqua}) based on the APGsembly code from Appendix~\ref{sec:appendix_apg}. It feeds into a component stack (highlighted in \bgbox{greenpastel}{green}) that contains every component that we have seen so far: $10$ sliding block registers, $4$ binary registers, and one each of the \texttt{ADD}, \texttt{SUB}, and \texttt{MUL} components. It also feeds into a character printer (highlighted in \bgbox{yellowback2}{yellow}) which, as of generation $8.3 \times 10^{13}$, has printed the first $13$ digits of $\pi$: $3.1415926535897$.}\label{fig:pi_calc}
+	\caption{A $\pi$ calculator that uses a massive computer (highlighted in \bgbox{aquaback}{aqua}) based on the APGsembly code from Appendix~\ref{sec:appendix_apg}. It feeds into a component stack (highlighted in \bgbox{greenpastel}{green}) that contains every component that we have seen so far: $10$ sliding block registers, $4$ binary registers, and one each of the \texttt{ADD}, \texttt{SUB}, and \texttt{MUL} components. It also feeds into a character printer (highlighted in \bgbox{yellowback2}{yellow}) which, as of generation $8.3 \times 10^{13}$, has printed the first $14$ digits of $\pi$: $3.1415926535897$.}\label{fig:pi_calc}
 \end{figure}
 
 
@@ -1235,25 +1235,20 @@ The pattern that results from compiling this APGsembly code is displayed in Figu
 
 Conway's and Gosper's groups showed in the early 1970s that it was theoretically possible to assemble a Life pattern to complete any computational task that a standard programmable computer could accomplish \cite{Wain74,BCG82}. However, it wasn't until almost three decades later that Life technology advanced far enough to allow for universal computer patterns that were small enough to be simulated on a desktop computer.
 
-Paul Rendell developed the first such device in April 2000 \cite{RenBook}---a Turing machine based on period~30 circuitry (stable circuitry was not nearly as well-developed at the time). Then developed...% two other follow-up turing machines.
+Paul Rendell developed the first such device in April 2000 \cite{RenBook}---a Turing machine based on period~30 circuitry (stable circuitry was not nearly as well-developed at the time). He then extended this to a \emph{universal} Turing machine (i.e., a device capable of emulating any Turing machine) in February 2010. While these devices are computationally universal, and their input and output are reasonably straightforward to interpret, Turing machines themselves are rather abstract. For example, programming this device to compute (let alone display) the digits of $\pi$ would be a monumental task.
 
-Paul Chapman's Minsky Register Machines in 2002, Adam~P.~Goucher's Spartan universal computer-constructor in 2009 \cite{Gou10} (which was the basis for almost all of the components that we investigated in this chapter), and Nicolas Loizeau's 8-bit programmable computer in 2016.
+Paul Chapman constructed the next universal computer in 2002---a register machine that, at a high level, functions much like the universal computation toolkit that we introduced in this chapter.\footnote{See \httpurl{www.igblan.free-online.co.uk/igblan/ca/} for pattern files and a description of this machine.} Indeed, it made use of sliding blocks to build unary registers (just like we did), and switched between different states by virtue of actions to those unary registers returning zero or non-zero values. However, it used lightweight spaceships to transmit information instead of gliders, it made use of period~30 circuitry instead of stable circuitry, and it did not have any of the other components (e.g., binary registers or character printers) that we introduced.
 
-Each of these computational devices used different Life mechanisms to implement logic gates, memory, program storage, and so on.
+The next universal computation toolkit to be developed was the one that we explored in this chapter, which was completed by Adam P.~Goucher in 2010 \cite{Gou10}. Finally, Nicolas Loizeau created an 8-bit programmable computer in 2016.\footnote{See \httpsurl{conwaylife.com/wiki/8-bit_programmable_computer} for download links and usage instructions.} While it is less versatile than the toolkit from this chapter (e.g., it cannot compute quantities larger than $2^8-1 = 255$), it is significantly simpler to program. For example, just $8$ relatively easy-to-understand lines of code suffice to program it to compute the sequence of Fibonacci numbers (up to the term $233$, which is the largest one it can handle), whereas a few dozen lines of somewhat more complicated APGsembly code would be required to compute that sequence (see Exercise~\ref{exer:universal_computation_print_fibonacci}).\index{Fibonacci number}
 
 The original $\pi$ calculator that Adam P.~Goucher built in February~2010 had a bounding box that was roughly $12$ times as large as the one that we displayed in Figure~\ref{fig:pi_calc}, since many of the small components that we used (like Snarks and syringes) were not available at that time. However, the actual functionality of our calculator is almost identical to that of the original one, as is the speed at which it runs.
 
-About one week prior to building his $\pi$ calculator, Goucher built a similar calculator for the mathematical constant $\varphi = (1+\sqrt{5})/2 = 1.61803\ldots$. While the techniques of Section~\ref{sec:pi_calc_other} are general enough to build a $\varphi$ calculator, the original one used a much simpler algorithm that caused it to run significantly faster---it could compute the first $n$ digits of $\varphi$ in $\Theta(n^3)$ generations, where as the $\pi$~calculator requires $\Theta(n^6)$ generations.
+About one week prior to building his $\pi$ calculator, Goucher built a similar calculator for the mathematical constant $\varphi = (1+\sqrt{5})/2 = 1.61803\ldots$. While the techniques of Section~\ref{sec:pi_calc_other} are general enough to build a $\varphi$ calculator, the original one used a much simpler algorithm that caused it to run significantly faster---it could compute the first $n$ digits of $\varphi$ in $\Theta(n^3)$ generations, where as the $\pi$~calculator requires $\Theta(n^6)$ generations for the same task.
+% Explanation of pi calculator runtime:
 % Binary registers are allocated with Theta(n^2) bits of memory in pi calc
 % Multiplication steps like U0 * B0 thus require Theta(n^3) operations (Theta(n) additions, each of which requires Theta(n^2) bit operations)
 % Digit extraction also requires Theta(n^3) operations, since we do no more than 10n subtractions to extract the n-th bit. Each of those subtractions again requires Theta(n^2) bit operations).
 % Altogether, Theta(n^3) operations (i.e., states) to compute n-th digit, so Theta(n^4) operations to compute ALL first n digits. However, once n gets big enough, it takes more than 1 clock tick to perform a bit operation. This pushes us up to Theta(n^6).
-
-% When the phi and pi calculators first appeared in 2010 the printer component was something of a Life engineering marvel. Ticker-tape patterns had previously been constructed, which displayed pre-set messages as patterns of spaceships, and there were also various mechanisms that produced a changing display of stationary large large digits.* The new printer simply dropped blocks into empty space at its current cursor position to make readable digits, and the blocks stayed out of the way of future digits printed farther along.
-
-%This recipe (2 recipes used in character printer) is part of a database of slow-salvo recipes compiled for the 0E0P metacell project (which we'll cover in detail in Chapter 12) by an automated search script. There are many similar reactions with approximately the same cost in gliders.
-
-% History: http://www.igblan.free-online.co.uk/igblan/ca/ (mostly about Paul Chapman's MRM 2002)
 
 
 % TODO:  Exercise: 1) In APGsembly 1.1, if the INITIAL state were removed, what line of code would the program have to start on to make its behavior the same as before?  (Answer: it would work to start execution on the ID3 NZ line.) 2) Why can't we remove the INITIAL state and produce re-ordered APGsembly code that performs the same algorithm with one less state?  (Answer: to start the program we have to run a command to produce an initial return value.  We could reorder the states to make ID3 the initial state, but then we'd also have to start the program with an initial ``NZ'' return value.  We could certainly set up the Life pattern to work that way, but it's traditional to not assume a specific return value until we run an INITIAL instruction to generate it.)
@@ -1264,6 +1259,7 @@ About one week prior to building his $\pi$ calculator, Goucher built a similar c
 
 % TODO: Exercise to create APGsembly that prints an elementary cellular automaton (https://www.conwaylife.com/forums/viewtopic.php?f=2&t=4196&hilit=textbook&start=75#p104465)
 % Exercise todo: identify the 6 inputs to the 2d printer from left-to-right.
+% Exercise explaining why o(n^6)?
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
