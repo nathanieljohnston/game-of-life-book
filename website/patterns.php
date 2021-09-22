@@ -26,6 +26,15 @@
 	} else if($_GET['p'] == 'universal_computation'){
 		$ch_num = 9;
 		$ch_name = 'Universal Computation';
+	} else if($_GET['p'] == 'self_support_spaceships'){
+		$ch_num = 10;
+		$ch_name = 'Self-Supporting Spaceships';
+	} else if($_GET['p'] == 'universal_construction'){
+		$ch_num = 11;
+		$ch_name = 'Universal Construction';
+	} else if($_GET['p'] == '0e0p'){
+		$ch_num = 12;
+		$ch_name = 'The 0E0P Metacell';
 	} else {
 		header('Location: http://www.conwaylife.com/book/');
 	}
@@ -99,7 +108,7 @@
         <div style="overflow: hidden;">
           <h1 style="font-weight:bold;margin-bottom:0px;">Conway's Game of Life</h1>
           <h3 style="margin-top:0px;">Mathematics and Construction</h3>
-          <a class="button button-primary" href="index.html#download_pdf">Download the Book</a>
+          <a class="button button-primary" href="index.php#download_pdf">Download the Book</a>
         </div>
       </div>
 
@@ -110,7 +119,7 @@
     <nav class="navbar">
       <div class="container">
         <ul class="navbar-list">
-          <li class="navbar-item">&nbsp;<a class="navbar-link" href="index.html">Back to Book Homepage</a></li>
+          <li class="navbar-item">&nbsp;<a class="navbar-link" href="index.php">Back to Book Homepage</a></li>
         </ul>
       </div>
     </nav>
@@ -120,24 +129,35 @@
     <div class="docs-section">
       <h6 class="docs-header">Pattern Files for Chapter <?php echo $ch_num; ?>: <?php echo $ch_name; ?></h6>
       <p>RLE, Macrocell, or LifeHistory code for all patterns that are displayed as figures in Chapter <?php echo $ch_num; ?>: <?php echo $ch_name; ?> are provided here. These patterns can be viewed in-browser by clicking on the "Show in Viewer" link near the code, or the patterns can be viewed and manipulated by copying and pasting the RLE code into Game of Life software like <a href="http://golly.sourceforge.net/">Golly</a>.</p>
-      <p>Note that these RLE codes are <em>not</em> listed in the same order as the figures in the book; you may find it helpful to use your browser's search-in-page function to find the RLE code that you want.</p>
+      <p>Note that these codes are <em>not</em> listed in the same order as the figures in the book; you may find it helpful to use your browser's search-in-page function to find the RLE code that you want.</p>
 
 <?php
 	foreach(scandir('patterns/' . $_GET['p'] . '/') as $file) {
-		$file_ext_test = substr($file, -4);
+		$file_ext_test = substr($file, -3);
 		$file_main_name = substr($file, 0, -4);
-		if($file_ext_test == ".txt") {
+		if($file_ext_test == "txt" || $file_ext_test == ".mc") {
 			if(file_exists('patterns/' . $_GET['p'] . '/' . $file_main_name . '.lh')) {
 				$code_type = 'LifeHistory';
 				$file_ext = '.lh';
+			} else if($file_ext_test == '.mc') {
+				$code_type = ' MacroCell';
+				$file_ext = '.mc';
+				$file_main_name = substr($file, 0, -3);
 			} else {
 				$code_type = 'RLE';
 				$file_ext = '.txt';
 			}
 
-			$file_contents = file_get_contents('patterns/' . $_GET['p'] . '/' . $file_main_name . $file_ext);
+			$file_size = filesize('patterns/' . $_GET['p'] . '/' . $file_main_name . $file_ext);
+			$dl_link_large = ($file_size > 300000);
 
-			$name_pos = strpos($file_contents, '#N ');
+			if(!$dl_link_large) {
+				$file_contents = file_get_contents('patterns/' . $_GET['p'] . '/' . $file_main_name . $file_ext);
+				$name_pos = strpos($file_contents, '#N ');
+			} else {
+				$name_pos = FALSE;
+			}
+
 			if($name_pos === FALSE) {
 				$pattern_name = str_replace('_', ' ', $file_main_name);
 			} else {
@@ -147,35 +167,37 @@
 			}
 
 			$comments = '';
-			if(substr($file_contents, 0, 4) == '[M2]') {
-				$end_comments = '<b>Download link:</b> <a href="patterns/' . $_GET['p'] . '/' . $file_main_name . '.txt">here</a> (file too large to display in-browser)';
+			if($dl_link_large || substr($file_contents, 0, 4) == '[M2]') {
+				$end_comments = '<b>Download link:</b> <a href="patterns/' . $_GET['p'] . '/' . $file_main_name . $file_ext . '">here</a> (file too large to display in-browser)';
 				$num_comments = 1;
 			} else {
 				$end_comments = '';
 				$num_comments = 0;
 			}
 
-			$comment_pos = strpos($file_contents, '#C ');
-			while($comment_pos !== FALSE) {
-				$line_end = strpos($file_contents, PHP_EOL, $comment_pos+1);
-				if(substr($file_contents, $comment_pos, 5) == '#C [[') {
-					$comment_pos = FALSE;
-				} else if(substr($file_contents, $comment_pos, 7) == '#C http' || substr($file_contents, $comment_pos, 7) == '#C www.') {
-					$link_url = trim(substr($file_contents, $comment_pos+3, $line_end-$comment_pos-3));
-					if(substr($link_url, 0, 4) != 'http') {
-						$link_url = 'https://' . $link_url;
-					}
-					$link_url = str_replace('http://', 'https://', $link_url);
+			if(!$dl_link_large) {
+				$comment_pos = strpos($file_contents, '#C ');
+				while($comment_pos !== FALSE) {
+					$line_end = strpos($file_contents, PHP_EOL, $comment_pos+1);
+					if(substr($file_contents, $comment_pos, 5) == '#C [[') {
+						$comment_pos = FALSE;
+					} else if(substr($file_contents, $comment_pos, 7) == '#C http' || substr($file_contents, $comment_pos, 7) == '#C www.') {
+						$link_url = trim(substr($file_contents, $comment_pos+3, $line_end-$comment_pos-3));
+						if(substr($link_url, 0, 4) != 'http') {
+							$link_url = 'https://' . $link_url;
+						}
+						$link_url = str_replace('http://', 'https://', $link_url);
 
-					$comments = $comments . '<br /><b>More info:</b> <a href="' . $link_url . '">' . $link_url . '</a>' . PHP_EOL;
-					$file_contents = trim(substr($file_contents, $line_end));
-					$comment_pos = strpos($file_contents, '#C ');
-					$num_comments = $num_comments + 1;
-				} else {
-					$comments = $comments . trim(substr($file_contents, $comment_pos+3, $line_end-$comment_pos-3)) . PHP_EOL;
-					$file_contents = trim(substr($file_contents, $line_end));
-					$comment_pos = strpos($file_contents, '#C ');
-					$num_comments = $num_comments + 1;
+						$comments = $comments . '<br /><b>More info:</b> <a href="' . $link_url . '">' . $link_url . '</a>' . PHP_EOL;
+						$file_contents = trim(substr($file_contents, $line_end));
+						$comment_pos = strpos($file_contents, '#C ');
+						$num_comments = $num_comments + 1;
+					} else {
+						$comments = $comments . trim(substr($file_contents, $comment_pos+3, $line_end-$comment_pos-3)) . PHP_EOL;
+						$file_contents = trim(substr($file_contents, $line_end));
+						$comment_pos = strpos($file_contents, '#C ');
+						$num_comments = $num_comments + 1;
+					}
 				}
 			}
 

@@ -79,12 +79,6 @@
 
 
 
-    <div class="docs-section" style="margin-bottom:0px;padding-bottom:0px;">
-      <h6 class="docs-header" style="color:red;">NOT YET PUBLIC! Please do not share this book/URL.</h6>
-    </div>
-
-
-
 
 
     <div class="docs-section">
@@ -118,6 +112,9 @@
         <li><a href="patterns.php?p=stationary_circuitry">Chapter 7: Stable Circuitry</a></li>
         <li><a href="patterns.php?p=glider_guns">Chapter 8: Guns and Glider Streams</a></li>
         <li><a href="patterns.php?p=universal_computation">Chapter 9: Universal Computation</a></li>
+        <li><a href="patterns.php?p=self_support_spaceships">Chapter 10: Self-Supporting Spaceships</a></li>
+        <li><a href="patterns.php?p=universal_construction">Chapter 11: Universal Construction</a></li>
+        <li><a href="patterns.php?p=0e0p">Chapter 12: The 0E0P Metacell</a></li>
       </ul>
     </div>
   </div>
