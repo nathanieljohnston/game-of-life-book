@@ -36,7 +36,12 @@
 		$ch_num = 12;
 		$ch_name = 'The 0E0P Metacell';
 	} else {
-		header('Location: http://www.conwaylife.com/book/');
+		header('Location: https://www.conwaylife.com/book/');
+	}
+
+	if($ch_num <= 11) {
+		$zip_size = filesize('patterns/' . $_GET['p'] . '/all.zip');
+		$zip_size_readable = round($zip_size / 1048576, 2);
 	}
 ?>
 <!DOCTYPE html>
@@ -130,8 +135,11 @@
       <h6 class="docs-header">Pattern Files for Chapter <?php echo $ch_num; ?>: <?php echo $ch_name; ?></h6>
       <p>RLE, Macrocell, or LifeHistory code for all patterns that are displayed as figures in Chapter <?php echo $ch_num; ?>: <?php echo $ch_name; ?> are provided here. These patterns can be viewed in-browser by clicking on the "Show in Viewer" link near the code, or the patterns can be viewed and manipulated by copying and pasting the RLE code into Game of Life software like <a href="http://golly.sourceforge.net/">Golly</a>.</p>
       <p>Note that these codes are <em>not</em> listed in the same order as the figures in the book; you may find it helpful to use your browser's search-in-page function to find the RLE code that you want.</p>
-
+      <?php
+          if($ch_num <= 11) { ?>
+              <center><b><a href="patterns/<?php echo $_GET['p']; ?>/all.zip">All pattern files from this chapter, in a .zip archive file (<?php echo $zip_size_readable; ?> Mb)</a></b></center>
 <?php
+          }
 	foreach(scandir('patterns/' . $_GET['p'] . '/') as $file) {
 		$file_ext_test = substr($file, -3);
 		$file_main_name = substr($file, 0, -4);
