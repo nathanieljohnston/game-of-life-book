@@ -80,6 +80,11 @@
 
 
 
+    <div class="docs-section" style="margin-bottom:0px;padding-bottom:0px;">
+      <h6 class="docs-header" style="color:red;">Book still in progress.<br /><font color="black">This is not the final version yet -- beta readers are in the process of reviewing and commenting. To join the beta readers' group, make comments on the <a href="https://conwaylife.com/forums/viewtopic.php?f=7&t=5418">dedicated forum thread</a>.</font></h6>
+    </div>
+
+
 
     <div class="docs-section">
       <h6 class="docs-header">About the Book</h6>
@@ -93,7 +98,7 @@
       <h6 class="docs-header">Download the Book</h6>
       <p>Whether you are using it for self-study or a course, the textbook can be downloaded as a PDF file free of charge. We recommend that you view the PDF in a stand-alone PDF reader like <a href="https://get.adobe.com/reader/">Adobe Acrobat</a> (which is also free), <em>not</em> your in-browser PDF viewer, so that you can click on pattern images to view their <a href="http://www.conwaylife.com/wiki/RLE">RLE encodings</a> (which you can then copy and paste into Life software like <a href="http://golly.sourceforge.net/">Golly</a>).</p>
       <center>
-        <a class="button button-primary" href="conway_life_book.pdf" style="padding-left:15px;"><img src="images/pdf.png" style="vertical-align:middle;padding-bottom:3px;padding-right:15px;">Book in PDF Format (<?php echo $book_size_readable; ?> Mb)</a>
+        <a class="button button-primary" href="conway_life_book.pdf" style="padding-left:15px;"><img src="images/pdf.png" style="vertical-align:middle;padding-bottom:3px;padding-right:15px;">Book in PDF Format (<?php echo $book_size_readable; ?> Mb, <?php echo date("M d Y", filemtime('conway_life_book.pdf')); ?>)</a>
       </center>
     </div>
 
