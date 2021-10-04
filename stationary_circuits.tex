@@ -96,6 +96,17 @@ With this naming scheme out of the way, we now catalog some of the smallest, qui
 \end{table}
 
 
+\subsection{Conduit Terminology}
+
+Back in Section~\ref{sec:eaters} we discussed eaters, such as eater~1, that can delete other objects without suffering any permanent damage. Eater~1s are very common components in Herschel conduits. They do very often act as eaters, simply deleting unwanted output gliders, or deleting blocks or blinkers or other objects generated as the active reaction passes through the conduit. However, their function is not always limited to eating.
+
+A more general term for the still lifes that make up a conduit is \textbf{catalyst}.\index{catalyst} Like an eater, a catalyst is not permanently affected by a passing active reaction. It is temporarily altered (unless it is a rock\index{rock} as described in Section~\ref{sec:rocks_almost_eaters}) but eventually recovers to its original form with no permanent damage.\footnote{The term ``catalyst'' is borrowed from chemistry, where catalysts affect an ongoing chemical reaction without themselves being used up.} That passing active reaction is not necessarily any well-defined object like a glider, block, beehive, or blinker. Very often it is simply some unnamed chaotic mess, and the catalyst just causes it to evolve differently from the way it would have without the catalyst's presence.
+
+The majority of the conduits in Table~\ref{tab:herschel_conduits} contain a special type of catalyst called a \textbf{transparent} catalyst.\index{transparent!catalyst} This is a small common object, usually a block or a beehive, that is temporarily destroyed completely by an active reaction, but reappears a few generations later in exactly the same location. The presence of the transparent catalyst modifies the active reaction in precisely the right way to produce a copy of itself.
+
+Transparent catalysts are rare and difficult to find, but extremely useful when they do appear. They often make it possible for an active reaction to pass ``through'' their location and move into a new region that the reaction would not otherwise have reached.
+
+
 \subsection{Conduit Variants and Tight Squeezes}
 
 Since the name of a conduit depends only on the orientation and timing of its output Herschel relative to the input one, there can be many different Herschel conduits with the same name. This feature is by design, as we typically do not care about what exactly happens in the intermediate steps of the conversion that a conduit implements. For this reason, we say that two conduits are \textbf{variants}\index{variant} of each other if they both take the same input and produce the same output in the same spacetime location---no matter what happens along the way.
@@ -189,7 +200,7 @@ Just like glider guns become easier to use when the glider that they produce is 
 	\caption{A small collection of converters that transform a Herschel (displayed in \bgbox{greenback}{green}) into one or more gliders (displayed in \bgbox{orangeback}{orange}). Any unwanted gliders from the last two converters can simply be destroyed by an eater (as we did in (a) via the eater displayed in \bgbox{redback}{red}).}\label{fig:herschel_to_glider}
 \end{figure}
 
-Despite not being an edge-shooter, the conduit from Figure~\ref{fig:H_to_G} is useful for a similar reason. In that conduit, the output glider lane and one other nearby lane are \textbf{transparent}\index{transparent}---gliders on that lane can pass safely through without colliding with the conduit. This conduit can thus be used to insert gliders into a stream just like an edge-shooter, as illustrated in Figure~\ref{fig:transparent_lane}.\footnote{A slight variant of this Herschel-to-glider converter that is better in some situations is presented in Exercise~\ref{exer:H_to_G_transparent_better}.}
+Despite not being an edge-shooter, the conduit from Figure~\ref{fig:H_to_G} is useful for a similar reason. In that conduit, the output glider lane and one other nearby lane are \textbf{transparent}\index{transparent!lane}---gliders on that lane can pass safely through without colliding with the conduit. This conduit can thus be used to insert gliders into a stream just like an edge-shooter, as illustrated in Figure~\ref{fig:transparent_lane}.\footnote{A slight variant of this Herschel-to-glider converter that is better in some situations is presented in Exercise~\ref{exer:H_to_G_transparent_better}.}
 
 \begin{figure}[!htb]
 	\centering
@@ -374,13 +385,14 @@ These techniques can be extended straightforwardly to let us construct circuits 
 
 As our starting point, we need a glider synthesis of the 2-engine Cordership to make use of, and for simplicity we use the 2-direction synthesis from Exercise~\ref{exer:2_engine_cordership_synthesis}(b). To space these gliders out a bit more and make them even easier to synchronize, we use Herschel edge-shooters to put the gliders in their correct places and reflect the input gliders so as to all come from the same direction (much like we did in the southeast corner of Figure~\ref{fig:glider_to_lwss_incomplete} when constructing the glider-to-LWSS circuit). This bottom portion of our circuit is displayed in Figure~\ref{fig:g_to_2engine_V}.
 
+Next, we need to turn one glider into $10$ gliders and synchronize them with the positions indicated in Figure~\ref{fig:g_to_2engine_V}. While it is possible to do this ``directly'', it is easier to instead just synchronize just 2 or 3 gliders at a time. For example, if we build a mechanism that splits one glider into the 3 leftmost synchronized gliders, then we will just need to synchronize 8 gliders instead of 10 (the 7 leftover gliders that we have not yet dealt with plus the 1 extra glider needed to produce the 3 leftmost gliders). One such mechanism, as well as mechanisms that synchronize the next $3$ gliders, the next $2$ gliders, and the final $2$ gliders, are presented in Figure~\ref{fig:2engine_synchronize}. Once we place all $4$ of these mechanisms, we just have to synchronize $4$ gliders instead of $10$---one for each of the mechanisms.
+
+% Just here for layout reasons. Can be moved one paragraph earlier.
 \begin{figure}[!htb]
 	\centering
 	\patternimglink{0.1}{g_to_2engine_V}
 	\caption{An arrangement of Herschel edge shooters (highlighted in \bgbox{aquaback}{aqua}) that places 10 gliders coming from the northwest (displayed in \bgbox{greenback}{green}) into the correct positions (displayed in \bgbox{orangeback}{orange}) $738$ generations later to synthesize to synthesize a $2$-engine Cordership.}\label{fig:g_to_2engine_V}
 \end{figure}
-
-Next, we need to turn one glider into $10$ gliders and synchronize them with the positions indicated in Figure~\ref{fig:g_to_2engine_V}. While it is possible to do this ``directly'', it is easier to instead just synchronize just 2 or 3 gliders at a time. For example, if we build a mechanism that splits one glider into the 3 leftmost synchronized gliders, then we will just need to synchronize 8 gliders instead of 10 (the 7 leftover gliders that we have not yet dealt with plus the 1 extra glider needed to produce the 3 leftmost gliders). One such mechanism, as well as mechanisms that synchronize the next $3$ gliders, the next $2$ gliders, and the final $2$ gliders, are presented in Figure~\ref{fig:2engine_synchronize}. Once we place all $4$ of these mechanisms, we just have to synchronize $4$ gliders instead of $10$---one for each of the mechanisms.
 
 We can then just iterate this procedure, building up the circuit in layers of gliders that synchronize $2$ gliders at a time, thus halving the number of gliders that need to be synchronized at each layer. The first layer reduced the number of gliders that we need to synchronize from $10$ to $4$, the next layer reduces it from $4$ to $2$, and the final layer reduces it from $2$ to $1$ (and thus completes the circuit). A completed circuit that turns a glider into a $2$-engine Cordership in this way is displayed in Figure~\ref{fig:glider_to_2engine_cordership}.
 
@@ -422,7 +434,7 @@ It turns out that this lower bound is ``essentially'' tight---there exists a con
 	\begin{subfigure}{\textwidth}
 		\centering
 		\embedlink{cp_semi_snark}{\vcenteredhbox{\patternimg{0.088}{cp_semi_snark_0}} \vcenteredhbox{\genarrow{48}} \vcenteredhbox{\patternimg{0.088}{cp_semi_snark_48}} \vcenteredhbox{\genarrow{48}} \vcenteredhbox{\patternimg{0.088}{cp_semi_snark_96}}}
-		\caption{The \textbf{color-preserving (CP) semi-Snark}, which has a repeat time of $48$ generations. It is the same as a Snark (compare it with Figure~\ref{fig:snark}), but with one of its eater~1s replaced by a custom conduit that, when hit by a glider, creates a tub that destroys the next glider. Found by Tanner Jacobi in October 2017. }
+		\caption{The \textbf{color-preserving (CP) semi-Snark}, which has a repeat time of $48$ generations. It is the same as a Snark (compare it with Figure~\ref{fig:snark}), but with one of its eater~1s replaced by a custom catalyst that, when hit by a glider, creates a tub that destroys the next glider. Found by Tanner Jacobi in October 2017. }
 		\label{fig:cp_semi_snark}
 	\end{subfigure} \\[0.25cm]
 	\begin{subfigure}{\textwidth}
@@ -803,30 +815,32 @@ In order to transmit a Herschel from one place in the Life plane to another one 
 
 The receiving half of this Herschel transceiver (which is called a \textbf{Herschel receiver}\index{Herschel!receiver}) just uses the first input glider to erase its beehive, so the relative timing of the input gliders does not really matter. Furthermore, there are several other ways that a glider can collide with a beehive so that they destroy each other, so the second glider can be any of $6$, $5$, $2$, or $-2$ lanes to the right of the first glider without affecting the receiver's functionality. Several more transmitting halves (i.e., \textbf{Herschel transmitters}\index{Herschel!transmitter}) for this receiver were found in the next year or two,\footnote{By Paul Callahan and by Dieter Leithner.} but they were relatively awkward, needing sparks from oscillators or other extra cleanup, so they were seldom or never used in larger patterns. One H-to-G6 conduit (i.e., Herschel transmitter that converts a Herschel into a pair of tandem gliders offset from each other by $6$~lanes) that \emph{is} still useful is presented in Exercise~\ref{exer:h_to_g6}.
 
-With the appearance of the syringe in 2015 (with a repeat time of 78 generations, instead of the Herschel transceiver's 117), it became cheaper and faster to send a single glider and then convert it back to a Herschel with a syringe whenever necessary. As a result, tandem gliders pretty much became obsolete, with a few odd exceptions. When we happen to have two gliders anyway, or when a pair of tandem gliders naturally produces some other reaction of interest, it is still sometimes easier to catch them with a Herschel receiver. One such reaction that we will make use of later is the one displayed in Figure~\ref{fig:block_pusher} that uses $3$ gliders to push a block forward while sending a pair of tandem gliders back.
-
+% Just here for layout reasons. Could be placed 1 paragraph later.
 \begin{figure}[!htb]
 	\centering\embedlink{block_pusher}{\vcenteredhbox{\patternimg{0.1}{block_pusher_0}} \vcenteredhbox{\genarrow{110}} \vcenteredhbox{\patternimg{0.1}{block_pusher_110}}}
 	\caption{A reaction in which $3$ gliders push a block southeast by $10$~cells and send a pair of tandem gliders back, separated by just $2$ lanes and thus suitable for input into the Herschel receiver from Figure~\ref{fig:herschel_transceiver}. The debris highlighted in \bgbox{redback}{red} dies off in $25$ more generations.}\label{fig:block_pusher}
 \end{figure}
 
+With the appearance of the syringe in 2015 (with a repeat time of 78 generations, instead of the Herschel transceiver's 117), it became cheaper and faster to send a single glider and then convert it back to a Herschel with a syringe whenever necessary. As a result, tandem gliders pretty much became obsolete, with a few odd exceptions. When we happen to have two gliders anyway, or when a pair of tandem gliders naturally produces some other reaction of interest, it is still sometimes easier to catch them with a Herschel receiver. One such reaction that we will make use of later is the one displayed in Figure~\ref{fig:block_pusher} that uses $3$ gliders to push a block forward while sending a pair of tandem gliders back.
+
 Another Herschel transceiver that is sometimes useful is the one displayed in Figure~\ref{fig:herschel_transceiver_4} that works via gliders that are separated by $4$ lanes instead of $2$, $5$, or $6$.\footnote{Found by Sergei Petrov in December 2011.} This transceiver has two advantages over the one that we saw earlier: it produces a quick 90-degree glider output in addition to its Herschel output, and it is \textbf{ambidextrous}\index{ambidextrous} (i.e., it can be configured to accept the gliders from the transmitter in either order). For this reason, this transceiver is still a fairly efficient way to quickly split a single signal into multiple signals via Spartan components.
 
 \begin{figure}[!htb]
 	\centering
-	\patternimglink{0.1}{herschel_transceiver_4}
+	\patternimglink{0.11}{herschel_transceiver_4}
 	\caption{A Herschel transceiver that works via tandem glider pairs that are separated by $4$ lanes. The receiver that it uses is ambidextrous---it can be configured to work regardless of which of the two input gliders arrives first, as demonstrated here by the middle and right receivers here taking different configurations of input gliders.}
 	\label{fig:herschel_transceiver_4}
 \end{figure}
 
 Alternatively, prior to the discovery of the syringe, there were stable conduits known for converting some spaceships \emph{other} than gliders into Herschels. For example, the conduit displayed in Figure~\ref{fig:coe_to_herschel} converts a Coe ship\index{Coe ship} into a Herschel. However, the reverse transformation of a Herschel back into the original spaceship was much less straightforward, and would be performed by converting the Herschel into multiple gliders that would then synthesize the original spaceship (a Coe ship in this case) via a glider synthesis like the one that we saw in Figure~\ref{fig:coe_ship_synth}.
 
+\clearpage% just for layout, can remove if layout changes
+
 \begin{figure}[!htb]
 	\centering\embedlink{coe_to_herschel}{\vcenteredhbox{\patternimg{0.112}{coe_to_herschel_0}} \vcenteredhbox{\genarrow{124}} \vcenteredhbox{\patternimg{0.112}{coe_to_herschel_124}}}
 	\caption{A stable conduit that converts a Coe ship into a Herschel. Found by Stephen Silver in September 1997.}\label{fig:coe_to_herschel}
 \end{figure}
 
-% "Transparent" reaction: one in which some intermediate pattern (e.g., block) is destroyed but then reconstructed, with pattern like Herschel travelling through it
 % herschel duplicator: http://conwaylife.com/forums/viewtopic.php?f=2&t=1599&p=29968#p29968
 
 
