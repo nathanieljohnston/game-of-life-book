@@ -206,7 +206,7 @@ By using the reactions listed in Table~\ref{tab:sequential_synth}, it is straigh
 	\caption{An incremental synthesis of the Gosper glider gun. Each stage in the synthesis works by either using two gliders to construct a simple still life or using just one glider to transform one object into another one. The objects that were created or modified in the previous step of the synthesis are shown in \bgbox{orangeback}{orange}, and the gliders that will be involved in the next collision are shown in \bgbox{greenback}{green}.}\label{fig:gosper_sequential}
 \end{figure}
 
-Because incremental synthesis typically works by first constructing a still life or a collection of still lifes, and then transforming those still lifes into the desired object, the Life community has gone to great lengths to synthesize still lifes. In fact, syntheses are known for all $78{\thousep}297$ strict still lifes with 19 or fewer live cells.\footnote{A database containing all of these syntheses of small still lifes, as well as incremental syntheses of many other objects, as available at \httpsurl{catagolue.appspot.com/syntheses}.}
+Because incremental synthesis typically works by first constructing a still life or a collection of still lifes, and then transforming those still lifes into the desired object, the Life community has gone to great lengths to synthesize still lifes. In fact, syntheses are known for all $78{\thousep}297$ strict still lifes with 19 or fewer live cells.
 
 
 \section{Synthesis of Moving Objects}\label{sec:incremental_synthesis_ships}
@@ -713,6 +713,7 @@ Remarkably, it was even shown in September 2020 that every glider-synthesizable 
 % 2018: proof of constructability of any glider-constructible pattern no matter how large, using a fixed number of gliders recently reduced to 17. See Reverse caber tosser. This seems even more difficult to believe in than Conway's and Gosper's groups' original proofs of the existence of replicators and many other universal-constructor-based UPHOs (Unbuildable but Provable Huge Objects) (not a real Life acronym.)
 %But it turns out you only need 17 gliders to build anything, even a fleet of a million Caterpillars, or the complete works of Shakespeare spelled out in the Life universe as arrangements of blocks in Helvetica 100-point font. You just have to be willing to put some of the gliders really really far away, and encode all the gazillion bits of required construction information in the size of the space between the two groups of gliders.
 
+The largest database of glider syntheses that is currently maintained, \emph{Shinjuku},\footnote{Created by Jeremy Tan in April 2019, and named for Shinjuku Station (the busiest railway station in the world). See \httpsurl{gitlab.com/parclytaxel/Shinjuku} for technical details and code, and \httpsurl{catagolue.hatsya.com/syntheses} for the syntheses themselves.} contains hundreds of thousands of the cheapest-known ways of using gliders to convert one object into another, and thus the cheapest-known ways of synthesizing them via incremental synthesis.
 
 %\clearpage % move "Exercises" header to next page, so not empty on page
 
