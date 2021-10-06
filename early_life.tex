@@ -540,38 +540,43 @@ On the other hand, there are also results that show that orphans cannot be ``too
 		\begin{minipage}[b]{0.64\textwidth}
 			\centering\begin{tikzpicture}[scale=1.1, every node/.style={transform shape}]%
 			\fill[color=redback] (2.2,0.95) rectangle (3.25,-1.35);
+			\fill[color=yellowback2] (6.8,0.95) rectangle (7.85,-1.35);
 			\node[inner sep=0pt,anchor=south west] at (0,0) {\patternimg{0.102}{1_row_3x3}};
 			\node[inner sep=0pt,anchor=south west] at (0.3,-0.52) {$\downarrow \qquad \ \ \downarrow \qquad \ \ \downarrow \qquad \ \ \downarrow \qquad \ \ \downarrow \qquad \ \ \downarrow \qquad \ \ \downarrow \qquad \ \ \downarrow$};
 			\node[inner sep=0pt,anchor=south west] at (0.23,-1.1) {\patternimg{0.102}{1_row_3x3_evolved}};
 			\end{tikzpicture}
-			\caption{All except for one of the $8$~different $3 \times 3$ squares in which the top and bottom rows are the negation of the middle row evolve so that the top and bottom rows die and the middle cell stays the same.}\label{fig:1_row_3x3}
+			\caption{All except for one of the $8$~different $3 \times 3$ squares (the one highlighted in \bgbox{redback}{red}) in which the top and bottom rows are the negation of the middle row evolve so that the top and bottom rows die and the middle cell stays the same.}\label{fig:1_row_3x3}
 		\end{minipage}\hfill\begin{minipage}[b]{0.32\textwidth}
 			\centering\gridbox{1pt}{\begin{tikzpicture}[scale=0.5, every node/.style={transform shape}]%
-				\node[inner sep=0pt,anchor=south west] (glider_loop) at (0.5,0.5) {\includegraphics[width=6cm]{early_life/goe_1_row_proof.png}};
+				\node[inner sep=0pt,anchor=south west] (glider_loop) at (0.5,0.5) {\includegraphics[width=8cm]{early_life/goe_1_row_proof.png}};
 				%\draw[black!20,line width=2pt] (0,0) rectangle (5,-5);
 				
 				\letternode{4}{2}{A}
+				\letternode{5}{2}{B}
 				
 				\letternode{5}{3}{X}
-				\letternode{5}{2}{Y}
+				\letternode{6}{3}{Y}
+				\letternode{7}{3}{Z}
 				\end{tikzpicture}}
-			\caption{In order to correct the problematic $3 \times 3$ block from Figure~\ref{fig:1_row_3x3}, we set cell~A to be dead and cell~Y to be alive, regardless of the state of cell~X.}\label{fig:goe_row_1_proof}
+			\caption{In order to correct the problematic $3 \times 3$ block from Figure~\ref{fig:1_row_3x3}, we set cell~A to be dead and cell~B to be alive, regardless of the state of cell~X.}\label{fig:goe_row_1_proof}
 		\end{minipage}
 	\end{figure}
 	
-	To fix the problem that occurs when a single alive cell is between two dead cells in the middle row, simply set the bottom-right cell (i.e., cell~A in Figure~\ref{fig:goe_row_1_proof}) of that $3 \times 3$ block as dead, rather than alive. To compensate for this cell being dead, we also set the cell to its immediate right (i.e., cell~Y in that figure) to be alive, regardless of whether cell~X is alive or dead. It is then straightforward to verify that the resulting pattern will evolve into the $1 \times (n-2)$ pattern that we desire: all that needs to be checked is that the central cell in this $3 \times 3$ block now stays alive (since it now has exactly 3 live neighbors) and that moving the alive cell from A to Y does not affect the evolution of any of the other $3 \times 3$ blocks to its right (which can be done via a simple case analysis).
+	As a first attempt at fixing the problem that occurs when a single alive cell is between two dead cells in the middle row, simply set the bottom-right cell (i.e., cell~A in Figure~\ref{fig:goe_row_1_proof}) of that $3 \times 3$ block as dead, rather than alive. To compensate for this cell being dead, we also set the cell to its immediate right (i.e., cell~B in that figure) to be alive, regardless of whether cell~X is alive or dead. This corrects the evolution of the problematic $3 \times 3$ arrangement highlighted in red in Figure~\ref{fig:1_row_3x3}: the central cell in this $3 \times 3$ block now stays alive (since it now has exactly 3 live neighbors) and the cell to its right stays dead (since it still has at least 4 live neighbors).
+	
+	However, there is still a problem: if the $3 \times 3$ configuration to the immediate right (i.e., the one containing cells X, Y, and Z in Figure~\ref{fig:goe_row_1_proof}) is the one highlighted in yellow in Figure~\ref{fig:1_row_3x3}, then we also have to move the live cell at \emph{its} bottom-right one cell to the right. If the \emph{next} $3 \times 3$ configuration is also the one highlighted in yellow, we again move its bottom-right cell to the right, and we continue in this way until we finally encounter any other $3 \times 3$ configuration (or the end of the pattern). Straightforward case analysis then shows that the resulting pattern will evolve into the $1 \times (n-2)$ pattern in the central row.
 \end{proof}
 
 The method used in the proof of Theorem~\ref{thm:1_row_goe} is illustrated in Figure~\ref{fig:goe_1_row_eg}, where we start with a (randomly-chosen) pattern with height~$1$ and explicitly construct a parent of it.
 \begin{figure}[!ht]
-	\centering\begin{tikzpicture}[scale=1.25, every node/.style={transform shape}]%
+	\centering\begin{tikzpicture}[scale=1.27, every node/.style={transform shape}]%
 	\node[inner sep=0pt,anchor=west] at (0,0) {\embedlink{1_row_eg}{\patternimg{0.1}{1_row_eg_1}}};
 	\draw [->,rounded corners=0.25cm] (7.75,-0.4) -- (8.25,-0.4) -- (8.25,-0.9);
 	\node[inner sep=0pt,anchor=west] at (2.3,-2.1) {\patternlink{1_row_eg}{\patternimg{0.1}{1_row_eg_2}}};
 	\draw [->,rounded corners=0.25cm] (10.05,-2.5) -- (10.55,-2.5) -- (10.55,-3.0);
 	\node[inner sep=0pt,anchor=west] at (4.6,-4.2) {\patternlink{1_row_eg}{\patternimg{0.1}{1_row_eg_3}}};
 	\end{tikzpicture}
-	\caption{How to use the proof of Theorem~\ref{thm:1_row_goe} to construct a parent (at the bottom) of a pattern with height~$1$ (at the top). First, we place the border around the pattern (displayed in \bgbox{redback2!25!redback}{dark red} in the middle image) and place the pattern's negation in the top and bottom rows of the box (displayed in \bgbox{greenback}{dark green} in the middle image). We then adjust the bottom row slightly (highlighted in \bgbox{greenpastel}{light green} in the bottom image) whenever we see the troublesome configuration from Figure~\ref{fig:goe_row_1_proof}.}\label{fig:goe_1_row_eg}
+	\caption{How to use the proof of Theorem~\ref{thm:1_row_goe} to construct a parent (at the bottom) of a pattern with height~$1$ (at the top). First, we place the border around the pattern (displayed in \bgbox{redback}{red} in the middle image) and place the pattern's negation in the top and bottom rows of the box (displayed in \bgbox{greenpastel}{green} in the middle image). We then adjust the bottom row slightly (highlighted in \bgbox{greenpastel}{green} in the bottom image) whenever we see the troublesome configurations from Figure~\ref{fig:goe_row_1_proof}.}\label{fig:goe_1_row_eg}
 \end{figure}
 
 More sophisticated techniques have been used to prove that there similarly do not exist orphans whose bounding boxes are $2$ or $3$ cells high.\footnote{This was proved by Steven Eker in 2016, using the same computer-assisted methods introduced by Jean Hardouin--Duparc.} On the other hand, there does exist an orphan (and thus a Garden of Eden) with height~$5$, as shown in Figure~\ref{fig:goe_height_5}.\footnote{This orphan was also found by Steven Eker in 2016.} The question of whether or not there exists an orphan whose bounding box is $4$ cells high remains open.
@@ -672,7 +677,7 @@ Finally, Adam P. Goucher launched another distributed online search in 2014 call
 \end{table}
 
 
-\filbreak
+\clearpage% layout fix, remove if layout changes
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
