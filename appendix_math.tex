@@ -15,15 +15,15 @@ In this appendix, we present some of the miscellaneous bits of mathematical know
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Modular Congruence}\label{sec:modular_arithmetic}\index{modular congruence}\index{mod|see {modular congruence}}
 
-When we divide two integers by each other, we get a \emph{quotient} (i.e., the integer result of division) and a \emph{remainder} (i.e., a piece that is left over from the integer division). For example, dividing $7$ by $3$ gives the quotient $q = \lfloor 7/3 \rfloor = 2$ with a remainder of $r = 1$. The number that we divide by ($3$ in this example) is called the \emph{modulus}, and the remainder is always between $0$ (inclusive) and the modulus (exclusive).
+When we divide two integers by each other, we get a \textbf{quotient} (i.e., the integer result of division) and a \textbf{remainder} (i.e., a piece that is left over from the integer division). For example, dividing $7$ by $3$ gives the quotient $q = \lfloor 7/3 \rfloor = 2$ with a remainder of $r = 1$. The number that we divide by ($3$ in this example) is called the \textbf{modulus}, and the remainder is always between $0$ (inclusive) and the modulus (exclusive).
 
-Modular congruence is a way of grouping numbers together based on their remainder upon division by a given modulus $n \geq 2$. For example, if the modulus is $n = 3$ then we say that $1$, $4$, $7$, $10$, and so on are all \emph{congruent modulo $3$}, since they all have the same remainder ($1$) upon division by $3$. Equivalently, we say that two integers $a$ and $b$ are \emph{congruent modulo $n$} if $a-b$ is an integer multiple of $n$, and in this case we write
+Modular congruence is a way of grouping numbers together based on their remainder upon division by a given modulus $n \geq 2$. For example, if the modulus is $n = 3$ then we say that $1$, $4$, $7$, $10$, and so on are all \textbf{congruent modulo $\mathbf{3}$}, since they all have the same remainder ($1$) upon division by $3$. Equivalently, we say that two integers $a$ and $b$ are \textbf{congruent modulo $\mathbf{n}$} if $a-b$ is an integer multiple of $n$, and in this case we write
 \[
 	a \equiv b \pmod{n}.
 \]
 For example, $7 \equiv 1 \pmod{3}$ since $7 - 1 = 6$ is a multiple of $3$.
 
-Congruence modulo $n$ provides a way partitioning the set of integers into $n$ disjoint sets, called \emph{congruence classes}, each consisting of all integers that are congruent to each other. For example, if $n = 2$ then there are two congruence classes: the set of even integers and the set of odd integers. If $n = 3$ then there are three congruence classes:\footnote{Negative integers can be congruent to each other, and do belong to congruence classes. For example, $7 \equiv -5 \pmod{3}$ since $7-(-5) = 12$ is a multiple of $3$, so $7$ and $-5$ belong to the same mod-$3$ congruence class.}
+Congruence modulo $n$ provides a way partitioning the set of integers into $n$ disjoint sets, called \textbf{congruence classes}, each consisting of all integers that are congruent to each other. For example, if $n = 2$ then there are two congruence classes: the set of even integers and the set of odd integers. If $n = 3$ then there are three congruence classes:\footnote{Negative integers can be congruent to each other, and do belong to congruence classes. For example, $7 \equiv -5 \pmod{3}$ since $7-(-5) = 12$ is a multiple of $3$, so $7$ and $-5$ belong to the same mod-$3$ congruence class.}
 \begin{align*}
 	\{\ldots, -6, -3, 0, 3, 6, 9, \ldots\}, \quad \{\ldots, -5, -2, 1, 4, 7, 10, \ldots\}, \quad \text{and} \quad \{\ldots, -4, -1, 2, 5, 8, 11, \ldots\}.
 \end{align*}
@@ -43,7 +43,7 @@ Suppose that we know of some repeatable way of delaying a signal in a Life circu
 
 On the other hand, if we only know repeatable methods of delaying a signal in a Life circuit by $6$ or $10$ generations, for example, then we can only implement delays of an \emph{even} number of generations. The problem here is that $6$ and $10$ are each even, so every number of the form $6m + 10n$ (where $m$ and $n$ are integers) is even as well. There was no such limitation when the delays were $3$ and $7$ generations, since there is no common number larger than $1$ that they are each multiples of.
 
-This line of thinking leads naturally to the \emph{greatest common divisor} of two non-zero integers $a$ and $b$: the largest positive integer that both $a$ and $b$ are integer multiples of, which we denote by $\mathrm{gcd}(a,b)$. For example, $\mathrm{gcd}(6,10) = 2$, since $6$ and $10$ are each multiples of $2$, but they are not each multiples of any larger integer, while $\mathrm{gcd}(3,7) = 1$. The following theorem tells us that what we informally observed earlier really is true: the integers of the form $am + bn$ are exactly the multiples of $\mathrm{gcd}(a,b)$.\footnote{We might have to choose $m$ and/or $n$ to be negative to achieve certain multiples of $\mathrm{gcd}(a,b)$, though. For example, no \emph{positive} integer values of $m$ and $n$ give $3m + 7n = 11$: we need to allow one of them to be negative, as in the solution $m = 6$, $n = -1$.}
+This line of thinking leads naturally to the \textbf{greatest common divisor} of two non-zero integers $a$ and $b$: the largest positive integer that both $a$ and $b$ are integer multiples of, which we denote by $\mathrm{gcd}(a,b)$. For example, $\mathrm{gcd}(6,10) = 2$, since $6$ and $10$ are each multiples of $2$, but they are not each multiples of any larger integer, while $\mathrm{gcd}(3,7) = 1$. The following theorem tells us that what we informally observed earlier really is true: the integers of the form $am + bn$ are exactly the multiples of $\mathrm{gcd}(a,b)$.\footnote{We might have to choose $m$ and/or $n$ to be negative to achieve certain multiples of $\mathrm{gcd}(a,b)$, though. For example, no \emph{positive} integer values of $m$ and $n$ give $3m + 7n = 11$: we need to allow one of them to be negative, as in the solution $m = 6$, $n = -1$.}
 
 \begin{theorem}[B\'ezout's identity]\label{thm:linear_diophantine}
 	Let $a, b,$ and $c$ be non-zero integers. Then there exist integers $m$ and $n$ such that
@@ -67,9 +67,9 @@ This line of thinking leads naturally to the \emph{greatest common divisor} of t
 	By taking $k$ large enough and positive (if $a < 0$ and $b > 0$) or large enough and negative (if $a > 0$ and $b < 0$), this gives us a positive solution to the original equation $am + bn = c$.
 \end{proof}
 
-In the special case when $\mathrm{gcd}(a,b) = 1$ (in which case $a$ and $b$ are said to be \emph{relatively prime}),\index{relatively prime} Theorem~\ref{thm:linear_diophantine} tells us that \emph{every} integer $c$ can be written in the form $c = am + bn$ for some integers $m$ and $n$. Equivalently, every mod-$b$ congruence class contains a multiple of $a$, and every mod-$a$ congruence class contains a multiple of $b$.
+In the special case when $\mathrm{gcd}(a,b) = 1$ (in which case $a$ and $b$ are said to be \textbf{relatively prime}),\index{relatively prime} Theorem~\ref{thm:linear_diophantine} tells us that \emph{every} integer $c$ can be written in the form $c = am + bn$ for some integers $m$ and $n$. Equivalently, every mod-$b$ congruence class contains a multiple of $a$, and every mod-$a$ congruence class contains a multiple of $b$.
 
-Complementary to the greatest common divisor is the \emph{least common multiple}\index{least common multiple}\index{lcm|see {least common multiple}} of two positive integers $a$ and $b$: the smallest positive integer that is a multiple of each of $a$ and $b$, which we denote by $\mathrm{lcm}(a,b)$. For example, $\mathrm{lcm}(3,7) = 21$ and $\mathrm{lcm}(6,10) = 30$. It is straightforward to verify that $\mathrm{lcm}(a,b) = ab/\mathrm{gcd}(a,b)$ for all integers $a$ and $b$.
+Complementary to the greatest common divisor is the \textbf{least common multiple}\index{least common multiple}\index{lcm|see {least common multiple}} of two positive integers $a$ and $b$: the smallest positive integer that is a multiple of each of $a$ and $b$, which we denote by $\mathrm{lcm}(a,b)$. For example, $\mathrm{lcm}(3,7) = 21$ and $\mathrm{lcm}(6,10) = 30$. It is straightforward to verify that $\mathrm{lcm}(a,b) = ab/\mathrm{gcd}(a,b)$ for all integers $a$ and $b$.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -77,12 +77,12 @@ Complementary to the greatest common divisor is the \emph{least common multiple}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Big-$\Theta$ Notation}\label{sec:bigO}
 
-When describing the long-term behaviour of a Life pattern, we often just want to focus on the ``big picture'', while suppressing the ``fine details''. For example, the pattern displayed in Figure~\ref{fig:max} grows extremely quickly, filling the entire Life plane with zebra stripes\index{zebra stripes} as its four corners expand outward. Patterns that fill the plane like this are called \emph{spacefillers},\index{spacefiller} and this one is called \emph{max}.\footnote{Its name is a reference to the fact that its growth rate is maximal---no pattern can expand faster than $c/2$ in each direction (see Theorem~\ref{thm:speed_limits}), and no pattern can tile the plane with a stable configuration that is more dense than zebra stripes (see Theorem~\ref{thm:still_life_density}).}\index{max}
+When describing the long-term behaviour of a Life pattern, we often just want to focus on the ``big picture'', while suppressing the ``fine details''. For example, the pattern displayed in Figure~\ref{fig:max} grows extremely quickly, filling the entire Life plane with zebra stripes\index{zebra stripes} as its four corners expand outward. Patterns that fill the plane like this are called \textbf{spacefillers},\index{spacefiller} and this one is called \textbf{max}.\footnote{Its name is a reference to the fact that its growth rate is maximal---no pattern can expand faster than $c/2$ in each direction (see Theorem~\ref{thm:speed_limits}), and no pattern can tile the plane with a stable configuration that is more dense than zebra stripes (see Theorem~\ref{thm:still_life_density}).}\index{max}
 
 \begin{figure}[!htb]
 	\centering
 	\embedlink{max}{\vcenteredhbox{\patternimg{0.093}{max_0}} \vcenteredhbox{\genarrow{100}} \vcenteredhbox{\patternimg{0.093}{max_100}}}
-	\caption{The \emph{max} spacefiller. Constructed by Tim Coe in October 1995.}\label{fig:max}
+	\caption{The \textbf{max} spacefiller. Constructed by Tim Coe in October 1995.}\label{fig:max}
 \end{figure}
 
 To communicate how quickly this pattern grows, we could of course give an explicit formula for its population $p(t)$ in generation~$t$, which has the following form:
