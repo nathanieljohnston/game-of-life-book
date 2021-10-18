@@ -501,7 +501,7 @@ Now that we know that small Gardens of Eden (and orphans) exist, we would like t
 	\begin{subfigure}{.31\textwidth}
 		\centering
 		\patternimglink{0.1}{goe_record_alive}
-		\caption{A Garden of Eden with 45~live cells, found by Nicolay Beluchenko in 2009.}
+		\caption{An orphan with 45~live cells, found by Nicolay Beluchenko in 2009.}
 		\label{fig:goe_record_alive}
 	\end{subfigure} \ \ \ \ % 
 	\begin{subfigure}{.31\textwidth}
@@ -513,13 +513,13 @@ Now that we know that small Gardens of Eden (and orphans) exist, we would like t
 	\begin{subfigure}{.31\textwidth}
 		\centering
 		\patternimglink{0.1}{goe_record_bb}
-		\caption{A Garden of Eden in a bounding box with area $96 = 8 \times 12$, found by Steven Eker in 2016.}
+		\caption{An orphan in a bounding box with area $96 = 8 \times 12$, found by Steven Eker in 2016.}
 		\label{fig:goe_record_bb}
 	\end{subfigure}
-	\caption{The current smallest-known Gardens of Eden by (a)~number of live cells, (b)~total number of live and dead cells specified in the orphan, and (c)~bounding box area.}\label{fig:goe_records}
+	\caption{The current smallest-known orphans by (a)~number of live cells, (b)~total number of live and dead cells specified, and (c)~bounding box area.}\label{fig:goe_records}
 \end{figure}
 
-On the other hand, there are also results that show that orphans cannot be ``too'' small. For example, exhaustive computer searches have shown that there does not exist an orphan that fits within a $6 \times 7$ bounding box.\footnote{This computation was carried out independently by Steven Eker and Marijn Heule in 2016.} In a similar vein, we now show that there does not exist a Garden of Eden that has a bounding box with height one.\footnote{This theorem was originally proved by Jean Hardouin--Duparc in 1974 \cite{Har74}.}
+On the other hand, there are also results that show that orphans cannot be ``too'' small. For example, exhaustive computer searches have shown that there does not exist an orphan that fits within a $6 \times 7$ bounding box.\footnote{This computation was carried out independently by Steven Eker and Marijn Heule in 2016.} In a similar vein, we now show that there does not exist a Garden of Eden (and thus there does not exist an orphan) that has a bounding box with height one.\footnote{This theorem was originally proved by Jean Hardouin--Duparc in 1974 \cite{Har74}.}
 
 \begin{theorem}[No Thin Gardens of Eden]\label{thm:1_row_goe}
 	In Conway's Game of Life, every pattern that fits within a bounding box of height~$1$ has a parent. In other words, there do not exist Gardens of Eden with height~$1$.
@@ -579,11 +579,11 @@ The method used in the proof of Theorem~\ref{thm:1_row_goe} is illustrated in Fi
 	\caption{How to use the proof of Theorem~\ref{thm:1_row_goe} to construct a parent (at the bottom) of a pattern with height~$1$ (at the top). First, we place the border around the pattern (displayed in \bgbox{redback}{red} in the middle image) and place the pattern's negation in the top and bottom rows of the box (displayed in \bgbox{greenpastel}{green} in the middle image). We then adjust the bottom row slightly (highlighted in \bgbox{greenpastel}{green} in the bottom image) whenever we see the troublesome configurations from Figure~\ref{fig:goe_row_1_proof}.}\label{fig:goe_1_row_eg}
 \end{figure}
 
-More sophisticated techniques have been used to prove that there similarly do not exist orphans whose bounding boxes are $2$ or $3$ cells high.\footnote{This was proved by Steven Eker in 2016, using the same computer-assisted methods introduced by Jean Hardouin--Duparc.} On the other hand, there does exist an orphan (and thus a Garden of Eden) with height~$5$, as shown in Figure~\ref{fig:goe_height_5}.\footnote{This orphan was also found by Steven Eker in 2016.} The question of whether or not there exists an orphan whose bounding box is $4$ cells high remains open.
+More sophisticated techniques have been used to prove that there similarly do not exist orphans whose bounding boxes are $2$ or $3$ cells high.\footnote{This was proved by Steven Eker in 2016, using the same computer-assisted methods introduced by Jean Hardouin--Duparc.} On the other hand, there \emph{does} exist an orphan (and thus a Garden of Eden) with height~$5$, as shown in Figure~\ref{fig:goe_height_5}.\footnote{This orphan was also found by Steven Eker in 2016.} The question of whether or not there exists an orphan whose bounding box is $4$ cells high remains open.
 
 \begin{figure}[!htb]
 	\centering\embedlink{goe_height_5}{\patternimg{0.1}{goe_height_5}}
-	\caption{A Garden of Eden and orphan that fits within a $5 \times 45$ bounding box. No Garden of Eden with height less than $5$ is currently known.}\label{fig:goe_height_5}
+	\caption{An orphan that fits within a $5 \times 45$ bounding box. No Garden of Eden or orphan with height less than $5$ is currently known.}\label{fig:goe_height_5}
 \end{figure}
 
 
