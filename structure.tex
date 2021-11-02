@@ -1,4 +1,7 @@
-%% WATERMARKING COMMANDS. REMOVE FOR FINAL PUBLISHED VERSION OF BOOK
+\ifdefined\FORPRINTING
+% No watermarking for printed version of book.
+\else
+%% WATERMARKING COMMANDS.
 \usepackage{draftwatermark}
 \SetWatermarkText{Preprint from conwaylife.com/book (\today). \qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad ${}$}
 \SetWatermarkColor[gray]{0.75}
@@ -6,6 +9,7 @@
 \SetWatermarkAngle{90}
 \SetWatermarkHorCenter{19.6cm}
 %% END WATERMARKING
+\fi
 
 \usepackage[top=28mm,left=28mm,bottom=22mm,right=28mm,headsep=10pt,a4paper]{geometry}
 
@@ -767,8 +771,14 @@ innerbottommargin=5pt]{cBox}
 %	HYPERLINKS IN THE DOCUMENTS
 %----------------------------------------------------------------------------------------
 
-\usepackage{bookmark,embedfile}
-\hypersetup{hidelinks,filebordercolor=red,menubordercolor=red,linkbordercolor=red,backref=true,pagebackref=true,hyperindex=true,colorlinks=true,breaklinks=true,urlcolor=ocre,bookmarks=true,citecolor=redback2,linkcolor=linkcol,bookmarksopen=false,pdftitle={Title},pdfauthor={Author}}
+\usepackage{bookmark}
+\ifdefined\FORPRINTING
+% If printing, links in black
+\hypersetup{hidelinks,filebordercolor=red,menubordercolor=red,linkbordercolor=red,backref=true,pagebackref=true,hyperindex=true,colorlinks=true,breaklinks=true,urlcolor=black,bookmarks=true,citecolor=black,linkcolor=black,bookmarksopen=false}
+\else
+\usepackage{embedfile}
+\hypersetup{hidelinks,filebordercolor=red,menubordercolor=red,linkbordercolor=red,backref=true,pagebackref=true,hyperindex=true,colorlinks=true,breaklinks=true,urlcolor=ocre,bookmarks=true,citecolor=redback2,linkcolor=linkcol,bookmarksopen=false}
+\fi
 \hypersetup{
 	pdftitle = {Conway's Game of Life - Mathematics and Construction},
 	pdfauthor = {Nathaniel Johnston and Dave Greene}
@@ -826,8 +836,8 @@ addtohook={%
 \renewcommand{\theapgsembly}{\thechapter.\arabic{apgsembly}}% apgsembly # is <chapter>.<apgsembly>
 
 
-\newcommand*{\patternlink}[2]{\embeddedfilelink{patterns/\chapterfolder #1.txt}{#2}}
-\newcommand*{\embedlink}[2]{\embedfile{patterns/\chapterfolder #1.txt}\patternlink{#1}{#2}}
+\newcommand*{\patternlink}[2]{\ifdefined\FORPRINTING #2\else\embeddedfilelink{patterns/\chapterfolder #1.txt}{#2}\fi}
+\newcommand*{\embedlink}[2]{\ifdefined\FORPRINTING\else\embedfile{patterns/\chapterfolder #1.txt}\fi\patternlink{#1}{#2}}
 \newcommand*{\patternimg}[2]{\includegraphics[scale=#1]{\chapterfolder #2.png}}
 \newcommand*{\patternimglink}[2]{\embedlink{#2}{\patternimg{#1}{#2}}}
 
