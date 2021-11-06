@@ -431,8 +431,7 @@ Names like ``middleweight emulator'' and ``heavyweight volcano'' that are used f
 
 While two dot sparkers cannot be combined with each other to create a non-trivial oscillator (since two dot sparks cannot give the three live neighbors required to give birth to a new cell), they can instead be combined with other types of sparkers. Just like with domino sparkers, we typically prefer oscillators that emit their sparks far away from the rest of the oscillator, so supervolcanoes and the superfountain from Figure~\ref{fig:superfountain} are rather remarkable, despite their large size.
 
-In the sparkers that we have seen so far, the spark was always separated from the rest of the oscillator by at least one dead cell. Perhaps surprisingly, sparks can also sometimes be useful even when they are directly connected to the rest of the oscillator, as long as the spark itself is in a location that is unoccupied during the oscillator's other phases. If the spark is connected orthogonally to another live cell then it is called a \textbf{finger spark}\index{finger spark}, and if it is connected diagonally to another live cell then it is called a \textbf{thumb spark}\index{thumb spark}.\footnote{Some sources instead define a finger to be a connected spark that dies after 2~generations (instead of just 1). Neither the caterer nor the T-nosed p$4$ produce finger sparks under this alternate definition.} Some examples of finger and thumb sparkers are presented in Figure~\ref{fig:finger_thumb_sparks}.
-
+% Ideally, this figure would be one paragraph later.
 \begin{figure}[!htb]
 	\centering
 	\begin{tabular}{@{}cccc@{}}
@@ -465,10 +464,11 @@ In the sparkers that we have seen so far, the spark was always separated from th
 	\label{fig:finger_thumb_sparks}
 \end{figure}
 
+In the sparkers that we have seen so far, the spark was always separated from the rest of the oscillator by at least one dead cell. Perhaps surprisingly, sparks can also sometimes be useful even when they are directly connected to the rest of the oscillator, as long as the spark itself is in a location that is unoccupied during the oscillator's other phases. If the spark is connected orthogonally to another live cell then it is called a \textbf{finger spark}\index{finger spark}, and if it is connected diagonally to another live cell then it is called a \textbf{thumb spark}\index{thumb spark}.\footnote{Some sources instead define a finger to be a connected spark that dies after 2~generations (instead of just 1). Neither the caterer nor the T-nosed p$4$ produce finger sparks under this alternate definition.} Some examples of finger and thumb sparkers are presented in Figure~\ref{fig:finger_thumb_sparks}.
+
 It is perhaps less obvious that these finger and thumb sparks can be used to create composite period oscillators, so we present some explicit examples in Figure~\ref{fig:composite_periods}. Since finger and thumb sparks are less accessible than the other sparks that we have seen (i.e., they are closer to the ``body'' of the oscillator), it is often difficult to combine them with each other, so we instead typically combine them with dot or domino sparks.
 
-It is also worth pointing out that the caterer is particularly useful as a result of having such a small size and period. Not only is it the smallest known period~$3$ oscillator, but its spark is used in the construction of what are currently the smallest known oscillators of period~$21$, $24$, $33$ (Figure~\ref{fig:p33_oscillator}), $39$, $66$, and $93$.
-
+% Ideally, this figure would be one paragraph later.
 \begin{figure}[!htb]
 	\centering
 	\begin{tabular}{@{}ccc@{}}
@@ -494,6 +494,8 @@ It is also worth pointing out that the caterer is particularly useful as a resul
 	\caption{Some oscillators that work by combining finger and thumb sparks with other sparks. Finger sparks can be combined with either dot spark predecessors (as in (b)) or standard domino sparks (as in (c)), but thumb sparks are best paired with domino sparks (as in (a)). In all cases, the cell that oscillates at the full period (thus making the oscillator non-trivial) is highlighted in \bgbox{greenback}{green}.}
 	\label{fig:composite_periods}
 \end{figure}
+
+It is also worth pointing out that the caterer is particularly useful as a result of having such a small size and period. Not only is it the smallest known period~$3$ oscillator, but its spark is used in the construction of what are currently the smallest known oscillators of period~$21$, $24$, $33$ (Figure~\ref{fig:p33_oscillator}), $39$, $66$, and $93$.
 
 Finally, there are two more types of sparkers that are somewhat less common, but possibly even more useful than the other sparkers that we have seen so far. Some sparkers create a \textbf{duoplet}\index{duoplet} spark (i.e., a spark consisting of two diagonally-connected alive cells\footnote{The term ``duoplet'' technically refers to \emph{any} connected two-cell object, but since the only other connected two-cell object is the domino spark, there is not much chance for ambiguity in using the term to refer to two diagonally-connected cells.}), such as the twin bees shuttle\index{twin bees!shuttle} that we constructed back in Section~\ref{sec:twin_bees}. Another type of spark, which it seems appropriate to call a \textbf{banana spark}\index{banana spark} based on its shape, is emitted by the variant of the queen bee shuttle\index{queen bee!shuttle} (called a \textbf{buckaroo})\index{buckaroo} displayed in Figure~\ref{fig:buckaroo}. Recall that we demonstrated how to construct this oscillator in Exercise~\ref{exer:queen_bee_eater_1}.
 
@@ -969,7 +971,8 @@ It is perhaps worth noting that these Herschel tracks with $k \geq 13$ are extre
 
 We have now seen numerous techniques for constructing oscillators of different periods, so we finally return to the question that we have been dancing around for the entirety of this chapter: do there exist oscillators with all periods in Conway's Game of Life? If so, then Life is said to be \textbf{omniperiodic}\index{omniperiodic}, and this omniperiodicity problem is one of its oldest and most well-studied questions.
 
-\begin{table}[!htb]\vspace*{0.05in}
+\begingroup\renewcommand{\arraystretch}{0.99}
+\begin{table}[!ptb]\vspace*{0.05in}
 	\begin{center}		
 		\begin{tabular}{c c l}
 			\toprule
@@ -1021,6 +1024,7 @@ We have now seen numerous techniques for constructing oscillators of different p
 		\caption{A summary of the status of the omniperiodicity problem in Conway's Game of Life. The only four periods for which it is unknown how to construct an oscillator are 19, 34, 38, and 41. Note that some large-period oscillators were found much earlier than 1996 or 2013, and these are not catalogued in this table. For example, the twin bees shuttle has period~$46$ and was found in 1971.}\label{tab:omniperiodic}
 	\end{center}
 \end{table}
+\endgroup
 
 While remarkable progress on this problem has been made over the years, and in fact we have already seen how to construct oscillators with \emph{almost} any period, omniperiodicity in general remains unsolved, as there are still gaps that we do not know how to fill in. In particular, we do not know how to construct oscillators with period 19, 34, 38, or 41.\footnote{Even though we could just place a period~$2$ blinker next to a period~$17$ honey thieves to create a period~$34$ oscillator, we recall that this type of construction is considered ``trivial'' and is thus ignored because no cell oscillates at the full period.} A complete summary of the status of the omniperiodicity problem is given in Table~\ref{tab:omniperiodic}, but we note that this table will likely become out of date reasonably quickly, as oscillators of new periods have been found somewhat regularly in recent years. In particular, new oscillator periods have been constructed in each of the years 2000, 2002, 2009, 2010, 2013, and 2019.\footnote{David Buckingham and Noam Elkies found the first period 39 oscillator in 2000, Elkies found the first period 27 oscillator in 2002, Nicolay Beluchenko found the first known period~37 and~51 oscillators in 2009, Matthias Merzenich found the first known period~31 oscillator in 2010, the Snark-based oscillators of period~43 and~53 were found in 2013, and Luka Okanishi completed the first period~23 oscillator in 2019.}
 
@@ -1279,6 +1283,14 @@ Herschel tracks remain one of the pinnacles of Life technology to this day, alth
 			\item \probdiff{3} period~$8$.
 		\end{enumerate}
 	\end{problem}
+
+
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:p32_pi_hassler_eaters} \probdiff{1}
+		Show how the snakes can be replaced by eater~1s in the period~$32$ ``gourmet''\index{gourmet} oscillator from Figure~\ref{fig:p32_pi_hassler}.
+	\end{problemstar}
 	
 	
 	\mfilbreak
@@ -1309,14 +1321,6 @@ Herschel tracks remain one of the pinnacles of Life technology to this day, alth
 		\begin{center}
 			\patternlink{exercise_pi_hassle}{\vcenteredhbox{\patternimg{0.1}{exercise_pi_hassle_0}} \vcenteredhbox{\genarrow{2}} \vcenteredhbox{\patternimg{0.1}{exercise_pi_hassle_2}} \vcenteredhbox{\genarrow{6}} \vcenteredhbox{\patternimg{0.1}{exercise_pi_hassle_8}}}
 		\end{center}
-	\end{problemstar}
-	
-	
-	\mfilbreak
-	
-	
-	\begin{problemstar}\label{exer:p32_pi_hassler_eaters} \probdiff{1}
-		Show how the snakes can be replaced by eater~1s in the period~$32$ ``gourmet''\index{gourmet} oscillator from Figure~\ref{fig:p32_pi_hassler}.
 	\end{problemstar}
 	
 	
@@ -1551,6 +1555,14 @@ Herschel tracks remain one of the pinnacles of Life technology to this day, alth
 			\item \probdiff{4} The L112 conduit has a slightly faster repeat time than the R64 conduit (58 generations instead of 61). Use the L112 and Fx77 conduits to create an oscillator with period~58, 59, or 60.
 		\end{enumerate}
 	\end{problem}
+
+
+	\mfilbreak
+	
+	
+	\begin{problemstar}\label{exer:phoenix_bb} \probdiff{3}
+		Based on the phoenix oscillator shown in Figure~\ref{fig:phoenix}, we might be tempted to guess that Theorem~\ref{thm:phoenix_oscillate} can be improved to show that no phoenix can ever leave its original bounding box at all. Show that this conjecture is false. That is, find a phoenix that does in fact leave its original bounding box.
+	\end{problemstar}
 	
 	
 	\mfilbreak
@@ -1597,14 +1609,6 @@ Herschel tracks remain one of the pinnacles of Life technology to this day, alth
 		\begin{center}
 			\patternimglink{0.085}{period_3_volatile_pieces}
 		\end{center}
-	\end{problemstar}
-	
-	
-	\mfilbreak
-	
-	
-	\begin{problemstar}\label{exer:phoenix_bb} \probdiff{3}
-		Based on the phoenix oscillator shown in Figure~\ref{fig:phoenix}, we might be tempted to guess that Theorem~\ref{thm:phoenix_oscillate} can be improved to show that no phoenix can ever leave its original bounding box at all. Show that this conjecture is false. That is, find a phoenix that does in fact leave its original bounding box.
 	\end{problemstar}
 	
 	%% EXERCISE END COMMANDS
