@@ -49,6 +49,7 @@ However, there is a somewhat weaker notion of whether or not a still life is ``t
 	\caption{From left to right, these are the block, bi-block, two nameless configurations of two blocks, and the blockade\index{blockade}. The bi-block is a pseudo still life because of the cells highlighted in \bgbox{greenpastel}{green} between the blocks that have more than $3$ neighbors. The middle configuration is not a still life at all since the two cells highlighted in \bgbox{redback}{red} will come to life in the next generation. The fourth and fifth configurations are neither strict nor pseudo still lifes, since there is no dead cell that has more than $3$ live neighbors between any of the pairs of blocks---the cell highlighted in \bgbox{yellowback2}{yellow} is in the neighborhood of both blocks, but is still underpopulated (see Exercise~\ref{exer:quasi_still_life}).}\label{fig:pseudo_not_pseudo}
 \end{figure}
 
+\begingroup\renewcommand{\arraystretch}{0.7}
 \begin{table}[!htp]
 	\begin{center}		
 		\begin{tabular}{Sc Sc Sl Sc Sl}
@@ -97,6 +98,7 @@ However, there is a somewhat weaker notion of whether or not a still life is ``t
 		\caption{A summary of the still lifes with $23$ or fewer live cells.}\label{tab:small_still_lifes}
 	\end{center}
 \end{table}
+\endgroup
 
 With these definitions cleared up, we are now able to list the still lifes with small numbers of live cells. Since the number of still lifes with a given number of live cells grows so quickly, we do not explicitly list all of them,\footnote{For a complete list of all still lifes with $18$ or fewer live cells (and massive lists of larger still lifes as well), see Mark Niemiec's Life pages at \httpsurl{conwaylife.com/ref/mniemiec/lifepage.htm}.} and instead we just say how many there are of each size and give a few examples in Table~\ref{tab:small_still_lifes}. For space reasons, we only list the number of still lifes up to $23$~cells in size, but we note that they have been computed up to $34$~cells \cite{A019473,A056613}.
 
@@ -189,6 +191,9 @@ Some similar families of still lifes come from the snake and long snake, where n
 
 In all of these examples, the still lifes are made up from two very different components: the central portion that can be repeated indefinitely, and the stabilizing end pieces. The $3$-cell pre-block on the ends of each side of the long snakes and long canoes is one commonly-used end piece, and another one is the $4$-cell \textbf{tail}\index{tail} depicted in Figure~\ref{fig:hook_tail}. When naming still lifes that use this component, we typically use the ``with tail'' suffix so that the 4th still life in Figure~\ref{fig:hook_tail_examples}, for example, is called the \textbf{tub with tail}.\index{tub!with tail}\index{boat!with tail}\index{cis}\index{trans}\footnote{Some objects, like the boat, can have a tail added to them in two different ways, so names like \textbf{boat with tail} become insufficient for distinguishing between them. We thus use the \textbf{cis} and \textbf{trans} prefixes (borrowed from organic chemistry) to distinguish cases like this where they were two possible tail orientations. For example, the two boats with tails displayed in the 9-cell strict still life row of Table~\ref{tab:small_still_lifes} are called the \textbf{cis-boat with tail} and the \textbf{trans-boat with tail}.}
 
+In order to construct larger still lifes, we use the fact that if every cell in a $2 \times 2$ square is alive, then every cell that is an immediate neighbor of that $2 \times 2$ square must be dead (i.e., the $2 \times 2$ square must in fact be a block with a border of dead cells around it) in order for the resulting pattern to be a still life. The reason for this is that each cell in the $2 \times 2$ square already has $3$ live neighbors in that $2 \times 2$ square, so adding another one will overcrowd it, causing it to not be stable.\footnote{The term \textbf{stable}\index{stable} is sometimes used to refer to still lifes, and it is sometimes used to refer to both still lifes and oscillators. Which of these two cases is meant is usually clear from context or irrelevant.}
+
+% Ideally this figure would be 1 paragraph earlier.
 \begin{figure}[!htb]
 	\centering
 	\begin{minipage}[b]{.31\textwidth}
@@ -204,8 +209,6 @@ In all of these examples, the still lifes are made up from two very different co
 		\label{fig:hook_tail_examples}
 	\end{minipage}
 \end{figure}
-
-In order to construct larger still lifes, we use the fact that if every cell in a $2 \times 2$ square is alive, then every cell that is an immediate neighbor of that $2 \times 2$ square must be dead (i.e., the $2 \times 2$ square must in fact be a block with a border of dead cells around it) in order for the resulting pattern to be a still life. The reason for this is that each cell in the $2 \times 2$ square already has $3$ live neighbors in that $2 \times 2$ square, so adding another one will overcrowd it, causing it to not be stable.\footnote{The term \textbf{stable}\index{stable} is sometimes used to refer to still lifes, and it is sometimes used to refer to both still lifes and oscillators. Which of these two cases is meant is usually clear from context or irrelevant.}
 
 This tells us that still lifes never have ``thick'' sections---they are made up of single-cell-thick ``paths'' of live cells that potentially branch, curve, loop around on themselves, possibly plus some isolated blocks. Furthermore, it is often\footnote{But not always---see Exercise~\ref{exer:still_life_impossible}.} possible to take a single-cell-thick path (which does not have overpopulated cells like in Figure~\ref{fig:invalid_path}) and add extra junk around it to suppress the birth of nearby dead cells, thus resulting in a still life (see Figure~\ref{fig:still_life_path} for an example).
 
@@ -270,7 +273,7 @@ In addition to eating gliders, eater~1 can also be used to eat lightweight space
 
 In spite of the versatility of eater~1, there are other eaters that are sometimes more useful in certain situations. One example is \textbf{eater~2} (see Figure~\ref{fig:eater_2}): although it is quite a bit larger than eater~1 and has a recovery time of 5 generations (instead of 4), it has the advantages of being symmetric and being able to eat gliders traveling along 4 different parallel paths.
 
-Similarly, \textbf{eater~5} (sometimes called the \textbf{tub with tail eater}\index{tub!with tail eater}, or \textbf{TWIT}\index{TWIT|see {tub with tail eater}} for short) is a small eater\footnote{There are indeed eaters called ``eater~3'' and ``eater~4'' (as well as dozens of other known eaters), but they are somewhat less useful than eaters~1, 2, and~5, so we just introduce these others as we need them.} with a recovery time of 6 generations that is made up of two still lifes and is capable of eating gliders traveling along 2 different perpendicular paths. Eater~5 is is especially useful for the fact that it can eat gliders traveling so close to its edge (in particular, the glider coming from the top-right corner in Figure~\ref{fig:eater_5}), so it can often be used to eat gliders in tight places where other eaters will not fit.
+Similarly, \textbf{eater~5} (sometimes called the \textbf{tub with tail eater}\index{tub!with tail eater}, or \textbf{TWIT}\index{TWIT|see {tub with tail eater}} for short) is a small eater\footnote{There are indeed eaters called ``eater~3'' and ``eater~4'' (as well as dozens of other known eaters), but they are somewhat less useful than eaters~1, 2, and~5, so we do not introduce them here.} with a recovery time of 6 generations that is made up of two still lifes and is capable of eating gliders traveling along 2 different perpendicular paths. Eater~5 is is especially useful for the fact that it can eat gliders traveling so close to its edge (in particular, the glider coming from the top-right corner in Figure~\ref{fig:eater_5}), so it can often be used to eat gliders in tight places where other eaters will not fit.
 
 \begin{figure}[!htb]
 	\begin{subfigure}{.5\textwidth}
@@ -388,8 +391,7 @@ Welding these two eater~1s together might seem somewhat silly in isolation---we 
 	\item[2)] Similarly, because these large patterns that we will construct are already very large, it is often desirable to reduce their size as much as possible, by packing their components as close together as we can without them colliding. Welding still lifes is one of the main techniques for achieving tight packings of components.\medskip
 \end{enumerate}
 
-To give an example that highlights point~(1) above, consider the problem of eating a glider that is positioned as in Figure~\ref{fig:eater_constrained_pre}, but under the restriction that the eater must be contained within the indicated region of the Life plane. Neither eater~1 nor eater~2 come even close to working---if they are positioned in such a way as to eat the glider, they both extend several rows outside of the specified region. However, eater~5 \emph{almost} works---it extends $2$~cells too far in one direction and just $1$~cell too far in the other (see Figure~\ref{fig:eater_constrained_eater_5}).
-
+% Ideally, this figure would be 1 paragraph later.
 \begin{figure}[!htb]
 	\centering
 	\begin{subfigure}{.47\textwidth}
@@ -407,10 +409,11 @@ To give an example that highlights point~(1) above, consider the problem of eati
 	\caption{We are presented with the problem of eating the glider displayed in (a), but under the restriction that the eater we use must live entirely within the light gray region. The only eater that we have seen so far that even comes close to satisfying this restriction is eater~5, so we use that as our starting point in (b).}\label{fig:eater_constrained_eater_5_first}
 \end{figure}
 
+To give an example that highlights point~(1) above, consider the problem of eating a glider that is positioned as in Figure~\ref{fig:eater_constrained_pre}, but under the restriction that the eater must be contained within the indicated region of the Life plane. Neither eater~1 nor eater~2 come even close to working---if they are positioned in such a way as to eat the glider, they both extend several rows outside of the specified region. However, eater~5 \emph{almost} works---it extends $2$~cells too far in one direction and just $1$~cell too far in the other (see Figure~\ref{fig:eater_constrained_eater_5}).
+
 To make this eater fit within the specified region, we keep all of the live cells within the region, discard those outside of the region, and then try to add more live cells within the region in order to restore stability and its eating ability. We quickly find that we need to add some live cells to the left and to the bottom-left of the tub in order for the eating reaction to still work.
 
-However, placing live cells near a tub is difficult to do while preserving stability, so we change the tub to a boat and arrive at the pattern in Figure~\ref{fig:eater_constrained_eater_5_b}. This pattern would work as an eater if it were stable, but unfortunately two nearby dead cells come to life in the next generation. To fix this problem, we just extend the pattern to the west and south so as to overpopulate those two cells, until we eventually arrive at a pattern that is completely stable, as in Figure~\ref{fig:eater_constrained_done}. This eater is extremely useful precisely because it eats a glider so close to its corner, and we will make heavy use of it in Section~\ref{sec:herschel_track}.
-
+% Ideally, this figure would be 1 paragraph later.
 \begin{figure}[!htb]
 	\centering
 	\begin{subfigure}{.4\textwidth}
@@ -428,6 +431,8 @@ However, placing live cells near a tub is difficult to do while preserving stabi
 	\end{subfigure}
 	\caption{An illustration of one way of transforming eater~5 into an eater that fits within the \bgbox{gridgray!40}{light gray} region. The pattern (a) is not quite stable, since two nearby dead cells come to life in the next generation. The eater depicted in (b) is one solution to this problem, and it has a recovery time of $6$ generations (just like eater~5 itself).}\label{fig:eater_constrained_eater_5_both_done}
 \end{figure}
+
+However, placing live cells near a tub is difficult to do while preserving stability, so we change the tub to a boat and arrive at the pattern in Figure~\ref{fig:eater_constrained_eater_5_b}. This pattern would work as an eater if it were stable, but unfortunately two nearby dead cells come to life in the next generation. To fix this problem, we just extend the pattern to the west and south so as to overpopulate those two cells, until we eventually arrive at a pattern that is completely stable, as in Figure~\ref{fig:eater_constrained_done}. This eater is extremely useful precisely because it eats a glider so close to its corner, and we will make heavy use of it in Section~\ref{sec:herschel_track}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -250,6 +250,10 @@ In order to stabilize the twin bees, we take a cue from the queen bee and try pl
 	\caption{Placing two blocks next to the debris left behind by twin bees destroys that debris in 5~generations, while leaving the blocks intact.}\label{fig:twin_bees_debris_eat}
 \end{figure}
 
+
+\clearpage% clear a dangling line at the page end that looks awkward
+
+
 We now do exactly what we did with the queen bee: we place blocks on \emph{both} sides of the twin bees so that they reflect from the right to the left, their debris is destroyed, then they reflect from the left to the right, their debris is destroyed again, and then they repeat. This whole process takes $23 + 23 = 46$ generations to complete, and results in the period~46 oscillator known as the \textbf{twin bees shuttle}\index{twin bees!shuttle} displayed in Figure~\ref{fig:twin_bees_shuttle}.
 
 \begin{figure}[!htb]
@@ -362,8 +366,7 @@ To highlight the difficulty of defining methuselahs in a rigorous way, note that
 
 Another potential problem that arises when discussing methuselahs and stability comes from the fact that we already saw patterns with just 12 cells that grow indefinitely: the block-laying and glider-producing switch engines\footnote{This can easily be reduced to 11 cells by removing one of the cells in the block in either pattern.} of Section~\ref{sec:switch_engine}. This is not too difficult to take care of: even though these patterns grow forever, they do so in a regular and predictable way. For example, to know what a block-laying switch engine looks like in generation $5{\thousep}000{\thousep}000$, we don't actually need to evolve it $5{\thousep}000{\thousep}000$ times: we could simply move the switch engine the correct number of spaces to the northeast and paste a trail of blocks behind it. We could thus say, for example, that the block-laying switch engine stabilizes once it enters the periodic portion of its evolution where it repeatedly lays $8$ blocks every $288$ generations.
 
-These problems might seem simple enough to overcome by tweaking our definitions carefully, but they are just the tip of the iceberg when it comes to what can go wrong when trying to rigorously define methuselahs and what it means for a pattern to stabilize. As yet another example, consider the remarkable 16-cell pattern\footnote{Found by Nick Gotts in 2005.} depicted in Figure~\ref{fig:ark_736692}, which takes $736{\thousep}692$ generations to stabilize.
-
+% This figure ideally should be 1 paragraph later.
 \begin{figure}[!htb]
 	\centering
 	\begin{minipage}[b]{0.4\textwidth}
@@ -375,6 +378,8 @@ These problems might seem simple enough to overcome by tweaking our definitions 
 		\caption{A 16-cell pattern that takes a whopping $736{\thousep}692$ generations to stabilize. The $8$-cell objects at the top-right and bottom-left individually are just predecessors of the switch engine, so this pattern is an ark.}\label{fig:ark_736692}
 	\end{minipage}
 \end{figure}
+
+These problems might seem simple enough to overcome by tweaking our definitions carefully, but they are just the tip of the iceberg when it comes to what can go wrong when trying to rigorously define methuselahs and what it means for a pattern to stabilize. As yet another example, consider the remarkable 16-cell pattern\footnote{Found by Nick Gotts in 2005.} depicted in Figure~\ref{fig:ark_736692}, which takes $736{\thousep}692$ generations to stabilize.
 
 The ``problem'' with this pattern is that its non-stabilization is rather artificial; it evolves into adjacent block-laying and glider-producing switch engines, which interact in such a way as to fire a glider backward toward some debris every $2{\thousep}304$ generations. Every time this backward glider hits the debris, it transforms it into something slightly different and unpredictable. This process repeats more than 250 times before it breaks down and a glider destroys the debris enough that future gliders pass right through without touching it at all. However, by this point the pattern has been growing for over $700{\thousep}000$ generations into the huge mess shown in Figure~\ref{fig:ark_736692_stabilized}.
 
