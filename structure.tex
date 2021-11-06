@@ -11,7 +11,11 @@
 %% END WATERMARKING
 \fi
 
-\usepackage[top=28mm,left=28mm,bottom=22mm,right=28mm,headsep=10pt,a4paper]{geometry}
+\ifdefined\FORPRINTING
+\usepackage[top=28mm,inner=33.9mm,bottom=22mm,outer=28mm,headsep=10pt,letterpaper]{geometry}
+\else
+\usepackage[top=28mm,left=30.95mm,bottom=22mm,right=30.95mm,headsep=10pt,letterpaper]{geometry}
+\fi
 
 % BEGIN adjust footnote font family
 \usepackage{etoolbox}
