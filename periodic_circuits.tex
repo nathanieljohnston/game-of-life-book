@@ -7,15 +7,15 @@
 \chapter{Periodic Circuitry}\label{chp:periodic_circuitry}
 
 
-\vspace*{-0.4in}
+\vspace*{-0.5in}
 \epigraph{Sometimes you're a glider, sometimes a spaceship, and sometimes just a hole.}{David Goodenough}
-\vspace*{0.4in}
+\vspace*{0.1in}
 
 
 \noindent The breeder that we constructed in Section~\ref{sec:gosper_breeder} demonstrated a very important fact about how we will proceed with Life from this point on---we typically construct large patterns that do unusual things via a two-step process:\smallskip
 
 \begin{enumerate}
-	\item[1)] First, we design a ``schematic'' that illustrates the rough shape of the object and where the gliders (our standard building blocks) will travel. For example, for the breeder we wanted to construct a pattern that synthesizes an endless row of Gosper glider guns. We thus need the source of gliders that create those guns to move (i.e., we need them to come from rakes), so we reasonably quickly arrive at the schematic shown in Figure~\ref{fig:ggg_breeder_schematic}.\bigskip
+	\item[1)] First, we design a schematic that illustrates the rough shape of the object and where the gliders (our standard building blocks) will travel. For example, for the breeder we wanted to construct a pattern that synthesizes an endless row of Gosper glider guns. We thus need the source of gliders that create those guns to move (i.e., we need them to come from rakes), so we reasonably quickly arrive at the schematic shown in Figure~\ref{fig:ggg_breeder_schematic}.\bigskip
 	
 	\noindent\begin{minipage}{\linewidth}
 		\centering
@@ -61,6 +61,9 @@ The simplest set of circuitry that exists is based off of the queen bee shuttle 
 
 Because the pentadecathlon\index{pentadecathlon} has period $15$, which is a divisor of $30$, it works very well with other period~$30$ circuitry. In particular, it can be used to reflect gliders in numerous different ways that are shown in Figure~\ref{fig:p30_reflectors}. The reflection shown in Figure~\ref{fig:p30_relay} is the same one that we saw back in the period~$60$ oscillator of Figure~\ref{fig:relay}, but the other two are new.
 
+In particular, Figure~\ref{fig:p30_180_reflect} shows how two pentadecathlons can be used as a $180$-degree reflector with slightly different timing and positioning than the one that we already knew about (i.e., the one in Figure~\ref{fig:p30_relay}), and Figure~\ref{fig:p30_90_reflect_penta} shows that two pentadecathlons can be used to create a $90$-degree color-preserving reflector. There are also a few other period~$30$-friendly ways to reflect gliders aside from using pentadecathlons and buckaroos. We will see some color-changing $90$-degree methods in Figures~\ref{fig:p15_bouncer} and~\ref{fig:p5_bouncer}, and two more color-preserving $90$-degree options in Exercises~\ref{exer:bumper_high_period}(c) and~\ref{exer:bumper_high_period}(d).\footnote{It is also trivially the case that stable reflectors work with glider streams whose period is a large enough multiple of~$30$ (at least~$60$ in the case of the Snark).}
+
+% Ideally 1 paragraph earlier
 \begin{figure}[!htb]
 	\centering
 	\begin{tabular}{@{}ccc@{}}
@@ -86,8 +89,6 @@ Because the pentadecathlon\index{pentadecathlon} has period $15$, which is a div
 	\caption{Some period~$15$ pentadecathlon-based reflectors that work well with glider streams whose period is a multiple of~$15$ (the reflector (c) requires period at least~$45$). Input gliders are \bgbox{greenback}{green}, while the location where they will be $30$ generations later is displayed in \bgbox{orangeback}{orange}.}
 	\label{fig:p30_reflectors}
 \end{figure}
-
-In particular, Figure~\ref{fig:p30_180_reflect} shows how two pentadecathlons can be used as a $180$-degree reflector with slightly different timing and positioning than the one that we already knew about (i.e., the one in Figure~\ref{fig:p30_relay}), and Figure~\ref{fig:p30_90_reflect_penta} shows that two pentadecathlons can be used to create a $90$-degree color-preserving reflector. There are also a few other period~$30$-friendly ways to reflect gliders aside from using pentadecathlons and buckaroos. We will see some color-changing $90$-degree methods in Figures~\ref{fig:p15_bouncer} and~\ref{fig:p5_bouncer}, and two more color-preserving $90$-degree options in Exercises~\ref{exer:bumper_high_period}(c) and~\ref{exer:bumper_high_period}(d).\footnote{It is also trivially the case that stable reflectors work with glider streams whose period is a large enough multiple of~$30$ (at least~$60$ in the case of the Snark).} 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -193,7 +194,10 @@ There are also a few other useful tricks that can be done with period~$30$ glide
 
 Two other simple reactions that make use of the debris and sparks left behind by queen bees and pentadecathlons are shown in Figures~\ref{fig:glider_to_lwss} and~\ref{fig:lwss_to_glider}. These reactions let us convert gliders directly into lightweight spaceships (rather than having to synthesize them via $3$ gliders) and then convert them back into gliders if desired. Note, however, that the former reaction can only be used with streams of period at least~$60$, since otherwise the output LWSS collides with the next input glider.
 
-\begin{figure}
+It is worth comparing the LWSS-to-glider converter of Figure~\ref{fig:lwss_to_glider} to the pentadecathlon-based reflectors of Figures~\ref{fig:p30_180_reflect} and~\ref{fig:p30_90_reflect_penta}. In all three cases, the reaction is made up of two pentadecathlons, the first of which converts the input object (either an LWSS or a glider) into a block and the second of which converts that block into the output glider.
+
+% ideally one paragraph earlier
+\begin{figure}[!htb]
 	\centering
 	\begin{minipage}{0.27\textwidth}
 		\centering
@@ -212,13 +216,11 @@ Two other simple reactions that make use of the debris and sparks left behind by
 	\end{minipage}
 \end{figure}
 
-It is worth comparing the LWSS-to-glider converter of Figure~\ref{fig:lwss_to_glider} to the pentadecathlon-based reflectors of Figures~\ref{fig:p30_180_reflect} and~\ref{fig:p30_90_reflect_penta}. In all three cases, the reaction is made up of two pentadecathlons, the first of which converts the input object (either an LWSS or a glider) into a block and the second of which converts that block into the output glider.
-
 One final piece of machinery that is a bit more heavy-duty than the other period~$30$ reactions that we have illustrated is the \textbf{toggle}\index{toggle},\footnote{Constructed by Dean Hickerson in April 1996.} which is a glider gun that can be switched on and off by firing a single glider into it (contrast this with the inline inverter, which is a glider gun that can be switched off by firing a \emph{constant stream} of gliders into it). The toggle works by exploiting the fact that a glider can strike a particular phase of an LWSS in a way that destroys the LWSS and creates a perpendicular output glider---but if the incoming glider is delayed by $30$~generations then both are simply destroyed.
 
 \begin{figure}[!htb]
 	\centering
-	\patternimglink{0.135}{toggle}
+	\patternimglink{0.15}{toggle}
 	\caption{A \textbf{toggle} that bounces gliders from a Gosper glider gun (highlighted in \bgbox{yellowback2}{yellow}) off of a stream of lightweight spaceships (highlighted in \bgbox{aquaback}{aqua}). The first incoming glider on the \bgbox{greenpastel}{green} stream from the northwest turns off the output stream of gliders (highlighted in \bgbox{orangeback2}{orange}) until another glider comes in behind it to turn the stream back on.}
 	\label{fig:toggle}
 \end{figure}
@@ -321,17 +323,22 @@ Unfortunately, there are actually quite a few subtle problems with the previous 
 	\item[2)] With the Gosper glider guns just $30$~cells apart, we cannot fire gliders back and forth between them diagonally---the bouncing gliders would collide with the blocks that stabilize the glider guns.
 	
 	In order to solve this problem, we do the same thing that we did in Figure~\ref{fig:inline_inverter_p120_gun} to squeeze Gosper glider guns closer together---we replace one of the stabilizing blocks by an eater~1 (as in the buckaroo of Figure~\ref{fig:buckaroo_reflect}). To create a row of these modified Gosper glider guns, we can use the breeder displayed in Figure~\ref{fig:breeder_ggg_eater_1_stabilize}, which is just a slight modification of the breeders that we have already seen.\footnote{We already constructed a (much larger) breeder for this modification of the Gosper glider gun back in Exercise~\ref{exer:ggg_eater_side_breeder}.}\smallskip
-
-	\begin{figure}[!htb]
-		\centering
-		\patternimglink{0.0984}{breeder_ggg_eater_1_stabilize}
-		\captionof{figure}{A Gosper glider gun breeder that is stabilized on one side by an eater~1 instead of a block. The bottom half (highlighted in \bgbox{greenpastel}{green}) is the same as the bottom half of of the compact breeder from Figure~\ref{fig:breeder_compact}. The bottom-right space rake (highlighted in \bgbox{yellowback2}{yellow}) turns one of the blinkers from the blinker puffer (highlighted in \bgbox{magentaback}{magenta} and introduced in Exercise~\ref{exer:schick_engine_blinker_puffer}) into a ship via the incremental synthesis that we saw in Table~\ref{tab:sequential_synth}. The rightmost space rake (highlighted in \bgbox{orangeback2}{orange}) synthesizes the top ship into a queen bee, while the remaining three space rakes (highlighted in \bgbox{aquaback}{aqua}) synthesize the eater~1.}\label{fig:breeder_ggg_eater_1_stabilize}
-	\end{figure}
 	
 	\item[3)] When the eastward breeders construct their two rows of Gosper glider guns, if their construction is not synchronized perfectly then the bottom row will release some gliders in the time between when it is constructed and when gliders from the top row are fed into it. This problem can be solved by using a fixed-length row of middleweight (or heavyweight) spaceships below those guns to destroy the excess gliders as in Figure~\ref{fig:orthogonal_destroy}.\smallskip
 	
 	\item[4)] A period $3p$ gun (for example) will erase all lightweight spaceships whose position in the stream is a multiple of $3$, \emph{including $3$ itself}, while we only want it to erase the multiples of $3$ greater than $3$. To solve this final problem, we can place a single block below each inline inverter gun in such a way that it destroys (and is destroyed by) the first glider released from the gun, thus preventing that first LWSS from being destroyed.\smallskip
 \end{enumerate}
+
+
+\clearpage%formatting reasons
+
+% ideally 2 paragraphs earlier
+\begin{figure}[!htb]
+	\centering
+	\patternimglink{0.0984}{breeder_ggg_eater_1_stabilize}
+	\captionof{figure}{A Gosper glider gun breeder that is stabilized on one side by an eater~1 instead of a block. The bottom half (highlighted in \bgbox{greenpastel}{green}) is the same as the bottom half of of the compact breeder from Figure~\ref{fig:breeder_compact}. The bottom-right space rake (highlighted in \bgbox{yellowback2}{yellow}) turns one of the blinkers from the blinker puffer (highlighted in \bgbox{magentaback}{magenta} and introduced in Exercise~\ref{exer:schick_engine_blinker_puffer}) into a ship via the incremental synthesis that we saw in Table~\ref{tab:sequential_synth}. The rightmost space rake (highlighted in \bgbox{orangeback2}{orange}) synthesizes the top ship into a queen bee, while the remaining three space rakes (highlighted in \bgbox{aquaback}{aqua}) synthesize the eater~1.}\label{fig:breeder_ggg_eater_1_stabilize}
+\end{figure}
+
 
 After putting all of these pieces together, we arrive at our completed primer in Figure~\ref{fig:primer}. We emphasize that static pictures really cannot do this pattern justice, so the reader is strongly encouraged to interact with and explore this pattern in Life-viewing software.\footnote{Like Golly: \httpurl{golly.sourceforge.net}.}
 
@@ -434,13 +441,14 @@ One interesting thing that we can do with a glider duplicator is attach it to a 
 
 By placing several of these guns near each other (with different sequences of gliders in their glider loops), we can even create \textbf{ticker tape guns}\index{ticker tape gun}, which emit any \emph{visual} message of our choosing, rather than just messages encoded in binary. To do this, we think of lightweight spaceships as pixels, with the presence of a ship being black and the absence of a ship being white. Each of the loop-based guns emits the pixels (ships) in a single row of the image being produced, so we use $n$ of the guns with $m$ gliders each in the loops to create an $n \times m$ image. For example, Figure~\ref{fig:ticker_tape_hi_gun} illustrates a ticker tape gun that repeatedly produces an $8 \times 21$ array of lightweight spaceships that spells out ``HI!''.\footnote{Alan Hensel put together the first ticker tape gun in June 1994, which printed out the digits ``0123456789''. It was adapted by Brice Due and Dave Greene in 2005 and 2006 to print out the Golly logo, and has been used as the header of the Golly homepage (\httpurl{golly.sourceforge.net/}) ever since.}
 
+Once we start talking about building things like computers in the Game of Life (which we will do in Chapter~\ref{chp:universal_computation}), loops like this will be quite useful since they can serve as pieces of memory for the computer to make use of (for example, the gun in Figure~\ref{fig:ticker_tape_gun} stores the bitstring ``100111000011111000000'', which we can read from memory by detecting the spaceships that are constantly emitted from the gun). To make loops like this truly useful for storing pieces of information though, we need to be able to easily alter the state of the memory (i.e., delete gliders from the loop and also insert new gliders into it).
+
+% ideally 1 paragraph earlier
 \begin{figure}[!htb]
 	\centering
 	\patternimglink{0.0985}{ticker_tape_hi_gun}
 	\caption{An arrangement of $8$ loop-based guns that produce an array of lightweight spaceships that spell out ``HI!'' (highlighted in \bgbox{orangeback2}{orange}). Each gun produces one row of the output image (highlighted in \bgbox{yellowback2}{yellow}, \bgbox{magentaback}{magenta}, \bgbox{greenpastel}{green}, and \bgbox{aquaback}{aqua}), and the arrangement of gliders in each loop determines which lightweight spaceships are produced in their row.}\label{fig:ticker_tape_hi_gun}
 \end{figure}
-
-Once we start talking about building things like computers in the Game of Life (which we will do in Chapter~\ref{chp:universal_computation}), loops like this will be quite useful since they can serve as pieces of memory for the computer to make use of (for example, the gun in Figure~\ref{fig:ticker_tape_gun} stores the bitstring ``100111000011111000000'', which we can read from memory by detecting the spaceships that are constantly emitted from the gun). To make loops like this truly useful for storing pieces of information though, we need to be able to easily alter the state of the memory (i.e., delete gliders from the loop and also insert new gliders into it).
 
 Deleting a glider from the loop is simple, since we can just fire another glider from elsewhere in the Life plane so as to collide with it, thus deleting them both. To turn this deletion operation into an \emph{insertion} operation, we can simply place two stream inverters along the loop and apply the deletion operation somewhere along its inverted portion. A pattern that makes use of these ideas is called a \textbf{memory cell}\index{memory cell}, and one is illustrated in Figure~\ref{fig:p46_memory_cell} along with the mechanisms for altering the contents of its memory.
 
@@ -458,10 +466,7 @@ Deleting a glider from the loop is simple, since we can just fire another glider
 
 One of the most useful tools for extending our period~$46$ toolset beyond just things that can be done with twin bees is the extremely sparky period~$46$ oscillator called \textbf{Tanner's p46}\index{Tanner's p46} that we saw back in Figure~\ref{fig:tanners_p46}. As is typical of extremely sparky oscillators, Tanner's p46 can be combined with other sparkers, or additional copies of itself, to create numerous useful objects. For example, it can be combined with a twin bees shuttle to create a new p$46$ glider gun (see Exercise~\ref{exer:tanners_p46_twin_bee_gun}), or it can be used to reflect a glider by 180~degrees (see Exercise~\ref{exer:tanners_p46_reflect}), but neither of these facts are too exciting since we already know how to construct p$46$ glider guns and reflectors of roughly the same size via twin bees.
 
-What is slightly more interesting is that we can carefully place two copies of Tanner's p46 next to each other so as to construct an \textbf{edge-shooting glider gun},\footnote{Found by David Bell just three days after Tanner's p$46$ itself was found.}\index{edge shooter} as illustrated in Figure~\ref{fig:tanners_p46_edge}. Edge shooters like this one are particularly useful when trying to line up streams of gliders in tight positions, since they can be positioned as close as we like to existing glider streams on one side (compare this with guns like the Gosper glider gun and twin bees guns, which produce the stream of gliders near their center and thus require some clearance on either side of the other glider stream).
-
-Furthermore, this glider gun can act as a p$46$ inline inverter (see Figure~\ref{fig:tanners_p46_inline_inverter}) just like the Gosper glider gun can act as a p$30$ inline inverter.\footnote{This inline inverter, just like the original p$30$ one, was found by David Bell.} Even more remarkably, two of these oscillators can be placed next to each other so as to create the p$46$ middleweight spaceship gun displayed in Figure~\ref{fig:tanners_p46_mwss_gun},\footnote{Found by Matthias Merzenich just one day after Tanner's p$46$ was found.} which is currently the smallest known MWSS gun of any period, and also the smallest known gliderless gun of any period.
-
+% Ideally 2 paragraphs later.
 \begin{figure}[!htb]
 	\centering
 	\begin{tabular}{@{}ccc@{}}
@@ -487,6 +492,10 @@ Furthermore, this glider gun can act as a p$46$ inline inverter (see Figure~\ref
 	\caption{Two guns formed by placing two copies of Tanner's p$46$ next to each other so that their sparks interact. The glider gun from (a) can be used as an inline inverter, as in (b), where the incoming glider (highlighted in \bgbox{greenpastel}{green}) prevents a glider from being fired from the gun at that point in the stream. The gun in (c) is the smallest known MWSS gun.}
 	\label{fig:tanners_p46_guns}
 \end{figure}
+
+What is slightly more interesting is that we can carefully place two copies of Tanner's p46 next to each other so as to construct an \textbf{edge-shooting glider gun},\footnote{Found by David Bell just three days after Tanner's p$46$ itself was found.}\index{edge shooter} as illustrated in Figure~\ref{fig:tanners_p46_edge}. Edge shooters like this one are particularly useful when trying to line up streams of gliders in tight positions, since they can be positioned as close as we like to existing glider streams on one side (compare this with guns like the Gosper glider gun and twin bees guns, which produce the stream of gliders near their center and thus require some clearance on either side of the other glider stream).
+
+Furthermore, this glider gun can act as a p$46$ inline inverter (see Figure~\ref{fig:tanners_p46_inline_inverter}) just like the Gosper glider gun can act as a p$30$ inline inverter.\footnote{This inline inverter, just like the original p$30$ one, was found by David Bell.} Even more remarkably, two of these oscillators can be placed next to each other so as to create the p$46$ middleweight spaceship gun displayed in Figure~\ref{fig:tanners_p46_mwss_gun},\footnote{Found by Matthias Merzenich just one day after Tanner's p$46$ was found.} which is currently the smallest known MWSS gun of any period, and also the smallest known gliderless gun of any period.
 
 As an example of what can be done with the edge-shooting gun of Figure~\ref{fig:tanners_p46_edge}, we note that it can be used to make a heavyweight spaceship gun via the $3$-glider HWSS synthesis that we saw back in Table~\ref{tab:3_glider_synth}, even though this synthesis contains closely-spaced gliders that cannot be placed by the ``usual'' guns that we have seen so far. An example of such a gun is presented in Figure~\ref{fig:p46_hwss_gun}.
 
@@ -1215,6 +1224,23 @@ The advantage of the new circuitry and constructions that we have available to u
 		
 		\noindent [Hint: There are smaller reflectors that can be used in its place.]
 	\end{problemstar}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:p60_regulator_reflectors} \probdiff{2}
+		There are two reflectors in Figure~\ref{fig:universal_regulator_periodic_real} that reflect yellow glider streams. What are the names of these reflectors (we have discussed them each earlier)?
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:universal_regulator_repeat_time} \probdiff{2}
+		What is the repeat time of the universal regulator from Figure~\ref{fig:universal_regulator_periodic_real}? Explain why it is not~$60$.
+	\end{problem}
+	% SOLUTION: 355. Not 60 because we have to wait for the output signal to trigger the reconstruction of the central eater 1.
 	
 	
 	\mfilbreak
@@ -1222,6 +1248,10 @@ The advantage of the new circuitry and constructions that we have available to u
 	
 	\begin{problemstar}\label{exer:minimum_period_snark_loop}
 		The smallest-period single-glider Snark loop has period~$216$ and is displayed below. Note that the still life in the center of this loop is the weld of four eater~1s from Exercise~\ref{exer:eater_weld}(c).\smallskip
+		
+		\noindent\begin{center}
+			\patternimglink{0.08}{minimum_snark_loop}
+		\end{center}
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item \probdiff{1} Move each of the Snarks outward by $1$~cell (e.g., move the northern Snark north by $1$ cell) and un-weld the central eater~$1$s. What is the period of the resulting glider loop? Explain how you could have determined this period without explicitly constructing this modified glider loop.
@@ -1233,10 +1263,6 @@ The advantage of the new circuitry and constructions that we have available to u
 			\item \probdiff{1} If you replace one of the p$4$ bumpers in the glider loop from part~(b) with a p$5$ bumper, the loop stops working. Why?
 			
 			\item \probdiff{2} Move some of the bumpers in the glider loop from part~(b) closer together so as to alter the period of the loop. Once you have made a loop with a suitable period, replace one of the p$4$ bumpers by a p$5$ bumper.
-			
-			\noindent\begin{center}
-				\patternimglink{0.08}{minimum_snark_loop}
-			\end{center}
 		\end{enumerate}
 	\end{problemstar}
 	
@@ -1247,23 +1273,6 @@ The advantage of the new circuitry and constructions that we have available to u
 	\begin{problemstar}\label{exer:p60_regulator_mwss_emulator} \probdiff{2}
 		The lightweight spaceship guns in Figure~\ref{fig:universal_regulator_periodic_real} each contain a middleweight emulator. Describe what role this oscillator plays in the gun.
 	\end{problemstar}
-	
-	
-	\mfilbreak
-	
-	
-	\begin{problem}\label{exer:p60_regulator_reflectors} \probdiff{2}
-		There are two reflectors in Figure~\ref{fig:universal_regulator_periodic_real} that reflect yellow glider streams. What are the names of these reflectors (we have discussed them each earlier)?
-	\end{problem}
-
-
-	\mfilbreak
-	
-	
-	\begin{problem}\label{exer:universal_regulator_repeat_time} \probdiff{2}
-		What is the repeat time of the universal regulator from Figure~\ref{fig:universal_regulator_periodic_real}? Explain why it is not~$60$.
-	\end{problem}
-% SOLUTION: 355. Not 60 because we have to wait for the output signal to trigger the reconstruction of the central eater 1.
 	
 	
 	\mfilbreak
@@ -1280,6 +1289,8 @@ The advantage of the new circuitry and constructions that we have available to u
 			\item \probdiff{2} Move the northwest portion of the loop northwest by an \emph{additional} $15$~cells (again, rephase reflectors as necessary). Determine the period of this gun. [Hint: Its period is now small enough that you \emph{may} be able to compute it by hand if you are clever.]
 		\end{enumerate}
 	\end{problemstar}
+
+\vspace*{7cm}${}$% to adjust a weird image alignment issue in columns
 	
 	% EXERCISE: Use this glider-producing collision to make a p23 glider gun via stream merging:
 	%x = 68, y = 34, rule = B3/S23
