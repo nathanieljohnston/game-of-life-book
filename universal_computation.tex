@@ -948,7 +948,7 @@ The APGsembly actions themselves are listed below, and since these are the last 
 	\item \texttt{SET B2D}, which places a ``\texttt{1}'' bit at the current read head location.\footnote{Just like the binary register's \texttt{SET} action, this mechanism will self-destruct if a pixel is \texttt{SET} when a boat is already present at the current read head location.}\smallskip
 \end{itemize}
 
-\begin{table}[!htb]
+\begin{table}[!phtb]
 		\begin{tabular}{lll}
 			\toprule
 			Component & Actions & Functionality and return value \\\midrule
@@ -1017,6 +1017,10 @@ The way that we construct the fractal is to imagine walking along some path in t
 	\includegraphics[width=\textwidth]{universal_computation/koch_algorithm.pdf}
 	\caption{The (leftmost portion of the) image that results from starting at the bottom-left corner (circled in \bgbox{redback}{red}) and printing pixels according to a path-following procedure based on counting in base~$4$ (in the variable $s$). These bulbous shapes are better and better approximations of the top half of an 8-pointed version of the Koch snowflake fractal.}\label{fig:koch_algorithm}
 \end{figure}
+
+
+\clearpage%for layout reasons
+
 
 \begin{itemize}
 	\item[1)] Start at the coordinate $(x,y) = (0,0)$, facing right (toward the coordinate $(1,0)$).\smallskip
@@ -1496,30 +1500,8 @@ About one week prior to building his $\pi$ calculator, Goucher built a similar c
 			
 			\item \probdiff{3} Change just a few lines of the APGsembly for the $\pi$ calculator (from Appendix~\ref{sec:appendix_apg}) to account for these different values of $a$, $b$, $p$, $q$, $r$, and $s$.
 			
-			\item \probdiff{3} If you compile the APGsembly code that you made in part~(b), the resulting pattern will not compute the digits of $\sqrt{2}$ correctly. Why not? What additional change must you make to the introductory lines of that APGsembly code to make it function properly?
-			% SOLUTION: The entries of the B matrix grow more quickly for sqrt(2) than for pi or e, so we need to allocate more bits of memory to the binary registers. If we intialize U6 = 10 (instead of U6 = 6) then the computation works.
-		\end{enumerate}
-	\end{problem}
-	
-	
-	\mfilbreak
-	
-	
-	\begin{problem}\label{exer:universal_computation_fast_e_calc} \probdiff{4}
-		The $e$ calculator from Exercise~\ref{exer:universal_computation_e_calc} can be sped us so as to compute digits considerably quicker, since the series~\eqref{eq:e_series} for $e$ is so much simpler and converges so much quicker than the series~\eqref{eq:pi_series} for $\pi$.\smallskip
-		
-		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item In the $\pi$ series~\eqref{eq:pi_series}, each term is roughly half as large as the term that came before it, so we need to iterate on average $\log_2(10) \approx 3.3219$ times per decimal place of $\pi$. How many times do we need to iterate per decimal place of $e$?
-			% SOLUTION: Each term in e series is 1/n as big as term before it, so the number of times we need to iterate per digit gets smaller and smaller (to the point that we eventually get *multiple* digits per iteration).
-			
-			\item In the $e$ calculator, you do not actually need the \texttt{B0} register that was used in the $\pi$ calculator. Why not?
-			
-			\item In the $e$ calculator, the binary registers \texttt{B1} and \texttt{B2} do not require as many bits of memory as in the $\pi$ calculator (i.e., \texttt{U6} does not need to be as large). Why? Roughly how many bits of memory are needed after $n$ iterations?
-			
-			\item The \index{HashLife} clock speed of the $e$ calculator can be decreased from $2^{20}$ generations to $2^{18}$ generations without introducing any errors. Create a period $2^{18}$ universal regulator that can replace the $e$ calculator's period $2^{20}$ universal regulator.\footnote{Even though decreasing the clock speed decreases the number of Life generations needed to perform a calculation, it typically does not decrease the real-world time that it takes Life software like Golly to evolve the pattern to the point of having performed that calculation. The reason for this is that the HashLife algorithm used by Golly is able to extremely quickly skip over ``wasted'' generations where the clock is just waiting, since so little of the Life plane changes during those generations.}
-			% SOLUTION: Just replace 2 of the quadri-Snarks by CP semi-Snarks, or remove a quadri-Snark.
-			
-			\item Use the simplifications and speed-ups suggested by parts~(a--d) to compile an $e$ calculator that prints \texttt{2.718} before generation $2\times 10^{10}$ (instead of around generation $10^{12}$, like the $e$ calculator from Exercise~\ref{exer:universal_computation_e_calc}).
+			\noindent [Hint: Be careful to allocate enough memory to the various registers---the amount used by the $\pi$ calculator is not quite enough.]
+			% PARTIAL SOLUTION: The entries of the B matrix grow more quickly for sqrt(2) than for pi or e, so we need to allocate more bits of memory to the binary registers. If we intialize U6 = 10 (instead of U6 = 6) then the computation works.
 		\end{enumerate}
 	\end{problem}
 
@@ -1545,8 +1527,8 @@ About one week prior to building his $\pi$ calculator, Goucher built a similar c
 	\begin{problem}\label{exer:universal_computation_determine_digits} \probdiff{4}
 		Write APGsembly code that determines how many decimal digits the integer stored in a sliding block register has.
 	\end{problem}
-	
-	
+
+
 	\mfilbreak
 	
 	
@@ -1555,6 +1537,28 @@ About one week prior to building his $\pi$ calculator, Goucher built a similar c
 		We saw APGsembly code for printing the contents of a sliding block register, as long as that register contains a value no larger than $9$, in APGsembly~\ref{alg:apgsembly_print_sbr}. Now write APGsembly code that prints the contents of a sliding block register, regardless of how many decimal digits it has.
 		
 		\noindent [Hint: This is much more difficult. Make use of the code from Exercise~\ref{exer:universal_computation_determine_digits}]
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:universal_computation_fast_e_calc} \probdiff{4}
+		The $e$ calculator from Exercise~\ref{exer:universal_computation_e_calc} can be sped us so as to compute digits considerably quicker, since the series~\eqref{eq:e_series} for $e$ is so much simpler and converges so much quicker than the series~\eqref{eq:pi_series} for $\pi$.\smallskip
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item In the $\pi$ series~\eqref{eq:pi_series}, each term is roughly half as large as the term that came before it, so we need to iterate on average $\log_2(10) \approx 3.3219$ times per decimal place of $\pi$. How many times do we need to iterate per decimal place of $e$?
+			% SOLUTION: Each term in e series is 1/n as big as term before it, so the number of times we need to iterate per digit gets smaller and smaller (to the point that we eventually get *multiple* digits per iteration).
+			
+			\item In the $e$ calculator, you do not actually need the \texttt{B0} register that was used in the $\pi$ calculator. Why not?
+			
+			\item In the $e$ calculator, the binary registers \texttt{B1} and \texttt{B2} do not require as many bits of memory as in the $\pi$ calculator (i.e., \texttt{U6} does not need to be as large). Why? Roughly how many bits of memory are needed after $n$ iterations?
+			
+			\item The \index{HashLife} clock speed of the $e$ calculator can be decreased from $2^{20}$ generations to $2^{18}$ generations without introducing any errors. Create a period $2^{18}$ universal regulator that can replace the $e$ calculator's period $2^{20}$ universal regulator.\footnote{Even though decreasing the clock speed decreases the number of Life generations needed to perform a calculation, it typically does not decrease the real-world time that it takes Life software like Golly to evolve the pattern to the point of having performed that calculation. The reason for this is that the HashLife algorithm used by Golly is able to extremely quickly skip over ``wasted'' generations where the clock is just waiting, since so little of the Life plane changes during those generations.}
+			% SOLUTION: Just replace 2 of the quadri-Snarks by CP semi-Snarks, or remove a quadri-Snark.
+			
+			\item Use the simplifications and speed-ups suggested by parts~(a--d) to compile an $e$ calculator that prints \texttt{2.718} before generation $2\times 10^{10}$ (instead of around generation $10^{12}$, like the $e$ calculator from Exercise~\ref{exer:universal_computation_e_calc}).
+		\end{enumerate}
 	\end{problem}
 	
 	
@@ -1594,9 +1598,7 @@ About one week prior to building his $\pi$ calculator, Goucher built a similar c
 		\end{center}
 		\noindent with each integer being the sum of the previous two integers.
 	\end{problem}
-
-	
 	%% EXERCISE END COMMANDS
 \end{multicols}
-\normalsize\vspace*{0.01cm}
+\normalsize
 %% DONE EXERCISE END COMMANDS
