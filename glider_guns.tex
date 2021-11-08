@@ -237,7 +237,7 @@ One way of constructing guns for even tighter glider streams (all the way down t
 			\label{fig:lwss_squish_p5}
 		\end{subfigure}
 	\end{tabular}
-	\caption{(a) A dot spark (in \bgbox{orangeback}{orange}), followed by a domino spark~$5$ generations later (in \bgbox{greenback}{green}) can be used to transform a lightweight spaceship into a glider so cleanly that it can be used to fill in gaps in p$14$ glider streams---the tightest streams possible. The first spark can be provided by (b,d,e,f) a wide variety of different oscillators or (c) a two-glider collision. The second spark can be provided either via (b,e,f) an LWSS being destroyed by an oscillator, (c) a blinker + glider + LWSS collision, or (d) a Herschel conduit.}\label{fig:lwss_squish}
+	\caption{(a) A dot spark (in \bgbox{orangeback}{orange}), followed by a domino spark~$5$ generations later (in \bgbox{greenback}{green}) can be used to transform a lightweight spaceship into a glider so cleanly that it can be used to fill in gaps in p$14$ glider streams---the tightest streams possible. The first spark can be provided by (b,d,e,f) a wide variety of different oscillators or (c) a two-glider collision. The second spark can be provided either via (b,e,f) an LWSS being destroyed by an oscillator, (c) a blinker + glider + LWSS collision, or (d) a Herschel conduit.}\label{fig:lwss_squish}\vspace*{0.2cm}
 \end{figure}
 
 To illustrate the utility of this reaction, we can now construct a period~$15$ glider gun by making use of several copies of the p$30$ Gosper glider gun, much like we constructed a period~$23$ glider gun out of many copies of the p$46$ twin bees gun in Figure~\ref{fig:p23_gun}. In particular, since the reaction of Figure~\ref{fig:lwss_squish_p5} works so naturally at period~$15$, we make use of it via $7$ Gosper glider guns: $1$ to create the initial p$30$ glider stream, and $3$ for each of the two lightweight spaceships that we smash together between a pentadecathlon and middleweight volcano. The completed p$15$ gun is displayed in Figure~\ref{fig:p15_gun}.\index{pentadecathlon}\index{middleweight!volcano}
@@ -294,6 +294,11 @@ However, since this mechanism uses a stream of Herschels as input, we can often 
 
 We can also delete lightweight spaceships from a stream in much the same ways that we do with gliders. For example, a spark of pretty much any type can destroy a lightweight spaceship, so we can use sparky oscillators to filter (i.e., thin out) LWSS streams. Figure~\ref{fig:lwss_filters} illustrates to examples of how this technique can be used to double, or even triple, streams of certain periods. Another method of doubling the period of an LWSS stream, which has the advantage of working at any sufficiently-large period, was presented in Exercise~\ref{exer:twin_primer}.
 
+Similarly, if we want to \emph{decrease} the period of an xWSS stream, we can perform insertion just like we did with gliders. One possible method of inserting an LWSS into a stream is to make use of one of the three-glider syntheses from Table~\ref{tab:3_glider_synth}. However, even the fastest and cleanest of these syntheses can only decrease the period of an LWSS stream down to $22$. Since the minimum possible periods of LWSS, MWSS, and HWSS streams are 14, 16, and 18, respectively, we would like a cleaner reaction that can produce these even tighter streams. The tightest known reaction of this type is displayed in Figure~\ref{fig:lwss_insertion_p18}. It uses a whopping $10$ gliders to carefully place a lightweight spaceship between two others that are $36$ generations apart, resulting in a p$18$ LWSS stream.
+
+Fortunately, we do not actually need to come up with new insertion mechanisms for streams of middleweight or heavyweight spaceships, since there are numerous ways of colliding spaceships with the back end of an LWSS so as to ``upgrade'' it to an MWSS, and there are similarly numerous ways of ``upgrading'' an MWSS to an HWSS. Some methods that work even with tightly-packed period~18 xWSS streams are displayed in Figure~\ref{fig:xwss_upgrade}.\footnote{Much simpler methods are known for higher-period streams. See Exercise~\ref{exer:lwss_to_hwss_upgrade}, for example.}
+
+% ideally 2 paragraphs earlier
 \begin{figure}[!htb]
 	\centering
 	\begin{subfigure}{0.28\textwidth}
@@ -312,16 +317,24 @@ We can also delete lightweight spaceships from a stream in much the same ways th
 	\caption{Some filters (highlighted in \bgbox{aquaback}{aqua}) that can be used to double or triple the period of certain LWSS streams.}\label{fig:lwss_filters}
 \end{figure}
 
-Similarly, if we want to \emph{decrease} the period of an xWSS stream, we can perform insertion just like we did with gliders. One possible method of inserting an LWSS into a stream is to make use of one of the three-glider syntheses from Table~\ref{tab:3_glider_synth}. However, even the fastest and cleanest of these syntheses can only decrease the period of an LWSS stream down to $22$. Since the minimum possible periods of LWSS, MWSS, and HWSS streams are 14, 16, and 18, respectively, we would like a cleaner reaction that can produce these even tighter streams. The tightest known reaction of this type is displayed in Figure~\ref{fig:lwss_insertion_p18}. It uses a whopping $10$ gliders to carefully place a lightweight spaceship between two others that are $36$ generations apart, resulting in a p$18$ LWSS stream.
-
+% ideally 1 paragraph earlier
 \begin{figure}[!htb]
 	\centering
 	\embedlink{lwss_insertion_p18}{\vcenteredhbox{\patternimg{0.125}{lwss_insertion_p18_0}} \vcenteredhbox{\genarrow{84}} \vcenteredhbox{\patternimg{0.125}{lwss_insertion_p18_84}}}
 	\caption{A 10-glider collision that can be used to insert an LWSS into streams with period as low as 36, resulting in LWSS streams with period as low as 18. The cells displayed in \bgbox{redback}{red} die off in another 72 generations. Found by Chris Cain in October 2018.}\label{fig:lwss_insertion_p18}
 \end{figure}
 
-Fortunately, we do not actually need to come up with new insertion mechanisms for streams of middleweight or heavyweight spaceships, since there are numerous ways of colliding spaceships with the back end of an LWSS so as to ``upgrade'' it to an MWSS, and there are similarly numerous ways of ``upgrading'' an MWSS to an HWSS. Some methods that work even with tightly-packed period~18 xWSS streams are displayed in Figure~\ref{fig:xwss_upgrade}.\footnote{Much simpler methods are known for higher-period streams. See Exercise~\ref{exer:lwss_to_hwss_upgrade}, for example.}
+Just like glider insertion can be used to create glider guns with small periods, LWSS insertion can be used to create xWSS guns with small periods. We leave the explicit construction of such guns to Exercise~\ref{exer:pseudo_xwss_gun_p18} though, as we have carried out this type of task several times already at this point (and we will do it again for glider guns in the next section). However, these techniques can only be used to create xWSS guns with period at least 18. Even though LWSS and MWSS streams can be packed to have periods as small as~14 and~16, respectively, no guns of those periods for those spaceships are currently known, since there is no known xWSS insertion reaction that is clean and tight enough.
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   SUBSECTION: GLIDER GUNS OF ANY PERIOD
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Glider Guns of Any Period}\label{sec:glider_gun_any_period}
+
+We have already seen a few methods of constructing glider guns of any suitably large period of our choosing---we can use Herschel tracks as described in Sections~\ref{sec:herschel_track} and~\ref{sec:conduits} to create guns of any period~$62$ or greater, the adjustable-period glider gun of Figure~\ref{fig:p80_adjustable_gun} to create guns of any period~$80$ or greater, and the period multipliers of Section~\ref{sec:large_glider_guns} to create guns with extraordinarily large periods. However, none of those methods can create a glider gun with very \emph{small} period, like~$14$.
+
+% ideally 2 paragraphs earlier
 \begin{figure}[!htb]
 	\centering
 	\begin{subfigure}{0.525\textwidth}
@@ -335,16 +348,6 @@ Fortunately, we do not actually need to come up with new insertion mechanisms fo
 	\end{subfigure}
 	\caption{Some ways of firing lightweight spaceships or gliders at LWSS and MWSS streams so as to ``upgrade'' them to MWSS and HWSS streams. These reactions are clean enough to work at the minimum possible periods (16 for the LWSS $\rightarrow$ MWSS conversion and 18 for the MWSS $\rightarrow$ HWSS conversion).}\label{fig:xwss_upgrade}
 \end{figure}
-
-Just like glider insertion can be used to create glider guns with small periods, LWSS insertion can be used to create xWSS guns with small periods. We leave the explicit construction of such guns to Exercise~\ref{exer:pseudo_xwss_gun_p18} though, as we have carried out this type of task several times already at this point (and we will do it again for glider guns in the next section). However, these techniques can only be used to create xWSS guns with period at least 18. Even though LWSS and MWSS streams can be packed to have periods as small as~14 and~16, respectively, no guns of those periods for those spaceships are currently known, since there is no known xWSS insertion reaction that is clean and tight enough.
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%   SUBSECTION: GLIDER GUNS OF ANY PERIOD
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Glider Guns of Any Period}\label{sec:glider_gun_any_period}
-
-We have already seen a few methods of constructing glider guns of any suitably large period of our choosing---we can use Herschel tracks as described in Sections~\ref{sec:herschel_track} and~\ref{sec:conduits} to create guns of any period~$62$ or greater, the adjustable-period glider gun of Figure~\ref{fig:p80_adjustable_gun} to create guns of any period~$80$ or greater, and the period multipliers of Section~\ref{sec:large_glider_guns} to create guns with extraordinarily large periods. However, none of those methods can create a glider gun with very \emph{small} period, like~$14$.
 
 By making use of the glider insertion reaction of Figure~\ref{fig:lwss_squish}, we can now fill in this gap in our knowledge and construct glider guns of all periods~$14$ and greater---we just create a gun whose period is a suitably large multiple of the period that we actually want, and then repeatedly use multiple copies of this gun and the glider insertion reaction to fill in the gaps in its glider stream. For example, to create a period~$14$ gun, we could use Herschel tracks to construct a gun of period~$14 \times 5 = 70$ to create a p$70$ glider stream, and then use multiple copies of that gun to do glider insertion $4$ times between each pair of gliders in that stream.\footnote{The first period~14 glider gun was built by Dietrich Leithner in November 1994 using these same ideas (and the same glider insertion reaction).} However, the resulting p$14$ gun would be quite large---recall that creating a p$15$ gun required \emph{seven} p$30$ guns in Figure~\ref{fig:p15_gun}, and that was just to perform a single glider insertion.
 
@@ -402,7 +405,7 @@ There are just a few ad-hoc methods that are known for creating true-period glid
 			52 & 2018 & \specialcelll[t]{Dave Greene \\ Chris Cain \\ Adam P. Goucher \\ Matthias Merzenich} & \specialcelll[t]{{\small$\bullet$} smallest known (Figure~\ref{fig:p52_gun}) was constructed in \\ \hphantom{\small$\bullet$} November 2018 with help from ConwayLife.com \\ \hphantom{\small$\bullet$} forums user ``Entity Valkyrie'' \\ {\small$\bullet$} first known (not displayed) was found $2$~months earlier} \\
 			\rowcolor{gray!20} 54 & 1998 & Dietrich Leithner & \\
 			55 & 1998 & Stephen Silver & \cellcolor{gray!20} \\
-			\rowcolor{gray!20} 56 & 1998 & \specialcelll[t]{Dietrich Leithner \\ {} \\ {}} & \multirow{-3}{*}{\raisebox{0.5cm}{\specialcelll[t]{{\small$\bullet$} smallest p54 and p55 guns built by David Raucci \\ {\small$\bullet$} medium p$54$--$56$ guns (Figure~\ref{fig:quetzals}(c--e)) were \\ \hphantom{\small$\bullet$} constructed in October 2018 by Chris Cain \\ {\small$\bullet$} first known p$54$--$56$ guns (not displayed) were much \\ \hphantom{\small$\bullet$} larger---roughly $500 \times 500$}}} \\
+			\rowcolor{gray!20} 56 & 1998 & \specialcelll[t]{Dietrich Leithner \\ {}} & \multirow{-3}{*}{\raisebox{0.5cm}{\specialcelll[t]{{\small$\bullet$} smallest p54 and p55 guns built by David Raucci \\ {\small$\bullet$} medium p$54$--$56$ guns (Figure~\ref{fig:quetzals}(c--e)) were \\ \hphantom{\small$\bullet$} constructed in October 2018 by Chris Cain \\ {\small$\bullet$} first known p$54$--$56$ guns (not displayed) were huge}}} \\
 			57 & 2016 & Matthias Merzenich & \specialcelll[t]{{\small$\bullet$} smallest known was constructed in April 2021 by \\ \hphantom{\small$\bullet$} Matthias Merzenich, David Raucci, and others \\ {\small$\bullet$} a slightly older one is in Figure~\ref{fig:p57_gun} \\ {\small$\bullet$} first known (not displayed) was large (about $330 \times 350$)} \\
 			\rowcolor{gray!20} 58 & 2016 & \specialcelll[t]{``thunk'' \\ Matthias Merzenich} & upcoming Figure~\ref{fig:p58_gun} \\
 			59 & 2009 & \specialcelll[t]{Adam P. Goucher \\ Jason Summers} & \specialcelll[t]{{\small$\bullet$} first known (not displayed) was huge (\rawtilde$4\,000 \times 3\,000$) \\ {\small$\bullet$} ConwayLife.com forums user ``Entity Valkyrie'' made \\ \hphantom{\small$\bullet$} a smaller one (Figure~\ref{fig:p59_glider_gun}) in October 2018} \\
@@ -410,7 +413,7 @@ There are just a few ad-hoc methods that are known for creating true-period glid
 			61 & 2016 & Luka Okanishi & upcoming Figure~\ref{fig:p61_gun} \\
 			\rowcolor{gray!20} 62+ & 1996 & David Buckingham & Herschel tracks (some periods known earlier) \\\bottomrule
 		\end{tabular}
-		\caption{A summary of when the first true-period glider gun of each known period was first discovered. The first discoverer credited above put the gun itself together, while other contributors who provided important reactions or ideas used in the construction are listed alphabetically by their last name. Some of these guns were extremely large, and the guns of the same periods that we introduce in the upcoming sections are sometimes much smaller and make use of more recently-discovered mechanisms.}\label{tab:true_period_glider_gun}
+		\caption{A summary of when the first true-period glider gun of each known period was first discovered. The first discoverer credited above put the gun itself together, while other contributors who provided important reactions or ideas used in the construction are listed alphabetically by their last name.}\label{tab:true_period_glider_gun}%Some of these guns were extremely large, and the guns of the same periods that we introduce in the upcoming sections are sometimes much smaller and make use of more recently-discovered mechanisms.
 	\end{center}
 \end{table}
 
@@ -419,8 +422,7 @@ There are just a few ad-hoc methods that are known for creating true-period glid
 
 Most of the simplest true-period glider guns work simply by having sparks from different oscillators collide with each other in such a way as to create a glider. In fact, the very first guns to be discovered---the p$30$ Gosper glider gun\footnote{Technically, the Gosper glider gun does not work by colliding \emph{sparks}, since the colliding debris would form a beehive if left uninterrupted, rather than dying. Nonetheless, the idea behind it is the same.} and the p$46$ twin bees gun---are of this type. The next simplest true-period glider guns have periods~$22$ and~$45$, and are similarly of this type.
 
-The true-period~$45$ gun displayed in Figure~\ref{fig:p45_gun} works by colliding the sparks of a custom period~$45$ oscillator with the edge of a pentadecathlon, so that their interacting sparks create a glider. Similarly, the true-period~$22$ gun displayed in Figure~\ref{fig:p22_glider_gun} works by positioning two copies of the very sparky Jason's~p$22$\index{Jason's p22} oscillator (refer back to Figure~\ref{fig:period_22}) next to each other. Unfortunately, no filter is capable of doubling the period of this gun (see Exercise~\ref{exer:p4_glider_filter}) and none of the other glider deletion techniques that we discussed earlier work at period~$22$, so it is not clear whether or not this gun can be easily modified to create a true-period~$44$ gun. However, will see a different method of making a true-period~$44$ gun shortly, in Section~\ref{sec:true_period_hassler}.
-
+% ideally 1 paragraph later
 \begin{figure}[!htb]
 	\centering
 	\begin{subfigure}{0.50\textwidth}
@@ -434,6 +436,8 @@ The true-period~$45$ gun displayed in Figure~\ref{fig:p45_gun} works by collidin
 	\end{subfigure}
 	\caption{Two true-period glider guns. The (a) period~$22$ gun was found by David Eppstein later on the same day that Jason Summers found the oscillator (August 23, 2000), and the (b) period~$45$ gun was found by Matthias Merzenich in April 2010, with subsequent improvements by  Adam P.~Goucher, Dave Greene, and Tanner Jacobi.}\label{fig:p22_45_guns}
 \end{figure}
+
+The true-period~$45$ gun displayed in Figure~\ref{fig:p45_gun} works by colliding the sparks of a custom period~$45$ oscillator with the edge of a pentadecathlon, so that their interacting sparks create a glider. Similarly, the true-period~$22$ gun displayed in Figure~\ref{fig:p22_glider_gun} works by positioning two copies of the very sparky Jason's~p$22$\index{Jason's p22} oscillator (refer back to Figure~\ref{fig:period_22}) next to each other. Unfortunately, no filter is capable of doubling the period of this gun (see Exercise~\ref{exer:p4_glider_filter}) and none of the other glider deletion techniques that we discussed earlier work at period~$22$, so it is not clear whether or not this gun can be easily modified to create a true-period~$44$ gun. However, will see a different method of making a true-period~$44$ gun shortly, in Section~\ref{sec:true_period_hassler}.
 
 There are also glider guns of periods~$33$ and~$36$ that are mostly of this type---they work by colliding together large sparks from two copies of very sparky oscillators of periods~$33$ and~$36$, respectively. However, these guns also require a few extra stabilizing components to clean up the glider-producing reaction. For example, the period~$36$ oscillator in Figure~\ref{fig:jasons_p36} can be paired up with itself to create the true-period~$36$ gun in Figure~\ref{fig:p36_gun}, but it requires an extra heavyweight emulator to clean up a block that is left behind by the sparks that would otherwise destroy the gun between the first and second glider that it creates.
 
@@ -532,9 +536,9 @@ By swapping out the heavyweight emulators on the sides of this gun for an arrang
 
 This pi-heptomino hassling reaction can be extended to period~$59$ by carefully hitting it with gliders. In particular, the reaction displayed in Figure~\ref{fig:p59_glider_reaction} features two copies of the pi-heptomino reaction and converts  $5$ input gliders into $6$ output gliders every $59$ generations (two of the output gliders are created via the same conduit as in the period~$44$ and~$50$ guns, and the other four gliders are produced at the center where the two copies of the pi-heptomino reaction meet each other).\footnote{This reaction was found by Jason Summers in December 2009.}
 
-\begin{figure}[!b]
+\begin{figure}[!htb]
 	\centering
-	\patternimglink{0.072}{p59_glider_reaction}
+	\patternimglink{0.067}{p59_glider_reaction}
 	\caption{A period~$59$ reaction that takes in $5$~gliders (highlighted in \bgbox{greenpastel}{green}) and spits out $6$~gliders (highlighted in \bgbox{magentaback}{magenta}). The reaction works by using two copies of the pi-heptomino reaction (highlighted in \bgbox{yellowback2}{yellow}) to create two gliders via a conduit (highlighted in \bgbox{aquaback}{aqua}) and four more gliders when the debris from these reactions collide with each other at the center.}\label{fig:p59_glider_reaction}
 \end{figure}
 
@@ -547,6 +551,9 @@ The reason that this reaction can be used to create a gun is that it produces mo
 \end{figure}
 
 It is worth noting that the top half of this gun is almost identical to its bottom half, and only exists to take care of the two troublesome glider streams that are positioned so close to each other near the center of the gun. Snarks (and all other known reflectors that work at period~$59$) are too large to reflect one of those glider streams without interfering with the other one, so instead a second copy of the reaction is used so that those two tight glider streams feed each other's reactions.
+
+
+\clearpage%for layout reasons
 
 
 \subsection{Quetzals: True-Period 52, 54--58, and 61 Guns}\label{sec:true_period_guns_p57}
@@ -589,6 +596,10 @@ There are two key ideas that let quetzals work: we can use custom components to 
 
 For the second idea (decreasing a conduit's repeat time), there is a variant of eater~$5$ that can be used to eat a first natural glider quickly enough to let two Herschels follow each other by as little as $57$ generations. In fact, this is exactly why we say that Fx77's repeat time is $57$ generations---the first natural glider is its limiting factor. There are also some sparkers that are good enough at eating gliders to allow Herschels to follow each other every $52$, $54$, $55$, or $56$ generations (such components could theoretically exist to allow for gaps of $51$ or $53$ generations as well, but no examples are currently known, and as a result no true-period guns of period~$51$ or~$53$ are currently known). These various fast eaters are displayed on the Fx77 conduit in Figure~\ref{fig:fx77_fast_eaters}.
 
+
+\clearpage% just for layout reasons
+
+
 \begin{figure}[!htb]
 	\centering
 	\begin{subfigure}{0.25\textwidth}
@@ -617,6 +628,9 @@ For the second idea (decreasing a conduit's repeat time), there is a variant of 
 
 One final component that is extremely useful in these low-period situations is \textbf{Jormungant's G-to-H}\index{Jormungant's G-to-H},\footnote{Found by Louis-François Handfield, who goes by the online pseudonym ``Jormungant'', in April 2018.} which is the conduit displayed in Figure~\ref{fig:2G_to_H} that quickly converts two gliders into a Herschel. While a syringe (refer back to Figure~\ref{fig:syringe}) has a repeat time of $78$~generations, which is too large for our purposes here, this two-glider variant of it uses a second glider to clean up some of the glider-to-Herschel reaction, resulting in a significantly smaller repeat time of just~$47$ generations. The downside of this conduit, however, is that it requires two input gliders rather than just one---it is a 2G-to-H conduit rather than just a G-to-H.\index{2G-to-H}
 
+With these mechanisms in hand, we are now in a position to construct true-period glider guns with periods $52$, $54$, $55$, $56$, and $57$---see Figure~\ref{fig:quetzals}. In particular, we use Jormungant's G-to-H to create a Herschel, which we move along a track via periodic conduits that quickly clean up its first natural glider so as to not disturb the next Herschel, and we extract three gliders from this Herschel: two that will be reflected back into Jormungant's G-to-H, and one that becomes the output of the gun. Since each of the periods that we now tackle have small prime factors, we can implement these reactions via the low-period conduits that we saw earlier (for example, $56 = 2^3 \times 7$, so the period~$56$ gun can make use of p$4$, p$7$, and p$8$ components).
+
+% ideally 1 paragraph earlier
 \begin{figure}[!htb]
 	\centering
 	\begin{subfigure}{0.48\textwidth}
@@ -633,8 +647,11 @@ One final component that is extremely useful in these low-period situations is \
 	\caption{Two versions of a conduit called \textbf{Jormungant's G-to-H}, which very quickly and cleanly turn a pair of gliders into a Herschel. They each have a repeat time of $47$~generations, but are useful in different situations due to their second input glider coming from different directions.}\label{fig:2G_to_H}
 \end{figure}
 
-With these mechanisms in hand, we are now in a position to construct true-period glider guns with periods $52$, $54$, $55$, $56$, and $57$---see Figure~\ref{fig:quetzals}. In particular, we use Jormungant's G-to-H to create a Herschel, which we move along a track via periodic conduits that quickly clean up its first natural glider so as to not disturb the next Herschel, and we extract three gliders from this Herschel: two that will be reflected back into Jormungant's G-to-H, and one that becomes the output of the gun. Since each of the periods that we now tackle have small prime factors, we can implement these reactions via the low-period conduits that we saw earlier (for example, $56 = 2^3 \times 7$, so the period~$56$ gun can make use of p$4$, p$7$, and p$8$ components).
+The only remaining periods that are currently known to be attainable by true-period guns are $58$ and $61$. However, these periods are somewhat more challenging to construct guns for than the previous ones, since they are not divisible by any of the periods for which we have periodic Herschel conduits (like $4$, $5$, $6$, $8$, and $9$). For this reason, we must entirely make use of stable components, and the only Herschel conduits that have repeat time low enough to function at these periods are Fx77 ($57$~generations), L112\index{L112} ($58$~generations), L200\index{L200} (see Exercise~\ref{exer:name_conduit}(d)---$59$~generations), and R64\index{R64} ($61$~generations).
 
+To extract a glider from a Herschel track made up of these conduits, we make use of two reactions---one that uses an extra glider to duplicate a Herschel on the track, and then another one that turns that extra Herschel into two output gliders (see Figure~\ref{fig:H_G_reacs_58_61}). It is important that \emph{two} gliders are produced from that duplicated Herschel so that one of them can be used to fuel the earlier Herschel duplication reaction, while the other can be used as the output of the gun.\footnote{It is worth comparing these conduits with the Herschel transceivers from Section~\ref{sec:stable_circuits_notes}. Sometimes it is quicker or easier to send a pair of tandem gliders rather than individual gliders.}\index{tandem}\index{Herschel!transceiver}
+
+% ideally 2 paragraph earlier
 \begin{figure}[!htb]
 	\centering
 	\begin{subfigure}{0.47\textwidth}
@@ -670,10 +687,6 @@ With these mechanisms in hand, we are now in a position to construct true-period
 	\label{fig:quetzals}
 \end{figure}
 
-The only remaining periods that are currently known to be attainable by true-period guns are $58$ and $61$. However, these periods are somewhat more challenging to construct guns for than the previous ones, since they are not divisible by any of the periods for which we have periodic Herschel conduits (like $4$, $5$, $6$, $8$, and $9$). For this reason, we must entirely make use of stable components, and the only Herschel conduits that have repeat time low enough to function at these periods are Fx77 ($57$~generations), L112\index{L112} ($58$~generations), L200\index{L200} (see Exercise~\ref{exer:name_conduit}(d)---$59$~generations), and R64\index{R64} ($61$~generations).
-
-To extract a glider from a Herschel track made up of these conduits, we make use of two reactions---one that uses an extra glider to duplicate a Herschel on the track, and then another one that turns that extra Herschel into two output gliders (see Figure~\ref{fig:H_G_reacs_58_61}). It is important that \emph{two} gliders are produced from that duplicated Herschel so that one of them can be used to fuel the earlier Herschel duplication reaction, while the other can be used as the output of the gun.\footnote{It is worth comparing these conduits with the Herschel transceivers from Section~\ref{sec:stable_circuits_notes}. Sometimes it is quicker or easier to send a pair of tandem gliders rather than individual gliders.}\index{tandem}\index{Herschel!transceiver}
-
 \begin{figure}[!htb]
 	\centering
 	\begin{subfigure}{0.46\textwidth}
@@ -708,14 +721,13 @@ To extract a glider from a Herschel track made up of these conduits, we make use
 
 One slight issue that arises with these particular reactions is that the two output gliders are very close to each other, so it is difficult to separate them. We saw some similar conduits that convert a Herschel into multiple (more easily separated) gliders back in Figures~\ref{fig:herschel_to_glider} and~\ref{fig:herschel_to_glider_edge}, but they all have repeat times of higher than $61$ generations and thus cannot be used in this setting. One method that \emph{does} work at period~$61$ and higher to separate these closely-spaced output gliders is to reflect one of the gliders off of the corner of an L112 conduit as a Herschel passes by.\footnote{This method does not work at period~$60$ or lower---see Exercise~\ref{exer:p61_gun_reflection_no_60}.} Using this trick lets us construct the true-period~$61$ glider gun displayed in Figure~\ref{fig:p61_gun}.\footnote{The first true-period~$61$ gun was found by Luka Okanishi in April 2016. The smaller gun displayed here was constructed on the next day with the help of Chris Cain.}
 
-This same technique can be used to construct a period~$58$ true-period glider gun, but the details are somewhat messier for a few reasons. First, we no longer have access to the R64 or L200 conduits (their repeat times are $61$ and $59$, respectively), so we must construct all Herschel tracks out of Fx77 and L112 conduits only. The smallest such track whose length is a multiple of the desired period of $58$ makes use of $4$ copies of L112 and $68$ copies of Fx77, for a total length of $(4 \times 112) + (68 \times 77) = 5{\thousep}684$ generations. Placing $5684/58 = 98$ Herschels on this track results in the period~$58$ oscillator displayed in Figure~\ref{fig:p58_herschel_track} that we can extract a glider from.
-
-% This figure can be moved one paragraph earlier. It is just here for spacing/layout reasons.
 \begin{figure}[!htb]
 	\centering
 	\patternimglink{0.082}{p61_gun}
 	\caption{A true-period~$61$ glider gun. It uses one copy of a period~$61$ Herschel track made up of R64, L112, and L200 conduits (highlighted in \bgbox{aquaback}{aqua}) to generate a Herschel via the trick of Figure~\ref{fig:HG_to_HB} (highlighted in \bgbox{magentaback}{magenta}). That Herschel is then converted into two gliders via one of the conduits from Figure~\ref{fig:H_to_2G_quick} (highlighted in \bgbox{orangeback2}{orange}), one of which becomes the output of the gun and the other of which is reflected by the other copy of the p$61$ Herschel track (highlighted in \bgbox{greenpastel}{green}) back around to fuel the Herschel-generating reaction.}\label{fig:p61_gun}
 \end{figure}
+
+This same technique can be used to construct a period~$58$ true-period glider gun, but the details are somewhat messier for a few reasons. First, we no longer have access to the R64 or L200 conduits (their repeat times are $61$ and $59$, respectively), so we must construct all Herschel tracks out of Fx77 and L112 conduits only. The smallest such track whose length is a multiple of the desired period of $58$ makes use of $4$ copies of L112 and $68$ copies of Fx77, for a total length of $(4 \times 112) + (68 \times 77) = 5{\thousep}684$ generations. Placing $5684/58 = 98$ Herschels on this track results in the period~$58$ oscillator displayed in Figure~\ref{fig:p58_herschel_track} that we can extract a glider from.
 
 \begin{figure}[!htb]
 	\centering
@@ -727,8 +739,8 @@ The second issue that is somewhat messier to deal with in this period~$58$ case 
 
 \begin{figure}[!htb]
 	\centering
-	\patternimglink{0.0936}{p58_gun}
-	\caption{A true-period~$58$ glider gun that works very similarly to the p$61$ gun of Figure~\ref{fig:p61_gun}. A glider is used to extract a Herschel from the period~$58$ Herschel track oscillator from Figure~\ref{fig:p58_herschel_track} (truncated and highlighted in \bgbox{aquaback}{aqua}). That Herschel then collides with another copy of that p$58$ oscillator (highlighted in \bgbox{greenpastel}{green}) to create two gliders. Rephasers (highlighted in \bgbox{magentaback}{magenta}) are then used to separate those two output glider streams so that one of them can be reflected (by reflectors highlighted in \bgbox{yellowback2}{yellow}) back into the Herschel-extracting reaction.}\label{fig:p58_gun}
+	\patternimglink{0.085}{p58_gun}
+	\caption{A true-period~$58$ glider gun. A glider is used to extract a Herschel from the period~$58$ Herschel track oscillator from Figure~\ref{fig:p58_herschel_track} (truncated and highlighted in \bgbox{aquaback}{aqua}). That Herschel then collides with another copy of that p$58$ oscillator (highlighted in \bgbox{greenpastel}{green}) to create two gliders. Rephasers (highlighted in \bgbox{magentaback}{magenta}) are then used to separate those two output glider streams so that one of them can be reflected (by reflectors highlighted in \bgbox{yellowback2}{yellow}) back into the Herschel-extracting reaction.}\label{fig:p58_gun}
 \end{figure}
 
 
@@ -802,23 +814,29 @@ There are also numerous ways of colliding gliders with blocks so as to create a 
 
 Reflection reactions of this type are particularly useful as they let us use guns along just a finite number of lanes to create gliders traveling along any lane of our choosing, without the need for permanent fixtures like Snarks or glider guns in the locations of those output lanes. For example, if we use one glider to shift a block as in Figure~\ref{fig:synchronized_block_mover_1} and then two more gliders to reflect a glider (while moving the block) as in Figure~\ref{fig:synchronized_block_reflector_1}, then the result is that the block is moved a total of $3-1=2$~cells right and $4-2=2$~cells down (i.e., perfectly diagonally) and a single glider is output in a perpendicular direction. By repeating this reaction (by producing those $3$ input gliders via glider guns, for example), every perpendicular glider is released $4$ lanes farther away than the one that came before it. We call the resulting gun a \textbf{slide gun}\index{slide gun}, and one example is displayed in Figure~\ref{fig:slide_gun}.\footnote{The first slide gun was constructed by Dietrich Leithner in July 1994. It only used the reaction from Figure~\ref{fig:synchronized_block_reflector_4} instead.}
 
-\begin{figure}[!htb]
-	\centering
-	\patternimglink{0.125}{slide_gun}
-	\caption{The glider highlighted in \bgbox{aquaback}{aqua} moves the southeastern block and then the gliders highlighted in \bgbox{magentaback}{magenta} and \bgbox{greenpastel}{green} create a perpendicular glider (while again moving the block). The total resulting movement of the block is $2$~cells southeast, so this \textbf{slide gun} fires gliders on infinitely many different lanes (highlighted in \bgbox{orangeback2}{orange}). The three constituent p$120$ glider guns each consist of the p$60$ gun from Figure~\ref{fig:p60_gun} together with a blocker to filter its output (and some buckaroos to reposition their glider streams).}\label{fig:slide_gun}\index{buckaroo}
-\end{figure}
-
 Numerous other slide guns and variants of slide guns can also be created by combining these block-moving and glider-reflecting reactions in various ways. For example, the reaction from Figure~\ref{fig:synchronized_block_reflector_4} can be used to create a slide gun that has gliders separated by $2$ lanes instead of $4$ (see Exercise~\ref{exer:2_lane_slide_gun}). We could similarly create a ``slide gun'' that doesn't slide at all by choosing a block-moving combination of gliders that returns the block to its initial position after reflecting a glider. One possible way to achieve this effect is to use a total of $7$~gliders: the reflection from Figure~\ref{fig:synchronized_block_reflector_1} followed by the move of Figure~\ref{fig:synchronized_block_mover_1} and then the move of Figure~\ref{fig:synchronized_block_mover_4} twice (see Exercise~\ref{exer:slide_gun_no_slide}).
 
 We can even perform different block-reflecting operations like this in sequence. For example, we could create a slide gun that fires \emph{two} gliders on each of its output lanes by using a $10$-glider recipe: $7$~gliders to create a perpendicular glider without moving the block, and then $3$~more gliders to create another perpendicular glider while moving the block. The resulting ``double'' slide gun is displayed in Figure~\ref{fig:double_slide_gun}---it is made up of $10$~glider guns (instead of just $3$ like the regular slide gun from Figure~\ref{fig:slide_gun}), and due to the tight arrangement of $10$ gliders that it must fire, it makes heavy use of the glider-insertion technique that we saw back in Figure~\ref{fig:lwss_reflect_glider}.
 
+% ideally 2 paragraphs earlier
+\begin{figure}[!htb]
+	\centering
+	\patternimglink{0.13}{slide_gun}
+	\caption{The glider highlighted in \bgbox{aquaback}{aqua} moves the southeastern block and then the gliders highlighted in \bgbox{magentaback}{magenta} and \bgbox{greenpastel}{green} create a perpendicular glider (while again moving the block). The total resulting movement of the block is $2$~cells southeast, so this \textbf{slide gun} fires gliders on infinitely many different lanes (highlighted in \bgbox{orangeback2}{orange}). The three constituent p$120$ glider guns each consist of the p$60$ gun from Figure~\ref{fig:p60_gun} together with a blocker to filter its output (and some buckaroos to reposition their glider streams).}\label{fig:slide_gun}\index{buckaroo}
+\end{figure}
+
+
+\clearpage
+
+
+Theoretically, this method could be used to create any sequence of gliders appearing on any sequence of lanes of our choosing, though the details become increasingly cumbersome as the desired pattern of output gliders increases in complexity. We will return to this topic in Chapter~\ref{chp:universal_construction}, where we discuss how to use these ideas to build a pattern that can create copies of any pattern that can be synthesized by gliders (including itself).
+
+% ideally 1 paragraph earlier
 \begin{figure}[!htb]
 	\centering
 	\patternimglink{0.108}{double_slide_gun}
 	\caption{A slide gun that fires two gliders on each of its output lanes. The numerous p$240$ guns that make up this slide gun are each the same as the p$120$ guns from Figure~\ref{fig:slide_gun}, but with Rich's p$16$ attached to filter the output. The $10$ gliders used in the block-pushing recipe consist of two copies of the single-glider block mover from Figure~\ref{fig:synchronized_block_mover_1} (highlighted in \bgbox{aquaback}{aqua}), two copies of the two-glider block mover from Figure~\ref{fig:synchronized_block_mover_4} (highlighted in \bgbox{greenpastel}{green}), and two copies of the two-glider reflector from Figure~\ref{fig:synchronized_block_mover_1} (highlighted in \bgbox{magentaback}{magenta}).}\label{fig:double_slide_gun}
 \end{figure}
-
-Theoretically, this method could be used to create any sequence of gliders appearing on any sequence of lanes of our choosing, though the details become increasingly cumbersome as the desired pattern of output gliders increases in complexity. We will return to this topic in Chapter~\ref{chp:universal_construction}, where we discuss how to use these ideas to build a pattern that can create copies of any pattern that can be synthesized by gliders (including itself).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1120,8 +1138,8 @@ One mild hiccup that arises when constructing such a pattern is that the primer 
 
 \begin{figure}[!htbp]
 	\centering
-	\embedlink{fermat_primer}{\includegraphics[width=\textwidth]{glider_guns/fermat_prime.pdf}}
-	\caption{A Fermat prime calculator that self-destructs and has bounded population if a sixth Fermat prime exists, but grows without bound otherwise. A caber tosser (highlighted in \bgbox{yellowback2}{yellow}) fires gliders at the lightweight spaceships that the primer creates corresponding to integers of the form $2^n+1$ (the LWSS corresponding to the Fermat prime $5$ is circled in \bgbox{redback}{red}). If that LWSS is present (i.e., $2^n+1$ is prime) then the glider is reflected and destroys one of the four tubs to its northeast (they are destroyed by the known Fermat primes $5$, $17$, $257$, and $65{\thousep}537$). If another Fermat prime is found, the glider goes through a glider duplicator (highlighted in \bgbox{magentaback}{magenta}) and ignites two $4c/5$ beehive wicks that are laid by beehive puffers (highlighted in \bgbox{aquaback}{aqua}). Those wicks eventually cause two extensible $c/2$ spaceships (highlighted in \bgbox{greenpastel}{green}) to explode, blocking the primer.}\label{fig:fermat_primer}
+	\embedlink{fermat_primer}{\includegraphics[width=0.925\textwidth]{glider_guns/fermat_prime.pdf}}
+	\caption{A Fermat prime calculator that self-destructs and has bounded population if a sixth Fermat prime exists, but grows without bound otherwise. A caber tosser (highlighted in \bgbox{yellowback2}{yellow}) fires gliders at the lightweight spaceships that the primer creates corresponding to integers of the form $2^n+1$. If that LWSS is present (i.e., $2^n+1$ is prime) then the glider is reflected and destroys one of the four tubs to its northeast (they are destroyed by the known Fermat primes $5$, $17$, $257$, and $65{\thousep}537$). If another Fermat prime is found, the glider goes through a glider duplicator (highlighted in \bgbox{magentaback}{magenta}) and ignites two $4c/5$ beehive wicks that are laid by beehive puffers (highlighted in \bgbox{aquaback}{aqua}). Those wicks eventually cause two extensible $c/2$ spaceships (highlighted in \bgbox{greenpastel}{green}) to explode, blocking the primer.}\label{fig:fermat_primer}
 \end{figure}
 
 For spacing and timing reasons, this particular pattern starts with the Fermat prime $5$ (not $3$), and gliders corresponding to the Fermat primes $5$, $17$, $257$, and $65{\thousep}537$ each destroy a single tub near the southwest corner of the pattern. If a sixth Fermat prime is ever found, the resulting glider is fed into a glider duplicator that ignites both fuses and leads to the primer's self-destruction. However, such self-destruction will not happen until at least generation
@@ -1389,6 +1407,28 @@ where the logarithms are nested as many times as we like. However, even just a s
 	\mfilbreak
 	
 	
+	\begin{problem}\label{exer:p54_fold_corners} \probdiff{3}
+		The p$56$ glider gun displayed in Figure~\ref{fig:p56_gun} uses three reflectors at its top and at its bottom, instead of just one, to make it bounding box slightly smaller. You can similarly ``fold in'' the top and bottom corners of some other guns to make their bounding boxes smaller.
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Modify the p$54$ glider gun from Figure~\ref{fig:p54_gun} so that its bounding box has at at least $300$ fewer cells in it.
+			
+			\item Modify the p$55$ glider gun from Figure~\ref{fig:p55_gun} so that its bounding box has at at least $700$ fewer cells in it.
+		\end{enumerate}
+	\end{problem}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:H_G_reacs_58_61} \probdiff{1}
+		Determine the repeat times of the four conduits from Figure~\ref{fig:H_G_reacs_58_61}.
+	\end{problem}
+	
+	
+	\mfilbreak
+	
+	
 	\begin{problemstar}\label{exer:p50_glider_stabilize} \probdiff{3}
 		Another method of stabilizing one side of the pi-heptomino reaction used in the true-period~$44$ and~$50$ glider guns is displayed below.
 		\begin{center}
@@ -1402,8 +1442,8 @@ where the logarithms are nested as many times as we like. However, even just a s
 			\item two bumpers (what is the only known bumper period that works with period~$50$ mechanisms?).
 		\end{enumerate}
 	\end{problemstar}
-	
-	
+
+
 	\mfilbreak
 	
 	
@@ -1419,28 +1459,6 @@ where the logarithms are nested as many times as we like. However, even just a s
 		\end{enumerate}
 	\end{problem}
 	% SOLUTION: https://conwaylife.com/wiki/Fx77
-	
-	
-	\mfilbreak
-	
-	
-	\begin{problem}\label{exer:p54_fold_corners} \probdiff{3}
-		The p$56$ glider gun displayed in Figure~\ref{fig:p56_gun} uses three reflectors at its top and at its bottom, instead of just one, to make it bounding box slightly smaller. You can similarly ``fold in'' the top and bottom corners of some other guns to make their bounding boxes smaller.
-		
-		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item Modify the p$54$ glider gun from Figure~\ref{fig:p54_gun} so that its bounding box has at at least $300$ fewer cells in it.
-			
-			\item Modify the p$55$ glider gun from Figure~\ref{fig:p55_gun} so that its bounding box has at at least $700$ fewer cells in it.
-		\end{enumerate}
-	\end{problem}
-	
-	
-	\mfilbreak
-	
-	
-	\begin{problem}\label{exer:H_G_reacs_58_61} \probdiff{1}
-		Determine the repeat times of the four conduits from Figure~\ref{fig:H_G_reacs_58_61}.
-	\end{problem}
 	
 	
 	\mfilbreak
