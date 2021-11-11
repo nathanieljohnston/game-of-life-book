@@ -601,6 +601,24 @@ To create even faster caterloopillars, we have to increase how far the flotillae
 	as claimed.
 \end{proof}
 
+% Really should be much later, but there are too many big images at the end of this chapter.
+\begin{figure}[!htbp]
+	\centering
+	\begin{tabular}{@{}cc@{}}
+		\begin{subfigure}{0.5333\textwidth}
+			${}$ \ \embedlink{shield_bug}{\includegraphics[width=0.95\textwidth]{self_support_spaceships/shield_bug.pdf}}
+			\caption{The \textbf{shield bug}, travelling to the left.}\label{fig:shield_bug}
+		\end{subfigure} &
+		\begin{subfigure}{0.4267\textwidth}
+			\centering
+			\embedlink{centipede}{\includegraphics[width=0.95\textwidth]{self_support_spaceships/centipede.pdf}}
+			\caption{The \textbf{centipede}, travelling up.}\label{fig:centipede}
+		\end{subfigure}
+	\end{tabular}
+	\caption{A pair of (huge) $31c/240$ spaceships based on the same Herschel-crawling reaction as the silverfish. They each use six-block tracks that carry Herschel-based rakes down their center, and the same double-HWSS slow salvo synthesis on their sides to stabilize the front end.}
+	\label{fig:centipede_shield_bug}
+\end{figure}
+
 It is worth noting that faster caterloopillars are typically larger than slower ones, not just because their component flotillae become more spaced out, but also because the glider syntheses used to construct those flotillae require more steps. \emph{Roughly} the same synthesis recipes can be used in all caterloopillars, but additional seed-moving steps are required if the xWSSes that make up the loaf-moving flotillae are separated by large distances.
 
 Because of some ugliness involving these unidirectional slow-salvo glider syntheses, caterloopillars have only been explicitly constructed for speeds of the form $(p/q)c$ (where $p/q$ is in lowest terms and $p/q < 1/4$) when $q \not\equiv 2 \pmod{4}$. For example, no one has constructed a caterloopillar with speed $c/18$ or $5c/18$, but caterloopillars have been constructed with speeds $c/15$, $c/16$, $c/17$, and $2c/18 = c/9$. Regardless of this limitation, caterloopillars of these troublesome speeds still \emph{exist}, thanks to Theorem~\ref{thm:caterloopillar_speeds}.
@@ -614,27 +632,9 @@ The fastest caterloopillar that has been explicitly constructed so far has speed
 
 Despite its monstrous size, the silverfish displayed in Figure~\ref{fig:silverfish} is currently the smallest $31c/240$ orthogonal spaceship known in Life. About six years prior to its construction, two other spaceships of this same speed were built using most of the same reactions. These spaceships, called the \textbf{shield bug}\index{shield bug} and the \textbf{centipede},\index{centipede} are displayed in Figure~\ref{fig:centipede_shield_bug}. They were completed on the same day---September 4, 2014---by Dave Greene and Chris Cain, respectively, with help from Kiho Park, Ivan Fomichev and Adam P.~Goucher.
 
-\begin{figure}[!htbp]
-	\centering
-	\begin{tabular}{@{}cc@{}}
-		\begin{subfigure}{0.5333\textwidth}
-			\embedlink{shield_bug}{\includegraphics[width=0.95\textwidth]{self_support_spaceships/shield_bug.pdf}}
-			\caption{The \textbf{shield bug}, travelling to the left.}\label{fig:shield_bug}
-		\end{subfigure} &
-		\begin{subfigure}{0.4267\textwidth}
-			\centering
-			\embedlink{centipede}{\includegraphics[width=0.95\textwidth]{self_support_spaceships/centipede.pdf}}
-			\caption{The \textbf{centipede}, travelling up.}\label{fig:centipede}
-		\end{subfigure}
-	\end{tabular}
-	\caption{A pair of (huge) $31c/240$ spaceships based on the same Herschel-crawling reaction as the silverfish. They each use six-block tracks that carry Herschel-based rakes down their center, and the same double-HWSS slow salvo synthesis on their sides to stabilize the front end.}
-	\label{fig:centipede_shield_bug}
-\end{figure}
-
 When measuring size according to number of live cells, these spaceships are roughly $16$ and $3$ times as large as the silverfish, respectively. The reason that the silverfish could be so much smaller is that it uses a new front end (which was found by Chris Cain just 16 days after he completed the centipede) that is supported by just two heavyweight spaceships on each side instead of six.
 
-Besides the $31c/240$, $17c/45$, and $(23,5)c/79$ reactions that we saw in this chapter, there are numerous other known reactions that involve an object moving through a stable or glider-based wick---such reactions are called \textbf{crawlers}\index{crawler} or \textbf{climbers}.\index{climber|see {crawler}} Four crawlers are displayed in Figure~\ref{fig:self_support_climbers}, and each one of them could potentially be used to construct a self-supporting spaceship using the same techniques from this chapter.
-
+% ideally 1 paragraph later
 \begin{figure}[!htb]
 	\centering
 	\begin{subfigure}{0.495\textwidth}
@@ -642,9 +642,9 @@ Besides the $31c/240$, $17c/45$, and $(23,5)c/79$ reactions that we saw in this 
 		\patternimglink{0.103}{13_1c_31_b_heptomino_climber}
 		\caption{A $(13,1)c/31$ B-heptomino crawler.}\label{fig:13_1c_31_b_heptomino_climber}
 	\end{subfigure} \ \ \ \begin{subfigure}{0.475\textwidth}
-	 	\centering
-	 	\patternimglink{0.07891384615}{27_1c_72_herschel_climber}
-	 	\caption{A $(27,1)c/72$ Herschel-pair crawler.}\label{fig:27_1c_72_herschel_climber}
+		\centering
+		\patternimglink{0.07891384615}{27_1c_72_herschel_climber}
+		\caption{A $(27,1)c/72$ Herschel-pair crawler.}\label{fig:27_1c_72_herschel_climber}
 	\end{subfigure} \\[0.2cm]
 	\begin{subfigure}{0.495\textwidth}
 		\centering
@@ -660,6 +660,8 @@ Besides the $31c/240$, $17c/45$, and $(23,5)c/79$ reactions that we saw in this 
 % (13,1)c/31: https://www.conwaylife.com/forums/viewtopic.php?f=2&t=1182
 % (27,1)c/72: https://www.conwaylife.com/forums/viewtopic.php?f=2&t=2130
 % (34,7)c/156: https://www.conwaylife.com/forums/viewtopic.php?f=2&t=2286
+
+Besides the $31c/240$, $17c/45$, and $(23,5)c/79$ reactions that we saw in this chapter, there are numerous other known reactions that involve an object moving through a stable or glider-based wick---such reactions are called \textbf{crawlers}\index{crawler} or \textbf{climbers}.\index{climber|see {crawler}} Four crawlers are displayed in Figure~\ref{fig:self_support_climbers}, and each one of them could potentially be used to construct a self-supporting spaceship using the same techniques from this chapter.
 
 Of these crawlers, the $(3,6)$ half-bakery reaction\index{half-bakery} from Figure~\ref{fig:half_bakery_reaction} is by far the easiest to work with, since a half-bakery is stable and thus the timing of the gliders is almost completely irrelevant. Indeed, this reaction has actually been used to create another self-supporting spaceship (essentially the only self-supporting spaceship other than the ones that we saw earlier in this chapter).
 
@@ -721,6 +723,23 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 			\item \probdiff{1} Explain why the rake that you constructed in part~(a) is not useful when constructing the silverfish.
 		\end{enumerate}
 	\end{problemstar}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:silverfish_backward_glider_destroy}
+		Two of the gliders from the slow salvo synthesis of Figure~\ref{fig:hwss_from_toad_beehive} are just used to destroy a beehive and a block.\smallskip
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item \probdiff{2} Adjust the synthesis so that those two gliders come from the northwest instead of the southwest.
+			
+			\item \probdiff{5} Construct a silverfish that is at least 100 rows shorter than the one from Figure~\ref{fig:silverfish} by using a backrake to produce one or both of the gliders that were repositioned in part~(a).
+			
+			[Hint: A rephaser from near the front of the silverfish can be turned into a backrake whose stream crosses that of the forward rakes.]
+		\end{enumerate}
+	\end{problem}
+	% SOLUTION: https://www.conwaylife.com/forums/viewtopic.php?f=2&t=1274&start=375#p98847
 	
 	
 	\mfilbreak
@@ -797,23 +816,6 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 	\begin{problemstar}\label{exer:silverfish_list_of_lanes} \probdiff{3}
 		On page~\pageref{page:silverfish_lanes} we listed a sequence of mod~$31$ lane numbers for implementing the slow salvo synthesis from Figure~\ref{fig:hwss_from_toad_beehive}. The list of lanes that can be used is actually much more flexible than indicated there. For example, we can fire the first two gliders on lanes $0$ and $11$ in either order, since the first two gliders in that slow salvo do not interact with each other. Provide a complete description of \emph{all} possible sequences of mod~$31$ lane numbers that implement that synthesis.
 	\end{problemstar}
-	
-	
-	\mfilbreak
-	
-	
-	\begin{problem}\label{exer:silverfish_backward_glider_destroy}
-		Two of the gliders from the slow salvo synthesis of Figure~\ref{fig:hwss_from_toad_beehive} are just used to destroy a beehive and a block.\smallskip
-		
-		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item \probdiff{2} Adjust the synthesis so that those two gliders come from the northwest instead of the southwest.
-			
-			\item \probdiff{5} Construct a silverfish that is at least 100 rows shorter than the one from Figure~\ref{fig:silverfish} by using a backrake to produce one or both of the gliders that were repositioned in part~(a).
-			
-			[Hint: A rephaser from near the front of the silverfish can be turned into a backrake whose stream crosses that of the forward rakes.]
-		\end{enumerate}
-	\end{problem}
-	% SOLUTION: https://www.conwaylife.com/forums/viewtopic.php?f=2&t=1274&start=375#p98847
 	
 	
 	\mfilbreak
@@ -1225,6 +1227,7 @@ The other three crawlers displayed in Figure~\ref{fig:self_support_climbers} hav
 
 \mfilbreak
 
+\vspace*{9cm}
 
 \begin{problemstar}\label{exer:13_1c_31_helix_large} \probdiff{4}
 	Consider the problem of constructing a helix that travels at $(13,1)c/31$ (i.e., the same speed as the B-heptomino crawler from Figure~\ref{fig:13_1c_31_b_heptomino_climber}).\smallskip
