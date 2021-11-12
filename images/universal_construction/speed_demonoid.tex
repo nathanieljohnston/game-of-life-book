@@ -6,13 +6,13 @@
 		\node[inner sep=0pt,anchor=south west] (sd) at (1.5,0) {\includegraphics[width=9cm]{speed_demonoid.png}};
 
 		% BORDER
-		\draw[gridgray] (0,0) rectangle (12,17.6476868327);
-		\clip (0,0) rectangle (12,17.6476868327);
+		\draw[gridgray] (-0.5,0) rectangle (12.5,17.6476868327);
+		\clip (-0.5,0) rectangle (12.5,17.6476868327);
 		
 		% DIRECTION
 		\newcommand\dirx{10.7}
 		\newcommand\diry{10.9}
-		\draw[gray] (\dirx,\diry) node[rotate=45,shift={(0.05,0.12)}] {\tiny \texttt{direction of travel}};
+		\draw[gray] (\dirx+0.5,\diry) node[rotate=45,shift={(0.05,0.12)}] {\tiny \texttt{direction of travel}};
 		\draw[color=gray,-stealth] (\dirx-0.7,\diry-0.7) -- (\dirx+0.8,\diry+0.8);
 
 		% ZOOM SOUTHERN CORNER TRIGGER1
@@ -21,7 +21,7 @@
 			\newcommand\smby{4.44}
 			\newcommand\smty{\smby+0.2}
 			
-			\newcommand\bglx{7}
+			\newcommand\bglx{7.5}
 			\newcommand\bgrx{\bglx+4.5}
 			\newcommand\bgty{5}
 			\newcommand\bgby{\bgty-4.5}
@@ -40,17 +40,17 @@
 			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
 			
 			% CIRCLE TRIGGER1
-			\draw[white,line width=1.5pt,opacity=0.6](9.305,2.885) circle (0.1);
-			\draw[redback2,line width=0.6pt](9.305,2.885) circle (0.1);
+			\draw[white,line width=1.5pt,opacity=0.6](9.805,2.885) circle (0.1);
+			\draw[redback2,line width=0.6pt](9.805,2.885) circle (0.1);
 			
 			% TRIGGER1 Label
-			\newcommand\trigox{9.42}
+			\newcommand\trigox{9.92}
 			\newcommand\trigoy{2.68}
 			\draw[gray] (\trigox,\trigoy) node[rotate=45,shift={(0.05,-0.14)}] {\tiny \texttt{TRIGGER1}};
 			\draw[color=gray,-stealth] (\trigox-0.35,\trigoy-0.35) -- (\trigox+0.45,\trigoy+0.45);
 			
 			% TRIGGER2 Label
-			\newcommand\trigtbx{8.76}
+			\newcommand\trigtbx{9.26}
 			\newcommand\trigtby{3.34}
 			\draw[gray] (\trigtbx,\trigtby) node[rotate=45,shift={(0.05,0.12)}] {\tiny \texttt{TRIGGER2}};
 			\draw[color=gray,-stealth] (\trigtbx-0.35,\trigtby-0.35) -- (\trigtbx+0.45,\trigtby+0.45);
@@ -62,7 +62,7 @@
 			\renewcommand\smby{8.67}
 			\renewcommand\smty{\smby+0.2}
 			
-			\renewcommand\bglx{9.5}
+			\renewcommand\bglx{10}
 			\renewcommand\bgrx{\bglx+2}
 			\renewcommand\bgty{7.5}
 			\renewcommand\bgby{\bgty-2}
@@ -87,7 +87,7 @@
 			\renewcommand\smby{17.4}
 			\renewcommand\smty{\smby+0.2}
 			
-			\renewcommand\bglx{9.5}
+			\renewcommand\bglx{10}
 			\renewcommand\bgrx{\bglx+2}
 			\renewcommand\bgty{16}
 			\renewcommand\bgby{\bgty-2}
@@ -112,7 +112,7 @@
 			\renewcommand\smby{14.6}
 			\renewcommand\smty{\smby+0.2}
 			
-			\renewcommand\bglx{7.25}
+			\renewcommand\bglx{7.75}
 			\renewcommand\bgrx{\bglx+2}
 			\renewcommand\bgty{13.75}
 			\renewcommand\bgby{\bgty-2}
@@ -120,14 +120,13 @@
 			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
 			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
 			
-			
 			\node[inner sep=0pt,anchor=north west] (zoom2) at (\bglx,\bgty) {\includegraphics[width=2cm]{speed_demonoid_zoom_crab_back.png}};
 			
 			\path[fill,white,opacity=0.4,line width=0pt] (\smlx,\smty) -- (\bglx,\bgty) -- (\bgrx,\bgty) -- (\smrx,\smty) -- (\smrx,\smby) -- (\smlx,\smby) -- cycle;
 			
-			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
 			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
 			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\smlx,\smty) rectangle (\smrx,\smby);
+			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
 			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
 		% END ZOOM BOX BACK OF CRAB2
 		
@@ -137,7 +136,7 @@
 			\renewcommand\smby{13.35}
 			\renewcommand\smty{\smby+0.2}
 			
-			\renewcommand\bglx{5.5}
+			\renewcommand\bglx{5}
 			\renewcommand\bgrx{\bglx+2}
 			\renewcommand\bgty{17.1476868327}
 			\renewcommand\bgby{\bgty-2}
@@ -162,7 +161,7 @@
 			\renewcommand\smby{8.76}
 			\renewcommand\smty{\smby+0.2}
 			
-			\renewcommand\bglx{0.5}
+			\renewcommand\bglx{0}
 			\renewcommand\bgrx{\bglx+4.5}
 			\renewcommand\bgty{17.1476868327}
 			\renewcommand\bgby{\bgty-4.5}

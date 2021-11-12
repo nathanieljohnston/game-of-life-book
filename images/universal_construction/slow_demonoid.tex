@@ -10,6 +10,10 @@
 		% Adjustment for diagonal glider arrow. Hack-ish, but easier than manually adjusting.
 		\newcommand\diagx{-1.2}
 		\newcommand\diagy{-0.8}
+		
+		\newcommand\pgy{0.6}
+		\newcommand\pgyb{0.3}
+		\newcommand\pgx{0.18}
 
 		% BORDER
 		\draw[gridgray] (2,0) rectangle (12,10);
@@ -69,31 +73,31 @@
 		\draw[color=gray,-stealth] (5.23+\bglx,0.7) -- (4.73+\bglx,1.2);
 		\draw[color=gray,-stealth] (4.55+\bglx,1.7) -- (5.05+\bglx,2.2);
 		
-		\node[inner sep=0pt,anchor=north west,rotate=45] at (\bglx+\zoomwid+\zoomxgap-1.2,\bgby-0.9) {\vcenteredhbox{\backgliderarrow{11220}}};
+		\node[inner sep=0pt,anchor=north west,rotate=45] at (\bglx+\zoomwid+\zoomxgap-1.2,\bgby-0.9+\pgy) {\vcenteredhbox{\backgliderarrow{11220}}};
 		
-		\node[inner sep=0pt,anchor=north west] at (\bglx+0.46+\bottomshft+\diagx,\bgty-\zoomwid*1.3780821917-0.4+\diagy) {\includegraphics[width=\zoomwid cm]{slow_demonoid_zoom13525.png}};
-		\draw[gridgray,line width=0.6pt] (\bglx+0.46+\bottomshft+\diagx,\bgty-\zoomwid*1.3780821917-0.4+\diagy) rectangle (\bgrx+0.46+\bottomshft+\diagx,\bgby-\zoomwid*1.3780821917-0.4+\diagy);
-		
-		% GLIDER PATH ARROWS
-		\draw[color=gray,-stealth] (1.8+\diagx+\bglx,-2.7+\diagy) -- (2.3+\diagx+\bglx,-2.2+\diagy);
-		\draw[color=gray,-stealth] (3.25+\diagx+\bglx,-1.9+\diagy) -- (3.75+\diagx+\bglx,-2.4+\diagy);
-		
-		\node[inner sep=0pt,anchor=north west] at (\bgrx+0.53+\bottomshft+\diagx,\bgty-\zoomwid*2.02-0.4+\diagy) {\vcenteredhbox{\gliderarrow{20}}};
-		
-		\node[inner sep=0pt,anchor=north west] at (\bglx+\zoomwid+\zoomxgap+0.27+\bottomshft+\diagx,\bgty-\zoomwid*1.3780821917-0.4+\diagy) {\includegraphics[width=\zoomwid cm]{slow_demonoid_zoom13545.png}};
-		\draw[gridgray,line width=0.6pt] (\bglx+\zoomwid+\zoomxgap+0.27+\bottomshft+\diagx,\bgty-\zoomwid*1.3780821917-0.4+\diagy) rectangle (\bgrx+\zoomwid+\zoomxgap+0.27+\bottomshft+\diagx,\bgby-\zoomwid*1.3780821917-0.4+\diagy);
+		\node[inner sep=0pt,anchor=north west] at (\bglx+0.46+\bottomshft+\diagx,\bgty-\zoomwid*1.3780821917-0.4+\diagy+\pgy+\pgyb) {\includegraphics[width=\zoomwid cm]{slow_demonoid_zoom13525.png}};
+		\draw[gridgray,line width=0.6pt] (\bglx+0.46+\bottomshft+\diagx,\bgty-\zoomwid*1.3780821917-0.4+\diagy+\pgy+\pgyb) rectangle (\bgrx+0.46+\bottomshft+\diagx,\bgby-\zoomwid*1.3780821917-0.4+\diagy+\pgy+\pgyb);
 		
 		% GLIDER PATH ARROWS
-		\draw[color=gray,-stealth] (6.4+\diagx+\bglx,-2.25+\diagy) -- (5.9+\diagx+\bglx,-2.75+\diagy);
-		\draw[color=gray,-stealth] (6.4+\diagx+\bglx,-3.88+\diagy) -- (5.9+\diagx+\bglx,-3.38+\diagy);
+		\draw[color=gray,-stealth] (1.8+\diagx+\bglx,-2.7+\diagy+\pgy+\pgyb) -- (2.3+\diagx+\bglx,-2.2+\diagy+\pgy+\pgyb);
+		\draw[color=gray,-stealth] (3.25+\diagx+\bglx,-1.9+\diagy+\pgy+\pgyb) -- (3.75+\diagx+\bglx,-2.4+\diagy+\pgy+\pgyb);
 		
-		\node[inner sep=0pt,anchor=north west] at (12-\zoomwid-\zoomxgap+0.13+\bottomshft+\diagx+\bglx,\bgty-\zoomwid*2.02-0.4+\diagy) {\vcenteredhbox{\gliderarrow{547}}};
+		\node[inner sep=0pt,anchor=north west] at (\bgrx+0.45+\bottomshft+\diagx,\bgty-\zoomwid*2.02-0.4+\diagy+\pgy+\pgyb) {\vcenteredhbox{ \ \gliderarrow{20} \ }};
 		
-		\node[inner sep=0pt,anchor=north west] at (12-\zoomwid+\bottomshft+\diagx+\bglx,\bgty-\zoomwid*1.3780821917-0.4+\diagy) {\includegraphics[width=\zoomwid cm]{slow_demonoid_zoom14092.png}};
-		\draw[gridgray,line width=0.6pt] (12-\zoomwid+\bottomshft+\diagx+\bglx,\bgty-\zoomwid*1.3780821917-0.4+\diagy) rectangle (12+\bottomshft+\diagx+\bglx,\bgby-\zoomwid*1.3780821917-0.4+\diagy);
+		\node[inner sep=0pt,anchor=north west] at (\bglx+\zoomwid+\zoomxgap+0.27+\bottomshft+\diagx+\pgx,\bgty-\zoomwid*1.3780821917-0.4+\diagy+\pgy+\pgyb) {\includegraphics[width=\zoomwid cm]{slow_demonoid_zoom13545.png}};
+		\draw[gridgray,line width=0.6pt] (\bglx+\zoomwid+\zoomxgap+0.27+\bottomshft+\diagx+\pgx,\bgty-\zoomwid*1.3780821917-0.4+\diagy+\pgy+\pgyb) rectangle (\bgrx+\zoomwid+\zoomxgap+0.27+\bottomshft+\diagx+\pgx,\bgby-\zoomwid*1.3780821917-0.4+\diagy+\pgy+\pgyb);
 		
 		% GLIDER PATH ARROWS
-		\draw[color=gray,-stealth] (10.55+\diagx+\bglx,-3.78+\diagy) -- (10.05+\diagx+\bglx,-3.28+\diagy);
-		\draw[color=gray,-stealth] (10.23+\diagx+\bglx,-3.78+\diagy) -- (10.23+\diagx+\bglx,-4.48+\diagy);
+		\draw[color=gray,-stealth] (6.4+\diagx+\bglx+\pgx,-2.25+\diagy+\pgy+\pgyb) -- (5.9+\diagx+\bglx+\pgx,-2.75+\diagy+\pgy+\pgyb);
+		\draw[color=gray,-stealth] (6.4+\diagx+\bglx+\pgx,-3.88+\diagy+\pgy+\pgyb) -- (5.9+\diagx+\bglx+\pgx,-3.38+\diagy+\pgy+\pgyb);
+		
+		\node[inner sep=0pt,anchor=north west] at (12-\zoomwid-\zoomxgap+0.13+\bottomshft+\diagx+\bglx+\pgx,\bgty-\zoomwid*2.02-0.4+\diagy+\pgy+\pgyb) {\vcenteredhbox{\gliderarrow{547}}};
+		
+		\node[inner sep=0pt,anchor=north west] at (12-\zoomwid+\bottomshft+\diagx+\bglx+\pgx,\bgty-\zoomwid*1.3780821917-0.4+\diagy+\pgy+\pgyb) {\includegraphics[width=\zoomwid cm]{slow_demonoid_zoom14092.png}};
+		\draw[gridgray,line width=0.6pt] (12-\zoomwid+\bottomshft+\diagx+\bglx+\pgx,\bgty-\zoomwid*1.3780821917-0.4+\diagy+\pgy+\pgyb) rectangle (12+\bottomshft+\diagx+\bglx+\pgx,\bgby-\zoomwid*1.3780821917-0.4+\diagy+\pgy+\pgyb);
+		
+		% GLIDER PATH ARROWS
+		\draw[color=gray,-stealth] (10.55+\diagx+\bglx+\pgx,-3.78+\diagy+\pgy+\pgyb) -- (10.05+\diagx+\bglx+\pgx,-3.28+\diagy+\pgy+\pgyb);
+		\draw[color=gray,-stealth] (10.23+\diagx+\bglx+\pgx,-3.78+\diagy+\pgy+\pgyb) -- (10.23+\diagx+\bglx+\pgx,-4.48+\diagy+\pgy+\pgyb);
 	\end{tikzpicture}
 \end{document}

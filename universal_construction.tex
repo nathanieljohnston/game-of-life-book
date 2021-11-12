@@ -105,7 +105,7 @@ We can use arrangements of construction arms like the one in Figure~\ref{fig:mws
 
 After we put all of these ideas together, we get the Gemini spaceship that is displayed in Figure~\ref{fig:gemini}.\footnote{Constructed by Andrew J.~Wade in May 2010.} It builds a copy of itself displaced by $5{\thousep}120$ cells in one direction and $1{\thousep}024$ cells in the other direction every $33{\thousep}699{\thousep}586$ generations, giving its direction of travel a slope of $5120/1024 = 5$.
 
-\begin{figure}[!htb]
+\begin{figure}[!phtb]
 	\centering
 	\embedlink{gemini}{\includegraphics[width=\textwidth]{universal_construction/gemini.pdf}}
 	\caption{The self-constructing \textbf{Gemini} spaceship, which simply looks like a long, thin diagonal line when zoomed out far enough to see in its entirety. The bulk of the spaceship of made up of 24 parallel glider lanes (12 travelling in each direction), which carry a recipe for building the ship. The ends of the spaceship, which are zoomed in on here, are identical arrangements of stable glider reflectors, glider duplicators, and three construction/destruction arms whose sliding blocks are circled in \bgbox{redback}{red}. The construction arms highlighted in \bgbox{aquaback}{aqua} and \bgbox{greenpastel}{green} build the next copy of the spaceship (highlighted in \bgbox{yellowback2}{yellow}), while the destruction arm higlighted in \bgbox{magentaback}{magenta} destroys the previous copy of the spaceship (highlighted in \bgbox{orangeback2}{orange}).}\label{fig:gemini}
@@ -124,7 +124,7 @@ We can also change the slope (i.e., the direction) that the Gemini travels at, j
 
 In the Gemini itself, the northwest construction elbow is pushed out by $m = 3072$ cells, for a displacement of $(m-2048,m+2048) = (1024,5120)$ cells per period, and a slope of $5120/1024 = 5$. We can change this into, for example, a knightship\index{knightship} (i.e., a spaceship with slope $2$) by increasing $m$ so that $m+2048 = 2(m-2048)$ (i.e., $m = 6144$). The easiest way to do this is to insert another $3072$ \texttt{PUSH} operations on the northwest construction elbow's path of the Gemini. This alteration produces the knightship Geminoid with $m = 3072 + 3072 = 6144$ and $n = 2048$ (i.e., a displacement of $(4096,8192)$ cells per period) that is displayed in Figure~\ref{fig:geminoid_knightship}.\footnote{This knightship was constructed by Dave Greene in June 2010.}
 
-\begin{figure}[!htb]
+\begin{figure}[!phtb]
 	\centering
 	\embedlink{geminoid_knightship}{\includegraphics[width=\textwidth]{universal_construction/geminoid_knightship.pdf}}
 	\caption{The northwest corner of a (slope $2$) knightship Geminoid. It functions the exact same as the Gemini itself from Figure~\ref{fig:gemini}, except the construction elbow along the \bgbox{aquaback}{aqua} path is pushed an extra $3072$ full diagonals before beginning construction. It travels at a speed of $(4096,8192)c/35567490$.}\label{fig:geminoid_knightship}
@@ -255,6 +255,21 @@ The sequences given in Table~\ref{tab:single_lane_90deg_glider_timings} can only
 
 A more complete summary of elbow-moving sequences is given in Table~\ref{tab:single_lane_elbow_movers}, which tells us how to move the $90$-degree elbow in either direction by any number of half-diagonals up to $10$. To move the elbow by a larger amount, we can simply repeat these sequences.
 
+With these block-moving sequences at our disposal, we are now able to use gliders on a single lane to fire slow perpendicular gliders on any sequence of lanes of our choosing: by repeating the sequences from Table~\ref{tab:single_lane_elbow_movers} we can move the elbow to any lane that we like, and we can then use a sequence from Table~\ref{tab:single_lane_90deg_glider_timings} to  actually fire a perpendicular glider.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Creating and Using a Hand}\label{sec:single_channel_hand}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The only extra ingredient that we need in order to show that single-channel glider synthesis with a 90-degree elbow block is universal (i.e., can implement any glider synthesis) is a way of creating a target block (which we refer to as a \textbf{hand}\footnote{It is connected to an elbow, after all.})\index{hand} that the perpendicular slow gliders will be fired at. One sequence of gliders that works to create such a hand block is
+\begin{align}\begin{split}\label{eq:make_hand_90_deg}
+& \text{\texttt{109, 91, 93, 90, 132, 115, 127, 91, 90, 91, 95, 90, 114,}} \\
+& \text{\texttt{~~~~~~~~~162, 233, 159, 90, 155, 126, 93, 118, 90, 91, 90, {\color{gray}(90)},}}
+\end{split}\end{align}
+which is illustrated as the first transition in Figure~\ref{fig:90_degree_block_move}. Indeed, this recipe creates a hand block $86$ half-diagonals away, on the internal side of the elbow block, while pushing that elbow block away by $17$ half~diagonals.\footnote{In particular, since we have described the elbow block as moving by an odd number of half-diagonals, we know that it moves to the opposite side of the single-lane glider sequence.}
+
+% ideally 3 paragraphs earlier or so
 \begin{table}[!htb]
 	\centering
 	\begin{tabular}{@{\hskip 0.31cm}L@{\hskip 0.27cm}R@{\hskip 0.34cm}}\toprule
@@ -283,20 +298,6 @@ A more complete summary of elbow-moving sequences is given in Table~\ref{tab:sin
 	\caption{Single-channel glider sequences that can be used to move the 90-degree elbow to any location along the input glider lane. The ``move'' and ``timings'' columns are as in Table~\ref{tab:single_lane_90deg_glider_timings}.}\label{tab:single_lane_elbow_movers}
 \end{table}
 
-With these block-moving sequences at our disposal, we are now able to use gliders on a single lane to fire slow perpendicular gliders on any sequence of lanes of our choosing: by repeating the sequences from Table~\ref{tab:single_lane_elbow_movers} we can move the elbow to any lane that we like, and we can then use a sequence from Table~\ref{tab:single_lane_90deg_glider_timings} to  actually fire a perpendicular glider.
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Creating and Using a Hand}\label{sec:single_channel_hand}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-The only extra ingredient that we need in order to show that single-channel glider synthesis with a 90-degree elbow block is universal (i.e., can implement any glider synthesis) is a way of creating a target block (which we refer to as a \textbf{hand}\footnote{It is connected to an elbow, after all.})\index{hand} that the perpendicular slow gliders will be fired at. One sequence of gliders that works to create such a hand block is
-\begin{align}\begin{split}\label{eq:make_hand_90_deg}
-& \text{\texttt{109, 91, 93, 90, 132, 115, 127, 91, 90, 91, 95, 90, 114,}} \\
-& \text{\texttt{~~~~~~~~~162, 233, 159, 90, 155, 126, 93, 118, 90, 91, 90, {\color{gray}(90)},}}
-\end{split}\end{align}
-which is illustrated as the first transition in Figure~\ref{fig:90_degree_block_move}. Indeed, this recipe creates a hand block $86$ half-diagonals away, on the internal side of the elbow block, while pushing that elbow block away by $17$ half~diagonals.\footnote{In particular, since we have described the elbow block as moving by an odd number of half-diagonals, we know that it moves to the opposite side of the single-lane glider sequence.}
-
 Since we can now use single-channel glider sequences and a $90$-degree elbow to create slow gliders on any lane, and we can also create a hand block for those gliders to collide with, we immediately see from Theorem~\ref{thm:p1_slow_salvo} that these types of glider syntheses are universal. That is, we have demonstrated the following result:
 
 \begin{theorem}[Universality of Single-Channel Synthesis]\label{thm:single_channel_90_degree}
@@ -321,7 +322,9 @@ When we put all of this together, we get the following single-lane sequence of 1
 \begin{align*}
 & \text{\texttt{\footnotesize make hand: {\scriptsize 109, 91, 93, 90, 132, 115, 127, 91, 90, 91, 95, 90, 114, 162, 233, 159, 90, 155, 126, 93,}}} \\
 & \text{\texttt{\footnotesize ~~~~~~~~~~~~{\scriptsize 118, 90, 91, 90, 90,}}} \\
-& \text{\texttt{\footnotesize move -2hd: {\scriptsize 109, 91, 94, 91, 91, 136, 90, 90, 91, 171, 100, 118, 90, 90,}}} \\
+& \text{\texttt{\footnotesize move -2hd: {\scriptsize 109, 91, 94, 91, 91, 136, 90, 90, 91, 171, 100, 118, 90, 90,}}}
+\end{align*}
+\begin{align*}
 & \text{\texttt{\footnotesize fire -21x: {\scriptsize 109, 91, 93, 90, 155, 106, 90, 90, 92, 91, 109, 90, 93, 91, 90, 100, 124, 90,}}} \\
 & \text{\texttt{\footnotesize move~~8hd: {\scriptsize 109, 91, 94, 91, 91, 92, 90, 119, 90, 90,}}} \\
 & \text{\texttt{\footnotesize fire~~~8i: {\scriptsize 109, 90, 95, 245, 90, 126, 208, 128, 90, 96, 91, 90, 90, 91, 91, 91, 91, 100, 90, 90, 90,}}} \\
@@ -376,6 +379,7 @@ In this zero-degree setting, it is much more important to be able to fire output
 
 For this reason, extensive computer searches have been used to generate single-channel glider sequences of this type that produce a single output glider on any lane from $-100$ to $+100$.\footnote{A complete collection of tens of thousands of these recipes can be downloaded from \httpsurl{gitlab.com/apgoucher/slmake/-/tree/master/data/simeks}. It can be useful to have multiple recipes for the same output lane, since they might move the zero-degree elbow by different amounts.} A summary of sequences of this type for output lanes $-22$ through $+22$ is provided in Table~\ref{tab:single_lane_0deg_glider_timings}.
 
+\begingroup\renewcommand{\arraystretch}{0.95}
 \begin{table}[!phtb]
 	\centering
 	\begin{tabular}{@{\hskip 0.31cm}L@{\hskip 0.27cm}r@{\hskip 0.27cm}R@{\hskip 0.34cm}}\toprule
@@ -428,6 +432,7 @@ For this reason, extensive computer searches have been used to generate single-c
 	\end{tabular}
 	\caption{Single-channel glider sequences that produce an output glider on a given lane (relative of the sequence itself, which is on lane~0). The ``move'' and ``timings'' columns are as in Table~\ref{tab:single_lane_90deg_glider_timings}.}\label{tab:single_lane_0deg_glider_timings}
 \end{table}
+\endgroup
 
 As with 90-degree single-lane sequences, the value in the ``move'' column being odd means that the zero-degree elbow moves to the other side of the input glider stream. If this happens, the output lanes of all subsequent glider sequences are flipped from positive to negative, and vice-versa. For example, the sequence corresponding to lane~2 has a ``move'' value of $-27$, which is odd. If we want to output gliders on lanes $2$ and then $3$, we would thus have to send the sequences corresponding to lanes $2$ and then $-3$ (not $3$).\footnote{Since the ``move'' value for the lane~$-3$ sequence is also odd, the zero-degree elbow would then be back on its original side of the glider stream after this second sequence.}
 
@@ -832,6 +837,12 @@ The Gemini's completion, and its accompanying philosophy of storing information 
 	
 	\item In August 2014, Dave Greene constructed a pattern that grows outward in a spiral fashion by laying ever-expanding tracks around itself. The original version of this pattern had a bounding box with side length of approximately $1.6$~million cells, but has since between reduced to approximately $2{\thousep}000$ cells (see Figure~\ref{fig:spiral_growth}\index{spiral growth} and Exercise~\ref{exer:snark_spiral_weld}).\smallskip
 	
+\begin{figure}[!htb]
+	\centering
+	\embedlink{spiral_growth}{\includegraphics[width=\textwidth]{universal_construction/spiral_growth.pdf}}
+	\caption{A spiral growth pattern that was constructed by Dave Greene in June 2017. A single-channel recipe that is primarily made up of a Snarkmaker bounces around the diamond-shaped track highlighted track in \bgbox{orangeback2}{orange}, creating Snarks that extend the track as indicated in \bgbox{aquaback}{aqua}.}\label{fig:spiral_growth}
+\end{figure}
+	
 	\item In November 2015, Chris Cain and Dave Greene completed the first Demonoid, which used somewhat more complicated circuitry than the Demonoids that we investigated in this chapter. Most notably, it used pairs of gliders separated by $10$hd to implement slow glider syntheses instead of single-channel glider recipes, which doubled the amount of circuitry that had to be constructed at each end.\smallskip
 	
 	\item In June 2017, Dave Greene constructed an \textbf{Orthogonoid}\index{Orthogonoid} spaceship,\footnote{See \httpsurl{conwaylife.com/wiki/Orthogonoid}.} which works similarly to Demonoids, except uses middleweight spaceships (instead of gliders) to achieve a slow orthogonal (instead of diagonal) speed of travel. Adam P.~Goucher then helped build faster Orthogonoids with speeds up to $65536c/951573 \approx 0.06887c$ in October 2018.\smallskip
@@ -844,15 +855,6 @@ The Gemini's completion, and its accompanying philosophy of storing information 
 \end{itemize}
 
 The development of single-channel glider synthesis mostly took place in 2017, when another relative newcomer, Simon Ekstr{\"o}m, cavalierly disregarded accumulated prejudices from the previous decade, tried a search, and found that it worked.\footnote{This is not unlike Wade's construction of the Gemini in 2010, or when ConwayLife.com forums user ``zdr'' found the copperhead spaceship in 2016. In all of these cases, a newcomer simply looked where the members of the Life community thought there wasn't anything to find.} It was already known in 2015 how to emulate arbitrary glider synthesis via gliders on a single lane, but Ekstr{\"o}m was the first to show that it is possible even when the gliders are far enough apart from each other that they can be fed through standard components like Snarks and syringes.
-
-
-% Put figure down below clearpage to force exercises header onto same page as it. Can remove if/when page breaks adjust. (currently removed)
-
-\begin{figure}[!htb]
-	\centering
-	\embedlink{spiral_growth}{\includegraphics[width=\textwidth]{universal_construction/spiral_growth.pdf}}
-	\caption{A spiral growth pattern that was constructed by Dave Greene in June 2017. A single-channel recipe that is primarily made up of a Snarkmaker bounces around the diamond-shaped track highlighted track in \bgbox{orangeback2}{orange}, creating Snarks that extend the track as indicated in \bgbox{aquaback}{aqua}.}\label{fig:spiral_growth}
-\end{figure}
 
 %\clearpage % Put "Exercises" header at the top of the next page instead of the bottom of this page
 
@@ -1155,24 +1157,8 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 			% Solution: there's a parity problem. The elbow moves diagonally, *WSSes are p4 but move at c/2 , so a given recipe can only reach half the possible output positions for any *WSS.
 		\end{enumerate}
 	\end{problem}
-	
-	
-	\mfilbreak
-	
-	
-	\begin{problem}\label{exer:syringe_xwss_destroy} \probdiff{3}
-		The fact that Snarks and Scorbie splitters can be destroyed by xWSS slow salvos is not surprising---most objects can be similarly destroyed.\smallskip
-		
-		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item Construct an xWSS slow salvo that destroys the syringe from Figure~\ref{fig:syringe_main}.
-			
-			\item Construct a single-channel glider recipe that synthesizes the slow salvo from part~(a), and thus destroys a syringe.
-			
-			[Hint: Use the LWSS- and MWSS-synthesizing recipes that you found in Exercise~\ref{exer:snark_scorbie_splitter_xwss_destroy}.]
-		\end{enumerate}
-	\end{problem}
-	
-	
+
+
 	\mfilbreak
 	
 	
@@ -1213,6 +1199,22 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 			\item This 44hd block push can be overclocked\index{overclock} so that subsequent block pushes come in just $90$~generations later instead of $188$. Recompute the Demonoid's speed limit in light of this speed-up.
 		\end{enumerate}
 	\end{problemstar}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:syringe_xwss_destroy} \probdiff{3}
+		The fact that Snarks and Scorbie splitters can be destroyed by xWSS slow salvos is not surprising---most objects can be similarly destroyed.\smallskip
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Construct an xWSS slow salvo that destroys the syringe from Figure~\ref{fig:syringe_main}.
+			
+			\item Construct a single-channel glider recipe that synthesizes the slow salvo from part~(a), and thus destroys a syringe.
+			
+			[Hint: Use the LWSS- and MWSS-synthesizing recipes that you found in Exercise~\ref{exer:snark_scorbie_splitter_xwss_destroy}.]
+		\end{enumerate}
+	\end{problem}
 	
 	
 	\mfilbreak
@@ -1349,6 +1351,4 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\end{problem}
 	
 	%% EXERCISE END COMMANDS
-\end{multicols}
-\normalsize\vspace*{0.01cm}
-%% DONE EXERCISE END COMMANDS
+\end{multicols}\normalsize
