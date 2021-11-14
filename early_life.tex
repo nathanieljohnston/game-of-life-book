@@ -690,7 +690,8 @@ Finally, Adam P. Goucher launched another distributed online search in 2014 call
 \label{sec:early_life_exercises}
 \addcontentsline{toc}{section}{Exercises}
 \vspace*{-0.4cm}\hrulefill\vspace*{-0.3cm}\footnotesize\begin{multicols}{2}\vspace*{-0.4cm}\raggedcolumns\interlinepenalty=10000
-	\setlength{\parskip}{0pt}
+	\setlength{\parskip}{0pt}\ifdefined\FORPRINTING\colorlet{ocre}{black}\else%
+\fi
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	\begin{problemstar}\label{exer:natural_switch_engine} \probdiff{1}
@@ -1036,5 +1037,6 @@ Finally, Adam P. Goucher launched another distributed online search in 2014 call
 	
 	%% EXERCISE END COMMANDS
 \end{multicols}
-\normalsize\vspace*{0.01cm}
+\normalsize\vspace*{0.01cm}\ifdefined\FORPRINTING\colorlet{ocre}{rawocre}\else%
+\fi
 %% DONE EXERCISE END COMMANDS
