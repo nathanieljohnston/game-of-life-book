@@ -23,6 +23,10 @@ Modular congruence is a way of grouping numbers together based on their remainde
 \]
 For example, $7 \equiv 1 \pmod{3}$ since $7 - 1 = 6$ is a multiple of $3$.
 
+
+\clearpage
+
+
 Congruence modulo $n$ provides a way partitioning the set of integers into $n$ disjoint sets, called \textbf{congruence classes}, each consisting of all integers that are congruent to each other. For example, if $n = 2$ then there are two congruence classes: the set of even integers and the set of odd integers. If $n = 3$ then there are three congruence classes:\footnote{Negative integers can be congruent to each other, and do belong to congruence classes. For example, $7 \equiv -5 \pmod{3}$ since $7-(-5) = 12$ is a multiple of $3$, so $7$ and $-5$ belong to the same mod-$3$ congruence class.}
 \begin{align*}
 	\{\ldots, -6, -3, 0, 3, 6, 9, \ldots\}, \quad \{\ldots, -5, -2, 1, 4, 7, 10, \ldots\}, \quad \text{and} \quad \{\ldots, -4, -1, 2, 5, 8, 11, \ldots\}.
@@ -72,6 +76,10 @@ In the special case when $\mathrm{gcd}(a,b) = 1$ (in which case $a$ and $b$ are 
 Complementary to the greatest common divisor is the \textbf{least common multiple}\index{least common multiple}\index{lcm|see {least common multiple}} of two positive integers $a$ and $b$: the smallest positive integer that is a multiple of each of $a$ and $b$, which we denote by $\mathrm{lcm}(a,b)$. For example, $\mathrm{lcm}(3,7) = 21$ and $\mathrm{lcm}(6,10) = 30$. It is straightforward to verify that $\mathrm{lcm}(a,b) = ab/\mathrm{gcd}(a,b)$ for all integers $a$ and $b$.
 
 
+
+\clearpage
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%   SECTION: BIG-Theta NOTATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -104,12 +112,6 @@ However, this formula is quite technical and has many details that we typically 
 
 Informally, the phrase ``$f(x)$ is $\Theta(g(x))$'' means that $f$ and $g$ have the same rate of growth as $x$ gets large, ignoring things like scalars and low-order terms. For example, for the population formula $p(t)$ given in Equation~\eqref{eq:max_population_formula}, we can say that $p(t)$ is $\Theta(t^2)$. This is hopefully somewhat intuitive, but it can be made precise by choosing $c = 1/4$, $C = 1/2$, and $N = 57$ in Definition~\ref{defn:big_theta}---see Figure~\ref{fig:max_population_graph}.\footnote{Many other choices of $c$, $C$, and $N$ are possible here as well. For example, we could choose any smaller value of $c$ and/or any larger value of $C$ or $N$. We could even choose a smaller value of $C$ as long as we choose a larger value of $N$ to compensate.}
 
-\begin{figure}[!htbp]
-	\centering
-	\includegraphics[width=\textwidth]{appendices/max_population.pdf}
-	\caption{A plot of the population $p(t)$ of the max pattern from Figure~\ref{fig:max} in generation $t$. Since $p(t)$ is between $t^2/4$ and $t^2/2$ when $t \geq 57$, we say that $p(t)$ is $\Theta(t^2)$.}\label{fig:max_population_graph}
-\end{figure}
-
 Some other examples of potential usage of big-$\Theta$ notation include:\smallskip
 
 \begin{itemize}
@@ -119,3 +121,10 @@ Some other examples of potential usage of big-$\Theta$ notation include:\smallsk
 	
 	\item All logarithmic functions have the same growth rate as each other, in the sense that $\log_a(x)$ is $\Theta(\log_b(x))$ for all $a,b > 1$. Indeed, $\log_a(x) = (\log_a(b))\log_b(x)$, so logarithms only differ by the multiplicative scalar $\log_a(b)$, which is absorbed by the big $\Theta$. For this reason, we typically just write $\Theta(\log(x))$ when discussing logarithmic growth rates, as the base makes no difference.
 \end{itemize}
+
+% Can be before the bullet list.
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\textwidth]{appendices/max_population.pdf}
+\caption{A plot of the population $p(t)$ of the max pattern from Figure~\ref{fig:max} in generation $t$. Since $p(t)$ is between $t^2/4$ and $t^2/2$ when $t \geq 57$, we say that $p(t)$ is $\Theta(t^2)$.}\label{fig:max_population_graph}
+\end{figure}

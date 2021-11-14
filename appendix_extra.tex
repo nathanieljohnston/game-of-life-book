@@ -244,7 +244,7 @@ The possible modifiers are each specified by a single letter, all of which are d
 	\item \textbf{Negative modifiers}: If a rulestring contains ``\texttt{B3-kr}'' then cells are born if they have $3$ live neighbors in any configuration \emph{except} for the ``\texttt{k}'' and ``\texttt{r}'' configurations (up to rotation).\smallskip
 \end{itemize}
 
-\begin{table}[!htb]
+\begin{table}[!phtb]
 	\begin{center}		
 		\begin{tabular}{c|ccccccc}
 			\toprule
@@ -326,6 +326,33 @@ When ordering these configurations, we start counting as $0$ so that the all-dea
 		& \texttt{00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000} \\
 		& \texttt{00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000}.
 	\end{align*}
+
+% ideally after next bullet point
+\begin{table}[!htb]
+\begin{center}		
+	\begin{tabular}{cc|cc|cc|cc}
+		\toprule
+		Base $2$ & Base $64$ & Base $2$ & Base $64$ & Base $2$ & Base $64$ & Base $2$ & Base $64$ \\ \midrule
+		\texttt{000000} & \texttt{A} & \texttt{010000} & \texttt{Q} & \texttt{100000} & \texttt{g} & \texttt{110000} & \texttt{w} \\
+		\texttt{000001} & \texttt{B} & \texttt{010001} & \texttt{R} & \texttt{100001} & \texttt{h} & \texttt{110001} & \texttt{x} \\
+		\texttt{000010} & \texttt{C} & \texttt{010010} & \texttt{S} & \texttt{100010} & \texttt{i} & \texttt{110010} & \texttt{y} \\
+		\texttt{000011} & \texttt{D} & \texttt{010011} & \texttt{T} & \texttt{100011} & \texttt{j} & \texttt{110011} & \texttt{z} \\
+		\texttt{000100} & \texttt{E} & \texttt{010100} & \texttt{U} & \texttt{100100} & \texttt{k} & \texttt{110100} & \texttt{0} \\
+		\texttt{000101} & \texttt{F} & \texttt{010101} & \texttt{V} & \texttt{100101} & \texttt{l} & \texttt{110101} & \texttt{1} \\
+		\texttt{000110} & \texttt{G} & \texttt{010110} & \texttt{W} & \texttt{100110} & \texttt{m} & \texttt{110110} & \texttt{2} \\
+		\texttt{000111} & \texttt{H} & \texttt{010111} & \texttt{X} & \texttt{100111} & \texttt{n} & \texttt{110111} & \texttt{3} \\
+		\texttt{001000} & \texttt{I} & \texttt{011000} & \texttt{Y} & \texttt{101000} & \texttt{o} & \texttt{111000} & \texttt{4} \\
+		\texttt{001001} & \texttt{J} & \texttt{011001} & \texttt{Z} & \texttt{101001} & \texttt{p} & \texttt{111001} & \texttt{5} \\
+		\texttt{001010} & \texttt{K} & \texttt{011010} & \texttt{a} & \texttt{101010} & \texttt{q} & \texttt{111010} & \texttt{6} \\
+		\texttt{001011} & \texttt{L} & \texttt{011011} & \texttt{b} & \texttt{101011} & \texttt{r} & \texttt{111011} & \texttt{7} \\
+		\texttt{001100} & \texttt{M} & \texttt{011100} & \texttt{c} & \texttt{101100} & \texttt{s} & \texttt{111100} & \texttt{8} \\
+		\texttt{001101} & \texttt{N} & \texttt{011101} & \texttt{d} & \texttt{101101} & \texttt{t} & \texttt{111101} & \texttt{9} \\
+		\texttt{001110} & \texttt{O} & \texttt{011110} & \texttt{e} & \texttt{101110} & \texttt{u} & \texttt{111110} & \texttt{+} \\
+		\texttt{001111} & \texttt{P} & \texttt{011111} & \texttt{f} & \texttt{101111} & \texttt{v} & \texttt{111111} & \texttt{/} \\\bottomrule
+	\end{tabular}
+	\caption{A way of converting a (base-2) bitstring into a base-64 string. Every substring consisting of six bits gets mapped to a single alphanumeric character, or ``\texttt{+}'' or ``\texttt{/}''.}\label{tab:base64}
+\end{center}
+\end{table}
 	
 	\item[2)] In order to make the rule's description a bit shorter, we convert this 512-bit string from base~$2$ to base~$64$ according to Table~\ref{tab:base64}.\footnote{This is a fairly standard way of converting a bitstring to a mostly-alphanumeric string that shows up in lots of contexts outside of cellular automata as well.} Since each character in the base~$64$ string encodes $\log_2(64) = 6$ bits of the bitstring, this process gives a $\lceil 512/6 \rceil = 86$-character string that uniquely specifies the rule.\footnote{Since $512 \equiv 2 \ (\text{mod} \ 6)$, the final two bits of the bitstring correspond to the final character in the base-64 rulestring (and that character is determined by just the first two bits from Table~\ref{tab:base64}). This leads to some redundancy in the base-64 rulestrings: a final character of ``\texttt{A}'' indicates the same rule as a final character of ``\texttt{P}'', for example, and any of the final characters ``\texttt{g}'' through ``\texttt{v}'' are equivalent to each other.} Finally, we prepend this base-64 string with the characters ``\texttt{MAP}''\index{MAP} just to indicate that it is a non-isotropic rulestring.
 	
@@ -335,34 +362,6 @@ When ordering these configurations, we start counting as $0$ so that the all-dea
 		& \texttt{\hphantom{MAP}AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA}.
 	\end{align*}
 \end{itemize}
-
-\clearpage% for spacing reasons -- remove if layout changes
-
-\begin{table}[!htb]
-	\begin{center}		
-		\begin{tabular}{cc|cc|cc|cc}
-			\toprule
-			Base $2$ & Base $64$ & Base $2$ & Base $64$ & Base $2$ & Base $64$ & Base $2$ & Base $64$ \\ \midrule
-			\texttt{000000} & \texttt{A} & \texttt{010000} & \texttt{Q} & \texttt{100000} & \texttt{g} & \texttt{110000} & \texttt{w} \\
-			\texttt{000001} & \texttt{B} & \texttt{010001} & \texttt{R} & \texttt{100001} & \texttt{h} & \texttt{110001} & \texttt{x} \\
-			\texttt{000010} & \texttt{C} & \texttt{010010} & \texttt{S} & \texttt{100010} & \texttt{i} & \texttt{110010} & \texttt{y} \\
-			\texttt{000011} & \texttt{D} & \texttt{010011} & \texttt{T} & \texttt{100011} & \texttt{j} & \texttt{110011} & \texttt{z} \\
-			\texttt{000100} & \texttt{E} & \texttt{010100} & \texttt{U} & \texttt{100100} & \texttt{k} & \texttt{110100} & \texttt{0} \\
-			\texttt{000101} & \texttt{F} & \texttt{010101} & \texttt{V} & \texttt{100101} & \texttt{l} & \texttt{110101} & \texttt{1} \\
-			\texttt{000110} & \texttt{G} & \texttt{010110} & \texttt{W} & \texttt{100110} & \texttt{m} & \texttt{110110} & \texttt{2} \\
-			\texttt{000111} & \texttt{H} & \texttt{010111} & \texttt{X} & \texttt{100111} & \texttt{n} & \texttt{110111} & \texttt{3} \\
-			\texttt{001000} & \texttt{I} & \texttt{011000} & \texttt{Y} & \texttt{101000} & \texttt{o} & \texttt{111000} & \texttt{4} \\
-			\texttt{001001} & \texttt{J} & \texttt{011001} & \texttt{Z} & \texttt{101001} & \texttt{p} & \texttt{111001} & \texttt{5} \\
-			\texttt{001010} & \texttt{K} & \texttt{011010} & \texttt{a} & \texttt{101010} & \texttt{q} & \texttt{111010} & \texttt{6} \\
-			\texttt{001011} & \texttt{L} & \texttt{011011} & \texttt{b} & \texttt{101011} & \texttt{r} & \texttt{111011} & \texttt{7} \\
-			\texttt{001100} & \texttt{M} & \texttt{011100} & \texttt{c} & \texttt{101100} & \texttt{s} & \texttt{111100} & \texttt{8} \\
-			\texttt{001101} & \texttt{N} & \texttt{011101} & \texttt{d} & \texttt{101101} & \texttt{t} & \texttt{111101} & \texttt{9} \\
-			\texttt{001110} & \texttt{O} & \texttt{011110} & \texttt{e} & \texttt{101110} & \texttt{u} & \texttt{111110} & \texttt{+} \\
-			\texttt{001111} & \texttt{P} & \texttt{011111} & \texttt{f} & \texttt{101111} & \texttt{v} & \texttt{111111} & \texttt{/} \\\bottomrule
-		\end{tabular}
-		\caption{A way of converting a (base-2) bitstring into a base-64 string. Every substring consisting of six bits gets mapped to a single alphanumeric character, or ``\texttt{+}'' or ``\texttt{/}''.}\label{tab:base64}
-	\end{center}
-\end{table}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -666,7 +665,10 @@ Recall that lines listed with a substate (input value) \texttt{*} just do the sa
 			\State \verb|SUB7;      NZ;      SUB7;         TDEC B3|
 			\State \verb|SUB8;      Z;       CMP1;         TDEC U6, INC U2|
 			\State \verb|SUB8;      NZ;      SUB8;         TDEC B2|
-			\State \verb||
+		\end{algorithmic}
+	\end{minipage}\hfill{\color{gray}\vline}\hfill
+	\begin{minipage}[t]{.49\textwidth}
+		\begin{algorithmic}\tiny
 			\State \verb|# If B2 > B3 we cannot subtract anymore.|
 			\State \verb|# Multiply B3 by 10 and reset U2, or jump ahead and print|
 			\State \verb|# the digit that we have now computed.|
@@ -686,10 +688,7 @@ Recall that lines listed with a substate (input value) \texttt{*} just do the sa
 			\State \verb|DIG7;      NZ;      DIG7;         SET B3, NOP|
 			\State \verb|DIG8;      Z;       CMP1;         TDEC U6|
 			\State \verb|DIG8;      NZ;      DIG8;         TDEC B3|
-		\end{algorithmic}
-	\end{minipage}\hfill{\color{gray}\vline}\hfill
-	\begin{minipage}[t]{.49\textwidth}
-		\begin{algorithmic}\tiny
+			\State \verb||
 			\State \verb|# Print the current digit, which is stored in U2.|
 			\State \verb|OUT0;      Z;       OUTD1;        NOP, OUTPUT 0|
 			\State \verb|OUT0;      NZ;      OUT1;         TDEC U2|
