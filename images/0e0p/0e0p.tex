@@ -9,7 +9,9 @@
 
 \begin{document}
 	\begin{tikzpicture}%
-		\clip (0.07,-4.69) rectangle (11.9,11.88);
+		\newcommand\pgadj{0.3}
+		
+		\clip (0.07-\pgadj,-4.69+\pgadj) rectangle (11.9+\pgadj,11.88);
 	
 		\node[inner sep=0pt,anchor=south west] (ca) at (0.05,0.05) {\includegraphics[width=11.9cm]{0e0p.png}};
 		
@@ -19,29 +21,29 @@
 			\newcommand\smby{1.525}
 			\newcommand\smty{\smby+0.4}
 			
-			\newcommand\bglx{0.1}
+			\newcommand\bglx{0.1-\pgadj}
 			\newcommand\bgrx{\bglx+4.7}
-			\newcommand\bgty{1}
+			\newcommand\bgty{1+\pgadj}
 			\newcommand\bgby{\bgty-5.64}
 			
 			\path[draw,gridgray,line width=0.45pt] (\smlx,\smby) -- (\bglx,\bgby);
-			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
 			
 			\node[inner sep=0pt,anchor=north west] (zoom0) at (\bglx,\bgty) {\includegraphics[width=4.7cm]{0e0p_zoom0.png}};
 			
-			\path[fill,white,opacity=0.4,line width=0pt] (\smrx,\smty) -- (\bgrx,\bgty) -- (\bglx,\bgty) -- (\smlx,\smty) -- (\smlx,\smby) -- (\smrx,\smby) -- cycle;
+			\path[fill,white,opacity=0.4,line width=0pt] (\smrx,\smby) -- (\bgrx,\bgby) -- (\bgrx,\bgty) -- (\bglx,\bgty) -- (\smlx,\smty) -- (\smlx,\smby) -- cycle;
 			
 			\filldraw[draw=gridgray,fill=white,line width=0.3pt,fill opacity=0.64] (\smlx,\smty) rectangle (\smrx,\smby);
 			\draw[gridgray,line width=0.6pt] (\bglx,\bgty) rectangle (\bgrx,\bgby);
+			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
 			\path[draw,gridgray,line width=0.45pt] (\smlx,\smty) -- (\bglx,\bgty);
 			\path[draw,gridgray,line width=0.45pt] (\smrx,\smty) -- (\bgrx,\bgty);
 			
 			% GLIDER PATH ARROWS
-			\draw[color=darkgreenback,-stealth] (3.25,4.3-7.4) --node[anchor=north,rotate=-45,shift={(0,0)},align=center]{\small\texttt{from S}} (2.3,5.25-7.4);
+			\draw[color=darkgreenback,-stealth] (3.25-\pgadj,4.3-7.4+\pgadj) --node[anchor=north,rotate=-45,shift={(0,0)},align=center]{\small\texttt{from S}} (2.3-\pgadj,5.25-7.4+\pgadj);
 			
-			\draw[darkyellowback,dashed] (0.21,-0.1) -- (0.71,0.4) --node[rotate=-45,anchor=south,fill=white,fill opacity=0.8,text opacity=1]{\texttt{INS}} (1.21,-0.1) -- (0.71,-0.6) -- cycle;
+			\draw[darkyellowback,dashed] (0.21-\pgadj,-0.1+\pgadj) -- (0.71-\pgadj,0.4+\pgadj) --node[rotate=-45,anchor=south,fill=white,fill opacity=0.8,text opacity=1]{\texttt{INS}} (1.21-\pgadj,-0.1+\pgadj) -- (0.71-\pgadj,-0.6+\pgadj) -- cycle;
 			
-			\draw[darkyellowback,dashed] (3.31,-3.9) -- (4.31,-2.9) --node[rotate=-45,anchor=south,fill=white,fill opacity=0.8,text opacity=1]{\texttt{LS}} (5.01,-3.6) -- (4.01,-4.6) -- cycle;
+			\draw[darkyellowback,dashed] (3.31-\pgadj,-3.9+\pgadj) -- (4.31-\pgadj,-2.9+\pgadj) --node[rotate=-45,anchor=south,fill=white,fill opacity=0.8,text opacity=1]{\texttt{LS}} (5.01-\pgadj,-3.6+\pgadj) -- (4.01-\pgadj,-4.6+\pgadj) -- cycle;
 		% END ZOOM BOX LS and INS
 		
 		% ZOOM S
@@ -50,9 +52,9 @@
 			\renewcommand\smby{0.079}
 			\renewcommand\smty{\smby+0.4}
 			
-			\renewcommand\bglx{7.16}
+			\renewcommand\bglx{7.16+\pgadj}
 			\renewcommand\bgrx{\bglx+4.7}
-			\renewcommand\bgty{1}
+			\renewcommand\bgty{1+\pgadj}
 			\renewcommand\bgby{\bgty-5.64}
 			
 			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
@@ -69,25 +71,25 @@
 			
 			% GLIDER PATH ARROWS
 			\newcommand\zmshft{7.06}
-			\draw[color=gray,-stealth] (8.71,0.6-4.3) --node[anchor=north east,rotate=-45,shift={(1.22,0)},align=center]{\small\texttt{to W}\\[-0.1cm]\scriptsize\texttt{(bottom 4 lanes)}} (8.01,1.3-4.3);
+			\draw[color=gray,-stealth] (8.71+\pgadj,0.6-4.3+\pgadj) --node[anchor=north east,rotate=-45,shift={(1.22,0)},align=center]{\small\texttt{to W}\\[-0.1cm]\scriptsize\texttt{(bottom 4 lanes)}} (8.01+\pgadj,1.3-4.3+\pgadj);
 			
-			\draw[color=gray,-stealth] (11.51,4.3-7.4) -- (11.01,3.8-7.4);
-			\draw[color=darkmagentaback,-stealth] (4.05+\zmshft,5.7-7.2) -- (3.55+\zmshft,5.2-7.2);
-			\draw[color=darkgreenback,-stealth] (4.48+\zmshft,-0.12) --node[anchor=south,rotate=-45,shift={(0,0)},align=center]{\small\texttt{to INS}} (3.63+\zmshft,0.73);
-			\draw[color=darkyellowback,-stealth] (3.33+\zmshft,0.03-0.05) --node[anchor=south,rotate=-45,shift={(0,0)},align=center]{\small\texttt{to LW}} (2.63+\zmshft,0.73-0.05);
+			\draw[color=gray,-stealth] (11.51+\pgadj,4.3-7.4+\pgadj) -- (11.01+\pgadj,3.8-7.4+\pgadj);
+			\draw[color=darkmagentaback,-stealth] (4.05+\zmshft+\pgadj,5.7-7.2+\pgadj) -- (3.55+\zmshft+\pgadj,5.2-7.2+\pgadj);
+			\draw[color=darkgreenback,-stealth] (4.48+\zmshft+\pgadj,-0.12+\pgadj) --node[anchor=south,rotate=-45,shift={(0,0)},align=center]{\small\texttt{to INS}} (3.63+\zmshft+\pgadj,0.73+\pgadj);
+			\draw[color=darkyellowback,-stealth] (3.33+\zmshft+\pgadj,0.03-0.05+\pgadj) --node[anchor=south,rotate=-45,shift={(0,0)},align=center]{\small\texttt{to LW}} (2.63+\zmshft+\pgadj,0.73-0.05+\pgadj);
 			%\draw[color=darkmagentaback,-stealth] (0.9+\zmshft,0.03-0.35) --node[anchor=south,rotate=-45,shift={(0,0)},align=center]{\small\texttt{to SW}} (0.2+\zmshft,0.73-0.35);
 			
-			\draw[color=darkgreenback](0.6+\zmshft,-1.2+0.45) node[rotate=-45,anchor=south,shift={(1,0)},fill=white,fill opacity=0.8,text opacity=1]{\scriptsize\texttt{trombone slide at SW}};
-			\draw[color=darkgreenback,-stealth] (0.3+\zmshft,-1.5+0.45) -- (0.2+\zmshft,-1.4+0.45) to [out=135,in=135] (0.5+\zmshft,-1.1+0.45) -- (0.6+\zmshft,-1.2+0.45);
+			\draw[color=darkgreenback](0.6+\zmshft+\pgadj,-1.2+0.45+\pgadj) node[rotate=-45,anchor=south,shift={(1,0)},fill=white,fill opacity=0.8,text opacity=1]{\scriptsize\texttt{trombone slide at SW}};
+			\draw[color=darkgreenback,-stealth] (0.3+\zmshft+\pgadj,-1.5+0.45+\pgadj) -- (0.2+\zmshft+\pgadj,-1.4+0.45+\pgadj) to [out=135,in=135] (0.5+\zmshft+\pgadj,-1.1+0.45+\pgadj) -- (0.6+\zmshft+\pgadj,-1.2+0.45+\pgadj);
 			
 			% LOGIC box
-			\fill[fill=aquaback,opacity=0.5] (3.7+\zmshft,-0.85) -- (2+\zmshft,0.85) -- (1.2+\zmshft,0.85) -- (1.2+\zmshft,-0.75) -- (2.5+\zmshft,-2.05) -- cycle;
-			\draw[color=darkaquaback] (3.7+\zmshft,-0.85) -- (2+\zmshft,0.85) -- (1.2+\zmshft,0.85) -- (1.2+\zmshft,-0.75) -- (2.5+\zmshft,-2.05) -- cycle;
-			\draw[color=darkaquaback] (2.26+\zmshft,-0.64) node[rotate=-45]{\texttt{logic}};
+			\fill[fill=aquaback,opacity=0.5] (3.7+\zmshft+\pgadj,-0.85+\pgadj) -- (2+\zmshft+\pgadj,0.85+\pgadj) -- (1.2+\zmshft+\pgadj,0.85+\pgadj) -- (1.2+\zmshft+\pgadj,-0.75+\pgadj) -- (2.5+\zmshft+\pgadj,-2.05+\pgadj) -- cycle;
+			\draw[color=darkaquaback] (3.7+\zmshft+\pgadj,-0.85+\pgadj) -- (2+\zmshft+\pgadj,0.85+\pgadj) -- (1.2+\zmshft+\pgadj,0.85+\pgadj) -- (1.2+\zmshft+\pgadj,-0.75+\pgadj) -- (2.5+\zmshft+\pgadj,-2.05+\pgadj) -- cycle;
+			\draw[color=darkaquaback] (2.26+\zmshft+\pgadj,-0.64+\pgadj) node[rotate=-45]{\texttt{logic}};
 			
 			% CIRCLE THE CONSTRUCTION ELBOW BLOCK
-			\draw[white,line width=1.5pt,opacity=0.6](3.165+\zmshft,-3.48) circle (0.1);
-			\draw[redback2,line width=0.6pt](3.165+\zmshft,-3.48) circle (0.1);
+			\draw[white,line width=1.5pt,opacity=0.6](3.165+\zmshft+\pgadj,-3.48+\pgadj) circle (0.1);
+			\draw[redback2,line width=0.6pt](3.165+\zmshft+\pgadj,-3.48+\pgadj) circle (0.1);
 		% END ZOOM BOX S
 		
 		\draw[darkgreenback] (0.5,6) node {\texttt{W}};

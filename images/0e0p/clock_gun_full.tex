@@ -15,6 +15,9 @@
 		%\clip (0,5.48) rectangle (16.02,10.02);
 		\newcommand\gp{3}
 		\newcommand\ygp{-1.5}
+		
+		\newcommand\pgya{1}
+		\newcommand\pgyb{1.4}
 	
 		\node[inner sep=0pt,anchor=north west] (ca) at (0,9.95) {\includegraphics[width=5.6cm]{clock_gun_full.png}};
 		
@@ -28,7 +31,7 @@
 			
 			\newcommand\bglx{5.5+\gp}
 			\newcommand\bgrx{\bglx+5.7}
-			\newcommand\bgty{10+\ygp}
+			\newcommand\bgty{10+\ygp+\pgya}
 			\newcommand\bgby{\bgty-5.7}
 			
 			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
@@ -47,12 +50,12 @@
 		% ZOOM BOTTOM
 			\renewcommand\smlx{6.55+\gp}
 			\renewcommand\smrx{\smlx+1.5}
-			\renewcommand\smby{7.44+\ygp}
+			\renewcommand\smby{7.44+\ygp+\pgya}
 			\renewcommand\smty{\smby+1.5}
 			
 			\renewcommand\bglx{-1.8+\gp}
 			\renewcommand\bgrx{\bglx+12}
-			\renewcommand\bgty{3.2+\ygp}
+			\renewcommand\bgty{3.2+\ygp+\pgyb}
 			\renewcommand\bgby{\bgty-12}
 			
 			\path[draw,gridgray,line width=0.45pt] (\smrx,\smby) -- (\bgrx,\bgby);
@@ -71,42 +74,42 @@
 		\draw[gray] (2.6,4.21) node {\small\texttt{S}};
 		
 		% GLIDER PATH ARROWS
-		\draw[color=gray,-stealth] (12.85,1.1) -- (12.35,0.6);
+		\draw[color=gray,-stealth] (12.85,1.1+\pgyb) -- (12.35,0.6+\pgyb);
 		
 		% CIRCLES
-		\draw[white,line width=1.5pt,opacity=0.6](12.118,0.547) circle (0.13);
-		\draw[redback2,line width=0.6pt](12.118,0.547) circle (0.13);
+		\draw[white,line width=1.5pt,opacity=0.6](12.118,0.547+\pgyb) circle (0.13);
+		\draw[redback2,line width=0.6pt](12.118,0.547+\pgyb) circle (0.13);
 		
 		% parent/child divider
-		\draw[color=gray,dashed] (8,-1) -- (10.5,-3.5);
-		\draw[color=gray] (10.18,-3.18) node[anchor=south,rotate=-45]{\small\texttt{child}};
-		\draw[color=gray] (8.36,-1.36) node[anchor=north,rotate=-45,fill=white]{\small\texttt{parent}};
+		\draw[color=gray,dashed] (8,-1+\pgyb) -- (10.5,-3.5+\pgyb);
+		\draw[color=gray] (10.18,-3.18+\pgyb) node[anchor=south,rotate=-45]{\small\texttt{child}};
+		\draw[color=gray] (8.36,-1.36+\pgyb) node[anchor=north,rotate=-45,fill=white]{\small\texttt{parent}};
 		
 		% Numbers
-		\draw[color=gray] (12.35,0.38) node[anchor=north west,rotate=-45,fill=white,rounded corners=2pt,inner sep=1pt,fill opacity=0.8,text opacity=1]{\footnotesize\texttt{15:} \texttt{compute state}};
+		\draw[color=gray] (12.35,0.38+\pgyb) node[anchor=north west,rotate=-45,fill=white,rounded corners=2pt,inner sep=1pt,fill opacity=0.8,text opacity=1]{\footnotesize\texttt{15:} \texttt{compute state}};
 		
-		\draw[color=gray] (11.8,-0.17) node[anchor=north west,rotate=-45,fill=white,rounded corners=2pt,inner sep=1pt,fill opacity=0.8,text opacity=1,align=left]{\footnotesize\texttt{16:} \texttt{die early}\\[-0.1cm]\footnotesize\texttt{ \ \ \ if state = 0}};
+		\draw[color=gray] (11.8,-0.17+\pgyb) node[anchor=north west,rotate=-45,fill=white,rounded corners=2pt,inner sep=1pt,fill opacity=0.8,text opacity=1,align=left]{\footnotesize\texttt{16:} \texttt{die early}\\[-0.1cm]\footnotesize\texttt{ \ \ \ if state = 0}};
 		
-		\draw[color=gray,dashed] (9.3,-1.7) -- (10.5,-0.5) -- (11.1,-1.1) -- (9.9,-2.3) -- cycle;
+		\draw[color=gray,dashed] (9.3,-1.7+\pgyb) -- (10.5,-0.5+\pgyb) -- (11.1,-1.1+\pgyb) -- (9.9,-2.3+\pgyb) -- cycle;
 		
-		\draw[color=white] (10.8,-1.17) node[anchor=north west,rotate=-45,fill=white,rounded corners=2pt,inner sep=1pt,fill opacity=0.8,text opacity=1,align=left]{\footnotesize\texttt{16--63:} \texttt{wait if}};
-		\draw[color=gray] (10.8,-1.17) node[anchor=north west,rotate=-45,rounded corners=2pt,inner sep=1pt,fill opacity=0.8,text opacity=1,align=left]{\footnotesize\texttt{16--63:} \texttt{wait if}\\[-0.1cm]\footnotesize\texttt{ \ \ \ \ \ \ state = 0}};
-		\draw[color=gray] (11.85,-2.98) -- (12.015,-2.89);% NEQ line
+		\draw[color=white] (10.8,-1.17+\pgyb) node[anchor=north west,rotate=-45,fill=white,rounded corners=2pt,inner sep=1pt,fill opacity=0.8,text opacity=1,align=left]{\footnotesize\texttt{16--63:} \texttt{wait if}};
+		\draw[color=gray] (10.8,-1.17+\pgyb) node[anchor=north west,rotate=-45,rounded corners=2pt,inner sep=1pt,fill opacity=0.8,text opacity=1,align=left]{\footnotesize\texttt{16--63:} \texttt{wait if}\\[-0.1cm]\footnotesize\texttt{ \ \ \ \ \ \ state = 0}};
+		\draw[color=gray] (11.85,-2.98+\pgyb) -- (12.015,-2.89+\pgyb);% NEQ line
 		
-		\draw[color=gray] (6.4,-1+0.53) node[anchor=north west,rotate=-45,fill=white,rounded corners=2pt,inner sep=1pt,fill opacity=0.8,text opacity=1]{\footnotesize\texttt{build SE neighbor:} \texttt{0}};
+		\draw[color=gray] (6.4,-1+0.53+\pgyb) node[anchor=north west,rotate=-45,fill=white,rounded corners=2pt,inner sep=1pt,fill opacity=0.8,text opacity=1]{\footnotesize\texttt{build SE neighbor:} \texttt{0}};
 		
-		\draw[color=gray] (5.25,-2.15+0.53) node[anchor=north west,rotate=-45,fill=white,rounded corners=2pt,inner sep=1pt,fill opacity=0.8,text opacity=1]{\footnotesize\texttt{build NE neighbor:} \texttt{2}};
+		\draw[color=gray] (5.25,-2.15+0.53+\pgyb) node[anchor=north west,rotate=-45,fill=white,rounded corners=2pt,inner sep=1pt,fill opacity=0.8,text opacity=1]{\footnotesize\texttt{build NE neighbor:} \texttt{2}};
 		
-		\draw[color=gray] (4.65,-2.75+0.53) node[anchor=north west,rotate=-45,fill=white,rounded corners=2pt,inner sep=1pt,fill opacity=0.8,text opacity=1]{\footnotesize\texttt{build NW neighbor:} \texttt{4}};
+		\draw[color=gray] (4.65,-2.75+0.53+\pgyb) node[anchor=north west,rotate=-45,fill=white,rounded corners=2pt,inner sep=1pt,fill opacity=0.8,text opacity=1]{\footnotesize\texttt{build NW neighbor:} \texttt{4}};
 		
-		\draw[color=gray] (4.05,-3.35+0.53) node[anchor=north west,rotate=-45,fill=white,rounded corners=2pt,inner sep=1pt,fill opacity=0.8,text opacity=1]{\footnotesize\texttt{build SW neighbor:} \texttt{6}};
+		\draw[color=gray] (4.05,-3.35+0.53+\pgyb) node[anchor=north west,rotate=-45,fill=white,rounded corners=2pt,inner sep=1pt,fill opacity=0.8,text opacity=1]{\footnotesize\texttt{build SW neighbor:} \texttt{6}};
 		
-		\draw[color=gray] (1.75,-6.2+0.53) node[anchor=north west,rotate=-45,fill=white,rounded corners=2pt,inner sep=1pt,fill opacity=0.8,text opacity=1]{\footnotesize\texttt{minor cleanup:} \texttt{12}};
+		\draw[color=gray] (1.75,-6.2+0.53+\pgyb) node[anchor=north west,rotate=-45,fill=white,rounded corners=2pt,inner sep=1pt,fill opacity=0.8,text opacity=1]{\footnotesize\texttt{minor cleanup:} \texttt{12}};
 		
-		\draw[color=gray] (1.64,-6.89+0.53) node[anchor=north west,rotate=-45,fill=white,rounded corners=2pt,inner sep=1pt,fill opacity=0.8,text opacity=1]{\footnotesize\texttt{send state:} \texttt{14}};
+		\draw[color=gray] (1.64,-6.89+0.53+\pgyb) node[anchor=north west,rotate=-45,fill=white,rounded corners=2pt,inner sep=1pt,fill opacity=0.8,text opacity=1]{\footnotesize\texttt{send state:} \texttt{14}};
 		
-		\draw[color=gray] (0.6,-7.25+0.53) node[anchor=north west,rotate=-45,fill=white,rounded corners=2pt,inner sep=1pt,fill opacity=0.8,text opacity=1]{\footnotesize\texttt{self-destruct:} \texttt{15}};
+		\draw[color=gray] (0.6,-7.25+0.53+\pgyb) node[anchor=north west,rotate=-45,fill=white,rounded corners=2pt,inner sep=1pt,fill opacity=0.8,text opacity=1]{\footnotesize\texttt{self-destruct:} \texttt{15}};
 		
-		\draw[color=gray] (3.95,-8.68+0.53) node[anchor=north west,rotate=-45,fill=white,rounded corners=2pt,inner sep=1pt,fill opacity=0.8,text opacity=1]{\footnotesize\texttt{13:} \texttt{empty nucleus}};
+		\draw[color=gray] (3.95,-8.68+0.53+\pgyb) node[anchor=north west,rotate=-45,fill=white,rounded corners=2pt,inner sep=1pt,fill opacity=0.8,text opacity=1]{\footnotesize\texttt{13:} \texttt{empty nucleus}};
 	\end{tikzpicture}
 \end{document}
