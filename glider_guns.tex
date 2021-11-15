@@ -1214,7 +1214,8 @@ where the logarithms are nested as many times as we like. However, even just a s
 \label{sec:guns_exercises}
 \addcontentsline{toc}{section}{Exercises}
 \vspace*{-0.4cm}\hrulefill\vspace*{-0.3cm}\footnotesize\begin{multicols}{2}\vspace*{-0.4cm}\raggedcolumns\interlinepenalty=10000
-	\setlength{\parskip}{0pt}
+	\setlength{\parskip}{0pt}\ifdefined\FORPRINTING\colorlet{ocre}{black}\else%
+\fi
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	\begin{problemstar}\label{exer:p28_double} \probdiff{1}
@@ -1992,5 +1993,6 @@ where the logarithms are nested as many times as we like. However, even just a s
 	
 	%% EXERCISE END COMMANDS
 \end{multicols}
-\normalsize\vspace*{0.01cm}
+\normalsize\vspace*{0.01cm}\ifdefined\FORPRINTING\colorlet{ocre}{rawocre}\else%
+\fi
 %% DONE EXERCISE END COMMANDS

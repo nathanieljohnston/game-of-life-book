@@ -746,7 +746,8 @@ The largest database of glider syntheses that is currently maintained, \emph{Shi
 \label{sec:synthesis_exercises}
 \addcontentsline{toc}{section}{Exercises}
 \vspace*{-0.4cm}\hrulefill\vspace*{-0.3cm}\footnotesize\begin{multicols}{2}\vspace*{-0.4cm}\raggedcolumns\interlinepenalty=10000
-	\setlength{\parskip}{0pt}
+	\setlength{\parskip}{0pt}\ifdefined\FORPRINTING\colorlet{ocre}{black}\else%
+\fi
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	\begin{problem}\label{exer:glider_cleanup} \probdiff{1}
@@ -1310,10 +1311,8 @@ The largest database of glider syntheses that is currently maintained, \emph{Shi
 		\end{enumerate}
 	\end{problemstar}
 	
-	
-	
-	
 	%% EXERCISE END COMMANDS
 \end{multicols}
-\normalsize\vspace*{0.01cm}
+\normalsize\vspace*{0.01cm}\ifdefined\FORPRINTING\colorlet{ocre}{rawocre}\else%
+\fi
 %% DONE EXERCISE END COMMANDS

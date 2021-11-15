@@ -1274,7 +1274,8 @@ About one week prior to building his $\pi$ calculator, Goucher built a similar c
 \label{sec:solutions_universal_computation}
 \addcontentsline{toc}{section}{Exercises}
 \vspace*{-0.4cm}\hrulefill\vspace*{-0.3cm}\footnotesize\begin{multicols}{2}\vspace*{-0.4cm}\raggedcolumns\interlinepenalty=10000
-	\setlength{\parskip}{0pt}
+	\setlength{\parskip}{0pt}\ifdefined\FORPRINTING\colorlet{ocre}{black}\else%
+\fi
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	
@@ -1600,5 +1601,6 @@ About one week prior to building his $\pi$ calculator, Goucher built a similar c
 	\end{problem}
 	%% EXERCISE END COMMANDS
 \end{multicols}
-\normalsize
+\normalsize\ifdefined\FORPRINTING\colorlet{ocre}{rawocre}\else%
+\fi
 %% DONE EXERCISE END COMMANDS

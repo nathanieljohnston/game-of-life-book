@@ -2,7 +2,8 @@
 
 \chapter{Solutions to Selected Exercises}\label{chp:solutions}
 \setlength{\columnsep}{4.2em}
-\footnotesize
+\footnotesize\ifdefined\FORPRINTING\colorlet{ocre}{black}\else%
+\fi
 
 % TODO: Multicol multi-part solutions when possible (e.g., when they are small images that would fit side-by-side)
 
@@ -1201,4 +1202,5 @@
 	\end{itemize}
 \end{multicols}
 
-\normalsize
+\normalsize\ifdefined\FORPRINTING\colorlet{ocre}{rawocre}\else%
+\fi

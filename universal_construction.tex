@@ -864,7 +864,8 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 \label{sec:universal_construction_exercises}
 \addcontentsline{toc}{section}{Exercises}
 \vspace*{-0.4cm}\hrulefill\vspace*{-0.3cm}\footnotesize\begin{multicols}{2}\vspace*{-0.4cm}\raggedcolumns\interlinepenalty=10000
-	\setlength{\parskip}{0pt}
+	\setlength{\parskip}{0pt}\ifdefined\FORPRINTING\colorlet{ocre}{black}\else%
+\fi
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	\begin{problem}\label{exer:rebuild_construction_arm} \probdiff{3}
@@ -1351,4 +1352,5 @@ The development of single-channel glider synthesis mostly took place in 2017, wh
 	\end{problem}
 	
 	%% EXERCISE END COMMANDS
-\end{multicols}\normalsize
+\end{multicols}\normalsize\ifdefined\FORPRINTING\colorlet{ocre}{rawocre}\else%
+\fi
