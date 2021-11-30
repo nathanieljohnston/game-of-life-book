@@ -362,7 +362,9 @@ When ordering these configurations, we start counting as $0$ so that the all-dea
 		& \texttt{\hphantom{MAP}AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA}.
 	\end{align*}
 \end{itemize}
+MAP rules can also be specified for Hexagonal and von Neumann neighborhoods. Hexagonal neighborhoods have $7$ cells (center plus $6$ neighbors) which gives $128$ ($2^{7}$) possible combinations of cells. These encode into $22$ base-64 characters. Von Neumann neighborhoods have $5$ cells (center plus $4$ neighbors) which gives $32$ ($2^{5}$) possible combinations of cells. These encode into $6$ base-64 characters.
 
+For any of the neighborhoods the base-64 encoding can optionally be postfixed with two base-64 padding characters: "==".
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\texorpdfstring{$\pi$}{Pi} Calculator APGsembly Code}\label{sec:appendix_apg}
