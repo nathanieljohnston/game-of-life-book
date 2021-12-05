@@ -941,7 +941,7 @@ The APGsembly actions themselves are listed below, and since these are the last 
 \begin{itemize}
 	\item \texttt{INC B2DX} and \texttt{INC B2DY}, which move the pointer blocks of the read head one step farther away from the printer itself (northeast or northwest, respectively).\smallskip
 	
-	\item \texttt{TDEC B2DX} and \texttt{TDEC B2DY}, which move the pointer blocks to the previous location in the $x$ or $y$ direction (i.e., southwest or southeast), respectively, or keep them in the same place if they're already at the zero position. These actions also return either \texttt{Z} or \texttt{NZ}, dpending on whether or not the $x$ or $y$ read head was already at the \texttt{0} location.\smallskip
+	\item \texttt{TDEC B2DX} and \texttt{TDEC B2DY}, which move the pointer blocks to the previous location in the $x$ or $y$ direction (i.e., southwest or southeast), respectively, or keep them in the same place if they're already at the zero position. These actions also return either \texttt{Z} or \texttt{NZ}, depending on whether or not the $x$ or $y$ read head was already at the \texttt{0} location.\smallskip
 	
 	\item \texttt{READ B2D}, which sets the value of the bit at the current read head location to ``\texttt{0}''. This action returns either \texttt{Z} or \texttt{NZ}, depending on the original value of this bit.\smallskip
 	
