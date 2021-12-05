@@ -761,7 +761,7 @@ To begin, we simply notice that if we were to allow for oscillators that are inf
 
 If we make the usual restriction that the patterns we consider must have finite size, then this idea does not quite work, but the spirit of it does: what if we could make an oscillator by moving gliders between different positions so as to replace each other? To facilitate this, we would need to somehow manipulate the gliders so that they do not always travel in the same direction. In particular, we would like to find a stationary pattern (i.e., a still life or an oscillator) with the property that if a glider hits it then the stationary pattern is unaffected and another glider is output in a different direction. Such a pattern is called a \textbf{reflector}\index{reflector}.
 
-We already saw how to use duoplet and banana sparks to reflect gliders like this in Figure~\ref{fig:spark_glider_reflect}, so we can use any oscillator that emits one of these sparks to reflect a glider stream, as long as the period of the glider stream is a multiple of the period of the oscillator. By using four carefully-positioned reflectors, we can then create a track for a glider to follow, as we illustrate with buckaroos in Figure~\ref{fig:buckaroo_loop}. That particular track takes a single glider 180 generations to traverse, and has two gliders on the track, resulting in an oscillator with period~$90$. By changing the number of gliders in the loop and moving the buckaroos farther away from each other, we can create an oscillator with any period that is a multiple of $30$.
+We already saw how to use duoplet and banana sparks to reflect gliders like this in Figure~\ref{fig:spark_glider_reflect}, so we can reflect a glider stream using any oscillator that emits one of these sparks with enough clearance, as long as the period of the glider stream is a multiple of the period of the oscillator. By using four carefully-positioned reflectors, we can then create a track for a glider to follow, as we illustrate with buckaroos in Figure~\ref{fig:buckaroo_loop}. That particular track takes a single glider 180 generations to traverse, and has two gliders on the track, resulting in an oscillator with period~$90$. By changing the number of gliders in the loop and moving the buckaroos farther away from each other, we can create an oscillator with any period that is a multiple of $30$.
 
 \begin{figure}[!htb]
 	\centering
@@ -775,9 +775,9 @@ We already saw how to use duoplet and banana sparks to reflect gliders like this
 	\end{minipage}
 \end{figure}
 
-There are also patterns that directly reflect a glider by 180 degrees, rather than 90 degrees. Possibly the simplest such pattern is the pentadecathlon, as demonstrated in Figure~\ref{fig:relay}. Because the glider has period~4 and the pentadecathlon has period~15, and this reflection only happens if the phases of both objects match up just right, the smallest-period oscillator that uses a pentadecathlon to reflect a glider in this way has period $\mathrm{lcm}(4,15) = 60$. By spacing the pentadecathlons farther apart, we can similarly add 60 generations of travel to the glider in each direction, resulting in oscillators with period $60 + 120n$ for any integer $n \geq 0$.
+There are also patterns that directly reflect a glider by 180 degrees, rather than 90 degrees. Possibly the simplest such pattern is the pentadecathlon, as demonstrated in Figure~\ref{fig:relay}. Because the glider has period~4 and the pentadecathlon has period~15, and this reflection only happens if the phases of both objects match up just right, the smallest-period oscillator that uses a pentadecathlon to reflect a glider in this way has period $60$. By spacing the pentadecathlons farther apart, we can similarly add 60 generations of travel to the glider in each direction, resulting in oscillators with period $60 + 120n$ for any integer $n \geq 0$.
 
-Although 180-degree reflectors like this one result in simpler glider tracks (since you only need $2$ reflectors instead of $4$ to create a complete track), they are typically less useful than their 90-degree counterparts, since we can use two 90-degree reflectors to create a single 180-degree reflector, but we cannot used 180-degree reflectors to make a 90-degree reflector. Furthermore, we can only place a single glider on the track in Figure~\ref{fig:relay}, regardless of how far apart we space the pentadecathlons, since the input and output paths of the reflection overlap each other.
+Although 180-degree reflectors like this one result in simpler glider tracks (since you only need $2$ reflectors instead of $4$ to create a complete track), they are typically less useful than their 90-degree counterparts, since we can use two 90-degree reflectors to create a single 180-degree reflector, but we cannot use 180-degree reflectors to make a 90-degree reflector. Furthermore, we can only place a single glider on the track in Figure~\ref{fig:relay}, regardless of how far apart we space the pentadecathlons, since the input and output paths of the reflection overlap each other.
 
 At this point, we have shown that there are oscillators with arbitrarily large periods, but we are still missing a lot of them---we only know how to construct an oscillator with every 30th period. The most obvious way to improve this result would be to find a glider reflector that is a still life rather than an oscillator, since then we would not need to worry about the oscillators being in the correct phase at the start of the collision. Glider reflectors consisting entirely of still lifes are called \textbf{stable reflectors}\index{stable reflector}, and they would immediately allow us to construct an oscillator with every 8th (sufficiently large) period, with a single glider bouncing around a closed loop. Furthermore, if the input and output paths of the glider do not interfere with each other, we could construct oscillators with \emph{every} sufficiently large period, simply by placing multiple gliders in the loop at whatever spacing we like.
 
@@ -805,9 +805,9 @@ The usefulness of a stable reflector for creating oscillators (and for other tas
 	\label{fig:stable_reflectors}
 \end{figure}
 
-The techniques used to construct the Silver reflector will be investigated in Section~\ref{sec:herschel_track} (and then in much more depth in Chapter~\ref{chp:stationary_circuitry}), but for now we just note that it is perhaps a bit slow for our purposes. We want to create oscillators with as many periods as possible, but this reflector only helps with oscillators of period 497 or greater. Fortunately, faster stable reflectors are now known, with the smallest and fastest one being the \textbf{Snark},\index{Snark}\footnote{The Snark was ``almost'' found by Dietrich Leithner sometime around 1998, but with the large unnamed still life at the right replaced by another block. In Leithner's original pattern, the glider was still reflected 90 degrees, but the second block was deleted in the process. It wasn't until about 15 years later, in April 2013, that the reflector was completed by Mike Playle, who wrote a custom search program to find a stable pattern that could replace the block and be unaffected by the reflection.}$^{,}$\footnote{The name ``Snark'' comes from Lewis Carroll's poem \emph{The Hunting of the Snark}, in which ten characters try to hunt an imaginary animal bearing that name. Playle's search program that found the Snark was similarly called \emph{Bellman}, after one of the main characters in the poem.} with a repeat time of 43 generations (see Figure~\ref{fig:snark}).
+The techniques used to construct the Silver reflector will be investigated in Section~\ref{sec:herschel_track} (and then in much more depth in Chapter~\ref{chp:stationary_circuitry}), but for now we just note that it is perhaps a bit slow for our purposes. We want to create oscillators for as many periods as possible, but this reflector only helps with oscillators of period 497 or greater. Fortunately, faster stable reflectors are now known, with the smallest and fastest one being the \textbf{Snark},\index{Snark}\footnote{The Snark was ``almost'' found by Dietrich Leithner sometime around 1998, but with the large unnamed still life at the right replaced by another block. In Leithner's original pattern, the glider was still reflected 90 degrees, but the second block was deleted in the process. It wasn't until about 15 years later, in April 2013, that the reflector was completed by Mike Playle, who wrote a custom search program to find a stable pattern that could replace the block and be unaffected by the reflection.}$^{,}$\footnote{The name ``Snark'' comes from Lewis Carroll's poem \emph{The Hunting of the Snark}, in which ten characters try to hunt an imaginary animal bearing that name. Playle's search program that found the Snark was similarly called \emph{Bellman}, after one of the main characters in the poem.} with a repeat time of 43 generations (see Figure~\ref{fig:snark}).
 
-We will see numerous uses for the Snark (and even a few uses for the Silver reflector) throughout the later chapters of this book, but for now we simply note that four Snarks can be used to construct oscillators with any period of $43$ or larger by reflecting gliders around in a loop. In fact, this method of construction gives the only known oscillators with period $43$ or $53$ (see Figure~\ref{fig:period_43_53}).
+We will see numerous uses for the Snark (and even a few uses for the Silver reflector) throughout the later chapters of this book, but for now we simply note that four Snarks can be used to construct oscillators of any period of $43$ or larger by reflecting gliders around in a loop. In fact, this method of construction gives the only known oscillators with period $43$ or $53$ (see Figure~\ref{fig:period_43_53}).
 
 \begin{figure}[!htb]
 	\centering
@@ -823,7 +823,7 @@ We will see numerous uses for the Snark (and even a few uses for the Silver refl
 		\caption{A period~53 glider loop.}
 		\label{fig:period_53}
 	\end{subfigure}
-	\caption{The Snark can be used to create oscillators with any period of $43$ or larger, by reflecting multiple gliders (highlighted in \bgbox{orangeback}{orange}) around in a loop. This method is demonstrated here with~(a) a period~$43$ oscillator and~(b) a period~$53$ oscillator.}
+	\caption{The Snark can be used to create oscillators of any period $43$ or larger by reflecting multiple gliders (highlighted in \bgbox{orangeback}{orange}) around in a loop. This method is demonstrated here with~(a) a period~$43$ oscillator and~(b) a period~$53$ oscillator.}
 	\label{fig:period_43_53}
 \end{figure}
 
@@ -846,7 +846,7 @@ The \textbf{Herschel}\index{Herschel} displayed in Figure~\ref{fig:herschel} is 
 	\end{minipage} \hfill %
 	\begin{minipage}{.53\textwidth}
 		\centering\embedlink{b_heptomino}{\vcenteredhbox{\patternimg{0.10678899082}{b_heptomino}} \vcenteredhbox{\genarrow{20}} \vcenteredhbox{\patternimg{0.10678899082}{b_heptomino_20}}}
-		\caption{The B-heptomino takes 20 generation to evolve into a block and a Herschel.}\label{fig:b_heptomino_to_herschel}
+		\caption{The B-heptomino takes 20 generations to evolve into a block and a Herschel.}\label{fig:b_heptomino_to_herschel}
 	\end{minipage}
 \end{figure}
 
@@ -865,7 +865,7 @@ With this conduit, we can start playing a similar game to the one we played with
 	\item[2)] We cannot space out R64 conduits arbitrarily like we could with glider reflectors: the input and output locations of the Herschels for each conduit have to be lined up exactly in order for the track to work.\medskip
 \end{enumerate}
 
-In order to take care of problem~(1), we would like to use an eater to destroy the interfering glider from the output Herschel. However, this is actually rather tricky to do, as there is not enough room to put any of eater~1, eater~2, or eater~5 in such a way as to avoid colliding with the Herschel and also destroy the glider before it crosses the original Herschel's path. Instead, we can use the eater that we constructed back in Figure~\ref{fig:eater_constrained_done},\footnote{In fact, this is exactly \emph{why} we constructed that eater: the constraints that we placed on the size of the eater in Figure~\ref{fig:eater_constrained_done} were designed exactly to make sure that it did not interfere with the input or output Herschel from this conduit (compare with Figure~\ref{fig:R64}).} which lets this conduit accept Herschels that are spaced 61 or more generation apart (so its repeat time is 61 generations).
+In order to take care of problem~(1), we would like to use an eater to destroy the interfering glider from the output Herschel. However, this is actually rather tricky to do, as there is not enough room to place eater~1, eater~2, or eater~5 out of the way of the original Herschel while also destroying the glider before it crosses the path of a following Herschel. Instead, we can use the eater that we constructed back in Figure~\ref{fig:eater_constrained_done},\footnote{In fact, this is exactly \emph{why} we constructed that eater: the constraints that we placed on the size of the eater in Figure~\ref{fig:eater_constrained_done} were designed exactly to make sure that it did not interfere with the input or output Herschel from this conduit (compare with Figure~\ref{fig:R64}).} which lets this conduit accept Herschels that are spaced $61$ or more generations apart (so its repeat time is $61$ generations).
 
 \begin{figure}[!htb]
 	\centering
@@ -878,14 +878,14 @@ In order to take care of problem~(1), we would like to use an eater to destroy t
 	\begin{subfigure}{.48\textwidth}
 		\centering
 		\patternimglink{0.0765}{Fx77}
-		\caption{\textbf{Fx77}:\index{Fx77} A conduit that flips a Herschel in 77 generations and has a repeat time of 57 generations.}
+		\caption{\textbf{Fx77}:\index{Fx77} A conduit that flips a Herschel in 77 generations and has a repeat time of 61 generations.}
 		\label{fig:Fx77}
 	\end{subfigure}
 	\caption{Two Herschel conduits that can be used to create oscillators of any period $61$ or greater. Input Herschels are \bgbox{greenback}{green}, while output Herschels are \bgbox{orangeback}{orange}. Eaters that are not required for the conduit to function, but are useful for erasing interfering gliders, are \bgbox{redback}{red}.}
 	\label{fig:herschel_conduits}
 \end{figure}
 
-To help us make Herschel tracks of different sizes, and thus solve problem~(2) above, we now introduce a second Herschel conduit. This conduit, which is called \textbf{Fx77}\index{Fx77}, moves a Herschel forward and flips it instead of rotating it (see Figure~\ref{fig:Fx77}). This displacement of the Herschel takes 77 generations to complete, and the conduit's repeat time is 57~generations. We note that the eater~2 located at the top of the conduit is not actually necessary for the conduit to function, but is just used to destroy the interfering glider from the output Herschel, so that we will be able to space Herschels together a bit more tightly on the track (just like the custom eater that we placed next to the R64 conduit in Figure~\ref{fig:R64}).\footnote{We use eater~2 because we can place it slightly closer to the conduit without disrupting it than we can place eater~1.}
+To help us make Herschel tracks of different sizes, and thus solve problem~(2) above, we now introduce a second Herschel conduit. This conduit, which is called \textbf{Fx77}\index{Fx77}, moves a Herschel forward and flips it instead of rotating it (see Figure~\ref{fig:Fx77}). This displacement of the Herschel takes $77$ generations to complete, and the conduit's repeat time is again 61~generations.\footnote{The repeat time of the Fx77 conduit can be reduced to $57$ ticks by suppressing its output glider with the same specialized eater used with the R64. However, that version of the Fx77 conduit does not allow room for an R64 conduit to follow it, and the R64 conduit can't be made to recover in $57$ ticks in any case. $61$ ticks is therefore the minimum period for combinations of these two conduits.}  We note that the eater~2 located at the top of the conduit is not actually necessary for the conduit to function, but is just used to destroy the interfering glider from the output Herschel, so that we will be able to space Herschels together a bit more tightly on the track (just like the custom eater that we placed next to the R64 conduit in Figure~\ref{fig:R64}).\footnote{We use eater~2 because we can place it slightly closer to the conduit without disrupting it than we can place eater~1.}
 
 It turns out that we can use these two Herschel conduits to create oscillators of any period $61$ or greater. To give an idea of how we will construct these oscillators, let's first construct a simple loop that uses four copies of R64 and two copies of Fx77 on each side (see Figure~\ref{fig:herschel_track_1}). A Herschel moves around this track in
 \[
@@ -930,9 +930,9 @@ For this particular track, these are the only possible periods that we can const
 %	\caption{Herschel tracks can be used to construct oscillators by placing a number of Herschels on the track that evenly divides the amount of time it takes for a Herschel to go around the track.}\label{fig:herschel_track_oscillators}
 %\end{figure}
 
-By arranging the R64 and Fx77 Herschel conduits in larger and larger squares like this, we can create oscillators with a wide variety of periods. To pin down exactly which periods are possible, we note that if we place $2k$ copies of Fx77 on each side of the track, then a Herschel requires $(4 \times 64) + (8k \times 77) = 256 + 616k$ generations to traverse the track. To create an oscillator with period $p$, we require $256 + 616k$ to be an integer multiple of $p$. At this point, a problem emerges: $256 + 616k \equiv 4 \ (\text{mod } 7)$ and $256 + 616k \equiv 3 \ (\text{mod } 11)$ for all $k$, so these tracks will never give an oscillator whose period is a multiple of $7$ or $11$.\footnote{If you are uncomfortable with modular congruence, now would be a good time to read Appendices~\ref{sec:modular_arithmetic} and~\ref{sec:gcd}.} However, they can be used to construct oscillators with all other periods (no smaller than $61$):
+By arranging the R64 and Fx77 Herschel conduits in larger and larger squares like this, we can create oscillators with a wide variety of periods. To pin down exactly which periods are possible, we note that if we place $2k$ copies of Fx77 on each side of the track, then a Herschel requires $(4 \times 64) + (8k \times 77) = 256 + 616k$ generations to traverse the track. To create an oscillator with period $p$, we require $256 + 616k$ to be an integer multiple of $p$. At this point, a problem emerges: $256 + 616k \equiv 4 \ (\text{mod } 7)$ and $256 + 616k \equiv 3 \ (\text{mod } 11)$ for all $k$, so these tracks will never give an oscillator whose period is a multiple of $7$ or $11$.\footnote{If you are not comfortable with modular congruence, now would be a good time to read Appendices~\ref{sec:modular_arithmetic} and~\ref{sec:gcd}.} However, they can be used to construct oscillators with all other periods (no smaller than $61$):
 
-\begin{theorem}[Herschel Track Oscillators of Most Periods]\label{thm:Herschel_7_11}
+\begin{theorem}[Herschel Track Oscillators of Most Periods 61 or Greater]\label{thm:Herschel_7_11}
 	Let $p \geq 1$ be a positive integer. There exists an integer $k \geq 1$ such that $256 + 616k$ is a multiple of $p$ if and only if $p$ is not a multiple of $7$ or $11$. Square Herschel tracks consisting of $4$ R64 conduits and $2k$ Fx77 conduits per side can thus be used to create oscillators of any period $61$ or larger that is not a multiple of $7$ or $11$.
 \end{theorem}
 
@@ -956,7 +956,7 @@ We could similarly fold in the corners of larger square Herschel tracks, potenti
 
 The point of doing this is that if we fold in the corners of a large square enough times, we end up with a track whose length is a multiple of $77$ and thus can be used to construct oscillators whose period is a multiple of $7$ and/or $11$. In particular, if we take a square Herschel track with $26$ or more Fx77 conduits on each side (i.e., $k \geq 13$) and we fold in the corners $76$ times,\footnote{In general, if we have $2k$ Fx77 conduits on each side of the square track, we can fold in the corners up to $k(k-1)/2$ times. To be able to fold the corners in $76$ times, we need $k(k-1)/2 \geq 76$, so $k \geq 13$.} then it will take a Herschel $(256 + 616k) - (76 \times 52) = 77(8k - 48)$ generations to traverse the track. This new family of tracks gives us exactly what we want:
 
-\begin{theorem}[Herschel Track Oscillators of All Periods]\label{thm:Herschel_61}
+\begin{theorem}[Herschel Track Oscillators of All Periods 61 or Greater]\label{thm:Herschel_61}
 	Let $p \geq 1$ be a positive integer. Then there exists an integer $k \geq 13$ such that $77(8k - 48)$ is a multiple of $p$. The Herschel conduits R64 and Fx77 can thus be used to create oscillators of any period $61$ or larger.
 \end{theorem}
 
@@ -1026,7 +1026,7 @@ We have now seen numerous techniques for constructing oscillators of different p
 \end{table}
 \endgroup
 
-While remarkable progress on this problem has been made over the years, and in fact we have already seen how to construct oscillators with \emph{almost} any period, omniperiodicity in general remains unsolved, as there are still gaps that we do not know how to fill in. In particular, we do not know how to construct oscillators with period 19, 34, 38, or 41.\footnote{Even though we could just place a period~$2$ blinker next to a period~$17$ honey thieves to create a period~$34$ oscillator, we recall that this type of construction is considered ``trivial'' and is thus ignored because no cell oscillates at the full period.} A complete summary of the status of the omniperiodicity problem is given in Table~\ref{tab:omniperiodic}, but we note that this table will likely become out of date reasonably quickly, as oscillators of new periods have been found somewhat regularly in recent years. In particular, new oscillator periods have been constructed in each of the years 2000, 2002, 2009, 2010, 2013, and 2019.\footnote{David Buckingham and Noam Elkies found the first period 39 oscillator in 2000, Elkies found the first period 27 oscillator in 2002, Nicolay Beluchenko found the first known period~37 and~51 oscillators in 2009, Matthias Merzenich found the first known period~31 oscillator in 2010, the Snark-based oscillators of period~43 and~53 were found in 2013, and Luka Okanishi completed the first period~23 oscillator in 2019.}
+While remarkable progress on this problem has been made over the years, and in fact we have already seen how to construct oscillators with \emph{almost} any period, omniperiodicity in general remains unsolved, as there are still gaps that we do not know how to fill in. In particular, we do not know how to construct oscillators with period 19, 34, 38, or 41.\footnote{Even though we could just place a period~$2$ blinker next to a period~$17$ honey thieves to create a period~$34$ oscillator, we recall that this type of construction is considered ``trivial'' and is thus ignored because no cell oscillates at the full period.} A complete summary of the status of the omniperiodicity problem is given in Table~\ref{tab:omniperiodic}, but we note that this table will likely become out of date reasonably quickly, as oscillators of new periods have been found somewhat regularly in recent years. In particular, new oscillator periods have been constructed in each of the years 2000, 2002, 2009, 2010, 2013, and 2019.\footnote{David Buckingham and Noam Elkies found the first period 39 oscillator in 2000, Elkies found the first period 27 oscillator in 2002, Nicolay Beluchenko found the first known period~37 and~51 oscillators in 2009, Matthias Merzenich found the first known period~31 oscillator in 2010, the Snark-based oscillators of periods~43 and~53 were found in 2013, and Luka Okanishi completed the first period~23 oscillator in 2019.}
 
 Note that all of the periods for which we do not know the answer are ``intermediate'' in size. Small periods (say with period $8$ or less) can often by found via clever computer searches, but higher periods are much more difficult to find in this way due to the size of the search space expanding so quickly. On the other hand, oscillators with high periods (say with period~$30$ or more) can often be found by combining various hassling and shuttling reactions in different ways, and of course very high period oscillators can be constructed via glider loops and Herschel tracks. Similarly, composite periods can often by constructed simply by placing sparks of lower-period oscillators next to each other. The result of combining these various techniques together is that there is somewhat of a rift, where we know lots of oscillators with small periods and lots of oscillators with large periods, but relatively few oscillators with prime periods in between those two extremes.
 
@@ -1135,7 +1135,7 @@ A computer-assisted proof has also been used to show that no phoenices of period
 \section{Notes and Historical Remarks}\label{sec:oscillators_notes}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The search for new oscillators has been one of the most consistently active research areas throughout the history of Life. Much of its motivation comes from the omniperiodicity problem---it's remarkable that such a seemingly simple problem still remains unsolved after all these years, despite the various techniques that have been developed for constructing oscillators. To illustrate just how incomplete our methods of constructing and searching for oscillators are, consider the small period~$16$ oscillators displayed in Figures~\ref{fig:rich_p16} and~\ref{fig:rob_p16}. Despite their small size and simplicity, they were not discovered until July 2016 and February 2020, respectively, and they were found in possibly the least enlightening way possible---as a result of evolving computer-generated random soups (by apgsearch\index{apgsearch}).
+The search for new oscillators has been one of the most consistently active research areas throughout the history of Life. Much of its motivation comes from the omniperiodicity problem---it's remarkable that such a seemingly simple problem still remains unsolved after all these years, despite the various techniques that have been developed for constructing oscillators. To illustrate just how incomplete our methods of constructing and searching for oscillators are, consider the small period~$16$ oscillators displayed in Figures~\ref{fig:rich_p16} and~\ref{fig:rob_p16}. Despite their small size and simplicity, they were not discovered until July 2016 and February 2020, respectively, and they were found in possibly the least enlightening way possible---as a result of evolving computer-generated random soups (by apgsearch\index{apgsearch}). Another method of
 
 \begin{figure}[!htb]
 	\centering
@@ -1151,7 +1151,7 @@ The search for new oscillators has been one of the most consistently active rese
 	\end{minipage}
 \end{figure}
 
-However, oscillators also have great practical use, since sparkers in particular can be used for a great many purposes. We already saw that they can be used to create higher-period oscillators with composite periods, but they also form the basic building blocks of many of the large patterns that we will construct in later chapters. For example, the entirety of Chapter~\ref{chp:periodic_circuitry} is devoted to using oscillators to emulate logic circuits that can perform computation.
+No matter how they were discovered, oscillators can be highly useful in pattern engineering, since sparkers in particular can be used for a great many purposes. We already saw that they can be used to create higher-period oscillators with composite periods, but they also form the basic building blocks of many of the large patterns that we will construct in later chapters. For example, the entirety of Chapter~\ref{chp:periodic_circuitry} is devoted to using oscillators to emulate logic circuits that can perform computation.
 
 Many of the small billiard table oscillators that are known were found by David Buckingham, who discovered dozens of them throughout the 1970s and 1980s. Herschel tracks were also primarily his invention---he spent several years cataloguing patterns that moved B-heptominoes and Herschels from one place to another, and by October 1996 he had a complete toolkit capable of constructing oscillators and gliders guns with any period at least $61$.
 
@@ -1298,7 +1298,7 @@ Herschel tracks remain one of the pinnacles of Life technology to this day, alth
 	
 	
 	\begin{problem}\label{exer:volcanoes}
-		Several period~$4$ and~$5$ lightweight, middleweight, and heavyweight supervolcanoes\index{supervolcano}\index{lightweight!supervolcano}\index{middleweight!supervolcano}\index{heavyweight!supervolcano} are displayed below,\footnote{The p$4$ LW supervolcano was found by Noam Elkies in 2010, the p$5$ MW supervolcano was found by Dongook Lee in 2019, the p$5$ HW supervolcano was found by Karel Suhajda 2004, and the rest were found by Matthias Merzenich in 2010.} and they are particularly useful due to how far they push away their sparks.
+		Several period~$4$ and~$5$ lightweight, middleweight, and heavyweight supervolcanoes\index{supervolcano}\index{lightweight!supervolcano}\index{middleweight!supervolcano}\index{heavyweight!supervolcano} are displayed below,\footnote{The p$4$ LW supervolcano was found by Noam Elkies in 2010, the p$5$ MW supervolcano was found by Dongook Lee in 2019, the p$5$ HW supervolcano was found by Karel Suhajda in 2004, and the rest were found by Matthias Merzenich in 2010.} and they are particularly useful due to how far they push away their sparks.
 		
 		\begin{center}
 			\patternimglink{0.07}{supervolcanoes}
@@ -1523,11 +1523,11 @@ Herschel tracks remain one of the pinnacles of Life technology to this day, alth
 			
 			\item Period~$62$ oscillator.
 			
-			\item Period~$62$ glider gun.
+			\item Period~$69$ glider gun.
 			
 			\item Period~$61$ oscillator.
 			
-			\item Period~$63$ glider gun.
+			\item Period~$70$ glider gun.
 		\end{enumerate}
 	\end{problem}
 	
@@ -1553,7 +1553,7 @@ Herschel tracks remain one of the pinnacles of Life technology to this day, alth
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item \probdiff{3} Construct a period~109 oscillator by using only the L112 and Fx77 conduits (and possibly some eaters to destroy stray gliders).
 			
-			\item \probdiff{4} The L112 conduit has a slightly faster repeat time than the R64 conduit (58 generations instead of 61). Use the L112 and Fx77 conduits to create an oscillator with period~58, 59, or 60.
+			\item \probdiff{4} The L112 conduit has a slightly faster repeat time than the R64 conduit (58 generations instead of 61). Use the L112 and Fx77 conduits to create an oscillator with period~58, 59, or 60. [Hint: Refer back to the footnote in Section~\ref{sec:herschel_track} about the Fx77 conduit's repeat time.]
 		\end{enumerate}
 	\end{problem}
 
