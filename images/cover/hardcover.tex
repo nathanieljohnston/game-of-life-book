@@ -1,0 +1,54 @@
+\documentclass[10pt]{standalone}
+\input{../macros}
+
+\definecolor{backblue}{RGB}{38,80,103} % blue background at top
+\renewcommand{\baselinestretch}{1.5}
+
+\begin{document}
+	\begin{tikzpicture}%
+		\fill[white] (0,0) rectangle (20.12in,-12.75in);
+		\fill[backblue] (0,0) rectangle (20.12in,-4.5in);
+		\fill[white,opacity=0.3] (9.375in,0) rectangle (10.745in,-4.55in);%lighter color spot on spine
+		\node[inner sep=0pt,anchor=center,opacity=0.1,anchor=north west] at (0,0) {\includegraphics[width=9.375in]{../cover_top_back.png}};
+		
+		\node[inner sep=0pt,anchor=north] at (15in,-5.7in) {\begin{tikzpicture}[remember picture,overlay,scale=1.3,every node/.style={transform shape}]
+			\draw[black!20,line width=8pt,rounded corners=1.6pt] (-1.6,0) rectangle (1.6,-3.2); % top center
+			\node[inner sep=0pt,anchor=center] (glider_loop) at (0,-1.6) {\includegraphics[width=3.2cm]{glider_loop.png}};
+			\draw[black,ultra thick,rounded corners=1.6pt] (-1.6,0) rectangle (1.6,-3.2);
+			
+			\draw[black!20,line width=8pt,rounded corners=1.6pt] (1.76,-3.36) rectangle (4.96,-6.56); % middle right
+			\node[inner sep=0pt,anchor=center] (pi_calc) at (3.36,-4.96) {\includegraphics[width=3.2cm]{pi_calc.png}};
+			\draw[black,ultra thick,rounded corners=1.6pt] (1.76,-3.36) rectangle (4.96,-6.56); % middle right
+			
+			\draw[black!20,line width=8pt,rounded corners=1.6pt] (1.76,-6.72) rectangle (4.96,-9.92); % bottom right
+			\node[inner sep=0pt,anchor=center] (gosper) at (3.36,-8.32) {\includegraphics[width=3.2cm]{gosper.png}};
+			\draw[black,ultra thick,rounded corners=1.6pt] (1.76,-6.72) rectangle (4.96,-9.92); % bottom right
+			
+			\draw[black!20,line width=8pt,rounded corners=1.6pt] (-1.6,-6.72) rectangle (1.6,-9.92); % bottom center
+			\node[inner sep=0pt,anchor=center] (copperhead) at (0,-8.32) {\includegraphics[width=3.2cm]{copperhead.png}};
+			\draw[black,ultra thick,rounded corners=1.6pt] (-1.6,-6.72) rectangle (1.6,-9.92); % bottom center
+			
+			\draw[black!20,line width=8pt,rounded corners=1.6pt] (-4.96,-6.72) rectangle (-1.76,-9.92); % bottom left
+			\node[inner sep=0pt,anchor=center] (herschel) at (-3.36,-8.32) {\includegraphics[width=3.2cm]{herschel.png}};
+			\draw[black,ultra thick,rounded corners=1.6pt] (-4.96,-6.72) rectangle (-1.76,-9.92); % bottom left
+			\end{tikzpicture}};
+		
+		% authors in top part of spine
+		\node[rotate=-90,white] at (10.06in,-2.8in) {\textsf{\fontsize{19}{24}\selectfont \textbf{Johnston} and \textbf{Greene}}};
+		
+		% title on bottom of spine
+		\node[rotate=-90,backblue,align=center] at (10.06in,-8.3in) {\textbf{\textsf{{\fontsize{28}{45}\selectfont Conway's Game of Life}}} \\[0.1in]
+			\textsf{{\fontsize{18}{40}\selectfont Mathematics and Construction}}};
+		
+		% main title text on front
+		\node[white,anchor=north,align=center] at (15in,-1.8in) {\textbf{\textsf{{\fontsize{38}{45}\selectfont Conway's Game of Life}}} \\[0.2in]
+		\textsf{{\fontsize{20}{40}\selectfont Mathematics and Construction}}};
+	
+		\node[white,opacity=0.75,anchor=north,align=center] at (15in,-3.75in) {\textsf{\textbf{\fontsize{20}{40}\selectfont Nathaniel Johnston} $\quad$ {\fontsize{12}{40}\selectfont and} $\quad$ \textbf{\fontsize{20}{40}\selectfont Dave Greene}}};
+		
+		% back blurb
+		\node[black,anchor=north west,align=justify,text width=6.09in] at (2.43in,-5.25in){\textsf{\fontsize{13}{40}\selectfont\baselineskip=10pt Dead cells with three live neighbors are born, while live cells with fewer than two or more than three live neighbors die. These simple rules define Conway's Game of Life, which exhibits complex and unpredictable behavior that has been studied for over 50 years.}\\[0.2in]\textsf{\fontsize{13}{40}\selectfont\baselineskip=15pt This book provides a thorough introduction to the Game of Life, the mathematics behind it, and the methods used to construct many of its most interesting patterns. It emphasizes conceptual techniques for constructing patterns that evolve in unusual ways, and guides the reader through the thought processes and ideas that are needed to combine various building blocks into more interesting composite patterns.}\\[0.2in]\textsf{\fontsize{13}{40}\selectfont While this book largely follows the history of the Game of Life, that is not its primary purpose. Rather, it is a by-product of the fact that most recently discovered patterns build upon patterns and techniques that were developed earlier. The goal of this book is to demystify the Game of Life by breaking down the complex patterns that have been developed in it into bite-size chunks that can be understood individually.}};
+		
+		\node[inner sep=0pt,anchor=north west] at (6.85in,-10.55in) {\includegraphics[width=1.75in]{../isbn.pdf}};
+	\end{tikzpicture}
+\end{document}
