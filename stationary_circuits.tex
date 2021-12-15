@@ -24,7 +24,7 @@ There are numerous Herschel conduits other than the R64 and Fx77 conduits that w
 \[
 {\color{gray}\underbrace{\color{black}4 \times 64}_\text{R64 time}} \ + \ {\color{gray}\underbrace{\color{black}28\times 77}_\text{Fx77 time}} = 2{\thousep}412 = 36 \times 67 \text{ generations,}
 \]
-which we place $36$ equally-spaced Herschels on. However, if we extend our collection of conduits a little bit, then we can construct a Herschel-based period~$67$ gun that uses just $8$ Herschels on an $8 \times 67 = 536$-generation track made up of $4$ conduits, as in Figure~\ref{fig:p67_with_conduits}.\footnote{We saw one of these extra conduits, L112, way back in Exercise~\ref{exer:herschel_track_L112}.}
+which we place $36$ equally spaced Herschels on. However, if we extend our collection of conduits a little bit, then we can construct a Herschel-based period~$67$ gun that uses just $8$ Herschels on an $8 \times 67 = 536$-generation track made up of $4$ conduits, as in Figure~\ref{fig:p67_with_conduits}.\footnote{We saw one of these extra conduits, L112, way back in Exercise~\ref{exer:herschel_track_L112}.}
 
 \begin{figure}[!htb]
 	\centering
@@ -73,7 +73,7 @@ For example, the L112 and L156 conduits are named for the fact that they rotate 
 	\colorletternode{gray}{10.84}{1.34}{L}
 	\colorletternode{gray}{12.66}{1.34}{Lx}
 	\end{tikzpicture}
-	\caption{Herschels can be oriented in one of $8$ ways, which we label here relative to the (arbitrarily-chosen) canonical input orientation displayed on the left in \bgbox{greenback}{green}.}\label{fig:herschel_orientations}
+	\caption{Herschels can be oriented in one of $8$ ways, which we label here relative to the (arbitrarily chosen) canonical input orientation displayed on the left in \bgbox{greenback}{green}.}\label{fig:herschel_orientations}
 \end{figure}
 
 With this naming scheme out of the way, we now catalog some of the smallest, quickest, and most useful Herschel conduits that are known in Table~\ref{tab:herschel_conduits}. Keep in mind that this list is nowhere near complete---there are well over 100 known Herschel conduits made up of small still lifes.\footnote{For a reasonably complete collection of known small Herschel conduits, see \httpsurl{conwaylife.com/forums/viewtopic.php?f=2\&t=2347}} All of these conduits release at least one glider and can thus be used to construct guns, but of particular note is L156, which releases a glider from its corner in a somewhat different orientation than most of the others (we made use of this glider in the period~$67$ gun from Figure~\ref{fig:p67_with_conduits}). It is also worth finding the R64, Fx77, L112, and L156 conduits that we are already familiar with in this table, to see where they fit in with other Herschel conduits.
@@ -453,7 +453,7 @@ It turns out that this lower bound is ``essentially'' tight---there exists a con
 	\label{fig:semi_snarks}
 \end{figure}
 
-For example, placing one of these semi-Snarks along the output lane of the $536$-generation Herschel track from Figure~\ref{fig:p67_gun} produces a period~$2 \times 536=1{\thousep}072$ gun. Placing a second semi-Snark in the path of the output gliders then doubles its period again, resulting in the period~$4 \times 536=2{\thousep}144$ gun in Figure~\ref{fig:p2144_gun}. We can of course place many more semi-Snarks along the output path of the gun, resulting in very compact guns with exponentially-large period. For example, Figure~\ref{fig:p_2_100_gun} shows a gun that consists of a p$256$ gun with $92$ semi-Snarks arranged in a spiral pattern along its output path. Each semi-Snark doubles the gun's period, resulting in a ridiculously large overall period of
+For example, placing one of these semi-Snarks along the output lane of the $536$-generation Herschel track from Figure~\ref{fig:p67_gun} produces a period~$2 \times 536=1{\thousep}072$ gun. Placing a second semi-Snark in the path of the output gliders then doubles its period again, resulting in the period~$4 \times 536=2{\thousep}144$ gun in Figure~\ref{fig:p2144_gun}. We can of course place many more semi-Snarks along the output path of the gun, resulting in very compact guns with exponentially large period. For example, Figure~\ref{fig:p_2_100_gun} shows a gun that consists of a p$256$ gun with $92$ semi-Snarks arranged in a spiral pattern along its output path. Each semi-Snark doubles the gun's period, resulting in a ridiculously large overall period of
 \[
 	256 \times 2^{92} = 2^8 \times 2^{92} = 2^{100} = 1{\thousep}267{\thousep}650{\thousep}600{\thousep}228{\thousep}229{\thousep}401{\thousep}496{\thousep}703{\thousep}205{\thousep}376,
 \]
@@ -536,7 +536,7 @@ as desired, and is displayed in Figure~\ref{fig:p3413277319_gun}.\footnote{Most 
 
 \section{Converters for Other Objects}\label{sec:misc_converters}
 
-In addition to converting gliders to Herschels and back, it is sometimes also convenient to be able to convert between other commonly-occurring moving objects. Herschel tracks are the most well-developed and well-used tracks, mainly because the Herschel is so much more mobile than other small chaotic objects, but there's no fundamental reason why we couldn't create a track that (for example) converts a glider into a Herschel, which is converted into an R-pentomino, followed by a pi-heptomino, and finally back into a glider. For ease of reference, we give these various frequently-converted objects single-letter abbreviations as indicated in Figure~\ref{fig:convert_object_codes}.
+In addition to converting gliders to Herschels and back, it is sometimes also convenient to be able to convert between other commonly occurring moving objects. Herschel tracks are the most well-developed and well-used tracks, mainly because the Herschel is so much more mobile than other small chaotic objects, but there's no fundamental reason why we couldn't create a track that (for example) converts a glider into a Herschel, which is converted into an R-pentomino, followed by a pi-heptomino, and finally back into a glider. For ease of reference, we give these various frequently converted objects single-letter abbreviations as indicated in Figure~\ref{fig:convert_object_codes}.
 
 \begin{figure}[!htb]
 	\centering\begin{tikzpicture}[scale=0.8, every node/.style={transform shape}]%
@@ -735,7 +735,7 @@ Of the still lifes that we know how to create via factories, the loaf is best-su
 	\label{fig:glider_loaf_collision}
 \end{figure}
 
-All that we have to do to create a highway robber out of this reaction is use the newly-created perpendicular glider to recreate the loaf. Doing so is just a matter of feeding the glider into a syringe to turn it into a Herschel, and then feeding that Herschel into the Herschel-to-loaf factory of Figure~\ref{fig:H_to_loaf}. The resulting highway robber is displayed in Figure~\ref{fig:highway_robber}. While it is somewhat large and slow, only mild improvements on this design are known (see Exercise~\ref{exer:better_highway_robber_bandersnatch}).
+All that we have to do to create a highway robber out of this reaction is use the newly created perpendicular glider to recreate the loaf. Doing so is just a matter of feeding the glider into a syringe to turn it into a Herschel, and then feeding that Herschel into the Herschel-to-loaf factory of Figure~\ref{fig:H_to_loaf}. The resulting highway robber is displayed in Figure~\ref{fig:highway_robber}. While it is somewhat large and slow, only mild improvements on this design are known (see Exercise~\ref{exer:better_highway_robber_bandersnatch}).
 
 \begin{figure}[!htb]
 	\centering

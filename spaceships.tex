@@ -297,7 +297,7 @@ One useful feature of tagalongs is that they often themselves emit sparks as wel
 	\end{minipage}
 \end{figure}
 
-While we have seen infinitely-growing patterns before (such as the Gosper glider gun\index{Gosper glider gun} in Section~\ref{sec:queen_bee} and some switch engine puffers in Section~\ref{sec:switch_engine}), it is worth observing that all infinitely-growing patterns that we saw previously worked by creating many disconnected small objects, whereas this one is quite different in that it creates a single arbitrarily-large object.
+While we have seen infinitely growing patterns before (such as the Gosper glider gun\index{Gosper glider gun} in Section~\ref{sec:queen_bee} and some switch engine puffers in Section~\ref{sec:switch_engine}), it is worth observing that all infinitely growing patterns that we saw previously worked by creating many disconnected small objects, whereas this one is quite different in that it creates a single arbitrarily large object.
 
 
 
@@ -432,7 +432,7 @@ One potential way of fixing this problem (i.e., suppressing the debris that form
 
 \begin{figure}[!htb]
 	\centering\embedlink{switch_engine_infinite}{\vcenteredhbox{\patternimg{0.083}{switch_engine_infinite_0}} \vcenteredhbox{\genarrow{48}} \vcenteredhbox{\patternimg{0.083}{switch_engine_infinite_48}} \vcenteredhbox{\genarrow{48}} \vcenteredhbox{\patternimg{0.083}{switch_engine_infinite_96}}}
-	\caption{An infinitely-long wave of switch engines (highlighted in \bgbox{aquaback}{aqua}) forever bounce off of each other and suppress each other's debris, creating an object that moves at a speed of $c/12$ diagonally.}\label{fig:switch_engine_infinite}
+	\caption{An infinitely long wave of switch engines (highlighted in \bgbox{aquaback}{aqua}) forever bounce off of each other and suppress each other's debris, creating an object that moves at a speed of $c/12$ diagonally.}\label{fig:switch_engine_infinite}
 \end{figure}
 
 The problem with this technique is that the object it creates must be infinitely long to actually be stable, which we don't want---we are only interested in spaceships of finite size. One method of stabilizing the edges of this pattern is to observe that the debris created by the switch engines on the far edges of this arrangement (i.e., the debris that causes problems and eventually leads to the destruction of the switch engines) temporarily creates a block, as shown in Figure~\ref{fig:switch_engine_blocks}. If we could destroy the remaining debris sometime between when the block is created and when the debris destroys the pattern, we would then have a very orderly puffer that creates a single-file trail of blocks on both of its ends.
@@ -515,7 +515,7 @@ The dying debris that trails behind the ecologist actually becomes somewhat larg
 % Only put these figures back-to-back since they get split by a pagebreak. Combine into one two-part figure if this changes.
 \begin{figure}[!htb]
 	\centering\embedlink{back_space_rake}{\vcenteredhbox{\patternimg{0.0925}{back_space_rake_0}} \vcenteredhbox{\genarrow{80}} \vcenteredhbox{\patternimg{0.0925}{back_space_rake_80}}}
-	\caption{The \textbf{backward space rake} creates a backward-moving glider every 20~generations, using a slightly differently-positioned lightweight spaceship (displayed in \bgbox{greenback}{green}) than the forward space rake.}\label{fig:back_space_rake}
+	\caption{The \textbf{backward space rake} creates a backward-moving glider every 20~generations, using a slightly differently positioned lightweight spaceship (displayed in \bgbox{greenback}{green}) than the forward space rake.}\label{fig:back_space_rake}
 \end{figure}
 
 
@@ -597,7 +597,7 @@ Now that we have rakes of multiple different periods ($16$, $20$, and $60$), we 
 
 We can then erase some (or all) of these glider waves by using a lightweight spaceship as in Figure~\ref{fig:orthogonal_destroy}, thus creating forward or backward rakes of period~80. One particular placement of three lightweight spaceships that erase all of the output gliders is shown in Figure~\ref{fig:coe_space_rake_stabilized}---a period~80 forward rake can be created by removing the top-right of the green lightweight spaceships, and a period~80 backward rake can be created by removing the top-left of the green lightweight spaceships. 
 
-We can also repeat this exact same procedure with a period~60 space rake rather than the period~20 version, and thus create forward and backward rakes with period $\mathrm{lcm}(16,60) = 240$ (see Exercise~\ref{exer:p240_rake}), but this is the highest period rake that can be constructed using these techniques. A method for creating even higher-period rakes (and in fact rakes with arbitrarily-high period) is presented in Section~\ref{sec:period_catalog}.
+We can also repeat this exact same procedure with a period~60 space rake rather than the period~20 version, and thus create forward and backward rakes with period $\mathrm{lcm}(16,60) = 240$ (see Exercise~\ref{exer:p240_rake}), but this is the highest period rake that can be constructed using these techniques. A method for creating even higher-period rakes (and in fact rakes with arbitrarily high period) is presented in Section~\ref{sec:period_catalog}.
 
 \begin{figure}[!htb]
 	\centering
@@ -788,7 +788,7 @@ All of the signals that we have seen so far travel orthogonally, but there are a
 	\caption{Some diagonal signals (travelling to the bottom-right) that were found by (a,b)~Dean Hickerson in 1997 and (c)~Hartmut Holzwart in 2003. The signals themselves are sometimes difficult to distinguish from the surrounding wire, so they are highlighted in \bgbox{orangeback}{orange}. Note that both halves of the $c/2$ signal are indeed needed, since the wire is offset by $1$~cell between the two half signals.}\label{fig:diagonal_signals}
 \end{figure}
 
-These diagonal signals are quite exciting for the fact that we ``almost'' know how to turn them around a corner (and recall that if we could do this, we could likely construct oscillators for all of the currently-unknown periods). For example, Figure~\ref{fig:diagonal_2c3_almost_elbow} demonstrates a corner that is able to reflect the $2c/3$ diagonal signal by $90$~degrees, but has the unfortunate side-effect of duplicating the signal as it is reflected. Since we do not know how to reflect the duplicated signal, we cannot use this corner more than once and cannot create a closed loop with it.
+These diagonal signals are quite exciting for the fact that we ``almost'' know how to turn them around a corner (and recall that if we could do this, we could likely construct oscillators for all of the currently unknown periods). For example, Figure~\ref{fig:diagonal_2c3_almost_elbow} demonstrates a corner that is able to reflect the $2c/3$ diagonal signal by $90$~degrees, but has the unfortunate side-effect of duplicating the signal as it is reflected. Since we do not know how to reflect the duplicated signal, we cannot use this corner more than once and cannot create a closed loop with it.
 
 \begin{figure}[!htb]
 	\centering\embedlink{diagonal_2c3_almost_elbow}{\vcenteredhbox{\patternimg{0.14}{diagonal_2c3_almost_elbow}} \vcenteredhbox{\genarrow{60}} \vcenteredhbox{\patternimg{0.14}{diagonal_2c3_almost_elbow_60}}}
@@ -800,7 +800,7 @@ These diagonal signals are quite exciting for the fact that we ``almost'' know h
 
 While signals pass through wires in such a way as to leave the wires undamaged, it is also possible for objects to pass through wires and destroy the wire in the process. When this happens, the wire is instead called a \textbf{wick}\index{wick}, and the objects that ``burns'' through the wick is called a \textbf{fuse}\index{fuse}. Wicks and fuses are significantly easier to find than signals, since we can often just place random debris near a regular repeating pattern to make it burn. For example, the fuse displayed in Figure~\ref{fig:blinker_fuse} can be rediscovered by hand in less than a minute just by placing random configurations of alive cells near the row of blinkers.
 
-Fuses that leave nothing behind as they burn are said to burn \emph{cleanly} and are typically much more useful than their dirty counterparts. Two particularly frequently-used clean fuses, which both travel orthogonally at a speed of $2c/3$, are presented in Figure~\ref{fig:useful_fuses}. Another one that travels slightly faster at $4c/5$ is presented in Exercise~\ref{exer:4c5_fuse}.
+Fuses that leave nothing behind as they burn are said to burn \emph{cleanly} and are typically much more useful than their dirty counterparts. Two particularly frequently used clean fuses, which both travel orthogonally at a speed of $2c/3$, are presented in Figure~\ref{fig:useful_fuses}. Another one that travels slightly faster at $4c/5$ is presented in Exercise~\ref{exer:4c5_fuse}.
 
 It is perhaps worth noting that the bi-block fuse from Figure~\ref{fig:bi_block_fuse} uses the same configuration of a block and beehive as in Figure~\ref{fig:beehive_block}, where the block destroys the beehive. However, the presence of the second block in the bi-block changes the reaction so that \emph{both} the beehive and first block are destroyed, while the second block is transformed into another beehive, thus letting the process repeat.
 
@@ -855,7 +855,7 @@ This breakdown reveals that the LWSS itself is not actually transmitted through 
 
 Another reaction that has a very similar flavor is the long glider collision displayed in Figure~\ref{fig:diagonal_lightspeed}. This reaction teleports a single glider a distance of about $150$ cells to the top-right over the course of $193$ generations---much faster than the usual $c/4$ diagonal spaceship speed limit. In fact, the input glider travels through the diagonal glider collision at a speed of exactly $c$, but it takes a few generations for the reaction to get going at the start and for it to calm down at the end.
 
-Although this reaction fills in a big gap that has been missing from our collection of Life circuitry---recall that up until now we had no way of transmitting information diagonally at the speed of light---actually making use of it is somewhat tricky, since it is difficult to generate waves of gliders that are so closely-spaced. We will discuss some methods for overcoming this obstacle in Chapters~\ref{chp:periodic_circuitry} and~\ref{chp:stationary_circuitry}. However, even with the currently best-known methods, a pattern that is able to generate this configuration of gliders and thus make use of this diagonal lightspeed reaction would be extremely large.
+Although this reaction fills in a big gap that has been missing from our collection of Life circuitry---recall that up until now we had no way of transmitting information diagonally at the speed of light---actually making use of it is somewhat tricky, since it is difficult to generate waves of gliders that are so closely spaced. We will discuss some methods for overcoming this obstacle in Chapters~\ref{chp:periodic_circuitry} and~\ref{chp:stationary_circuitry}. However, even with the currently best-known methods, a pattern that is able to generate this configuration of gliders and thus make use of this diagonal lightspeed reaction would be extremely large.
 
 
 
@@ -1106,7 +1106,7 @@ Some other Life enthusiasts continued using search programs to find new spaceshi
 	\item the first $c/10$ orthogonal spaceship, the copperhead,\index{copperhead} found by ConwayLife.com forum user ``zdr'' in 2016.\smallskip
 \end{itemize}
 
-The small size of the loafer and copperhead demonstrate just how limited our search techniques for spaceships really are. The copperhead especially was a shocking discovery, as it had gone unnoticed for over 45 years of Life, but it could have been found in one hour using the publicly-available search program ``gfind'' that David Eppstein wrote to find the weekender. Even more shockingly, it was then found in random ash generated by apgsearch\index{apgsearch} less than a month after its initial discovery (see Exercise~\ref{exer:random_symmetric}(b)).\footnote{However, this is perhaps slightly misleading. The copperhead was found from evolving a random symmetric soup, and it's likely that there would not have been as much of a push to search symmetric soups if the copperhead had not come along in the first place.}
+The small size of the loafer and copperhead demonstrate just how limited our search techniques for spaceships really are. The copperhead especially was a shocking discovery, as it had gone unnoticed for over 45 years of Life, but it could have been found in one hour using the publicly available search program ``gfind'' that David Eppstein wrote to find the weekender. Even more shockingly, it was then found in random ash generated by apgsearch\index{apgsearch} less than a month after its initial discovery (see Exercise~\ref{exer:random_symmetric}(b)).\footnote{However, this is perhaps slightly misleading. The copperhead was found from evolving a random symmetric soup, and it's likely that there would not have been as much of a push to search symmetric soups if the copperhead had not come along in the first place.}
 
 Diagonal spaceships are somewhat more difficult to search for than orthogonal spaceships due to their lower speed limit and thus higher periods (see Exercise~\ref{exer:general_speed_limit}), with search techniques not producing the first new diagonal speeds of $c/5$, $c/6$, and $c/7$ until 2000 (by Jason Summers), 2005 (by Nicolay Beluchenko), and 2011 (by Matthias Merzenich), respectively.
 
@@ -1128,7 +1128,7 @@ Even though this reaction by itself is unstable, it can be chained together with
 	\caption{A reaction in which a pi-heptomino\index{pi-heptomino} collides with a blinker in such a way as to move forward by $17$ cells in $45$ generations while moving the blinker backward by $6$ cells. The cells displayed in \bgbox{redback}{red} on the right die off completely in another $24$ generations.}\label{fig:17c45_reaction}
 \end{figure}
 
-The next engineered spaceship to be constructed was \textbf{Gemini}\index{Gemini}, which was created by Andrew J. Wade in 2010. The original form of this spaceship had speed $(1024,5120)c/33699586$ and was the first known oblique spaceship. Furthermore, its construction can be altered in a rather systematic way to create spaceships of any direction and arbitrarily-slow speeds.\footnote{The existence of oblique spaceships and arbitrarily-slow spaceships was already known in the early 1970s \cite{Wain74,BCG82}, but Gemini was the first explicit construction. Despite having over $800{\thousep}000$ live cells, it was orders of magnitude smaller and faster than such a spaceship was expected to be.} Several other types of massive engineered spaceships have been constructed since the Gemini, and we will investigate them in depth in Chapters~\ref{chp:self_support_spaceships} and~\ref{chp:universal_construction}.
+The next engineered spaceship to be constructed was \textbf{Gemini}\index{Gemini}, which was created by Andrew J. Wade in 2010. The original form of this spaceship had speed $(1024,5120)c/33699586$ and was the first known oblique spaceship. Furthermore, its construction can be altered in a rather systematic way to create spaceships of any direction and arbitrarily slow speeds.\footnote{The existence of oblique spaceships and arbitrarily slow spaceships was already known in the early 1970s \cite{Wain74,BCG82}, but Gemini was the first explicit construction. Despite having over $800{\thousep}000$ live cells, it was orders of magnitude smaller and faster than such a spaceship was expected to be.} Several other types of massive engineered spaceships have been constructed since the Gemini, and we will investigate them in depth in Chapters~\ref{chp:self_support_spaceships} and~\ref{chp:universal_construction}.
 
 Interest in wires has dwindled in recent years, simply because signals on wires are more difficult to manipulate than signals (gliders in particular) in a vacuum. Indeed, if we want to send a signal from one location in the Life plane to another, it is typically simpler to just point a glider in the right direction rather than requiring that a particular wire stretches all the way between those two locations. Furthermore, we have a lot of machinery for repositioning and re-timing gliders, but hardly any such machinery for signals (we do not know of a single ``efficient'' signal elbow, for example). Dean Hickerson wrote a computer program to search for such a signal elbow, with the intention of then creating a fast signal loop that solved the omniperiodicity problem. While that computer search was unsuccessful, it did lead to many of the known billiard table oscillators.
 
@@ -1298,7 +1298,7 @@ Interest in wires has dwindled in recent years, simply because signals on wires 
 	
 	
 	\begin{problem}\label{exer:rephaser} \probdiff{4}
-		The following collision of two gliders with a block is called a \textbf{rephaser},\index{rephaser} since it alters the phase and path of the gliders. It is useful since it pushes each glider over by $3$~lanes, so it can be used to separate closely-spaced glider streams that Snarks are not small enough to separate.
+		The following collision of two gliders with a block is called a \textbf{rephaser},\index{rephaser} since it alters the phase and path of the gliders. It is useful since it pushes each glider over by $3$~lanes, so it can be used to separate closely spaced glider streams that Snarks are not small enough to separate.
 		
 		\begin{center}
 			\patternlink{rephaser}{\vcenteredhbox{\patternimg{0.1}{rephaser_0}} \vcenteredhbox{\genarrow{15}} \vcenteredhbox{\patternimg{0.1}{rephaser_15}}}
@@ -1495,7 +1495,7 @@ Interest in wires has dwindled in recent years, simply because signals on wires 
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item Find a six-cell object that, when placed behind two lightweight spaceships, evolves into a Schick engine. [Hint: Just truncate the spark in one of the Schick engine's phases.]
 			
-			\item The six-cell object from part~(a) follows the same evolutionary sequence as a commonly-occurring unstable object that we have already seen. What object is it?
+			\item The six-cell object from part~(a) follows the same evolutionary sequence as a commonly occurring unstable object that we have already seen. What object is it?
 		\end{enumerate}
 	\end{problemstar}
 	
@@ -1580,7 +1580,7 @@ Interest in wires has dwindled in recent years, simply because signals on wires 
 	
 	
 	\begin{problem}\label{exer:infinite_spaceship} \probdiff{3}
-		Give an example of an infinitely-large pattern that moves through the (otherwise empty) Life plane at a speed of $c$. Why does this pattern's existence not contradict Theorem~\ref{thm:speed_limits}?
+		Give an example of an infinitely large pattern that moves through the (otherwise empty) Life plane at a speed of $c$. Why does this pattern's existence not contradict Theorem~\ref{thm:speed_limits}?
 	\end{problem}
 	
 	

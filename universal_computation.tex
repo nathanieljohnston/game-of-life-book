@@ -430,7 +430,7 @@ This method is implemented in APGsembly~\ref{alg:apgsembly_binary_ruler}, which 
 	\caption{APGsembly code for a \textbf{binary ruler}---a pattern that counts in binary.}\label{alg:apgsembly_binary_ruler}
 \end{apgsembly}
 
-One interesting feature of the pattern that results from compiling this APGsembly code (see Figure~\ref{fig:binary_ruler}) is that it exhibits a new type of slow growth that we have not yet seen. We explored patterns with slowly-growing \emph{population} in Section~\ref{sec:irreg_guns}, but this pattern instead has a slowly-growing \emph{bounding box}.\index{bounding box} In particular, its \textbf{diameter}\index{diameter} (i.e., its longest bounding box side length) in generation~$t$ is $\Theta(\log(t))$, since this is the rate at which new most significant bits are added to the end of the binary register.
+One interesting feature of the pattern that results from compiling this APGsembly code (see Figure~\ref{fig:binary_ruler}) is that it exhibits a new type of slow growth that we have not yet seen. We explored patterns with slowly growing \emph{population} in Section~\ref{sec:irreg_guns}, but this pattern instead has a slowly growing \emph{bounding box}.\index{bounding box} In particular, its \textbf{diameter}\index{diameter} (i.e., its longest bounding box side length) in generation~$t$ is $\Theta(\log(t))$, since this is the rate at which new most significant bits are added to the end of the binary register.
 
 \begin{figure}[!htb]
 	\centering
@@ -438,7 +438,7 @@ One interesting feature of the pattern that results from compiling this APGsembl
 	\caption{A \textbf{binary ruler} that counts in binary via APGsembly~\ref{alg:apgsembly_binary_ruler}. As a result, it grows very slowly, with its diameter in generation~$t$ being $\Theta(\log(t))$. Its component stack consists of just a single component---the binary register \texttt{B0}, which places boats that act as bits in the locations highlighted in \bgbox{redback}{red}.}\label{fig:binary_ruler}
 \end{figure}
 
-This diametric growth rate is much slower than any other unbounded pattern that we have seen so far (all of which have been $\Theta(t)$). We will return to this idea of patterns with slowly-growing bounding boxes, and push it to its ultimate limit, in Section~\ref{sec:Osqrtlogt}.
+This diametric growth rate is much slower than any other unbounded pattern that we have seen so far (all of which have been $\Theta(t)$). We will return to this idea of patterns with slowly growing bounding boxes, and push it to its ultimate limit, in Section~\ref{sec:Osqrtlogt}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -806,7 +806,7 @@ Since each term in the series~\eqref{eq:pi_series} is approximately $1/2$ as lar
 \end{align*}
 are approximations of $\pi$ that are accurate to at least $1$, $2$, and $3$ decimal places, respectively.
 
-We can now put all of this together into the reasonably APGsembly-friendly Pseudocode~\ref{alg:pseudocode_pi_calc} for computing and printing the decimal digits of $\pi$. In this pseudocode, the registers \texttt{U0}, \texttt{U1}, \texttt{U2}, \texttt{U3}, \texttt{B0}, \texttt{B1}, and \texttt{B2} store the following quantities:\smallskip
+We can now put all of this together into the reasonably APGsembly friendly Pseudocode~\ref{alg:pseudocode_pi_calc} for computing and printing the decimal digits of $\pi$. In this pseudocode, the registers \texttt{U0}, \texttt{U1}, \texttt{U2}, \texttt{U3}, \texttt{B0}, \texttt{B1}, and \texttt{B2} store the following quantities:\smallskip
 
 \begin{itemize}
 	\item[\texttt{U0}:] top-left corner of the $A_n$ matrix
@@ -1156,13 +1156,13 @@ Since the 2D printer component prints on a diagonal grid, the Life pattern that 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%   SECTION: OSQRTLOGT
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{An Extremely Slowly-Growing Pattern}\label{sec:Osqrtlogt}
+\subsection{An Extremely Slowly Growing Pattern}\label{sec:Osqrtlogt}
 
-We now return to the problem of creating a pattern with a very slowly-growing bounding box, which we first considered via a binary ruler in Section~\ref{sec:binary_ruler}. In an $n \times n$ bounding box, there are $n^2$ different cells that can each be in one of $2$ states, for a total of $2^{n^2}$ possible different patterns. It follows that if a pattern exhibits infinite growth then it cannot stay within an $n \times n$ bounding box past generation $t = 2^{n^2}$, since after that point in time its phases would necessarily start repeating.
+We now return to the problem of creating a pattern with a very slowly growing bounding box, which we first considered via a binary ruler in Section~\ref{sec:binary_ruler}. In an $n \times n$ bounding box, there are $n^2$ different cells that can each be in one of $2$ states, for a total of $2^{n^2}$ possible different patterns. It follows that if a pattern exhibits infinite growth then it cannot stay within an $n \times n$ bounding box past generation $t = 2^{n^2}$, since after that point in time its phases would necessarily start repeating.
 
-If we flip this argument around and solve for $n$ in terms of $t$, we see that in generation~$t$, the bounding box of an infinitely-growing pattern can be no smaller than $\sqrt{\log_2(t)} \times \sqrt{\log_2(t)}$.\footnote{This contrasts with our results of Section~\ref{sec:recursive_filter}: even though there is no slowest \emph{population} growth rate, there is slowest \emph{bounding box} growth rate.} We now construct a pattern that attains this minimum possible bounding box growth rate, at least asymptotically---its diameter in generation~$t$ is $\Theta(\sqrt{\log(t)})$.
+If we flip this argument around and solve for $n$ in terms of $t$, we see that in generation~$t$, the bounding box of an infinitely growing pattern can be no smaller than $\sqrt{\log_2(t)} \times \sqrt{\log_2(t)}$.\footnote{This contrasts with our results of Section~\ref{sec:recursive_filter}: even though there is no slowest \emph{population} growth rate, there is slowest \emph{bounding box} growth rate.} We now construct a pattern that attains this minimum possible bounding box growth rate, at least asymptotically---its diameter in generation~$t$ is $\Theta(\sqrt{\log(t)})$.
 
-The basic idea behind this slowly-growing pattern is the same as it was for the binary ruler from Section~\ref{sec:binary_ruler}, which had diameter $\Theta(\log(t))$. We count in binary, except instead of placing the bits of the resulting number in a single 1D row via a binary register, we arrange them in a 2D triangular array via a 2D printer. In particular, we place the least significant bit of the number in one row, the next $2$ least significant bits in the next row, the next $3$ least significant bits in the next row, and so on. The APGsembly code that performs this task is presented in APGsembly~\ref{alg:apgsembly_slow_growth}.
+The basic idea behind this slowly growing pattern is the same as it was for the binary ruler from Section~\ref{sec:binary_ruler}, which had diameter $\Theta(\log(t))$. We count in binary, except instead of placing the bits of the resulting number in a single 1D row via a binary register, we arrange them in a 2D triangular array via a 2D printer. In particular, we place the least significant bit of the number in one row, the next $2$ least significant bits in the next row, the next $3$ least significant bits in the next row, and so on. The APGsembly code that performs this task is presented in APGsembly~\ref{alg:apgsembly_slow_growth}.
 
 \begin{apgsembly}
 	\begin{algorithmic}\small
@@ -1385,7 +1385,7 @@ About one week prior to building his $\pi$ calculator, Goucher built a similar c
 	
 	
 	\begin{problem}\label{exer:osqrtlogt_ruler_when_big} \probdiff{3}
-		The extremely slowly-growing pattern displayed in Figure~\ref{fig:osqrtlogt} has a bounding box that is roughly $24{\thousep}300 \times 26{\thousep}500$ cells. At approximately what generation will the size of its bounding box first exceed $30{\thousep}000 \times 30{\thousep}000$?
+		The extremely slowly growing pattern displayed in Figure~\ref{fig:osqrtlogt} has a bounding box that is roughly $24{\thousep}300 \times 26{\thousep}500$ cells. At approximately what generation will the size of its bounding box first exceed $30{\thousep}000 \times 30{\thousep}000$?
 	\end{problem}
 
 
@@ -1516,7 +1516,7 @@ About one week prior to building his $\pi$ calculator, Goucher built a similar c
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item \probdiff{2} Use a compiler that is linked from \httpsurl{conwaylife.com/wiki/APGsembly} to compile this APGsembly code into a Life pattern.
 			
-			\item \probdiff{3} The \texttt{B2D} component of this pattern can print pixels much closer to the rest of the circuitry than the \texttt{B2D} component in the extremely slowly-growing pattern of Figure~\ref{fig:osqrtlogt}. Explain why.
+			\item \probdiff{3} The \texttt{B2D} component of this pattern can print pixels much closer to the rest of the circuitry than the \texttt{B2D} component in the extremely slowly growing pattern of Figure~\ref{fig:osqrtlogt}. Explain why.
 		\end{enumerate}
 	\end{problem}
 	% SOLUTION: Return value from READ operations comes in too soon at right side. Koch snowflake has no READ operations.

@@ -285,7 +285,7 @@ To actually construct such a pattern, we make use of the period~$30$ circuitry t
 \begin{figure}[!htb]
 	\centering
 	\patternimglink{0.1152}{period_not_2_3_lwss_gun}
-	\caption{A gun that shoots an irregularly-spaced stream of lightweight spaceships. In particular, the period~$120$ inline inverter gun makes use of the glider-to-LWSS reaction from Figure~\ref{fig:glider_to_lwss} (highlighted in \bgbox{magentaback}{magenta}) to create a period~$120$ stream of lightweight spaceships (highlighted in \bgbox{greenpastel}{green}). Period~$240$ and period~$360$ inline inverter guns (highlighted in \bgbox{yellowback2}{yellow} and \bgbox{aquaback}{aqua}, respectively) then destroy every LWSS with a position in the stream that is a multiple of $2$ or $3$, respectively.}
+	\caption{A gun that shoots an irregularly spaced stream of lightweight spaceships. In particular, the period~$120$ inline inverter gun makes use of the glider-to-LWSS reaction from Figure~\ref{fig:glider_to_lwss} (highlighted in \bgbox{magentaback}{magenta}) to create a period~$120$ stream of lightweight spaceships (highlighted in \bgbox{greenpastel}{green}). Period~$240$ and period~$360$ inline inverter guns (highlighted in \bgbox{yellowback2}{yellow} and \bgbox{aquaback}{aqua}, respectively) then destroy every LWSS with a position in the stream that is a multiple of $2$ or $3$, respectively.}
 	\label{fig:period_not_2_3_lwss_gun}
 \end{figure}
 
@@ -497,7 +497,7 @@ What is slightly more interesting is that we can carefully place two copies of T
 
 Furthermore, this glider gun can act as a p$46$ inline inverter (see Figure~\ref{fig:tanners_p46_inline_inverter}) just like the Gosper glider gun can act as a p$30$ inline inverter.\footnote{This inline inverter, just like the original p$30$ one, was found by David Bell.} Even more remarkably, two of these oscillators can be placed next to each other so as to create the p$46$ middleweight spaceship gun displayed in Figure~\ref{fig:tanners_p46_mwss_gun},\footnote{Found by Matthias Merzenich just one day after Tanner's p$46$ was found.} which is currently the smallest known MWSS gun of any period, and also the smallest known gliderless gun of any period.
 
-As an example of what can be done with the edge-shooting gun of Figure~\ref{fig:tanners_p46_edge}, we note that it can be used to make a heavyweight spaceship gun via the $3$-glider HWSS synthesis that we saw back in Table~\ref{tab:3_glider_synth}, even though this synthesis contains closely-spaced gliders that cannot be placed by the ``usual'' guns that we have seen so far. An example of such a gun is presented in Figure~\ref{fig:p46_hwss_gun}.
+As an example of what can be done with the edge-shooting gun of Figure~\ref{fig:tanners_p46_edge}, we note that it can be used to make a heavyweight spaceship gun via the $3$-glider HWSS synthesis that we saw back in Table~\ref{tab:3_glider_synth}, even though this synthesis contains closely spaced gliders that cannot be placed by the ``usual'' guns that we have seen so far. An example of such a gun is presented in Figure~\ref{fig:p46_hwss_gun}.
 
 \begin{figure}[!htb]
 	\centering
@@ -549,7 +549,7 @@ There are also some reactions that can be used to construct Heisenburps via othe
 	\caption{A collision of a glider, lightweight spaceship, and heavyweight spaceship (highlighted in \bgbox{yellowback2}{yellow}) that results in (a) nothing if there is a nearby passing glider (highlighted in \bgbox{greenpastel}{green}), and (b) a single glider (highlighted in \bgbox{orangeback2}{orange}) if there is not a nearby passing glider. Since the passing glider is unaffected by the collision, this reaction can be used as a basis for a Heisenburp.}\label{fig:heisenburp_reaction_p35}
 \end{figure}
 
-To actually construct a Heisenburp from this reaction, we just combine reactions that we saw earlier---we know how to create streams of gliders, middleweight spaceships, and heavyweight spaceships, so we have no problem creating the three objects needed to fuel the reaction, and then we can just use the stream inverter of our choice to ``fix'' the duplicated output stream (since the reaction creates a glider if and only if an input glider is \emph{not} present, which is the opposite of what we want). Figure~\ref{fig:p46_heisenburp_constructed} demonstrates one way to put these pieces together using period~$46$ circuitry, but any set of sufficiently-high period circuits work.
+To actually construct a Heisenburp from this reaction, we just combine reactions that we saw earlier---we know how to create streams of gliders, middleweight spaceships, and heavyweight spaceships, so we have no problem creating the three objects needed to fuel the reaction, and then we can just use the stream inverter of our choice to ``fix'' the duplicated output stream (since the reaction creates a glider if and only if an input glider is \emph{not} present, which is the opposite of what we want). Figure~\ref{fig:p46_heisenburp_constructed} demonstrates one way to put these pieces together using period~$46$ circuitry, but any set of sufficiently high period circuits work.
 
 \begin{figure}[!htb]
 	\centering
@@ -636,7 +636,7 @@ The first of these reactions is called the \textbf{bumper}\index{bumper} (displa
 	\item[3)] Its reflected gliders have different timing than those reflected by the Snark. Specifically, a bumper produces a glider that has timing\index{glider!timing} exactly $5$~generations delayed from that of a glider reflected by a Snark. This is a useful feature when fine-tuning the positioning of gliders along glider tracks, as we can replace Snarks by bumpers to rephase the gliders (similar to how we used a wide variety of different one-time reflectors in Table~\ref{tab:180_degree_one_time_turners} to get precise glider timings).\smallskip
 \end{enumerate}
 
-There is another closely-related reaction called the \textbf{bouncer}\index{bouncer} (displayed in Figure~\ref{fig:bouncer_reflector}),\footnote{The bouncer, as well as most of the low-period pipsquirters that it can use, were found by Noam Elkies in September 1998.} which consists of an eater~1, a boat, a block, and a domino spark that is typically provided by a pipsquirter\index{pipsquirter}. The bouncer is somewhat less versatile than the bumper since the domino spark is tricky to position correctly, but it also has the advantage of having a repeat time of just $22$~generations (versus the bumper's $34$ and the Snark's $43$). Furthermore, these reflectors are color-changing,\footnote{Their names are designed to help us remember which reaction is color-preserving and which one is color-changing---the bum\textbf{p}er is color-\textbf{p}reserving while the boun\textbf{c}er is color-\textbf{c}hanging.} which provides us with some extra flexibility that we did not yet have (recall that both the Snark and the bumper are color-preserving).\footnote{For a more complete and up-to-date collection of bumpers and bouncers, see \httpsurl{conwaylife.com/wiki/Bumper_and_bouncer_gallery}.}
+There is another closely related reaction called the \textbf{bouncer}\index{bouncer} (displayed in Figure~\ref{fig:bouncer_reflector}),\footnote{The bouncer, as well as most of the low-period pipsquirters that it can use, were found by Noam Elkies in September 1998.} which consists of an eater~1, a boat, a block, and a domino spark that is typically provided by a pipsquirter\index{pipsquirter}. The bouncer is somewhat less versatile than the bumper since the domino spark is tricky to position correctly, but it also has the advantage of having a repeat time of just $22$~generations (versus the bumper's $34$ and the Snark's $43$). Furthermore, these reflectors are color-changing,\footnote{Their names are designed to help us remember which reaction is color-preserving and which one is color-changing---the bum\textbf{p}er is color-\textbf{p}reserving while the boun\textbf{c}er is color-\textbf{c}hanging.} which provides us with some extra flexibility that we did not yet have (recall that both the Snark and the bumper are color-preserving).\footnote{For a more complete and up-to-date collection of bumpers and bouncers, see \httpsurl{conwaylife.com/wiki/Bumper_and_bouncer_gallery}.}
 
 \begin{figure}[!htb]
 	\centering
@@ -674,7 +674,7 @@ There is another closely-related reaction called the \textbf{bouncer}\index{boun
 		\begin{subfigure}{.32\textwidth}
 			\centering
 			\patternimglink{0.07738095238}{p5_bouncer}
-			\caption{A closely-related p$5$ reflector that uses a dot sparker.}
+			\caption{A closely related p$5$ reflector that uses a dot sparker.}
 			\label{fig:p5_bouncer}
 		\end{subfigure}
 	\end{tabular}
@@ -712,7 +712,7 @@ The only somewhat tricky part here is getting the input glider to cleanly destro
 
 What if $n$ (the period to which the input and output gliders are aligned) is low enough that we can't build a period~$n$ gun? For example, suppose that all we know about the input stream of gliders is that they are separated by generation gaps that are multiples of~$8$. We cannot build a period~$8$ gun to aim at an inline inverter (recall that the lowest-period glider stream possible is period~$14$), but we could instead reflect the glider with Snarks and period~$8$ bouncers and bumpers, which can be used to produce any possible output lane and sufficiently slow timing.
 
-What if we go one step further and suppose that we do not know \emph{anything at all} about the input glider's timing, but we still want to be able to insert it into periodic circuitry (i.e., we want to align that glider to some specific period)? Unfortunately, neither of the previously-mentioned techniques work in this scenario:\smallskip
+What if we go one step further and suppose that we do not know \emph{anything at all} about the input glider's timing, but we still want to be able to insert it into periodic circuitry (i.e., we want to align that glider to some specific period)? Unfortunately, neither of the previously mentioned techniques work in this scenario:\smallskip
 
 \begin{itemize}
 	\item We cannot simply have the input glider interrupt a stream from a glider gun as in Figure~\ref{fig:inverter_as_regulator}. That method will work for some timings, but other timings will result in multiple gliders being deleted or even chaotic explosions.\smallskip

@@ -60,7 +60,7 @@ While cellular automata (CA)\index{CA|see {cellular automaton}} can act on grids
 
 A $2$-state cellular automaton is called \textbf{outer-totalistic} if the birth and death rules depend only on the state of the current cell, as well the number of live neighbors that it has.\footnote{In contrast with \textbf{totalistic} cellular automata, in which the birth and death rules depend only on the number of live neighbors including the cell itself.} That is, they are exactly the cellular automata that can be described by the \texttt{Bx/Sy} rulestring\index{rulestring} notation that was introduced earlier. An outer-totalistic cellular automaton is said to be \textbf{Life-like} if it furthermore satisfies all of the properties that we assumed at the start of this section (i.e., it acts on a 2-dimensional square grid and neighbors are counted according to the Moore neighborhood).
 
-Some Life-like cellular automata have simple patterns that behave unlike any simple patterns that are known in Life itself, as evidenced by the replicator that we saw in Figure~\ref{fig:highlife_replicator}. While that pattern replicates along a single line, there are also Life-like rules that give rise to simple replicators that replicate in multiple directions and fill the whole plane. In fact, in the appropriately-named \textbf{replicator}\index{replicator (rule)} rule (\texttt{B1357/S1357}), \emph{every} pattern is a replicator that repeatedly produces copies of itself in all $8$ orthogonal and diagonal directions---see Figure~\ref{fig:replicator_smile} and Exercise~\ref{exer:replicator_rule_really_replicates}.
+Some Life-like cellular automata have simple patterns that behave unlike any simple patterns that are known in Life itself, as evidenced by the replicator that we saw in Figure~\ref{fig:highlife_replicator}. While that pattern replicates along a single line, there are also Life-like rules that give rise to simple replicators that replicate in multiple directions and fill the whole plane. In fact, in the appropriately named \textbf{replicator}\index{replicator (rule)} rule (\texttt{B1357/S1357}), \emph{every} pattern is a replicator that repeatedly produces copies of itself in all $8$ orthogonal and diagonal directions---see Figure~\ref{fig:replicator_smile} and Exercise~\ref{exer:replicator_rule_really_replicates}.
 
 \begin{figure}[!htb]
 	\centering
@@ -193,7 +193,7 @@ By changing the evolution rule even more, a single cell can also act in a variet
 
 Indeed, if we restrict non-isotropic cellular automata to a single dimension (e.g., by having every cell survive and having births only occur to the south of live cells, as we did in Figure~\ref{fig:single_cell_sierpinski}) then we get exactly what are called \textbf{elementary cellular automata}\index{elementary cellular automaton} \cite{Wolfram2002}. There are $2^8 = 256$ cellular automata of this type, and the Sierpi\'{n}ski-triangle-generating rule works by emulating the one called \textbf{Rule 18}.\index{Rule 18}
 
-There are $2^{512}$ different 2D not-necessarily-isotropic cellular automata, and the 0E0P metacell can emulate the $2^{511}$ of them that send a dead cell with no live neighbors to a dead cell. It can thus be used to embed all of the patterns from this section into Life, except for the knightship from Figure~\ref{fig:single_cell_knightship}, though at a much larger and slower scale. Of particular note is the fact that this method gave the first explicit construction of a spaceship made of spaceships in Life (and thus the first SMOSMOS in Life as well). This method also gave the first reflectorless rotating oscillator in Life, but there are minor technicalities that must be overcome in this case (see Exercise~\ref{exer:0e0p_rro_technicalities}).\footnote{However, ConwayLife.com forums user ``Goldtiger997'' used single-channel construction techniques to ``directly'' construct an SMOS and an RRO in Life a bit later, in August 2021.}
+There are $2^{512}$ different 2D not necessarily isotropic cellular automata, and the 0E0P metacell can emulate the $2^{511}$ of them that send a dead cell with no live neighbors to a dead cell. It can thus be used to embed all of the patterns from this section into Life, except for the knightship from Figure~\ref{fig:single_cell_knightship}, though at a much larger and slower scale. Of particular note is the fact that this method gave the first explicit construction of a spaceship made of spaceships in Life (and thus the first SMOSMOS in Life as well). This method also gave the first reflectorless rotating oscillator in Life, but there are minor technicalities that must be overcome in this case (see Exercise~\ref{exer:0e0p_rro_technicalities}).\footnote{However, ConwayLife.com forums user ``Goldtiger997'' used single-channel construction techniques to ``directly'' construct an SMOS and an RRO in Life a bit later, in August 2021.}
 
 % ideally 2 paragraphs earlier
 \begin{figure}[!htb]
@@ -310,7 +310,7 @@ These $16$ evolution rules are displayed in Figure~\ref{fig:0e0p_rule_em}, and t
 	\caption{The rule for transitioning from even to odd generations in the $8$-state von-Neumann-neighborhood CA from Equation~\eqref{eq:0e0p_N_from_even}. The states $0$ and $7$ correspond to ``dead'' and ``alive'' in Life and are thus displayed in white and black, respectively. The states $1$, $2$, $3$, $4$, $5$, and $6$ are displayed in \bgbox{yellowback2}{yellow}, \bgbox{orangeback2}{orange}, \bgbox{redback}{red}, \bgbox{magentaback}{magenta}, \bgbox{greenpastel}{green}, and \bgbox{aquaback}{aqua}, respectively.}\label{fig:0e0p_rule_em}
 \end{figure}
 
-The reason for choosing these seemingly-random transition rules is that they lead to the function
+The reason for choosing these seemingly random transition rules is that they lead to the function
 \begin{align}\label{eq:0e0p_injective_transition}
 	\begin{pmatrix}
 		a_{1,1} & a_{1,2} & a_{1,3} \\
@@ -620,7 +620,7 @@ By generation $t = 139{\thousep}291{\thousep}154 \approx 0.2594 \times 2^{29}$, 
 \subsection{Generations $\mathbf{0.26 \times 2^{29}}$ to $\mathbf{0.80 \times 2^{29}}$: Construction of the Southeast Child's Kernel}\label{sec:0e0p_timeline_kernel}
 %%%%%%%%%%%%%%%%%%%%%%
 
-At generation $t = 141{\thousep}139{\thousep}967 \approx 0.2629 \times 2^{29}$ the extra glider has traveled through several one-time turners to the circuitry at the parent's southeast edge. It then cleanly destroys a Snark from the single-channel glider recipe's path (see Figure~\ref{fig:0e0p_timeline_141139967}), so that the recipe is directed into the child's newly-constructed symmetric shell. The design of the shell allows the interior part of the metacell to always be constructed in the same orientation, no matter which direction the construction recipe is coming from, thanks to this step where it is redirected into the correct recipe input lane.
+At generation $t = 141{\thousep}139{\thousep}967 \approx 0.2629 \times 2^{29}$ the extra glider has traveled through several one-time turners to the circuitry at the parent's southeast edge. It then cleanly destroys a Snark from the single-channel glider recipe's path (see Figure~\ref{fig:0e0p_timeline_141139967}), so that the recipe is directed into the child's newly constructed symmetric shell. The design of the shell allows the interior part of the metacell to always be constructed in the same orientation, no matter which direction the construction recipe is coming from, thanks to this step where it is redirected into the correct recipe input lane.
 
 The kernel takes a bit more than twice as long to construct as the shell, and also makes use of numerous long-distance Cordership-based elbow pushes. This construction is heavily unoptimized, as it was generated automatically by slsparse using known standard methods---fire a Cordership towards a location, build something there, fire a glider back, and repeat.
 
@@ -992,7 +992,7 @@ Many \textbf{metacells}---patterns of size larger than $1 \times 1$ that emulate
 	\item \textbf{Background grid}: ``Dead'' metacells must be placed on the Life plane, which means that, for example, spaceships cannot be emulated by this metacell unless infinitely many copies of it are used.\smallskip
 \end{itemize}
 
-The first two of these problems were solved by the \textbf{OTCA metapixel},\index{OTCA metapixel}\index{metapixel|see {metacell}} which was constructed by Brice Due from late 2005 to mid-2006. While this metacell is a bit larger and slower than the first metacell (it is $2048 \times 2048$ and has period $35{\thousep}328$), it can be used to emulate any of the $2^{18}$ different outer-totalistic (i.e., Life-like) cellular automata that were described in Section~\ref{sec:lifelike_rules}.\footnote{This property is what gives it its name: it is the \textbf{O}uter-\textbf{T}otalistic \textbf{C}ellular \textbf{A}utomata metapixel.} Indeed, built into its circuitry is an easily-adjustable array of eaters that determine how many live neighboring OTCA metapixels should lead to the birth or survival of the current metacell (see Figure~\ref{fig:otca_metapixel}). 
+The first two of these problems were solved by the \textbf{OTCA metapixel},\index{OTCA metapixel}\index{metapixel|see {metacell}} which was constructed by Brice Due from late 2005 to mid-2006. While this metacell is a bit larger and slower than the first metacell (it is $2048 \times 2048$ and has period $35{\thousep}328$), it can be used to emulate any of the $2^{18}$ different outer-totalistic (i.e., Life-like) cellular automata that were described in Section~\ref{sec:lifelike_rules}.\footnote{This property is what gives it its name: it is the \textbf{O}uter-\textbf{T}otalistic \textbf{C}ellular \textbf{A}utomata metapixel.} Indeed, built into its circuitry is an easily adjustable array of eaters that determine how many live neighboring OTCA metapixels should lead to the birth or survival of the current metacell (see Figure~\ref{fig:otca_metapixel}). 
 % mention out of the blue/honey bit/demultiplexer?
 
 \begin{figure}[!htb]
@@ -1235,7 +1235,7 @@ Finally, Adam P.~Goucher spent 2014 through 2018 designing and constructing the 
 	
 	
 	\begin{problem}\label{exer:0e0p_why_blocks_clock_lane} \probdiff{2}
-		In Figure~\ref{fig:0e0p_clock_gun_full}, we can see that stages $1$, $3$, $5$, and $7$ of a metacell's lifecycle (i.e., the stages where its newly-constructed children's nuclei are filled) are not initiated by the p$2^{29}$ clock gun---there are simply blocks in the output lane at those positions that absorb the output glider.
+		In Figure~\ref{fig:0e0p_clock_gun_full}, we can see that stages $1$, $3$, $5$, and $7$ of a metacell's lifecycle (i.e., the stages where its newly constructed children's nuclei are filled) are not initiated by the p$2^{29}$ clock gun---there are simply blocks in the output lane at those positions that absorb the output glider.
 		
 		\noindent Explain what \emph{other} mechanism is used to initiate those stages and redirect a copy of the single-channel glider recipe into the children's nuclei.
 	\end{problem}
@@ -1273,7 +1273,7 @@ Finally, Adam P.~Goucher spent 2014 through 2018 designing and constructing the 
 
 
 	\begin{problemstar}\label{exer:0e0p_which_lookup_subsequence} \probdiff{3}
-		Suppose a newly-constructed child 0E0P metacell has parent neighbors to the northeast, southeast, southwest, and northwest in states $2$, $3$, $4$, and $5$, respectively. Which $0$--$7$ glider subsequence of its lookup table contains its state?
+		Suppose a newly constructed child 0E0P metacell has parent neighbors to the northeast, southeast, southwest, and northwest in states $2$, $3$, $4$, and $5$, respectively. Which $0$--$7$ glider subsequence of its lookup table contains its state?
 	\end{problemstar}
 
 
@@ -1281,7 +1281,7 @@ Finally, Adam P.~Goucher spent 2014 through 2018 designing and constructing the 
 	
 	
 	\begin{problemstar}\label{exer:0e0p_which_parent_states} \probdiff{3}
-		Suppose a newly-constructed child 0E0P metacell extracts its state from the $1{\thousep}141$th subsequence of its lookup table. What were its four parent neighbor's states?
+		Suppose a newly constructed child 0E0P metacell extracts its state from the $1{\thousep}141$th subsequence of its lookup table. What were its four parent neighbor's states?
 	\end{problemstar}
 
 
