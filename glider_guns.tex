@@ -381,14 +381,14 @@ There is nothing inherently wrong with pseudo-period guns, but it seems natural 
 
 In general, using glider insertion to decrease the period of a gun's stream results in a pseudo-period gun, but using filters or the glider deletion methods of Section~\ref{sec:glider_deletion} to \emph{increase} the period of its glider stream results in a true-period gun (e.g., the p$60$ gun from Figure~\ref{fig:p60_gun} that uses two Gosper glider guns is a true-period gun). Constructing true-period guns with small period\footnote{Herschel tracks can be used to create true-period guns of large period (period~$62$ and larger, in particular).} is much more difficult than the same task for pseudo-period guns, since we cannot just manipulate gliders themselves to get the period we desire, but rather must actually develop new glider-generating mechanisms.
 
-There are just a few ad-hoc methods that are known for creating true-period glider guns, and they only work for a few select periods. A brief summary of the known true-period guns of these few periods is presented in Table~\ref{tab:true_period_glider_gun}, and the next few subsections illustrate and describe their construction.\footnote{Unfortunately, it probably will not be long before this list of true-period guns becomes out of date ($6$ new periods were discovered while this book was being written!), so a perhaps more up-to-date list of known true-period gun periods can be found at \httpsurl{conwaylife.com/wiki/Gun} and \httpsurl{conwaylife.com/wiki/LifeWiki:Game_of_Life_Status_page\#Glider_gun_true-periods}.}
+There are just a few methods that are known for creating true-period glider guns, and it is typically difficult to get them to work for small periods. A brief summary of the known true-period guns of these few small periods is presented in Table~\ref{tab:true_period_glider_gun}, and the next few subsections illustrate and describe their construction.\footnote{Unfortunately, it probably will not be long before this list of true-period guns becomes out of date ($10$ new periods were discovered while this book was being written!), so a perhaps more up-to-date list of known true-period gun periods can be found at \httpsurl{conwaylife.com/wiki/Gun} and \httpsurl{conwaylife.com/wiki/LifeWiki:Game_of_Life_Status_page\#Glider_gun_true-periods}.}
 
 \begin{table}[!htbp]\vspace*{0.02in}
 	\begin{center}		
 		\begin{tabular}{ccll}
 			\toprule
 			Period & Year & Original Discoverer & Example and Notes \\ \midrule
-			20 & 2013 & \specialcelll[t]{Matthias Merzenich \\ Noam Elkies} & upcoming Figure~\ref{fig:p20_glider_gun} \\
+			20 & 2013 & \specialcelll[t]{Matthias Merzenich \\ Noam Elkies} & \specialcelll[t]{{\small$\bullet$} upcoming Figure~\ref{fig:p20_glider_gun} \\ {\small$\bullet$} smaller ones now known} \\
 			\rowcolor{gray!20} 21, 42 & 2021 & \specialcelll[t]{Tanner Jacobi \\ David Raucci} & Exercise~\ref{exer:p21_glider_gun} \\
 			22 & 2000 & \specialcelll[t]{David Eppstein \\ Jason Summers} & upcoming Figure~\ref{fig:p22_glider_gun} \\
 			\rowcolor{gray!20} 24, 48 & 1997 & Noam Elkies & upcoming Figure~\ref{fig:p24_glider_gun} \\
@@ -401,14 +401,16 @@ There are just a few ad-hoc methods that are known for creating true-period glid
 			44 & 1992 & David Buckingham & improved a bit in 1997 by Paul Callahan (Figure~\ref{fig:p44_glider_gun}) \\
 			\rowcolor{gray!20} 45 & 2010 & Matthias Merzenich & upcoming Figure~\ref{fig:p45_gun} \\
 			46 & 1971 &	Bill Gosper & twin bees gun (Figure~\ref{fig:twin_bees_gun}) \\
-			\rowcolor{gray!20} 50 & 1996 & \specialcelll[t]{Dean Hickerson \\ Noam Elkies} & \specialcelll[t]{{\small$\bullet$} smallest known (roughly Figure~\ref{fig:p50_true_gun}) built by \\ \hphantom{\small$\bullet$} Tanner Jacobi and Matthias Merzenich in March 2019 \\ {\small$\bullet$} first known (not displayed) used Exercise~\ref{exer:traffic_jam}} \\
+			\rowcolor{gray!20} 49 & 2021 & \specialcelll[t]{Tanner Jacobi \\ ``hotcrystal0'' \\ ``wwei23''} & \specialcelll[t]{{\small$\bullet$} see Exercise~\ref{exer:p51_49_guns}\\ {\small$\bullet$} the p51 gun uses the same base reaction} \\
+			50 & 1996 & \specialcelll[t]{Dean Hickerson \\ Noam Elkies} & \specialcelll[t]{{\small$\bullet$} Figure~\ref{fig:p50_true_gun} shows roughly the smallest known \\ {\small$\bullet$} first known (not displayed) used Exercise~\ref{exer:traffic_jam}} \\
+			\rowcolor{gray!20} 51 & 2021 & \specialcelll[t]{Luka Okanishi} & \specialcelll[t]{see Exercise~\ref{exer:p51_49_guns}} \\
 			52 & 2018 & \specialcelll[t]{Dave Greene \\ Chris Cain \\ Adam P. Goucher \\ Matthias Merzenich} & \specialcelll[t]{{\small$\bullet$} smallest known (Figure~\ref{fig:p52_gun}) was constructed in \\ \hphantom{\small$\bullet$} November 2018 with help from ConwayLife.com \\ \hphantom{\small$\bullet$} forums user ``Entity Valkyrie'' \\ {\small$\bullet$} first known (not displayed) was found $2$~months earlier} \\
 			\rowcolor{gray!20} 54 & 1998 & Dietrich Leithner & \\
 			55 & 1998 & Stephen Silver & \cellcolor{gray!20} \\
-			\rowcolor{gray!20} 56 & 1998 & \specialcelll[t]{Dietrich Leithner \\ {}} & \multirow{-3}{*}{\raisebox{0.5cm}{\specialcelll[t]{{\small$\bullet$} smallest p54 and p55 guns built by David Raucci \\ {\small$\bullet$} medium p$54$--$56$ guns (Figure~\ref{fig:quetzals}(c--e)) were \\ \hphantom{\small$\bullet$} constructed in October 2018 by Chris Cain \\ {\small$\bullet$} first known p$54$--$56$ guns (not displayed) were huge}}} \\
-			57 & 2016 & Matthias Merzenich & \specialcelll[t]{{\small$\bullet$} smallest known was constructed in April 2021 by \\ \hphantom{\small$\bullet$} Matthias Merzenich, David Raucci, and others \\ {\small$\bullet$} a slightly older one is in Figure~\ref{fig:p57_gun} \\ {\small$\bullet$} first known (not displayed) was large (about $330 \times 350$)} \\
+			\rowcolor{gray!20} 56 & 1998 & \specialcelll[t]{Dietrich Leithner} & \multirow{-3}{*}{\raisebox{0.5cm}{\specialcelll[t]{{\small$\bullet$} smallest p54 and p55 guns built by David Raucci \\ {\small$\bullet$} medium p$54$--$56$ guns are in Figure~\ref{fig:quetzals}(c--e) \\ {\small$\bullet$} first known p$54$--$56$ guns (not displayed) were huge}}} \\
+			57 & 2016 & Matthias Merzenich & \specialcelll[t]{{\small$\bullet$} first known (not displayed) was large (about $330 \times 350$)\\ {\small$\bullet$} a smaller one is in Figure~\ref{fig:p57_gun} \\ {\small$\bullet$} an even smaller one was built in April 2021} \\
 			\rowcolor{gray!20} 58 & 2016 & \specialcelll[t]{Maia Thunkies \\ Matthias Merzenich} & upcoming Figure~\ref{fig:p58_gun} \\
-			59 & 2009 & \specialcelll[t]{Adam P. Goucher \\ Jason Summers} & \specialcelll[t]{{\small$\bullet$} first known (not displayed) was huge (\rawtilde$4\,000 \times 3\,000$) \\ {\small$\bullet$} ConwayLife.com forums user ``Entity Valkyrie'' made \\ \hphantom{\small$\bullet$} a smaller one (Figure~\ref{fig:p59_glider_gun}) in October 2018} \\
+			59 & 2009 & \specialcelll[t]{Adam P. Goucher \\ Jason Summers} & \specialcelll[t]{{\small$\bullet$} first known (not displayed) was huge (\rawtilde$4\,000 \times 3\,000$) \\ {\small$\bullet$} smallest known is in upcoming Figure~\ref{fig:p59_glider_gun}} \\
 			\rowcolor{gray!20} 60 & 1970 & Bill Gosper & two Gosper glider guns (Figure~\ref{fig:p60_gun}) \\
 			61 & 2016 & Luka Okanishi & upcoming Figure~\ref{fig:p61_gun} \\
 			\rowcolor{gray!20} 62+ & 1996 & David Buckingham & Herschel tracks (some periods known earlier) \\\bottomrule
@@ -416,6 +418,7 @@ There are just a few ad-hoc methods that are known for creating true-period glid
 		\caption{A summary of when the first true-period glider gun of each known period was first discovered. The first discoverer credited above put the gun itself together, while other contributors who provided important reactions or ideas used in the construction are listed alphabetically by their last name.}\label{tab:true_period_glider_gun}%Some of these guns were extremely large, and the guns of the same periods that we introduce in the upcoming sections are sometimes much smaller and make use of more recently discovered mechanisms.
 	\end{center}
 \end{table}
+% TODO: Exercise for p49 and p51. (a) gives reaction from p51 ask to complete, (b) give p7 and ask to make p49
 
 
 \subsection{Spark Collisions: True-Period 22, 30, 33, 36, 45, and 46 Guns}\label{sec:true_period_spark}
@@ -1419,6 +1422,29 @@ where the logarithms are nested as many times as we like. However, even just a s
 	\end{problem}
 
 
+	\vspace*{1cm}
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:p51_49_guns} \probdiff{3}
+		The following reaction converts $2$ input gliders into $3$ output gliders:\footnote{This base reaction was found by ``hotcrystal0'' and ``wwei'' in November 2021, and the resulting p51 and p49 guns were first constructed shortly thereafter by Luka Okanishi and Tanner Jacobi, respectively.}
+		
+		\begin{center}
+			\patternimglink{0.1}{exer_p51_reaction}
+		\end{center}
+		
+		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
+			\item Use (potentially multiple copies of) this reaction to create a true-period $51$ gun.
+			
+			\item Replace the p$3$ sparkers with the following p$7$ sparker, and then create a true-period $49$ gun:
+			
+			\begin{center}
+				\patternimglink{0.1}{exer_p7_dot_spark}
+			\end{center}
+		\end{enumerate}
+	\end{problem}
+
+
 	\mfilbreak
 	
 	
@@ -1482,7 +1508,7 @@ where the logarithms are nested as many times as we like. However, even just a s
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:slide_gun_honey_farm}\index{honey!farm} \probdiff{4}
+	\begin{problem}\label{exer:slide_gun_honey_farm}\index{honey!farm} \probdiff{3}
 		Slide guns can be made to work by pushing any stable object, not just a block. Use the following reactions\footnote{Both found by Jason Summers in 1999. The reaction in part~(a) was used in the quadratic and exponential filters of Figures~\ref{fig:quadratic_filter} and~\ref{fig:exponential_filter}.} to create slide guns:\\[0.05cm]
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
