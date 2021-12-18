@@ -1537,7 +1537,7 @@ About one week prior to building his $\pi$ calculator, Goucher built a similar c
 	\begin{problem}\label{exer:universal_computation_print_register} \probdiff{5}
 		We saw APGsembly code for printing the contents of a sliding block register, as long as that register contains a value no larger than $9$, in APGsembly~\ref{alg:apgsembly_print_sbr}. Now write APGsembly code that prints the contents of a sliding block register, regardless of how many decimal digits it has.
 		
-		\noindent [Hint: This is much more difficult. Make use of the code from Exercise~\ref{exer:universal_computation_determine_digits}]
+		\noindent [Hint: Make use of the code from Exercise~\ref{exer:universal_computation_determine_digits}]
 	\end{problem}
 	
 	
@@ -1555,7 +1555,7 @@ About one week prior to building his $\pi$ calculator, Goucher built a similar c
 			
 			\item In the $e$ calculator, the binary registers \texttt{B1} and \texttt{B2} do not require as many bits of memory as in the $\pi$ calculator (i.e., \texttt{U6} does not need to be as large). Why? Roughly how many bits of memory are needed after $n$ iterations?
 			
-			\item The \index{HashLife} clock speed of the $e$ calculator can be decreased from $2^{20}$ generations to $2^{18}$ generations without introducing any errors. Create a period $2^{18}$ universal regulator that can replace the $e$ calculator's period $2^{20}$ universal regulator.\footnote{Even though decreasing the clock speed decreases the number of Life generations needed to perform a calculation, it typically does not decrease the real-world time that it takes Life software like Golly to evolve the pattern to the point of having performed that calculation. The reason for this is that the HashLife algorithm used by Golly is able to extremely quickly skip over ``wasted'' generations where the clock is just waiting, since so little of the Life plane changes during those generations.}
+			\item The \index{HashLife} clock speed of the $e$ calculator can be decreased from $2^{20}$ generations to $2^{18}$ generations without introducing any errors. Create a period $2^{18}$ universal regulator that can replace the $e$ calculator's period $2^{20}$ universal regulator.\footnote{Even though decreasing the clock speed decreases the number of Life generations needed to perform a calculation, it typically does not decrease the real-world time that it takes Life software like Golly to evolve the pattern to the point of having performed that calculation. The reason for this is that the HashLife algorithm used by Golly is able to quickly skip over ``wasted'' generations where the clock is just waiting, since so little of the Life plane changes during those generations.}
 			% SOLUTION: Just replace 2 of the quadri-Snarks by CP semi-Snarks, or remove a quadri-Snark.
 			
 			\item Use the simplifications and speed-ups suggested by parts~(a--d) to compile an $e$ calculator that prints \texttt{2.718} before generation $2\times 10^{10}$ (instead of around generation $10^{12}$, like the $e$ calculator from Exercise~\ref{exer:universal_computation_e_calc}).
@@ -1597,7 +1597,7 @@ About one week prior to building his $\pi$ calculator, Goucher built a similar c
 		\begin{center}
 			\texttt{0.1.1.2.3.5.8.13.21.34.55.89.144.}
 		\end{center}
-		\noindent with each integer being the sum of the previous two integers.
+		\noindent with each integer being the sum of the previous two.
 	\end{problem}
 	%% EXERCISE END COMMANDS
 \end{multicols}

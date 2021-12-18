@@ -5,7 +5,8 @@
 \footnotesize\ifdefined\FORPRINTING\colorlet{ocre}{black}\else%
 \fi
 
-% TODO: Multicol multi-part solutions when possible (e.g., when they are small images that would fit side-by-side)
+
+\vspace*{-0.5cm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%   SECTION: CHAPTER 1
@@ -23,21 +24,24 @@
 			
 			\item A period~$14$ oscillator (called the \textbf{tumbler}\index{tumbler}).
 			
-			\item A glider-producing switch engine. \\
+			\item A glider-producing switch engine. \\[-0.3cm]
 		\end{enumerate}
 	
 
-	\item[\bf\color{ocre}\sffamily\ref{exer:find_unstable}.] \begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
-		\item Generation $41$.
-		
-		\item Generation $42$.
-		
-		\item Generation $240$.
-		
-		\item Generation $774$.
-		
-		\item Generation $97$. \\
-	\end{enumerate}
+		\begin{multicols}{2}
+			\item[\bf\color{ocre}\sffamily\ref{exer:find_unstable}.]
+			\begin{enumerate}[leftmargin=1.5em]
+				\item[\bf\color{ocre}(a)] Generation $41$.
+				
+				\item[\bf\color{ocre}(c)] Generation $240$.
+				
+				\item[\bf\color{ocre}(e)] Generation $97$.
+				
+				\item[\bf\color{ocre}(b)] Generation $42$.
+				
+				\item[\bf\color{ocre}(d)] Generation $774$. \\
+			\end{enumerate}
+		\end{multicols}
 		
 		
 		\item[\bf\color{ocre}\sffamily\ref{exer:random_symmetric}.] \begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
@@ -47,16 +51,18 @@
 			
 			\item A period~$51$ oscillator (found in 2009 by Nicolay Beluchenko).
 			
-			\item A period~$37$ oscillator (found in 2009 by Nicolay Beluchenko). \\
+			\item A period~$37$ oscillator (found in 2009 by Nicolay Beluchenko).\\[-0.3cm]
 		\end{enumerate}
 	
 
-		\item[\bf\color{ocre}\sffamily\ref{exer:familiar_fours}]
+		\begin{multicols}{2}
+		\item[\bf\color{ocre}\sffamily\ref{exer:familiar_fours}.]
 		\begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
-		\item \raisebox{-\height+\ht\strutbox}{\patternimglink{0.1}{solution_fleet}}
-		
-		\item \raisebox{-\height+\ht\strutbox}{\patternimglink{0.1}{solution_bakery}} \\
+			\item \raisebox{-\height+\ht\strutbox}{\patternimglink{0.1}{solution_fleet}}
+			
+			\item \raisebox{-\height+\ht\strutbox}{\patternimglink{0.1}{solution_bakery}} \\
 		\end{enumerate}
+		\end{multicols}
 		
 		
 		\item[\bf\color{ocre}\sffamily\ref{exer:beehive_pair}.] \begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
@@ -64,7 +70,7 @@
 			
 			\item One possibility is displayed here: \\[-0.6em]
 			
-			\patternimglink{0.1}{1_beehive_shuttle} \\
+			\patternimglink{0.07}{1_beehive_shuttle} \\
 		\end{enumerate}
 		
 		
@@ -86,7 +92,7 @@
 			
 			\item The new inequality to check is $(2^{25}-1)^{n^2} < 2^{(5n-2)^2}$, which is true whenever \begin{align*}n \geq \left\lceil \frac{2}{5-\sqrt{\log_2(2^{25}-1)}}\right\rceil = 465{\thousep}163{\thousep}192.\end{align*}
 			
-			\item The problem is that neighboring tiles might interact with each other in different ways even though individually they evolve the same. In particular, if the tile directly to the left of the two tiles displayed in this question has live cells on its rightmost edge, then that tile can interact in different ways with the block and the pre-block. We thus need \emph{two} rows of ``buffer'' dead cells around each cell that differs between the tiles.
+			\item The problem is that neighboring tiles might interact with each other in different ways even though individually they evolve the same. In particular, if the tile directly to the left of the two tiles displayed in this question has live cells on its rightmost edge, then that tile can interact in different ways with the block and the pre-block. We thus need \emph{two} rows of ``buffer'' dead cells around each cell that differs between the tiles.\\
 		\end{enumerate}
 		
 		
@@ -172,7 +178,7 @@
 			
 			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_weld_4}}
 			
-			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_weld_6}} \\
+			\item \raisebox{-\height+0.5em}{\patternimglink{0.08}{solution_weld_6}} \\
 		\end{enumerate}
 		
 		
@@ -256,7 +262,7 @@
 			
 			\item Using the T-nosed p4 gives the following period 8 oscillator:\\[-0.6em]
 			
-			\patternimglink{0.1}{solution_phase_shift_oscillator} \\
+			\patternimglink{0.1}{solution_phase_shift_oscillator} \\[-0.5em]
 			
 			\item The period can be $7n + 1$ for any integer $n \geq 1$.\\
 		\end{enumerate}
@@ -264,22 +270,22 @@
 		
 		\item[\bf\color{ocre}\sffamily\ref{exer:pi_hassle}] One possibility is the following oscillator, called the \textbf{pi portraitor}\index{pi portraitor}, which was found by Robert Wainwright in 1984 or 1985. It uses four heavyweight emulators\index{heavyweight!emulator} that have been welded together to provide the domino sparks. \\[-0.6em]
 		
-		\patternimglink{0.1}{pi_portraitor} \\
+		\patternimglink{0.09}{pi_portraitor} \\
 		
 		
 		\item[\bf\color{ocre}\sffamily\ref{exer:high_period_sparkers}] In these solutions, we use \bgbox{orangeback}{orange cells} to denote accessible sparks and \bgbox{greenback}{green cells} to denote cells that oscillate at the full period in our new compound oscillators.
 		\begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
 			\item We can combine this period~$13$ oscillator with a period~$3$ caterer\index{caterer} to create an oscillator with period $\mathrm{lcm}(3,13) = 39$: \\[-0.6em]
 			
-			\embedlink{solution_high_period_sparker_13}{\patternimg{0.1}{solution_high_period_sparker_13a} \quad \patternimg{0.1}{solution_high_period_sparker_13b}} \\
+			\embedlink{solution_high_period_sparker_13}{\patternimg{0.09}{solution_high_period_sparker_13a} \quad \patternimg{0.09}{solution_high_period_sparker_13b}} \\
 			
 			\item We can combine this period~$31$ oscillator with a period~$4$ middleweight emulator\index{middleweight!emulator} to create an oscillator with period $\mathrm{lcm}(4,31) = 124$:  \\[-0.6em]
 			
-			\embedlink{solution_high_period_sparker_31}{\patternimg{0.098}{solution_high_period_sparker_31a} \quad \patternimg{0.098}{solution_high_period_sparker_31b}} \\
+			\embedlink{solution_high_period_sparker_31}{\patternimg{0.09}{solution_high_period_sparker_31a} \quad \patternimg{0.09}{solution_high_period_sparker_31b}} \\
 			
 			\item We can combine this period~$32$ oscillator with a period~$6$ unix\index{unix} to create an oscillator with period $\mathrm{lcm}(6,32) = 96$: \\[-0.6em]
 			
-			\embedlink{solution_high_period_sparker_32}{\patternimg{0.092}{solution_high_period_sparker_32a} \quad \patternimg{0.092}{solution_high_period_sparker_32b}}
+			\embedlink{solution_high_period_sparker_32}{\patternimg{0.087}{solution_high_period_sparker_32a} \quad \patternimg{0.087}{solution_high_period_sparker_32b}}\\
 		\end{enumerate}
 	
 
@@ -290,14 +296,14 @@
 		
 		\item[\bf\color{ocre}\sffamily\ref{exer:six_snark_relay}] One possibility is the following period~$680$ oscillator. Note that by adding extra gliders to this track, we can trivially create oscillators with many other periods as well. \\[-0.6em]
 		
-		\patternimglinkwidth{2.4in}{solution_six_snark_relay} \\
+		\patternimglinkwidth{2in}{solution_six_snark_relay} \\
 		
 		
 		\item[\bf\color{ocre}\sffamily\ref{exer:snark_weld}]
 		\begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
 			\item \raisebox{-\height+0.5em}{\patternimglink{0.095}{solution_fused_snarks}}
 			
-			\item \raisebox{-\height+0.5em}{\patternimglink{0.095}{solution_four_fused_snarks}} \\
+			\item \raisebox{-\height+0.5em}{\patternimglink{0.08}{solution_four_fused_snarks}} \\
 		\end{enumerate}
 		
 		
@@ -317,7 +323,7 @@
 		\patternimglink{0.1}{solution_traffic_jam_reflect} \\
 		
 		
-		\item[\bf\color{ocre}\sffamily\ref{exer:phoenix_bb}] One phoenix that works is the following one, where the object on the left dies completely in $2$ generations: \\[-0.6em]
+		\item[\bf\color{ocre}\sffamily\ref{exer:phoenix_bb}] One phoenix that works is as follows, where the object on the left dies completely in $2$ generations: \\[-0.6em]
 		
 		\embedlink{solution_phoenix_bb}{\vcenteredhbox{\patternimg{0.1}{solution_phoenix_bb_0}} \vcenteredhbox{\genarrow{1}} \vcenteredhbox{\patternimg{0.1}{solution_phoenix_bb_1}}} \\
 		
@@ -376,15 +382,17 @@
 			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_swan_duplicate}} \\
 		\end{enumerate}
 		
-		
-		\item[\bf\color{ocre}\sffamily\ref{exer:owss_flotilla}]
-		\begin{enumerate}[leftmargin=1.5em,label=\bf\color{ocre}(\alph*)]
-			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_owss4}}
-			
-			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_owss10}}
-			
-			\item \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_owss6}} \\
-		\end{enumerate}
+
+		\begin{multicols}{2}
+			\item[\bf\color{ocre}\sffamily\ref{exer:owss_flotilla}.]
+			\begin{enumerate}[leftmargin=1.5em]
+				\item[\bf\color{ocre}(a)] \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_owss4}}
+				
+				\item[\bf\color{ocre}(c)] \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_owss6}}
+				
+				\item[\bf\color{ocre}(b)] \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_owss10}}\\
+			\end{enumerate}
+		\end{multicols}
 		
 		
 		\item[\bf\color{ocre}\sffamily\ref{exer:large_owss_flotilla}] \raisebox{-\height+0.5em}{\patternimglink{0.1}{solution_large_owss_flotilla}} \\
@@ -415,7 +423,7 @@
 			
 			\item One method that works is to notice that this Cordership leaves behind a banana spark\index{banana spark}, which can be used to rotate the glider as follows: \\[-0.6em]
 			
-			\patternimglink{0.1}{solution_3_engine_cordership} \\
+			\patternimglink{0.08}{solution_3_engine_cordership} \\
 		\end{enumerate}
 	
 
@@ -433,11 +441,11 @@
 			
 			\item One method that works is to use the Cordership reaction from Exercise~\ref{exer:switch_engine_back}(c) to reflect the gliders from this Corderrake backwards: \\[-0.6em]
 			
-			\patternimglinkwidth{2.4in}{solution_backward_corderrake}
+			\patternimglinkwidth{2in}{solution_backward_corderrake}
 			
 			\item One method that works is to use the glider-to-LWSS reaction displayed in Figure~\ref{fig:cordership_reflections} to turn each glider from this Corderrake into an LWSS: \\[-0.6em]
 			
-			\patternimglinkwidth{2.4in}{solution_lwss_corderrake}
+			\patternimglinkwidth{2in}{solution_lwss_corderrake}\\
 		\end{enumerate}
 		
 		
