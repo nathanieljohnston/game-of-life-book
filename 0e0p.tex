@@ -220,7 +220,7 @@ There are $2^{512}$ different 2D not necessarily isotropic cellular automata, an
 While the 0E0P metacell can emulate any $2$-state Moore-neighborhood cellular automaton in which a dead cell with all dead neighbors stays dead, it does not do so directly. Indeed, building a 0E0P metacell that directly emulates Life would be highly nontrivial for (at least) two reasons:\smallskip
 
 \begin{itemize}
-	\item \textbf{Quantity of neighbors}: each metacell would need to be able to construct a copy of itself in up to eight different locations. If both the north and east neighbours are present, for example, it may be difficult to maneuver a construction arm to build the northeast neighbour.\smallskip
+	\item \textbf{Quantity of neighbors}: each metacell would need to be able to construct a copy of itself in up to eight different locations. If both the north and east neighbors are present, for example, it may be difficult to maneuver a construction arm to build the northeast neighbor.\smallskip
 	
 	\item \textbf{Survival}: a cell can live for multiple generations, so its logic circuitry would need to be reusable. Reusable circuitry is considerably more expensive than single-use circuitry: compare, for instance, the size of a boat and a Snark---the smallest known one-time turner\footnote{We originally showed that a boat is a one-time turner in Exercise~\ref{exer:boat_one_time_turner}(a).} and reusable stable reflector, respectively.\smallskip
 \end{itemize}
@@ -358,7 +358,7 @@ In order to implement this behavior, the 0E0P metacell is made up of three compo
 \begin{itemize}
 	\item The outermost part is the \textbf{shell},\index{shell} which directs information about the states of neighboring metacells. It has exact 90-degree rotational symmetry, consisting of four spiral arms which propagate gliders inwards. Only one of these arms is actually used; the other four exist only to enforce the rotational symmetry.\smallskip
 	
-	\item Inside the shell is the \textbf{kernel},\index{kernel} which does not have any symmetry constraints. The south corner of the kernel contains a clock gun for regulating the metacell's lifecycle and logic circuitry for computing the state of the metacell based on the states of its four neighboring cells. The kernel also contains an output path, shown in magenta in Figure~\ref{fig:0e0p_schematic}, which can connect to one of the four construction arms (dashed) or to the input shell of one of the four neighbours.\smallskip
+	\item Inside the shell is the \textbf{kernel},\index{kernel} which does not have any symmetry constraints. The south corner of the kernel contains a clock gun for regulating the metacell's lifecycle and logic circuitry for computing the state of the metacell based on the states of its four neighboring cells. The kernel also contains an output path, shown in magenta in Figure~\ref{fig:0e0p_schematic}, which can connect to one of the four construction arms (dashed) or to the input shell of one of the four neighbors.\smallskip
 	
 	\item At its center is the largest region of the metacell: its \textbf{nucleus},\index{nucleus} which is a huge glider loop with a period of exactly $2^{29}$. It is populated by over three million gliders, consisting of a complete single-channel glider synthesis of the 0E0P metacell, as well as a state lookup table that encodes the rule that the metacell is emulating.\smallskip
 \end{itemize}
@@ -518,7 +518,7 @@ In order to avoid the aforementioned factor-of-eight width increase, the 0E0P me
 	\embedlink{0e0p_subroutine}{\includegraphics[width=\textwidth]{0e0p/0e0p_subroutine.pdf}}	\caption{An 0E0P metacell that is currently using its pair of subroutine loops to construct the walls of its nucleus. Eight reflectors are constructed simultaneously, since the two loops run in parallel, and each loop uses glider duplicators to send four copies of its reflector-construction recipe southwest at a time.}\label{fig:0e0p_subroutine}
 \end{figure}
 
-This technique reduce the problem of constructing an immense ($2^{29}$-generation) glider loop to the problem of constructing the two smaller ($2^{21}$-generation) subroutine loops. Fortunately, the period~$2^{21}$ loops are small enough that they can be built without any special tricks, along with the rest of the metacell's kernel. In order to make them each copy the subroutine recipe the correct number of times, each subroutine loop is each equipped with its own clock gun that triggers its self-destruction $2^{29}$ generations after it is built. Since the subroutine loop has period $2^{21}$, it runs for exactly $2^{29}/2^{21} = 2^8 = 256$ iterations. Each subroutine loop furthermore feeds into a fourfold fanout (see Figure~\ref{fig:0e0p_subroutine}), so that it constructs a total of $256 \times 4 = 1{\thousep}024$ reflectors, as desired.
+This technique reduces the problem of constructing an immense ($2^{29}$-generation) glider loop to the problem of constructing the two smaller ($2^{21}$-generation) subroutine loops. Fortunately, the period~$2^{21}$ loops are small enough that they can be built without any special tricks, along with the rest of the metacell's kernel. In order to make them each copy the subroutine recipe the correct number of times, each subroutine loop is each equipped with its own clock gun that triggers its self-destruction $2^{29}$ generations after it is built. Since the subroutine loop has period $2^{21}$, it runs for exactly $2^{29}/2^{21} = 2^8 = 256$ iterations. Each subroutine loop furthermore feeds into a fourfold fanout (see Figure~\ref{fig:0e0p_subroutine}), so that it constructs a total of $256 \times 4 = 1{\thousep}024$ reflectors, as desired.
 
 The subroutine loops building the nucleus walls is the final step in the 0E0P metacell's construction process. Afterwards, its nucleus is filled with a copy of its own construction recipe, it goes through its various stages of communicating with and constructing neighboring metacells, and then it finally self-destructs.
 
@@ -905,7 +905,7 @@ Meanwhile, the parent metacell has served its purpose, so it is free to die. The
 \begin{figure}[!htb]
 	\centering
 	\embedlink{0e0p_timeline_8054294330_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_8054294330.pdf}}
-	\caption{The southwest child's $2$ state gliders erasing one-time circuitry that would otherwise cause the metacell to die early (highlighted in \bgbox{magentaback}{magenta}), and storing their state in the $8$-block sequence at the west edge of the south corner. The first of those $2$ state gliders was duplicated, so $3$ gliders (circled in \bgbox{redback}{red}) will hit the blocks, leaving $8-3 = 5$ blocks behind, corresponding to a the child's state $7 - 5 = 2$.}
+	\caption{The southwest child's $2$ state gliders erasing one-time circuitry that would otherwise cause the metacell to die early (highlighted in \bgbox{magentaback}{magenta}), and storing their state in the $8$-block sequence at the west edge of the south corner. The first of those $2$ state gliders was duplicated, so $3$ gliders (circled in \bgbox{redback}{red}) will hit the blocks, leaving $8-3 = 5$ blocks behind, corresponding to the child's state $7 - 5 = 2$.}
 	\label{fig:0e0p_timeline_8054294330}
 \end{figure}
 
@@ -1140,7 +1140,7 @@ Finally, Adam P.~Goucher spent 2014 through 2018 designing and constructing the 
 
 
 	\begin{problem}\label{exer:0e0p_one_cell_smos}\index{spaceship made of spaceships} \probdiff{3}
-		Create a von-Neumann-neighbourhood cellular automaton on a 2D square grid with at most $8$ states, where every cell dies in every generation (so it is of the type described in Section~\ref{sec:0e0p_rule_emulation} that can be emulated by the 0E0P metacell), in which two single-cell spaceships can collide so as to create a $2$-cell SMOS.
+		Create a von-Neumann-neighborhood cellular automaton on a 2D square grid with at most $8$ states, where every cell dies in every generation (so it is of the type described in Section~\ref{sec:0e0p_rule_emulation} that can be emulated by the 0E0P metacell), in which two single-cell spaceships can collide so as to create a $2$-cell SMOS.
 		
 		\noindent [Hint: Make a cell in one state move south, a cell in another state move east, and something else happen when they collide.]
 	\end{problem}
