@@ -619,7 +619,7 @@ However, actually building a slow salvo synthesis for a seed is a tedious proces
 
 \subsection{Tight Packings of Gliders}\label{sec:slow_salvo_tight}
 
-There is still one final problem that might arise when trying to emulate an arbitrary glider synthesis via a slow salvo synthesis, and that is the fact that some syntheses involve packings of gliders coming from the same direction that are too close together for us to place with our one-time turners. This was not a problem for the clock synthesis in Figure~\ref{fig:clock_slow_salvo} since each of the gliders in the synthesis comes from a different direction. However, if we were to try to use a p1 slow salvo to emulate the 3-glider synthesis of a HWSS displayed in Table~\ref{tab:3_glider_synth}, it is not obvious that we can position the two gliders that are heading southwest close enough to each other (since one of the gliders might interfere with any one-time turner that we try to use to position the other glider). To fix this glider-packing problem, we introduce one final reaction: the \textbf{clock inserter}\index{clock!inserter},\footnote{Found by Martin Grant in December 2014.} which uses two opposing gliders to transform a clock\index{clock} into a perpendicular glider, as in Figure~\ref{fig:clock_inserter}.
+There is still one final problem that might arise when trying to emulate an arbitrary glider synthesis via a slow salvo synthesis, and that is the fact that some syntheses involve packings of gliders coming from the same direction that are too close together for us to place with our one-time turners. This was not a problem for the clock synthesis in Figure~\ref{fig:clock_slow_salvo} since each of the gliders in the synthesis comes from a different direction. However, if we were to try to use a p1 slow salvo to emulate the 3-glider synthesis of an HWSS displayed in Table~\ref{tab:3_glider_synth}, it is not obvious that we can position the two gliders that are heading southwest close enough to each other (since one of the gliders might interfere with any one-time turner that we try to use to position the other glider). To fix this glider-packing problem, we introduce one final reaction: the \textbf{clock inserter}\index{clock!inserter},\footnote{Found by Martin Grant in December 2014.} which uses two opposing gliders to transform a clock\index{clock} into a perpendicular glider, as in Figure~\ref{fig:clock_inserter}.
 
 \begin{figure}[!htb]
 	\centering
@@ -968,7 +968,7 @@ The largest database of glider syntheses that is currently maintained, \emph{Shi
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item Make a two-direction incremental glider synthesis of the ecologist in which every glider comes from the southwest or southeast.
 			
-			\noindent [Hint: You can use two gliders to create a block and then two more gliders to turn the block into a LWSS.]
+			\noindent [Hint: You can use two gliders to create a block and then two more gliders to turn it into an LWSS.]
 			
 			\item Find the four gliders that synthesize the first LWSS in this ecologist. To construct that LWSS four generations sooner without disrupting the final recipe, how far and in what direction should each of these gliders be moved?
 			
