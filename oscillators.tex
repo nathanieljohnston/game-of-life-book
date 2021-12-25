@@ -1045,7 +1045,7 @@ Before closing this chapter, we make a brief detour and consider the period~2 os
 	In Conway's Game of Life, no phoenix can ever extend more than one cell outside of its original bounding box. In particular, every phoenix evolves into an oscillator.
 \end{theorem}
 \begin{proof}
-	To prove the result, we look at the rightmost edge of the phoenix's bounding box in generation~$0$, as depicted by the dark grey cells in Figure~\ref{fig:phoenix_proof_1}.
+	To prove the result, we look at the rightmost edge of the phoenix's bounding box in generation~$0$, as depicted by the dark gray cells in Figure~\ref{fig:phoenix_proof_1}.
 	
 	\begin{figure}[!htb]
 		\centering\gridbox{1.5pt}{\begin{tikzpicture}[scale=0.6, every node/.style={transform shape}]%
@@ -1059,7 +1059,7 @@ Before closing this chapter, we make a brief detour and consider the period~2 os
 			\letternode{3}{2}{L}
 			\letternode{4}{3}{X}
 			\end{tikzpicture}}
-		\caption{A diagram illustrating the fact that no phoenix can extend outside of its original bounding box (depicted by the dark grey cells) by more than one cell (depicted by the light grey cells). In particular, if the phoenix is initially confined to the dark grey cells, then cell~X can never be born.}\label{fig:phoenix_proof_1}
+		\caption{A diagram illustrating the fact that no phoenix can extend outside of its original bounding box (depicted by the dark gray cells) by more than one cell (depicted by the light gray cells). In particular, if the phoenix is initially confined to the dark gray cells, then cell~X can never be born.}\label{fig:phoenix_proof_1}
 	\end{figure}
 	
 	Suppose for a contradiction that some cell at a distance of~2 from the original bounding box is eventually born, and let X be the first such cell, which is born for the first time in generation~$n$. Then cells~J, K, and L in Figure~\ref{fig:phoenix_proof_1} must each have been alive in generation~$n-1$, and since the pattern is a phoenix, they must each have been dead in generation~$n-2$. However, for cell~K to be born in generation~$n-1$, each of cells~A, B, and C must have been alive in generation~$n-2$, and thus must be dead in generation~$n-1$. We have thus shown that in generation~$n-1$, cell~K is alive and has exactly two live neighbors (J and L) and thus lives on to generation~$n$, so the pattern is not actually a phoenix.

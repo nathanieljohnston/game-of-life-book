@@ -170,7 +170,7 @@ First, we partition the Life plane into diagonal lines of cells with slope $-1$,
 		
 		\letternode{9}{7}{$\cdot$}
 		\end{tikzpicture}}
-	\caption{A glider that is in lane~$0$, which is highlighted in light grey. The numbers on the grid indicate the lane number of each cell in the plane, and the lane of every glider in the plane is determined by the location of its leading cell when it is in the phase displayed here.}\label{fig:glider_lanes}
+	\caption{A glider that is in lane~$0$, which is highlighted in light gray. The numbers on the grid indicate the lane number of each cell in the plane, and the lane of every glider in the plane is determined by the location of its leading cell when it is in the phase displayed here.}\label{fig:glider_lanes}
 \end{figure}
 
 Comparing the \textbf{timing}\index{glider!timing} of gliders is straightforward if they are in the same lane: we choose some glider in that lane to have timing $0$ when it is in the phase depicted in Figure~\ref{fig:glider_lanes}, and we say that the timing of any other glider in that lane is the number of generations needed to move the glider with timing~$0$ to its position. To extend this definition so that we can compare the timing of gliders in different lanes, we then say that gliders of the same color have the same timing as each other if they are on the same diagonal line of slope~$1$,\footnote{That is, the same diagonal that goes from bottom-left to top-right.} and we say that a glider of the opposite color has timing $2$ generations higher than a glider that is one cell to its left. These timing rules are illustrated in Figure~\ref{fig:glider_timings}.
@@ -239,7 +239,7 @@ Just as with glider color, we are typically not interested in the absolute lane 
 		\letternode{7}{1}{$\cdot$}
 		
 		\end{tikzpicture}}
-	\caption{A glider that has timing~$0$, with the diagonal line of light grey cells indicating the other locations of leading cells that are considered to have timing~$0$. The numbers on the grid indicate the timing of a glider when its leading cell is in that location.}\label{fig:glider_timings}
+	\caption{A glider that has timing~$0$, with the diagonal line of light gray cells indicating the other locations of leading cells that are considered to have timing~$0$. The numbers on the grid indicate the timing of a glider when its leading cell is in that location.}\label{fig:glider_timings}
 \end{figure}
 
 
@@ -629,7 +629,7 @@ We now consider the problem of determining which speeds spaceships can attain. W
 \end{theorem}
 
 \begin{proof}
-	We begin by proving the $c/4$ speed limit for diagonal spaceships. Consider the grid of cells given in Figure~\ref{fig:chap3_speed_limit_c4}. If the spaceship is contained within the region of light grey cells in generation~0, then suppose (in order to establish a contradiction) that cell X~is alive in generation~2.
+	We begin by proving the $c/4$ speed limit for diagonal spaceships. Consider the grid of cells given in Figure~\ref{fig:chap3_speed_limit_c4}. If the spaceship is contained within the region of light gray cells in generation~0, then suppose (in order to establish a contradiction) that cell X~is alive in generation~2.
 	
 	If cell X is alive in generation~2, then cells A, B, and C must be alive in generation~1. It follows that cells A and C must have 3 live neighbors in generation~1, so each of K, L, M, N, and B must be alive in generation~0. However, this implies that cell B must have at least four live neighbors in generation~0, so there is no way for it to survive to generation~1, which gives the desired contradiction.
 	
@@ -650,17 +650,17 @@ We now consider the problem of determining which speeds spaceships can attain. W
 				\letternode{4}{2}{N}
 				\end{tikzpicture}}
 			
-			\caption{A diagram that illustrates Life's diagonal $c/4$ speed limit. If a pattern is contained within the light grey cells in generation~0, it must be on and below the diagonal line of dark grey cells in generation~2.}\label{fig:chap3_speed_limit_c4}
+			\caption{A diagram that illustrates Life's diagonal $c/4$ speed limit. If a pattern is contained within the light gray cells in generation~0, it must be on and below the diagonal line of dark gray cells in generation~2.}\label{fig:chap3_speed_limit_c4}
 		\end{minipage} \quad %
 		\begin{minipage}{.48\textwidth}
 			\centering\patternimgwidth{4.25cm}{speed_limit_c2}
-			\caption{A diagram that illustrates Life's orthogonal $c/2$ speed limit. If a pattern is contained within the light grey cells in generation~0, it must be on and below the diagonal lines of dark grey cells in generation~2.}\label{fig:chap3_speed_limit_c2}
+			\caption{A diagram that illustrates Life's orthogonal $c/2$ speed limit. If a pattern is contained within the light gray cells in generation~0, it must be on and below the diagonal lines of dark gray cells in generation~2.}\label{fig:chap3_speed_limit_c2}
 		\end{minipage}
 	\end{figure}
 	
-	We have shown that cell X can not be alive in generation~2. In other words, if the spaceship is contained within the region of light grey cells in generation~0, then it will be on and below the diagonal line of dark grey cells in generation~2. By using this argument again, we see that the spaceship must be on and below the diagonal line containing cell~X in generation~4. It follows that no spaceship (or puffer, or rake...) can travel faster than $c/4$ diagonally.
+	We have shown that cell X can not be alive in generation~2. In other words, if the spaceship is contained within the region of light gray cells in generation~0, then it will be on and below the diagonal line of dark gray cells in generation~2. By using this argument again, we see that the spaceship must be on and below the diagonal line containing cell~X in generation~4. It follows that no spaceship (or puffer, or rake...) can travel faster than $c/4$ diagonally.
 	
-	To see that the $c/2$ speed limit holds for orthogonal ships, just use two diagonal lines as in Figure~\ref{fig:chap3_speed_limit_c2}. If a spaceship is contained within the region of light grey cells in generation~0, then we already showed that it must be on and below the diagonal lines defined by the dark grey cells in generation~2. It follows that it can not travel faster than $c/2$ orthogonally.
+	To see that the $c/2$ speed limit holds for orthogonal ships, just use two diagonal lines as in Figure~\ref{fig:chap3_speed_limit_c2}. If a spaceship is contained within the region of light gray cells in generation~0, then we already showed that it must be on and below the diagonal lines defined by the dark gray cells in generation~2. It follows that it can not travel faster than $c/2$ orthogonally.
 \end{proof}
 
 Since there is an upper bound on how fast spaceships can travel, it perhaps seems natural to ask whether or not there is also a lower bound---a slowest speed at which spaceships can travel. This question is a bit beyond us at this point, but in Chapter~\ref{chp:universal_construction} we will see that such a lower bound does not exist. That is, we can construct spaceships that move as slowly as we like.
@@ -705,7 +705,7 @@ With these signals in mind, all of which travel at the speed of light, it seems 
 				\letternode{4}{4}{Z}
 				\letternode{4}{6}{Z}
 				\end{tikzpicture}}}
-		\caption{A diagram illustrating the fact that every signal that moves parallel through zebra stripes travels at a speed of $c$. If the signal is contained within the region of light grey cells and its leading edge ever moves to the right (denoted by the Xs and Ys in the middle generation), then it must continue moving by $1$ cell every generation.}\label{fig:speed_limit_zebra_fast}
+		\caption{A diagram illustrating the fact that every signal that moves parallel through zebra stripes travels at a speed of $c$. If the signal is contained within the region of light gray cells and its leading edge ever moves to the right (denoted by the Xs and Ys in the middle generation), then it must continue moving by $1$ cell every generation.}\label{fig:speed_limit_zebra_fast}
 	\end{figure}
 	
 	First note that all of the cells marked~Y must be dead in generation~1, since they have at least $4$~live neighbors in generation~0. But then each of the cells marked~X must be alive in generation~1 or else the cells marked~Z would be dead in generation~2 due to only having one live neighbor. We have thus shown that the leading edge of the signal in fact did not advance to the right at all between generations~0 and~1, which is the desired contradiction that completes the proof.
@@ -740,7 +740,7 @@ Although signals that travel parallel to the stripes in zebra stripes are the mo
 \end{theorem}
 
 \begin{proof}
-	The proof of this theorem is similar in style to those of Theorems~\ref{thm:speed_limits} and~\ref{thm:speed_limit_zebra_fast}. Consider the grid of cells given in Figure~\ref{fig:speed_limit_zebra}. If the signal is contained within the region of light grey cells in generation~0, then we first show that cells marked with an~X will still be alive and cells marked with a~Y will still be dead in generation~1.
+	The proof of this theorem is similar in style to those of Theorems~\ref{thm:speed_limits} and~\ref{thm:speed_limit_zebra_fast}. Consider the grid of cells given in Figure~\ref{fig:speed_limit_zebra}. If the signal is contained within the region of light gray cells in generation~0, then we first show that cells marked with an~X will still be alive and cells marked with a~Y will still be dead in generation~1.
 	
 	\begin{figure}[!htb]
 		\centering
@@ -759,12 +759,12 @@ Although signals that travel parallel to the stripes in zebra stripes are the mo
 		\begin{minipage}{.52\textwidth}
 			\centering\patternimgwidth{6.6cm}{speed_limit_zebra_b}
 		\end{minipage}
-		\caption{A diagram illustrating the $2c/3$ speed limit for a finite signal travelling perpendicularly through zebra stripes. If a signal is contained within the light grey cells in generation~$0$, then cells~X and~Y (left) cannot change state in generation~$1$, so it must be on and to the left of the dark grey cells (right) in generation~$3$.}\label{fig:speed_limit_zebra}
+		\caption{A diagram illustrating the $2c/3$ speed limit for a finite signal travelling perpendicularly through zebra stripes. If a signal is contained within the light gray cells in generation~$0$, then cells~X and~Y (left) cannot change state in generation~$1$, so it must be on and to the left of the dark gray cells (right) in generation~$3$.}\label{fig:speed_limit_zebra}
 	\end{figure}
 	
-	To see that the cells marked with an~X must still be alive generation~1, simply observe that they have either $2$ or $3$ live neighbors in generation~0: the cells to their immediate left and right, and possibly the light grey cell to their bottom-left. To see that the cells marked with a~Y must still be dead in generation~1, we note that regardless of the state of the light grey cells, they have at least $4$~live neighbors (the $3$ cells above them and the cell to their bottom-right).
+	To see that the cells marked with an~X must still be alive generation~1, simply observe that they have either $2$ or $3$ live neighbors in generation~0: the cells to their immediate left and right, and possibly the light gray cell to their bottom-left. To see that the cells marked with a~Y must still be dead in generation~1, we note that regardless of the state of the light gray cells, they have at least $4$~live neighbors (the $3$ cells above them and the cell to their bottom-right).
 	
-	By using this fact~$3$ times, we see that any object that is contained within the light grey region in Figure~\ref{fig:speed_limit_zebra} in generation~0 will be located on and to the left of the dark grey cells in generation~3. Since the region containing the dark grey cells is just the original light grey region shifted up by $2$~cells, it follows that the signal cannot travel more than $2$~cells perpendicular to the stripes every $3$~generations. In other words, its speed is no greater than $2c/3$.
+	By using this fact~$3$ times, we see that any object that is contained within the light gray region in Figure~\ref{fig:speed_limit_zebra} in generation~0 will be located on and to the left of the dark gray cells in generation~3. Since the region containing the dark gray cells is just the original light gray region shifted up by $2$~cells, it follows that the signal cannot travel more than $2$~cells perpendicular to the stripes every $3$~generations. In other words, its speed is no greater than $2c/3$.
 \end{proof}
 
 While we have an upper bound on the possible speed of signal travelling perpendicular to stripes in a zebra stripes wire, there is still no known lower bound on their speed. No such signal that travels at a speed slower than $2c/3$ is known, but no proof that signals must travel this fast is known either. In particular, whether or not there exist perpendicular $c/2$ signals has been an open question since $2006$.\footnote{The existence of such a signal probably would not be particularly useful, as we usually prefer faster signals to slower ones, but it would nonetheless be nice to have an answer one way or the other since we already know about lower speed limits in a vacuum and for signals travelling parallel through stripes.}
