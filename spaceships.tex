@@ -1012,7 +1012,10 @@ While we are not yet in a position to discuss the specifics of how these enginee
 %\stepcounter{footnote}\footnotetext{All rational diagonal speeds slower than $c/4$ are attainable using a ``Speed Demonoid'' construction, which we will discuss in Section~\ref{sec:fast_demonoid}. There is even a computer script that quickly builds such a spaceship of any desired speed.}
 %\stepcounter{footnote}\footnotetext{While essentially any direction and sufficiently slow speed can be attained by a Geminoid spaceship, most speeds that have been explicitly constructed in this way are in the ballpark of $c/10000$.}
 
-It is worth noting that methods for constructing engineered spaceships demonstrate the existence of spaceships that travel arbitrarily slowly, so there cannot possibly be a variant of Theorem~\ref{thm:speed_limits} that provides a lower bound on the speed of spaceships. In fact, at least in the orthogonal direction we know how to construct about half of all possible speeds, since the caterloopillar construction of Section~\ref{sec:caterloopillar} can produce spaceships of any rational speed below $c/4$, leaving only the interval of speeds between $c/4$ and $c/2$ unsolved. Since we already know explicit examples of $c/3$, $2c/5$, $2c/7$, and $3c/7$ orthogonal spaceships, we are left with $3c/8$ as the simplest (i.e., smallest potential period) orthogonal speed for which no spaceship is known. Similarly, the Demonoid construction of Section~\ref{sec:fast_demonoid} can produce diagonal spaceships of any rational speed below $c/4$, but they all have extremely large periods. The simplest speed/period combination for diagonal speeds for which no spaceship is known is $c/8$ period~$8$.
+It is worth noting that methods for constructing engineered spaceships demonstrate the existence of spaceships that travel arbitrarily slowly, so there cannot possibly be a variant of Theorem~\ref{thm:speed_limits} that provides a lower bound on the speed of spaceships. In fact, at least in the orthogonal direction we know how to construct about half of all possible speeds, since the caterloopillar construction of Section~\ref{sec:caterloopillar} can produce spaceships of any rational speed below $c/4$, leaving only the interval of speeds between $c/4$ and $c/2$ unsolved. Since we already know explicit examples of $c/3$, $2c/5$, $2c/7$, and $3c/7$ orthogonal spaceships, we are left with $3c/8$ as the simplest (i.e., smallest potential period) orthogonal speed for which no spaceship is known. Similarly, the Demonoid construction of Section~\ref{sec:fast_demonoid} can produce diagonal spaceships of any rational speed below $c/4$, but they all have extremely large periods.
+
+
+\clearpage%avoid awkward page break
 
 
 \subsection{Spaceship Periods}\label{sec:period_catalog}
@@ -1065,7 +1068,7 @@ The exciting thing about this period~$2$ spaceship is that we can actually use i
 
 If we were able to start the beehive fuse that burns through this wick, eventually the fuse would catch up with the glider collision (since it burns at $2c/3$, which is faster than the rake's speed of $c/2$), stop burning, and the wick would start being reconstructed again. We would thus have a spaceship that gradually swaps back and forth between being quite small (when its wick is entirely burned up) to being quite large (just before its wick starts burning again), and we could make its period as large as we like just by increasing the distance separating the bi-block puffer from the fuse-igniting reaction.
 
-The pattern displayed in Figure~\ref{fig:adjustable_rake} does even better; it not only repeatedly re-ignites the bi-block fuse, but it releases a single glider every time as well, so it not only lets us create spaceships with arbitrarily large periods, but even rakes with arbitrarily large periods. Specifically, every additional bi-block between the front and back halves of the rake increases its period by $32$.\footnote{Each extra bi-block adds a horizontal width of $4$~cells to the wick, so the $c/2$ front end takes an extra $8$ generations to lay it down. Since the difference in speed between the front and back ends of this rake is $2c/3 - c/2 = c/6$, the fuse then burns for an extra $4 \times 6 = 24$ generations, for a total of $8 + 24 = 32$ generations added to the rake's period.} To turn this rake into a spaceship, an additional LWSS can be added to delete the rake's output glider, via the reaction that we saw back in Figure~\ref{fig:orthogonal_destroy}.\footnote{A slightly smaller method of turning this rake into a spaceship is described in Exercise~\ref{exer:adjustable_spaceship}.}
+The pattern displayed in Figure~\ref{fig:adjustable_rake} does even better; it not only repeatedly re-ignites the bi-block fuse, but it releases a single glider every time as well, so it not only lets us create spaceships with arbitrarily large periods, but even rakes with arbitrarily large periods. Specifically, every additional bi-block between the front and back halves of the rake increases its period by $32$.\footnote{Each extra bi-block adds a horizontal width of $4$~cells to the wick, so the $c/2$ front end takes an extra $8$ generations to lay it down. Since the difference in speed between the front and back ends of this rake is $2c/3 - c/2 = c/6$, the fuse then burns for an extra $4 \times 6 = 24$ generations, for a total of $8 + 24 = 32$ generations added to the rake's period.} To turn this rake into a spaceship, an additional LWSS can be added to delete the rake's output glider via the reaction that we saw back in Figure~\ref{fig:orthogonal_destroy}.\footnote{A slightly smaller method of turning this rake into a spaceship is described in Exercise~\ref{exer:adjustable_spaceship}.}
 
 Another method of constructing adjustable-period spaceships,\footnote{Developed by David Bell in 1992, with help from Dean Hickerson.} based on the blinker fuse of Figure~\ref{fig:blinker_fuse}, is presented in Exercise~\ref{exer:blinker_ship}. This technique has the advantage that it can be used to construct spaceships of all sufficiently large periods that are multiples of $4$ (instead of just every $32$nd period), but the disadvantage that adjusting its period is slightly more complicated.
 
@@ -1083,7 +1086,7 @@ Another method of constructing adjustable-period spaceships,\footnote{Developed 
 
 While the glider, lightweight spaceship, middleweight spaceship, and heavyweight spaceship were all found by hand in 1970, very little was known about spaceships for the first two decades of Life. All early spaceship discoveries were simple modifications of those $4$ standard spaceships, such as flotillae\index{flotilla} and tagalongs like the Schick engine.\index{Schick engine} The first \emph{truly} new spaceships to be found were several period~$2$ spaceships by Dean Hickerson in July 1989, including the one that we saw in Figure~\ref{fig:p2_spaceship}.\footnote{It is not known exactly which period~$2$ spaceship was found first---they were all found very close together by the same computer searches.}
 
-Hickerson's search program continued to find new types of spaceships throughout the year, including the first $c/3$ spaceship (in Figure~\ref{fig:c3_orthogonal}) in August, the first $c/4$ orthogonal spaceship in December, and the first diagonal spaceship other than the glider in December (see Figure~\ref{fig:big_glider}). It also found the first $2c/5$ spaceship in 1991, and his same algorithm continues to be used to this day to find new spaceships and oscillators.\footnote{His algorithm is now implemented in programs called lifesrc and JavaLifeSearch. See \httpsurl{conwaylife.com/wiki/Lifesrc} for documentation and download locations.}
+Hickerson's search program continued to find new types of spaceships throughout the year, including the first $c/3$ spaceship in August, the first $c/4$ orthogonal spaceship in December, and the first diagonal spaceship other than the glider in December (see Figure~\ref{fig:big_glider}). It also found the first $2c/5$ spaceship in 1991, and his same algorithm continues to be used to this day to find new spaceships and oscillators.\footnote{His algorithm is now implemented in programs called lifesrc and JavaLifeSearch. See \httpsurl{conwaylife.com/wiki/Lifesrc} for documentation and download locations.}
 
 \begin{figure}[!htb]
 	\centering
@@ -1092,7 +1095,7 @@ Hickerson's search program continued to find new types of spaceships throughout 
 	\label{fig:big_glider}
 \end{figure}
 
-Some other Life enthusiasts continued using search programs to find new spaceships throughout the 1990s, with some of the most notable discoveries being:\smallskip
+Some other Life enthusiasts continued using search programs to find new orthogonal spaceships throughout and after the 1990s, with some of the most notable discoveries being:\smallskip
 
 \begin{itemize}
 	\item the first $c/5$ orthogonal spaceship, found by Tim Coe in 1996;\smallskip
@@ -1101,8 +1104,10 @@ Some other Life enthusiasts continued using search programs to find new spaceshi
 	
 	\item the first $c/6$ orthogonal spaceship, found by Paul Tooke in 2000;\smallskip
 	
-	\item the first $c/7$ orthogonal spaceship, the loafer,\index{loafer} found by Josh Ball in 2013; and\smallskip
+	\item the first $c/7$ orthogonal spaceship, the loafer,\index{loafer} found by Josh Ball in 2013;\smallskip
 	
+	\item the first $3c/7$ orthogonal spaceship, the \textbf{spaghetti monster},\index{spaghetti monster} found by Tim Coe in 2016; and\smallskip
+
 	\item the first $c/10$ orthogonal spaceship, the copperhead,\index{copperhead} found by ConwayLife.com forum user ``zdr'' in 2016.\smallskip
 \end{itemize}
 
