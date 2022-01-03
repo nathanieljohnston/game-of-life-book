@@ -296,7 +296,7 @@ We can also delete lightweight spaceships from a stream in much the same ways th
 
 Similarly, if we want to \emph{decrease} the period of an xWSS stream, we can perform insertions just like we did with gliders. One possible method of inserting an LWSS into a stream is to make use of one of the three-glider syntheses from Table~\ref{tab:3_glider_synth}. However, even the fastest and cleanest of these syntheses can only decrease the period of an LWSS stream down to $23$. Since the minimum possible periods of LWSS, MWSS, and HWSS streams are 14, 16, and 18, respectively, we would like a cleaner reaction that can produce these even tighter streams. The tightest known reaction of this type is displayed in Figure~\ref{fig:lwss_insertion_p18}. It uses a whopping $10$ gliders to carefully place a lightweight spaceship between two others that are $36$ generations apart, resulting in a p$18$ LWSS stream.
 
-Fortunately, we do not actually need to come up with new insertion mechanisms for streams of middleweight or heavyweight spaceships, since there are numerous ways of colliding spaceships with the back end of an LWSS so as to ``upgrade'' it to an MWSS, and there are similarly numerous ways of ``upgrading'' an MWSS to an HWSS. Some methods that work even with tightly packed period~18 xWSS streams are displayed in Figure~\ref{fig:xwss_upgrade}.\footnote{Much simpler methods are known for higher-period streams. See Exercise~\ref{exer:lwss_to_hwss_upgrade}, for example.}
+Fortunately, we do not actually need to come up with new insertion mechanisms for streams of middleweight or heavyweight spaceships, since there are numerous ways of colliding spaceships with the back end of an LWSS so as to ``upgrade'' it to an MWSS, and there are similarly numerous ways of ``upgrading'' an MWSS to an HWSS. Some methods that work even with tightly packed period~18 xWSS streams are displayed in Figure~\ref{fig:xwss_upgrade}.
 
 % ideally 2 paragraphs earlier
 \begin{figure}[!htb]
@@ -1293,20 +1293,6 @@ where the logarithms are nested as many times as we like. However, even just a s
 	\mfilbreak
 	
 	
-	\begin{problem}\label{exer:lwss_to_hwss_upgrade} \probdiff{2}
-		We saw some ways of converting an LWSS into an MWSS and then an HWSS in Figure~\ref{fig:xwss_upgrade}. However, simpler conversions are possible with more loosely packed streams.\smallskip
-		
-		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
-			\item Find a way of colliding a single glider with the back end of a lightweight spaceship so as to convert it into a heavyweight spaceship.
-			
-			\item What periods of HWSS streams can be made via this reaction?
-		\end{enumerate}
-	\end{problem}
-
-
-	\mfilbreak
-	
-	
 	\begin{problem}\label{exer:pseudo_xwss_gun_p18} \probdiff{4}
 		Recall the reactions from Figures~\ref{fig:lwss_insertion_p18} and~\ref{fig:xwss_upgrade} that can be used to create p18 xWSS streams.\smallskip
 		
@@ -1350,7 +1336,7 @@ where the logarithms are nested as many times as we like. However, even just a s
 	
 	
 	\begin{problem}\label{exer:p156_adjust_lwss} \probdiff{2}
-		Adjust the reflectors reaction from Figure~\ref{fig:p14_pieces_lwss} to make it work with Herschel streams of period~$180$ (instead of~$156$).
+		Adjust the reflectors in Figure~\ref{fig:p14_pieces_lwss} to make the reaction work with Herschel streams of period~$180$ (instead of~$156$).
 	\end{problem}
 	
 	
@@ -1413,7 +1399,7 @@ where the logarithms are nested as many times as we like. However, even just a s
 	
 	
 	\begin{problem}\label{exer:p54_fold_corners} \probdiff{3}
-		The p$56$ glider gun displayed in Figure~\ref{fig:p56_gun} uses three reflectors at its top and at its bottom, instead of just one, to make it bounding box slightly smaller. You can similarly ``fold in'' the top and bottom corners of some other guns to make their bounding boxes smaller.
+		The p$56$ glider gun displayed in Figure~\ref{fig:p56_gun} uses three reflectors at its top and at its bottom, instead of just one, to make its bounding box slightly smaller. You can similarly ``fold in'' the top and bottom corners of some other guns to make their bounding boxes smaller.
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item Modify the p$54$ glider gun from Figure~\ref{fig:p54_gun} so that its bounding box has at least $300$ fewer cells in it.
@@ -1467,7 +1453,7 @@ where the logarithms are nested as many times as we like. However, even just a s
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item two Snarks.
 			
-			\item two bumpers (what is the only known bumper period that works with period~$50$ mechanisms?).
+			\item two bumpers (what is the only bumper period that we have seen that works with period~$50$ mechanisms?).
 		\end{enumerate}
 	\end{problemstar}
 
@@ -1647,7 +1633,7 @@ where the logarithms are nested as many times as we like. However, even just a s
 	
 	
 	\begin{problem}\label{exer:four_lane_gun_smaller} \probdiff{3}
-		Decrease the bounding box of the four-lane gun from Figure~\ref{fig:armless_4_lane_gun} so that it no larger than $275 \times 275$, by using Snarks to wrap the glider loops around like we did in Figures~\ref{fig:armless_monochrome_cordership_gun} and~\ref{fig:armless_cordership_gun}.
+		Decrease the bounding box of the four-lane gun from Figure~\ref{fig:armless_4_lane_gun} so that it is no larger than $275 \times 275$, by using Snarks to wrap the glider loops around like we did in Figures~\ref{fig:armless_monochrome_cordership_gun} and~\ref{fig:armless_cordership_gun}.
 	\end{problem}
 	% SOLUTION: https://conwaylife.com/forums/viewtopic.php?p=85842#p85842
 	
