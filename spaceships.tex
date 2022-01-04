@@ -303,7 +303,7 @@ While we have seen infinitely growing patterns before (such as the Gosper glider
 
 \section{The Light, Middle, and Heavyweight Spaceships}\label{sec:lwss_mwss_hwss}
 
-Although the glider is the easiest spaceship to create and manipulate, the light, middle, and heavyweight spaceships are often better at manipulating \emph{other} objects. The reason that they can interact with so many other patterns in such a wide variety of ways is that they emit such accessible sparks so frequently. Every second generation, the LWSS emits a dot spark and a thumb spark\index{dot spark}\index{thumb spark}, the MWSS emits two dot sparks and a thumb spark, and the HWSS emits a dot spark, a domino spark\index{domino spark}, and a thumb spark (see Figure~\ref{fig:lwss_mwss_hwssb}).
+Although the glider is the easiest spaceship to create and manipulate, the light, middle, and heavyweight spaceships are often better at manipulating \emph{other} objects. The reason that they can interact with so many other patterns in such a wide variety of ways is that they frequently emit accessible sparks. Every second generation, the LWSS emits a dot spark and a thumb spark\index{dot spark}\index{thumb spark}, the MWSS emits two dot sparks and a thumb spark, and the HWSS emits a dot spark, a domino spark\index{domino spark}, and a thumb spark (see Figure~\ref{fig:lwss_mwss_hwssb}).
 
 \begin{figure}[!htb]
 	\centering \patternimglink{0.1}{lwss_mwss_hwss}
@@ -850,10 +850,10 @@ This breakdown reveals that the LWSS itself is not actually transmitted through 
 				\draw[white,line width=3pt,opacity=0.5](4.81,4.66) circle (0.165);
 				\draw[redback2,line width=1pt](4.81,4.66) circle (0.165);
 				\end{tikzpicture}}}}
-	\caption{A diagonal collision of gliders, found by Jason Summers in 1999, that is able to teleport a glider from the bottom-left (circled in \bgbox{redback}{red}) to the top-right at the speed of light. If the input glider is not present, the reaction just destroys itself, leaving nothing behind. The gliders and lightweight spaceships outlined in \bgbox{aquaback}{aqua} are just there to clean up some leftover debris.}\label{fig:diagonal_lightspeed}
+	\caption{A diagonal collision of gliders, found by Jason Summers in 1999, that is able to teleport a glider from the bottom left (circled in \bgbox{redback}{red}) to the top right at the speed of light. If the input glider is not present, the reaction just destroys itself, leaving nothing behind. The gliders and lightweight spaceships outlined in \bgbox{aquaback}{aqua} are just there to clean up some leftover debris.}\label{fig:diagonal_lightspeed}
 \end{figure}
 
-Another reaction that has a very similar flavor is the long glider collision displayed in Figure~\ref{fig:diagonal_lightspeed}. This reaction teleports a single glider a distance of about $150$ cells to the top-right over the course of $193$ generations---much faster than the usual $c/4$ diagonal spaceship speed limit. In fact, the input glider travels through the diagonal glider collision at a speed of exactly $c$, but it takes a few generations for the reaction to get going at the start and for it to calm down at the end.
+Another reaction that has a very similar flavor is the long glider collision displayed in Figure~\ref{fig:diagonal_lightspeed}. This reaction teleports a single glider a distance of about $150$ cells to the top right over the course of $193$ generations---much faster than the usual $c/4$ diagonal spaceship speed limit. In fact, the input glider travels through the diagonal glider collision at a speed of exactly $c$, but it takes a few generations for the reaction to get going at the start and for it to calm down at the end.
 
 Although this reaction fills in a big gap that has been missing from our collection of Life circuitry---recall that up until now we had no way of transmitting information diagonally at the speed of light---actually making use of it is somewhat tricky, since it is difficult to generate waves of gliders that are so closely spaced. We will discuss some methods for overcoming this obstacle in Chapters~\ref{chp:periodic_circuitry} and~\ref{chp:stationary_circuitry}. However, even with the currently best-known methods, a pattern that is able to generate this configuration of gliders and thus make use of this diagonal lightspeed reaction would be extremely large.
 
@@ -924,7 +924,7 @@ So far we have only seen spaceships with a very select few different speeds---sp
 			\label{fig:soba}
 		\end{subfigure}
 	\end{tabular}
-	\caption{A collection of small orthogonal spaceships of various speeds, all oriented so that they travel up. These spaceships were found by (a)~Dean Hickerson in 1989, (b)~David Bell in 1997, Josh Ball (c)~in 2013 and (d)~in 2012, (e)~Hartmut Holzwart in 2009, (f)~Paul Tooke in 2000, (g)~David Eppstein in 2000, (h)~ConwayLife.com forum user ``zdr'' in 2016, and (i)~Dylan Chen in 2020.}
+	\caption{A collection of small orthogonal spaceships of various speeds, all oriented so that they travel upward. These spaceships were found by (a)~Dean Hickerson in 1989, (b)~David Bell in 1997, Josh Ball (c)~in 2013 and (d)~in 2012, (e)~Hartmut Holzwart in 2009, (f)~Paul Tooke in 2000, (g)~David Eppstein in 2000, (h)~ConwayLife.com forum user ``zdr'' in 2016, and (i)~Dylan Chen in 2020.}
 	\label{fig:speed_catalog}
 \end{figure}
 
@@ -959,7 +959,7 @@ Nonetheless, three new diagonal spaceships, each travelling at a speed that we h
 			\label{fig:lobster}
 		\end{subfigure}			
 	\end{tabular}
-	\caption{The smallest known diagonal spaceships of some unusual speeds, all oriented so that they travel toward the top-right. These spaceships were found by Matthias Merzenich in (a)~2010 and (c)~2011, and (b)~by Josh Ball in 2011.}
+	\caption{The smallest known diagonal spaceships of some unusual speeds, all oriented so that they travel toward the top right. These spaceships were found by Matthias Merzenich in (a)~2010 and (c)~2011, and (b)~by Josh Ball in 2011.}
 	\label{fig:diagonal_speed_catalog}
 \end{figure}
 
