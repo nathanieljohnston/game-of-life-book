@@ -315,7 +315,7 @@ We now go one step farther and build conduits that don't just reflect a glider, 
 
 Now that we know how to construct conduits that convert one glider into any number of gliders, we can create conduits that take a single glider as input and then implement arbitrary glider syntheses. All we have to do is first convert the input glider into the number of gliders required for the synthesis, and then use Snarks (or other stable reflectors) to reposition and rephase those gliders so as to actually perform the synthesis.
 
-However, we run into the exact same problem that we ran into when using one-time turners to perform slow salvo synthesis in Section~\ref{sec:slow_salvo}: even though it is straightforward to reflect gliders into the correct \emph{positions}, having them all show up at the right \emph{time} is rather tricky. Fortunately, we can solve this problem in the same way that we did back then---we create a family of conduits that can either preserve or change the color of a glider, and can also give us any mod-$8$ timing of the output glider of our choosing. One such collection of conduits can be constructed by using a syringe to turn the input glider into a Herschel, followed by a Herschel-to-glider conduit to transform it back, possibly with one or more Herschel conduits placed in between to change the relative timing of the input and output gliders---see Table~\ref{tab:conduit_phase_changers}.\footnote{This collection was compiled by Simon Ekstr\"{o}m in August 2015. He also put together a few more---see \httpsurl{conwaylife.com/forums/viewtopic.php?f=2\&t=1643\&start=50\#p21708}.}
+However, we run into the exact same problem that we ran into when using one-time turners to perform slow salvo synthesis in Section~\ref{sec:slow_salvo}: even though it is straightforward to reflect gliders into the correct \emph{positions}, having them all show up at the right \emph{time} is rather tricky. Fortunately, we can solve this problem in the same way that we did back then---we create a family of conduits that can either preserve or change the color of a glider, and can also give us any mod-$8$ timing of the output glider of our choosing. One such collection of conduits can be constructed by using a syringe to turn the input glider into a Herschel, followed by a Herschel-to-glider conduit to transform it back, possibly with one or more Herschel conduits placed in between to change the relative timing of the input and output gliders---see Table~\ref{tab:conduit_phase_changers}.\footnote{This collection was compiled by Simon Ekstr\"{o}m in August 2015. He also put together a few more---see \httpsurl{conwaylife.com/forums/viewtopic.php?p=21708\#p21708}.}
 
 \begin{table}[!htb]
 	\begin{center}		
@@ -1076,7 +1076,7 @@ Alternatively, prior to the discovery of the syringe, there were stable conduits
 	
 	
 	\begin{problem}\label{exer:other_toolkit_stable_conduits}
-		Another toolkit for duplicating and synchronizing gliders in stable circuitry, which can be used instead of Table~\ref{tab:conduit_phase_changers}, is provided at \httpsurl{conwaylife.com/forums/viewtopic.php?p=51934}. \smallskip
+		Another toolkit for duplicating and synchronizing gliders in stable circuitry, which can be used instead of Table~\ref{tab:conduit_phase_changers}, is provided at \httpsurl{conwaylife.com/forums/viewtopic.php?p=41563\#p41563}. \smallskip
 		
 		\begin{enumerate}[label=\bf\color{ocre}(\alph*)]
 			\item \probdiff{4} Use this toolkit to build a stable glider-to-LWSS converter.
