@@ -2,6 +2,9 @@
 	$book_size = filesize('conway_life_book.pdf');
 
 	$book_size_readable = round($book_size / 1048576, 2);
+
+	$zip_size = filesize('patterns/all.zip');
+	$zip_size_readable = round($zip_size / 1048576, 2);
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,7 +75,8 @@
         <ul class="navbar-list">
           <li class="navbar-item">&nbsp;<a class="navbar-link" href="#about">About the Book</a></li>
           <li class="navbar-item"><a class="navbar-link" href="#download_pdf">Download the Book</a></li>
-          <li class="navbar-item"><a class="navbar-link" href="#rle_files">Supplementary Files and Code</a></li>
+          <li class="navbar-item"><a class="navbar-link" href="#rle_files">Pattern Files</a></li>
+          <li class="navbar-item"><a class="navbar-link" href="#cite">Specifications</a></li>
         </ul>
       </div>
     </nav>
@@ -88,8 +92,8 @@
 
     <div class="docs-section">
       <h6 class="docs-header">About the Book</h6>
-      <p>This book provides an introduction to <a href="http://www.conwaylife.com/wiki/Conway%27s_Game_of_Life">Conway's Game of Life</a>, the interesting mathematics behind it, and the methods used to construct many of its most interesting patterns. This book generally tries to avoid presenting patterns in isolation or as historical notes, but rather tries to guide the reader through the thought processes that went into creating them in the first place.</p>
-      <p>While we will follow the history of the Game of Life as we go through the book, we emphasize that this is <em>not</em> the primary goal of the book, but rather it is a by-product of the fact that most recently-discovered patterns build upon patterns and techniques that were developed earlier. Instead, the goal of this book is to demystify the Game of Life by breaking down the complex patterns that have been developed in it into bite-size chunks that can be understood individually.</p>
+      <p>This book provides an introduction to <a href="http://www.conwaylife.com/wiki/Conway%27s_Game_of_Life">Conway's Game of Life</a>, the interesting mathematics behind it, and the methods used to construct many of its most interesting patterns. Lots of small "building block"-style patterns (especially in the first four or so chapters of this book) were found via brute-force or other computer searches, and the book does not go into the details of how these searches were implemented. However, from that point on it tries to guide the reader through the thought processes and ideas that are needed to combine those patterns into more interesting composite ones.</p>
+      <p>While the book largely follows the history of the Game of Life, that is <em>not</em> its primary purpose. Rather, it is a by-product of the fact that most recently discovered patterns build upon patterns and techniques that were developed earlier. The goal of this book is to demystify the Game of Life by breaking down the complex patterns that have been developed in it into bite-size chunks that can be understood individually.</p>
     </div>
 
 
@@ -105,9 +109,10 @@
 
 <span class="anchor" id="rle_files"></span>
     <div class="docs-section">
-      <h6 class="docs-header">Supplementary Files and Code</h6>
+      <h6 class="docs-header">Pattern Files</h6>
       <p>Pattern files for all patterns that are displayed as figures in the book are provided here. You can view and manipulate these patterns right in your web browser, or you can copy these code files into Game of Life software like <a href="http://golly.sourceforge.net/">Golly</a>.</p>
-      <ul>
+      <center><b><a href="patterns/all.zip">All pattern files, except for Chapter 12, in a .zip archive file (<?php echo $zip_size_readable; ?> Mb)</a></b></center>
+      <ul style="margin-top:12px;">
         <li><a href="patterns.php?p=early_life">Chapter 1: Early Life</a></li>
         <li><a href="patterns.php?p=still_lifes">Chapter 2: Still Lifes</a></li>
         <li><a href="patterns.php?p=oscillators">Chapter 3: Oscillators</a></li>
@@ -120,6 +125,21 @@
         <li><a href="patterns.php?p=self_support_spaceships">Chapter 10: Self-Supporting Spaceships</a></li>
         <li><a href="patterns.php?p=universal_construction">Chapter 11: Universal Construction</a></li>
         <li><a href="patterns.php?p=0e0p">Chapter 12: The 0E0P Metacell</a></li>
+      </ul>
+    </div>
+
+
+<span class="anchor" id="cite"></span>
+    <div class="docs-section">
+      <h6 class="docs-header">Bibliographic Information and Specifications</h6>
+      <ul>
+        <li><b>Authors:</b> <a href="http://njohnston.ca">Nathaniel Johnston</a> and Dave Greene</li>
+        <li><b>Publisher:</b> Lulu.com (self-published)</li>
+        <li><b>Publication year:</b> 2022</li>
+        <li><b>ISBN:</b> 978-1-794-81696-1</li>
+        <li><b>Pages:</b> 492</li>
+        <li><b>Dimensions:</b> US letter (8.5 &times; 11 in)</li>
+        <li><b>Physical book:</b> Hardcover, color printing, roughly the size and weight of a ream of US letter paper</li>
       </ul>
     </div>
   </div>

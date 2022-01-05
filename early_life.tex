@@ -206,12 +206,13 @@ In order to prevent this self-destruction and turn the queen bee into something 
 
 We can now simply paste these two reactions together to create an oscillator in which a queen bee (initially facing right) creates a beehive and is reflected to the left, then a block destroys the beehive while the queen bee creates another beehive and is reflected back to the right, then a block destroys the second beehive and the whole process repeats. This period~30 oscillator is called the \textbf{queen bee shuttle}\footnote{The term ``shuttle'' typically refers to oscillators in which an unstable object moves back and forth between stabilizing objects (e.g., in this case, the unstable queen bee moves back and forth between the stabilizing blocks on either side of it).}\index{queen bee!shuttle} and is displayed in Figure~\ref{fig:queen_bee_shuttle}.
 
+The queen bee shuttle is our first example of an engineered object---a pattern that we didn't discover ``naturally'', but rather one that we specifically constructed by piecing together simpler reactions that we had observed. This is how most recent discoveries in the Game of Life have been made, and it is also the route that we will take through most of the later chapters in this book: we will combine simple patterns and reactions that we have already seen into more complicated patterns that serve a new purpose, and then we will combine those objects into even more sophisticated patterns, and so on.
+
+% Can be moved 1 paragraph earlier if need be
 \begin{figure}[!ht]
 	\centering\patternimglink{0.1}{queen_bee_shuttle}
 	\caption{The \textbf{queen bee shuttle} is a period~30 oscillator constructed by combining the reactions in Figures~\ref{fig:queen_bee} and~\ref{fig:beehive_block}.}\label{fig:queen_bee_shuttle}
 \end{figure}
-
-The queen bee shuttle is our first example of an engineered object---a pattern that we didn't discover ``naturally'', but rather one that we specifically constructed by piecing together simpler reactions that we had observed. This is how most recent discoveries in the Game of Life have been made, and it is also the route that we will take through most of the later chapters in this book: we will combine simple patterns and reactions that we have already seen into more complicated patterns that serve a new purpose, and then we will combine those objects into even more sophisticated patterns, and so on.
 
 The queen bee can also be stabilized by some objects other than blocks (see Exercise~\ref{exer:queen_bee_eater_1}). Perhaps the most interesting and useful way to stabilize a queen bee is to use another (very carefully positioned) queen bee. If lined up and timed just right, the queen bees bounce off of each other, and instead of each producing a beehive, their collision produces a glider. This is remarkable, since we can then place stabilizing blocks on the other side of each queen bee so as to create a pattern that oscillates at period~30, but also creates an endless stream of gliders (see Figure~\ref{fig:gosper_glider_gun}). Patterns that create glider streams are called \textbf{glider guns}\index{glider!gun}, and this particular one is called the \textbf{Gosper glider gun}\index{Gosper glider gun}.\footnote{Named after Bill Gosper, who found it in November~1970.} This is the first pattern that we have seen that grows indefinitely (and indeed, it was the first such pattern ever to be discovered), and we will make extensive use of it when constructing more complex objects in later chapters.\footnote{Whether or not there are finite patterns that grow arbitrarily large was one of the major open questions in the early days of Life, and this glider gun's discovery earned Gosper a \$50 reward from Conway himself.}
 
@@ -370,7 +371,7 @@ Another potential problem that arises when discussing methuselahs and stability 
 \begin{figure}[!htb]
 	\centering
 	\begin{minipage}[b]{0.4\textwidth}
-		\centering\patternimglink{0.11}{52514m}
+		\centering\patternimglink{0.11}{52514M}
 		\caption{A methuselah that fits within a $16 \times 16$ bounding box and takes $52{\thousep}514$ generations to stabilize.}\label{fig:52514m}
 	\end{minipage}\hfill
 	\begin{minipage}[b]{0.56\textwidth}
