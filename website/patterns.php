@@ -248,8 +248,8 @@
   <meta name="description" content="A textbook for mathematical aspects of Conway's Game of Life and methods of pattern construction.">
   <meta name="author" content="Nathaniel Johnston and Dave Greene">
 <meta name="LifeViewer" content="rle code 37 hide limit">
-  <script type="text/javascript" src="js/lv-plugin.js"></script>
-  <script type="text/javascript" src="js/selectCode.js"></script>
+  <script type="text/javascript" src="https://conwaylife.com/book/js/lv-plugin.js"></script>
+  <script type="text/javascript" src="https://conwaylife.com/book/js/selectCode.js"></script>
 
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -261,21 +261,20 @@
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/skeleton.css">
-  <link rel="stylesheet" href="css/custom.css">
+  <link rel="stylesheet" href="https://conwaylife.com/book/css/normalize.css">
+  <link rel="stylesheet" href="https://conwaylife.com/book/css/skeleton.css">
+  <link rel="stylesheet" href="https://conwaylife.com/book/css/custom.css">
 
   <!-- Scripts
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
   <link rel="stylesheet" href="css/github-prettify-theme.css">
-  <script src="js/site.js"></script>
+  <script src="https://conwaylife.com/book/js/site.js"></script>
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-<link rel="shortcut icon" type="image/png" href="/favicon.png"/>
-<link rel="shortcut icon" type="image/png" href="http://www.conwaylife.com/book/favicon.png"/>
+<link rel="shortcut icon" type="image/png" href="https://conwaylife.com/book/favicon.png"/>
 
 <style>
 .anchor{
@@ -301,12 +300,12 @@
     <div class="container">
       <div class="row" style="padding-top:4rem;padding-bottom:1rem;">
         <div style="float:right;width:158px;margin-left:10px;max-width:30%;">
-          <img src="images/logo.png" style="width:158px;height:157px;" class="bookimg">
+          <img src="https://conwaylife.com/book/images/logo.png" style="width:158px;height:157px;" class="bookimg">
         </div>
         <div style="overflow: hidden;">
           <h1 style="font-weight:bold;margin-bottom:0px;">Conway's Game of Life</h1>
           <h3 style="margin-top:0px;">Mathematics and Construction</h3>
-          <a class="button button-primary" href="index.php#download_pdf">Download the Book</a>
+          <a class="button button-primary" href="https://conwaylife.com/book/#download_pdf">Download the Book</a>
         </div>
       </div>
 
@@ -317,7 +316,7 @@
     <nav class="navbar">
       <div class="container">
         <ul class="navbar-list">
-          <li class="navbar-item">&nbsp;<a class="navbar-link" href="index.php">Back to Book Homepage</a></li>
+          <li class="navbar-item">&nbsp;<a class="navbar-link" href="https://conwaylife.com/book/">Back to Book Homepage</a></li>
         </ul>
       </div>
     </nav>

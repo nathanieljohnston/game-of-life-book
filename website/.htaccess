@@ -1,0 +1,18 @@
+php_flag log_errors off
+
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://conwaylife.com/book/$1 [R=301,L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^/?early_life(\/?)$ /book/patterns.php?p=early_life [PT,L,QSA]
+RewriteRule ^/?still_lifes(\/?)$ /book/patterns.php?p=still_lifes [PT,L,QSA]
+RewriteRule ^/?oscillators(\/?)$ /book/patterns.php?p=oscillators [PT,L,QSA]
+RewriteRule ^/?spaceships(\/?)$ /book/patterns.php?p=spaceships [PT,L,QSA]
+RewriteRule ^/?glider_synthesis(\/?)$ /book/patterns.php?p=glider_synthesis [PT,L,QSA]
+RewriteRule ^/?periodic_circuitry(\/?)$ /book/patterns.php?p=periodic_circuitry [PT,L,QSA]
+RewriteRule ^/?stationary_circuitry(\/?)$ /book/patterns.php?p=stationary_circuitry [PT,L,QSA]
+RewriteRule ^/?glider_guns(\/?)$ /book/patterns.php?p=glider_guns [PT,L,QSA]
+RewriteRule ^/?universal_computation(\/?)$ /book/patterns.php?p=universal_computation [PT,L,QSA]
+RewriteRule ^/?self_support_spaceships(\/?)$ /book/patterns.php?p=self_support_spaceships [PT,L,QSA]
+RewriteRule ^/?universal_construction(\/?)$ /book/patterns.php?p=universal_construction [PT,L,QSA]
+RewriteRule ^/?0e0p(\/?)$ /book/patterns.php?p=0e0p [PT,L,QSA]

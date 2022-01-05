@@ -113,18 +113,18 @@
       <p>Pattern files for all patterns that are displayed as figures in the book are provided here. You can view and manipulate these patterns right in your web browser, or you can copy these code files into Game of Life software like <a href="http://golly.sourceforge.net/">Golly</a>.</p>
       <center><b><a href="patterns/all.zip">All pattern files, except for Chapter 12, in a .zip archive file (<?php echo $zip_size_readable; ?> Mb)</a></b></center>
       <ul style="margin-top:12px;">
-        <li><a href="patterns.php?p=early_life">Chapter 1: Early Life</a></li>
-        <li><a href="patterns.php?p=still_lifes">Chapter 2: Still Lifes</a></li>
-        <li><a href="patterns.php?p=oscillators">Chapter 3: Oscillators</a></li>
-        <li><a href="patterns.php?p=spaceships">Chapter 4: Spaceships and Moving Objects</a></li>
-        <li><a href="patterns.php?p=glider_synthesis">Chapter 5: Glider Synthesis</a></li>
-        <li><a href="patterns.php?p=periodic_circuitry">Chapter 6: Periodic Circuitry</a></li>
-        <li><a href="patterns.php?p=stationary_circuitry">Chapter 7: Stable Circuitry</a></li>
-        <li><a href="patterns.php?p=glider_guns">Chapter 8: Guns and Glider Streams</a></li>
-        <li><a href="patterns.php?p=universal_computation">Chapter 9: Universal Computation</a></li>
-        <li><a href="patterns.php?p=self_support_spaceships">Chapter 10: Self-Supporting Spaceships</a></li>
-        <li><a href="patterns.php?p=universal_construction">Chapter 11: Universal Construction</a></li>
-        <li><a href="patterns.php?p=0e0p">Chapter 12: The 0E0P Metacell</a></li>
+        <li><a href="/book/early_life">Chapter 1: Early Life</a></li>
+        <li><a href="/book/still_lifes">Chapter 2: Still Lifes</a></li>
+        <li><a href="/book/oscillators">Chapter 3: Oscillators</a></li>
+        <li><a href="/book/spaceships">Chapter 4: Spaceships and Moving Objects</a></li>
+        <li><a href="/book/glider_synthesis">Chapter 5: Glider Synthesis</a></li>
+        <li><a href="/book/periodic_circuitry">Chapter 6: Periodic Circuitry</a></li>
+        <li><a href="/book/stationary_circuitry">Chapter 7: Stable Circuitry</a></li>
+        <li><a href="/book/glider_guns">Chapter 8: Guns and Glider Streams</a></li>
+        <li><a href="/book/universal_computation">Chapter 9: Universal Computation</a></li>
+        <li><a href="/book/self_support_spaceships">Chapter 10: Self-Supporting Spaceships</a></li>
+        <li><a href="/book/universal_construction">Chapter 11: Universal Construction</a></li>
+        <li><a href="/book/0e0p">Chapter 12: The 0E0P Metacell</a></li>
       </ul>
     </div>
 
