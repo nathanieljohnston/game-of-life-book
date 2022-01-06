@@ -857,17 +857,17 @@ The reason that we use the ``\texttt{B}'' labels for the entries of $B_n$ and ``
 
 We have seen how to implement most of the pieces of Pseudocode~\ref{alg:pseudocode_pi_calc} in APGsembly already. Adding fixed values to sliding block (unary) registers is as straightforward as using their \texttt{INC} command the corresponding number of times. Looping over a code section four times can be done by setting a register's value to $4$ and then using a \texttt{TDEC} command to decide whether to restart the loop or exit it. Finally, adding binary registers together and multiplying them by unary registers can be done via the code that we saw in APGsembly~\ref{alg:apgsembly_binary_add_sub} and Exercise~\ref{exer:universal_computation_apgsembly_multiply_binary}, respectively.
 
-However, one piece of Pseudocode~\ref{alg:pseudocode_pi_calc} that is tricky to implement is the digit extraction at line~15. In order to carry out this step using just integer arithmetic, we do the following variant of integer division:\smallskip
+However, one piece of Pseudocode~\ref{alg:pseudocode_pi_calc} that is tricky to implement is the digit extraction at line~15. To carry out this step using just integer arithmetic, we do the following variant of integer division:\smallskip
 
 \begin{enumerate}
 	\item[1)] Set $s = 0$.\smallskip
 	
-	\item[2)] Subtract \texttt{B2} from \texttt{B1} until we cannot do so anymore. The number of subtractions that we performed is the $s$-th digit of \texttt{B1 / B2} after its decimal point. If this is the digit that we are currently interested in, we can stop. Otherwise, we proceed to step~(2) below.\smallskip
+	\item[2)] Subtract \texttt{B2} from \texttt{B1} until we cannot do so anymore. The number of subtractions that we performed is the $s$-th digit of \texttt{B1 / B2} after its decimal point. If this is the digit that we are currently interested in, we can stop. Otherwise, we proceed to step~(3) below.\smallskip
 	
 	\item[3)] Multiply \texttt{B1} by $10$, increment $s$ by $1$, and then return to step~(2) above.\smallskip
 \end{enumerate}
 
-In order to implement step~(1) above in APGsembly, we need to know how to subtract the value of one binary register from another, and how to compare the values of two binary registers (so that we know whether or not we can do the subtraction in the first place). Fortunately, we saw how to do the former of these tasks in APGsembly~\ref{alg:apgsembly_binary_add_sub}, and the latter task is somewhat simpler and left to Exercise~\ref{exer:universal_computation_apgsembly_binary_compare}. Similarly, we saw how to do the multiplication by $10$ that step~(2) requires us to do back in APGsembly~\ref{alg:apgsembly_mul_ten}.
+In order to implement step~(2) above in APGsembly, we need to know how to subtract the value of one binary register from another, and how to compare the values of two binary registers (so that we know whether or not we can do the subtraction in the first place). Fortunately, we saw how to do the former of these tasks in APGsembly~\ref{alg:apgsembly_binary_add_sub}, and the latter task is somewhat simpler and left to Exercise~\ref{exer:universal_computation_apgsembly_binary_compare}. Similarly, we saw how to do the multiplication by $10$ that step~(3) requires us to do back in APGsembly~\ref{alg:apgsembly_mul_ten}.
 
 We have thus seen all of the pieces that we need to finally construct our $\pi$-calculating Life pattern. The APGsembly code that implements Pseudocode~\ref{alg:pseudocode_pi_calc} is quite long, so we leave it to Appendix~\ref{sec:appendix_apg}. The resulting calculator that is compiled from that APGsembly code is presented in Figure~\ref{fig:pi_calc}.
 
