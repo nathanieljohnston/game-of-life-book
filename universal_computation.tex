@@ -788,7 +788,7 @@ If we let $q_n$ and $r_n$ denote the top-right and bottom-right entries of $B_n$
 \end{align*}
 This gives us a way of computing better and better approximations of $\pi$ using just integer arithmetic (except for the very last step, where we divide $q_n$ by $r_n$), and which is streaming (since each $B_n$ can be computed straightforwardly from $B_{n-1}$).
 
-Since each term in the series~\eqref{eq:pi_series} is approximately $1/2$ as large as the term that came before it, the distance between $\pi$ and our approximation $q_n/r_n$ decreases by roughly a factor of $2$ every time we increase $n$ by $1$. We thus need to iterate the above procedure an average of $\log_2(10) \approx 3.3219$ times for each decimal place of accuracy that we would like. For simplicity, we simply round this quantity up to $4$ and thus note that if we want $n$ decimals places of $\pi$, it suffices to use the approximation based on $B_{4n}$.\footnote{There is actually an extraordinarily small chance that this algorithm computes an incorrect digit of $\pi$ at some point. The argument we just gave guarantees that we extract its $n$-digit from an approximation that is within about $2^{-4n}$ of the true value of $\pi$. Since $2^{-4n} = 16^{-n} < 10^{-n}$, the $n$-th digit of this approximation matches the $n$-th digit of $\pi$ as long as $\pi$ does not have an exceptionally long string of consecutive $0$s in its decimal expansion significantly before we would expect to see one (since that could cause a long string of $9$s in one approximation that turns into a string of $0$s in the next approximation and $\pi$ itself). However, over $62{\thousep}000{\thousep}000{\thousep}000{\thousep}000$ decimal places of $\pi$ are known, and this algorithm computes them all correctly.} For example,
+Since $k/(2k+1) \approx 1/2$ when $k$ is large in the series~\eqref{eq:pi_series}, the distance between $\pi$ and our approximation $q_n/r_n$ decreases by roughly a factor of $2$ every time we increase $n$ by $1$. We thus need to iterate the above procedure an average of $\log_2(10) \approx 3.3219$ times for each decimal place of accuracy that we would like. It follows that if we want $n$ decimal places of $\pi$, it suffices to use the approximation $q_{4n}/r_{4n}$ based on $B_{4n}$ (we rounded $3.3219$ up to $4$ for simplicity).\footnote{There is an extraordinarily small chance that this algorithm computes an incorrect digit of $\pi$ at some point. The argument we just gave guarantees that we extract its $n$-th digit from an approximation that is within about $2^{-4n}$ of the true value of $\pi$. Since $2^{-4n} = 16^{-n} < 10^{-n}$, the $n$-th digit of this approximation matches the $n$-th digit of $\pi$ as long as $\pi$ does not have an exceptionally long string of consecutive $0$s in its decimal expansion significantly before we would expect to see one (since that could cause a long string of $9$s in one approximation that turns into a string of $0$s in the next approximation and $\pi$ itself). However, over $62{\thousep}000{\thousep}000{\thousep}000{\thousep}000$ decimal places of $\pi$ are known, and this algorithm computes them all correctly.} For example,
 \begin{align*}
 	B_4 & = \begin{bmatrix}
 		48 & 2880 \\
@@ -823,6 +823,25 @@ We can now put all of this together into the reasonably APGsembly friendly Pseud
 	\item[\texttt{B2}:] bottom-right corner of the $B_n$ matrix ($= r_n$)\smallskip
 \end{itemize}
 
+The reason that we use the ``\texttt{B}'' labels for the entries of $B_n$ and ``\texttt{U}'' labels for other quantities is that the entries of $B_n$ grow quite large as $n$ increases, so they should be stored in binary registers, while all other quantities used in this algorithm are comparatively small, so they can simply be stored in sliding block (unary) registers.
+
+We have seen how to implement most of the pieces of Pseudocode~\ref{alg:pseudocode_pi_calc} in APGsembly already. Adding fixed values to sliding block (unary) registers is as straightforward as using their \texttt{INC} command the corresponding number of times. Looping over a code section four times can be done by setting a register's value to $4$ and then using a \texttt{TDEC} command to decide whether to restart the loop or exit it. Finally, adding binary registers together and multiplying them by unary registers can be done via the code that we saw in APGsembly~\ref{alg:apgsembly_binary_add_sub} and Exercise~\ref{exer:universal_computation_apgsembly_multiply_binary}, respectively.
+
+However, one piece of Pseudocode~\ref{alg:pseudocode_pi_calc} that is tricky to implement is the digit extraction at line~15. To carry out this step using just integer arithmetic, we do the following variant of integer division:\smallskip
+
+\begin{enumerate}
+	\item[1)] Set $s = 0$.\smallskip
+	
+	\item[2)] Subtract \texttt{B2} from \texttt{B1} until we cannot do so anymore. The number of subtractions that we performed is the $s$-th digit of \texttt{B1 / B2} after its decimal point. If this is the digit that we are currently interested in, we can stop. Otherwise, we proceed to step~(3) below.\smallskip
+	
+	\item[3)] Multiply \texttt{B1} by $10$, increment $s$ by $1$, and then return to step~(2) above.
+\end{enumerate}
+
+
+\clearpage% nit-picky layout reasons
+
+
+% Could be 3 paragraphs before above enumerate if needed
 \begin{pseudocode}
 	\begin{algorithmic}[1]\small
 		\State\texttt{\# Initialize the A and B matrices.}
@@ -852,20 +871,6 @@ We can now put all of this together into the reasonably APGsembly friendly Pseud
 	\end{algorithmic}
 	\caption{Pseudocode for computing and printing the decimal digits of $\pi$. Any variable that is used before it is set is assumed to start at a value of $0$.}\label{alg:pseudocode_pi_calc}
 \end{pseudocode}
-
-The reason that we use the ``\texttt{B}'' labels for the entries of $B_n$ and ``\texttt{U}'' labels for other quantities is that the entries of $B_n$ grow quite large as $n$ increases, so they should be stored in binary registers, while all other quantities used in this algorithm are comparatively small, so they can simply be stored in sliding block (unary) registers.
-
-We have seen how to implement most of the pieces of Pseudocode~\ref{alg:pseudocode_pi_calc} in APGsembly already. Adding fixed values to sliding block (unary) registers is as straightforward as using their \texttt{INC} command the corresponding number of times. Looping over a code section four times can be done by setting a register's value to $4$ and then using a \texttt{TDEC} command to decide whether to restart the loop or exit it. Finally, adding binary registers together and multiplying them by unary registers can be done via the code that we saw in APGsembly~\ref{alg:apgsembly_binary_add_sub} and Exercise~\ref{exer:universal_computation_apgsembly_multiply_binary}, respectively.
-
-However, one piece of Pseudocode~\ref{alg:pseudocode_pi_calc} that is tricky to implement is the digit extraction at line~15. To carry out this step using just integer arithmetic, we do the following variant of integer division:\smallskip
-
-\begin{enumerate}
-	\item[1)] Set $s = 0$.\smallskip
-	
-	\item[2)] Subtract \texttt{B2} from \texttt{B1} until we cannot do so anymore. The number of subtractions that we performed is the $s$-th digit of \texttt{B1 / B2} after its decimal point. If this is the digit that we are currently interested in, we can stop. Otherwise, we proceed to step~(3) below.\smallskip
-	
-	\item[3)] Multiply \texttt{B1} by $10$, increment $s$ by $1$, and then return to step~(2) above.\smallskip
-\end{enumerate}
 
 In order to implement step~(2) above in APGsembly, we need to know how to subtract the value of one binary register from another, and how to compare the values of two binary registers (so that we know whether or not we can do the subtraction in the first place). Fortunately, we saw how to do the former of these tasks in APGsembly~\ref{alg:apgsembly_binary_add_sub}, and the latter task is somewhat simpler and left to Exercise~\ref{exer:universal_computation_apgsembly_binary_compare}. Similarly, we saw how to do the multiplication by $10$ that step~(3) requires us to do back in APGsembly~\ref{alg:apgsembly_mul_ten}.
 
