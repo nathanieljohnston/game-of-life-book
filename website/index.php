@@ -37,10 +37,7 @@
   <link rel="stylesheet" href="css/github-prettify-theme.css">
   <script src="js/site.js"></script>
 
-  <!-- Favicon
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-<link rel="shortcut icon" type="image/png" href="/favicon.png"/>
-<link rel="shortcut icon" type="image/png" href="http://www.conwaylife.com/book/favicon.png"/>
+<link rel="shortcut icon" type="image/png" href="https://conwaylife.com/book/favicon.png" />
 
 <style>
 .anchor{
