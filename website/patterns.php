@@ -633,6 +633,84 @@
 		$ch_name = 'Periodic Circuitry';
 
 		$fig_nums = array(
+			'Figure 6.2' => 'gosper_glider_gun.txt',
+			'Figure 6.3' => 'buckaroo_reflect.txt',
+			'Figure 6.4(a)' => 'p30_relay.txt',
+			'Figure 6.4(b)' => 'p30_180_reflect.txt',
+			'Figure 6.4(c)' => 'p30_90_reflect_penta.txt',
+			'Figure 6.5' => 'inverter_non_inline.txt',
+			'Figure 6.6(a)' => 'inline_inverter.txt',
+			'Figure 6.6(b)' => 'inline_inverter_p120.txt',
+			'Figure 6.7' => 'inline_inverter_bounce.txt',
+			'Figure 6.8(a)' => 'inline_inverter_p120_gun.txt',
+			'Figure 6.8(b)' => 'inverter_p120_gun.txt',
+			'Figure 6.9' => 'stream_inverter.txt',
+			'Figure 6.10' => 'glider_duplicator.txt',
+			'Figure 6.11' => 'glider_pusher.txt',
+			'Figure 6.12' => 'glider_to_lwss.txt',
+			'Figure 6.13' => 'lwss_to_glider.txt',
+			'Figure 6.14' => 'toggle.txt',
+			'Figure 6.15' => 'prime_lwss_stream.txt',
+			'Figure 6.16' => 'glider_lwss_destroy.txt',
+			'Figure 6.18' => 'period_not_2_3_lwss_gun.txt',
+			'Figure 6.20' => 'breeder_compact.txt',
+			'Figure 6.21' => 'breeder_ggg_eater_1_stabilize.txt',
+			'Figure 6.22' => 'primer.txt',
+			'Figure 6.23' => 'twin_bees_reflect.txt',
+			'Figure 6.24(a)' => 'twin_bees_p23_gun.txt',
+			'Figure 6.24(b)' => 'twin_bees_p46_lwss_gun.txt',
+			'Figure 6.24(c)' => 'twin_bees_lwss_to_mwss.txt',
+			'Figure 6.25' => 'twin_bees_duplicate_reflector.txt',
+			'Figure 6.26' => 'ticker_tape_gun.txt',
+			'Figure 6.27' => 'ticker_tape_hi_gun.txt',
+			'Figure 6.28' => 'p46_memory_cell.txt',
+			'Figure 6.29(a)' => 'tanners_p46_edge.txt',
+			'Figure 6.29(b)' => 'tanners_p46_inline_inverter.txt',
+			'Figure 6.29(c)' => 'tanners_p46_mwss_gun.txt',
+			'Figure 6.30' => 'p46_hwss_gun.txt',
+			'Figure 6.31' => 'p46_natural_heisenburp.txt',
+			'Figure 6.32' => 'mwss_out_of_the_blue.txt',
+			'Figure 6.33(a)' => 'heisenburp_reaction_p35.txt',
+			'Figure 6.33(b)' => 'heisenburp_reaction_p35.txt',
+			'Figure 6.34' => 'p46_heisenburp_constructed.txt',
+			'Figure 6.35(a)' => 'bumper.txt',
+			'Figure 6.35(b)' => 'p3_bumper_b.txt',
+			'Figure 6.35(c)' => 'p3_bumper_a.txt',
+			'Figure 6.35(d)' => 'p4_bumper.txt',
+			'Figure 6.35(e)' => 'p6_bumper.txt',
+			'Figure 6.35(f)' => 'p7_bumper.txt',
+			'Figure 6.35(g)' => 'p8_bumper.txt',
+			'Figure 6.35(h)' => 'p9_bumper.txt',
+			'Figure 6.35(i)' => 'p11_bumper.txt',
+			'Figure 6.36(b)' => 'p6_bouncer.txt',
+			'Figure 6.36(c)' => 'p7_bouncer.txt',
+			'Figure 6.36(d)' => 'p8_bouncer.txt',
+			'Figure 6.36(e)' => 'p15_bouncer.txt',
+			'Figure 6.36(f)' => 'p5_bouncer.txt',
+			'Figure 6.37(a)' => 'inverter_as_regulator_0.txt',
+			'Figure 6.37(b)' => 'inverter_as_regulator_1.txt',
+			'Figure 6.38' => 'boat_bit.txt',
+			'Figure 6.39' => 'boat_bit_into_glider.txt',
+			'Figure 6.40' => 'make_sync_glider.txt',
+			'Figure 6.41(b)' => 'universal_regulator_periodic.txt',
+			'Figure 6.42(a)' => 'prng_gun.txt',
+			'Figure 6.43' => 'life_computes_pi.txt',
+			'Exercise 6.5' => 'glider_to_hwss_to_glider.txt',
+			'Exercise 6.6' => 'any_wss_to_glider.txt',
+			'Exercise 6.9' => 'exercise_lwss_filter.txt',
+			'Exercise 6.19' => 'twin_bees_large_spark.txt',
+			'Exercise 6.25' => 'skewed_p29.txt',
+			'Exercise 6.30' => 'minimum_snark_loop.txt',
+			'Solution 6.24(a)' => 'p16_bumper.txt',
+			'Solution 6.24(b)' => 'p22_bumper.txt',
+			'Solution 6.24(c)' => 'p4_bumper_fountain.txt',
+			'Solution 6.24(d)' => 'p15_bumper.txt',
+			'Solution 6.24(e)' => 'p5_bumper.txt',
+			'Solution 6.25' => 'p29_pip_reflector.txt',
+			'Solution 6.30(a)' => 'solution_minimum_period_snark_loop_a.txt',
+			'Solution 6.30(b)' => 'solution_minimum_period_snark_loop_b.txt',
+			'Solution 6.30(c)' => 'solution_minimum_period_snark_loop_c.txt',
+			'Solution 6.30(e)' => 'solution_minimum_period_snark_loop_e.txt',
 		);
 	} else if($_GET['p'] == 'stationary_circuitry'){
 		$ch_num = 7;
@@ -683,8 +761,6 @@
 <html lang="en">
 <head>
 
-  <!-- Basic Page Needs
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
   <title>Conway's Game of Life: Mathematics and Construction</title>
   <meta name="description" content="A textbook for mathematical aspects of Conway's Game of Life and methods of pattern construction.">
@@ -693,29 +769,19 @@
   <script type="text/javascript" src="https://conwaylife.com/book/js/lv-plugin.js"></script>
   <script type="text/javascript" src="https://conwaylife.com/book/js/selectCode.js"></script>
 
-  <!-- Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- FONT
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
 
-  <!-- CSS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="stylesheet" href="https://conwaylife.com/book/css/normalize.css">
   <link rel="stylesheet" href="https://conwaylife.com/book/css/skeleton.css">
   <link rel="stylesheet" href="https://conwaylife.com/book/css/custom.css">
 
-  <!-- Scripts
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
   <link rel="stylesheet" href="css/github-prettify-theme.css">
   <script src="https://conwaylife.com/book/js/site.js"></script>
 
-  <!-- Favicon
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 <link rel="shortcut icon" type="image/png" href="https://conwaylife.com/book/favicon.png"/>
 
 <style>
@@ -751,8 +817,6 @@
         </div>
       </div>
 
-  <!-- Primary Page Layout
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
     <div class="navbar-spacer"></div>
     <nav class="navbar">
@@ -790,7 +854,5 @@
 
   </div>
 
-<!-- End Document
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>
 </html>
