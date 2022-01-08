@@ -995,6 +995,22 @@
 		$ch_name = 'Universal Computation';
 
 		$fig_nums = array(
+			'Figure 9.2' => 'sliding_block_register.txt',
+			'Figure 9.3' => 'add_computer.txt',
+			'Figure 9.4' => 'stable_universal_regulator.txt',
+			'Figure 9.5' => 'p2to_the_20_gun.txt',
+			'Figure 9.6' => 'mult_computer.txt',
+			'Figure 9.7' => 'binary_register.txt',
+			'Figure 9.8' => 'binary_ruler.txt',
+			'Figure 9.9' => 'add_component.txt',
+			'Figure 9.10' => 'sub_component.txt',
+			'Figure 9.11' => 'mul_component.txt',
+			'Figure 9.12(a)' => 'char_printer_place_pixel.txt',
+			'Figure 9.12(b)' => 'char_printer_push_cursor.txt',
+			'Figure 9.13' => 'row_printer.txt',
+			'Figure 9.14' => 'abracadabra_printer.txt',
+			'Figure 9.15' => 'pi_calculator.txt',
+			'Figure 9.17' => 'osqrtlogt.txt',
 		);
 	} else if($_GET['p'] == 'self_support_spaceships'){
 		$ch_num = 10;
