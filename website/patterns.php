@@ -1255,12 +1255,12 @@
     <div class="container">
       <div class="row" style="padding-top:4rem;padding-bottom:1rem;">
         <div style="width:158px;" class="bookimgdiv">
-          <img src="images/logo.png" style="width:158px;height:157px;" class="bookimg">
+          <img src="https://conwaylife.com/book/images/logo.png" style="width:158px;height:157px;" class="bookimg">
         </div>
         <div style="overflow: hidden;">
           <h1 style="font-weight:bold;margin-bottom:0px;">Conway's Game of Life</h1>
           <h3 style="margin-top:0px;">Mathematics and Construction</h3>
-          <a class="button button-primary" href="#download_pdf">Download the Book</a>
+          <a class="button button-primary" href="https://conwaylife.com/book/#download_pdf">Download the Book</a>
         </div>
       </div>
 
