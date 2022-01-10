@@ -544,7 +544,7 @@ If we break the $2^{35}$-generation lifecycle of the metacell down into $2^6 = 6
 \begin{figure}[!htbp]
 	\centering
 	\embedlink{clock_gun_full_small}{\includegraphics[width=1\textwidth]{0e0p/clock_gun_full.pdf}}
-	\caption{One-time circuitry is used to direct the output of the metacell's period~$2^{29}$ control clock gun (highlighted in \bgbox{aquaback}{aqua}) to trigger various stages of its lifecycle. The stages begin when the eater~1 circled in \bgbox{redback}{red} is removed. After that, the metacell computes its state and either dies (if its state is 0) or does nothing for a long time (if its state is non-zero). Stages $16$--$63$, where child cells do nothing, are implemented by a slow salvo seed along the output lane that eats $48$ gliders before being destroyed. It then begins acting as a parent metacell rather than as a child: it starts building its own children in stage~0, it starts dying off in stage~12, and it sends its state to its children in stage 14.}
+	\caption{One-time circuitry is used to direct the output of the metacell's period~$2^{29}$ control clock gun (highlighted in \bgbox{aquaback}{aqua}) to trigger various stages of its lifecycle. The stages begin when the eater~1 circled in \bgbox{redback}{red} is removed. After that, the metacell computes its state and either dies (if its state is 0) or does nothing for a long time (if its state is non-zero). Stages $16$--$63$, where child cells do nothing, are implemented by an obstruction along the output lane that eats $48$ gliders before being destroyed. It then begins acting as a parent metacell rather than as a child: it starts building its own children in stage~0, it starts dying off in stage~12, and it sends its state to its children in stage 14.}
 	\label{fig:0e0p_clock_gun_full}
 \end{figure}
 
@@ -776,7 +776,7 @@ Back in the parent metacell, at $t = 1{\thousep}073{\thousep}741{\thousep}824 = 
 	\label{fig:0e0p_timeline_1073741824}
 \end{figure}
 
-At $t = 1{\thousep}610{\thousep}612{\thousep}736 = 3 \times 2^{29}$, the next ``$2^{29}$'' Herschel appears in the clock gun. However, despite the resulting glider making it past all $21$ semi-Snarks in the clock gun, it does not actually do anything of note---there is a block along the period $2^{29}$ output lane that simply absorbs it. This block causes another $2^{29}$-generation cycle to occur, so that the single-channel glider recipe is sent to the northeast child metacell twice: once to do the construction, and once to populate the new child's nucleus with a copy of the recipe. Blocks along the control clock gun's output lane are similarly used to absorb the output gliders that are produced by Herschels at $t = 2^{29}$, $t = 5 \times 2^{29}$, and $t = 7 \times 2^{29}$.
+At $t = 1{\thousep}610{\thousep}612{\thousep}736 = 3 \times 2^{29}$, the next ``$2^{29}$'' Herschel appears in the clock gun. However, despite the resulting glider making it past all $21$ semi-Snarks in the clock gun, it does not actually do anything of note---there is a block along the period $2^{29}$ output lane that simply absorbs it. This block causes another $2^{29}$-generation cycle to occur, so that the single-channel glider recipe is sent to the northeast child metacell twice: once to do the construction, and once to populate the new child's nucleus with a copy of the recipe. Blocks along the control clock gun's output lane will similarly be used to absorb the output gliders that are produced by Herschels at $t = 5 \times 2^{29}$, and $t = 7 \times 2^{29}$.
 
 By generation $t = 2{\thousep}147{\thousep}483{\thousep}648 = 4 \times 2^{29}$, the northeast child's nucleus has been filled and its control clock gun has started up. At the same time, a Herschel is present in the parent's control clock gun that will produce a glider that removes an eater~1 from its period $2^{25}$ output lane. Exactly $2^{25}$ generations later, at $t = 2{\thousep}181{\thousep}038{\thousep}080$, another Herschel is present in the parent's control clock gun that will use one-time circuitry to switch over to construction of the northwest child metacell (see Figure~\ref{fig:0e0p_timeline_2147483648}).
 
@@ -926,12 +926,12 @@ Self-destruction continues through a few more stages past this point, with it be
 \subsection{Generations $\mathbf{16 \times 2^{29}}$ to $\mathbf{128 \times 2^{29}}$: Waiting and Repeating}\label{sec:0e0p_timeline_wait_repeat}
 %%%%%%%%%%%%%%%%%%%%%%
 
-If a child metacell's state is non-zero, it now spends an extraordinarily long time doing nothing of note---from generation $t = 16 \times 2^{29}$ until $t = 64 \times 2^{29}$ the gliders from the period $2^{29}$ control clock are blocked by a slow-salvo seed, so the contents of its nucleus simply cycle $48$ times without really doing anything (see Figure~\ref{fig:0e0p_timeline_17179869184}).
+If a child metacell's state is non-zero, it now spends an extraordinarily long time doing nothing of note---from generation $t = 16 \times 2^{29}$ until $t = 64 \times 2^{29}$ the gliders from the period $2^{29}$ control clock are blocked by an obstruction, so the contents of its nucleus simply cycle $48$ times without really doing anything (see Figure~\ref{fig:0e0p_timeline_17179869184}).
 
 \begin{figure}[!htb]
 	\centering
 	\patternlink{0e0p_timeline_17179869184_small}{\includegraphics[width=1\textwidth]{0e0p/0e0p_timeline_17179869184.pdf}}
-	\caption{One of the blocks on the control clock gun's period~$2^{29}$ output lane acts as a slow salvo seed that destroys $48$ gliders, and thus halts the metacell for $48 \times 2^{29}$ generations. In the phase shown here, it has already absorbed $16$ gliders, it is about to absorb another one, and it will then absorb $31$ more much later.}
+	\caption{One of the blocks on the control clock gun's period~$2^{29}$ output lane eats $48$ gliders, and thus halts the metacell for $48 \times 2^{29}$ generations. In the phase shown here, it has already absorbed $16$ gliders, it is about to absorb another one, and it will then absorb $31$ more much later.}
 	\label{fig:0e0p_timeline_17179869184}
 \end{figure}
 
