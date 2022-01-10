@@ -1290,11 +1290,11 @@
 		}
 
 		// The next foreach loop is just for debugging purposes -- comment it out when the website is fully deployed and all patterns are properly labeled.
-		foreach(scandir('patterns/' . $_GET['p'] . '/') as $file) {
-			if(array_search($file, $fig_nums) === FALSE) {// only display the file down here if we did not already display it along with its Figure number
-				show_pattern_file($file);
-			}
-		}
+		//foreach(scandir('patterns/' . $_GET['p'] . '/') as $file) {
+		//	if(array_search($file, $fig_nums) === FALSE) {// only display the file down here if we did not already display it along with its Figure number
+		//		show_pattern_file($file);
+		//	}
+		//}
 ?>
     </div>
 
