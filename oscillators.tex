@@ -1013,7 +1013,7 @@ We have now seen numerous techniques for constructing oscillators of different p
 			\rowcolor{gray!20} 35 & 1995 & p$5$ pipsquirter on hebdarole \\
 			36 & 1984 & T-nosed p$4$ on snacker, Figure~\ref{fig:period_36} \\
 			\rowcolor{gray!20} 37 & 2009 & Figure~\ref{fig:p37_pi_hassler} \\
-			\rowcolor{redback!50} 38 & & none known \\
+			38 & 2022 & Exercise~\ref{exer:p38_reflect} \\
 			\rowcolor{gray!20} 39 & 2000 & caterer on p$13$ sparker (see Exercise~\ref{exer:high_period_sparkers}(a)) \\
 			40 & $\leq$1991 & fumarole on blocker \\
 			\rowcolor{redback!50} 41 & & none known \\
@@ -1021,12 +1021,12 @@ We have now seen numerous techniques for constructing oscillators of different p
 			\rowcolor{gray!20} 43+ & 2013 (some earlier) & Snark-based glider loops \\
 			61+ & 1996 (some earlier) & Herschel tracks \\\bottomrule
 		\end{tabular}
-		\caption{A summary of the status of the omniperiodicity problem in Conway's Game of Life. The only four periods for which it is unknown how to construct an oscillator are 19, 34, 38, and 41. Note that some large-period oscillators were found much earlier than 1996 or 2013, and these are not cataloged in this table. For example, the twin bees shuttle has period~$46$ and was found in 1971.}\label{tab:omniperiodic}
+		\caption{A summary of the status of the omniperiodicity problem in Conway's Game of Life. The only three periods for which it is unknown how to construct an oscillator are 19, 34, and 41. Note that some large-period oscillators were found much earlier than 1996 or 2013, and these are not cataloged in this table. For example, the twin bees shuttle has period~$46$ and was found in 1971.}\label{tab:omniperiodic}
 	\end{center}
 \end{table}
 \endgroup
 
-While remarkable progress on this problem has been made over the years, and in fact we have already seen how to construct oscillators with \emph{almost} any period, omniperiodicity in general remains unsolved, as there are still gaps that we do not know how to fill in. In particular, we do not know how to construct oscillators with period 19, 34, 38, or 41.\footnote{Even though we could just place a period~$2$ blinker next to a period~$17$ honey thieves to create a period~$34$ oscillator, we recall that this type of construction is considered ``trivial'' and is thus ignored because no cell oscillates at the full period.} A complete summary of the status of the omniperiodicity problem is given in Table~\ref{tab:omniperiodic}, but we note that this table will likely become out of date reasonably quickly, as oscillators of new periods have been found somewhat regularly in recent years. In particular, new oscillator periods have been constructed in each of the years 2000, 2002, 2009, 2010, 2013, and 2019.\footnote{David Buckingham and Noam Elkies found the first period 39 oscillator in 2000, Elkies found the first period 27 oscillator in 2002, Nicolay Beluchenko found the first known period~37 and~51 oscillators in 2009, Matthias Merzenich found the first known period~31 oscillator in 2010, the Snark-based oscillators of periods~43 and~53 were found in 2013, and Luka Okanishi completed the first period~23 oscillator in 2019.}
+While remarkable progress on this problem has been made over the years, and in fact we have already seen how to construct oscillators with \emph{almost} any period, omniperiodicity in general remains unsolved, as there are still gaps that we do not know how to fill in. In particular, we do not know how to construct oscillators with period 19, 34, or 41.\footnote{Even though we could just place a period~$2$ blinker next to a period~$17$ honey thieves to create a period~$34$ oscillator, we recall that this type of construction is considered ``trivial'' and is thus ignored because no cell oscillates at the full period.} A complete summary of the status of the omniperiodicity problem is given in Table~\ref{tab:omniperiodic}, but we note that this table will likely become out of date reasonably quickly, as oscillators of new periods have been found somewhat regularly in recent years. In particular, new oscillator periods have been constructed in each of the years 2002, 2009, 2010, 2013, 2019, and 2022.\footnote{Noam Elkies found the first period 27 oscillator in 2002, Nicolay Beluchenko found the first known period~37 and~51 oscillators in 2009, Matthias Merzenich found the first known period~31 oscillator in 2010, the Snark-based oscillators of periods~43 and~53 were found in 2013, Luka Okanishi completed the first period~23 oscillator in 2019, and David Raucci discovered the first period~38 oscillator in 2022.}
 
 Note that all of the periods for which we do not know the answer are ``intermediate'' in size. Small periods (say with period $8$ or less) can often be found via clever computer searches, but higher periods are much more difficult to find in this way due to the size of the search space expanding so quickly. On the other hand, oscillators with high periods (say with period~$30$ or more) can often be found by combining various hassling and shuttling reactions in different ways, and of course very high period oscillators can be constructed via glider loops and Herschel tracks. Similarly, composite periods can often by constructed simply by placing sparks of lower-period oscillators next to each other. The result of combining these various techniques together is that there is somewhat of a rift, where we know lots of oscillators with small periods and lots of oscillators with large periods, but relatively few oscillators with prime periods in between those two extremes.
 
@@ -1389,6 +1389,19 @@ Herschel tracks remain one of the pinnacles of Life technology to this day, alth
 			\end{center}
 		\end{enumerate}
 	\end{problem}
+
+
+	\mfilbreak
+	
+	
+	\begin{problem}\label{exer:p38_reflect} \probdiff{2}
+	Show how the following period~$38$ oscillator\footnote{Found by David Raucci in January 2022, and essentially the only known period~$38$ oscillator.} can be used to reflect a glider.
+	
+	\begin{center}
+		\patternimglink{0.1}{period_38}
+	\end{center}
+	\end{problem}
+	% Solution: duoplet spark like we saw in the text.
 	
 	
 	\mfilbreak
