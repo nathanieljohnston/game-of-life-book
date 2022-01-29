@@ -119,6 +119,13 @@
     </div>
 
 
+<span class="anchor" id="errata"></span>
+    <div class="docs-section">
+      <h6 class="docs-header">Errata and Anachronisms</h6>
+      <p>Typos and mistakes in the book are collected <a href="https://www.conwaylife.com/wiki/Conway%27s_Game_of_Life:_Mathematics_and_Construction/Errata">here</a>, as are major discoveries that were made after the book was finalized on January 15, 2022. Additional typos and anachronisms can be added directly to that page, or can be sent via e-mail to <a href="mailto:book@conwaylife.com">book@conwaylife.com</a>.</p>
+    </div>
+
+
 <span class="anchor" id="cite"></span>
     <div class="docs-section">
       <h6 class="docs-header">Bibliographic Information and Specifications</h6>
