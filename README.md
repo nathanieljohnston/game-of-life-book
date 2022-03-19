@@ -8,3 +8,5 @@ Compile from main.tex. To compile just a chapter or two at a time (recommended w
 in main.tex to:
 
 %\include{oscillators}
+
+License: [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/legalcode).
